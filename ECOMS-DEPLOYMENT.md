@@ -123,6 +123,7 @@ Además, cualquier ajuste de texto o imagen del editor se puede **conectar a un 
 2. En la rama de la tienda: `git checkout tienda-{nombre} && git merge origin/main`.
 3. Si hay conflicto en `config/settings_data.json`, `templates/*.json` o `sections/*-group.json`, **gana la versión de la tienda**. Ese es su contenido. Del lado de `main` solo se aportan secciones, bloques o ajustes nuevos.
 4. `python3 scripts/validate-templates.py` (debe decir OK) → push → revisar *View logs* en Shopify ("0 failed").
+5. Para traer los cambios que Shopify escribió en la rama de una tienda: `scripts/merge-shopify-sync.sh tienda-{nombre}` (el contenido de la tienda gana en los JSON del editor).
 
 **Reglas para no romper tiendas existentes:**
 - No cambies el `id` ni el tipo de un ajuste o bloque existente. Agrega nuevos.
