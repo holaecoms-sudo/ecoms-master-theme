@@ -1,4 +1,5 @@
 {%- comment -%} ECOMS · Customer photos and videos (UGC). Only use content with the customer's permission. {%- endcomment -%}
+{%- if section.blocks.size > 0 or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-ugc-sec' %}>
   <div class="ec-w">
     {%- if section.settings.heading != blank -%}
@@ -32,6 +33,7 @@
     </div>
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {

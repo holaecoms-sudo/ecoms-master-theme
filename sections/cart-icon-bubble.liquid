@@ -1,3 +1,7 @@
+{%- capture ec_skin -%}{% render 'ecoms-skin' %}{%- endcapture -%}
+{%- if ec_skin != 'none' -%}
+  {%- render 'ecoms-cart-icon' -%}
+{%- else -%}
 {% if cart == empty %}
   <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
 {% else %}
@@ -12,4 +16,5 @@
     {%- endif -%}
     <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
   </div>
+{%- endif -%}
 {%- endif -%}

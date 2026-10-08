@@ -3,6 +3,7 @@
   Shopify Bundles app); price and compare-at price come from that product.
 {%- endcomment -%}
 {%- assign item = section.settings.product -%}
+{%- if section.settings.product != blank or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-upsell' %}>
   <div class="ec-w">
     {%- if section.settings.heading != blank -%}
@@ -50,6 +51,7 @@
     {%- endif -%}
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {

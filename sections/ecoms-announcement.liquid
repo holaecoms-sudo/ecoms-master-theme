@@ -1,0 +1,245 @@
+{%- comment -%} ECOMS · Announcement bar: inline messages with separators (mockup Flex/Brand/Direct). {%- endcomment -%}
+<div class="ec-ann ec-ann--{{ section.settings.style }}" role="region" aria-label="Anuncios">
+  <div class="ec-ann__inner">
+    <span class="ec-ann__msgs">
+      {%- if section.settings.icon != 'none' -%}{% render 'ecoms-icon', name: section.settings.icon %}{%- endif -%}
+      {%- for block in section.blocks -%}
+        {%- unless forloop.first %}<span class="ec-ann__sep" aria-hidden="true">{{ section.settings.separator }}</span>{% endunless -%}
+        <span {{ block.shopify_attributes }}>
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}">{{ block.settings.text | escape }}</a>
+          {%- else -%}
+            {{- block.settings.text | escape -}}
+          {%- endif -%}
+        </span>
+      {%- endfor -%}
+    </span>
+    {%- liquid
+      assign end_ts = 0
+      if section.settings.end_at != blank
+        assign end_ts = section.settings.end_at | date: '%s' | plus: 0
+      endif
+      assign now_ts = 'now' | date: '%s' | plus: 0
+    -%}
+    {%- if end_ts > now_ts -%}
+      <span class="ec-ann__timer" data-ec-countdown="{{ end_ts }}">
+        {{ section.settings.timer_label | escape }} <span class="ec-timer" data-ec-cd-inline>--:--:--</span>
+      </span>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "ECOMS · Anuncios",
+  "tag": "section",
+  "class": "ec-ann-section",
+  "enabled_on": {
+    "groups": [
+      "header"
+    ]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Estilo",
+      "options": [
+        {
+          "value": "flex",
+          "label": "Flex"
+        },
+        {
+          "value": "brand",
+          "label": "Brand"
+        },
+        {
+          "value": "direct",
+          "label": "Direct"
+        }
+      ],
+      "default": "flex"
+    },
+    {
+      "type": "select",
+      "id": "icon",
+      "label": "Icono",
+      "options": [
+        {
+          "value": "none",
+          "label": "Sin icono"
+        },
+        {
+          "value": "truck",
+          "label": "Camión / envío"
+        },
+        {
+          "value": "lock",
+          "label": "Candado / pago seguro"
+        },
+        {
+          "value": "shield",
+          "label": "Escudo / garantía"
+        },
+        {
+          "value": "return",
+          "label": "Devolución"
+        },
+        {
+          "value": "chat",
+          "label": "Soporte"
+        },
+        {
+          "value": "cash",
+          "label": "Pago / efectivo"
+        },
+        {
+          "value": "gift",
+          "label": "Regalo"
+        },
+        {
+          "value": "star",
+          "label": "Estrella"
+        },
+        {
+          "value": "heart",
+          "label": "Corazón"
+        },
+        {
+          "value": "check",
+          "label": "Check"
+        },
+        {
+          "value": "clock",
+          "label": "Reloj"
+        },
+        {
+          "value": "fire",
+          "label": "Fuego / oferta"
+        },
+        {
+          "value": "bolt",
+          "label": "Rayo / potencia"
+        },
+        {
+          "value": "sparkle",
+          "label": "Brillo"
+        },
+        {
+          "value": "leaf",
+          "label": "Hoja / natural"
+        },
+        {
+          "value": "drop",
+          "label": "Gota / agua"
+        },
+        {
+          "value": "snow",
+          "label": "Frío"
+        },
+        {
+          "value": "thermo",
+          "label": "Temperatura"
+        },
+        {
+          "value": "sun",
+          "label": "Sol / luz"
+        },
+        {
+          "value": "gem",
+          "label": "Gema / premium"
+        },
+        {
+          "value": "hand",
+          "label": "Mano / fácil"
+        },
+        {
+          "value": "users",
+          "label": "Personas"
+        },
+        {
+          "value": "box",
+          "label": "Caja / paquete"
+        },
+        {
+          "value": "grid",
+          "label": "Accesorios"
+        },
+        {
+          "value": "battery",
+          "label": "Batería"
+        },
+        {
+          "value": "home",
+          "label": "Hogar"
+        },
+        {
+          "value": "verified",
+          "label": "Verificado"
+        },
+        {
+          "value": "bag",
+          "label": "Bolsa / tienda"
+        },
+        {
+          "value": "cart",
+          "label": "Carrito"
+        }
+      ],
+      "default": "truck"
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separador",
+      "default": "|"
+    },
+    {
+      "type": "header",
+      "content": "Temporizador (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "end_at",
+      "label": "Fecha de término",
+      "info": "Solo promociones reales. \"2026-12-31 23:59\""
+    },
+    {
+      "type": "text",
+      "id": "timer_label",
+      "label": "Texto",
+      "default": "Oferta termina en:"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Mensaje",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Envíos a todo Chile"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Enlace"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "ECOMS · Anuncios",
+      "blocks": [
+        {
+          "type": "message"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

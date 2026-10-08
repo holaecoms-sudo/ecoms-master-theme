@@ -1,0 +1,7 @@
+{%- comment -%} ECOMS · Cart icon + count. Also rendered by sections/cart-icon-bubble so Dawn's cart drawer refreshes it. {%- endcomment -%}
+{% render 'ecoms-icon', name: 'cart' %}
+<span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+{%- if cart.item_count > 0 -%}
+  <span class="ec-cart-count" aria-hidden="true">{{ cart.item_count }}</span>
+  <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+{%- endif -%}

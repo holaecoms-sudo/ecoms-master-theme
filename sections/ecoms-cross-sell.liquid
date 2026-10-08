@@ -1,4 +1,5 @@
 {%- comment -%} ECOMS · Cross-sell cards with a real add-to-cart (Shopify AJAX Cart API). {%- endcomment -%}
+{%- if section.settings.products != blank or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-cross' %}>
   <div class="ec-w">
     {%- if section.settings.heading != blank -%}
@@ -33,6 +34,7 @@
     {%- endif -%}
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {

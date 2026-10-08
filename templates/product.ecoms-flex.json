@@ -1,20 +1,20 @@
 {
   "sections": {
     "main": {
-      "type": "main-product",
+      "type": "ecoms-product",
       "blocks": {
         "rating": {
-          "type": "ecoms_rating",
+          "type": "rating",
           "settings": {}
         },
         "title": {
           "type": "title",
           "settings": {}
         },
-        "subtitle": {
-          "type": "ecoms_subtitle",
+        "sub": {
+          "type": "text",
           "settings": {
-            "text": "<p>Describe en una o dos frases el beneficio principal y para quién es el producto.</p>"
+            "text": "<p>Depila cejas y rostro de forma rápida y precisa, sin dolor ni irritación. Portátil y recargable: llévalo a donde vayas.</p>"
           }
         },
         "price": {
@@ -22,7 +22,7 @@
           "settings": {}
         },
         "urgency": {
-          "type": "ecoms_urgency",
+          "type": "urgency",
           "settings": {
             "icon": "fire",
             "heading": "¡Oferta por tiempo limitado!",
@@ -31,33 +31,18 @@
             "show_days": true
           }
         },
-        "variant_picker": {
-          "type": "variant_picker",
+        "buy": {
+          "type": "buy",
           "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
-          }
-        },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": false,
-            "show_gift_card_recipient": false
-          }
-        },
-        "buy_now": {
-          "type": "ecoms_buy_now",
-          "settings": {
-            "label": "Comprar ahora",
-            "icon": "none"
+            "show_quantity": true,
+            "add_label": "Agregar al carrito",
+            "show_total": true,
+            "show_buy_now": true,
+            "buy_now_label": "Comprar ahora"
           }
         },
         "trust": {
-          "type": "ecoms_trust",
+          "type": "trust",
           "settings": {
             "icon_1": "lock",
             "title_1": "Pago seguro",
@@ -65,68 +50,46 @@
             "icon_2": "truck",
             "title_2": "Envíos",
             "text_2": "A todo Chile",
-            "icon_3": "shield",
-            "title_3": "Garantía",
+            "icon_3": "return",
+            "title_3": "Cambios",
             "text_3": "Según política",
             "icon_4": "chat",
             "title_4": "Soporte",
             "text_4": "Por WhatsApp"
           }
         },
-        "description": {
-          "type": "description",
-          "settings": {}
-        },
         "media_features": {
-          "type": "ecoms_media_features",
+          "type": "media_features",
           "settings": {
-            "icon_1": "drop",
-            "text_1": "Característica 1",
-            "icon_2": "thermo",
-            "text_2": "Característica 2",
-            "icon_3": "shield",
-            "text_3": "Característica 3",
-            "icon_4": "leaf",
-            "text_4": "Característica 4"
-          }
-        },
-        "sticky": {
-          "type": "ecoms_sticky",
-          "settings": {
-            "label": "Agregar",
-            "desktop": true
+            "icon_1": "heart",
+            "text_1": "Sin dolor ni irritación",
+            "icon_2": "battery",
+            "text_2": "Recargable",
+            "icon_3": "sparkle",
+            "text_3": "Precisión en cejas",
+            "icon_4": "hand",
+            "text_4": "Portátil y discreto"
           }
         }
       },
       "block_order": [
         "rating",
         "title",
-        "subtitle",
+        "sub",
         "price",
         "urgency",
-        "variant_picker",
-        "quantity_selector",
-        "buy_buttons",
-        "buy_now",
+        "buy",
         "trust",
-        "description",
-        "media_features",
-        "sticky"
+        "media_features"
       ],
       "settings": {
-        "enable_sticky_info": false,
-        "color_scheme": "scheme-1",
-        "media_size": "large",
-        "constrain_to_viewport": true,
-        "media_fit": "cover",
-        "gallery_layout": "thumbnail_slider",
-        "mobile_thumbnails": "hide",
-        "media_position": "left",
-        "image_zoom": "lightbox",
-        "hide_variants": false,
-        "enable_video_looping": false,
-        "padding_top": 20,
-        "padding_bottom": 24
+        "layout": "flex",
+        "video_loop": true,
+        "sticky": true,
+        "sticky_desktop": true,
+        "sticky_label": "Agregar",
+        "padding_top": 24,
+        "padding_bottom": 32
       }
     },
     "strip": {
@@ -142,15 +105,15 @@
           "settings": {
             "icon": "truck",
             "heading": "Envíos a todo Chile",
-            "text": "Plazos según tu comuna"
+            "text": "Plazo según tu comuna"
           }
         },
         "s2": {
           "type": "promise",
           "settings": {
             "icon": "gift",
-            "heading": "Packs con descuento",
-            "text": "Cuando hay promoción activa"
+            "heading": "Packs para regalar",
+            "text": "Llévate más unidades"
           }
         },
         "s3": {
@@ -158,7 +121,7 @@
           "settings": {
             "icon": "shield",
             "heading": "Compra segura",
-            "text": "Pago procesado por Shopify"
+            "text": "Pago protegido por Shopify"
           }
         },
         "s4": {
@@ -166,7 +129,7 @@
           "settings": {
             "icon": "chat",
             "heading": "Atención real",
-            "text": "Escríbenos cuando lo necesites"
+            "text": "Te ayudamos por WhatsApp"
           }
         }
       },
@@ -210,33 +173,33 @@
         "f1": {
           "type": "feature",
           "settings": {
-            "icon": "snow",
-            "heading": "Beneficio 1",
-            "text": "Explica un beneficio verificable."
+            "icon": "heart",
+            "heading": "Sin dolor",
+            "text": "Depila sin tirones ni irritación."
           }
         },
         "f2": {
           "type": "feature",
           "settings": {
-            "icon": "drop",
-            "heading": "Beneficio 2",
-            "text": "Explica un beneficio verificable."
+            "icon": "sparkle",
+            "heading": "Acabado preciso",
+            "text": "Ideal para cejas y vello fino del rostro."
           }
         },
         "f3": {
           "type": "feature",
           "settings": {
-            "icon": "leaf",
-            "heading": "Beneficio 3",
-            "text": "Explica un beneficio verificable."
+            "icon": "battery",
+            "heading": "Recargable",
+            "text": "Sin pilas: cárgalo y úsalo cuando quieras."
           }
         },
         "f4": {
           "type": "feature",
           "settings": {
             "icon": "gem",
-            "heading": "Beneficio 4",
-            "text": "Explica un beneficio verificable."
+            "heading": "Diseño portátil",
+            "text": "Cabe en tu cartera o neceser."
           }
         }
       },
@@ -250,9 +213,10 @@
     "lifestyle": {
       "type": "ecoms-lifestyle",
       "settings": {
-        "heading": "Diseñado para cada momento de tu día",
-        "text": "<p>Muestra dónde y cómo se usa el producto, con fotos reales.</p>",
-        "button_label": "Descubrir más",
+        "heading": "Luce siempre hermosa, donde estés",
+        "text": "<p>En casa, antes de salir o de viaje: un retoque rápido y discreto en segundos.</p>",
+        "button_label": "Comprar ahora",
+        "button_link": "#MainContent",
         "width": "full",
         "padding_top": 28,
         "padding_bottom": 28
@@ -261,25 +225,25 @@
         "l1": {
           "type": "card",
           "settings": {
-            "label": "Oficina"
+            "label": "Cejas"
           }
         },
         "l2": {
           "type": "card",
           "settings": {
-            "label": "Gimnasio"
+            "label": "Labio superior"
           }
         },
         "l3": {
           "type": "card",
           "settings": {
-            "label": "Viajes"
+            "label": "Mentón"
           }
         },
         "l4": {
           "type": "card",
           "settings": {
-            "label": "Aire libre"
+            "label": "Mejillas"
           }
         }
       },
@@ -293,11 +257,11 @@
     "comparison": {
       "type": "ecoms-comparison",
       "settings": {
-        "heading": "¿Por qué elegirnos?",
+        "heading": "¿Por qué elegirlo?",
         "feature_label": "Característica",
-        "col_1": "Nuestro producto",
-        "col_2": "Otras opciones",
-        "width": "left",
+        "col_1": "Flawless",
+        "col_2": "Pinzas o cera",
+        "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
       },
@@ -305,37 +269,33 @@
         "r1": {
           "type": "row",
           "settings": {
-            "feature": "Característica comprobable 1",
+            "feature": "Sin dolor ni irritación",
             "value_1": true,
-            "value_2": false,
-            "value_3": false
+            "value_2": false
           }
         },
         "r2": {
           "type": "row",
           "settings": {
-            "feature": "Característica comprobable 2",
+            "feature": "Rápido y en segundos",
             "value_1": true,
-            "value_2": false,
-            "value_3": false
+            "value_2": false
           }
         },
         "r3": {
           "type": "row",
           "settings": {
-            "feature": "Característica comprobable 3",
+            "feature": "Recargable y portátil",
             "value_1": true,
-            "value_2": true,
-            "value_3": false
+            "value_2": false
           }
         },
         "r4": {
           "type": "row",
           "settings": {
-            "feature": "Garantía según política de la tienda",
+            "feature": "Úsalo en casa, cuando quieras",
             "value_1": true,
-            "value_2": false,
-            "value_3": false
+            "value_2": true
           }
         }
       },
@@ -349,19 +309,9 @@
     "reviews": {
       "type": "ecoms-reviews",
       "settings": {
-        "heading": "Reseñas de nuestros clientes",
-        "width": "right",
+        "heading": "Reseñas de nuestras clientas",
+        "width": "full",
         "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "ugc": {
-      "type": "ecoms-ugc",
-      "settings": {
-        "heading": "Clientes reales",
-        "text": "Fotos compartidas con autorización.",
-        "width": "left",
-        "padding_top": 0,
         "padding_bottom": 36
       }
     },
@@ -370,37 +320,44 @@
       "settings": {
         "heading": "Preguntas frecuentes",
         "icon": "chev",
-        "width": "right",
-        "padding_top": 0,
+        "width": "full",
+        "padding_top": 8,
         "padding_bottom": 36
       },
       "blocks": {
         "q1": {
           "type": "faq",
           "settings": {
-            "question": "¿Cuánto tarda en llegar mi pedido?",
-            "answer": "<p>Completa con los plazos reales de despacho de esta tienda.</p>"
+            "question": "¿Duele al usarlo?",
+            "answer": "<p>Está diseñado para depilar el vello fino del rostro sin dolor ni irritación.</p>"
           }
         },
         "q2": {
           "type": "faq",
           "settings": {
-            "question": "¿Qué incluye el paquete?",
-            "answer": "<p>Detalla el contenido exacto de la caja.</p>"
+            "question": "¿Dónde puedo usarlo?",
+            "answer": "<p>En cejas, labio superior, mentón y mejillas.</p>"
           }
         },
         "q3": {
           "type": "faq",
           "settings": {
-            "question": "¿Tiene garantía?",
-            "answer": "<p>Describe la garantía según la política publicada.</p>"
+            "question": "¿Es recargable?",
+            "answer": "<p>Sí, es recargable, así que no necesitas pilas.</p>"
           }
         },
         "q4": {
           "type": "faq",
           "settings": {
-            "question": "¿Cómo hago un cambio o devolución?",
-            "answer": "<p>Explica los pasos según la política de devoluciones.</p>"
+            "question": "¿Hacen envíos a todo Chile?",
+            "answer": "<p>Sí. El plazo depende de tu comuna y lo ves antes de pagar en el checkout.</p>"
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo puedo pagar?",
+            "answer": "<p>Con los medios de pago disponibles en el checkout seguro de Shopify.</p>"
           }
         }
       },
@@ -408,7 +365,8 @@
         "q1",
         "q2",
         "q3",
-        "q4"
+        "q4",
+        "q5"
       ]
     },
     "cross_sell": {
@@ -425,7 +383,7 @@
     "upsell": {
       "type": "ecoms-upsell",
       "settings": {
-        "heading": "Completa tu compra",
+        "heading": "Completa tu rutina",
         "show_saving": true,
         "button_label": "Agregar al carrito",
         "width": "right",
@@ -442,7 +400,6 @@
     "lifestyle",
     "comparison",
     "reviews",
-    "ugc",
     "faq",
     "cross_sell",
     "upsell"

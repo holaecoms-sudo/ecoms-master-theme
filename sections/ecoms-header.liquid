@@ -1,0 +1,214 @@
+{%- comment -%} ECOMS · Header (mockup): logo, centered menu, search / account / cart, mobile menu. {%- endcomment -%}
+<header class="ec-hdr" role="banner">
+  <div class="ec-w ec-hdr__bar">
+    {%- if section.settings.menu.links.size > 0 -%}
+      <details class="ec-hdr__mobile">
+        <summary class="ec-icon-btn" aria-label="Abrir menú">{% render 'ecoms-icon', name: 'menu' %}</summary>
+        <nav class="ec-hdr__drawer" aria-label="Menú móvil">
+          {%- for link in section.settings.menu.links -%}
+            <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title | escape }}</a>
+            {%- for child in link.links -%}
+              <a class="ec-hdr__sub" href="{{ child.url }}">{{ child.title | escape }}</a>
+            {%- endfor -%}
+          {%- endfor -%}
+        </nav>
+      </details>
+    {%- endif -%}
+    <a href="{{ routes.root_url }}" class="ec-logo">
+      {%- if settings.logo != blank -%}
+        {%- assign logo_h = section.settings.logo_height -%}
+        {{ settings.logo | image_url: height: 120 | image_tag: height: logo_h, alt: shop.name, loading: 'eager' }}
+      {%- else -%}
+        {%- if section.settings.logo_icon != 'none' -%}{% render 'ecoms-icon', name: section.settings.logo_icon %}{%- endif -%}
+        <span>{{ shop.name | escape }}</span>
+      {%- endif -%}
+    </a>
+    <nav class="ec-nav" aria-label="Principal">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}" class="{% if link.active or link.child_active %}on{% endif %}">{{ link.title | escape }}</a>
+      {%- endfor -%}
+    </nav>
+    {%- if section.settings.social_text != blank -%}
+      <div class="ec-hdr__social">{% render 'ecoms-icon', name: 'star' %}{{ section.settings.social_text | escape }}</div>
+    {%- endif -%}
+    <div class="ec-hdr__icons">
+      <a href="{{ routes.search_url }}" class="ec-icon-btn" aria-label="Buscar">{% render 'ecoms-icon', name: 'search' %}</a>
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="{{ routes.account_url }}" class="ec-icon-btn" aria-label="Mi cuenta">{% render 'ecoms-icon', name: 'user' %}</a>
+      {%- endif -%}
+      <a href="{{ routes.cart_url }}" class="ec-icon-btn ec-hdr__cart" id="cart-icon-bubble">
+        {%- render 'ecoms-cart-icon' -%}
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "ECOMS · Header",
+  "tag": "section",
+  "class": "ec-hdr-section",
+  "enabled_on": {
+    "groups": [
+      "header"
+    ]
+  },
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menú",
+      "default": "main-menu"
+    },
+    {
+      "type": "select",
+      "id": "logo_icon",
+      "label": "Ícono junto al nombre (sin logo)",
+      "options": [
+        {
+          "value": "none",
+          "label": "Sin icono"
+        },
+        {
+          "value": "truck",
+          "label": "Camión / envío"
+        },
+        {
+          "value": "lock",
+          "label": "Candado / pago seguro"
+        },
+        {
+          "value": "shield",
+          "label": "Escudo / garantía"
+        },
+        {
+          "value": "return",
+          "label": "Devolución"
+        },
+        {
+          "value": "chat",
+          "label": "Soporte"
+        },
+        {
+          "value": "cash",
+          "label": "Pago / efectivo"
+        },
+        {
+          "value": "gift",
+          "label": "Regalo"
+        },
+        {
+          "value": "star",
+          "label": "Estrella"
+        },
+        {
+          "value": "heart",
+          "label": "Corazón"
+        },
+        {
+          "value": "check",
+          "label": "Check"
+        },
+        {
+          "value": "clock",
+          "label": "Reloj"
+        },
+        {
+          "value": "fire",
+          "label": "Fuego / oferta"
+        },
+        {
+          "value": "bolt",
+          "label": "Rayo / potencia"
+        },
+        {
+          "value": "sparkle",
+          "label": "Brillo"
+        },
+        {
+          "value": "leaf",
+          "label": "Hoja / natural"
+        },
+        {
+          "value": "drop",
+          "label": "Gota / agua"
+        },
+        {
+          "value": "snow",
+          "label": "Frío"
+        },
+        {
+          "value": "thermo",
+          "label": "Temperatura"
+        },
+        {
+          "value": "sun",
+          "label": "Sol / luz"
+        },
+        {
+          "value": "gem",
+          "label": "Gema / premium"
+        },
+        {
+          "value": "hand",
+          "label": "Mano / fácil"
+        },
+        {
+          "value": "users",
+          "label": "Personas"
+        },
+        {
+          "value": "box",
+          "label": "Caja / paquete"
+        },
+        {
+          "value": "grid",
+          "label": "Accesorios"
+        },
+        {
+          "value": "battery",
+          "label": "Batería"
+        },
+        {
+          "value": "home",
+          "label": "Hogar"
+        },
+        {
+          "value": "verified",
+          "label": "Verificado"
+        },
+        {
+          "value": "bag",
+          "label": "Bolsa / tienda"
+        },
+        {
+          "value": "cart",
+          "label": "Carrito"
+        }
+      ],
+      "default": "bag"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "label": "Alto del logo",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "default": 32,
+      "unit": "px"
+    },
+    {
+      "type": "text",
+      "id": "social_text",
+      "label": "Prueba social (cifra real)",
+      "info": "Ej.: +1.200 clientes. Opcional."
+    }
+  ],
+  "presets": [
+    {
+      "name": "ECOMS · Header"
+    }
+  ]
+}
+{% endschema %}

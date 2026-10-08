@@ -1,0 +1,201 @@
+{%- comment -%} ECOMS · Footer (mockup): brand, menus, real payment methods, social links, legal row. {%- endcomment -%}
+<footer class="ec-ft ec-ft--{{ section.settings.style }}">
+  <div class="ec-w ec-ft__grid">
+    {%- for block in section.blocks -%}
+      <div class="ec-ft__col ec-ft__col--{{ block.type }}" {{ block.shopify_attributes }}>
+        {%- case block.type -%}
+          {%- when 'brand' -%}
+            <a href="{{ routes.root_url }}" class="ec-logo">
+              {%- if block.settings.logo != blank -%}
+                {{ block.settings.logo | image_url: height: 80 | image_tag: height: 32, alt: shop.name, loading: 'lazy' }}
+              {%- else -%}
+                {% render 'ecoms-icon', name: 'bag' %}<span>{{ shop.name | escape }}</span>
+              {%- endif -%}
+            </a>
+            {%- if block.settings.text != blank -%}<div class="ec-ft__text">{{ block.settings.text }}</div>{%- endif -%}
+          {%- when 'menu' -%}
+            {%- if block.settings.heading != blank -%}<h2 class="ec-ft__h">{{ block.settings.heading | escape }}</h2>{%- endif -%}
+            <ul role="list">
+              {%- for link in block.settings.menu.links -%}
+                <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+              {%- endfor -%}
+            </ul>
+          {%- when 'payments' -%}
+            {%- if block.settings.heading != blank -%}<h2 class="ec-ft__h">{{ block.settings.heading | escape }}</h2>{%- endif -%}
+            <ul class="ec-ft__pay" role="list">
+              {%- for type in shop.enabled_payment_types -%}
+                <li>{{ type | payment_type_svg_tag: class: 'ec-ft__pay-icon' }}</li>
+              {%- endfor -%}
+            </ul>
+          {%- when 'social' -%}
+            {%- if block.settings.heading != blank -%}<h2 class="ec-ft__h">{{ block.settings.heading | escape }}</h2>{%- endif -%}
+            <div class="ec-ft__social">
+              {%- if settings.social_instagram_link != blank -%}<a href="{{ settings.social_instagram_link }}" aria-label="Instagram">{% render 'ecoms-social-icon', name: 'ig' %}</a>{%- endif -%}
+              {%- if settings.social_tiktok_link != blank -%}<a href="{{ settings.social_tiktok_link }}" aria-label="TikTok">{% render 'ecoms-social-icon', name: 'tt' %}</a>{%- endif -%}
+              {%- if settings.social_youtube_link != blank -%}<a href="{{ settings.social_youtube_link }}" aria-label="YouTube">{% render 'ecoms-social-icon', name: 'yt' %}</a>{%- endif -%}
+              {%- if settings.social_facebook_link != blank -%}<a href="{{ settings.social_facebook_link }}" aria-label="Facebook">{% render 'ecoms-social-icon', name: 'fb' %}</a>{%- endif -%}
+            </div>
+          {%- when 'text' -%}
+            {%- if block.settings.heading != blank -%}<h2 class="ec-ft__h">{{ block.settings.heading | escape }}</h2>{%- endif -%}
+            <div class="ec-ft__text">{{ block.settings.text }}</div>
+        {%- endcase -%}
+      </div>
+    {%- endfor -%}
+  </div>
+  <div class="ec-ft__legal">
+    <div class="ec-w">
+      © {{ 'now' | date: '%Y' }} {{ shop.name | escape }}.
+      {%- if section.settings.legal != blank %} {{ section.settings.legal | escape }}{% endif -%}
+      {%- for policy in shop.policies -%}
+        {%- if policy != blank %} · <a href="{{ policy.url }}">{{ policy.title | escape }}</a>{% endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "ECOMS · Footer",
+  "tag": "section",
+  "class": "ec-ft-section",
+  "enabled_on": {
+    "groups": [
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Estilo",
+      "options": [
+        {
+          "value": "dark",
+          "label": "Oscuro (Flex)"
+        },
+        {
+          "value": "soft",
+          "label": "Suave (Brand)"
+        },
+        {
+          "value": "light",
+          "label": "Claro (Direct)"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "text",
+      "id": "legal",
+      "label": "Texto legal",
+      "default": "Razón social y RUT"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Marca",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo (opcional)"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Texto",
+          "default": "<p>Productos que te acompañan en tu día a día.</p>"
+        }
+      ]
+    },
+    {
+      "type": "menu",
+      "name": "Menú",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Título",
+          "default": "Enlaces"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menú",
+          "default": "footer"
+        }
+      ]
+    },
+    {
+      "type": "payments",
+      "name": "Métodos de pago",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Título",
+          "default": "Métodos de pago"
+        }
+      ]
+    },
+    {
+      "type": "social",
+      "name": "Redes sociales",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Título",
+          "default": "Síguenos"
+        },
+        {
+          "type": "paragraph",
+          "content": "Los enlaces se configuran en Ajustes del tema → Redes sociales."
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Texto",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Título",
+          "default": "Ayuda"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Texto",
+          "default": "<p>Escríbenos cuando lo necesites.</p>"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "ECOMS · Footer",
+      "blocks": [
+        {
+          "type": "brand"
+        },
+        {
+          "type": "menu"
+        },
+        {
+          "type": "payments"
+        },
+        {
+          "type": "social"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -2,6 +2,9 @@
   ECOMS · Reviews. Summary from the review app metafields; cards are authorised, real reviews
   entered by the merchant, or replaced by the review app's own block (@app).
 {%- endcomment -%}
+{%- assign has_rating = false -%}
+{%- if product.metafields.reviews.rating.value != blank -%}{%- assign has_rating = true -%}{%- endif -%}
+{%- if section.blocks.size > 0 or has_rating or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-reviews' %}>
   <div class="ec-w">
     <div class="ec-rev-head">
@@ -58,6 +61,7 @@
     </div>
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {

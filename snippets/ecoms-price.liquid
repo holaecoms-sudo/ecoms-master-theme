@@ -1,0 +1,33 @@
+{%- comment -%}
+  ECOMS · Price row: price, compare-at (only when real and higher) and savings pill.
+  Accepts:
+  - variant: {Object}
+  - style: {String} 'pill' (Flex, default) | 'badge' (Brand) | 'direct'
+{%- endcomment -%}
+{%- liquid
+  assign ec_save = 0
+  if variant.compare_at_price > variant.price
+    assign ec_save = variant.compare_at_price | minus: variant.price
+    assign ec_save_pct = ec_save | times: 100 | divided_by: variant.compare_at_price | floor
+  endif
+-%}
+<div class="ec-price ec-price--{{ style | default: 'pill' }}">
+  <span class="ec-price__now">{{ variant.price | money }}</span>
+  {%- if ec_save > 0 -%}
+    <s class="ec-strike">{{ variant.compare_at_price | money }}</s>
+    {%- if style == 'badge' -%}
+      <span class="ec-badge-up">Ahorra {{ ec_save_pct }}%</span>
+    {%- else -%}
+      <span class="ec-pill-save">Ahorras {{ ec_save | money }} ({{ ec_save_pct }}%)</span>
+    {%- endif -%}
+  {%- endif -%}
+</div>
+{%- if variant.unit_price_measurement -%}
+  <small class="ec-price__unit">
+    {{ variant.unit_price | money }}/
+    {%- if variant.unit_price_measurement.reference_value != 1 -%}
+      {{- variant.unit_price_measurement.reference_value -}}
+    {%- endif -%}
+    {{ variant.unit_price_measurement.reference_unit }}
+  </small>
+{%- endif -%}
