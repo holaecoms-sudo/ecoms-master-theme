@@ -5,9 +5,7 @@
       "blocks": {
         "rating": {
           "type": "ecoms_rating",
-          "settings": {
-            "suffix": ""
-          }
+          "settings": {}
         },
         "title": {
           "type": "title",
@@ -26,7 +24,6 @@
         "urgency": {
           "type": "ecoms_urgency",
           "settings": {
-            "end_at": "",
             "icon": "fire",
             "heading": "¡Oferta por tiempo limitado!",
             "text": "La promoción termina en:",
@@ -185,12 +182,10 @@
       "settings": {
         "title": "Ahorra más con nuestros packs",
         "text": "Llévate más y paga menos. Ideales para ti o para regalar.",
-        "social_text": "",
         "layout": "cards",
         "show_cta_total": true,
         "help": "El total final se confirma en el carrito.",
         "discounts_live": false,
-        "tier1_tag": "",
         "tier2_enabled": true,
         "tier2_qty": 2,
         "tier2_pct": 15,
@@ -198,7 +193,6 @@
         "tier3_enabled": true,
         "tier3_qty": 3,
         "tier3_pct": 25,
-        "tier3_tag": "",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
@@ -207,7 +201,6 @@
     "features": {
       "type": "ecoms-feature-grid",
       "settings": {
-        "heading": "",
         "style": "row",
         "width": "full",
         "padding_top": 8,
@@ -260,7 +253,6 @@
         "heading": "Diseñado para cada momento de tu día",
         "text": "<p>Muestra dónde y cómo se usa el producto, con fotos reales.</p>",
         "button_label": "Descubrir más",
-        "button_link": "",
         "width": "full",
         "padding_top": 28,
         "padding_bottom": 28
@@ -305,7 +297,6 @@
         "feature_label": "Característica",
         "col_1": "Nuestro producto",
         "col_2": "Otras opciones",
-        "col_3": "",
         "width": "left",
         "padding_top": 36,
         "padding_bottom": 36
@@ -359,8 +350,6 @@
       "type": "ecoms-reviews",
       "settings": {
         "heading": "Reseñas de nuestros clientes",
-        "link_label": "",
-        "link": "",
         "width": "right",
         "padding_top": 36,
         "padding_bottom": 36
@@ -437,7 +426,6 @@
       "type": "ecoms-upsell",
       "settings": {
         "heading": "Completa tu compra",
-        "items": "",
         "show_saving": true,
         "button_label": "Agregar al carrito",
         "width": "right",

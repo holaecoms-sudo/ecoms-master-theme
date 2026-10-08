@@ -60,15 +60,11 @@
           "type": "ecoms_trust",
           "settings": {
             "title_1": "Pago seguro",
-            "text_1": "",
             "icon_1": "lock",
             "title_2": "Información de despacho",
-            "text_2": "",
             "icon_2": "truck",
             "title_3": "Atención al cliente",
-            "text_3": "",
-            "icon_3": "chat",
-            "title_4": ""
+            "icon_3": "chat"
           }
         },
         "description": {
