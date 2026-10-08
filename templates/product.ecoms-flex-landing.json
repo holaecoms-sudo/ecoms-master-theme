@@ -74,8 +74,8 @@
         "urgency": {
           "type": "urgency",
           "settings": {
-            "end_at": "",
-            "icon": "clock",
+            "end_at": "2026-10-12 23:59",
+            "icon": "fire",
             "heading": "Oferta de lanzamiento",
             "text": "Termina en:",
             "style": "subtle",
