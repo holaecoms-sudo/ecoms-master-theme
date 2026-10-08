@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -40,9 +49,9 @@
           "type": "ecoms_packs",
           "settings": {
             "heading": "Elige tu pack",
+            "layout": "rows",
             "help": "El total final se confirma en el carrito.",
-            "tier3_enabled": true,
-            "layout": "rows"
+            "tier3_enabled": true
           }
         },
         "quantity_selector": {
@@ -59,12 +68,12 @@
         "guarantees": {
           "type": "ecoms_trust",
           "settings": {
-            "title_1": "Pago seguro",
             "icon_1": "lock",
-            "title_2": "Información de despacho",
+            "title_1": "Pago seguro",
             "icon_2": "truck",
-            "title_3": "Atención al cliente",
-            "icon_3": "chat"
+            "title_2": "Información de despacho",
+            "icon_3": "chat",
+            "title_3": "Atención al cliente"
           }
         },
         "description": {
@@ -115,25 +124,25 @@
         "trust1": {
           "type": "promise",
           "settings": {
+            "icon": "check",
             "heading": "Compra segura",
-            "text": "Pago procesado de forma segura",
-            "icon": "check"
+            "text": "Pago procesado de forma segura"
           }
         },
         "trust2": {
           "type": "promise",
           "settings": {
+            "icon": "check",
             "heading": "Información de envío",
-            "text": "Consulta plazos antes de comprar",
-            "icon": "check"
+            "text": "Consulta plazos antes de comprar"
           }
         },
         "trust3": {
           "type": "promise",
           "settings": {
+            "icon": "check",
             "heading": "Atención disponible",
-            "text": "Consulta nuestros canales de contacto",
-            "icon": "check"
+            "text": "Consulta nuestros canales de contacto"
           }
         }
       },
@@ -146,9 +155,6 @@
     },
     "benefits": {
       "type": "ecoms-feature-grid",
-      "settings": {
-        "heading": "Ventajas que hacen la diferencia"
-      },
       "blocks": {
         "b1": {
           "type": "feature",
@@ -188,7 +194,10 @@
         "b2",
         "b3",
         "b4"
-      ]
+      ],
+      "settings": {
+        "heading": "Ventajas que hacen la diferencia"
+      }
     },
     "story": {
       "type": "ecoms-story",
@@ -204,21 +213,16 @@
         "heading": "¿Por qué elegir este producto?",
         "col_1": "Nuestro producto",
         "col_2": "Otras opciones"
-      },
-      "blocks": {}
+      }
     },
     "reviews": {
       "type": "ecoms-reviews",
       "settings": {
         "heading": "Lo que dicen nuestros clientes"
-      },
-      "blocks": {}
+      }
     },
     "faq": {
       "type": "ecoms-faq",
-      "settings": {
-        "heading": "Preguntas frecuentes"
-      },
       "blocks": {
         "q1": {
           "type": "faq",
@@ -246,21 +250,22 @@
         "q1",
         "q2",
         "q3"
-      ]
+      ],
+      "settings": {
+        "heading": "Preguntas frecuentes"
+      }
     },
     "ugc": {
       "type": "ecoms-ugc",
       "settings": {
         "heading": "Personas reales, experiencias reales"
-      },
-      "blocks": {}
+      }
     },
     "upsell": {
       "type": "ecoms-upsell",
       "settings": {
         "heading": "También te puede servir"
-      },
-      "blocks": {}
+      }
     },
     "related-products": {
       "type": "related-products",

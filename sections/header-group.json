@@ -1,1 +1,61 @@
-{"name": "t:sections.header.name", "type": "header", "sections": {"ecoms-announcement": {"type": "ecoms-announcement", "blocks": {"m1": {"type": "message", "settings": {"text": "Envíos a todo Chile"}}, "m2": {"type": "message", "settings": {"text": "Compra segura"}}, "m3": {"type": "message", "settings": {"text": "Atención por WhatsApp"}}}, "block_order": ["m1", "m2", "m3"], "settings": {"style": "flex", "icon": "truck", "separator": "|", "timer_label": "Oferta termina en:"}}, "ecoms-header": {"type": "ecoms-header", "settings": {"menu": "main-menu", "logo_icon": "bag", "logo_height": 32}}}, "order": ["ecoms-announcement", "ecoms-header"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "ecoms-announcement": {
+      "type": "ecoms-announcement",
+      "blocks": {
+        "m1": {
+          "type": "message",
+          "settings": {
+            "text": "Envíos a todo Chile"
+          }
+        },
+        "m2": {
+          "type": "message",
+          "settings": {
+            "text": "Compra segura"
+          }
+        },
+        "m3": {
+          "type": "message",
+          "settings": {
+            "text": "Atención por WhatsApp"
+          }
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2",
+        "m3"
+      ],
+      "settings": {
+        "style": "flex",
+        "icon": "truck",
+        "separator": "|",
+        "timer_label": "Oferta termina en:"
+      }
+    },
+    "ecoms-header": {
+      "type": "ecoms-header",
+      "settings": {
+        "menu": "main-menu",
+        "logo_icon": "bag",
+        "logo_height": 32
+      }
+    }
+  },
+  "order": [
+    "ecoms-announcement",
+    "ecoms-header"
+  ]
+}
