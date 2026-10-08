@@ -3,3 +3,4 @@ node_modules/
 *.log
 .shopify/
 config/settings_data.json.bak
+dist/
