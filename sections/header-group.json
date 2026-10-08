@@ -42,7 +42,7 @@
         "m3"
       ],
       "settings": {
-        "style": "auto",
+        "style": "flex",
         "icon": "truck",
         "separator": "|",
         "end_at": "",
