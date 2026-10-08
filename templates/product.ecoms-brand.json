@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -44,21 +53,29 @@
             "heading": "Elige tu pack",
             "layout": "list",
             "show_cta_total": false,
+            "help": "El total final se confirma en el carrito.",
             "discounts_live": false,
+            "tier1_label": "",
             "tier1_tag": "Más popular",
             "tier2_enabled": true,
             "tier2_qty": 2,
             "tier2_pct": 15,
+            "tier2_label": "",
+            "tier2_tag": "Más vendido",
             "tier3_enabled": true,
             "tier3_qty": 3,
-            "tier3_pct": 25
+            "tier3_pct": 25,
+            "tier3_label": "",
+            "tier3_tag": ""
           }
         },
         "urgency": {
           "type": "urgency",
           "settings": {
+            "end_at": "2026-12-31",
             "icon": "clock",
             "heading": "Oferta termina en:",
+            "text": "La promoción termina en:",
             "style": "boxes",
             "show_days": false
           }
@@ -80,15 +97,23 @@
             "style": "line",
             "icon_1": "lock",
             "title_1": "Pago seguro",
+            "text_1": "Encriptado",
             "icon_2": "truck",
             "title_2": "Envíos a todo Chile",
+            "text_2": "A todo Chile",
             "icon_3": "shield",
-            "title_3": "Garantía"
+            "title_3": "Garantía",
+            "text_3": "Según política",
+            "icon_4": "chat",
+            "title_4": "Soporte",
+            "text_4": "Por WhatsApp"
           }
         },
         "payments": {
           "type": "payments",
-          "settings": {}
+          "settings": {
+            "text": "Pago seguro y cifrado"
+          }
         }
       },
       "block_order": [
@@ -106,6 +131,7 @@
       ],
       "settings": {
         "layout": "brand",
+        "badge": "",
         "video_loop": true,
         "sticky": true,
         "sticky_desktop": false,
@@ -116,12 +142,6 @@
     },
     "guarantees": {
       "type": "ecoms-trust",
-      "settings": {
-        "style": "band",
-        "width": "full",
-        "padding_top": 0,
-        "padding_bottom": 0
-      },
       "blocks": {
         "g1": {
           "type": "promise",
@@ -161,7 +181,13 @@
         "g2",
         "g3",
         "g4"
-      ]
+      ],
+      "settings": {
+        "style": "band",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     },
     "story": {
       "type": "ecoms-story",
@@ -169,6 +195,9 @@
         "eyebrow": "Más que un producto",
         "heading": "Un momento para ti, todos los días",
         "text": "<p>Cuenta la historia de tu marca y la experiencia que hay detrás del producto.</p>",
+        "quote": "",
+        "link_label": "",
+        "link": "",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
@@ -176,40 +205,37 @@
     },
     "benefits": {
       "type": "ecoms-feature-grid",
-      "settings": {
-        "heading": "Beneficios que amarás",
-        "style": "center",
-        "width": "full",
-        "padding_top": 0,
-        "padding_bottom": 36
-      },
       "blocks": {
         "b1": {
           "type": "feature",
           "settings": {
             "icon": "sparkle",
-            "heading": "Beneficio uno"
+            "heading": "Beneficio uno",
+            "text": "Explica el beneficio en una línea."
           }
         },
         "b2": {
           "type": "feature",
           "settings": {
             "icon": "heart",
-            "heading": "Beneficio dos"
+            "heading": "Beneficio dos",
+            "text": "Explica el beneficio en una línea."
           }
         },
         "b3": {
           "type": "feature",
           "settings": {
             "icon": "sun",
-            "heading": "Beneficio tres"
+            "heading": "Beneficio tres",
+            "text": "Explica el beneficio en una línea."
           }
         },
         "b4": {
           "type": "feature",
           "settings": {
             "icon": "clock",
-            "heading": "Beneficio cuatro"
+            "heading": "Beneficio cuatro",
+            "text": "Explica el beneficio en una línea."
           }
         }
       },
@@ -218,17 +244,17 @@
         "b2",
         "b3",
         "b4"
-      ]
-    },
-    "tech": {
-      "type": "ecoms-tech",
+      ],
       "settings": {
-        "heading": "Cómo funciona",
-        "text": "<p>Explica en una frase la tecnología o el diseño que lo hace especial.</p>",
+        "heading": "Beneficios que amarás",
+        "style": "center",
         "width": "full",
         "padding_top": 0,
         "padding_bottom": 36
-      },
+      }
+    },
+    "tech": {
+      "type": "ecoms-tech",
       "blocks": {
         "t1": {
           "type": "item",
@@ -268,19 +294,17 @@
         "t2",
         "t3",
         "t4"
-      ]
+      ],
+      "settings": {
+        "heading": "Cómo funciona",
+        "text": "<p>Explica en una frase la tecnología o el diseño que lo hace especial.</p>",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
     },
     "banner": {
       "type": "ecoms-banner",
-      "settings": {
-        "heading": "Un mensaje que inspire",
-        "text": "<p>El resultado que tu cliente va a sentir en su día a día.</p>",
-        "button_label": "Empieza hoy",
-        "button_link": "#MainContent",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
-      },
       "blocks": {
         "c1": {
           "type": "claim",
@@ -308,39 +332,46 @@
         "c1",
         "c2",
         "c3"
-      ]
+      ],
+      "settings": {
+        "heading": "Un mensaje que inspire",
+        "text": "<p>El resultado que tu cliente va a sentir en su día a día.</p>",
+        "button_label": "Empieza hoy",
+        "button_link": "#MainContent",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     },
     "steps": {
       "type": "ecoms-steps",
-      "settings": {
-        "heading": "Una rutina simple",
-        "width": "full",
-        "padding_top": 0,
-        "padding_bottom": 36
-      },
       "blocks": {
         "s1": {
           "type": "step",
           "settings": {
-            "heading": "Paso uno"
+            "heading": "Paso uno",
+            "text": "Explica qué debe hacer el cliente."
           }
         },
         "s2": {
           "type": "step",
           "settings": {
-            "heading": "Paso dos"
+            "heading": "Paso dos",
+            "text": "Explica qué debe hacer el cliente."
           }
         },
         "s3": {
           "type": "step",
           "settings": {
-            "heading": "Paso tres"
+            "heading": "Paso tres",
+            "text": "Explica qué debe hacer el cliente."
           }
         },
         "s4": {
           "type": "step",
           "settings": {
-            "heading": "Disfruta el resultado"
+            "heading": "Disfruta el resultado",
+            "text": "Explica qué debe hacer el cliente."
           }
         }
       },
@@ -349,7 +380,13 @@
         "s2",
         "s3",
         "s4"
-      ]
+      ],
+      "settings": {
+        "heading": "Una rutina simple",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
     },
     "ugc": {
       "type": "ecoms-ugc",
@@ -367,6 +404,8 @@
       "settings": {
         "style": "brand",
         "heading": "Lo que dicen nuestras clientas",
+        "link_label": "Ver todas",
+        "link": "",
         "width": "full",
         "padding_top": 0,
         "padding_bottom": 36
@@ -374,16 +413,6 @@
     },
     "comparison": {
       "type": "ecoms-comparison",
-      "settings": {
-        "heading": "La diferencia es clara",
-        "feature_label": "Característica",
-        "col_1": "Nuestro producto",
-        "col_2": "Alternativa 1",
-        "col_3": "Alternativa 2",
-        "width": "full",
-        "padding_top": 0,
-        "padding_bottom": 36
-      },
       "blocks": {
         "r1": {
           "type": "row",
@@ -417,15 +446,28 @@
         "r1",
         "r2",
         "r3"
-      ]
+      ],
+      "settings": {
+        "heading": "La diferencia es clara",
+        "feature_label": "Característica",
+        "col_1": "Nuestro producto",
+        "col_2": "Alternativa 1",
+        "col_3": "Alternativa 2",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
     },
     "cross_sell": {
       "type": "ecoms-cross-sell",
       "settings": {
         "style": "grid",
         "heading": "También te puede gustar",
+        "products": [],
         "limit": 4,
         "button_label": "Añadir",
+        "heading_2": "",
+        "split": 1,
         "width": "full",
         "padding_top": 0,
         "padding_bottom": 36
@@ -437,6 +479,8 @@
         "style": "feature",
         "heading": "Completa tu rutina",
         "text": "Lleva tu experiencia al siguiente nivel con el set completo.",
+        "product": "",
+        "items": "Producto + accesorio + accesorio",
         "show_saving": true,
         "button_label": "Añadir set al carrito",
         "width": "full",
@@ -446,13 +490,6 @@
     },
     "faq": {
       "type": "ecoms-faq",
-      "settings": {
-        "heading": "Preguntas frecuentes",
-        "icon": "plus",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
-      },
       "blocks": {
         "q1": {
           "type": "faq",
@@ -488,16 +525,17 @@
         "q2",
         "q3",
         "q4"
-      ]
+      ],
+      "settings": {
+        "heading": "Preguntas frecuentes",
+        "icon": "plus",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     },
     "trustline": {
       "type": "ecoms-trust",
-      "settings": {
-        "style": "line",
-        "width": "full",
-        "padding_top": 0,
-        "padding_bottom": 28
-      },
       "blocks": {
         "l1": {
           "type": "promise",
@@ -537,7 +575,13 @@
         "l2",
         "l3",
         "l4"
-      ]
+      ],
+      "settings": {
+        "style": "line",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 28
+      }
     }
   },
   "order": [
