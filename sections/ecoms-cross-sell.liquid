@@ -1,0 +1,120 @@
+{%- comment -%} ECOMS · Cross-sell cards with a real add-to-cart (Shopify AJAX Cart API). {%- endcomment -%}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-cross' %}>
+  <div class="ec-w">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="ec-h3">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    {%- if section.settings.products != blank -%}
+      <div class="ec-xs">
+        {%- for item in section.settings.products limit: section.settings.limit -%}
+          {%- if item.id == product.id -%}{%- continue -%}{%- endif -%}
+          <div class="ec-xs__card">
+            <a href="{{ item.url }}" class="ec-xs__media" tabindex="-1" aria-hidden="true">
+              {%- if item.featured_image != blank -%}
+                {{ item.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', width: 56, height: 56, alt: '' }}
+              {%- endif -%}
+            </a>
+            <a href="{{ item.url }}" class="ec-xs__name">{{ item.title | escape }}</a>
+            <span class="ec-xs__p">
+              {{- item.price | money -}}
+              {%- if item.compare_at_price > item.price %} <s class="ec-strike">{{ item.compare_at_price | money }}</s>{% endif -%}
+            </span>
+            {%- render 'ecoms-add-button',
+              item: item,
+              label: section.settings.button_label,
+              class: 'ec-btn ec-btn--ghost ec-btn--sm',
+              source: 'cross_sell_section'
+            -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- elsif request.design_mode -%}
+      <p class="ec-editor-note">Selecciona productos complementarios reales del catálogo.</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ECOMS · Cross-sell",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "También te puede gustar"
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Productos",
+      "limit": 6
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Máximo a mostrar",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto del botón",
+      "default": "Agregar"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Ancho en escritorio",
+      "options": [
+        {
+          "value": "full",
+          "label": "Completo"
+        },
+        {
+          "value": "left",
+          "label": "Mitad izquierda"
+        },
+        {
+          "value": "right",
+          "label": "Mitad derecha"
+        }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Margen superior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Margen inferior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ECOMS · Cross-sell"
+    }
+  ]
+}
+{% endschema %}

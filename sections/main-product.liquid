@@ -78,6 +78,11 @@
       <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
         <div class="grid__item product__media-wrapper">
           {% render 'product-media-gallery', variant_images: variant_images %}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'ecoms_media_features' -%}
+              {%- render 'ecoms-media-features', block: block -%}
+            {%- endif -%}
+          {%- endfor -%}
         </div>
         <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           <section
@@ -90,29 +95,13 @@
               {%- case block.type -%}
                 {%- when '@app' -%}
                   {% render block %}
-                {%- when 'ecoms_eyebrow' -%}
-                  {% if block.settings.text != blank %}<p class="ecoms-eyebrow" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</p>{% endif %}
-                {%- when 'ecoms_benefits' -%}
-                  <ul class="ecoms-hero-perks" {{ block.shopify_attributes }}>
-                    {% if block.settings.one != blank %}<li><span aria-hidden="true">✓</span>{{ block.settings.one | escape }}</li>{% endif %}
-                    {% if block.settings.two != blank %}<li><span aria-hidden="true">✓</span>{{ block.settings.two | escape }}</li>{% endif %}
-                    {% if block.settings.three != blank %}<li><span aria-hidden="true">✓</span>{{ block.settings.three | escape }}</li>{% endif %}
-                  </ul>
-                {%- when 'ecoms_bundle' -%}
-                  {% render 'ecoms-bundle', product: product, block: block, section_id: section.id %}
-                {%- when 'ecoms_guarantees' -%}
-                  <div class="ecoms-hero-trust" {{ block.shopify_attributes }}>
-                    {% if block.settings.one != blank %}<span>✓ {{ block.settings.one | escape }}</span>{% endif %}
-                    {% if block.settings.two != blank %}<span>✓ {{ block.settings.two | escape }}</span>{% endif %}
-                    {% if block.settings.three != blank %}<span>✓ {{ block.settings.three | escape }}</span>{% endif %}
-                  </div>
-                {%- when 'ecoms_campaign' -%}
-                  {% if block.settings.end_at != blank %}
-                    <div class="ecoms-campaign" data-ecoms-ends="{{ block.settings.end_at | escape }}" hidden {{ block.shopify_attributes }}>
-                      <strong>{{ block.settings.heading | escape }}</strong>
-                      <span data-ecoms-countdown aria-live="off"></span>
-                    </div>
-                  {% endif %}
+                {%- when 'ecoms_eyebrow', 'ecoms_rating', 'ecoms_subtitle', 'ecoms_benefits', 'ecoms_packs', 'ecoms_urgency', 'ecoms_trust', 'ecoms_buy_now' -%}
+                  {%- render 'ecoms-product-block',
+                    block: block,
+                    product: product,
+                    section_id: section.id,
+                    product_form_id: product_form_id
+                  -%}
                 {%- when 'text' -%}
                   <p
                     class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
@@ -775,7 +764,12 @@
     </div>
   </product-component>
 </product-info>
-{% if template.name == 'product' and template.suffix contains 'ecoms-' %}{% render 'ecoms-sticky-atc', product: product %}{% endif %}
+{%- assign ec_form_id = 'product-form-' | append: section.id -%}
+{%- for block in section.blocks -%}
+  {%- if block.type == 'ecoms_sticky' -%}
+    {%- render 'ecoms-sticky-atc', product: product, block: block, section_id: section.id, product_form_id: ec_form_id -%}
+  {%- endif -%}
+{%- endfor -%}
 
 {% schema %}
 {
@@ -785,43 +779,79 @@
   "blocks": [
     {
       "type": "ecoms_eyebrow",
-      "name": "ECOMS · Etiqueta",
+      "name": "ECOMS · Etiqueta superior",
+      "limit": 1,
       "settings": [
         {
           "type": "text",
           "id": "text",
-          "label": "Texto superior",
-          "default": "Descubre tu próximo favorito"
+          "label": "Texto",
+          "default": "Diseñado para tu día a día"
+        }
+      ]
+    },
+    {
+      "type": "ecoms_rating",
+      "name": "ECOMS · Calificación",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Usa los metacampos estándar reviews.rating y reviews.rating_count de tu app de reseñas. Sin datos, no se muestra."
+        },
+        {
+          "type": "text",
+          "id": "suffix",
+          "label": "Texto tras el promedio"
+        }
+      ]
+    },
+    {
+      "type": "ecoms_subtitle",
+      "name": "ECOMS · Subtítulo",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Texto",
+          "default": "<p>Explica en una frase el beneficio principal del producto.</p>"
         }
       ]
     },
     {
       "type": "ecoms_benefits",
-      "name": "ECOMS · Beneficios",
+      "name": "ECOMS · Lista de beneficios",
+      "limit": 1,
       "settings": [
         {
           "type": "text",
-          "id": "one",
+          "id": "item_1",
           "label": "Beneficio 1",
-          "default": "Práctico y fácil de usar"
+          "default": "Beneficio verificable 1"
         },
         {
           "type": "text",
-          "id": "two",
+          "id": "item_2",
           "label": "Beneficio 2",
-          "default": "Pensado para tu día a día"
+          "default": "Beneficio verificable 2"
         },
         {
           "type": "text",
-          "id": "three",
+          "id": "item_3",
           "label": "Beneficio 3",
-          "default": "Diseño funcional"
+          "default": "Beneficio verificable 3"
+        },
+        {
+          "type": "text",
+          "id": "item_4",
+          "label": "Beneficio 4"
         }
       ]
     },
     {
-      "type": "ecoms_bundle",
-      "name": "ECOMS · Packs cantidad",
+      "type": "ecoms_packs",
+      "name": "ECOMS · Packs por cantidad",
       "limit": 1,
       "settings": [
         {
@@ -831,60 +861,1620 @@
           "default": "Elige tu pack"
         },
         {
-          "type": "text",
-          "id": "help",
-          "label": "Nota (no promete descuentos)",
-          "default": "El total se confirma en el carrito."
+          "type": "select",
+          "id": "layout",
+          "label": "Diseño",
+          "options": [
+            {
+              "value": "cards",
+              "label": "Tarjetas con imagen (Flex)"
+            },
+            {
+              "value": "list",
+              "label": "Lista (Brand)"
+            },
+            {
+              "value": "rows",
+              "label": "Filas con precio unitario (Direct)"
+            }
+          ],
+          "default": "cards"
         },
         {
           "type": "checkbox",
-          "id": "show_third",
-          "label": "Mostrar opción de 3 unidades",
+          "id": "show_cta_total",
+          "label": "Mostrar total en el botón Agregar al carrito",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "help",
+          "label": "Nota",
+          "default": "El total final se confirma en el carrito."
+        },
+        {
+          "type": "header",
+          "content": "Descuentos reales"
+        },
+        {
+          "type": "paragraph",
+          "content": "Para que un pack tenga descuento crea en Shopify → Descuentos un descuento automático «Monto de descuento en productos» con requisito «Cantidad mínima de artículos» (ej. 2 → 15 %, 3 → 25 %). Shopify aplica el mejor descuento disponible en carrito y checkout."
+        },
+        {
+          "type": "checkbox",
+          "id": "discounts_live",
+          "label": "Los descuentos ya existen en Shopify",
+          "default": false,
+          "info": "Mientras esté desactivado, los packs muestran el precio normal sin descuento."
+        },
+        {
+          "type": "header",
+          "content": "Pack 1"
+        },
+        {
+          "type": "text",
+          "id": "tier1_label",
+          "label": "Texto (vacío = «1 unidad»)"
+        },
+        {
+          "type": "text",
+          "id": "tier1_tag",
+          "label": "Etiqueta"
+        },
+        {
+          "type": "image_picker",
+          "id": "tier1_image",
+          "label": "Imagen"
+        },
+        {
+          "type": "header",
+          "content": "Pack 2"
+        },
+        {
+          "type": "checkbox",
+          "id": "tier2_enabled",
+          "label": "Mostrar",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "tier2_qty",
+          "label": "Unidades",
+          "min": 2,
+          "max": 10,
+          "step": 1,
+          "default": 2
+        },
+        {
+          "type": "range",
+          "id": "tier2_pct",
+          "label": "Descuento del descuento automático",
+          "min": 0,
+          "max": 70,
+          "step": 1,
+          "default": 0,
+          "unit": "%"
+        },
+        {
+          "type": "text",
+          "id": "tier2_label",
+          "label": "Texto (vacío = «2 unidades»)"
+        },
+        {
+          "type": "text",
+          "id": "tier2_tag",
+          "label": "Etiqueta",
+          "default": "Más vendido"
+        },
+        {
+          "type": "image_picker",
+          "id": "tier2_image",
+          "label": "Imagen"
+        },
+        {
+          "type": "header",
+          "content": "Pack 3"
+        },
+        {
+          "type": "checkbox",
+          "id": "tier3_enabled",
+          "label": "Mostrar",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "tier3_qty",
+          "label": "Unidades",
+          "min": 3,
+          "max": 12,
+          "step": 1,
+          "default": 3
+        },
+        {
+          "type": "range",
+          "id": "tier3_pct",
+          "label": "Descuento del descuento automático",
+          "min": 0,
+          "max": 70,
+          "step": 1,
+          "default": 0,
+          "unit": "%"
+        },
+        {
+          "type": "text",
+          "id": "tier3_label",
+          "label": "Texto (vacío = «3 unidades»)"
+        },
+        {
+          "type": "text",
+          "id": "tier3_tag",
+          "label": "Etiqueta"
+        },
+        {
+          "type": "image_picker",
+          "id": "tier3_image",
+          "label": "Imagen"
+        }
+      ]
+    },
+    {
+      "type": "ecoms_urgency",
+      "name": "ECOMS · Cuenta regresiva",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Solo se muestra con una fecha de término futura de una promoción real. Puedes conectarla a un metacampo de fecha del producto."
+        },
+        {
+          "type": "text",
+          "id": "end_at",
+          "label": "Fecha de término",
+          "info": "Horario de la tienda: \"2026-12-31 23:59\", o ISO \"2026-12-31T23:59:00-03:00\"."
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / pago seguro"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "chat",
+              "label": "Soporte"
+            },
+            {
+              "value": "cash",
+              "label": "Pago / efectivo"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "star",
+              "label": "Estrella"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "check",
+              "label": "Check"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "fire",
+              "label": "Fuego / oferta"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo / potencia"
+            },
+            {
+              "value": "sparkle",
+              "label": "Brillo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja / natural"
+            },
+            {
+              "value": "drop",
+              "label": "Gota / agua"
+            },
+            {
+              "value": "snow",
+              "label": "Frío"
+            },
+            {
+              "value": "thermo",
+              "label": "Temperatura"
+            },
+            {
+              "value": "sun",
+              "label": "Sol / luz"
+            },
+            {
+              "value": "gem",
+              "label": "Gema / premium"
+            },
+            {
+              "value": "hand",
+              "label": "Mano / fácil"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "box",
+              "label": "Caja / paquete"
+            },
+            {
+              "value": "grid",
+              "label": "Accesorios"
+            },
+            {
+              "value": "battery",
+              "label": "Batería"
+            },
+            {
+              "value": "home",
+              "label": "Hogar"
+            },
+            {
+              "value": "verified",
+              "label": "Verificado"
+            },
+            {
+              "value": "bag",
+              "label": "Bolsa / tienda"
+            },
+            {
+              "value": "cart",
+              "label": "Carrito"
+            }
+          ],
+          "default": "fire"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Título",
+          "default": "¡Oferta por tiempo limitado!"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "La promoción termina en:"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Estilo",
+          "options": [
+            {
+              "value": "boxes",
+              "label": "Cajas"
+            },
+            {
+              "value": "inline",
+              "label": "En línea"
+            }
+          ],
+          "default": "boxes"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_days",
+          "label": "Mostrar días",
           "default": true
         }
       ]
     },
     {
-      "type": "ecoms_guarantees",
-      "name": "ECOMS · Confianza",
+      "type": "ecoms_trust",
+      "name": "ECOMS · Garantías (4)",
       "limit": 1,
       "settings": [
         {
+          "type": "select",
+          "id": "icon_1",
+          "label": "Icono",
+          "options": [
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / pago seguro"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "chat",
+              "label": "Soporte"
+            },
+            {
+              "value": "cash",
+              "label": "Pago / efectivo"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "star",
+              "label": "Estrella"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "check",
+              "label": "Check"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "fire",
+              "label": "Fuego / oferta"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo / potencia"
+            },
+            {
+              "value": "sparkle",
+              "label": "Brillo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja / natural"
+            },
+            {
+              "value": "drop",
+              "label": "Gota / agua"
+            },
+            {
+              "value": "snow",
+              "label": "Frío"
+            },
+            {
+              "value": "thermo",
+              "label": "Temperatura"
+            },
+            {
+              "value": "sun",
+              "label": "Sol / luz"
+            },
+            {
+              "value": "gem",
+              "label": "Gema / premium"
+            },
+            {
+              "value": "hand",
+              "label": "Mano / fácil"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "box",
+              "label": "Caja / paquete"
+            },
+            {
+              "value": "grid",
+              "label": "Accesorios"
+            },
+            {
+              "value": "battery",
+              "label": "Batería"
+            },
+            {
+              "value": "home",
+              "label": "Hogar"
+            },
+            {
+              "value": "verified",
+              "label": "Verificado"
+            },
+            {
+              "value": "bag",
+              "label": "Bolsa / tienda"
+            },
+            {
+              "value": "cart",
+              "label": "Carrito"
+            }
+          ],
+          "default": "lock"
+        },
+        {
           "type": "text",
-          "id": "one",
-          "label": "Mensaje 1",
+          "id": "title_1",
+          "label": "Título 1",
           "default": "Pago seguro"
         },
         {
           "type": "text",
-          "id": "two",
-          "label": "Mensaje 2",
-          "default": "Despachos disponibles"
+          "id": "text_1",
+          "label": "Detalle 1",
+          "default": "Encriptado"
+        },
+        {
+          "type": "select",
+          "id": "icon_2",
+          "label": "Icono",
+          "options": [
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / pago seguro"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "chat",
+              "label": "Soporte"
+            },
+            {
+              "value": "cash",
+              "label": "Pago / efectivo"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "star",
+              "label": "Estrella"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "check",
+              "label": "Check"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "fire",
+              "label": "Fuego / oferta"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo / potencia"
+            },
+            {
+              "value": "sparkle",
+              "label": "Brillo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja / natural"
+            },
+            {
+              "value": "drop",
+              "label": "Gota / agua"
+            },
+            {
+              "value": "snow",
+              "label": "Frío"
+            },
+            {
+              "value": "thermo",
+              "label": "Temperatura"
+            },
+            {
+              "value": "sun",
+              "label": "Sol / luz"
+            },
+            {
+              "value": "gem",
+              "label": "Gema / premium"
+            },
+            {
+              "value": "hand",
+              "label": "Mano / fácil"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "box",
+              "label": "Caja / paquete"
+            },
+            {
+              "value": "grid",
+              "label": "Accesorios"
+            },
+            {
+              "value": "battery",
+              "label": "Batería"
+            },
+            {
+              "value": "home",
+              "label": "Hogar"
+            },
+            {
+              "value": "verified",
+              "label": "Verificado"
+            },
+            {
+              "value": "bag",
+              "label": "Bolsa / tienda"
+            },
+            {
+              "value": "cart",
+              "label": "Carrito"
+            }
+          ],
+          "default": "truck"
         },
         {
           "type": "text",
-          "id": "three",
-          "label": "Mensaje 3",
-          "default": "Atención al cliente"
+          "id": "title_2",
+          "label": "Título 2",
+          "default": "Envíos"
+        },
+        {
+          "type": "text",
+          "id": "text_2",
+          "label": "Detalle 2",
+          "default": "A todo Chile"
+        },
+        {
+          "type": "select",
+          "id": "icon_3",
+          "label": "Icono",
+          "options": [
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / pago seguro"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "chat",
+              "label": "Soporte"
+            },
+            {
+              "value": "cash",
+              "label": "Pago / efectivo"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "star",
+              "label": "Estrella"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "check",
+              "label": "Check"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "fire",
+              "label": "Fuego / oferta"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo / potencia"
+            },
+            {
+              "value": "sparkle",
+              "label": "Brillo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja / natural"
+            },
+            {
+              "value": "drop",
+              "label": "Gota / agua"
+            },
+            {
+              "value": "snow",
+              "label": "Frío"
+            },
+            {
+              "value": "thermo",
+              "label": "Temperatura"
+            },
+            {
+              "value": "sun",
+              "label": "Sol / luz"
+            },
+            {
+              "value": "gem",
+              "label": "Gema / premium"
+            },
+            {
+              "value": "hand",
+              "label": "Mano / fácil"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "box",
+              "label": "Caja / paquete"
+            },
+            {
+              "value": "grid",
+              "label": "Accesorios"
+            },
+            {
+              "value": "battery",
+              "label": "Batería"
+            },
+            {
+              "value": "home",
+              "label": "Hogar"
+            },
+            {
+              "value": "verified",
+              "label": "Verificado"
+            },
+            {
+              "value": "bag",
+              "label": "Bolsa / tienda"
+            },
+            {
+              "value": "cart",
+              "label": "Carrito"
+            }
+          ],
+          "default": "shield"
+        },
+        {
+          "type": "text",
+          "id": "title_3",
+          "label": "Título 3",
+          "default": "Garantía"
+        },
+        {
+          "type": "text",
+          "id": "text_3",
+          "label": "Detalle 3",
+          "default": "Según política"
+        },
+        {
+          "type": "select",
+          "id": "icon_4",
+          "label": "Icono",
+          "options": [
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / pago seguro"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "chat",
+              "label": "Soporte"
+            },
+            {
+              "value": "cash",
+              "label": "Pago / efectivo"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "star",
+              "label": "Estrella"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "check",
+              "label": "Check"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "fire",
+              "label": "Fuego / oferta"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo / potencia"
+            },
+            {
+              "value": "sparkle",
+              "label": "Brillo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja / natural"
+            },
+            {
+              "value": "drop",
+              "label": "Gota / agua"
+            },
+            {
+              "value": "snow",
+              "label": "Frío"
+            },
+            {
+              "value": "thermo",
+              "label": "Temperatura"
+            },
+            {
+              "value": "sun",
+              "label": "Sol / luz"
+            },
+            {
+              "value": "gem",
+              "label": "Gema / premium"
+            },
+            {
+              "value": "hand",
+              "label": "Mano / fácil"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "box",
+              "label": "Caja / paquete"
+            },
+            {
+              "value": "grid",
+              "label": "Accesorios"
+            },
+            {
+              "value": "battery",
+              "label": "Batería"
+            },
+            {
+              "value": "home",
+              "label": "Hogar"
+            },
+            {
+              "value": "verified",
+              "label": "Verificado"
+            },
+            {
+              "value": "bag",
+              "label": "Bolsa / tienda"
+            },
+            {
+              "value": "cart",
+              "label": "Carrito"
+            }
+          ],
+          "default": "chat"
+        },
+        {
+          "type": "text",
+          "id": "title_4",
+          "label": "Título 4",
+          "default": "Soporte"
+        },
+        {
+          "type": "text",
+          "id": "text_4",
+          "label": "Detalle 4",
+          "default": "Por WhatsApp"
         }
       ]
     },
     {
-      "type": "ecoms_campaign",
-      "name": "ECOMS · Promoción real",
+      "type": "ecoms_buy_now",
+      "name": "ECOMS · Comprar ahora",
       "limit": 1,
       "settings": [
         {
-          "type": "text",
-          "id": "heading",
-          "label": "Mensaje de campaña",
-          "default": "Oferta vigente por tiempo limitado"
+          "type": "paragraph",
+          "content": "Agrega la selección actual al carrito y abre el checkout de Shopify."
         },
         {
           "type": "text",
-          "id": "end_at",
-          "label": "Fecha fin ISO 8601 (ej: 2026-12-31T23:59:00-03:00)",
-          "info": "Solo aparece si hay fecha válida y futura. Debe corresponder a una promoción real."
+          "id": "label",
+          "label": "Texto del botón",
+          "default": "Comprar ahora"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / pago seguro"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "chat",
+              "label": "Soporte"
+            },
+            {
+              "value": "cash",
+              "label": "Pago / efectivo"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "star",
+              "label": "Estrella"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "check",
+              "label": "Check"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "fire",
+              "label": "Fuego / oferta"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo / potencia"
+            },
+            {
+              "value": "sparkle",
+              "label": "Brillo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja / natural"
+            },
+            {
+              "value": "drop",
+              "label": "Gota / agua"
+            },
+            {
+              "value": "snow",
+              "label": "Frío"
+            },
+            {
+              "value": "thermo",
+              "label": "Temperatura"
+            },
+            {
+              "value": "sun",
+              "label": "Sol / luz"
+            },
+            {
+              "value": "gem",
+              "label": "Gema / premium"
+            },
+            {
+              "value": "hand",
+              "label": "Mano / fácil"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "box",
+              "label": "Caja / paquete"
+            },
+            {
+              "value": "grid",
+              "label": "Accesorios"
+            },
+            {
+              "value": "battery",
+              "label": "Batería"
+            },
+            {
+              "value": "home",
+              "label": "Hogar"
+            },
+            {
+              "value": "verified",
+              "label": "Verificado"
+            },
+            {
+              "value": "bag",
+              "label": "Bolsa / tienda"
+            },
+            {
+              "value": "cart",
+              "label": "Carrito"
+            }
+          ],
+          "default": "none"
+        }
+      ]
+    },
+    {
+      "type": "ecoms_media_features",
+      "name": "ECOMS · Íconos bajo la galería",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Se muestran bajo las fotos del producto."
+        },
+        {
+          "type": "select",
+          "id": "icon_1",
+          "label": "Icono",
+          "options": [
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / pago seguro"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "chat",
+              "label": "Soporte"
+            },
+            {
+              "value": "cash",
+              "label": "Pago / efectivo"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "star",
+              "label": "Estrella"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "check",
+              "label": "Check"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "fire",
+              "label": "Fuego / oferta"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo / potencia"
+            },
+            {
+              "value": "sparkle",
+              "label": "Brillo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja / natural"
+            },
+            {
+              "value": "drop",
+              "label": "Gota / agua"
+            },
+            {
+              "value": "snow",
+              "label": "Frío"
+            },
+            {
+              "value": "thermo",
+              "label": "Temperatura"
+            },
+            {
+              "value": "sun",
+              "label": "Sol / luz"
+            },
+            {
+              "value": "gem",
+              "label": "Gema / premium"
+            },
+            {
+              "value": "hand",
+              "label": "Mano / fácil"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "box",
+              "label": "Caja / paquete"
+            },
+            {
+              "value": "grid",
+              "label": "Accesorios"
+            },
+            {
+              "value": "battery",
+              "label": "Batería"
+            },
+            {
+              "value": "home",
+              "label": "Hogar"
+            },
+            {
+              "value": "verified",
+              "label": "Verificado"
+            },
+            {
+              "value": "bag",
+              "label": "Bolsa / tienda"
+            },
+            {
+              "value": "cart",
+              "label": "Carrito"
+            }
+          ],
+          "default": "drop"
+        },
+        {
+          "type": "text",
+          "id": "text_1",
+          "label": "Texto 1",
+          "default": "Característica 1"
+        },
+        {
+          "type": "select",
+          "id": "icon_2",
+          "label": "Icono",
+          "options": [
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / pago seguro"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "chat",
+              "label": "Soporte"
+            },
+            {
+              "value": "cash",
+              "label": "Pago / efectivo"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "star",
+              "label": "Estrella"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "check",
+              "label": "Check"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "fire",
+              "label": "Fuego / oferta"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo / potencia"
+            },
+            {
+              "value": "sparkle",
+              "label": "Brillo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja / natural"
+            },
+            {
+              "value": "drop",
+              "label": "Gota / agua"
+            },
+            {
+              "value": "snow",
+              "label": "Frío"
+            },
+            {
+              "value": "thermo",
+              "label": "Temperatura"
+            },
+            {
+              "value": "sun",
+              "label": "Sol / luz"
+            },
+            {
+              "value": "gem",
+              "label": "Gema / premium"
+            },
+            {
+              "value": "hand",
+              "label": "Mano / fácil"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "box",
+              "label": "Caja / paquete"
+            },
+            {
+              "value": "grid",
+              "label": "Accesorios"
+            },
+            {
+              "value": "battery",
+              "label": "Batería"
+            },
+            {
+              "value": "home",
+              "label": "Hogar"
+            },
+            {
+              "value": "verified",
+              "label": "Verificado"
+            },
+            {
+              "value": "bag",
+              "label": "Bolsa / tienda"
+            },
+            {
+              "value": "cart",
+              "label": "Carrito"
+            }
+          ],
+          "default": "thermo"
+        },
+        {
+          "type": "text",
+          "id": "text_2",
+          "label": "Texto 2",
+          "default": "Característica 2"
+        },
+        {
+          "type": "select",
+          "id": "icon_3",
+          "label": "Icono",
+          "options": [
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / pago seguro"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "chat",
+              "label": "Soporte"
+            },
+            {
+              "value": "cash",
+              "label": "Pago / efectivo"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "star",
+              "label": "Estrella"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "check",
+              "label": "Check"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "fire",
+              "label": "Fuego / oferta"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo / potencia"
+            },
+            {
+              "value": "sparkle",
+              "label": "Brillo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja / natural"
+            },
+            {
+              "value": "drop",
+              "label": "Gota / agua"
+            },
+            {
+              "value": "snow",
+              "label": "Frío"
+            },
+            {
+              "value": "thermo",
+              "label": "Temperatura"
+            },
+            {
+              "value": "sun",
+              "label": "Sol / luz"
+            },
+            {
+              "value": "gem",
+              "label": "Gema / premium"
+            },
+            {
+              "value": "hand",
+              "label": "Mano / fácil"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "box",
+              "label": "Caja / paquete"
+            },
+            {
+              "value": "grid",
+              "label": "Accesorios"
+            },
+            {
+              "value": "battery",
+              "label": "Batería"
+            },
+            {
+              "value": "home",
+              "label": "Hogar"
+            },
+            {
+              "value": "verified",
+              "label": "Verificado"
+            },
+            {
+              "value": "bag",
+              "label": "Bolsa / tienda"
+            },
+            {
+              "value": "cart",
+              "label": "Carrito"
+            }
+          ],
+          "default": "shield"
+        },
+        {
+          "type": "text",
+          "id": "text_3",
+          "label": "Texto 3",
+          "default": "Característica 3"
+        },
+        {
+          "type": "select",
+          "id": "icon_4",
+          "label": "Icono",
+          "options": [
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / pago seguro"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "chat",
+              "label": "Soporte"
+            },
+            {
+              "value": "cash",
+              "label": "Pago / efectivo"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "star",
+              "label": "Estrella"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "check",
+              "label": "Check"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "fire",
+              "label": "Fuego / oferta"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo / potencia"
+            },
+            {
+              "value": "sparkle",
+              "label": "Brillo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja / natural"
+            },
+            {
+              "value": "drop",
+              "label": "Gota / agua"
+            },
+            {
+              "value": "snow",
+              "label": "Frío"
+            },
+            {
+              "value": "thermo",
+              "label": "Temperatura"
+            },
+            {
+              "value": "sun",
+              "label": "Sol / luz"
+            },
+            {
+              "value": "gem",
+              "label": "Gema / premium"
+            },
+            {
+              "value": "hand",
+              "label": "Mano / fácil"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "box",
+              "label": "Caja / paquete"
+            },
+            {
+              "value": "grid",
+              "label": "Accesorios"
+            },
+            {
+              "value": "battery",
+              "label": "Batería"
+            },
+            {
+              "value": "home",
+              "label": "Hogar"
+            },
+            {
+              "value": "verified",
+              "label": "Verificado"
+            },
+            {
+              "value": "bag",
+              "label": "Bolsa / tienda"
+            },
+            {
+              "value": "cart",
+              "label": "Carrito"
+            }
+          ],
+          "default": "leaf"
+        },
+        {
+          "type": "text",
+          "id": "text_4",
+          "label": "Texto 4",
+          "default": "Característica 4"
+        }
+      ]
+    },
+    {
+      "type": "ecoms_sticky",
+      "name": "ECOMS · Botón fijo de compra",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Aparece al pasar el botón principal. Usa el formulario nativo de Shopify."
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Texto del botón",
+          "default": "Agregar"
+        },
+        {
+          "type": "checkbox",
+          "id": "desktop",
+          "label": "Mostrar también en escritorio (tarjeta flotante)",
+          "default": true
         }
       ]
     },

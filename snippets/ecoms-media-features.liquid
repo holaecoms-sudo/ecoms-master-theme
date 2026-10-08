@@ -1,0 +1,17 @@
+{%- comment -%}
+  ECOMS · Four icon features shown under the product gallery (main-product media column).
+  Accepts:
+  - block: {Object} ecoms_media_features block
+{%- endcomment -%}
+<div class="ec-minifeat" {{ block.shopify_attributes }}>
+  {%- for i in (1..4) -%}
+    {%- assign t_key = 'text_' | append: i -%}
+    {%- assign i_key = 'icon_' | append: i -%}
+    {%- if block.settings[t_key] != blank -%}
+      <div>
+        <span class="ec-ic">{% render 'ecoms-icon', name: block.settings[i_key] %}</span>
+        {{- block.settings[t_key] | escape -}}
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+</div>

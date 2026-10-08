@@ -1,0 +1,152 @@
+{%- comment -%} ECOMS · Lifestyle band: copy + CTA + up to 4 labelled photos. {%- endcomment -%}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-life' %}>
+  <div class="ec-w ec-life__grid">
+    <div class="ec-life__copy">
+      {%- if section.settings.heading != blank -%}
+        <h2>{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="ec-life__text">{{ section.settings.text }}</div>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a class="ec-btn ec-btn--light ec-btn--sm" href="{{ section.settings.button_link | default: '#MainContent' }}">
+          {{- section.settings.button_label | escape }}
+          {% render 'ecoms-icon', name: 'arrow' -%}
+        </a>
+      {%- endif -%}
+    </div>
+    <div class="ec-life__cards">
+      {%- for block in section.blocks -%}
+        <figure class="ec-life__card" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{
+              block.settings.image
+              | image_url: width: 600
+              | image_tag: loading: 'lazy', widths: '200,300,450,600', sizes: '(min-width: 990px) 180px, 45vw'
+            }}
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'ec-placeholder' }}
+          {%- endif -%}
+          {%- if block.settings.label != blank -%}
+            <figcaption>{{ block.settings.label | escape }}</figcaption>
+          {%- endif -%}
+        </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ECOMS · Lifestyle",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Diseñado para cada momento de tu día"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto",
+      "default": "<p>Muestra dónde y cómo se usa el producto.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto del botón",
+      "default": "Descubrir más"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Enlace del botón"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Ancho en escritorio",
+      "options": [
+        {
+          "value": "full",
+          "label": "Completo"
+        },
+        {
+          "value": "left",
+          "label": "Mitad izquierda"
+        },
+        {
+          "value": "right",
+          "label": "Mitad derecha"
+        }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Margen superior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Margen inferior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Foto",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Etiqueta",
+          "default": "Momento"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "ECOMS · Lifestyle",
+      "blocks": [
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

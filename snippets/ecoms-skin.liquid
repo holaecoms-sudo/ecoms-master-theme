@@ -1,0 +1,19 @@
+{%- comment -%}
+  ECOMS · Resolves the active template skin and outputs its name: flex | brand | direct | none.
+  Product templates named product.ecoms-<skin>[-anything] force their own skin;
+  every other page uses the global setting "Plantilla global de la tienda".
+  Usage: {%- capture ec_skin -%}{% render 'ecoms-skin' %}{%- endcapture -%}
+{%- endcomment -%}
+{%- liquid
+  assign ec_skin = settings.ecoms_skin | default: 'flex'
+  if template.name == 'product' and template.suffix contains 'ecoms-'
+    if template.suffix contains 'ecoms-brand'
+      assign ec_skin = 'brand'
+    elsif template.suffix contains 'ecoms-direct'
+      assign ec_skin = 'direct'
+    else
+      assign ec_skin = 'flex'
+    endif
+  endif
+  echo ec_skin
+-%}

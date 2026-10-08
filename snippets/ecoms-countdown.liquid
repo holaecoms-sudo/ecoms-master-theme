@@ -1,0 +1,48 @@
+{%- comment -%}
+  ECOMS · Promotion countdown with a real end date.
+  The end date is written in the store's time zone ("2026-12-31 23:59") or as ISO 8601 with offset
+  ("2026-12-31T23:59:00-03:00"). It can be connected to a product metafield (date_time) from the
+  editor. Nothing renders without a valid future date, and the script hides it once it expires:
+  the timer never restarts or invents urgency.
+
+  Accepts:
+  - source: {Object} block or section with settings: end_at, heading, text, show_days, style
+  - attrs: {String} optional editor attributes
+{%- endcomment -%}
+{%- liquid
+  assign s = source.settings
+  assign end_ts = 0
+  if s.end_at != blank
+    assign end_ts = s.end_at | date: '%s' | plus: 0
+  endif
+  assign now_ts = 'now' | date: '%s' | plus: 0
+  assign style = s.style | default: 'boxes'
+-%}
+{%- if end_ts > now_ts -%}
+  <div class="ec-urg ec-urg--{{ style }}" data-ec-countdown="{{ end_ts }}" {{ attrs }}>
+    <div class="ec-urg__copy">
+      {%- if s.heading != blank -%}
+        <p class="ec-urg__t">{% render 'ecoms-icon', name: s.icon %}<span>{{ s.heading | escape }}</span></p>
+      {%- endif -%}
+      {%- if s.text != blank -%}
+        <p class="ec-urg__s">{{ s.text | escape }}</p>
+      {%- endif -%}
+    </div>
+    {%- if style == 'inline' -%}
+      <span class="ec-timer" data-ec-cd-inline>--:--:--</span>
+    {%- else -%}
+      <div class="ec-cd" role="timer" aria-live="off">
+        {%- if s.show_days -%}
+          <div><b data-u="d">00</b><small>Días</small></div>
+        {%- endif -%}
+        <div><b data-u="h">00</b><small>Horas</small></div>
+        <div><b data-u="m">00</b><small>Minutos</small></div>
+        <div><b data-u="s">00</b><small>Segundos</small></div>
+      </div>
+    {%- endif -%}
+  </div>
+{%- elsif request.design_mode -%}
+  <p class="ec-editor-note" {{ attrs }}>
+    Cuenta regresiva oculta: ingresa una fecha de término futura que corresponda a una promoción real.
+  </p>
+{%- endif -%}

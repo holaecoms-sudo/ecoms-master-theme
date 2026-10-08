@@ -1,13 +1,263 @@
-<section class="ecoms-section ecoms-features" id="ecoms-features-{{ section.id }}">
- <div class="page-width">
-  {% if section.settings.heading != blank %}<h2 class="ecoms-section-title">{{ section.settings.heading | escape }}</h2>{% endif %}
-  <div class="ecoms-features__grid">
-  {% for block in section.blocks %}
-   <article class="ecoms-feature" {{ block.shopify_attributes }}><span class="ecoms-feature__icon" aria-hidden="true">{{ block.settings.icon | escape }}</span><h3>{{ block.settings.heading | escape }}</h3><p>{{ block.settings.text | escape }}</p></article>
-  {% endfor %}
+{%- comment -%} ECOMS · Benefit icons (4 columns on desktop, 2 on mobile). {%- endcomment -%}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-features' %}>
+  <div class="ec-w">
+    {%- if section.settings.heading != blank -%}
+      <div class="ec-sec-h"><h2>{{ section.settings.heading | escape }}</h2></div>
+    {%- endif -%}
+    <div class="ec-feat ec-feat--{{ section.settings.style }}">
+      {%- for block in section.blocks -%}
+        <div {{ block.shopify_attributes }}>
+          <span class="ec-ic">{% render 'ecoms-icon', name: block.settings.icon %}</span>
+          <div>
+            <b>{{ block.settings.heading | escape }}</b>
+            {%- if block.settings.text != blank -%}
+              <span>{{ block.settings.text | escape }}</span>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
   </div>
- </div>
 </section>
+
 {% schema %}
-{"name":"ECOMS · Beneficios","settings":[{"type":"text","id":"heading","label":"Título","default":"Por qué te va a encantar"}],"blocks":[{"type":"feature","name":"Beneficio","settings":[{"type":"text","id":"icon","label":"Icono (emoji)","default":"✓"},{"type":"text","id":"heading","label":"Beneficio","default":"Diseño práctico"},{"type":"text","id":"text","label":"Detalle","default":"Pensado para hacerte la vida más fácil."}]}],"max_blocks":8,"presets":[{"name":"ECOMS · Beneficios","blocks":[{"type":"feature"},{"type":"feature"},{"type":"feature"},{"type":"feature"}]}]}
+{
+  "name": "ECOMS · Íconos",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título"
+    },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Estilo",
+      "options": [
+        {
+          "value": "row",
+          "label": "Ícono al lado (Flex)"
+        },
+        {
+          "value": "center",
+          "label": "Centrado (Brand/Direct)"
+        }
+      ],
+      "default": "row"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Ancho en escritorio",
+      "options": [
+        {
+          "value": "full",
+          "label": "Completo"
+        },
+        {
+          "value": "left",
+          "label": "Mitad izquierda"
+        },
+        {
+          "value": "right",
+          "label": "Mitad derecha"
+        }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Margen superior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Margen inferior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Beneficio",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / pago seguro"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "chat",
+              "label": "Soporte"
+            },
+            {
+              "value": "cash",
+              "label": "Pago / efectivo"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "star",
+              "label": "Estrella"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "check",
+              "label": "Check"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "fire",
+              "label": "Fuego / oferta"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo / potencia"
+            },
+            {
+              "value": "sparkle",
+              "label": "Brillo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja / natural"
+            },
+            {
+              "value": "drop",
+              "label": "Gota / agua"
+            },
+            {
+              "value": "snow",
+              "label": "Frío"
+            },
+            {
+              "value": "thermo",
+              "label": "Temperatura"
+            },
+            {
+              "value": "sun",
+              "label": "Sol / luz"
+            },
+            {
+              "value": "gem",
+              "label": "Gema / premium"
+            },
+            {
+              "value": "hand",
+              "label": "Mano / fácil"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "box",
+              "label": "Caja / paquete"
+            },
+            {
+              "value": "grid",
+              "label": "Accesorios"
+            },
+            {
+              "value": "battery",
+              "label": "Batería"
+            },
+            {
+              "value": "home",
+              "label": "Hogar"
+            },
+            {
+              "value": "verified",
+              "label": "Verificado"
+            },
+            {
+              "value": "bag",
+              "label": "Bolsa / tienda"
+            },
+            {
+              "value": "cart",
+              "label": "Carrito"
+            }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Beneficio",
+          "default": "Beneficio principal"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Detalle",
+          "default": "Explica el beneficio en una línea."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "ECOMS · Íconos",
+      "blocks": [
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}

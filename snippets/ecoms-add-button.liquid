@@ -1,0 +1,28 @@
+{%- comment -%}
+  ECOMS · Add-to-cart button for secondary products (cross-sell, upsell, cart drawer).
+  Single-variant products are added directly with the AJAX Cart API; products with options
+  link to their page so the customer picks a real variant.
+
+  Accepts:
+  - item: {Object} product
+  - label: {String} button text
+  - class: {String} button classes
+  - source: {String} analytics source name
+{%- endcomment -%}
+{%- assign item_variant = item.selected_or_first_available_variant -%}
+{%- if item.available == false -%}
+  <button type="button" class="{{ class }}" disabled>{{ 'products.product.sold_out' | t }}</button>
+{%- elsif item.has_only_default_variant -%}
+  <button
+    type="button"
+    class="{{ class }}"
+    data-ec-add-variant="{{ item_variant.id }}"
+    data-ec-source="{{ source | default: 'cross_sell' }}"
+    aria-label="{{ label | escape }}: {{ item.title | escape }}"
+  >
+    {{- label | escape -}}
+  </button>
+  <p class="ec-add-error" role="alert" data-ec-add-error hidden></p>
+{%- else -%}
+  <a class="{{ class }}" href="{{ item.url }}">Ver opciones</a>
+{%- endif -%}

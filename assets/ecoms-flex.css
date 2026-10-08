@@ -1,0 +1,115 @@
+/*
+ * ECOMS FLEX · skin for Dawn (default template).
+ * Clean and modular: Plus Jakarta Sans, rounded cards, brand-coloured CTAs.
+ * Scope: body.ec-skin--flex. Product page rules also require .ec-pdp.
+ */
+
+/* ---------- Chrome: announcement bar, header, footer ---------- */
+.ec-skin--flex.ec-chrome .utility-bar {
+  --color-foreground: 255, 255, 255;
+  background: var(--ec-dark) !important;
+  border-bottom: 0;
+}
+.ec-skin--flex.ec-chrome .announcement-bar__message { font-size: 12.5px; font-weight: 500; letter-spacing: 0; }
+.ec-skin--flex.ec-chrome .header__heading-link { font-weight: 800; letter-spacing: -0.01em; }
+.ec-skin--flex.ec-chrome .header__menu-item { font-size: 14px; font-weight: 500; }
+.ec-skin--flex.ec-chrome .header__active-menu-item { color: var(--ec-primary); font-weight: 700; text-decoration: none; }
+.ec-skin--flex .cart-count-bubble { background: var(--ec-primary); color: var(--ec-primary-ink); }
+.ec-skin--flex.ec-chrome .footer {
+  --color-foreground: 255, 255, 255;
+  --color-background: 0, 0, 0;
+  background: var(--ec-dark) !important;
+  color: rgba(255, 255, 255, 0.75);
+}
+.ec-skin--flex.ec-chrome .footer-block__heading { color: #fff; font-size: 13.5px; }
+.ec-skin--flex.ec-chrome .footer a { color: rgba(255, 255, 255, 0.78); }
+
+/* ---------- Buttons ---------- */
+.ec-skin--flex .button--primary,
+.ec-skin--flex .product-form__submit,
+.ec-skin--flex .cart__checkout-button {
+  --color-button: var(--ec-primary);
+  min-height: 50px;
+  border-radius: var(--ec-rb);
+  background: var(--ec-primary);
+  color: var(--ec-primary-ink);
+  font-family: var(--font-body-family);
+  font-size: 15.5px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.ec-skin--flex .button--primary::before,
+.ec-skin--flex .button--primary::after,
+.ec-skin--flex .product-form__submit::before,
+.ec-skin--flex .product-form__submit::after,
+.ec-skin--flex .cart__checkout-button::before,
+.ec-skin--flex .cart__checkout-button::after { box-shadow: none; border-radius: var(--ec-rb); }
+.ec-skin--flex .button--primary:not([disabled]):hover,
+.ec-skin--flex .product-form__submit:not([disabled]):hover,
+.ec-skin--flex .cart__checkout-button:not([disabled]):hover { background: var(--ec-primary-hover); }
+.ec-skin--flex .product-form__submit[disabled] { opacity: 0.6; }
+.ec-skin--flex .shopify-payment-button__button { border-radius: var(--ec-rb); }
+
+/* ---------- Product hero ---------- */
+.ec-skin--flex.ec-pdp .product { gap: 22px; }
+.ec-skin--flex.ec-pdp .product__info-container { display: flex; flex-direction: column; gap: 14px; }
+.ec-skin--flex.ec-pdp .product__info-container > * { margin-top: 0; margin-bottom: 0; }
+.ec-skin--flex.ec-pdp .product__info-container .product__title { margin: 0; }
+.ec-skin--flex.ec-pdp .product__title h1,
+.ec-skin--flex.ec-pdp .product__title .h1 {
+  color: var(--ec-ink);
+  font-size: clamp(25px, 6.4vw, 33px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+.ec-skin--flex.ec-pdp .product__info-container .price { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.ec-skin--flex.ec-pdp .product__info-container .price__container { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0; }
+.ec-skin--flex.ec-pdp .product__info-container .price--large .price-item--last,
+.ec-skin--flex.ec-pdp .product__info-container .price--large .price__regular .price-item {
+  color: var(--ec-ink);
+  font-family: var(--font-heading-family);
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.ec-skin--flex.ec-pdp .product__info-container .price__sale s.price-item { color: var(--ec-muted); font-size: 16px; font-weight: 500; }
+.ec-skin--flex.ec-pdp .product__info-container .price .badge {
+  padding: 4px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ec-sale-bg);
+  color: var(--ec-sale-ink);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.ec-skin--flex.ec-pdp .product__tax { color: var(--ec-muted); font-size: 12px; }
+.ec-skin--flex.ec-pdp .product__description { color: var(--ec-muted); font-size: 14.5px; }
+.ec-skin--flex.ec-pdp .product-form__input .form__label { color: var(--ec-ink); font-size: 14px; font-weight: 700; }
+.ec-skin--flex.ec-pdp .product-form__input input[type='radio']:checked + label { background: var(--ec-ink); border-color: var(--ec-ink); }
+.ec-skin--flex.ec-pdp .quantity { min-height: 42px; border-radius: var(--ec-rb); }
+.ec-skin--flex.ec-pdp .quantity::after,
+.ec-skin--flex.ec-pdp .quantity::before { border-radius: var(--ec-rb); }
+.ec-skin--flex.ec-pdp .product-form__buttons { max-width: none; }
+.ec-skin--flex.ec-pdp .product-form__submit { margin-bottom: 0; }
+.ec-skin--flex.ec-pdp .ec-sub { color: var(--ec-muted); }
+
+/* Gallery: edge-to-edge on mobile, thumbnails rail on desktop */
+.ec-skin--flex.ec-pdp .product__media-list .product__media-item .media,
+.ec-skin--flex.ec-pdp .product__media-list .deferred-media { border-radius: 0; }
+.ec-skin--flex.ec-pdp .thumbnail { border-radius: 8px; }
+.ec-skin--flex.ec-pdp .thumbnail[aria-current] { box-shadow: 0 0 0 2px var(--ec-primary); border-color: var(--ec-primary); }
+
+@media screen and (min-width: 750px) {
+  .ec-skin--flex.ec-pdp .product__media-list .product__media-item .media,
+  .ec-skin--flex.ec-pdp .product__media-list .deferred-media { border-radius: var(--ec-rm); overflow: hidden; }
+}
+@media screen and (min-width: 990px) {
+  .ec-skin--flex.ec-pdp .product { gap: 40px; }
+  .ec-skin--flex.ec-pdp .product__info-wrapper { padding-left: 0; }
+}
+
+/* ---------- Section rhythm ---------- */
+.ec-skin--flex .ec-sec-h h2 { font-weight: 800; }

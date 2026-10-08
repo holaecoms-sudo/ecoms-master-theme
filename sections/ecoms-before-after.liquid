@@ -1,13 +1,118 @@
-{% if section.settings.before != blank or section.settings.after != blank or request.design_mode %}
-<section class="ecoms-section ecoms-beforeafter" id="ecoms-beforeafter-{{ section.id }}">
- <div class="page-width"><h2 class="ecoms-section-title">{{ section.settings.heading | escape }}</h2>
- {% if section.settings.text != blank %}<p class="ecoms-section-lead">{{ section.settings.text | escape }}</p>{% endif %}
- <div class="ecoms-beforeafter__grid">
- {% if section.settings.before != blank %}<figure>{{ section.settings.before | image_url: width: 900 | image_tag: loading: 'lazy', widths: '350,550,750,900' }}<figcaption>{{ section.settings.before_caption | escape }}</figcaption></figure>{% elsif request.design_mode %}<div class="ecoms-photo-placeholder">Imagen anterior</div>{% endif %}
- {% if section.settings.after != blank %}<figure>{{ section.settings.after | image_url: width: 900 | image_tag: loading: 'lazy', widths: '350,550,750,900' }}<figcaption>{{ section.settings.after_caption | escape }}</figcaption></figure>{% elsif request.design_mode %}<div class="ecoms-photo-placeholder">Imagen posterior</div>{% endif %}
- </div></div>
+{%- comment -%} ECOMS · Before / after with real photos of the product's effect. {%- endcomment -%}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-ba-sec' %}>
+  <div class="ec-w">
+    {%- if section.settings.heading != blank -%}<h2 class="ec-h3">{{ section.settings.heading | escape }}</h2>{%- endif -%}
+    {%- if section.settings.text != blank -%}<p class="ec-sub">{{ section.settings.text | escape }}</p>{%- endif -%}
+    <div class="ec-ba">
+      <figure>
+        {%- if section.settings.before != blank -%}
+          {{ section.settings.before | image_url: width: 900 | image_tag: loading: 'lazy', widths: '350,550,750,900', sizes: '(min-width: 990px) 25vw, 50vw' }}
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'ec-placeholder' }}
+        {%- endif -%}
+        <figcaption><b>{{ section.settings.before_caption | escape }}</b></figcaption>
+      </figure>
+      <span class="ec-ba__arrow" aria-hidden="true">{% render 'ecoms-icon', name: 'arrow' %}</span>
+      <figure>
+        {%- if section.settings.after != blank -%}
+          {{ section.settings.after | image_url: width: 900 | image_tag: loading: 'lazy', widths: '350,550,750,900', sizes: '(min-width: 990px) 25vw, 50vw' }}
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'ec-placeholder' }}
+        {%- endif -%}
+        <figcaption><b>{{ section.settings.after_caption | escape }}</b></figcaption>
+      </figure>
+    </div>
+  </div>
 </section>
-{% endif %}
+
 {% schema %}
-{"name":"ECOMS · Antes y después","settings":[{"type":"text","id":"heading","label":"Título","default":"Mira la diferencia"},{"type":"text","id":"text","label":"Descripción","default":"Compara una situación real con el resultado obtenido."},{"type":"image_picker","id":"before","label":"Imagen antes"},{"type":"text","id":"before_caption","label":"Etiqueta antes","default":"Antes"},{"type":"image_picker","id":"after","label":"Imagen después"},{"type":"text","id":"after_caption","label":"Etiqueta después","default":"Después"}],"presets":[{"name":"ECOMS · Antes y después"}]}
+{
+  "name": "ECOMS · Antes y después",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Mira la diferencia"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Descripción",
+      "default": "Compara una situación real con el resultado obtenido."
+    },
+    {
+      "type": "image_picker",
+      "id": "before",
+      "label": "Imagen antes"
+    },
+    {
+      "type": "text",
+      "id": "before_caption",
+      "label": "Etiqueta antes",
+      "default": "Antes"
+    },
+    {
+      "type": "image_picker",
+      "id": "after",
+      "label": "Imagen después"
+    },
+    {
+      "type": "text",
+      "id": "after_caption",
+      "label": "Etiqueta después",
+      "default": "Después"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Ancho en escritorio",
+      "options": [
+        {
+          "value": "full",
+          "label": "Completo"
+        },
+        {
+          "value": "left",
+          "label": "Mitad izquierda"
+        },
+        {
+          "value": "right",
+          "label": "Mitad derecha"
+        }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Margen superior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Margen inferior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ECOMS · Antes y después"
+    }
+  ],
+  "tag": "section"
+}
 {% endschema %}

@@ -3,30 +3,35 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "ecoms_eyebrow": {
-          "type": "ecoms_eyebrow",
-          "settings": {
-            "text": "Diseñado para tu día a día"
-          }
-        },
         "rating": {
-          "type": "rating",
-          "settings": {}
+          "type": "ecoms_rating",
+          "settings": {
+            "suffix": ""
+          }
         },
         "title": {
           "type": "title",
           "settings": {}
         },
+        "subtitle": {
+          "type": "ecoms_subtitle",
+          "settings": {
+            "text": "<p>Describe en una o dos frases el beneficio principal y para quién es el producto.</p>"
+          }
+        },
         "price": {
           "type": "price",
           "settings": {}
         },
-        "benefits": {
-          "type": "ecoms_benefits",
+        "urgency": {
+          "type": "ecoms_urgency",
           "settings": {
-            "one": "Práctico y funcional",
-            "two": "Fácil de usar",
-            "three": "Compra con confianza"
+            "end_at": "",
+            "icon": "fire",
+            "heading": "¡Oferta por tiempo limitado!",
+            "text": "La promoción termina en:",
+            "style": "boxes",
+            "show_days": true
           }
         },
         "variant_picker": {
@@ -34,14 +39,6 @@
           "settings": {
             "picker_type": "button",
             "swatch_shape": "circle"
-          }
-        },
-        "packs": {
-          "type": "ecoms_bundle",
-          "settings": {
-            "heading": "Elige tu pack",
-            "help": "El total final se confirma en el carrito.",
-            "show_third": true
           }
         },
         "quantity_selector": {
@@ -55,31 +52,69 @@
             "show_gift_card_recipient": false
           }
         },
-        "guarantees": {
-          "type": "ecoms_guarantees",
+        "buy_now": {
+          "type": "ecoms_buy_now",
           "settings": {
-            "one": "Pago seguro",
-            "two": "Información de despacho",
-            "three": "Atención al cliente"
+            "label": "Comprar ahora",
+            "icon": "none"
+          }
+        },
+        "trust": {
+          "type": "ecoms_trust",
+          "settings": {
+            "icon_1": "lock",
+            "title_1": "Pago seguro",
+            "text_1": "Encriptado",
+            "icon_2": "truck",
+            "title_2": "Envíos",
+            "text_2": "A todo Chile",
+            "icon_3": "shield",
+            "title_3": "Garantía",
+            "text_3": "Según política",
+            "icon_4": "chat",
+            "title_4": "Soporte",
+            "text_4": "Por WhatsApp"
           }
         },
         "description": {
           "type": "description",
           "settings": {}
+        },
+        "media_features": {
+          "type": "ecoms_media_features",
+          "settings": {
+            "icon_1": "drop",
+            "text_1": "Característica 1",
+            "icon_2": "thermo",
+            "text_2": "Característica 2",
+            "icon_3": "shield",
+            "text_3": "Característica 3",
+            "icon_4": "leaf",
+            "text_4": "Característica 4"
+          }
+        },
+        "sticky": {
+          "type": "ecoms_sticky",
+          "settings": {
+            "label": "Agregar",
+            "desktop": true
+          }
         }
       },
       "block_order": [
-        "ecoms_eyebrow",
         "rating",
         "title",
+        "subtitle",
         "price",
-        "benefits",
+        "urgency",
         "variant_picker",
-        "packs",
         "quantity_selector",
         "buy_buttons",
-        "guarantees",
-        "description"
+        "buy_now",
+        "trust",
+        "description",
+        "media_features",
+        "sticky"
       ],
       "settings": {
         "enable_sticky_info": false,
@@ -87,195 +122,341 @@
         "media_size": "large",
         "constrain_to_viewport": true,
         "media_fit": "cover",
-        "gallery_layout": "thumbnail",
-        "mobile_thumbnails": "show",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "hide",
         "media_position": "left",
         "image_zoom": "lightbox",
         "hide_variants": false,
         "enable_video_looping": false,
         "padding_top": 20,
-        "padding_bottom": 20
+        "padding_bottom": 24
       }
     },
-    "trust": {
+    "strip": {
       "type": "ecoms-trust",
-      "blocks": {
-        "trust1": {
-          "type": "promise",
-          "settings": {
-            "heading": "Compra segura",
-            "text": "Pago procesado de forma segura"
-          }
-        },
-        "trust2": {
-          "type": "promise",
-          "settings": {
-            "heading": "Información de envío",
-            "text": "Consulta plazos antes de comprar"
-          }
-        },
-        "trust3": {
-          "type": "promise",
-          "settings": {
-            "heading": "Atención disponible",
-            "text": "Consulta nuestros canales de contacto"
-          }
-        }
-      },
-      "block_order": [
-        "trust1",
-        "trust2",
-        "trust3"
-      ],
-      "settings": {}
-    },
-    "benefits": {
-      "type": "ecoms-feature-grid",
       "settings": {
-        "heading": "Beneficios que importan"
+        "width": "full",
+        "padding_top": 20,
+        "padding_bottom": 20
       },
       "blocks": {
-        "b1": {
-          "type": "feature",
+        "s1": {
+          "type": "promise",
           "settings": {
-            "icon": "✓",
-            "heading": "Fácil de incorporar",
-            "text": "Personaliza esta descripción con un beneficio verificable."
+            "icon": "truck",
+            "heading": "Envíos a todo Chile",
+            "text": "Plazos según tu comuna"
           }
         },
-        "b2": {
-          "type": "feature",
+        "s2": {
+          "type": "promise",
           "settings": {
-            "icon": "✦",
-            "heading": "Diseño funcional",
-            "text": "Personaliza esta descripción con un beneficio verificable."
+            "icon": "gift",
+            "heading": "Packs con descuento",
+            "text": "Cuando hay promoción activa"
           }
         },
-        "b3": {
-          "type": "feature",
+        "s3": {
+          "type": "promise",
           "settings": {
-            "icon": "◈",
-            "heading": "Experiencia simple",
-            "text": "Personaliza esta descripción con un beneficio verificable."
+            "icon": "shield",
+            "heading": "Compra segura",
+            "text": "Pago procesado por Shopify"
           }
         },
-        "b4": {
-          "type": "feature",
+        "s4": {
+          "type": "promise",
           "settings": {
-            "icon": "★",
-            "heading": "Pensado para ti",
-            "text": "Personaliza esta descripción con un beneficio verificable."
+            "icon": "chat",
+            "heading": "Atención real",
+            "text": "Escríbenos cuando lo necesites"
           }
         }
       },
       "block_order": [
-        "b1",
-        "b2",
-        "b3",
-        "b4"
+        "s1",
+        "s2",
+        "s3",
+        "s4"
       ]
     },
-    "story": {
-      "type": "ecoms-story",
+    "packs": {
+      "type": "ecoms-packs",
       "settings": {
-        "eyebrow": "UNA SOLUCIÓN PARA TU DÍA",
-        "heading": "Diseñado para acompañarte cada día",
-        "text": "<p>Agrega una historia real y beneficios específicos del producto. Completa con una fotografía lifestyle desde el editor de Shopify.</p>"
+        "title": "Ahorra más con nuestros packs",
+        "text": "Llévate más y paga menos. Ideales para ti o para regalar.",
+        "social_text": "",
+        "layout": "cards",
+        "show_cta_total": true,
+        "help": "El total final se confirma en el carrito.",
+        "discounts_live": false,
+        "tier1_tag": "",
+        "tier2_enabled": true,
+        "tier2_qty": 2,
+        "tier2_pct": 15,
+        "tier2_tag": "Más vendido",
+        "tier3_enabled": true,
+        "tier3_qty": 3,
+        "tier3_pct": 25,
+        "tier3_tag": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
+    },
+    "features": {
+      "type": "ecoms-feature-grid",
+      "settings": {
+        "heading": "",
+        "style": "row",
+        "width": "full",
+        "padding_top": 8,
+        "padding_bottom": 36
+      },
+      "blocks": {
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "icon": "snow",
+            "heading": "Beneficio 1",
+            "text": "Explica un beneficio verificable."
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "icon": "drop",
+            "heading": "Beneficio 2",
+            "text": "Explica un beneficio verificable."
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "icon": "leaf",
+            "heading": "Beneficio 3",
+            "text": "Explica un beneficio verificable."
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "icon": "gem",
+            "heading": "Beneficio 4",
+            "text": "Explica un beneficio verificable."
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ]
+    },
+    "lifestyle": {
+      "type": "ecoms-lifestyle",
+      "settings": {
+        "heading": "Diseñado para cada momento de tu día",
+        "text": "<p>Muestra dónde y cómo se usa el producto, con fotos reales.</p>",
+        "button_label": "Descubrir más",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 28
+      },
+      "blocks": {
+        "l1": {
+          "type": "card",
+          "settings": {
+            "label": "Oficina"
+          }
+        },
+        "l2": {
+          "type": "card",
+          "settings": {
+            "label": "Gimnasio"
+          }
+        },
+        "l3": {
+          "type": "card",
+          "settings": {
+            "label": "Viajes"
+          }
+        },
+        "l4": {
+          "type": "card",
+          "settings": {
+            "label": "Aire libre"
+          }
+        }
+      },
+      "block_order": [
+        "l1",
+        "l2",
+        "l3",
+        "l4"
+      ]
     },
     "comparison": {
       "type": "ecoms-comparison",
       "settings": {
-        "heading": "¿Por qué elegir este producto?",
-        "us": "Nuestro producto",
-        "them": "Otras opciones"
+        "heading": "¿Por qué elegirnos?",
+        "feature_label": "Característica",
+        "col_1": "Nuestro producto",
+        "col_2": "Otras opciones",
+        "col_3": "",
+        "width": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
       },
-      "blocks": {}
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "feature": "Característica comprobable 1",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "feature": "Característica comprobable 2",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "feature": "Característica comprobable 3",
+            "value_1": true,
+            "value_2": true,
+            "value_3": false
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "feature": "Garantía según política de la tienda",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
     },
     "reviews": {
       "type": "ecoms-reviews",
       "settings": {
-        "heading": "Opiniones de nuestros clientes"
-      },
-      "blocks": {}
+        "heading": "Reseñas de nuestros clientes",
+        "link_label": "",
+        "link": "",
+        "width": "right",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "ugc": {
+      "type": "ecoms-ugc",
+      "settings": {
+        "heading": "Clientes reales",
+        "text": "Fotos compartidas con autorización.",
+        "width": "left",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
     },
     "faq": {
       "type": "ecoms-faq",
       "settings": {
-        "heading": "Preguntas frecuentes"
+        "heading": "Preguntas frecuentes",
+        "icon": "chev",
+        "width": "right",
+        "padding_top": 0,
+        "padding_bottom": 36
       },
       "blocks": {
         "q1": {
           "type": "faq",
           "settings": {
-            "question": "¿Qué incluye mi pedido?",
-            "answer": "<p>Especifica el contenido exacto del paquete antes de publicar.</p>"
+            "question": "¿Cuánto tarda en llegar mi pedido?",
+            "answer": "<p>Completa con los plazos reales de despacho de esta tienda.</p>"
           }
         },
         "q2": {
           "type": "faq",
           "settings": {
-            "question": "¿Cuáles son los plazos de entrega?",
-            "answer": "<p>Completa la política de despacho de esta tienda antes de publicar.</p>"
+            "question": "¿Qué incluye el paquete?",
+            "answer": "<p>Detalla el contenido exacto de la caja.</p>"
           }
         },
         "q3": {
           "type": "faq",
           "settings": {
-            "question": "¿Cómo puedo solicitar una devolución?",
-            "answer": "<p>Completa los pasos según las políticas publicadas de esta tienda.</p>"
+            "question": "¿Tiene garantía?",
+            "answer": "<p>Describe la garantía según la política publicada.</p>"
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo hago un cambio o devolución?",
+            "answer": "<p>Explica los pasos según la política de devoluciones.</p>"
           }
         }
       },
       "block_order": [
         "q1",
         "q2",
-        "q3"
+        "q3",
+        "q4"
       ]
     },
-    "ugc": {
-      "type": "ecoms-ugc",
+    "cross_sell": {
+      "type": "ecoms-cross-sell",
       "settings": {
-        "heading": "Personas reales, experiencias reales"
-      },
-      "blocks": {}
+        "heading": "También te puede gustar",
+        "limit": 3,
+        "button_label": "Agregar",
+        "width": "left",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
     },
     "upsell": {
       "type": "ecoms-upsell",
       "settings": {
-        "heading": "Completa tu compra"
-      },
-      "blocks": {}
-    },
-    "related-products": {
-      "type": "related-products",
-      "settings": {
-        "heading": "También te puede gustar",
-        "heading_size": "h2",
-        "products_to_show": 4,
-        "columns_desktop": 4,
-        "columns_mobile": "2",
-        "color_scheme": "scheme-1",
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "padding_top": 36,
-        "padding_bottom": 28
+        "heading": "Completa tu compra",
+        "items": "",
+        "show_saving": true,
+        "button_label": "Agregar al carrito",
+        "width": "right",
+        "padding_top": 0,
+        "padding_bottom": 36
       }
     }
   },
   "order": [
     "main",
-    "trust",
-    "benefits",
-    "story",
+    "strip",
+    "packs",
+    "features",
+    "lifestyle",
     "comparison",
     "reviews",
     "ugc",
     "faq",
-    "upsell",
-    "related-products"
+    "cross_sell",
+    "upsell"
   ]
 }

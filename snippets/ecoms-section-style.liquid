@@ -1,0 +1,5 @@
+{%- comment -%}
+  ECOMS · Section wrapper attributes: width (full / left / right half on desktop) and spacing.
+  Usage: <section {% render 'ecoms-section-style', section: section, class: 'ec-faq' %}>
+{%- endcomment -%}
+id="ec-{{ section.id }}" class="ec-sec ec-sec--{{ section.settings.width | default: 'full' }} {{ class }}" style="--ec-pt: {{ section.settings.padding_top | default: 36 }}px; --ec-pb: {{ section.settings.padding_bottom | default: 36 }}px;"

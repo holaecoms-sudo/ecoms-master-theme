@@ -1,6 +1,241 @@
-<section class="ecoms-trust-strip" id="ecoms-trust-{{ section.id }}"><div class="page-width ecoms-trust-strip__grid">
- {% for block in section.blocks %}<div class="ecoms-trust-strip__item" {{ block.shopify_attributes }}><span aria-hidden="true">✓</span><div><strong>{{ block.settings.heading | escape }}</strong>{% if block.settings.text != blank %}<small>{{ block.settings.text | escape }}</small>{% endif %}</div></div>{% endfor %}
- </div></section>
+{%- comment -%} ECOMS · Benefit strip (icons on a soft band). {%- endcomment -%}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-strip' %}>
+  <div class="ec-w ec-strip__grid">
+    {%- for block in section.blocks -%}
+      <div class="ec-strip__item" {{ block.shopify_attributes }}>
+        {% render 'ecoms-icon', name: block.settings.icon %}
+        <div>
+          <b>{{ block.settings.heading | escape }}</b>
+          {%- if block.settings.text != blank -%}
+            {{ block.settings.text | escape }}
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
 {% schema %}
-{"name":"ECOMS · Confianza","settings":[],"blocks":[{"type":"promise","name":"Información confiable","settings":[{"type":"text","id":"heading","label":"Título","default":"Compra segura"},{"type":"text","id":"text","label":"Detalle","default":"Información clara al comprar"}]}],"max_blocks":4,"presets":[{"name":"ECOMS · Confianza","blocks":[{"type":"promise"},{"type":"promise"},{"type":"promise"}]}]}
+{
+  "name": "ECOMS · Barra confianza",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Usa solo condiciones reales de la tienda (envíos, garantía, cifras)."
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Ancho en escritorio",
+      "options": [
+        {
+          "value": "full",
+          "label": "Completo"
+        },
+        {
+          "value": "left",
+          "label": "Mitad izquierda"
+        },
+        {
+          "value": "right",
+          "label": "Mitad derecha"
+        }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Margen superior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Margen inferior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "promise",
+      "name": "Beneficio",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / pago seguro"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "chat",
+              "label": "Soporte"
+            },
+            {
+              "value": "cash",
+              "label": "Pago / efectivo"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "star",
+              "label": "Estrella"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "check",
+              "label": "Check"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "fire",
+              "label": "Fuego / oferta"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo / potencia"
+            },
+            {
+              "value": "sparkle",
+              "label": "Brillo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja / natural"
+            },
+            {
+              "value": "drop",
+              "label": "Gota / agua"
+            },
+            {
+              "value": "snow",
+              "label": "Frío"
+            },
+            {
+              "value": "thermo",
+              "label": "Temperatura"
+            },
+            {
+              "value": "sun",
+              "label": "Sol / luz"
+            },
+            {
+              "value": "gem",
+              "label": "Gema / premium"
+            },
+            {
+              "value": "hand",
+              "label": "Mano / fácil"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "box",
+              "label": "Caja / paquete"
+            },
+            {
+              "value": "grid",
+              "label": "Accesorios"
+            },
+            {
+              "value": "battery",
+              "label": "Batería"
+            },
+            {
+              "value": "home",
+              "label": "Hogar"
+            },
+            {
+              "value": "verified",
+              "label": "Verificado"
+            },
+            {
+              "value": "bag",
+              "label": "Bolsa / tienda"
+            },
+            {
+              "value": "cart",
+              "label": "Carrito"
+            }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Título",
+          "default": "Envío a todo Chile"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Detalle",
+          "default": "Plazos según tu comuna"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "ECOMS · Barra confianza",
+      "blocks": [
+        {
+          "type": "promise"
+        },
+        {
+          "type": "promise"
+        },
+        {
+          "type": "promise"
+        },
+        {
+          "type": "promise"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}

@@ -1,8 +1,51 @@
-{% assign current_variant = product.selected_or_first_available_variant %}
-{% if current_variant != blank %}
-<div class="ecoms-sticky" data-ecoms-sticky hidden>
- {% if product.featured_image != blank %}{{ product.featured_image | image_url: width: 120 | image_tag: loading: 'lazy', class: 'ecoms-sticky__img' }}{% endif %}
- <div class="ecoms-sticky__copy"><strong>{{ product.title | escape }}</strong><span data-ecoms-sticky-price>{{ current_variant.price | money }}</span></div>
- <button type="button" class="ecoms-sticky__button" data-ecoms-scroll-buy>Comprar</button>
+{%- comment -%}
+  ECOMS · Sticky add-to-cart. Appears when the main add button scrolls out of view.
+  Its button submits Dawn's own product form (form attribute), so variants, quantity, selling
+  plans, the cart drawer and Shopify's add-to-cart analytics events all keep working natively.
+
+  Accepts:
+  - product: {Object}
+  - block: {Object} ecoms_sticky block
+  - section_id: {String}
+  - product_form_id: {String}
+{%- endcomment -%}
+{%- assign variant = product.selected_or_first_available_variant -%}
+<div
+  id="EcSticky-{{ section_id }}"
+  class="ec-sticky{% if block.settings.desktop %} ec-sticky--desktop{% endif %}"
+  data-ec-sticky
+  data-ec-refresh
+  aria-hidden="true"
+  inert
+>
+  {%- assign sticky_media = variant.featured_media | default: product.featured_media -%}
+  {%- if sticky_media != blank -%}
+    {{
+      sticky_media.preview_image
+      | image_url: width: 120
+      | image_tag: class: 'ec-sticky__img', loading: 'lazy', width: 48, height: 48, alt: ''
+    }}
+  {%- endif -%}
+  <div class="ec-sticky__txt">
+    <p class="ec-sticky__name">{{ product.title | escape }}</p>
+    <p class="ec-sticky__price" data-ec-sticky-price>{{ variant.price | money }}</p>
+  </div>
+  <button
+    type="submit"
+    form="{{ product_form_id }}"
+    name="add"
+    class="ec-btn ec-btn--primary"
+    {% unless variant.available %}
+      disabled
+    {% endunless %}
+  >
+    {% render 'ecoms-icon', name: 'cart' %}
+    <span>
+      {%- if variant.available -%}
+        {{ block.settings.label | escape }}
+      {%- else -%}
+        {{ 'products.product.sold_out' | t }}
+      {%- endif -%}
+    </span>
+  </button>
 </div>
-{% endif %}

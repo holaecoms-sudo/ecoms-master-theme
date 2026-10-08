@@ -1,0 +1,263 @@
+{%- comment -%}
+  ECOMS · Packs as a standalone section (Flex layout). Selecting a pack sets the quantity of the
+  main product form; the section re-renders with the selected variant's prices.
+{%- endcomment -%}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-packs-sec' %}>
+  <div class="ec-w">
+    {%- if section.settings.title != blank or section.settings.text != blank -%}
+      <div class="ec-sec-h">
+        {%- if section.settings.title != blank -%}<h2>{{ section.settings.title | escape }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<p>{{ section.settings.text | escape }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+    {%- if product != blank -%}
+      {%- render 'ecoms-packs', product: product, source: section, uid: section.id, section_url_id: section.id -%}
+      {%- if section.settings.social_text != blank or product.metafields.reviews.rating.value != blank -%}
+        <div class="ec-social">
+          {%- if section.settings.social_text != blank -%}
+            <span>{{ section.settings.social_text | escape }}</span>
+          {%- endif -%}
+          {%- render 'ecoms-rating', product: product, suffix: ' de 5' -%}
+        </div>
+      {%- endif -%}
+    {%- elsif request.design_mode -%}
+      <p class="ec-editor-note">Esta sección funciona en plantillas de producto.</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ECOMS · Packs (sección)",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Ahorra más con nuestros packs"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Subtítulo",
+      "default": "Llévate más y paga menos."
+    },
+    {
+      "type": "text",
+      "id": "social_text",
+      "label": "Prueba social (cifra real)",
+      "info": "Ej.: «+1.200 clientes en Chile». Solo cifras verificables."
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Diseño",
+      "options": [
+        {
+          "value": "cards",
+          "label": "Tarjetas con imagen (Flex)"
+        },
+        {
+          "value": "list",
+          "label": "Lista (Brand)"
+        },
+        {
+          "value": "rows",
+          "label": "Filas con precio unitario (Direct)"
+        }
+      ],
+      "default": "cards"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta_total",
+      "label": "Mostrar total en el botón Agregar al carrito",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "help",
+      "label": "Nota",
+      "default": "El total final se confirma en el carrito."
+    },
+    {
+      "type": "header",
+      "content": "Descuentos reales"
+    },
+    {
+      "type": "paragraph",
+      "content": "Para que un pack tenga descuento crea en Shopify → Descuentos un descuento automático «Monto de descuento en productos» con requisito «Cantidad mínima de artículos» (ej. 2 → 15 %, 3 → 25 %). Shopify aplica el mejor descuento disponible en carrito y checkout."
+    },
+    {
+      "type": "checkbox",
+      "id": "discounts_live",
+      "label": "Los descuentos ya existen en Shopify",
+      "default": false,
+      "info": "Mientras esté desactivado, los packs muestran el precio normal sin descuento."
+    },
+    {
+      "type": "header",
+      "content": "Pack 1"
+    },
+    {
+      "type": "text",
+      "id": "tier1_label",
+      "label": "Texto (vacío = «1 unidad»)"
+    },
+    {
+      "type": "text",
+      "id": "tier1_tag",
+      "label": "Etiqueta"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier1_image",
+      "label": "Imagen"
+    },
+    {
+      "type": "header",
+      "content": "Pack 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "tier2_enabled",
+      "label": "Mostrar",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "tier2_qty",
+      "label": "Unidades",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "tier2_pct",
+      "label": "Descuento del descuento automático",
+      "min": 0,
+      "max": 70,
+      "step": 1,
+      "default": 0,
+      "unit": "%"
+    },
+    {
+      "type": "text",
+      "id": "tier2_label",
+      "label": "Texto (vacío = «2 unidades»)"
+    },
+    {
+      "type": "text",
+      "id": "tier2_tag",
+      "label": "Etiqueta",
+      "default": "Más vendido"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier2_image",
+      "label": "Imagen"
+    },
+    {
+      "type": "header",
+      "content": "Pack 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "tier3_enabled",
+      "label": "Mostrar",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "tier3_qty",
+      "label": "Unidades",
+      "min": 3,
+      "max": 12,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "tier3_pct",
+      "label": "Descuento del descuento automático",
+      "min": 0,
+      "max": 70,
+      "step": 1,
+      "default": 0,
+      "unit": "%"
+    },
+    {
+      "type": "text",
+      "id": "tier3_label",
+      "label": "Texto (vacío = «3 unidades»)"
+    },
+    {
+      "type": "text",
+      "id": "tier3_tag",
+      "label": "Etiqueta"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier3_image",
+      "label": "Imagen"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Ancho en escritorio",
+      "options": [
+        {
+          "value": "full",
+          "label": "Completo"
+        },
+        {
+          "value": "left",
+          "label": "Mitad izquierda"
+        },
+        {
+          "value": "right",
+          "label": "Mitad derecha"
+        }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Margen superior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Margen inferior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ECOMS · Packs (sección)"
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  }
+}
+{% endschema %}

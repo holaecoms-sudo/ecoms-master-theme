@@ -1,9 +1,9 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Dawn",
-    "theme_version": "16.0.0",
-    "theme_author": "Shopify",
+    "theme_name": "ECOMS Master",
+    "theme_version": "1.2.0",
+    "theme_author": "ECOMS (base Dawn 16 de Shopify)",
     "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
     "theme_support_url": "https://support.shopify.com/"
   },
@@ -1419,7 +1419,7 @@
             "label": "t:settings_schema.cart.settings.cart_type.notification.label"
           }
         ],
-        "default": "notification",
+        "default": "drawer",
         "label": "t:settings_schema.cart.settings.cart_type.label"
       },
       {
@@ -1468,43 +1468,271 @@
     ]
   },
   {
-    "name": "ECOMS Master · Paletas",
+    "name": "ECOMS · Plantilla y marca",
     "settings": [
       {
-        "type": "color",
-        "id": "ecoms_flex_primary",
-        "label": "Flex · Botones",
-        "default": "#087657"
+        "type": "paragraph",
+        "content": "Sistema ECOMS: la plantilla define estructura y tipografía; los colores de marca son de cada tienda. Las páginas de producto con plantilla product.ecoms-* usan su propia plantilla."
+      },
+      {
+        "type": "select",
+        "id": "ecoms_skin",
+        "label": "Plantilla global de la tienda",
+        "options": [
+          {
+            "value": "flex",
+            "label": "ECOMS Flex"
+          },
+          {
+            "value": "brand",
+            "label": "ECOMS Brand"
+          },
+          {
+            "value": "direct",
+            "label": "ECOMS Direct"
+          },
+          {
+            "value": "none",
+            "label": "Ninguna (Dawn original)"
+          }
+        ],
+        "default": "flex",
+        "info": "Afecta header, anuncios, footer y páginas que no son de producto ECOMS."
+      },
+      {
+        "type": "checkbox",
+        "id": "ecoms_skin_chrome",
+        "label": "Aplicar estilo ECOMS a anuncios, header y footer",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Tipografía ECOMS Flex"
+      },
+      {
+        "type": "checkbox",
+        "id": "ecoms_use_skin_fonts",
+        "label": "Usar tipografías ECOMS",
+        "default": true,
+        "info": "Desactívalo para usar las tipografías de Dawn (Tipografía)."
+      },
+      {
+        "type": "font_picker",
+        "id": "ecoms_flex_font",
+        "label": "Flex · Títulos y texto",
+        "default": "plus_jakarta_sans_n4"
+      },
+      {
+        "type": "header",
+        "content": "Colores de marca"
       },
       {
         "type": "color",
-        "id": "ecoms_flex_deep",
-        "label": "Flex · Oscuro",
-        "default": "#08372d"
+        "id": "ecoms_primary",
+        "label": "Principal (botones, acentos)",
+        "default": "#1D6B47"
       },
       {
         "type": "color",
-        "id": "ecoms_brand_primary",
-        "label": "Brand · Botones",
-        "default": "#a45259"
+        "id": "ecoms_primary_ink",
+        "label": "Texto sobre principal",
+        "default": "#FFFFFF"
       },
       {
         "type": "color",
-        "id": "ecoms_brand_deep",
-        "label": "Brand · Oscuro",
-        "default": "#3e2b2c"
+        "id": "ecoms_dark",
+        "label": "Oscuro (anuncios, bandas, footer)",
+        "default": "#12392A"
       },
       {
         "type": "color",
-        "id": "ecoms_direct_primary",
-        "label": "Direct · Botones",
-        "default": "#088340"
+        "id": "ecoms_accent",
+        "label": "Secundario (Comprar ahora)",
+        "default": "#4B3BD6"
       },
       {
         "type": "color",
-        "id": "ecoms_direct_deep",
-        "label": "Direct · Oscuro",
-        "default": "#044a28"
+        "id": "ecoms_accent_ink",
+        "label": "Texto sobre secundario",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_soft",
+        "label": "Fondo suave",
+        "default": "#E2F3E8"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_soft_ink",
+        "label": "Texto sobre fondo suave",
+        "default": "#1D6B47"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_tag",
+        "label": "Etiquetas (Más vendido)",
+        "default": "#1D6B47"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_tag_ink",
+        "label": "Texto de etiquetas",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_sale_bg",
+        "label": "Fondo de ahorro",
+        "default": "#D5F0DF"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_sale_ink",
+        "label": "Texto de ahorro",
+        "default": "#17663F"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_urgent",
+        "label": "Urgencia",
+        "default": "#DE2F3B"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_urgent_bg",
+        "label": "Fondo de urgencia",
+        "default": "#FDE8EA"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_star",
+        "label": "Estrellas",
+        "default": "#F4A62A"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_deep",
+        "label": "Banda profunda (Brand)",
+        "default": "#2C4A3B"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_bg",
+        "label": "Fondo",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_ink",
+        "label": "Texto",
+        "default": "#15211B"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_muted",
+        "label": "Texto secundario",
+        "default": "#5A6660"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_line",
+        "label": "Bordes",
+        "default": "#E1E6E3"
+      },
+      {
+        "type": "header",
+        "content": "Forma"
+      },
+      {
+        "type": "range",
+        "id": "ecoms_radius_button",
+        "label": "Radio de botones",
+        "min": 0,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "default": 8
+      },
+      {
+        "type": "range",
+        "id": "ecoms_radius_card",
+        "label": "Radio de tarjetas",
+        "min": 0,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "default": 12
+      }
+    ]
+  },
+  {
+    "name": "ECOMS · Carrito y conversión",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "El carrito lateral (Carrito → Tipo: Cajón) es necesario para la barra de envío gratis y las recomendaciones."
+      },
+      {
+        "type": "header",
+        "content": "Envío gratis"
+      },
+      {
+        "type": "number",
+        "id": "ecoms_free_shipping_threshold",
+        "label": "Monto mínimo para envío gratis (CLP)",
+        "info": "Debe coincidir con una tarifa de envío gratis real en Configuración → Envíos. Vacío o 0 oculta la barra."
+      },
+      {
+        "type": "text",
+        "id": "ecoms_free_shipping_progress",
+        "label": "Mensaje en progreso",
+        "default": "Te faltan [amount] para el envío gratis",
+        "info": "[amount] se reemplaza por el monto restante."
+      },
+      {
+        "type": "text",
+        "id": "ecoms_free_shipping_success",
+        "label": "Mensaje logrado",
+        "default": "¡Tu pedido tiene envío gratis!"
+      },
+      {
+        "type": "header",
+        "content": "Recomendado en el carrito"
+      },
+      {
+        "type": "product_list",
+        "id": "ecoms_cart_products",
+        "label": "Productos sugeridos",
+        "limit": 4,
+        "info": "Se muestra el primero que no esté ya en el carrito."
+      },
+      {
+        "type": "text",
+        "id": "ecoms_cart_products_heading",
+        "label": "Título",
+        "default": "Completa tu pedido"
+      },
+      {
+        "type": "checkbox",
+        "id": "ecoms_cart_show_savings",
+        "label": "Mostrar ahorro total del pedido",
+        "default": true,
+        "info": "Usa los descuentos reales aplicados por Shopify."
+      },
+      {
+        "type": "text",
+        "id": "ecoms_cart_note",
+        "label": "Nota bajo el total",
+        "info": "Opcional. Dawn ya muestra la nota de impuestos y envío."
+      },
+      {
+        "type": "header",
+        "content": "Medición"
+      },
+      {
+        "type": "paragraph",
+        "content": "Meta Pixel, GA4 y Google Ads se conectan con los canales oficiales (Facebook e Instagram, Google y YouTube) o en Configuración → Eventos de clientes. El theme publica eventos adicionales (ecoms_pack_selected, ecoms_buy_now, ecoms_upsell_added) con Shopify.analytics.publish."
       }
     ]
   }

@@ -1,7 +1,157 @@
-<section class="ecoms-section ecoms-faq" id="ecoms-faq-{{ section.id }}"><div class="page-width ecoms-faq__inner">
- <h2 class="ecoms-section-title">{{ section.settings.heading | escape }}</h2>
- {% for block in section.blocks %}{% if block.settings.question != blank %}<details class="ecoms-faq__item" {{ block.shopify_attributes }}><summary>{{ block.settings.question | escape }} <span aria-hidden="true">＋</span></summary><div class="rte">{{ block.settings.answer }}</div></details>{% endif %}{% endfor %}
- </div></section>
+{%- comment -%} ECOMS · FAQ with FAQPage structured data. {%- endcomment -%}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-faq-sec' %}>
+  <div class="ec-w">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="ec-h3{% if section.settings.width == 'full' %} ec-h3--center{% endif %}">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    <div class="ec-faq{% if section.settings.width == 'full' %} ec-faq--narrow{% endif %}">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.question != blank -%}
+          <details {{ block.shopify_attributes }}>
+            <summary>
+              <span>{{ block.settings.question | escape }}</span>
+              {%- if section.settings.icon == 'plus' -%}
+                {% render 'ecoms-icon', name: 'plus' %}
+              {%- else -%}
+                {% render 'ecoms-icon', name: 'chev-r', class: 'chev' %}
+              {%- endif -%}
+            </summary>
+            <div class="ec-faq__a rte">{{ block.settings.answer }}</div>
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+  {%- if section.blocks.size > 0 -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {%- for block in section.blocks -%}
+            {%- if block.settings.question != blank -%}
+              {%- unless forloop.first %},{% endunless -%}
+              {
+                "@type": "Question",
+                "name": {{ block.settings.question | json }},
+                "acceptedAnswer": { "@type": "Answer", "text": {{ block.settings.answer | strip_html | json }} }
+              }
+            {%- endif -%}
+          {%- endfor -%}
+        ]
+      }
+    </script>
+  {%- endif -%}
+</section>
+
 {% schema %}
-{"name":"ECOMS · FAQ","settings":[{"type":"text","id":"heading","label":"Título","default":"Preguntas frecuentes"}],"blocks":[{"type":"faq","name":"Pregunta","settings":[{"type":"text","id":"question","label":"Pregunta","default":"¿Cómo funciona el envío?"},{"type":"richtext","id":"answer","label":"Respuesta verificada","default":"<p>Agrega información real según la política de tu tienda.</p>"}]}],"max_blocks":15,"presets":[{"name":"ECOMS · FAQ","blocks":[{"type":"faq"},{"type":"faq"},{"type":"faq"}]}]}
+{
+  "name": "ECOMS · FAQ",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Preguntas frecuentes"
+    },
+    {
+      "type": "select",
+      "id": "icon",
+      "label": "Icono",
+      "options": [
+        {
+          "value": "chev",
+          "label": "Flecha"
+        },
+        {
+          "value": "plus",
+          "label": "Más"
+        }
+      ],
+      "default": "chev"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Ancho en escritorio",
+      "options": [
+        {
+          "value": "full",
+          "label": "Completo"
+        },
+        {
+          "value": "left",
+          "label": "Mitad izquierda"
+        },
+        {
+          "value": "right",
+          "label": "Mitad derecha"
+        }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Margen superior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Margen inferior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Pregunta",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Pregunta",
+          "default": "¿Cuánto tarda el envío?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Respuesta",
+          "default": "<p>Completa con la política real de tu tienda.</p>"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 15,
+  "presets": [
+    {
+      "name": "ECOMS · FAQ",
+      "blocks": [
+        {
+          "type": "faq"
+        },
+        {
+          "type": "faq"
+        },
+        {
+          "type": "faq"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}

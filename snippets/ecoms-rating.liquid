@@ -1,0 +1,43 @@
+{%- comment -%}
+  ECOMS · Star rating from the standard review metafields (reviews.rating, reviews.rating_count).
+  These are written by review apps (Judge.me, Shopify Product Reviews, Loox, etc.).
+  Renders nothing when the product has no rating: ratings are never invented.
+
+  Accepts:
+  - product: {Object}
+  - block: {Object} optional, for editor attributes
+  - suffix: {String} optional text after the value (e.g. " de 5")
+  - star_size: {String} optional CSS size for the stars (default 15px)
+{%- endcomment -%}
+{%- assign ec_rating = product.metafields.reviews.rating.value -%}
+{%- if ec_rating != blank -%}
+  {%- liquid
+    assign ec_count = product.metafields.reviews.rating_count.value | default: product.metafields.reviews.rating_count | plus: 0
+    assign ec_max = ec_rating.scale_max | default: 5
+    assign ec_pct = ec_rating.rating | times: 100.0 | divided_by: ec_max | round: 1
+    assign ec_value = ec_rating.rating | round: 1 | append: '' | replace: '.', ','
+    if ec_count >= 1000
+      assign ec_thousands = ec_count | divided_by: 1000 | floor
+      assign ec_rest = ec_count | modulo: 1000 | plus: 1000 | append: '' | slice: 1, 3
+      assign ec_count_label = ec_thousands | append: '.' | append: ec_rest
+    else
+      assign ec_count_label = ec_count
+    endif
+  -%}
+  <div class="ec-rating" {% if block %}{{ block.shopify_attributes }}{% endif %}>
+    <span
+      class="ec-stars"
+      style="--r: {{ ec_pct }}%;{% if star_size != blank %} --s: {{ star_size }};{% endif %}"
+      role="img"
+      aria-label="{{ ec_value }} de {{ ec_max }} estrellas"
+    ></span>
+    <b>{{ ec_value }}{{ suffix }}</b>
+    {%- if ec_count > 0 %}
+      <span>({{ ec_count_label }} {% if ec_count == 1 %}reseña{% else %}reseñas{% endif %})</span>
+    {%- endif -%}
+  </div>
+{%- elsif request.design_mode and block -%}
+  <p class="ec-editor-note" {{ block.shopify_attributes }}>
+    Calificación: aparecerá cuando una app de reseñas complete los metacampos reviews.rating y reviews.rating_count.
+  </p>
+{%- endif -%}

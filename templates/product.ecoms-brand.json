@@ -24,9 +24,9 @@
         "benefits": {
           "type": "ecoms_benefits",
           "settings": {
-            "one": "Un momento para ti",
-            "two": "Pensado con detalle",
-            "three": "Fácil de incorporar a tu rutina"
+            "item_1": "Un momento para ti",
+            "item_2": "Pensado con detalle",
+            "item_3": "Fácil de incorporar a tu rutina"
           }
         },
         "variant_picker": {
@@ -37,11 +37,12 @@
           }
         },
         "packs": {
-          "type": "ecoms_bundle",
+          "type": "ecoms_packs",
           "settings": {
             "heading": "Elige tu pack",
             "help": "El total final se confirma en el carrito.",
-            "show_third": true
+            "tier3_enabled": true,
+            "layout": "list"
           }
         },
         "quantity_selector": {
@@ -56,16 +57,30 @@
           }
         },
         "guarantees": {
-          "type": "ecoms_guarantees",
+          "type": "ecoms_trust",
           "settings": {
-            "one": "Pago seguro",
-            "two": "Información de despacho",
-            "three": "Atención al cliente"
+            "title_1": "Pago seguro",
+            "text_1": "",
+            "icon_1": "lock",
+            "title_2": "Información de despacho",
+            "text_2": "",
+            "icon_2": "truck",
+            "title_3": "Atención al cliente",
+            "text_3": "",
+            "icon_3": "chat",
+            "title_4": ""
           }
         },
         "description": {
           "type": "description",
           "settings": {}
+        },
+        "sticky": {
+          "type": "ecoms_sticky",
+          "settings": {
+            "label": "Agregar",
+            "desktop": false
+          }
         }
       },
       "block_order": [
@@ -79,7 +94,8 @@
         "quantity_selector",
         "buy_buttons",
         "guarantees",
-        "description"
+        "description",
+        "sticky"
       ],
       "settings": {
         "enable_sticky_info": false,
@@ -104,21 +120,24 @@
           "type": "promise",
           "settings": {
             "heading": "Compra segura",
-            "text": "Pago procesado de forma segura"
+            "text": "Pago procesado de forma segura",
+            "icon": "check"
           }
         },
         "trust2": {
           "type": "promise",
           "settings": {
             "heading": "Información de envío",
-            "text": "Consulta plazos antes de comprar"
+            "text": "Consulta plazos antes de comprar",
+            "icon": "check"
           }
         },
         "trust3": {
           "type": "promise",
           "settings": {
             "heading": "Atención disponible",
-            "text": "Consulta nuestros canales de contacto"
+            "text": "Consulta nuestros canales de contacto",
+            "icon": "check"
           }
         }
       },
@@ -138,7 +157,7 @@
         "b1": {
           "type": "feature",
           "settings": {
-            "icon": "✓",
+            "icon": "check",
             "heading": "Momento de bienestar",
             "text": "Personaliza esta descripción con un beneficio verificable."
           }
@@ -146,7 +165,7 @@
         "b2": {
           "type": "feature",
           "settings": {
-            "icon": "✦",
+            "icon": "sparkle",
             "heading": "Detalles que importan",
             "text": "Personaliza esta descripción con un beneficio verificable."
           }
@@ -154,7 +173,7 @@
         "b3": {
           "type": "feature",
           "settings": {
-            "icon": "◈",
+            "icon": "gem",
             "heading": "Experiencia práctica",
             "text": "Personaliza esta descripción con un beneficio verificable."
           }
@@ -162,7 +181,7 @@
         "b4": {
           "type": "feature",
           "settings": {
-            "icon": "★",
+            "icon": "star",
             "heading": "Rutina personal",
             "text": "Personaliza esta descripción con un beneficio verificable."
           }
@@ -187,8 +206,8 @@
       "type": "ecoms-comparison",
       "settings": {
         "heading": "¿Por qué elegir este producto?",
-        "us": "Nuestro producto",
-        "them": "Otras opciones"
+        "col_1": "Nuestro producto",
+        "col_2": "Otras opciones"
       },
       "blocks": {}
     },

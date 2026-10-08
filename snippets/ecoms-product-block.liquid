@@ -1,0 +1,77 @@
+{%- comment -%}
+  ECOMS · Blocks for the main product section (sections/main-product.liquid).
+  Kept out of main-product to leave Dawn's file close to upstream.
+
+  Accepts:
+  - block: {Object} the ecoms_* block
+  - product: {Object}
+  - section_id: {String}
+  - product_form_id: {String} id of Dawn's product form
+{%- endcomment -%}
+{%- assign variant = product.selected_or_first_available_variant -%}
+{%- case block.type -%}
+  {%- when 'ecoms_eyebrow' -%}
+    {%- if block.settings.text != blank -%}
+      <p class="ec-eyebrow" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</p>
+    {%- endif -%}
+
+  {%- when 'ecoms_rating' -%}
+    {%- render 'ecoms-rating', product: product, block: block, suffix: block.settings.suffix -%}
+
+  {%- when 'ecoms_subtitle' -%}
+    {%- if block.settings.text != blank -%}
+      <div class="ec-sub" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+    {%- endif -%}
+
+  {%- when 'ecoms_benefits' -%}
+    <ul class="ec-checks" role="list" {{ block.shopify_attributes }}>
+      {%- for i in (1..4) -%}
+        {%- assign key = 'item_' | append: i -%}
+        {%- if block.settings[key] != blank -%}
+          <li>{% render 'ecoms-icon', name: 'check' %}<span>{{ block.settings[key] | escape }}</span></li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+
+  {%- when 'ecoms_packs' -%}
+    {%- render 'ecoms-packs', product: product, source: block, uid: block.id, attrs: block.shopify_attributes -%}
+
+  {%- when 'ecoms_urgency' -%}
+    {%- render 'ecoms-countdown', source: block, attrs: block.shopify_attributes -%}
+
+  {%- when 'ecoms_trust' -%}
+    <div class="ec-trust4" {{ block.shopify_attributes }}>
+      {%- for i in (1..4) -%}
+        {%- assign t_key = 'title_' | append: i -%}
+        {%- assign d_key = 'text_' | append: i -%}
+        {%- assign i_key = 'icon_' | append: i -%}
+        {%- if block.settings[t_key] != blank -%}
+          <div>
+            {% render 'ecoms-icon', name: block.settings[i_key] %}
+            <div>
+              <b>{{ block.settings[t_key] | escape }}</b>
+              {{- block.settings[d_key] | escape -}}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  {%- when 'ecoms_buy_now' -%}
+    <div class="ec-buy-now" id="EcBuyNow-{{ section_id }}" data-ec-refresh {{ block.shopify_attributes }}>
+      <button
+        type="button"
+        class="ec-btn ec-btn--accent ec-btn--block"
+        data-ec-buy-now
+        data-form="{{ product_form_id }}"
+        {% unless variant.available %}
+          disabled
+        {% endunless %}
+      >
+        {%- if block.settings.icon != 'none' -%}
+          {% render 'ecoms-icon', name: block.settings.icon %}
+        {%- endif -%}
+        <span>{{ block.settings.label | escape }}</span>
+      </button>
+    </div>
+{%- endcase -%}

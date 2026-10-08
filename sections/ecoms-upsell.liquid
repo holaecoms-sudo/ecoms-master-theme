@@ -1,15 +1,144 @@
-{% if section.blocks.size > 0 or request.design_mode %}
-<section class="ecoms-section ecoms-upsell" id="ecoms-upsell-{{ section.id }}"><div class="page-width">
- <h2 class="ecoms-section-title">{{ section.settings.heading | escape }}</h2>
- {% if section.blocks.size > 0 %}<div class="ecoms-upsell__grid">{% for block in section.blocks %}
- {% assign item = block.settings.product %}
- {% if item != blank %}<article class="ecoms-upsell__card" {{ block.shopify_attributes }}>
-  <a href="{{ item.url }}" aria-label="{{ item.title | escape }}">{% if item.featured_image != blank %}{{ item.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '250,450,700' }}{% endif %}</a>
-  <div><h3>{{ item.title | escape }}</h3><strong>{{ item.price | money }}</strong><a href="{{ item.url }}" class="ecoms-outline-button">Ver producto</a></div>
- </article>{% elsif request.design_mode %}<p class="ecoms-empty-hint">Selecciona un producto complementario.</p>{% endif %}
- {% endfor %}</div>{% elsif request.design_mode %}<p class="ecoms-empty-hint">Agrega bloques con productos reales del catálogo.</p>{% endif %}
- </div></section>
-{% endif %}
+{%- comment -%}
+  ECOMS · Upsell / kit. Pick a real product (for a kit use a bundle product, e.g. the free
+  Shopify Bundles app); price and compare-at price come from that product.
+{%- endcomment -%}
+{%- assign item = section.settings.product -%}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-upsell' %}>
+  <div class="ec-w">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="ec-h3">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    {%- if item != blank -%}
+      {%- liquid
+        assign up_variant = item.selected_or_first_available_variant
+        assign up_save = 0
+        if up_variant.compare_at_price > up_variant.price
+          assign up_save = up_variant.compare_at_price | minus: up_variant.price
+        endif
+      -%}
+      <div class="ec-up">
+        {%- if up_save > 0 and section.settings.show_saving -%}
+          <span class="ec-up__tag ec-tag">Ahorras {{ up_save | money }}</span>
+        {%- endif -%}
+        <a href="{{ item.url }}" class="ec-up__media" tabindex="-1" aria-hidden="true">
+          {%- assign up_image = section.settings.image | default: item.featured_image -%}
+          {%- if up_image != blank -%}
+            {{ up_image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '300,500,700', sizes: '(min-width: 990px) 280px, 90vw', alt: '' }}
+          {%- endif -%}
+        </a>
+        <div class="ec-up__body">
+          <a href="{{ item.url }}" class="ec-up__name">{{ item.title | escape }}</a>
+          {%- if section.settings.items != blank -%}
+            <small>{{ section.settings.items | escape }}</small>
+          {%- endif -%}
+          <div class="ec-price ec-up__price">
+            <b>{{ up_variant.price | money }}</b>
+            {%- if up_save > 0 -%}
+              <s class="ec-strike">{{ up_variant.compare_at_price | money }}</s>
+            {%- endif -%}
+          </div>
+          {%- render 'ecoms-add-button',
+            item: item,
+            label: section.settings.button_label,
+            class: 'ec-btn ec-btn--primary ec-btn--sm ec-btn--block',
+            source: 'upsell_section'
+          -%}
+        </div>
+      </div>
+    {%- elsif request.design_mode -%}
+      <p class="ec-editor-note">Selecciona el producto o kit (bundle) real que quieres ofrecer.</p>
+    {%- endif -%}
+  </div>
+</section>
+
 {% schema %}
-{"name":"ECOMS · Complementarios","settings":[{"type":"text","id":"heading","label":"Título","default":"Complementa tu compra"}],"blocks":[{"type":"item","name":"Producto complementario","settings":[{"type":"product","id":"product","label":"Producto de Shopify"}]}],"max_blocks":8,"presets":[{"name":"ECOMS · Complementarios"}]}
+{
+  "name": "ECOMS · Upsell / kit",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Completa tu rutina"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Producto o kit"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "items",
+      "label": "Qué incluye",
+      "default": "Producto + accesorio + accesorio"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_saving",
+      "label": "Mostrar etiqueta de ahorro (precio de comparación real)",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto del botón",
+      "default": "Agregar al carrito"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Ancho en escritorio",
+      "options": [
+        {
+          "value": "full",
+          "label": "Completo"
+        },
+        {
+          "value": "left",
+          "label": "Mitad izquierda"
+        },
+        {
+          "value": "right",
+          "label": "Mitad derecha"
+        }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Margen superior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Margen inferior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ECOMS · Upsell / kit"
+    }
+  ]
+}
 {% endschema %}

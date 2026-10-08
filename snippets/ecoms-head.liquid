@@ -1,0 +1,61 @@
+{%- comment -%}
+  ECOMS · Head assets: brand tokens, skin fonts and stylesheets. Rendered from layout/theme.liquid.
+  Brand colors come from Theme settings → "ECOMS · Plantilla y marca", so every store keeps
+  the same templates with its own palette.
+{%- endcomment -%}
+{%- capture ec_skin -%}{% render 'ecoms-skin' %}{%- endcapture -%}
+{%- liquid
+  assign ec_font = blank
+  if settings.ecoms_use_skin_fonts and ec_skin == 'flex'
+    assign ec_font = settings.ecoms_flex_font
+  endif
+-%}
+{%- style -%}
+  {%- if ec_font != blank -%}
+    {%- assign ec_font_semibold = ec_font | font_modify: 'weight', '600' -%}
+    {%- assign ec_font_bold = ec_font | font_modify: 'weight', '800' -%}
+    {{ ec_font | font_face: font_display: 'swap' }}
+    {{ ec_font_semibold | font_face: font_display: 'swap' }}
+    {{ ec_font_bold | font_face: font_display: 'swap' }}
+  {%- endif -%}
+  :root {
+    --ec-primary: {{ settings.ecoms_primary }};
+    --ec-primary-hover: {{ settings.ecoms_primary | color_darken: 8 }};
+    --ec-primary-ink: {{ settings.ecoms_primary_ink }};
+    --ec-dark: {{ settings.ecoms_dark }};
+    --ec-accent: {{ settings.ecoms_accent }};
+    --ec-accent-ink: {{ settings.ecoms_accent_ink }};
+    --ec-soft: {{ settings.ecoms_soft }};
+    --ec-soft-ink: {{ settings.ecoms_soft_ink }};
+    --ec-tag: {{ settings.ecoms_tag }};
+    --ec-tag-ink: {{ settings.ecoms_tag_ink }};
+    --ec-sale-bg: {{ settings.ecoms_sale_bg }};
+    --ec-sale-ink: {{ settings.ecoms_sale_ink }};
+    --ec-urgent: {{ settings.ecoms_urgent }};
+    --ec-urgent-bg: {{ settings.ecoms_urgent_bg }};
+    --ec-star: {{ settings.ecoms_star }};
+    --ec-deep: {{ settings.ecoms_deep }};
+    --ec-bg: {{ settings.ecoms_bg }};
+    --ec-ink: {{ settings.ecoms_ink }};
+    --ec-muted: {{ settings.ecoms_muted }};
+    --ec-line: {{ settings.ecoms_line }};
+    --ec-rb: {{ settings.ecoms_radius_button }}px;
+    --ec-rm: {{ settings.ecoms_radius_card }}px;
+  }
+  {%- if ec_font != blank %}
+    body.ec-fonts {
+      --font-body-family: {{ ec_font.family }}, {{ ec_font.fallback_families }};
+      --font-body-style: normal;
+      --font-body-weight: 400;
+      --font-body-weight-bold: 800;
+      --font-heading-family: {{ ec_font.family }}, {{ ec_font.fallback_families }};
+      --font-heading-style: normal;
+      --font-heading-weight: 800;
+    }
+  {%- endif %}
+{%- endstyle -%}
+{{ 'ecoms-base.css' | asset_url | stylesheet_tag }}
+{%- if ec_skin == 'flex' -%}
+  {{ 'ecoms-flex.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+<script src="{{ 'ecoms.js' | asset_url }}" defer="defer"></script>

@@ -279,15 +279,7 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
-    {% if template.name == 'product' and template.suffix contains 'ecoms-' %}
-      {{ 'ecoms-master.css' | asset_url | stylesheet_tag }}
-      <style>
-        body.ecoms-page.ecoms-flex { --ecoms-primary: {{ settings.ecoms_flex_primary }}; --ecoms-deep: {{ settings.ecoms_flex_deep }}; }
-        body.ecoms-page.ecoms-brand { --ecoms-primary: {{ settings.ecoms_brand_primary }}; --ecoms-deep: {{ settings.ecoms_brand_deep }}; }
-        body.ecoms-page.ecoms-direct { --ecoms-primary: {{ settings.ecoms_direct_primary }}; --ecoms-deep: {{ settings.ecoms_direct_deep }}; }
-      </style>
-      <script src="{{ 'ecoms-master.js' | asset_url }}" defer></script>
-    {% endif %}
+    {%- render 'ecoms-head' -%}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}
@@ -330,7 +322,7 @@
     </script>
   </head>
 
-  <body class="gradient{% if template.name == 'product' and template.suffix contains 'ecoms-' %} ecoms-page ecoms-{{ template.suffix | remove: 'ecoms-' | escape }}{% endif %}{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  <body class="gradient{% render 'ecoms-body-class' %}{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>

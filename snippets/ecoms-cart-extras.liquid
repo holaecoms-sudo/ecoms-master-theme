@@ -1,0 +1,74 @@
+{%- comment -%}
+  ECOMS · Cart drawer extras, rendered inside Dawn's cart drawer so they refresh with it.
+  Accepts:
+  - part: {String} 'shipping' | 'suggestion' | 'savings'
+{%- endcomment -%}
+{%- if cart != empty -%}
+  {%- case part -%}
+    {%- when 'shipping' -%}
+      {%- assign threshold = settings.ecoms_free_shipping_threshold | plus: 0 | times: 100 -%}
+      {%- if threshold > 0 -%}
+        {%- liquid
+          assign left = threshold | minus: cart.total_price
+          assign progress = cart.total_price | times: 100 | divided_by: threshold
+          if progress > 100
+            assign progress = 100
+          endif
+        -%}
+        <div class="ec-ship" role="status">
+          <p>
+            {%- if left > 0 -%}
+              {%- capture amount -%}<b>{{ left | money }}</b>{%- endcapture -%}
+              {{ settings.ecoms_free_shipping_progress | escape | replace: '[amount]', amount }}
+            {%- else -%}
+              {{ settings.ecoms_free_shipping_success | escape }}
+            {%- endif -%}
+          </p>
+          <div class="ec-bar" aria-hidden="true"><span style="width: {{ progress }}%"></span></div>
+        </div>
+      {%- endif -%}
+
+    {%- when 'suggestion' -%}
+      {%- liquid
+        assign in_cart = cart.items | map: 'product_id'
+        assign suggestion = blank
+        for item in settings.ecoms_cart_products
+          if in_cart contains item.id or item.available == false
+            continue
+          endif
+          assign suggestion = item
+          break
+        endfor
+      -%}
+      {%- if suggestion != blank -%}
+        <div class="ec-cart-xs">
+          {%- if settings.ecoms_cart_products_heading != blank -%}
+            <p class="ec-cart-xs__h">{{ settings.ecoms_cart_products_heading | escape }}</p>
+          {%- endif -%}
+          <div class="ec-cart-xs__item">
+            {%- if suggestion.featured_image != blank -%}
+              {{ suggestion.featured_image | image_url: width: 120 | image_tag: loading: 'lazy', width: 48, height: 48, alt: '' }}
+            {%- endif -%}
+            <div>
+              <a href="{{ suggestion.url }}" class="ec-cart-xs__name">{{ suggestion.title | escape }}</a>
+              <span class="ec-cart-xs__price">{{ suggestion.price | money }}</span>
+            </div>
+            {%- render 'ecoms-add-button',
+              item: suggestion,
+              label: 'Agregar',
+              class: 'ec-btn ec-btn--ghost ec-btn--sm',
+              source: 'cart_drawer'
+            -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+    {%- when 'savings' -%}
+      {%- if settings.ecoms_cart_show_savings and cart.total_discount > 0 -%}
+        <p class="ec-cart-save">Ahorras {{ cart.total_discount | money }} en este pedido</p>
+      {%- endif -%}
+      {%- if settings.ecoms_cart_note != blank -%}
+        <p class="ec-cart-note">{{ settings.ecoms_cart_note | escape }}</p>
+      {%- endif -%}
+  {%- endcase -%}
+{%- endif -%}
