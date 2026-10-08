@@ -1,32 +1,37 @@
-{%- comment -%} ECOMS · Customer photos and videos (UGC). Only use content with the customer's permission. {%- endcomment -%}
+{%- comment -%}
+  ECOMS · Customer photos and videos (UGC). Styles: grid (Flex) or quotes (Brand: photo/video + quote + handle).
+  Only content shared with the customer's permission.
+{%- endcomment -%}
+{%- assign style = section.settings.style | default: 'grid' -%}
 {%- if section.blocks.size > 0 or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-ugc-sec' %}>
   <div class="ec-w">
-    {%- if section.settings.heading != blank -%}
-      <h2 class="ec-h3 ec-h3--tight">{{ section.settings.heading | escape }}</h2>
+    {%- if style == 'quotes' -%}
+      <div class="ec-sec-h">
+        {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<p>{{ section.settings.text | escape }}</p>{%- endif -%}
+      </div>
+    {%- else -%}
+      {%- if section.settings.heading != blank -%}<h2 class="ec-h3 ec-h3--tight">{{ section.settings.heading | escape }}</h2>{%- endif -%}
+      {%- if section.settings.text != blank -%}<p class="ec-sub ec-ugc__sub">{{ section.settings.text | escape }}</p>{%- endif -%}
     {%- endif -%}
-    {%- if section.settings.text != blank -%}
-      <p class="ec-sub ec-ugc__sub">{{ section.settings.text | escape }}</p>
-    {%- endif -%}
-    <div class="ec-ugc">
+    <div class="ec-ugc ec-ugc--{{ style }}">
       {%- for block in section.blocks -%}
-        <figure class="ec-ugc__item" {{ block.shopify_attributes }}>
-          {%- if block.settings.video != blank -%}
-            {{
-              block.settings.video
-              | video_tag: autoplay: false, controls: true, muted: true, playsinline: true, preload: 'none', image_size: '600x'
-            }}
-          {%- elsif block.settings.image != blank -%}
-            {{
-              block.settings.image
-              | image_url: width: 600
-              | image_tag: loading: 'lazy', widths: '200,300,450,600', sizes: '(min-width: 990px) 16vw, 33vw', alt: block.settings.caption
-            }}
-          {%- else -%}
-            {{ 'image' | placeholder_svg_tag: 'ec-placeholder' }}
-          {%- endif -%}
-          {%- if block.settings.caption != blank -%}
-            <figcaption>{{ block.settings.caption | escape }}</figcaption>
+        <figure class="ec-ugc__fig" {{ block.shopify_attributes }}>
+          <div class="ec-ugc__item">
+            {%- if block.settings.video != blank -%}
+              {{ block.settings.video | video_tag: autoplay: false, controls: false, muted: true, playsinline: true, preload: 'none', image_size: '600x' }}
+              <button type="button" class="ec-gal__play" data-ec-play aria-label="Reproducir video">{% render 'ecoms-icon', name: 'play' %}</button>
+            {%- elsif block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '200,300,450,600', sizes: '(min-width: 990px) 280px, 45vw', alt: block.settings.caption }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'ec-placeholder' }}
+            {%- endif -%}
+            {%- if style == 'grid' and block.settings.caption != blank -%}<span class="ec-ugc__cap">{{ block.settings.caption | escape }}</span>{%- endif -%}
+          </div>
+          {%- if style == 'quotes' -%}
+            {%- if block.settings.quote != blank -%}<blockquote>“{{ block.settings.quote | escape }}”</blockquote>{%- endif -%}
+            {%- if block.settings.caption != blank -%}<figcaption>{{ block.settings.caption | escape }}</figcaption>{%- endif -%}
           {%- endif -%}
         </figure>
       {%- endfor -%}
@@ -40,6 +45,22 @@
   "name": "ECOMS · Clientes (UGC)",
   "tag": "section",
   "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Estilo",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grilla de fotos (Flex)"
+        },
+        {
+          "value": "quotes",
+          "label": "Fotos con cita (Brand)"
+        }
+      ],
+      "default": "grid"
+    },
     {
       "type": "text",
       "id": "heading",
@@ -126,8 +147,13 @@
         },
         {
           "type": "text",
+          "id": "quote",
+          "label": "Cita del cliente (real)"
+        },
+        {
+          "type": "text",
           "id": "caption",
-          "label": "Texto / usuario"
+          "label": "Usuario o nombre"
         }
       ]
     }

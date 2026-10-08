@@ -49,6 +49,20 @@
               {%- if settings.social_youtube_link != blank -%}<a href="{{ settings.social_youtube_link }}" aria-label="YouTube">{% render 'ecoms-social-icon', name: 'yt' %}</a>{%- endif -%}
               {%- if settings.social_facebook_link != blank -%}<a href="{{ settings.social_facebook_link }}" aria-label="Facebook">{% render 'ecoms-social-icon', name: 'fb' %}</a>{%- endif -%}
             </div>
+          {%- when 'newsletter' -%}
+            {%- if block.settings.heading != blank -%}<h2 class="ec-ft__h">{{ block.settings.heading | escape }}</h2>{%- endif -%}
+            {%- if block.settings.text != blank -%}<p class="ec-ft__text">{{ block.settings.text | escape }}</p>{%- endif -%}
+            {%- form 'customer', id: 'EcNewsletter', class: 'ec-news' -%}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              {%- if form.posted_successfully? -%}
+                <p class="ec-news__ok" role="status">¡Gracias por suscribirte!</p>
+              {%- else -%}
+                <label class="visually-hidden" for="EcNewsletterEmail">Tu email</label>
+                <input id="EcNewsletterEmail" type="email" name="contact[email]" placeholder="Tu email" autocomplete="email" required>
+                <button type="submit" class="ec-btn ec-btn--primary ec-btn--sm" aria-label="Suscribirme">{% render 'ecoms-icon', name: 'arrow' %}</button>
+                {%- if form.errors -%}<p class="ec-news__err" role="alert">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>{%- endif -%}
+              {%- endif -%}
+            {%- endform -%}
           {%- when 'text' -%}
             {%- if block.settings.heading != blank -%}<h2 class="ec-ft__h">{{ block.settings.heading | escape }}</h2>{%- endif -%}
             <div class="ec-ft__text">{{ block.settings.text }}</div>
@@ -191,6 +205,29 @@
           "id": "text",
           "label": "Texto",
           "default": "<p>Escríbenos cuando lo necesites.</p>"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Título",
+          "default": "Newsletter"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Suscríbete y recibe ofertas exclusivas."
+        },
+        {
+          "type": "paragraph",
+          "content": "Los correos quedan como clientes suscritos en Shopify (Shopify Email, Klaviyo, etc.)."
         }
       ]
     }

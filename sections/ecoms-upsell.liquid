@@ -1,12 +1,14 @@
 {%- comment -%}
   ECOMS · Upsell / kit. Pick a real product (for a kit use a bundle product, e.g. the free
   Shopify Bundles app); price and compare-at price come from that product.
+  Styles: card (Flex) or feature (Brand, 3 columns with included items).
 {%- endcomment -%}
 {%- assign item = section.settings.product -%}
-{%- if section.settings.product != blank or request.design_mode -%}
+{%- assign style = section.settings.style | default: 'card' -%}
+{%- if item != blank or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-upsell' %}>
   <div class="ec-w">
-    {%- if section.settings.heading != blank -%}
+    {%- if style == 'card' and section.settings.heading != blank -%}
       <h2 class="ec-h3">{{ section.settings.heading | escape }}</h2>
     {%- endif -%}
     {%- if item != blank -%}
@@ -16,37 +18,45 @@
         if up_variant.compare_at_price > up_variant.price
           assign up_save = up_variant.compare_at_price | minus: up_variant.price
         endif
+        assign up_image = section.settings.image | default: item.featured_image
+        assign up_items = section.settings.items | split: '+'
       -%}
-      <div class="ec-up">
+      <div class="ec-up ec-up--{{ style }}">
         {%- if up_save > 0 and section.settings.show_saving -%}
           <span class="ec-up__tag ec-tag">Ahorras {{ up_save | money }}</span>
         {%- endif -%}
+        {%- if style == 'feature' -%}
+          <div class="ec-up__intro">
+            {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
+            {%- if section.settings.text != blank -%}<p class="ec-sub">{{ section.settings.text | escape }}</p>{%- endif -%}
+          </div>
+        {%- endif -%}
         <a href="{{ item.url }}" class="ec-up__media" tabindex="-1" aria-hidden="true">
-          {%- assign up_image = section.settings.image | default: item.featured_image -%}
           {%- if up_image != blank -%}
-            {{ up_image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '300,500,700', sizes: '(min-width: 990px) 280px, 90vw', alt: '' }}
+            {{ up_image | image_url: width: 800 | image_tag: loading: 'lazy', widths: '300,500,800', sizes: '(min-width: 990px) 360px, 90vw', alt: '' }}
           {%- endif -%}
         </a>
         <div class="ec-up__body">
           <a href="{{ item.url }}" class="ec-up__name">{{ item.title | escape }}</a>
-          {%- if section.settings.items != blank -%}
+          {%- if style == 'card' and section.settings.items != blank -%}
             <small>{{ section.settings.items | escape }}</small>
           {%- endif -%}
           <div class="ec-price ec-up__price">
             <b>{{ up_variant.price | money }}</b>
-            {%- if up_save > 0 -%}
-              <s class="ec-strike">{{ up_variant.compare_at_price | money }}</s>
-            {%- endif -%}
+            {%- if up_save > 0 -%}<s class="ec-strike">{{ up_variant.compare_at_price | money }}</s>{%- endif -%}
           </div>
-          {%- render 'ecoms-add-button',
-            item: item,
-            label: section.settings.button_label,
-            class: 'ec-btn ec-btn--primary ec-btn--sm ec-btn--block',
-            source: 'upsell_section'
-          -%}
+          {%- if style == 'feature' and section.settings.items != blank -%}
+            <ul class="ec-up__list" role="list">
+              {%- for line in up_items -%}
+                {%- assign line_text = line | strip -%}
+                {%- if line_text != blank -%}<li>{% render 'ecoms-icon', name: 'check' %}{{ line_text | escape }}</li>{%- endif -%}
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+          {%- render 'ecoms-add-button', item: item, label: section.settings.button_label, class: 'ec-btn ec-btn--primary ec-btn--sm ec-btn--block', source: 'upsell_section' -%}
         </div>
       </div>
-    {%- elsif request.design_mode -%}
+    {%- else -%}
       <p class="ec-editor-note">Selecciona el producto o kit (bundle) real que quieres ofrecer.</p>
     {%- endif -%}
   </div>
@@ -59,10 +69,31 @@
   "tag": "section",
   "settings": [
     {
+      "type": "select",
+      "id": "style",
+      "label": "Estilo",
+      "options": [
+        {
+          "value": "card",
+          "label": "Tarjeta (Flex)"
+        },
+        {
+          "value": "feature",
+          "label": "Destacado 3 columnas (Brand)"
+        }
+      ],
+      "default": "card"
+    },
+    {
       "type": "text",
       "id": "heading",
       "label": "Título",
       "default": "Completa tu rutina"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Subtítulo (estilo destacado)"
     },
     {
       "type": "product",
@@ -78,7 +109,8 @@
       "type": "text",
       "id": "items",
       "label": "Qué incluye",
-      "default": "Producto + accesorio + accesorio"
+      "default": "Producto + accesorio + accesorio",
+      "info": "Separa con + para mostrarlo como lista en el estilo destacado."
     },
     {
       "type": "checkbox",

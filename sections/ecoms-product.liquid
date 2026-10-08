@@ -256,7 +256,7 @@
             {%- render 'ecoms-packs', product: product, source: block, uid: block.id, attrs: block.shopify_attributes -%}
 
           {%- when 'trust' -%}
-            <div class="ec-trust4" {{ block.shopify_attributes }}>
+            <div class="ec-trust4 ec-trust4--{{ block.settings.style | default: 'grid' }}" {{ block.shopify_attributes }}>
               {%- for i in (1..4) -%}
                 {%- assign t_key = 'title_' | append: i -%}
                 {%- assign d_key = 'text_' | append: i -%}
@@ -1052,6 +1052,22 @@
       "name": "Garantías (4)",
       "limit": 1,
       "settings": [
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Estilo",
+          "options": [
+            {
+              "value": "grid",
+              "label": "Grilla de 4"
+            },
+            {
+              "value": "line",
+              "label": "Línea compacta (Brand)"
+            }
+          ],
+          "default": "grid"
+        },
         {
           "type": "select",
           "id": "icon_1",

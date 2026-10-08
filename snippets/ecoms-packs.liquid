@@ -102,6 +102,9 @@
         -%}
         {%- unless show_tier -%}{%- continue -%}{%- endunless -%}
         <label class="ec-pack">
+          {%- if tag == blank and layout == 'list' and discount > 0 -%}
+            {%- capture tag -%}Ahorras {{ discount | money }}{%- endcapture -%}
+          {%- endif -%}
           {%- if tag != blank -%}
             <span class="ec-pack__tag ec-tag">{{ tag | escape }}</span>
           {%- endif -%}
