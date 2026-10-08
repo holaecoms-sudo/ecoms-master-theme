@@ -1,5 +1,19 @@
 {%- comment -%} ECOMS · Footer (mockup): brand, menus, real payment methods, social links, legal row. {%- endcomment -%}
-<footer class="ec-ft ec-ft--{{ section.settings.style }}">
+{%- capture ec_skin -%}{% render 'ecoms-skin' %}{%- endcapture -%}
+{%- liquid
+  assign ft_style = section.settings.style
+  if ft_style == 'auto'
+    case ec_skin
+      when 'brand'
+        assign ft_style = 'soft'
+      when 'direct'
+        assign ft_style = 'light'
+      else
+        assign ft_style = 'dark'
+    endcase
+  endif
+-%}
+<footer class="ec-ft ec-ft--{{ ft_style }}">
   <div class="ec-w ec-ft__grid">
     {%- for block in section.blocks -%}
       <div class="ec-ft__col ec-ft__col--{{ block.type }}" {{ block.shopify_attributes }}>
@@ -70,6 +84,10 @@
       "label": "Estilo",
       "options": [
         {
+          "value": "auto",
+          "label": "Según la plantilla"
+        },
+        {
           "value": "dark",
           "label": "Oscuro (Flex)"
         },
@@ -82,7 +100,7 @@
           "label": "Claro (Direct)"
         }
       ],
-      "default": "dark"
+      "default": "auto"
     },
     {
       "type": "text",

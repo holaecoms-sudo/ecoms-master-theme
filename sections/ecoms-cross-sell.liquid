@@ -1,37 +1,49 @@
-{%- comment -%} ECOMS · Cross-sell cards with a real add-to-cart (Shopify AJAX Cart API). {%- endcomment -%}
+{%- comment -%} ECOMS · Cross-sell with real add-to-cart (AJAX Cart API). Styles: cards (Flex), grid (Brand), rail (Direct). {%- endcomment -%}
+{%- assign style = section.settings.style | default: 'cards' -%}
 {%- if section.settings.products != blank or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-cross' %}>
   <div class="ec-w">
-    {%- if section.settings.heading != blank -%}
-      <h2 class="ec-h3">{{ section.settings.heading | escape }}</h2>
-    {%- endif -%}
-    {%- if section.settings.products != blank -%}
-      <div class="ec-xs">
-        {%- for item in section.settings.products limit: section.settings.limit -%}
-          {%- if item.id == product.id -%}{%- continue -%}{%- endif -%}
-          <div class="ec-xs__card">
-            <a href="{{ item.url }}" class="ec-xs__media" tabindex="-1" aria-hidden="true">
-              {%- if item.featured_image != blank -%}
-                {{ item.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', width: 56, height: 56, alt: '' }}
-              {%- endif -%}
-            </a>
-            <a href="{{ item.url }}" class="ec-xs__name">{{ item.title | escape }}</a>
-            <span class="ec-xs__p">
-              {{- item.price | money -}}
-              {%- if item.compare_at_price > item.price %} <s class="ec-strike">{{ item.compare_at_price | money }}</s>{% endif -%}
-            </span>
-            {%- render 'ecoms-add-button',
-              item: item,
-              label: section.settings.button_label,
-              class: 'ec-btn ec-btn--ghost ec-btn--sm',
-              source: 'cross_sell_section'
-            -%}
-          </div>
-        {%- endfor -%}
-      </div>
-    {%- elsif request.design_mode -%}
-      <p class="ec-editor-note">Selecciona productos complementarios reales del catálogo.</p>
-    {%- endif -%}
+    <div class="ec-cross__wrap ec-cross--{{ style }}">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="ec-h3{% if style == 'grid' %} ec-h3--center{% endif %}">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.products != blank -%}
+        <div class="ec-xs">
+          {%- assign shown = 0 -%}
+          {%- assign split_at = section.settings.split | plus: 1 -%}
+          {%- for item in section.settings.products -%}
+            {%- if item.id == product.id or shown >= section.settings.limit -%}{%- continue -%}{%- endif -%}
+            {%- assign shown = shown | plus: 1 -%}
+            {%- if style == 'rail' and section.settings.heading_2 != blank and shown == split_at -%}
+              </div><h2 class="ec-h3">{{ section.settings.heading_2 | escape }}</h2><div class="ec-xs">
+            {%- endif -%}
+            <div class="ec-xs__card">
+              <a href="{{ item.url }}" class="ec-xs__media" tabindex="-1" aria-hidden="true">
+                {%- if item.featured_image != blank -%}
+                  {{ item.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', widths: '120,240,400', sizes: '(min-width: 990px) 260px, 45vw', alt: '' }}
+                {%- endif -%}
+              </a>
+              <div class="ec-xs__body">
+                <a href="{{ item.url }}" class="ec-xs__name">{{ item.title | escape }}</a>
+                <span class="ec-xs__p">
+                  {{- item.price | money -}}
+                  {%- if item.compare_at_price > item.price %} <s class="ec-strike">{{ item.compare_at_price | money }}</s>{% endif -%}
+                </span>
+              </div>
+              {%- liquid
+                assign btn_class = 'ec-btn ec-btn--ghost ec-btn--sm'
+                if style != 'cards'
+                  assign btn_class = 'ec-btn ec-btn--primary ec-btn--sm'
+                endif
+              -%}
+              {%- render 'ecoms-add-button', item: item, label: section.settings.button_label, class: btn_class, source: 'cross_sell_section' -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <p class="ec-editor-note">Selecciona productos complementarios reales del catálogo.</p>
+      {%- endif -%}
+    </div>
   </div>
 </section>
 {%- endif -%}
@@ -41,6 +53,26 @@
   "name": "ECOMS · Cross-sell",
   "tag": "section",
   "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Estilo",
+      "options": [
+        {
+          "value": "cards",
+          "label": "Tarjetas (Flex)"
+        },
+        {
+          "value": "grid",
+          "label": "Grilla 4 (Brand)"
+        },
+        {
+          "value": "rail",
+          "label": "Columna destacada (Direct)"
+        }
+      ],
+      "default": "cards"
+    },
     {
       "type": "text",
       "id": "heading",
@@ -69,6 +101,21 @@
       "default": "Agregar"
     },
     {
+      "type": "text",
+      "id": "heading_2",
+      "label": "Segundo título (Direct)",
+      "info": "Ej.: Productos relacionados"
+    },
+    {
+      "type": "range",
+      "id": "split",
+      "label": "Productos antes del segundo título",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 1
+    },
+    {
       "type": "header",
       "content": "Diseño"
     },
@@ -88,6 +135,18 @@
         {
           "value": "right",
           "label": "Mitad derecha"
+        },
+        {
+          "value": "t1",
+          "label": "Tercio 1"
+        },
+        {
+          "value": "t2",
+          "label": "Tercio 2"
+        },
+        {
+          "value": "t3",
+          "label": "Tercio 3"
         }
       ],
       "default": "full"

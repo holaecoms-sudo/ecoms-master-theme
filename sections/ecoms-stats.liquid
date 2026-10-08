@@ -1,50 +1,27 @@
-{%- comment -%} ECOMS · Benefit icons (4 columns on desktop, 2 on mobile). {%- endcomment -%}
-<section {% render 'ecoms-section-style', section: section, class: 'ec-features' %}>
+{%- comment -%} ECOMS · Key figures (Direct). Only real, verifiable store numbers. {%- endcomment -%}
+{%- if section.blocks.size > 0 -%}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-stats-sec' %}>
   <div class="ec-w">
-    {%- if section.settings.heading != blank -%}
-      <div class="ec-sec-h"><h2>{{ section.settings.heading | escape }}</h2></div>
-    {%- endif -%}
-    <div class="ec-feat ec-feat--{{ section.settings.style }}">
+    <div class="ec-stats">
       {%- for block in section.blocks -%}
         <div {{ block.shopify_attributes }}>
-          <span class="ec-ic">{% render 'ecoms-icon', name: block.settings.icon %}</span>
-          <div>
-            <b>{{ block.settings.heading | escape }}</b>
-            {%- if block.settings.text != blank -%}
-              <span>{{ block.settings.text | escape }}</span>
-            {%- endif -%}
-          </div>
+          {% render 'ecoms-icon', name: block.settings.icon %}
+          <div><b>{{ block.settings.value | escape }}</b><span>{{ block.settings.label | escape }}</span></div>
         </div>
       {%- endfor -%}
     </div>
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {
-  "name": "ECOMS · Íconos",
+  "name": "ECOMS · Cifras",
   "tag": "section",
   "settings": [
     {
-      "type": "text",
-      "id": "heading",
-      "label": "Título"
-    },
-    {
-      "type": "select",
-      "id": "style",
-      "label": "Estilo",
-      "options": [
-        {
-          "value": "row",
-          "label": "Ícono al lado (Flex)"
-        },
-        {
-          "value": "center",
-          "label": "Centrado (Brand/Direct)"
-        }
-      ],
-      "default": "row"
+      "type": "paragraph",
+      "content": "Usa solo cifras reales y verificables de la tienda. Sin bloques, la sección no se muestra."
     },
     {
       "type": "header",
@@ -105,8 +82,8 @@
   ],
   "blocks": [
     {
-      "type": "feature",
-      "name": "Beneficio",
+      "type": "stat",
+      "name": "Cifra",
       "settings": [
         {
           "type": "select",
@@ -234,41 +211,27 @@
               "label": "Carrito"
             }
           ],
-          "default": "check"
+          "default": "users"
         },
         {
           "type": "text",
-          "id": "heading",
-          "label": "Beneficio",
-          "default": "Beneficio principal"
+          "id": "value",
+          "label": "Cifra",
+          "default": "+1.000"
         },
         {
           "type": "text",
-          "id": "text",
-          "label": "Detalle",
-          "default": "Explica el beneficio en una línea."
+          "id": "label",
+          "label": "Texto",
+          "default": "Clientes en Chile"
         }
       ]
     }
   ],
-  "max_blocks": 8,
+  "max_blocks": 4,
   "presets": [
     {
-      "name": "ECOMS · Íconos",
-      "blocks": [
-        {
-          "type": "feature"
-        },
-        {
-          "type": "feature"
-        },
-        {
-          "type": "feature"
-        },
-        {
-          "type": "feature"
-        }
-      ]
+      "name": "ECOMS · Cifras"
     }
   ]
 }

@@ -109,6 +109,11 @@
           {%- when '@app' -%}
             {% render block %}
 
+          {%- when 'buybox' -%}
+            {%- comment -%} Everything after this block renders in the buy box (Direct: third column). {%- endcomment -%}
+            </div>
+            <div class="ec-pdp__buy" {{ block.shopify_attributes }}>
+
           {%- when 'eyebrow' -%}
             {%- if block.settings.text != blank -%}
               <p class="ec-eyebrow" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</p>
@@ -142,7 +147,7 @@
 
           {%- when 'price' -%}
             <div id="EcPrice-{{ section.id }}" class="ec-pdp__price" data-ec-refresh {{ block.shopify_attributes }}>
-              {%- render 'ecoms-price', variant: variant -%}
+              {%- render 'ecoms-price', variant: variant, style: block.settings.style -%}
             </div>
 
           {%- when 'urgency' -%}
@@ -235,6 +240,7 @@
                   </button>
                   {%- if block.settings.show_buy_now and variant.available -%}
                     <button type="button" class="ec-btn ec-btn--accent ec-btn--block ec-btn--lg" data-ec-buy-now data-form="{{ form_id }}">
+                      {%- if block.settings.buy_now_icon != 'none' -%}{% render 'ecoms-icon', name: block.settings.buy_now_icon %}{%- endif -%}
                       {{ block.settings.buy_now_label | escape }}
                     </button>
                   {%- endif -%}
@@ -265,6 +271,44 @@
                   </div>
                 {%- endif -%}
               {%- endfor -%}
+            </div>
+
+          {%- when 'shipping' -%}
+            {%- assign ship_threshold = settings.ecoms_free_shipping_threshold | plus: 0 | times: 100000 -%}
+            {%- if ship_threshold > 0 -%}
+              <div class="ec-shipbar" data-ec-shipbar data-threshold="{{ ship_threshold }}" {{ block.shopify_attributes }}>
+                <div class="ec-bar" aria-hidden="true"><span data-ec-shipbar-fill></span></div>
+                <p data-ec-shipbar-text></p>
+                <template data-ec-shipbar-progress>{{ settings.ecoms_free_shipping_progress | escape }}</template>
+                <template data-ec-shipbar-success>{{ settings.ecoms_free_shipping_success | escape }}</template>
+              </div>
+            {%- elsif block.settings.free_text != blank -%}
+              <p class="ec-shipbar ec-shipbar--free" {{ block.shopify_attributes }}><b>{{ block.settings.free_text | escape }}</b></p>
+            {%- endif -%}
+
+          {%- when 'stock' -%}
+            <div id="EcStock-{{ section.id }}" data-ec-refresh {{ block.shopify_attributes }}>
+              {%- liquid
+                assign stock_qty = variant.inventory_quantity | default: 0
+                assign stock_max = block.settings.max_show
+              -%}
+              {%- if variant.available and variant.inventory_management == 'shopify' and stock_qty > 0 and stock_qty <= stock_max -%}
+                {%- assign stock_pct = stock_qty | times: 100 | divided_by: stock_max -%}
+                <div class="ec-stock">
+                  {{ block.settings.text | replace: '[qty]', stock_qty | escape }}
+                  <div class="ec-bar" aria-hidden="true"><span style="width: {{ stock_pct }}%"></span></div>
+                </div>
+              {%- endif -%}
+            </div>
+
+          {%- when 'payments' -%}
+            <div class="ec-payments" {{ block.shopify_attributes }}>
+              {%- if block.settings.text != blank -%}<p class="ec-secure">{% render 'ecoms-icon', name: 'lock' %}{{ block.settings.text | escape }}</p>{%- endif -%}
+              <ul class="ec-payments__list" role="list">
+                {%- for type in shop.enabled_payment_types -%}
+                  <li>{{ type | payment_type_svg_tag: class: 'ec-payments__icon' }}</li>
+                {%- endfor -%}
+              </ul>
             </div>
 
           {%- when 'custom_liquid' -%}
@@ -468,7 +512,28 @@
       "type": "price",
       "name": "Precio",
       "limit": 1,
-      "settings": []
+      "settings": [
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Estilo",
+          "options": [
+            {
+              "value": "pill",
+              "label": "Ahorro en píldora (Flex)"
+            },
+            {
+              "value": "badge",
+              "label": "Etiqueta «Ahorra %» (Brand)"
+            },
+            {
+              "value": "direct",
+              "label": "Precio grande (Direct)"
+            }
+          ],
+          "default": "pill"
+        }
+      ]
     },
     {
       "type": "urgency",
@@ -677,6 +742,134 @@
           "id": "show_buy_now",
           "label": "Mostrar «Comprar ahora»",
           "default": true
+        },
+        {
+          "type": "select",
+          "id": "buy_now_icon",
+          "label": "Ícono «Comprar ahora»",
+          "options": [
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / pago seguro"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "chat",
+              "label": "Soporte"
+            },
+            {
+              "value": "cash",
+              "label": "Pago / efectivo"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "star",
+              "label": "Estrella"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "check",
+              "label": "Check"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "fire",
+              "label": "Fuego / oferta"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo / potencia"
+            },
+            {
+              "value": "sparkle",
+              "label": "Brillo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja / natural"
+            },
+            {
+              "value": "drop",
+              "label": "Gota / agua"
+            },
+            {
+              "value": "snow",
+              "label": "Frío"
+            },
+            {
+              "value": "thermo",
+              "label": "Temperatura"
+            },
+            {
+              "value": "sun",
+              "label": "Sol / luz"
+            },
+            {
+              "value": "gem",
+              "label": "Gema / premium"
+            },
+            {
+              "value": "hand",
+              "label": "Mano / fácil"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "box",
+              "label": "Caja / paquete"
+            },
+            {
+              "value": "grid",
+              "label": "Accesorios"
+            },
+            {
+              "value": "battery",
+              "label": "Batería"
+            },
+            {
+              "value": "home",
+              "label": "Hogar"
+            },
+            {
+              "value": "verified",
+              "label": "Verificado"
+            },
+            {
+              "value": "bag",
+              "label": "Bolsa / tienda"
+            },
+            {
+              "value": "cart",
+              "label": "Carrito"
+            }
+          ],
+          "default": "none"
         },
         {
           "type": "text",
@@ -1961,6 +2154,76 @@
           "id": "text_4",
           "label": "Texto 4",
           "default": "Característica 4"
+        }
+      ]
+    },
+    {
+      "type": "buybox",
+      "name": "Caja de compra",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Los bloques que vienen después se muestran dentro de una caja de compra destacada (Direct: tercera columna en escritorio)."
+        }
+      ]
+    },
+    {
+      "type": "shipping",
+      "name": "Barra envío gratis",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Usa el monto de Ajustes del tema → ECOMS · Carrito. Si es 0 muestra el texto fijo."
+        },
+        {
+          "type": "text",
+          "id": "free_text",
+          "label": "Texto si todo envío es gratis"
+        }
+      ]
+    },
+    {
+      "type": "stock",
+      "name": "Stock real",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Solo aparece si Shopify controla el inventario de la variante y quedan pocas unidades."
+        },
+        {
+          "type": "range",
+          "id": "max_show",
+          "label": "Mostrar cuando queden como máximo",
+          "min": 1,
+          "max": 50,
+          "step": 1,
+          "default": 15
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "¡Solo quedan [qty] unidades en stock!"
+        }
+      ]
+    },
+    {
+      "type": "payments",
+      "name": "Medios de pago",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Pago seguro y cifrado"
+        },
+        {
+          "type": "paragraph",
+          "content": "Los íconos son los medios de pago activos de la tienda."
         }
       ]
     },

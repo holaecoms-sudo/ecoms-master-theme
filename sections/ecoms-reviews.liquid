@@ -1,14 +1,19 @@
 {%- comment -%}
-  ECOMS · Reviews. Summary from the review app metafields; cards are authorised, real reviews
-  entered by the merchant, or replaced by the review app's own block (@app).
+  ECOMS · Reviews. Summary from review-app metafields; cards are real, authorised reviews entered by
+  the merchant, or the review app's own block (@app). Hidden on the storefront when there is nothing real.
 {%- endcomment -%}
-{%- assign has_rating = false -%}
-{%- if product.metafields.reviews.rating.value != blank -%}{%- assign has_rating = true -%}{%- endif -%}
+{%- liquid
+  assign has_rating = false
+  if product.metafields.reviews.rating.value != blank
+    assign has_rating = true
+  endif
+  assign style = section.settings.style | default: 'flex'
+-%}
 {%- if section.blocks.size > 0 or has_rating or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-reviews' %}>
   <div class="ec-w">
-    <div class="ec-rev-head">
-      <div>
+    <div class="ec-rev-head ec-rev-head--{{ style }}">
+      <div class="ec-rev-head__t">
         {%- if section.settings.heading != blank -%}
           <h2 class="ec-h3">{{ section.settings.heading | escape }}</h2>
         {%- endif -%}
@@ -20,38 +25,51 @@
         <a class="ec-btn ec-btn--ghost ec-btn--sm" href="{{ section.settings.link }}">{{ section.settings.link_label | escape }}</a>
       {%- endif -%}
     </div>
-    <div class="ec-revs">
+    <div class="ec-revs ec-revs--{{ style }}">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when '@app' -%}
             <div class="ec-revs__app">{% render block %}</div>
           {%- when 'review' -%}
             {%- if block.settings.text != blank -%}
+              {%- assign initials = block.settings.author | split: ' ' -%}
               <article class="ec-rev" {{ block.shopify_attributes }}>
                 <div class="ec-rev__who">
-                  <span class="ec-avatar" aria-hidden="true">{{ block.settings.author | slice: 0 | upcase }}</span>
+                  <span class="ec-avatar ec-avatar--{{ forloop.index0 | modulo: 5 }}" aria-hidden="true">
+                    {%- for word in initials limit: 2 -%}{{ word | slice: 0 | upcase }}{%- endfor -%}
+                  </span>
                   <div>
                     <b>
                       {{- block.settings.author | escape -}}
                       {%- if block.settings.verified %}{% render 'ecoms-icon', name: 'verified' %}<span class="visually-hidden">Compra verificada</span>{% endif -%}
                     </b>
-                    {%- if block.settings.date != blank -%}
-                      <small>{{ block.settings.date | escape }}</small>
-                    {%- endif -%}
+                    <span class="ec-rev__meta">
+                      {%- assign pct = block.settings.stars | times: 20 -%}
+                      <span class="ec-stars" style="--s: 12px; --r: {{ pct }}%" role="img" aria-label="{{ block.settings.stars }} de 5 estrellas"></span>
+                      {%- if block.settings.date != blank -%}<small>{{ block.settings.date | escape }}</small>{%- endif -%}
+                    </span>
                   </div>
                 </div>
-                {%- assign pct = block.settings.stars | times: 20 -%}
-                <span class="ec-stars" style="--s: 12px; --r: {{ pct }}%" role="img" aria-label="{{ block.settings.stars }} de 5 estrellas"></span>
-                <p>{{ block.settings.text | escape }}</p>
-                {%- if block.settings.image != blank -%}
-                  {{
-                    block.settings.image
-                    | image_url: width: 600
-                    | image_tag: loading: 'lazy', widths: '300,450,600', sizes: '(min-width: 990px) 200px, 90vw', alt: block.settings.author
-                  }}
+                <p>{% if style != 'flex' %}“{% endif %}{{ block.settings.text | escape }}{% if style != 'flex' %}”{% endif %}</p>
+                {%- if block.settings.image != blank or block.settings.image_2 != blank -%}
+                  <div class="ec-rev__ph">
+                    {%- for k in (1..3) -%}
+                      {%- if k == 1 -%}{%- assign ph = block.settings.image -%}{%- else -%}{%- assign key = 'image_' | append: k -%}{%- assign ph = block.settings[key] -%}{%- endif -%}
+                      {%- if ph != blank -%}
+                        {{ ph | image_url: width: 500 | image_tag: loading: 'lazy', widths: '160,300,500', sizes: '(min-width: 990px) 220px, 90vw', alt: block.settings.author }}
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
                 {%- endif -%}
               </article>
             {%- endif -%}
+          {%- when 'join' -%}
+            <div class="ec-join" {{ block.shopify_attributes }}>
+              {%- if block.settings.title != blank -%}<h3>{{ block.settings.title | escape }}</h3>{%- endif -%}
+              {%- if block.settings.value != blank -%}<div><b>{{ block.settings.value | escape }}</b><br><span>{{ block.settings.label | escape }}</span></div>{%- endif -%}
+              {%- if block.settings.quote != blank -%}<p>“{{ block.settings.quote | escape }}”</p>{%- endif -%}
+              {%- if block.settings.show_stars -%}<span class="ec-stars" style="--r: 100%; --ec-star: #FFD21F" aria-hidden="true"></span>{%- endif -%}
+            </div>
         {%- endcase -%}
       {%- else -%}
         {%- if request.design_mode -%}
@@ -68,6 +86,26 @@
   "name": "ECOMS · Reseñas",
   "tag": "section",
   "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Estilo",
+      "options": [
+        {
+          "value": "flex",
+          "label": "Flex"
+        },
+        {
+          "value": "brand",
+          "label": "Brand"
+        },
+        {
+          "value": "direct",
+          "label": "Direct"
+        }
+      ],
+      "default": "flex"
+    },
     {
       "type": "text",
       "id": "heading",
@@ -109,6 +147,18 @@
         {
           "value": "right",
           "label": "Mitad derecha"
+        },
+        {
+          "value": "t1",
+          "label": "Tercio 1"
+        },
+        {
+          "value": "t2",
+          "label": "Tercio 2"
+        },
+        {
+          "value": "t3",
+          "label": "Tercio 3"
         }
       ],
       "default": "full"
@@ -169,15 +219,61 @@
           "label": "Testimonio"
         },
         {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Foto autorizada"
-        },
-        {
           "type": "checkbox",
           "id": "verified",
           "label": "Compra verificada",
           "default": false
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Foto autorizada 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Foto 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Foto 3"
+        }
+      ]
+    },
+    {
+      "type": "join",
+      "name": "Tarjeta comunidad",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Únete a nuestra comunidad"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Cifra real",
+          "info": "Ej.: +1.200. Solo cifras verificables."
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Texto bajo la cifra",
+          "default": "clientes felices"
+        },
+        {
+          "type": "text",
+          "id": "quote",
+          "label": "Frase de un cliente real"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_stars",
+          "label": "Mostrar estrellas",
+          "default": true
         }
       ]
     }

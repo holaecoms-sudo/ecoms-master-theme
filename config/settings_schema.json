@@ -1507,7 +1507,7 @@
       },
       {
         "type": "header",
-        "content": "Tipografía ECOMS Flex"
+        "content": "Tipografías por plantilla"
       },
       {
         "type": "checkbox",
@@ -1521,6 +1521,24 @@
         "id": "ecoms_flex_font",
         "label": "Flex · Títulos y texto",
         "default": "plus_jakarta_sans_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "ecoms_direct_font",
+        "label": "Direct · Títulos y texto",
+        "default": "archivo_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "ecoms_brand_heading_font",
+        "label": "Brand · Títulos",
+        "default": "playfair_display_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "ecoms_brand_body_font",
+        "label": "Brand · Texto",
+        "default": "jost_n4"
       },
       {
         "type": "header",

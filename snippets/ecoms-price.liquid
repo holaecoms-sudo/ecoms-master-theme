@@ -11,6 +11,15 @@
     assign ec_save_pct = ec_save | times: 100 | divided_by: variant.compare_at_price | floor
   endif
 -%}
+{%- if style == 'direct' -%}
+  {%- if ec_save > 0 -%}
+    <div class="ec-price ec-price--direct-top">
+      <s class="ec-strike">{{ variant.compare_at_price | money }}</s>
+      <span class="ec-badge-sale">Ahorras {{ ec_save | money }}</span>
+    </div>
+  {%- endif -%}
+  <div class="ec-price__big">{{ variant.price | money }}</div>
+{%- else -%}
 <div class="ec-price ec-price--{{ style | default: 'pill' }}">
   <span class="ec-price__now">{{ variant.price | money }}</span>
   {%- if ec_save > 0 -%}
@@ -22,6 +31,7 @@
     {%- endif -%}
   {%- endif -%}
 </div>
+{%- endif -%}
 {%- if variant.unit_price_measurement -%}
   <small class="ec-price__unit">
     {{ variant.unit_price | money }}/

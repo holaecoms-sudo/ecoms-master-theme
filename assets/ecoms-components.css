@@ -1,6 +1,7 @@
 /*
- * ECOMS FLEX · layout and look ported 1:1 from the ECOMS MASTER mockup (template 1).
- * Header, announcement, product hero, footer + Dawn fallbacks (buttons, cart drawer).
+ * ECOMS MASTER · shared layout components (all templates): announcement, header, product hero,
+ * footer and Dawn fallbacks. Ported from the ECOMS MASTER mockup; per-template looks live in
+ * ecoms-skin-<flex|brand|direct>.css.
  */
 
 /* ---------- Reset Dawn typography inside ECOMS blocks ---------- */
@@ -151,9 +152,9 @@
 @media screen and (max-width: 989px) { body.ec-sticky-on .ec-ft__legal { padding-bottom: 86px; } }
 
 /* ---------- Dawn fallbacks (cart drawer, other pages) ---------- */
-.ec-skin--flex .button--primary,
-.ec-skin--flex .cart__checkout-button { --color-button: var(--ec-primary); border-radius: var(--ec-rb); background: var(--ec-primary); color: var(--ec-primary-ink); font-weight: 700; letter-spacing: 0; }
-.ec-skin--flex .button--primary::before, .ec-skin--flex .button--primary::after,
-.ec-skin--flex .cart__checkout-button::before, .ec-skin--flex .cart__checkout-button::after { box-shadow: none; }
-.ec-skin--flex .button--primary:not([disabled]):hover, .ec-skin--flex .cart__checkout-button:not([disabled]):hover { background: var(--ec-primary-hover); }
-.ec-skin--flex .drawer__heading { font-weight: 800; letter-spacing: 0; }
+.ec-skin .button--primary,
+.ec-skin .cart__checkout-button { --color-button: var(--ec-primary); border-radius: var(--ec-rb); background: var(--ec-primary); color: var(--ec-primary-ink); font-weight: 700; letter-spacing: 0; }
+.ec-skin .button--primary::before, .ec-skin .button--primary::after,
+.ec-skin .cart__checkout-button::before, .ec-skin .cart__checkout-button::after { box-shadow: none; }
+.ec-skin .button--primary:not([disabled]):hover, .ec-skin .cart__checkout-button:not([disabled]):hover { background: var(--ec-primary-hover); }
+.ec-skin .drawer__heading { font-weight: 800; letter-spacing: 0; }

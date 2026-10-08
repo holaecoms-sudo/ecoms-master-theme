@@ -110,6 +110,21 @@
     const total = totalFor(unitPrice(), qty, packs);
     $$('[data-ec-cta-total]').forEach((el) => { el.textContent = money(total); });
     $$('[data-ec-sticky-price]').forEach((el) => { el.textContent = money(total); });
+    $$('[data-ec-shipbar]').forEach((bar) => {
+      const threshold = Number(bar.dataset.threshold) || 0;
+      if (!threshold) return;
+      const left = threshold - total;
+      const fill = bar.querySelector('[data-ec-shipbar-fill]');
+      if (fill) fill.style.width = `${Math.min(100, Math.round((total * 100) / threshold))}%`;
+      const text = bar.querySelector('[data-ec-shipbar-text]');
+      if (!text) return;
+      if (left > 0) {
+        const tpl = bar.querySelector('[data-ec-shipbar-progress]')?.innerHTML || '';
+        text.innerHTML = tpl.replace('[amount]', `<b>${money(left)}</b>`);
+      } else {
+        text.innerHTML = `<b>${bar.querySelector('[data-ec-shipbar-success]')?.innerHTML || ''}</b>`;
+      }
+    });
 
     // Dawn main-product: append the total to Dawn's own submit button.
     if (ecForm() || !packs) return;

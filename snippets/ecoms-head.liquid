@@ -5,19 +5,46 @@
 {%- endcomment -%}
 {%- capture ec_skin -%}{% render 'ecoms-skin' %}{%- endcapture -%}
 {%- liquid
-  assign ec_font = blank
-  if settings.ecoms_use_skin_fonts and ec_skin == 'flex' and settings.ecoms_flex_font.family != blank
-    assign ec_font = settings.ecoms_flex_font
+  assign ec_head_font = blank
+  assign ec_body_font = blank
+  assign ec_head_weight = 800
+  if settings.ecoms_use_skin_fonts
+    case ec_skin
+      when 'flex'
+        assign ec_head_font = settings.ecoms_flex_font
+        assign ec_body_font = settings.ecoms_flex_font
+      when 'direct'
+        assign ec_head_font = settings.ecoms_direct_font
+        assign ec_body_font = settings.ecoms_direct_font
+      when 'brand'
+        assign ec_head_font = settings.ecoms_brand_heading_font
+        assign ec_body_font = settings.ecoms_brand_body_font
+        assign ec_head_weight = 500
+    endcase
   endif
-  assign ec_fallback = ec_font.fallback_families | default: 'sans-serif'
+  if ec_head_font.family == blank or ec_body_font.family == blank
+    assign ec_head_font = blank
+    assign ec_body_font = blank
+  endif
 -%}
 {%- style -%}
-  {%- if ec_font != blank -%}
-    {%- assign ec_font_semibold = ec_font | font_modify: 'weight', '600' -%}
-    {%- assign ec_font_bold = ec_font | font_modify: 'weight', '800' -%}
-    {{ ec_font | font_face: font_display: 'swap' }}
-    {{ ec_font_semibold | font_face: font_display: 'swap' }}
-    {{ ec_font_bold | font_face: font_display: 'swap' }}
+  {%- if ec_body_font != blank -%}
+    {%- liquid
+      assign ec_v1 = ec_body_font | font_modify: 'weight', '600'
+      assign ec_v2 = ec_body_font | font_modify: 'weight', '700'
+      if ec_head_font.family == ec_body_font.family
+        assign ec_v3 = ec_head_font | font_modify: 'weight', '800'
+        assign ec_v4 = ec_head_font | font_modify: 'weight', '900'
+      else
+        assign ec_v3 = ec_head_font
+        assign ec_v4 = ec_head_font | font_modify: 'weight', '500'
+      endif
+    -%}
+    {{ ec_body_font | font_face: font_display: 'swap' }}
+    {%- if ec_v1 %}{{ ec_v1 | font_face: font_display: 'swap' }}{% endif -%}
+    {%- if ec_v2 %}{{ ec_v2 | font_face: font_display: 'swap' }}{% endif -%}
+    {%- if ec_v3 %}{{ ec_v3 | font_face: font_display: 'swap' }}{% endif -%}
+    {%- if ec_v4 %}{{ ec_v4 | font_face: font_display: 'swap' }}{% endif -%}
   {%- endif -%}
   :root {
     --ec-primary: {{ settings.ecoms_primary }};
@@ -43,20 +70,21 @@
     --ec-rb: {{ settings.ecoms_radius_button }}px;
     --ec-rm: {{ settings.ecoms_radius_card }}px;
   }
-  {%- if ec_font != blank %}
+  {%- if ec_body_font != blank %}
     body.ec-fonts {
-      --font-body-family: {{ ec_font.family }}, {{ ec_fallback }};
+      --font-body-family: {{ ec_body_font.family }}, {{ ec_body_font.fallback_families | default: 'sans-serif' }};
       --font-body-style: normal;
       --font-body-weight: 400;
-      --font-body-weight-bold: 800;
-      --font-heading-family: {{ ec_font.family }}, {{ ec_fallback }};
+      --font-body-weight-bold: 700;
+      --font-heading-family: {{ ec_head_font.family }}, {{ ec_head_font.fallback_families | default: 'sans-serif' }};
       --font-heading-style: normal;
-      --font-heading-weight: 800;
+      --font-heading-weight: {{ ec_head_weight }};
     }
   {%- endif %}
 {%- endstyle -%}
 {{ 'ecoms-base.css' | asset_url | stylesheet_tag }}
-{%- if ec_skin == 'flex' -%}
-  {{ 'ecoms-flex.css' | asset_url | stylesheet_tag }}
+{{ 'ecoms-components.css' | asset_url | stylesheet_tag }}
+{%- if ec_skin != 'none' -%}
+  {{ 'ecoms-skin-' | append: ec_skin | append: '.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 <script src="{{ 'ecoms.js' | asset_url }}" defer="defer"></script>

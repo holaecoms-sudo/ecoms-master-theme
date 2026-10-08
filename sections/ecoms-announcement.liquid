@@ -1,5 +1,8 @@
 {%- comment -%} ECOMS · Announcement bar: inline messages with separators (mockup Flex/Brand/Direct). {%- endcomment -%}
-<div class="ec-ann ec-ann--{{ section.settings.style }}" role="region" aria-label="Anuncios">
+{%- capture ec_skin -%}{% render 'ecoms-skin' %}{%- endcapture -%}
+{%- assign ann_style = section.settings.style -%}
+{%- if ann_style == 'auto' -%}{%- assign ann_style = ec_skin -%}{%- endif -%}
+<div class="ec-ann ec-ann--{{ ann_style }}" role="region" aria-label="Anuncios">
   <div class="ec-ann__inner">
     <span class="ec-ann__msgs">
       {%- if section.settings.icon != 'none' -%}{% render 'ecoms-icon', name: section.settings.icon %}{%- endif -%}
@@ -46,6 +49,10 @@
       "label": "Estilo",
       "options": [
         {
+          "value": "auto",
+          "label": "Según la plantilla"
+        },
+        {
           "value": "flex",
           "label": "Flex"
         },
@@ -58,7 +65,7 @@
           "label": "Direct"
         }
       ],
-      "default": "flex"
+      "default": "auto"
     },
     {
       "type": "select",
