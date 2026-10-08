@@ -6,9 +6,10 @@
 {%- capture ec_skin -%}{% render 'ecoms-skin' %}{%- endcapture -%}
 {%- liquid
   assign ec_font = blank
-  if settings.ecoms_use_skin_fonts and ec_skin == 'flex'
+  if settings.ecoms_use_skin_fonts and ec_skin == 'flex' and settings.ecoms_flex_font.family != blank
     assign ec_font = settings.ecoms_flex_font
   endif
+  assign ec_fallback = ec_font.fallback_families | default: 'sans-serif'
 -%}
 {%- style -%}
   {%- if ec_font != blank -%}
@@ -44,11 +45,11 @@
   }
   {%- if ec_font != blank %}
     body.ec-fonts {
-      --font-body-family: {{ ec_font.family }}, {{ ec_font.fallback_families }};
+      --font-body-family: {{ ec_font.family }}, {{ ec_fallback }};
       --font-body-style: normal;
       --font-body-weight: 400;
       --font-body-weight-bold: 800;
-      --font-heading-family: {{ ec_font.family }}, {{ ec_font.fallback_families }};
+      --font-heading-family: {{ ec_font.family }}, {{ ec_fallback }};
       --font-heading-style: normal;
       --font-heading-weight: 800;
     }
