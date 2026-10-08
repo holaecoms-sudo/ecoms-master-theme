@@ -32,7 +32,11 @@
       {%- liquid
         assign in_cart = cart.items | map: 'product_id'
         assign suggestion = blank
-        for item in settings.ecoms_cart_products
+        assign suggest_from = blank
+        if settings.ecoms_cart_collection != blank
+          assign suggest_from = collections[settings.ecoms_cart_collection].products
+        endif
+        for item in suggest_from limit: 12
           if in_cart contains item.id or item.available == false
             continue
           endif
