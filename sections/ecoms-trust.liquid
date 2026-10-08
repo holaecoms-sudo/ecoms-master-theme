@@ -1,0 +1,6 @@
+<section class="ecoms-trust-strip" id="ecoms-trust-{{ section.id }}"><div class="page-width ecoms-trust-strip__grid">
+ {% for block in section.blocks %}<div class="ecoms-trust-strip__item" {{ block.shopify_attributes }}><span aria-hidden="true">✓</span><div><strong>{{ block.settings.heading | escape }}</strong>{% if block.settings.text != blank %}<small>{{ block.settings.text | escape }}</small>{% endif %}</div></div>{% endfor %}
+ </div></section>
+{% schema %}
+{"name":"ECOMS · Confianza","settings":[],"blocks":[{"type":"promise","name":"Información confiable","settings":[{"type":"text","id":"heading","label":"Título","default":"Compra segura"},{"type":"text","id":"text","label":"Detalle","default":"Información clara al comprar"}]}],"max_blocks":4,"presets":[{"name":"ECOMS · Confianza","blocks":[{"type":"promise"},{"type":"promise"},{"type":"promise"}]}]}
+{% endschema %}

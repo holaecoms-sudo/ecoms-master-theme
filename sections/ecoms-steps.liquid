@@ -1,0 +1,9 @@
+<section class="ecoms-section ecoms-steps" id="ecoms-steps-{{ section.id }}"><div class="page-width">
+ <h2 class="ecoms-section-title">{{ section.settings.heading | escape }}</h2>
+ <div class="ecoms-steps__grid">{% for block in section.blocks %}<div class="ecoms-step" {{ block.shopify_attributes }}>
+ {% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 650 | image_tag: loading: 'lazy', widths: '250,400,650' }}{% elsif request.design_mode %}<div class="ecoms-photo-placeholder">Paso {{ forloop.index }}</div>{% endif %}
+ <span class="ecoms-step__number">{{ forloop.index }}</span><strong>{{ block.settings.heading | escape }}</strong><p>{{ block.settings.text | escape }}</p>
+ </div>{% endfor %}</div></div></section>
+{% schema %}
+{"name":"ECOMS · Cómo se usa","settings":[{"type":"text","id":"heading","label":"Título","default":"Así de fácil es usarlo"}],"blocks":[{"type":"step","name":"Paso","settings":[{"type":"image_picker","id":"image","label":"Imagen"},{"type":"text","id":"heading","label":"Título","default":"Paso sencillo"},{"type":"text","id":"text","label":"Detalle","default":"Explica qué debe hacer el cliente."}]}],"max_blocks":6,"presets":[{"name":"ECOMS · Cómo se usa","blocks":[{"type":"step"},{"type":"step"},{"type":"step"}]}]}
+{% endschema %}

@@ -1,0 +1,7 @@
+<section class="ecoms-section ecoms-faq" id="ecoms-faq-{{ section.id }}"><div class="page-width ecoms-faq__inner">
+ <h2 class="ecoms-section-title">{{ section.settings.heading | escape }}</h2>
+ {% for block in section.blocks %}{% if block.settings.question != blank %}<details class="ecoms-faq__item" {{ block.shopify_attributes }}><summary>{{ block.settings.question | escape }} <span aria-hidden="true">＋</span></summary><div class="rte">{{ block.settings.answer }}</div></details>{% endif %}{% endfor %}
+ </div></section>
+{% schema %}
+{"name":"ECOMS · FAQ","settings":[{"type":"text","id":"heading","label":"Título","default":"Preguntas frecuentes"}],"blocks":[{"type":"faq","name":"Pregunta","settings":[{"type":"text","id":"question","label":"Pregunta","default":"¿Cómo funciona el envío?"},{"type":"richtext","id":"answer","label":"Respuesta verificada","default":"<p>Agrega información real según la política de tu tienda.</p>"}]}],"max_blocks":15,"presets":[{"name":"ECOMS · FAQ","blocks":[{"type":"faq"},{"type":"faq"},{"type":"faq"}]}]}
+{% endschema %}

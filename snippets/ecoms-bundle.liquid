@@ -1,0 +1,20 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% if current_variant != blank %}
+  <fieldset class="ecoms-pack-picker" data-ecoms-bundles data-section-id="{{ section_id }}" {{ block.shopify_attributes }}>
+    <legend>{{ block.settings.heading | escape }}</legend>
+    {% for pack in (1..3) %}
+      {% if pack < 3 or block.settings.show_third %}
+        {% assign pack_total = current_variant.price | times: pack %}
+        <label class="ecoms-pack-option">
+          <input type="radio" name="ecoms-pack-{{ section_id }}" value="{{ pack }}" {% if pack == 1 %}checked{% endif %} data-ecoms-pack>
+          <span class="ecoms-pack-option__body">
+            <strong>{{ pack }} {% if pack == 1 %}unidad{% else %}unidades{% endif %}</strong>
+            <span data-ecoms-pack-price="{{ pack }}">{{ pack_total | money }}</span>
+          </span>
+        </label>
+      {% endif %}
+    {% endfor %}
+    <small>{{ block.settings.help | escape }}</small>
+    <script type="application/json" data-ecoms-variants>{{ product.variants | json }}</script>
+  </fieldset>
+{% endif %}

@@ -1,0 +1,8 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% if current_variant != blank %}
+<div class="ecoms-sticky" data-ecoms-sticky hidden>
+ {% if product.featured_image != blank %}{{ product.featured_image | image_url: width: 120 | image_tag: loading: 'lazy', class: 'ecoms-sticky__img' }}{% endif %}
+ <div class="ecoms-sticky__copy"><strong>{{ product.title | escape }}</strong><span data-ecoms-sticky-price>{{ current_variant.price | money }}</span></div>
+ <button type="button" class="ecoms-sticky__button" data-ecoms-scroll-buy>Comprar</button>
+</div>
+{% endif %}

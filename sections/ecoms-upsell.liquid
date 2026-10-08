@@ -1,0 +1,15 @@
+{% if section.blocks.size > 0 or request.design_mode %}
+<section class="ecoms-section ecoms-upsell" id="ecoms-upsell-{{ section.id }}"><div class="page-width">
+ <h2 class="ecoms-section-title">{{ section.settings.heading | escape }}</h2>
+ {% if section.blocks.size > 0 %}<div class="ecoms-upsell__grid">{% for block in section.blocks %}
+ {% assign item = block.settings.product %}
+ {% if item != blank %}<article class="ecoms-upsell__card" {{ block.shopify_attributes }}>
+  <a href="{{ item.url }}" aria-label="{{ item.title | escape }}">{% if item.featured_image != blank %}{{ item.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '250,450,700' }}{% endif %}</a>
+  <div><h3>{{ item.title | escape }}</h3><strong>{{ item.price | money }}</strong><a href="{{ item.url }}" class="ecoms-outline-button">Ver producto</a></div>
+ </article>{% elsif request.design_mode %}<p class="ecoms-empty-hint">Selecciona un producto complementario.</p>{% endif %}
+ {% endfor %}</div>{% elsif request.design_mode %}<p class="ecoms-empty-hint">Agrega bloques con productos reales del catálogo.</p>{% endif %}
+ </div></section>
+{% endif %}
+{% schema %}
+{"name":"ECOMS · Complementarios","settings":[{"type":"text","id":"heading","label":"Título","default":"Complementa tu compra"}],"blocks":[{"type":"item","name":"Producto complementario","settings":[{"type":"product","id":"product","label":"Producto de Shopify"}]}],"max_blocks":8,"presets":[{"name":"ECOMS · Complementarios"}]}
+{% endschema %}

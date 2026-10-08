@@ -1,0 +1,13 @@
+<section class="ecoms-section ecoms-features" id="ecoms-features-{{ section.id }}">
+ <div class="page-width">
+  {% if section.settings.heading != blank %}<h2 class="ecoms-section-title">{{ section.settings.heading | escape }}</h2>{% endif %}
+  <div class="ecoms-features__grid">
+  {% for block in section.blocks %}
+   <article class="ecoms-feature" {{ block.shopify_attributes }}><span class="ecoms-feature__icon" aria-hidden="true">{{ block.settings.icon | escape }}</span><h3>{{ block.settings.heading | escape }}</h3><p>{{ block.settings.text | escape }}</p></article>
+  {% endfor %}
+  </div>
+ </div>
+</section>
+{% schema %}
+{"name":"ECOMS · Beneficios","settings":[{"type":"text","id":"heading","label":"Título","default":"Por qué te va a encantar"}],"blocks":[{"type":"feature","name":"Beneficio","settings":[{"type":"text","id":"icon","label":"Icono (emoji)","default":"✓"},{"type":"text","id":"heading","label":"Beneficio","default":"Diseño práctico"},{"type":"text","id":"text","label":"Detalle","default":"Pensado para hacerte la vida más fácil."}]}],"max_blocks":8,"presets":[{"name":"ECOMS · Beneficios","blocks":[{"type":"feature"},{"type":"feature"},{"type":"feature"},{"type":"feature"}]}]}
+{% endschema %}

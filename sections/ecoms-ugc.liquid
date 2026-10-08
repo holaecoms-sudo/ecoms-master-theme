@@ -1,0 +1,11 @@
+{% if section.blocks.size > 0 or request.design_mode %}
+<section class="ecoms-section ecoms-ugc" id="ecoms-ugc-{{ section.id }}"><div class="page-width">
+ <h2 class="ecoms-section-title">{{ section.settings.heading | escape }}</h2>
+ {% if section.blocks.size > 0 %}<div class="ecoms-ugc__grid">{% for block in section.blocks %}{% if block.settings.image != blank %}
+ <figure {{ block.shopify_attributes }}>{{ block.settings.image | image_url: width: 650 | image_tag: loading: 'lazy', widths: '220,360,650' }}{% if block.settings.caption != blank %}<figcaption>{{ block.settings.caption | escape }}</figcaption>{% endif %}</figure>
+ {% endif %}{% endfor %}</div>{% elsif request.design_mode %}<p class="ecoms-empty-hint">Sube imágenes reales de clientes con autorización.</p>{% endif %}
+ </div></section>
+{% endif %}
+{% schema %}
+{"name":"ECOMS · Clientes UGC","settings":[{"type":"text","id":"heading","label":"Título","default":"Momentos reales"}],"blocks":[{"type":"photo","name":"Foto cliente","settings":[{"type":"image_picker","id":"image","label":"Foto autorizada"},{"type":"text","id":"caption","label":"Descripción"}]}],"max_blocks":12,"presets":[{"name":"ECOMS · Clientes UGC"}]}
+{% endschema %}
