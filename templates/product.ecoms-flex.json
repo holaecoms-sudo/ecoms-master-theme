@@ -324,7 +324,7 @@
         "col_1": "Flawless",
         "col_2": "Pinzas o cera",
         "col_3": "",
-        "width": "full",
+        "width": "left",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -335,7 +335,7 @@
         "heading": "Reseñas de nuestras clientas",
         "link_label": "Ver todas",
         "link": "",
-        "width": "full",
+        "width": "right",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -389,7 +389,7 @@
       "settings": {
         "heading": "Preguntas frecuentes",
         "icon": "chev",
-        "width": "full",
+        "width": "right",
         "padding_top": 8,
         "padding_bottom": 36
       }
@@ -418,6 +418,63 @@
         "padding_top": 0,
         "padding_bottom": 36
       }
+    },
+    "ugc": {
+      "type": "ecoms-ugc",
+      "blocks": {
+        "u1": {
+          "type": "media",
+          "settings": {
+            "caption": ""
+          }
+        },
+        "u2": {
+          "type": "media",
+          "settings": {
+            "caption": ""
+          }
+        },
+        "u3": {
+          "type": "media",
+          "settings": {
+            "caption": ""
+          }
+        },
+        "u4": {
+          "type": "media",
+          "settings": {
+            "caption": ""
+          }
+        },
+        "u5": {
+          "type": "media",
+          "settings": {
+            "caption": ""
+          }
+        },
+        "u6": {
+          "type": "media",
+          "settings": {
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "u1",
+        "u2",
+        "u3",
+        "u4",
+        "u5",
+        "u6"
+      ],
+      "settings": {
+        "style": "grid",
+        "heading": "Tu producto en el día a día",
+        "text": "Fotos reales de clientes, compartidas con su permiso.",
+        "width": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -428,6 +485,7 @@
     "lifestyle",
     "comparison",
     "reviews",
+    "ugc",
     "faq",
     "cross_sell",
     "upsell"

@@ -2,8 +2,17 @@
   ECOMS · Customer photos and videos (UGC). Styles: grid (Flex) or quotes (Brand: photo/video + quote + handle).
   Only content shared with the customer's permission.
 {%- endcomment -%}
-{%- assign style = section.settings.style | default: 'grid' -%}
-{%- if section.blocks.size > 0 or request.design_mode -%}
+{%- liquid
+  assign style = section.settings.style | default: 'grid'
+  # Only photos or videos actually uploaded are published; empty blocks are editor placeholders.
+  assign real_items = 0
+  for block in section.blocks
+    if block.settings.image != blank or block.settings.video != blank
+      assign real_items = real_items | plus: 1
+    endif
+  endfor
+-%}
+{%- if real_items > 0 or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-ugc-sec' %}>
   <div class="ec-w">
     {%- if style == 'quotes' -%}
@@ -17,6 +26,7 @@
     {%- endif -%}
     <div class="ec-ugc ec-ugc--{{ style }}">
       {%- for block in section.blocks -%}
+        {%- if block.settings.image == blank and block.settings.video == blank and request.design_mode != true -%}{%- continue -%}{%- endif -%}
         <figure class="ec-ugc__fig" {{ block.shopify_attributes }}>
           <div class="ec-ugc__item">
             {%- if block.settings.video != blank -%}

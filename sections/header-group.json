@@ -50,7 +50,7 @@
         "m3"
       ],
       "settings": {
-        "style": "flex",
+        "style": "auto",
         "icon": "truck",
         "separator": "|",
         "end_at": "",

@@ -1,0 +1,43 @@
+{%- comment -%}
+  ECOMS · Variant options (radio pills / swatches). Used inside the buy block, or as its own
+  «Variantes» block anywhere in the hero (e.g. color above the packs). ecoms.js reads every
+  [data-ec-option] inside the hero and updates the form's variant id.
+  Accepts: product, section_id
+{%- endcomment -%}
+{%- unless product.has_only_default_variant -%}
+  {%- for option in product.options_with_values -%}
+    <fieldset class="ec-opt" data-ec-option="{{ forloop.index0 }}">
+      <legend class="ec-lbl">
+        {{- option.name | escape }}:
+        <span class="ec-opt__value" data-ec-option-label>{{ option.selected_value | escape }}</span>
+      </legend>
+      <div class="ec-opt__values">
+        {%- for value in option.values -%}
+          {%- assign swatch = value.swatch -%}
+          <label class="ec-opt__v{% if swatch %} ec-opt__v--swatch{% endif %}" title="{{ value | escape }}">
+            <input
+              type="radio"
+              name="ec-option-{{ section_id }}-{{ forloop.parentloop.index0 }}"
+              value="{{ value | escape }}"
+              {% if value.selected %}
+                checked
+              {% endif %}
+              {% unless value.available %}
+                data-unavailable
+              {% endunless %}
+            >
+            {%- if swatch -%}
+              <span
+                class="ec-swatch"
+                style="{% if swatch.image %}--c: url({{ swatch.image | image_url: width: 60 }}) center / cover;{% elsif swatch.color %}--c: {{ swatch.color }};{% endif %}"
+              ></span>
+              <span class="visually-hidden">{{ value | escape }}</span>
+            {%- else -%}
+              <span class="ec-pill">{{ value | escape }}</span>
+            {%- endif -%}
+          </label>
+        {%- endfor -%}
+      </div>
+    </fieldset>
+  {%- endfor -%}
+{%- endunless -%}

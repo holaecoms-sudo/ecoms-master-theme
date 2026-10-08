@@ -93,7 +93,7 @@
         "support": {
           "type": "trust",
           "settings": {
-            "style": "line",
+            "style": "line2",
             "icon_1": "truck",
             "title_1": "Envíos a todo Chile",
             "text_1": "",

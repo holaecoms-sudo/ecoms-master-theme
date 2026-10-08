@@ -112,8 +112,12 @@
         "payments": {
           "type": "payments",
           "settings": {
-            "text": "Pago seguro y cifrado"
+            "text": ""
           }
+        },
+        "variants": {
+          "type": "variants",
+          "settings": {}
         }
       },
       "block_order": [
@@ -123,6 +127,7 @@
         "price",
         "sub",
         "benefits",
+        "variants",
         "packs",
         "urgency",
         "buy",
@@ -397,7 +402,43 @@
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
-      }
+      },
+      "blocks": {
+        "u1": {
+          "type": "media",
+          "settings": {
+            "quote": "",
+            "caption": ""
+          }
+        },
+        "u2": {
+          "type": "media",
+          "settings": {
+            "quote": "",
+            "caption": ""
+          }
+        },
+        "u3": {
+          "type": "media",
+          "settings": {
+            "quote": "",
+            "caption": ""
+          }
+        },
+        "u4": {
+          "type": "media",
+          "settings": {
+            "quote": "",
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "u1",
+        "u2",
+        "u3",
+        "u4"
+      ]
     },
     "reviews": {
       "type": "ecoms-reviews",

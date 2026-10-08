@@ -9,6 +9,11 @@
   assign media_count = product.media.size
   assign first_media = variant.featured_media | default: product.featured_media
   assign feature_block = section.blocks | where: 'type', 'media_features' | first
+  assign variants_block = section.blocks | where: 'type', 'variants' | first
+  assign has_variants_block = false
+  if variants_block
+    assign has_variants_block = true
+  endif
 
   # Gallery order: demo videos first when enabled (same order for slides and thumbnails).
   assign gallery_media = product.media
@@ -19,13 +24,15 @@
     assign gm_models = product.media | where: 'media_type', 'model'
     assign gallery_media = gm_videos | concat: gm_external | concat: gm_images | concat: gm_models
   endif
+  # «auto» keeps the template's own ratio (Brand 4:5, Direct 1:1.08, Flex 1:1).
+  assign gal_ratio = ''
   case section.settings.media_ratio
+    when 'square'
+      assign gal_ratio = '1 / 1'
     when 'portrait'
       assign gal_ratio = '4 / 5'
     when 'landscape'
       assign gal_ratio = '4 / 3'
-    else
-      assign gal_ratio = '1 / 1'
   endcase
 
   # Starting pack (Theme Editor «Pack seleccionado al cargar»): the form, CTA and sticky bar are
@@ -72,7 +79,7 @@
   <div class="ec-w ec-pdp__grid">
     {%- comment -%} ---------- Gallery ---------- {%- endcomment -%}
     <div class="ec-pdp__media">
-      <div class="ec-gal" data-ec-gal style="--gal-ratio: {{ gal_ratio }}; --gal-fit: {{ section.settings.media_fit | default: 'cover' }};">
+      <div class="ec-gal" data-ec-gal style="{% if gal_ratio != blank %}--gal-ratio: {{ gal_ratio }}; {% endif %}--gal-fit: {{ section.settings.media_fit | default: 'cover' }};">
         <div class="ec-gal__main">
           <div class="ec-gal__track" data-ec-gal-track tabindex="0" aria-label="Galería de {{ product.title | escape }}">
             {%- for media in gallery_media -%}
@@ -221,43 +228,7 @@
               {%- form 'product', product, id: form_id, class: 'ec-form', novalidate: 'novalidate', data-ec-form: '' -%}
                 <input type="hidden" name="id" value="{{ variant.id }}" data-ec-variant-input>
                 <div class="ec-optrow">
-                  {%- unless product.has_only_default_variant -%}
-                    {%- for option in product.options_with_values -%}
-                      <fieldset class="ec-opt" data-ec-option="{{ forloop.index0 }}">
-                        <legend class="ec-lbl">
-                          {{- option.name | escape }}:
-                          <span class="ec-opt__value" data-ec-option-label>{{ option.selected_value | escape }}</span>
-                        </legend>
-                        <div class="ec-opt__values">
-                          {%- for value in option.values -%}
-                            {%- assign swatch = value.swatch -%}
-                            <label class="ec-opt__v{% if swatch %} ec-opt__v--swatch{% endif %}" title="{{ value | escape }}">
-                              <input
-                                type="radio"
-                                name="ec-option-{{ section.id }}-{{ forloop.parentloop.index0 }}"
-                                value="{{ value | escape }}"
-                                {% if value.selected %}
-                                  checked
-                                {% endif %}
-                                {% unless value.available %}
-                                  data-unavailable
-                                {% endunless %}
-                              >
-                              {%- if swatch -%}
-                                <span
-                                  class="ec-swatch"
-                                  style="{% if swatch.image %}--c: url({{ swatch.image | image_url: width: 60 }}) center / cover;{% elsif swatch.color %}--c: {{ swatch.color }};{% endif %}"
-                                ></span>
-                                <span class="visually-hidden">{{ value | escape }}</span>
-                              {%- else -%}
-                                <span class="ec-pill">{{ value | escape }}</span>
-                              {%- endif -%}
-                            </label>
-                          {%- endfor -%}
-                        </div>
-                      </fieldset>
-                    {%- endfor -%}
-                  {%- endunless -%}
+                  {%- unless has_variants_block -%}{%- render 'ecoms-variant-picker', product: product, section_id: section.id -%}{%- endunless -%}
                   {%- if block.settings.show_quantity -%}
                     <div class="ec-qty-wrap">
                       <label class="ec-lbl" for="EcQty-{{ section.id }}">Cantidad:</label>
@@ -315,6 +286,13 @@
               </script>
             </div>
 
+          {%- when 'variants' -%}
+            {%- unless product.has_only_default_variant -%}
+              <div class="ec-variants ec-optrow" {{ block.shopify_attributes }}>
+                {%- render 'ecoms-variant-picker', product: product, section_id: section.id -%}
+              </div>
+            {%- endunless -%}
+
           {%- when 'packs' -%}
             {%- render 'ecoms-packs', product: product, source: block, uid: block.id, attrs: block.shopify_attributes -%}
 
@@ -329,7 +307,7 @@
                     {% render 'ecoms-icon', name: block.settings[i_key] %}
                     <div>
                       <b>{{ block.settings[t_key] | escape }}</b>
-                      {{- block.settings[d_key] | escape -}}
+                      {%- if block.settings[d_key] != blank -%}<span class="ec-trust4__t">{{ block.settings[d_key] | escape }}</span>{%- endif -%}
                     </div>
                   </div>
                 {%- endif -%}
@@ -516,6 +494,10 @@
       "label": "Formato de las fotos",
       "options": [
         {
+          "value": "auto",
+          "label": "Según la plantilla"
+        },
+        {
           "value": "square",
           "label": "Cuadrado 1:1 (menos scroll en móvil)"
         },
@@ -528,7 +510,7 @@
           "label": "Horizontal 4:3"
         }
       ],
-      "default": "square"
+      "default": "auto"
     },
     {
       "type": "select",
@@ -1068,6 +1050,17 @@
       ]
     },
     {
+      "type": "variants",
+      "name": "Variantes (color, talla)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Muestra las opciones del producto en este lugar (por ejemplo, el color antes de los packs). Sin este bloque, las opciones van dentro de «Compra»."
+        }
+      ]
+    },
+    {
       "type": "packs",
       "name": "Packs",
       "limit": 1,
@@ -1334,6 +1327,10 @@
             {
               "value": "line",
               "label": "Línea compacta (Brand)"
+            },
+            {
+              "value": "line2",
+              "label": "Línea en 2 columnas"
             }
           ],
           "default": "grid"

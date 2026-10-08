@@ -50,7 +50,7 @@
             {% render 'ecoms-icon', name: block.settings[i_key] %}
             <div>
               <b>{{ block.settings[t_key] | escape }}</b>
-              {{- block.settings[d_key] | escape -}}
+              {%- if block.settings[d_key] != blank -%}<span class="ec-trust4__t">{{ block.settings[d_key] | escape }}</span>{%- endif -%}
             </div>
           </div>
         {%- endif -%}
