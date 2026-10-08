@@ -2,6 +2,11 @@
 """Validates templates/*.json and section groups against section schemas.
 Usage: python3 scripts/validate-templates.py [theme_root]"""
 import json, re, glob, os, sys
+
+def load_json(path):
+    # Shopify adds a /* ... */ header to files it writes back (templates, section groups)
+    return json.loads(re.sub(r'^\s*/\*.*?\*/', '', open(path).read(), flags=re.S))
+
 root = sys.argv[1] if len(sys.argv) > 1 else os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def schema(t):
     p = f'{root}/sections/{t}.liquid'
@@ -31,7 +36,7 @@ def check_settings(where, defs, vals, errs):
 errs = []
 files = glob.glob(f'{root}/templates/*.json') + glob.glob(f'{root}/sections/*.json')
 for f in files:
-    d = json.load(open(f))
+    d = load_json(f)
     for sid, s in d['sections'].items():
         sc = schema(s['type'])
         w = f'{os.path.basename(f)}#{sid}'

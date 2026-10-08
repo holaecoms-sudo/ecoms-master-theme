@@ -20,7 +20,8 @@
     {%- liquid
       assign end_ts = 0
       if section.settings.end_at != blank
-        assign end_ts = section.settings.end_at | date: '%s' | plus: 0
+        assign end_clean = section.settings.end_at | remove: '"' | remove: "'" | strip
+        assign end_ts = end_clean | date: '%s' | plus: 0
       endif
       assign now_ts = 'now' | date: '%s' | plus: 0
     -%}
@@ -209,7 +210,7 @@
       "type": "text",
       "id": "end_at",
       "label": "Fecha de término",
-      "info": "Solo promociones reales. \"2026-12-31 23:59\""
+      "info": "Solo promociones reales. Formato: 2026-12-31 23:59, sin comillas."
     },
     {
       "type": "text",

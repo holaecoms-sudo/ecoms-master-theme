@@ -13,7 +13,8 @@
   assign s = source.settings
   assign end_ts = 0
   if s.end_at != blank
-    assign end_ts = s.end_at | date: '%s' | plus: 0
+    assign end_clean = s.end_at | remove: '"' | remove: "'" | strip
+    assign end_ts = end_clean | date: '%s' | plus: 0
   endif
   assign now_ts = 'now' | date: '%s' | plus: 0
   assign style = s.style | default: 'boxes'
