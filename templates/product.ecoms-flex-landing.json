@@ -620,7 +620,7 @@
           "type": "review",
           "settings": {
             "example": false,
-            "author": "Nombre del cliente",
+            "author": "Amanda N.",
             "date": "6/27/2026",
             "stars": 5,
             "text": "Al principio me mostraba escéptico, pero realmente redujo el estrés que me causaba el armario. Lo recomiendo encarecidamente si tienes poco espacio.",
@@ -632,8 +632,8 @@
           "type": "review",
           "settings": {
             "example": false,
-            "author": "Nombre del cliente",
-            "date": "Hace X días",
+            "author": "Jessica C.",
+            "date": "6/09/2026",
             "stars": 5,
             "text": "Es fácil de usar, tiene capacidad para varios artículos e hizo que mi armario pareciera más espacioso al instante. Me encanta.",
             "verified": true,
@@ -643,12 +643,13 @@
         "ex4": {
           "type": "review",
           "settings": {
-            "example": true,
-            "author": "Nombre del cliente",
-            "date": "Hace X días",
+            "example": false,
+            "author": "Ashley W.",
+            "date": "6/6/2026",
             "stars": 5,
-            "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo».",
-            "verified": true
+            "text": "La percha es práctica, permite colgar varios conjuntos de ropa, tiene una gran capacidad de carga y ahorra espacio en vertical; además, permite visualizar mejor el estilo en horizontal, se puede manejar con una sola mano, es fácil de transportar al viajar y no ocupa espacio al guardarla.",
+            "verified": true,
+            "image": "shopify://shop_images/BtWNljd3E_mid.jpg"
           }
         }
       },
