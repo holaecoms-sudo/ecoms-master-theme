@@ -12,7 +12,7 @@
 -%}
 <section
   id="EcProduct-{{ section.id }}"
-  class="ec-pdp ec-pdp--{{ section.settings.layout }}"
+  class="ec-pdp ec-pdp--{{ section.settings.layout }} ec-pdp--thumbs-{{ section.settings.thumbs | default: 'auto' }}"
   data-ec-product
   data-section-id="{{ section.id }}"
   data-product-url="{{ product.url }}"
@@ -323,6 +323,31 @@
               </ul>
             </div>
 
+          {%- when 'delivery' -%}
+            {%- comment -%} Order → ready → delivered timeline. Dates are computed in the browser (no stale cached dates). {%- endcomment -%}
+            <ol class="ec-delivery" data-ec-delivery {{ block.shopify_attributes }}>
+              <li data-days="0"><span class="ec-delivery__ic">{% render 'ecoms-icon', name: 'bag' %}</span><b data-ec-date>Hoy</b><small>{{ block.settings.step_1 | escape }}</small></li>
+              <li data-days="{{ block.settings.ready_days }}"><span class="ec-delivery__ic">{% render 'ecoms-icon', name: 'box' %}</span><b data-ec-date></b><small>{{ block.settings.step_2 | escape }}</small></li>
+              <li data-days="{{ block.settings.min_days }}" data-days-max="{{ block.settings.max_days }}"><span class="ec-delivery__ic">{% render 'ecoms-icon', name: 'truck' %}</span><b data-ec-date></b><small>{{ block.settings.step_3 | escape }}</small></li>
+            </ol>
+
+          {%- when 'testimonial' -%}
+            {%- if block.settings.text != blank -%}
+              <figure class="ec-testi" {{ block.shopify_attributes }}>
+                {%- if block.settings.image != blank -%}
+                  {{ block.settings.image | image_url: width: 120 | image_tag: loading: 'lazy', width: 44, height: 44, alt: block.settings.author, class: 'ec-testi__img' }}
+                {%- endif -%}
+                <div>
+                  <blockquote>{{ block.settings.text | escape }}</blockquote>
+                  <figcaption>
+                    <b>{{ block.settings.author | escape }}</b>
+                    {%- if block.settings.verified %} · <span class="ec-testi__ok">{% render 'ecoms-icon', name: 'verified' %}Compra verificada</span>{% endif -%}
+                    <span class="ec-stars" style="--s: 12px; --r: {{ block.settings.stars | times: 20 }}%" role="img" aria-label="{{ block.settings.stars }} de 5 estrellas"></span>
+                  </figcaption>
+                </div>
+              </figure>
+            {%- endif -%}
+
           {%- when 'custom_liquid' -%}
             <div {{ block.shopify_attributes }}>{{ block.settings.custom_liquid }}</div>
         {%- endcase -%}
@@ -381,6 +406,22 @@
         }
       ],
       "default": "flex"
+    },
+    {
+      "type": "select",
+      "id": "thumbs",
+      "label": "Miniaturas de la galería",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Según la plantilla"
+        },
+        {
+          "value": "below",
+          "label": "Debajo de la foto"
+        }
+      ],
+      "default": "auto"
     },
     {
       "type": "text",
@@ -918,6 +959,10 @@
             {
               "value": "rows",
               "label": "Filas con precio unitario (Direct)"
+            },
+            {
+              "value": "offer",
+              "label": "Ofertas con total y ahorro (Landing)"
             }
           ],
           "default": "list"
@@ -954,6 +999,15 @@
           "content": "Pack 1"
         },
         {
+          "type": "range",
+          "id": "tier1_qty",
+          "label": "Unidades",
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "default": 1
+        },
+        {
           "type": "text",
           "id": "tier1_label",
           "label": "Texto (vacío = «1 unidad»)"
@@ -983,7 +1037,7 @@
           "id": "tier2_qty",
           "label": "Unidades",
           "min": 2,
-          "max": 10,
+          "max": 50,
           "step": 1,
           "default": 2
         },
@@ -1028,7 +1082,7 @@
           "id": "tier3_qty",
           "label": "Unidades",
           "min": 3,
-          "max": 12,
+          "max": 100,
           "step": 1,
           "default": 3
         },
@@ -1072,6 +1126,10 @@
             {
               "value": "grid",
               "label": "Grilla de 4"
+            },
+            {
+              "value": "grid2",
+              "label": "Grilla 2×2"
             },
             {
               "value": "line",
@@ -2252,6 +2310,104 @@
         {
           "type": "paragraph",
           "content": "Los íconos son los medios de pago activos de la tienda."
+        }
+      ]
+    },
+    {
+      "type": "delivery",
+      "name": "Fechas de entrega",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Las fechas se calculan en el navegador desde hoy. Usa plazos reales de tu operación (Dropi, courier)."
+        },
+        {
+          "type": "text",
+          "id": "step_1",
+          "label": "Paso 1",
+          "default": "Pedido realizado"
+        },
+        {
+          "type": "range",
+          "id": "ready_days",
+          "label": "Días hasta despacho",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "default": 1
+        },
+        {
+          "type": "text",
+          "id": "step_2",
+          "label": "Paso 2",
+          "default": "Pedido listo"
+        },
+        {
+          "type": "range",
+          "id": "min_days",
+          "label": "Entrega desde (días)",
+          "min": 1,
+          "max": 30,
+          "step": 1,
+          "default": 3
+        },
+        {
+          "type": "range",
+          "id": "max_days",
+          "label": "Entrega hasta (días)",
+          "min": 1,
+          "max": 30,
+          "step": 1,
+          "default": 6
+        },
+        {
+          "type": "text",
+          "id": "step_3",
+          "label": "Paso 3",
+          "default": "Entregado"
+        }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Testimonio destacado",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Solo reseñas reales y autorizadas."
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Testimonio"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Nombre",
+          "default": "Nombre del cliente"
+        },
+        {
+          "type": "range",
+          "id": "stars",
+          "label": "Calificación",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "Compra verificada",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Foto (opcional)"
         }
       ]
     },

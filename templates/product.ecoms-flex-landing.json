@@ -1,0 +1,374 @@
+{
+  "sections": {
+    "main": {
+      "type": "ecoms-product",
+      "blocks": {
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "benefits": {
+          "type": "benefits",
+          "settings": {
+            "item_1": "Ahorra espacio en tu clóset",
+            "item_2": "Mantén tu ropa ordenada y a la vista",
+            "item_3": "Soporta varias prendas a la vez",
+            "item_4": "Ideal para espacios pequeños"
+          }
+        },
+        "packs": {
+          "type": "packs",
+          "settings": {
+            "heading": "",
+            "layout": "offer",
+            "show_cta_total": false,
+            "discounts_live": false,
+            "tier1_qty": 5,
+            "tier1_label": "Pack de 5",
+            "tier2_enabled": true,
+            "tier2_qty": 10,
+            "tier2_pct": 10,
+            "tier2_label": "Pack de 10",
+            "tier2_tag": "Más popular",
+            "tier3_enabled": true,
+            "tier3_qty": 20,
+            "tier3_pct": 20,
+            "tier3_label": "Pack de 20",
+            "tier3_tag": "Mejor oferta"
+          }
+        },
+        "stock": {
+          "type": "stock",
+          "settings": {
+            "max_show": 20,
+            "text": "¡Quedan pocas unidades: [qty] en stock!"
+          }
+        },
+        "buy": {
+          "type": "buy",
+          "settings": {
+            "show_quantity": false,
+            "add_label": "Agregar al carrito",
+            "show_total": true,
+            "show_buy_now": false,
+            "buy_now_label": "Comprar ahora"
+          }
+        },
+        "trust": {
+          "type": "trust",
+          "settings": {
+            "style": "grid2",
+            "icon_1": "truck",
+            "title_1": "Envíos a todo Chile",
+            "text_1": "",
+            "icon_2": "return",
+            "title_2": "Cambios según política",
+            "text_2": "",
+            "icon_3": "chat",
+            "title_3": "Soporte por WhatsApp",
+            "text_3": "",
+            "icon_4": "lock",
+            "title_4": "Pago 100% seguro",
+            "text_4": ""
+          }
+        },
+        "payments": {
+          "type": "payments",
+          "settings": {}
+        },
+        "delivery": {
+          "type": "delivery",
+          "settings": {
+            "step_1": "Pedido realizado",
+            "ready_days": 1,
+            "step_2": "Pedido listo",
+            "min_days": 3,
+            "max_days": 6,
+            "step_3": "Entregado"
+          }
+        },
+        "testimonial": {
+          "type": "testimonial",
+          "settings": {
+            "text": "Agrega aquí un testimonio real y autorizado de un cliente.",
+            "author": "Nombre del cliente",
+            "stars": 5,
+            "verified": true
+          }
+        }
+      },
+      "block_order": [
+        "rating",
+        "title",
+        "benefits",
+        "packs",
+        "stock",
+        "buy",
+        "trust",
+        "payments",
+        "delivery",
+        "testimonial"
+      ],
+      "settings": {
+        "layout": "flex",
+        "thumbs": "below",
+        "video_loop": true,
+        "sticky": true,
+        "sticky_desktop": true,
+        "sticky_label": "Agregar al carrito",
+        "padding_top": 24,
+        "padding_bottom": 32
+      }
+    },
+    "row_1": {
+      "type": "ecoms-image-text",
+      "settings": {
+        "image_side": "left",
+        "product_image_index": 2,
+        "heading": "Despídete del desorden y gana espacio",
+        "intro": "Tu clóset ordenado en minutos, sin obras ni muebles nuevos.",
+        "button_label": "Ordena tu clóset hoy",
+        "width": "full",
+        "padding_top": 40,
+        "padding_bottom": 20
+      },
+      "blocks": {
+        "p1": {
+          "type": "point",
+          "settings": {
+            "title": "Más espacio",
+            "text": "cuelga varias prendas en el lugar de una"
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "title": "Todo a la vista",
+            "text": "encuentra lo que buscas al tiro"
+          }
+        },
+        "p3": {
+          "type": "point",
+          "settings": {
+            "title": "Ropa cuidada",
+            "text": "sin arrugas por amontonarla"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ]
+    },
+    "row_2": {
+      "type": "ecoms-image-text",
+      "settings": {
+        "image_side": "left",
+        "product_image_index": 3,
+        "heading": "Orden sin esfuerzo, todos los días",
+        "intro": "Se acabó buscar entre montones de ropa.",
+        "button_label": "Lo quiero",
+        "width": "full",
+        "padding_top": 20,
+        "padding_bottom": 20
+      },
+      "blocks": {
+        "p1": {
+          "type": "point",
+          "settings": {
+            "title": "Sin estrés",
+            "text": "cada prenda en su lugar"
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "title": "Fácil de usar",
+            "text": "se cuelga en tu barra en segundos"
+          }
+        },
+        "p3": {
+          "type": "point",
+          "settings": {
+            "title": "Combina mejor",
+            "text": "ves tus opciones de un vistazo"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ]
+    },
+    "row_3": {
+      "type": "ecoms-image-text",
+      "settings": {
+        "image_side": "left",
+        "product_image_index": 4,
+        "heading": "Espacio pequeño, gran organización",
+        "intro": "Ideal para departamentos, piezas compartidas y clósets chicos.",
+        "button_label": "Aprovecha tu espacio",
+        "width": "full",
+        "padding_top": 20,
+        "padding_bottom": 20
+      },
+      "blocks": {
+        "p1": {
+          "type": "point",
+          "settings": {
+            "title": "Multiplica tu espacio",
+            "text": "en el mismo clóset"
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "title": "Liviano y resistente",
+            "text": "para el uso diario"
+          }
+        },
+        "p3": {
+          "type": "point",
+          "settings": {
+            "title": "Para toda la familia",
+            "text": "ropa de adultos y niños"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ]
+    },
+    "riskfree": {
+      "type": "ecoms-trust",
+      "settings": {
+        "style": "slant",
+        "heading": "Compra sin riesgo",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      },
+      "blocks": {
+        "t1": {
+          "type": "promise",
+          "settings": {
+            "icon": "shield",
+            "heading": "Cambios según política",
+            "text": "Compra tranquilo"
+          }
+        },
+        "t2": {
+          "type": "promise",
+          "settings": {
+            "icon": "chat",
+            "heading": "Soporte por WhatsApp",
+            "text": "Te ayudamos"
+          }
+        },
+        "t3": {
+          "type": "promise",
+          "settings": {
+            "icon": "truck",
+            "heading": "Envíos a todo Chile",
+            "text": "Seguimiento"
+          }
+        },
+        "t4": {
+          "type": "promise",
+          "settings": {
+            "icon": "lock",
+            "heading": "Pago seguro",
+            "text": "Checkout Shopify"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
+    },
+    "reviews": {
+      "type": "ecoms-reviews",
+      "settings": {
+        "style": "masonry",
+        "heading": "Opiniones de clientes",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "faq": {
+      "type": "ecoms-faq",
+      "settings": {
+        "heading": "Preguntas frecuentes",
+        "icon": "chev",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuánto peso soporta?",
+            "answer": "<p>Indica aquí la capacidad real según la ficha del proveedor.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "question": "¿De qué material está hecho?",
+            "answer": "<p>Indica el material real del producto.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Realmente ahorra espacio?",
+            "answer": "<p>Explica cómo se usa para colgar varias prendas en el espacio de una.</p>"
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuánto tarda el envío?",
+            "answer": "<p>El plazo depende de tu comuna y lo ves antes de pagar en el checkout.</p>"
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Qué pasa si llega con un defecto?",
+            "answer": "<p>Describe aquí la política de cambios de la tienda.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+      ]
+    }
+  },
+  "order": [
+    "main",
+    "row_1",
+    "row_2",
+    "row_3",
+    "riskfree",
+    "reviews",
+    "faq"
+  ]
+}

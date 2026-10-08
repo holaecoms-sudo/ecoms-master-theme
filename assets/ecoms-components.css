@@ -158,3 +158,13 @@
 .ec-skin .cart__checkout-button::before, .ec-skin .cart__checkout-button::after { box-shadow: none; }
 .ec-skin .button--primary:not([disabled]):hover, .ec-skin .cart__checkout-button:not([disabled]):hover { background: var(--ec-primary-hover); }
 .ec-skin .drawer__heading { font-weight: 800; letter-spacing: 0; }
+
+/* Gallery option: thumbnails below the main photo (any template) */
+.ec-pdp--thumbs-below .ec-gal__thumbs { display: flex; gap: 8px; overflow-x: auto; padding-inline: 16px; scrollbar-width: none; }
+.ec-pdp--thumbs-below .ec-gal__thumb { width: 64px; }
+@media screen and (min-width: 990px) {
+  .ec-pdp--thumbs-below .ec-gal { grid-template-columns: minmax(0, 1fr); }
+  .ec-pdp--thumbs-below .ec-gal__main { grid-column: 1; }
+  .ec-pdp--thumbs-below .ec-gal__thumbs { grid-column: 1; grid-row: 2; flex-direction: row; padding: 0; }
+  .ec-pdp--thumbs-below .ec-minifeat { margin-left: 0 !important; }
+}

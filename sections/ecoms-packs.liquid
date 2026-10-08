@@ -65,6 +65,10 @@
         {
           "value": "rows",
           "label": "Filas con precio unitario (Direct)"
+        },
+        {
+          "value": "offer",
+          "label": "Ofertas con total y ahorro (Landing)"
         }
       ],
       "default": "cards"
@@ -101,6 +105,15 @@
       "content": "Pack 1"
     },
     {
+      "type": "range",
+      "id": "tier1_qty",
+      "label": "Unidades",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 1
+    },
+    {
       "type": "text",
       "id": "tier1_label",
       "label": "Texto (vacío = «1 unidad»)"
@@ -130,7 +143,7 @@
       "id": "tier2_qty",
       "label": "Unidades",
       "min": 2,
-      "max": 10,
+      "max": 50,
       "step": 1,
       "default": 2
     },
@@ -175,7 +188,7 @@
       "id": "tier3_qty",
       "label": "Unidades",
       "min": 3,
-      "max": 12,
+      "max": 100,
       "step": 1,
       "default": 3
     },

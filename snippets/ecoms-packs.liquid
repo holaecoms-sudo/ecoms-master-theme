@@ -27,7 +27,7 @@
   assign has_pending_discount = false
 -%}
 {%- capture tiers_json -%}
-  [{"q":1,"pct":0}
+  [{"q":{{ s.tier1_qty | default: 1 }},"pct":0}
   {%- for i in (2..3) -%}
     {%- assign q_key = 'tier' | append: i | append: '_qty' -%}
     {%- assign p_key = 'tier' | append: i | append: '_pct' -%}
@@ -68,7 +68,7 @@
             assign show_tier = false
           endif
           if i == 1
-            assign q = 1
+            assign q = s.tier1_qty | default: 1
             assign pct = 0
           else
             assign q_key = 'tier' | append: i | append: '_qty'
@@ -139,7 +139,14 @@
                   {{ q }}&nbsp;unidades
                 {%- endif -%}
               </span>
-              {%- if layout == 'rows' -%}
+              {%- if layout == 'offer' -%}
+                {%- assign offer_save = strike | minus: total -%}
+                {%- if offer_save > 0 -%}<span class="ec-pack__save">Ahorras {{ offer_save | money }}</span>{%- endif -%}
+                <span class="ec-pack__r">
+                  <b>{{ total | money }}</b>
+                  {%- if offer_save > 0 -%}<s>{{ strike | money }}</s>{%- endif -%}
+                </span>
+              {%- elsif layout == 'rows' -%}
                 <span class="ec-pack__r">
                   <b>
                     {{- per_unit | money }} c/u

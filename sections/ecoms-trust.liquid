@@ -2,6 +2,9 @@
 {%- assign style = section.settings.style | default: 'strip' -%}
 {%- assign strip_class = 'ec-strip ec-strip--' | append: style -%}
 <section {% render 'ecoms-section-style', section: section, class: strip_class %}>
+  {%- if style == 'slant' and section.settings.heading != blank -%}
+    <h2 class="ec-strip__h">{{ section.settings.heading | escape }}</h2>
+  {%- endif -%}
   <div class="ec-w ec-strip__grid">
     {%- for block in section.blocks -%}
       <div class="ec-strip__item" {{ block.shopify_attributes }}>
@@ -38,9 +41,19 @@
         {
           "value": "line",
           "label": "Línea compacta"
+        },
+        {
+          "value": "slant",
+          "label": "Banda oscura en diagonal (Landing)"
         }
       ],
       "default": "strip"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título (banda diagonal)",
+      "default": "Prueba sin riesgo"
     },
     {
       "type": "paragraph",

@@ -285,6 +285,27 @@
     countdownTimer = setInterval(tick, 1000);
   }
 
+  /* ---------- Delivery timeline (dates from today, skipping Sundays) ---------- */
+  function addBusinessDays(days) {
+    const d = new Date();
+    let left = days;
+    while (left > 0) {
+      d.setDate(d.getDate() + 1);
+      if (d.getDay() !== 0) left -= 1;
+    }
+    return d;
+  }
+  const fmtDay = (d) => d.toLocaleDateString('es-CL', { day: 'numeric', month: 'short' }).replace('.', '');
+  function initDelivery(root = document) {
+    $$('[data-ec-delivery] li', root).forEach((li, i) => {
+      if (i === 0) return;
+      const label = li.querySelector('[data-ec-date]');
+      const from = addBusinessDays(Number(li.dataset.days) || 0);
+      const max = Number(li.dataset.daysMax);
+      label.textContent = max ? `${fmtDay(from)} - ${fmtDay(addBusinessDays(max))}` : fmtDay(from);
+    });
+  }
+
   /* ---------- Sticky add to cart ---------- */
   let stickyObserver;
   function initSticky() {
@@ -460,7 +481,11 @@
   /* ---------- Boot ---------- */
   function init(root = document) {
     productJson = null;
+    // Packs whose first tier is more than 1 unit: start the form at that quantity.
+    const firstPack = $('[data-ec-packs] input[type="radio"]:checked');
+    if (firstPack && Number(firstPack.value) !== currentQty()) setQty(Number(firstPack.value));
     initGalleries(root);
+    initDelivery(root);
     initCountdowns();
     initSticky();
     sync();
