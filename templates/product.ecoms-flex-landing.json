@@ -619,23 +619,25 @@
         "ex2": {
           "type": "review",
           "settings": {
-            "example": true,
+            "example": false,
             "author": "Nombre del cliente",
-            "date": "Hace X días",
+            "date": "6/27/2026",
             "stars": 5,
-            "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo».",
-            "verified": true
+            "text": "Al principio me mostraba escéptico, pero realmente redujo el estrés que me causaba el armario. Lo recomiendo encarecidamente si tienes poco espacio.",
+            "verified": true,
+            "image": "shopify://shop_images/rVwhGkmHfN.jpg"
           }
         },
         "ex3": {
           "type": "review",
           "settings": {
-            "example": true,
+            "example": false,
             "author": "Nombre del cliente",
             "date": "Hace X días",
             "stars": 5,
-            "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo».",
-            "verified": true
+            "text": "Es fácil de usar, tiene capacidad para varios artículos e hizo que mi armario pareciera más espacioso al instante. Me encanta.",
+            "verified": true,
+            "image": "shopify://shop_images/w5wFssLr8.jpg"
           }
         },
         "ex4": {
