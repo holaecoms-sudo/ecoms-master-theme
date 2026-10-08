@@ -17,6 +17,7 @@
         "brand": {
           "type": "brand",
           "settings": {
+            "logo": "shopify://shop_images/ecoms_horizontal_color.png",
             "text": "<p>Productos que te acompañan en tu día a día.</p>"
           }
         },
