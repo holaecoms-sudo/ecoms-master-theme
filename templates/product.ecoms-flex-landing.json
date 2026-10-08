@@ -48,25 +48,28 @@
             "layout": "offer",
             "show_cta_total": false,
             "help": "El descuento del pack se aplica automáticamente en el carrito.",
+            "default_tier": "2",
+            "item_name": "colgadores",
+            "show_summary": true,
+            "summary_label": "Tu pack incluye",
+            "show_free_shipping": true,
             "discounts_live": true,
             "tier1_qty": 5,
             "tier1_label": "Pack de 5",
             "tier1_tag": "",
+            "tier1_note": "",
             "tier2_enabled": true,
             "tier2_qty": 10,
             "tier2_pct": 10,
             "tier2_label": "Pack de 10",
             "tier2_tag": "Más popular",
+            "tier2_note": "",
             "tier3_enabled": true,
             "tier3_qty": 20,
             "tier3_pct": 20,
             "tier3_label": "Pack de 20",
             "tier3_tag": "Mejor ahorro",
-            "default_tier": "2",
-            "item_name": "colgadores",
-            "show_summary": true,
-            "summary_label": "Tu pack incluye",
-            "show_free_shipping": true
+            "tier3_note": ""
           }
         },
         "stock": {
@@ -74,17 +77,6 @@
           "settings": {
             "max_show": 20,
             "text": "¡Quedan pocas unidades: [qty] en stock!"
-          }
-        },
-        "urgency": {
-          "type": "urgency",
-          "settings": {
-            "end_at": "2026-10-12 23:59",
-            "icon": "fire",
-            "heading": "Oferta de lanzamiento",
-            "text": "Termina en:",
-            "style": "subtle",
-            "show_days": true
           }
         },
         "buy": {
@@ -114,6 +106,17 @@
             "icon_4": "return",
             "title_4": "Cambios y devoluciones",
             "text_4": ""
+          }
+        },
+        "urgency": {
+          "type": "urgency",
+          "settings": {
+            "end_at": "2026-10-12 23:59",
+            "icon": "fire",
+            "heading": "Oferta de lanzamiento",
+            "text": "Termina en:",
+            "style": "subtle",
+            "show_days": true
           }
         },
         "payments": {
@@ -176,16 +179,16 @@
         "layout": "flex",
         "thumbs": "below",
         "badge": "",
+        "media_ratio": "square",
+        "media_fit": "contain",
+        "video_first": true,
+        "video_autoplay": false,
         "video_loop": true,
         "sticky": true,
         "sticky_desktop": true,
         "sticky_label": "Agregar al carrito",
         "padding_top": 24,
-        "padding_bottom": 32,
-        "media_ratio": "square",
-        "media_fit": "contain",
-        "video_first": true,
-        "video_autoplay": false
+        "padding_bottom": 32
       }
     },
     "how": {
@@ -539,6 +542,7 @@
         "heading": "¿Por qué elegirlo?",
         "feature_label": "Característica",
         "col_1": "Colgador Smart 9 en 1",
+        "show_image": true,
         "col_2": "Ganchos tradicionales",
         "col_3": "",
         "width": "full",

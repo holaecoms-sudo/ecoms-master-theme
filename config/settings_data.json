@@ -129,6 +129,7 @@
     "cart_drawer_collection": "",
     "cart_color_scheme": "scheme-1",
     "customer_account_menu": "customer-account-main-menu",
+    "ecoms_store_name": "Ecoms",
     "ecoms_primary": "#0F5132",
     "ecoms_primary_ink": "#FFFFFF",
     "ecoms_dark": "#0F5132",
@@ -148,6 +149,8 @@
     "ecoms_ink": "#1F2937",
     "ecoms_muted": "#6B7280",
     "ecoms_line": "#E3E8E5",
+    "ecoms_free_shipping_live": true,
+    "ecoms_free_shipping_threshold": 30,
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
@@ -219,9 +222,7 @@
           "shadow": "#121212"
         }
       }
-    },
-    "ecoms_store_name": "Ecoms",
-    "ecoms_free_shipping_live": false
+    }
   },
   "presets": {
     "Dawn": {
