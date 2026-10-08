@@ -31,12 +31,20 @@
         "m3": {
           "type": "message",
           "settings": {
-            "text": "Atención por WhatsApp",
+            "text": "Seguimiento de tu pedido",
+            "link": ""
+          }
+        },
+        "fs": {
+          "type": "free_shipping",
+          "settings": {
+            "text": "Envío gratis sobre [amount]",
             "link": ""
           }
         }
       },
       "block_order": [
+        "fs",
         "m1",
         "m2",
         "m3"
@@ -55,7 +63,7 @@
         "menu": "main-menu",
         "logo_icon": "bag",
         "logo_height": 32,
-        "social_text": "+1200"
+        "social_text": ""
       }
     }
   },

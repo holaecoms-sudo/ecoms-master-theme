@@ -1,9 +1,9 @@
 {%- comment -%}
-  ECOMS · Quantity packs (1 / 2 / 3 units) wired to Dawn's product form.
+  ECOMS · Quantity packs wired to the product form (real quantity of one variant).
 
   Selecting a pack sets the real quantity of the main product form. Pack prices only show a
   discount when "discounts_live" is checked, which confirms that matching automatic discounts
-  exist in Shopify Admin (Descuentos → Monto de descuento en productos, cantidad mínima 2 / 3).
+  exist in Shopify Admin (Descuentos → Monto de descuento en productos, cantidad mínima).
   Shopify applies the best eligible discount in cart and checkout; this snippet only mirrors it.
 
   Accepts:
@@ -25,6 +25,22 @@
   assign live = s.discounts_live
   assign layout = s.layout | default: 'cards'
   assign has_pending_discount = false
+  assign item_name = s.item_name | strip
+
+  # Default tier (Theme Editor). Falls back to pack 1 when the chosen pack is hidden.
+  assign default_tier = s.default_tier | default: '1' | plus: 0
+  if default_tier > 1
+    assign default_on_key = 'tier' | append: default_tier | append: '_enabled'
+    if s[default_on_key] != true
+      assign default_tier = 1
+    endif
+  endif
+
+  # Free shipping hint: only when the merchant confirmed a real free-shipping rate exists.
+  assign ship_threshold = 0
+  if settings.ecoms_free_shipping_live and s.show_free_shipping != false
+    assign ship_threshold = settings.ecoms_free_shipping_threshold | plus: 0 | times: 100000
+  endif
 -%}
 {%- capture tiers_json -%}
   [{"q":{{ s.tier1_qty | default: 1 }},"pct":0}
@@ -50,6 +66,10 @@
   {% endif %}
   data-tiers="{{ tiers_json | strip_newlines | replace: ' ', '' | escape }}"
   data-unit="{{ unit }}"
+  data-title="{{ product.title | escape }}"
+  {% if ship_threshold > 0 %}
+    data-ship-threshold="{{ ship_threshold }}"
+  {% endif %}
   {% if s.show_cta_total %}
     data-cta-total
   {% endif %}
@@ -83,7 +103,9 @@
           assign tag_key = 'tier' | append: i | append: '_tag'
           assign img_key = 'tier' | append: i | append: '_image'
           assign label_key = 'tier' | append: i | append: '_label'
+          assign note_key = 'tier' | append: i | append: '_note'
           assign tag = s[tag_key]
+          assign note = s[note_key]
           assign pack_image = s[img_key] | default: product.featured_image
 
           assign subtotal = unit | times: q
@@ -99,9 +121,38 @@
           if discount > 0
             assign pack_save_pct = discount | times: 100 | divided_by: subtotal | floor
           endif
+          assign offer_save = strike | minus: total
+          assign offer_pct = 0
+          if offer_save > 0
+            assign offer_pct = offer_save | times: 100 | divided_by: strike | floor
+          endif
+          assign ships_free = false
+          if ship_threshold > 0 and total >= ship_threshold
+            assign ships_free = true
+          endif
+          assign is_default = false
+          if i == default_tier
+            assign is_default = true
+          endif
         -%}
         {%- unless show_tier -%}{%- continue -%}{%- endunless -%}
-        <label class="ec-pack">
+        {%- capture q_label -%}
+          {%- if s[label_key] != blank -%}
+            {{ s[label_key] | escape }}
+          {%- elsif q == 1 -%}
+            1&nbsp;unidad
+          {%- else -%}
+            {{ q }}&nbsp;unidades
+          {%- endif -%}
+        {%- endcapture -%}
+        {%- capture inc -%}
+          {%- if item_name != blank -%}
+            {{ q }} {{ item_name | escape }}
+          {%- elsif s[label_key] != blank -%}
+            {%- if q == 1 -%}1 unidad{%- else -%}{{ q }} unidades{%- endif -%}
+          {%- endif -%}
+        {%- endcapture -%}
+        <label class="ec-pack{% if is_default %} ec-pack--featured{% endif %}">
           {%- if tag == blank and layout == 'list' and discount > 0 -%}
             {%- capture tag -%}Ahorras {{ discount | money }}{%- endcapture -%}
           {%- endif -%}
@@ -113,7 +164,14 @@
             name="ec-pack-{{ uid }}"
             value="{{ q }}"
             data-pct="{{ pct }}"
-            {% if i == 1 %}
+            data-label="{{ q_label | strip_html | replace: '&nbsp;', ' ' | strip }}"
+            data-inc="{{ inc | strip }}"
+            data-total="{{ total }}"
+            data-save="{% if offer_save > 0 %}{{ offer_save }}{% else %}0{% endif %}"
+            {% if ships_free %}
+              data-ship-free
+            {% endif %}
+            {% if is_default %}
               checked
             {% endif %}
             {% unless variant.available %}
@@ -130,27 +188,25 @@
               }}
             {%- endif -%}
             <span class="ec-pack__body">
-              <span class="ec-pack__q">
-                {%- if s[label_key] != blank -%}
-                  {{ s[label_key] | escape }}
-                {%- elsif q == 1 -%}
-                  1&nbsp;unidad
-                {%- else -%}
-                  {{ q }}&nbsp;unidades
-                {%- endif -%}
-              </span>
+              <span class="ec-pack__q">{{ q_label }}</span>
               {%- if layout == 'offer' -%}
-                {%- liquid
-                  assign offer_save = strike | minus: total
-                  assign offer_pct = 0
-                  if offer_save > 0
-                    assign offer_pct = offer_save | times: 100 | divided_by: strike | floor
-                  endif
-                -%}
                 <span class="ec-pack__meta">
-                  <span class="ec-pack__unit">{{ per_unit | money }} c/u</span>
-                  {%- if offer_save > 0 -%}
-                    <span class="ec-pack__save">Ahorras {{ offer_save | money }}{% if offer_pct > 0 %} ({{ offer_pct }}%){% endif %}</span>
+                  <span class="ec-pack__unit">
+                    {%- if inc != blank %}{{ inc }} · {% endif -%}
+                    {{- per_unit | money }} c/u
+                  </span>
+                  {%- if note != blank -%}
+                    <span class="ec-pack__note">{{ note | escape }}</span>
+                  {%- endif -%}
+                  {%- if offer_save > 0 or ships_free -%}
+                    <span class="ec-pack__chips">
+                      {%- if offer_save > 0 -%}
+                        <span class="ec-pack__save">Ahorras {{ offer_save | money }}{% if offer_pct > 0 %} ({{ offer_pct }}%){% endif %}</span>
+                      {%- endif -%}
+                      {%- if ships_free -%}
+                        <span class="ec-pack__ship">{% render 'ecoms-icon', name: 'truck' %}{{ settings.ecoms_free_shipping_label | default: 'Envío gratis' | escape }}</span>
+                      {%- endif -%}
+                    </span>
                   {%- endif -%}
                 </span>
                 <span class="ec-pack__r">
@@ -167,6 +223,9 @@
                     <s>{{ unit | money }} c/u</s>
                   {%- endif -%}
                 </span>
+                {%- if ships_free -%}
+                  <span class="ec-pack__ship">{% render 'ecoms-icon', name: 'truck' %}{{ settings.ecoms_free_shipping_label | default: 'Envío gratis' | escape }}</span>
+                {%- endif -%}
               {%- else -%}
                 <span class="ec-pack__p">{{ total | money }}</span>
                 {%- if save_pct > 0 -%}
@@ -175,12 +234,39 @@
                     <span class="ec-pill-save">Ahorras {{ save_pct }}%</span>
                   {%- endif -%}
                 {%- endif -%}
+                {%- if note != blank -%}
+                  <span class="ec-pack__note">{{ note | escape }}</span>
+                {%- endif -%}
+                {%- if ships_free -%}
+                  <span class="ec-pack__ship">{% render 'ecoms-icon', name: 'truck' %}{{ settings.ecoms_free_shipping_label | default: 'Envío gratis' | escape }}</span>
+                {%- endif -%}
               {%- endif -%}
             </span>
           </span>
         </label>
+        {%- if is_default -%}
+          {%- liquid
+            assign sum_qty = q
+            assign sum_save = offer_save
+            assign sum_ship = ships_free
+          -%}
+        {%- endif -%}
       {%- endfor -%}
     </div>
+    {%- if s.show_summary -%}
+      {%- comment -%} «Qué incluye tu pack»: kept in sync with the selected pack by ecoms.js. {%- endcomment -%}
+      <div class="ec-packsum" data-ec-pack-summary aria-live="polite">
+        <span class="ec-packsum__ic">{% render 'ecoms-icon', name: 'box' %}</span>
+        <p>
+          <b>{{ s.summary_label | default: 'Tu pack incluye' | escape }}:</b>
+          <span data-ec-ps-inc>{{ sum_qty }} × {{ product.title | escape }}</span>
+          <span class="ec-packsum__extra">
+            <span data-ec-ps-save {% unless sum_save > 0 %}hidden{% endunless %}>Ahorras <b data-ec-ps-save-amount>{{ sum_save | money }}</b></span>
+            <span data-ec-ps-ship {% unless sum_ship %}hidden{% endunless %}>{{ settings.ecoms_free_shipping_label | default: 'Envío gratis' | escape }}</span>
+          </span>
+        </p>
+      </div>
+    {%- endif -%}
     {%- if s.help != blank -%}
       <p class="ec-packs__help">{{ s.help | escape }}</p>
     {%- endif -%}

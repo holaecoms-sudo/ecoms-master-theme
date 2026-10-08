@@ -2,13 +2,45 @@
   ECOMS · Specifications table (label → value). Rows without a value are hidden on the storefront,
   so nothing unverified is published. Values can be connected to product metafields (dynamic source).
 {%- endcomment -%}
+{%- comment -%}
+  Rows render in a first pass so the section can hide itself when nothing is filled.
+  Value per row: product metafield (block «Metafield», e.g. ecoms.material) wins over the fixed text,
+  so one template serves every product without publishing another product's data.
+{%- endcomment -%}
 {%- liquid
   assign filled = 0
-  for block in section.blocks
-    if block.settings.value != blank
-      assign filled = filled | plus: 1
-    endif
-  endfor
+  capture rows
+    for block in section.blocks
+      assign value = block.settings.value
+      if block.settings.metafield != blank and product
+        assign mf_parts = block.settings.metafield | strip | split: '.'
+        if mf_parts.size == 2
+          assign mf = product.metafields[mf_parts[0]][mf_parts[1]]
+          if mf != blank
+            assign value = mf | metafield_text | escape
+          endif
+        endif
+      endif
+      if value != blank
+        assign filled = filled | plus: 1
+        echo '<div ' | append: block.shopify_attributes | append: '>'
+        echo '<dt>'
+        render 'ecoms-icon', name: block.settings.icon
+        echo block.settings.label | escape
+        echo '</dt><dd>' | append: value | append: '</dd></div>'
+      elsif request.design_mode
+        echo '<div class="ec-specs__todo" ' | append: block.shopify_attributes | append: '>'
+        echo '<dt>'
+        render 'ecoms-icon', name: block.settings.icon
+        echo block.settings.label | escape
+        echo '</dt><dd>Completar con el dato real'
+        if block.settings.metafield != blank
+          echo ' (metafield ' | append: block.settings.metafield | append: ')'
+        endif
+        echo '. Oculto en la tienda hasta que tenga valor.</dd></div>'
+      endif
+    endfor
+  endcapture
 -%}
 {%- if filled > 0 or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-specs-sec' %}>
@@ -19,21 +51,7 @@
       {%- endif -%}
       <div>
         {%- if section.settings.heading != blank -%}<h2 class="ec-h3">{{ section.settings.heading | escape }}</h2>{%- endif -%}
-        <dl class="ec-specs__list">
-          {%- for block in section.blocks -%}
-            {%- if block.settings.value != blank -%}
-              <div {{ block.shopify_attributes }}>
-                <dt>{% render 'ecoms-icon', name: block.settings.icon %}{{ block.settings.label | escape }}</dt>
-                <dd>{{ block.settings.value }}</dd>
-              </div>
-            {%- elsif request.design_mode -%}
-              <div class="ec-specs__todo" {{ block.shopify_attributes }}>
-                <dt>{% render 'ecoms-icon', name: block.settings.icon %}{{ block.settings.label | escape }}</dt>
-                <dd>Completar con el dato real (oculto en la tienda hasta que tenga valor)</dd>
-              </div>
-            {%- endif -%}
-          {%- endfor -%}
-        </dl>
+        <dl class="ec-specs__list">{{ rows }}</dl>
       </div>
     </div>
   </div>
@@ -259,7 +277,14 @@
         {
           "type": "inline_richtext",
           "id": "value",
-          "label": "Valor (dato real)"
+          "label": "Valor (dato real)",
+          "info": "Texto fijo para todos los productos con esta plantilla. Mejor usa el metafield."
+        },
+        {
+          "type": "text",
+          "id": "metafield",
+          "label": "Metafield del producto",
+          "info": "Ej.: ecoms.material. Si el producto tiene ese metafield, su valor reemplaza el texto fijo."
         }
       ]
     }

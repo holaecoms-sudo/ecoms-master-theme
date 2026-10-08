@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "ECOMS Master",
-    "theme_version": "1.3.0",
+    "theme_version": "1.4.0",
     "theme_author": "ECOMS",
     "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
     "theme_support_url": "https://support.shopify.com/"
@@ -1500,6 +1500,12 @@
         "info": "Afecta header, anuncios, footer y páginas que no son de producto ECOMS."
       },
       {
+        "type": "text",
+        "id": "ecoms_store_name",
+        "label": "Nombre visible de la tienda",
+        "info": "Se muestra en la tienda (pie de página, títulos, redes) en lugar del nombre interno de Shopify. Ej.: ecoms."
+      },
+      {
         "type": "checkbox",
         "id": "ecoms_skin_chrome",
         "label": "Aplicar estilo ECOMS a anuncios, header y footer",
@@ -1696,6 +1702,17 @@
         "content": "Envío gratis"
       },
       {
+        "type": "paragraph",
+        "content": "Antes de activarlo crea la tarifa real en Configuración → Envío y entrega (condición «Según el precio del pedido» desde el mismo monto, en la zona Chile) y confirma con Dropi quién absorbe el costo. Si la tarifa no existe, no actives el envío gratis: el checkout cobraría envío."
+      },
+      {
+        "type": "checkbox",
+        "id": "ecoms_free_shipping_live",
+        "label": "El envío gratis ya existe en Shopify",
+        "default": false,
+        "info": "Mientras esté desactivado no se muestra ningún mensaje de envío gratis (anuncio, packs, barra del carrito)."
+      },
+      {
         "type": "range",
         "id": "ecoms_free_shipping_threshold",
         "label": "Envío gratis desde (miles de CLP)",
@@ -1703,7 +1720,7 @@
         "max": 300,
         "step": 5,
         "default": 0,
-        "info": "Ej.: 40 = $40.000. Debe coincidir con una tarifa de envío gratis real en Configuración → Envíos. 0 oculta la barra."
+        "info": "Ej.: 40 = $40.000. Se compara con el total del carrito con descuentos aplicados. 0 oculta la barra."
       },
       {
         "type": "text",
@@ -1717,6 +1734,12 @@
         "id": "ecoms_free_shipping_success",
         "label": "Mensaje logrado",
         "default": "¡Tu pedido tiene envío gratis!"
+      },
+      {
+        "type": "text",
+        "id": "ecoms_free_shipping_label",
+        "label": "Etiqueta en packs",
+        "default": "Envío gratis"
       },
       {
         "type": "header",

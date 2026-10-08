@@ -104,9 +104,9 @@
             "icon_3": "shield",
             "title_3": "Garantía",
             "text_3": "Según política",
-            "icon_4": "chat",
-            "title_4": "Soporte",
-            "text_4": "Por WhatsApp"
+            "icon_4": "box",
+            "title_4": "Seguimiento del pedido",
+            "text_4": "Te avisamos del envío"
           }
         },
         "payments": {

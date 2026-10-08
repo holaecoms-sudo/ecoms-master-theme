@@ -599,3 +599,93 @@ body.ec-skin.gradient, body.ec-skin { background: var(--ec-bg); }
   .ec-pdp__media { position: sticky; top: 16px; align-self: start; }
   .ec-imgtxt__media img, .ec-imgtxt__media video, .ec-imgtxt__media svg { max-height: 400px; }
 }
+
+/* ---------- CRO pass 2: packs default, pack summary, free shipping, states, gallery, sticky ---------- */
+/* Gallery: configurable ratio + fit (contain keeps vertical photos whole without extra scroll) */
+.ec-gal[style] .ec-gal__slide img, .ec-gal[style] .ec-gal__slide video { object-fit: var(--gal-fit, cover); }
+.ec-gal__play[data-autoplay] { top: auto; left: 12px; bottom: 12px; width: 40px; height: 40px; transform: none; }
+.ec-gal__play[data-autoplay] .ec-i { width: 16px; height: 16px; }
+
+/* Packs: clearer hierarchy (name > total > savings > per unit) */
+.ec-packs--offer .ec-pack__unit { color: var(--ec-ink); opacity: 0.72; font-size: 13px; }
+.ec-pack__note { flex-basis: 100%; color: var(--ec-muted); font-size: 12.5px; }
+.ec-pack__chips { display: flex; flex-basis: 100%; flex-wrap: wrap; gap: 6px; margin-top: 3px; }
+.ec-pack__save { font-size: 12px; }
+.ec-pack__ship { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px; background: color-mix(in srgb, var(--ec-accent) 14%, var(--ec-bg)); color: var(--ec-ink); font-size: 12px; font-weight: 700; }
+.ec-pack__ship .ec-i { width: 14px; height: 14px; color: var(--ec-accent); }
+.ec-packs--offer .ec-pack--featured .ec-pack__card { border-color: color-mix(in srgb, var(--ec-primary) 55%, var(--ec-line)); }
+.ec-packs--offer .ec-pack--featured .ec-pack__tag { box-shadow: 0 4px 10px -4px color-mix(in srgb, var(--ec-primary) 80%, transparent); }
+.ec-packs--offer .ec-pack input:checked + .ec-pack__card .ec-pack__r b { color: var(--ec-primary); }
+.ec-packs--offer .ec-pack__card { min-height: 64px; }
+.ec-packs--offer .ec-packs__help { font-size: 12.5px; }
+
+/* «Qué incluye tu pack» */
+.ec-packsum { display: flex; align-items: flex-start; gap: 10px; margin-top: 12px; padding: 10px 12px; border: 1px dashed color-mix(in srgb, var(--ec-primary) 45%, var(--ec-line)); border-radius: 10px; background: #fff; font-size: 13.5px; }
+.ec-packsum p { margin: 0; line-height: 1.45; }
+.ec-packsum__ic { display: grid; flex-shrink: 0; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--ec-soft); color: var(--ec-primary); }
+.ec-packsum__ic .ec-i { width: 16px; height: 16px; }
+.ec-packsum__extra { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 2px; color: var(--ec-primary); font-size: 12.5px; font-weight: 700; }
+.ec-packsum__extra [hidden] { display: none; }
+
+/* Buttons: loading spinner + clear error */
+.ec-btn[aria-busy='true'] { position: relative; color: transparent !important; }
+.ec-btn[aria-busy='true']::after { content: ''; position: absolute; top: 50%; left: 50%; width: 20px; height: 20px; margin: -10px 0 0 -10px; border: 2.5px solid var(--ec-primary-ink); border-right-color: transparent; border-radius: 50%; animation: ec-spin 0.7s linear infinite; }
+.ec-btn[aria-busy='true'] .ec-i { visibility: hidden; }
+@keyframes ec-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .ec-btn[aria-busy='true']::after { animation-duration: 2s; } }
+.ec-btn:disabled { opacity: 0.55; cursor: not-allowed; box-shadow: none; }
+.ec-form__error:not([hidden]) { padding: 10px 12px; border-radius: 8px; background: var(--ec-urgent-bg); color: var(--ec-urgent); font-size: 13.5px; font-weight: 600; }
+
+/* Free shipping progress (cart drawer) */
+.ec-ship .ec-bar { margin-top: 8px; }
+.ec-ship--done { background: color-mix(in srgb, var(--ec-accent) 16%, var(--ec-bg)); color: var(--ec-primary); }
+.ec-ann__hidden { opacity: 0.6; font-style: italic; }
+
+/* Draft FAQ answers (editor only) */
+.ec-faq--draft { outline: 2px dashed #e0b400; outline-offset: -2px; }
+.ec-faq__draft { margin: 0 0 6px !important; color: #6b5300; font-size: 12px; font-weight: 700; }
+
+/* Comparison: product column first-class, readable on 360px */
+.ec-cmp { table-layout: fixed; background: #fff; }
+.ec-cmp th:first-child { width: 46%; }
+.ec-cmp tbody tr:nth-child(even) th, .ec-cmp tbody tr:nth-child(even) td:not(.us) { background: color-mix(in srgb, var(--ec-soft) 45%, #fff); }
+.ec-cmp tbody th { font-size: 13.5px; line-height: 1.35; }
+.ec-cmp thead th { line-height: 1.25; vertical-align: bottom; }
+.ec-cmp__img { display: block; width: 44px; height: 44px; margin: 0 auto 6px; border-radius: 8px; background: #fff; object-fit: cover; }
+.ec-cmp .y .ec-i, .ec-cmp .n .ec-i { width: 22px; height: 22px; padding: 4px; border-radius: 50%; stroke-width: 3; }
+.ec-cmp .y .ec-i { background: var(--ec-primary); color: #fff; }
+.ec-cmp .n .ec-i { background: #fdecea; color: #d93025; }
+@media screen and (max-width: 749px) {
+  .ec-cmp th, .ec-cmp td { padding: 10px 8px; }
+  .ec-cmp thead th { font-size: 12px; }
+}
+
+/* Sticky CTA: pack + total, discreet, never on top of the cart drawer */
+.ec-sticky__price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 6px; }
+.ec-sticky__pack { color: var(--ec-muted); font-size: 12.5px; font-weight: 600; }
+.ec-sticky__pack[hidden] { display: none; }
+@media screen and (max-width: 989px) {
+  .ec-sticky { gap: 10px; padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px)); }
+  .ec-sticky__name { display: none; }
+  .ec-sticky__price { flex-direction: column; gap: 0; font-size: 16px; line-height: 1.2; }
+  .ec-sticky .ec-btn { flex-shrink: 0; min-height: 48px; padding-inline: 16px; }
+}
+@media screen and (max-width: 374px) {
+  .ec-sticky__img { display: none; }
+  .ec-sticky .ec-btn .ec-i { display: none; }
+}
+body:has(cart-drawer.active) .ec-sticky { visibility: hidden; }
+
+/* Secondary text: minimum readable sizes on mobile */
+.ec-delivery small { font-size: 12px; }
+.ec-pdp .ec-trust4--line { font-size: 13px; }
+.ec-pdp .ec-trust4--line .ec-i { width: 18px; height: 18px; color: var(--ec-primary); }
+.ec-payments__list { justify-content: center; }
+
+/* Desktop: wider useful area, buy box with comfortable measure */
+@media screen and (min-width: 990px) {
+  .ec-pdp .ec-w { max-width: 1240px; }
+  .ec-pdp--flex .ec-pdp__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
+  .ec-pdp--flex .ec-pdp__info { max-width: 560px; }
+  .ec-pdp--thumbs-below .ec-gal__thumb { width: 72px; }
+}

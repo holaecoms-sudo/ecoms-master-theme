@@ -7,7 +7,11 @@
   {%- case part -%}
     {%- when 'shipping' -%}
       {%- comment -%} Setting is in thousands of CLP (Shopify ranges must stay below 10000). {%- endcomment -%}
-      {%- assign threshold = settings.ecoms_free_shipping_threshold | plus: 0 | times: 100000 -%}
+      {%- comment -%} Hidden until «El envío gratis ya existe en Shopify» is checked (no promise the checkout won't keep). {%- endcomment -%}
+      {%- assign threshold = 0 -%}
+      {%- if settings.ecoms_free_shipping_live -%}
+        {%- assign threshold = settings.ecoms_free_shipping_threshold | plus: 0 | times: 100000 -%}
+      {%- endif -%}
       {%- if threshold > 0 -%}
         {%- liquid
           assign left = threshold | minus: cart.total_price
@@ -16,7 +20,7 @@
             assign progress = 100
           endif
         -%}
-        <div class="ec-ship" role="status">
+        <div class="ec-ship{% if left <= 0 %} ec-ship--done{% endif %}" role="status">
           <p>
             {%- if left > 0 -%}
               {%- capture amount -%}<b>{{ left | money }}</b>{%- endcapture -%}

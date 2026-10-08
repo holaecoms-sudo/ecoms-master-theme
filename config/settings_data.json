@@ -219,7 +219,9 @@
           "shadow": "#121212"
         }
       }
-    }
+    },
+    "ecoms_store_name": "Ecoms",
+    "ecoms_free_shipping_live": false
   },
   "presets": {
     "Dawn": {

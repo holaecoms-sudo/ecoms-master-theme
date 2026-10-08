@@ -18,7 +18,12 @@
         <thead>
           <tr>
             <th scope="col">{{ section.settings.feature_label | escape }}</th>
-            <th scope="col" class="us">{{ section.settings.col_1 | escape }}</th>
+            <th scope="col" class="us">
+              {%- if section.settings.show_image and product.featured_image != blank -%}
+                {{ product.featured_image | image_url: width: 120 | image_tag: class: 'ec-cmp__img', loading: 'lazy', width: 44, height: 44, alt: '' }}
+              {%- endif -%}
+              {{- section.settings.col_1 | escape -}}
+            </th>
             {%- if cols > 1 %}<th scope="col">{{ section.settings.col_2 | escape }}</th>{% endif -%}
             {%- if cols > 2 %}<th scope="col">{{ section.settings.col_3 | escape }}</th>{% endif -%}
           </tr>
@@ -65,6 +70,12 @@
       "id": "col_1",
       "label": "Columna 1 (tu producto)",
       "default": "Nuestro producto"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "label": "Foto del producto sobre la columna",
+      "default": true
     },
     {
       "type": "text",

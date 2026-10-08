@@ -13,6 +13,7 @@
     endcase
   endif
 -%}
+{%- assign store_name = settings.ecoms_store_name | default: shop.name -%}
 <footer class="ec-ft ec-ft--{{ ft_style }}">
   <div class="ec-w ec-ft__grid">
     {%- for block in section.blocks -%}
@@ -21,9 +22,9 @@
           {%- when 'brand' -%}
             <a href="{{ routes.root_url }}" class="ec-logo">
               {%- if block.settings.logo != blank -%}
-                {{ block.settings.logo | image_url: height: 80 | image_tag: height: 32, alt: shop.name, loading: 'lazy' }}
+                {{ block.settings.logo | image_url: height: 80 | image_tag: height: 32, alt: store_name, loading: 'lazy' }}
               {%- else -%}
-                {% render 'ecoms-icon', name: 'bag' %}<span>{{ shop.name | escape }}</span>
+                {% render 'ecoms-icon', name: 'bag' %}<span>{{ store_name | escape }}</span>
               {%- endif -%}
             </a>
             {%- if block.settings.text != blank -%}<div class="ec-ft__text">{{ block.settings.text }}</div>{%- endif -%}
@@ -72,7 +73,7 @@
   </div>
   <div class="ec-ft__legal">
     <div class="ec-w">
-      © {{ 'now' | date: '%Y' }} {{ shop.name | escape }}.
+      © {{ 'now' | date: '%Y' }} {{ store_name | escape }}.
       {%- if section.settings.legal != blank %} {{ section.settings.legal | escape }}{% endif -%}
       {%- for policy in shop.policies -%}
         {%- if policy != blank %} · <a href="{{ policy.url }}">{{ policy.title | escape }}</a>{% endif -%}

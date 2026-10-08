@@ -22,8 +22,10 @@
         {%- endfor -%}
       {%- else -%}
       {%- for block in section.blocks -%}
+        {%- comment -%} Draft answers (not confirmed yet) only show in the Theme Editor. {%- endcomment -%}
+        {%- if block.settings.draft and request.design_mode != true -%}{%- continue -%}{%- endif -%}
         {%- if block.settings.question != blank -%}
-          <details {{ block.shopify_attributes }}>
+          <details {{ block.shopify_attributes }}{% if block.settings.draft %} class="ec-faq--draft"{% endif %}>
             <summary>
               <span>{{ block.settings.question | escape }}</span>
               {%- if section.settings.icon == 'plus' -%}
@@ -32,7 +34,10 @@
                 {% render 'ecoms-icon', name: 'chev-r', class: 'chev' %}
               {%- endif -%}
             </summary>
-            <div class="ec-faq__a rte">{{ block.settings.answer }}</div>
+            <div class="ec-faq__a rte">
+              {%- if block.settings.draft -%}<p class="ec-faq__draft">Borrador: oculto en la tienda hasta confirmar la respuesta.</p>{%- endif -%}
+              {{ block.settings.answer }}
+            </div>
           </details>
         {%- endif -%}
       {%- endfor -%}
@@ -45,9 +50,11 @@
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
+          {%- assign faq_n = 0 -%}
           {%- for block in section.blocks -%}
-            {%- if block.settings.question != blank -%}
-              {%- unless forloop.first %},{% endunless -%}
+            {%- if block.settings.question != blank and block.settings.draft != true -%}
+              {%- if faq_n > 0 %},{% endif -%}
+              {%- assign faq_n = faq_n | plus: 1 -%}
               {
                 "@type": "Question",
                 "name": {{ block.settings.question | json }},
@@ -161,6 +168,13 @@
           "id": "answer",
           "label": "Respuesta",
           "default": "<p>Completa con la política real de tu tienda.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "draft",
+          "label": "Respuesta sin confirmar (borrador)",
+          "default": false,
+          "info": "Oculta la pregunta en la tienda hasta tener el dato real del proveedor."
         }
       ]
     }

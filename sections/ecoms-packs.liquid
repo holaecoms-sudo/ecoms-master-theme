@@ -86,6 +86,53 @@
       "default": "El total final se confirma en el carrito."
     },
     {
+      "type": "select",
+      "id": "default_tier",
+      "label": "Pack seleccionado al cargar",
+      "options": [
+        {
+          "value": "1",
+          "label": "Pack 1"
+        },
+        {
+          "value": "2",
+          "label": "Pack 2"
+        },
+        {
+          "value": "3",
+          "label": "Pack 3"
+        }
+      ],
+      "default": "1",
+      "info": "El botón principal y el botón fijo muestran el total de este pack. Si el pack está oculto se usa el Pack 1."
+    },
+    {
+      "type": "text",
+      "id": "item_name",
+      "label": "Nombre de las unidades (plural)",
+      "info": "Ej.: colgadores. Muestra «10 colgadores» en cada pack. Vacío = «unidades»."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_summary",
+      "label": "Mostrar «Qué incluye tu pack»",
+      "default": false,
+      "info": "Resumen bajo los packs con la cantidad, el ahorro y el envío gratis del pack elegido."
+    },
+    {
+      "type": "text",
+      "id": "summary_label",
+      "label": "Título del resumen",
+      "default": "Tu pack incluye"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_free_shipping",
+      "label": "Marcar «Envío gratis» en los packs que lo alcanzan",
+      "default": true,
+      "info": "Solo aparece si en Configuración del tema → ECOMS · Carrito el envío gratis está activado."
+    },
+    {
       "type": "header",
       "content": "Descuentos reales"
     },
@@ -122,6 +169,12 @@
       "type": "text",
       "id": "tier1_tag",
       "label": "Etiqueta"
+    },
+    {
+      "type": "text",
+      "id": "tier1_note",
+      "label": "Qué incluye (opcional)",
+      "info": "Una línea corta, ej.: «Para un clóset completo». No pongas datos sin confirmar."
     },
     {
       "type": "image_picker",
@@ -169,6 +222,12 @@
       "default": "Más vendido"
     },
     {
+      "type": "text",
+      "id": "tier2_note",
+      "label": "Qué incluye (opcional)",
+      "info": "Una línea corta, ej.: «Para un clóset completo». No pongas datos sin confirmar."
+    },
+    {
       "type": "image_picker",
       "id": "tier2_image",
       "label": "Imagen"
@@ -211,6 +270,12 @@
       "type": "text",
       "id": "tier3_tag",
       "label": "Etiqueta"
+    },
+    {
+      "type": "text",
+      "id": "tier3_note",
+      "label": "Qué incluye (opcional)",
+      "info": "Una línea corta, ej.: «Para un clóset completo». No pongas datos sin confirmar."
     },
     {
       "type": "image_picker",

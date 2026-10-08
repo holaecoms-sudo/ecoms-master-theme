@@ -9,6 +9,57 @@
   assign media_count = product.media.size
   assign first_media = variant.featured_media | default: product.featured_media
   assign feature_block = section.blocks | where: 'type', 'media_features' | first
+
+  # Gallery order: demo videos first when enabled (same order for slides and thumbnails).
+  assign gallery_media = product.media
+  if section.settings.video_first
+    assign gm_videos = product.media | where: 'media_type', 'video'
+    assign gm_external = product.media | where: 'media_type', 'external_video'
+    assign gm_images = product.media | where: 'media_type', 'image'
+    assign gm_models = product.media | where: 'media_type', 'model'
+    assign gallery_media = gm_videos | concat: gm_external | concat: gm_images | concat: gm_models
+  endif
+  case section.settings.media_ratio
+    when 'portrait'
+      assign gal_ratio = '4 / 5'
+    when 'landscape'
+      assign gal_ratio = '4 / 3'
+    else
+      assign gal_ratio = '1 / 1'
+  endcase
+
+  # Starting pack (Theme Editor «Pack seleccionado al cargar»): the form, CTA and sticky bar are
+  # server-rendered with it, so the first paint and the no-JS fallback match the selected pack.
+  assign start_qty = 1
+  assign start_total = variant.price
+  assign start_label = ''
+  assign packs_block = section.blocks | where: 'type', 'packs' | first
+  if packs_block
+    assign ps = packs_block.settings
+    assign start_tier = ps.default_tier | default: '1' | plus: 0
+    if start_tier > 1
+      assign start_on = 'tier' | append: start_tier | append: '_enabled'
+      if ps[start_on] != true
+        assign start_tier = 1
+      endif
+    endif
+    assign start_pct = 0
+    if start_tier == 1
+      assign start_qty = ps.tier1_qty | default: 1
+    else
+      assign start_q_key = 'tier' | append: start_tier | append: '_qty'
+      assign start_p_key = 'tier' | append: start_tier | append: '_pct'
+      assign start_qty = ps[start_q_key] | default: start_tier
+      if ps.discounts_live
+        assign start_pct = ps[start_p_key] | default: 0
+      endif
+    endif
+    assign start_label_key = 'tier' | append: start_tier | append: '_label'
+    assign start_label = ps[start_label_key]
+    assign start_sub = variant.price | times: start_qty
+    assign start_discount = start_sub | times: start_pct | divided_by: 10000.0 | round | times: 100
+    assign start_total = start_sub | minus: start_discount
+  endif
 -%}
 <section
   id="EcProduct-{{ section.id }}"
@@ -21,18 +72,18 @@
   <div class="ec-w ec-pdp__grid">
     {%- comment -%} ---------- Gallery ---------- {%- endcomment -%}
     <div class="ec-pdp__media">
-      <div class="ec-gal" data-ec-gal>
+      <div class="ec-gal" data-ec-gal style="--gal-ratio: {{ gal_ratio }}; --gal-fit: {{ section.settings.media_fit | default: 'cover' }};">
         <div class="ec-gal__main">
           <div class="ec-gal__track" data-ec-gal-track tabindex="0" aria-label="Galería de {{ product.title | escape }}">
-            {%- for media in product.media -%}
+            {%- for media in gallery_media -%}
               <div class="ec-gal__slide" data-media-id="{{ media.id }}">
                 {%- case media.media_type -%}
                   {%- when 'video' -%}
                     {{
                       media
-                      | video_tag: controls: false, muted: true, playsinline: true, loop: section.settings.video_loop, preload: 'metadata', image_size: '1200x', class: 'ec-gal__video'
+                      | video_tag: controls: false, muted: true, playsinline: true, autoplay: section.settings.video_autoplay, loop: section.settings.video_loop, preload: 'metadata', image_size: '1200x', class: 'ec-gal__video'
                     }}
-                    <button type="button" class="ec-gal__play" data-ec-play aria-label="Reproducir video">
+                    <button type="button" class="ec-gal__play" data-ec-play aria-label="Reproducir video con sonido"{% if section.settings.video_autoplay %} data-autoplay{% endif %}>
                       {% render 'ecoms-icon', name: 'play' %}
                     </button>
                   {%- when 'external_video' -%}
@@ -78,7 +129,7 @@
         </div>
         {%- if media_count > 1 -%}
           <ul class="ec-gal__thumbs" role="list">
-            {%- for media in product.media -%}
+            {%- for media in gallery_media -%}
               <li>
                 <button
                   type="button"
@@ -216,7 +267,7 @@
                           id="EcQty-{{ section.id }}"
                           type="number"
                           name="quantity"
-                          value="1"
+                          value="{{ start_qty }}"
                           min="1"
                           {% if variant.quantity_rule.max %}max="{{ variant.quantity_rule.max }}"{% endif %}
                           inputmode="numeric"
@@ -226,7 +277,7 @@
                       </div>
                     </div>
                   {%- else -%}
-                    <input type="hidden" name="quantity" value="1" data-ec-qty-input>
+                    <input type="hidden" name="quantity" value="{{ start_qty }}" data-ec-qty-input>
                   {%- endif -%}
                 </div>
 
@@ -244,7 +295,7 @@
                     <span>
                       {%- if variant.available -%}
                         {{ block.settings.add_label | escape }}
-                        {%- if block.settings.show_total %} - <span data-ec-cta-total>{{ variant.price | money }}</span>{% endif -%}
+                        {%- if block.settings.show_total %} · <span data-ec-cta-total>{{ start_total | money }}</span>{% endif -%}
                       {%- else -%}
                         {{ 'products.product.sold_out' | t }}
                       {%- endif -%}
@@ -286,7 +337,12 @@
             </div>
 
           {%- when 'shipping' -%}
-            {%- assign ship_threshold = settings.ecoms_free_shipping_threshold | plus: 0 | times: 100000 -%}
+            {%- liquid
+              assign ship_threshold = 0
+              if settings.ecoms_free_shipping_live
+                assign ship_threshold = settings.ecoms_free_shipping_threshold | plus: 0 | times: 100000
+              endif
+            -%}
             {%- if ship_threshold > 0 -%}
               <div class="ec-shipbar" data-ec-shipbar data-threshold="{{ ship_threshold }}" {{ block.shopify_attributes }}>
                 <div class="ec-bar" aria-hidden="true"><span data-ec-shipbar-fill></span></div>
@@ -356,17 +412,42 @@
   </div>
 
   {%- if section.settings.sticky -%}
-    <div class="ec-sticky{% if section.settings.sticky_desktop %} ec-sticky--desktop{% endif %}" data-ec-sticky aria-hidden="true" inert>
+    <div
+      id="EcSticky-{{ section.id }}"
+      class="ec-sticky{% if section.settings.sticky_desktop %} ec-sticky--desktop{% endif %}"
+      data-ec-sticky
+      data-ec-refresh
+      aria-hidden="true"
+      inert
+    >
       {%- if first_media != blank -%}
         {{ first_media.preview_image | image_url: width: 120 | image_tag: class: 'ec-sticky__img', loading: 'lazy', width: 48, height: 48, alt: '' }}
       {%- endif -%}
       <div class="ec-sticky__txt">
         <p class="ec-sticky__name">{{ product.title | escape }}</p>
-        <p class="ec-sticky__price" data-ec-sticky-price>{{ variant.price | money }}</p>
+        <p class="ec-sticky__price">
+          <span class="ec-sticky__pack" data-ec-sticky-pack {% if start_label == blank %}hidden{% endif %}>{{ start_label | escape }}</span>
+          <span data-ec-sticky-price>{{ start_total | money }}</span>
+        </p>
       </div>
-      <button type="submit" form="{{ form_id }}" name="add" class="ec-btn ec-btn--primary" data-ec-add>
+      <button
+        type="submit"
+        form="{{ form_id }}"
+        name="add"
+        class="ec-btn ec-btn--primary"
+        data-ec-add
+        {% unless variant.available %}
+          disabled
+        {% endunless %}
+      >
         {% render 'ecoms-icon', name: 'cart' %}
-        <span>{{ section.settings.sticky_label | escape }}</span>
+        <span>
+          {%- if variant.available -%}
+            {{ section.settings.sticky_label | escape }}
+          {%- else -%}
+            {{ 'products.product.sold_out' | t }}
+          {%- endif -%}
+        </span>
       </button>
     </div>
   {%- endif -%}
@@ -428,6 +509,56 @@
       "id": "badge",
       "label": "Etiqueta sobre la foto",
       "info": "Ej.: Más vendido. Solo si es real."
+    },
+    {
+      "type": "select",
+      "id": "media_ratio",
+      "label": "Formato de las fotos",
+      "options": [
+        {
+          "value": "square",
+          "label": "Cuadrado 1:1 (menos scroll en móvil)"
+        },
+        {
+          "value": "portrait",
+          "label": "Vertical 4:5"
+        },
+        {
+          "value": "landscape",
+          "label": "Horizontal 4:3"
+        }
+      ],
+      "default": "square"
+    },
+    {
+      "type": "select",
+      "id": "media_fit",
+      "label": "Ajuste de la foto",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Rellenar (puede recortar bordes)"
+        },
+        {
+          "value": "contain",
+          "label": "Completa (sin recortes)"
+        }
+      ],
+      "default": "cover",
+      "info": "«Completa» muestra fotos verticales enteras dentro del formato elegido."
+    },
+    {
+      "type": "checkbox",
+      "id": "video_first",
+      "label": "Mostrar videos primero",
+      "default": false,
+      "info": "Sube el video demostrativo en Productos → Multimedia. Los videos pasan al inicio de la galería."
+    },
+    {
+      "type": "checkbox",
+      "id": "video_autoplay",
+      "label": "Reproducir videos automáticamente (sin sonido)",
+      "default": false
     },
     {
       "type": "checkbox",
@@ -984,6 +1115,53 @@
           "default": "El total final se confirma en el carrito."
         },
         {
+          "type": "select",
+          "id": "default_tier",
+          "label": "Pack seleccionado al cargar",
+          "options": [
+            {
+              "value": "1",
+              "label": "Pack 1"
+            },
+            {
+              "value": "2",
+              "label": "Pack 2"
+            },
+            {
+              "value": "3",
+              "label": "Pack 3"
+            }
+          ],
+          "default": "1",
+          "info": "El botón principal y el botón fijo muestran el total de este pack. Si el pack está oculto se usa el Pack 1."
+        },
+        {
+          "type": "text",
+          "id": "item_name",
+          "label": "Nombre de las unidades (plural)",
+          "info": "Ej.: colgadores. Muestra «10 colgadores» en cada pack. Vacío = «unidades»."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_summary",
+          "label": "Mostrar «Qué incluye tu pack»",
+          "default": false,
+          "info": "Resumen bajo los packs con la cantidad, el ahorro y el envío gratis del pack elegido."
+        },
+        {
+          "type": "text",
+          "id": "summary_label",
+          "label": "Título del resumen",
+          "default": "Tu pack incluye"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_free_shipping",
+          "label": "Marcar «Envío gratis» en los packs que lo alcanzan",
+          "default": true,
+          "info": "Solo aparece si en Configuración del tema → ECOMS · Carrito el envío gratis está activado."
+        },
+        {
           "type": "header",
           "content": "Descuentos reales"
         },
@@ -1020,6 +1198,12 @@
           "type": "text",
           "id": "tier1_tag",
           "label": "Etiqueta"
+        },
+        {
+          "type": "text",
+          "id": "tier1_note",
+          "label": "Qué incluye (opcional)",
+          "info": "Una línea corta, ej.: «Para un clóset completo». No pongas datos sin confirmar."
         },
         {
           "type": "image_picker",
@@ -1067,6 +1251,12 @@
           "default": "Más vendido"
         },
         {
+          "type": "text",
+          "id": "tier2_note",
+          "label": "Qué incluye (opcional)",
+          "info": "Una línea corta, ej.: «Para un clóset completo». No pongas datos sin confirmar."
+        },
+        {
           "type": "image_picker",
           "id": "tier2_image",
           "label": "Imagen"
@@ -1109,6 +1299,12 @@
           "type": "text",
           "id": "tier3_tag",
           "label": "Etiqueta"
+        },
+        {
+          "type": "text",
+          "id": "tier3_note",
+          "label": "Qué incluye (opcional)",
+          "info": "Una línea corta, ej.: «Para un clóset completo». No pongas datos sin confirmar."
         },
         {
           "type": "image_picker",
@@ -1688,19 +1884,19 @@
               "label": "Carrito"
             }
           ],
-          "default": "chat"
+          "default": "box"
         },
         {
           "type": "text",
           "id": "title_4",
           "label": "Título 4",
-          "default": "Soporte"
+          "default": "Seguimiento del pedido"
         },
         {
           "type": "text",
           "id": "text_4",
           "label": "Detalle 4",
-          "default": "Por WhatsApp"
+          "default": "Te avisamos del envío"
         }
       ]
     },
@@ -2265,7 +2461,7 @@
       "settings": [
         {
           "type": "paragraph",
-          "content": "Usa el monto de Ajustes del tema → ECOMS · Carrito. Si es 0 muestra el texto fijo."
+          "content": "Usa el monto de Configuración del tema → ECOMS · Carrito y solo aparece con el envío gratis activado allí. Sin envío gratis activo muestra el texto fijo (si lo completas)."
         },
         {
           "type": "text",

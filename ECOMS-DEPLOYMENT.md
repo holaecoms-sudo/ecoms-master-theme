@@ -168,3 +168,46 @@ Además, cualquier ajuste de texto o imagen del editor se puede **conectar a un 
 | `ECOMS · Barra confianza` (banda diagonal) | Compra sin riesgo | Condiciones reales de la tienda |
 
 Bloques de la ficha (`ECOMS · Producto`): Packs (diseño «Ofertas»: total, c/u, ahorro y etiquetas), Stock real, Cuenta regresiva (estilo «Sobrio»), Garantías (estilo «Línea» como apoyo bajo el CTA), Medios de pago, Fechas de entrega, Testimonio destacado e Íconos bajo la galería.
+
+---
+
+## 10. Packs predeterminados, envío gratis y fichas por metacampos (v1.4)
+
+### Pack seleccionado al cargar
+Bloque **Packs** → **Pack seleccionado al cargar** (Pack 1/2/3). El formulario, el botón principal, el botón fijo y el resumen se generan en el servidor con ese pack. La cantidad real del formulario es la del pack: el carrito y Dropi reciben **N unidades de la misma variante**, sin variantes "pack" ni SKUs nuevos.
+- **Nombre de las unidades (plural):** ej. «colgadores» → «10 colgadores · $3.330 c/u».
+- **Mostrar «Qué incluye tu pack»:** un resumen bajo los packs con cantidad, ahorro y envío gratis, sincronizado con la selección.
+- **Qué incluye (opcional)** por pack: una línea corta y verificable.
+- Los precios salen siempre del precio de la variante en Shopify. El % del pack solo se muestra con «Los descuentos ya existen en Shopify» marcado. Cada % debe coincidir con un **descuento automático** de cantidad mínima.
+
+### Envío gratis (desactivado por defecto)
+*Configuración del tema → ECOMS · Carrito*:
+1. Crea antes la tarifa real en *Configuración → Envío y entrega → perfil General → zona Chile*: tarifa $0 con la condición «Según el precio del pedido», mínimo igual al umbral. Confirma con Dropi el costo real del despacho.
+2. Define **Envío gratis desde (miles de CLP)** y marca **El envío gratis ya existe en Shopify**.
+3. Recién entonces aparecen:
+   - el anuncio (bloque «Envío gratis» del header: `[amount]` = umbral),
+   - la etiqueta en los packs que lo alcanzan,
+   - la barra de progreso del carrito, que usa el total con descuentos y se actualiza al cambiar cantidades.
+
+### Especificaciones por metacampo
+Cada fila de `ECOMS · Especificaciones` tiene el campo **Metafield del producto**. Si el producto tiene ese metacampo, su valor reemplaza el texto fijo. Si no tiene valor, la fila no se publica.
+
+| Fila | Metacampo sugerido (texto de una línea) |
+|---|---|
+| Material | `ecoms.material` |
+| Medidas | `ecoms.dimensions` |
+| Capacidad | `ecoms.capacity` |
+| Peso soportado | `ecoms.max_weight` |
+| Sistema de uso | `ecoms.usage` |
+| Colores disponibles | `ecoms.colors` |
+| Contenido del paquete | `ecoms.package_contents` |
+
+Créalos en *Configuración → Datos personalizados → Productos*.
+
+### Otros ajustes
+- **FAQ:** cada pregunta tiene **Respuesta sin confirmar (borrador)**. Los borradores solo se ven en el editor y no entran en los datos estructurados.
+- **Galería:**
+  - **Formato de las fotos:** 1:1, 4:5 o 4:3.
+  - **Ajuste:** con «Completa» la foto vertical no se recorta.
+  - **Mostrar videos primero** y **Reproducir videos automáticamente**: sube el video demostrativo en *Productos → Multimedia*.
+- **Nombre visible de la tienda** (*ECOMS · Plantilla y marca*): reemplaza el nombre interno de Shopify en el pie, el título de la pestaña y `og:site_name`.

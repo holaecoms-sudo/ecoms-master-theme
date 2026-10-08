@@ -1,4 +1,5 @@
 {%- comment -%} ECOMS · Header (mockup): logo, centered menu, search / account / cart, mobile menu. {%- endcomment -%}
+{%- assign store_name = settings.ecoms_store_name | default: shop.name -%}
 <header class="ec-hdr" role="banner">
   <div class="ec-w ec-hdr__bar">
     {%- if section.settings.menu.links.size > 0 -%}
@@ -17,10 +18,10 @@
     <a href="{{ routes.root_url }}" class="ec-logo">
       {%- if settings.logo != blank -%}
         {%- assign logo_h = section.settings.logo_height -%}
-        {{ settings.logo | image_url: height: 120 | image_tag: height: logo_h, alt: shop.name, loading: 'eager' }}
+        {{ settings.logo | image_url: height: 120 | image_tag: height: logo_h, alt: store_name, loading: 'eager' }}
       {%- else -%}
         {%- if section.settings.logo_icon != 'none' -%}{% render 'ecoms-icon', name: section.settings.logo_icon %}{%- endif -%}
-        <span>{{ shop.name | escape }}</span>
+        <span>{{ store_name | escape }}</span>
       {%- endif -%}
     </a>
     <nav class="ec-nav" aria-label="Principal">

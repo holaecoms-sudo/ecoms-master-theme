@@ -47,7 +47,7 @@
             "heading": "",
             "layout": "offer",
             "show_cta_total": false,
-            "help": "El total final se confirma en el carrito.",
+            "help": "El descuento del pack se aplica automáticamente en el carrito.",
             "discounts_live": true,
             "tier1_qty": 5,
             "tier1_label": "Pack de 5",
@@ -61,7 +61,12 @@
             "tier3_qty": 20,
             "tier3_pct": 20,
             "tier3_label": "Pack de 20",
-            "tier3_tag": "Mejor ahorro"
+            "tier3_tag": "Mejor ahorro",
+            "default_tier": "2",
+            "item_name": "colgadores",
+            "show_summary": true,
+            "summary_label": "Tu pack incluye",
+            "show_free_shipping": true
           }
         },
         "stock": {
@@ -99,22 +104,22 @@
             "style": "line",
             "icon_1": "truck",
             "title_1": "Envíos a todo Chile",
-            "text_1": "Encriptado",
+            "text_1": "",
             "icon_2": "lock",
-            "title_2": "Pago seguro",
-            "text_2": "A todo Chile",
-            "icon_3": "chat",
-            "title_3": "Atención por WhatsApp",
-            "text_3": "Según política",
+            "title_2": "Compra segura",
+            "text_2": "",
+            "icon_3": "box",
+            "title_3": "Seguimiento del pedido",
+            "text_3": "",
             "icon_4": "return",
-            "title_4": "Cambios sin complicaciones",
-            "text_4": "Por WhatsApp"
+            "title_4": "Cambios y devoluciones",
+            "text_4": ""
           }
         },
         "payments": {
           "type": "payments",
           "settings": {
-            "text": "Pago seguro y cifrado"
+            "text": ""
           }
         },
         "delivery": {
@@ -159,9 +164,9 @@
         "benefits",
         "packs",
         "stock",
-        "urgency",
         "buy",
         "support",
+        "urgency",
         "payments",
         "delivery",
         "testimonial",
@@ -176,7 +181,11 @@
         "sticky_desktop": true,
         "sticky_label": "Agregar al carrito",
         "padding_top": 24,
-        "padding_bottom": 32
+        "padding_bottom": 32,
+        "media_ratio": "square",
+        "media_fit": "contain",
+        "video_first": true,
+        "video_autoplay": false
       }
     },
     "how": {
@@ -405,7 +414,8 @@
           "settings": {
             "icon": "gem",
             "label": "Material",
-            "value": ""
+            "value": "",
+            "metafield": "ecoms.material"
           }
         },
         "d": {
@@ -413,7 +423,8 @@
           "settings": {
             "icon": "grid",
             "label": "Medidas",
-            "value": ""
+            "value": "",
+            "metafield": "ecoms.dimensions"
           }
         },
         "c": {
@@ -421,7 +432,8 @@
           "settings": {
             "icon": "check",
             "label": "Capacidad",
-            "value": ""
+            "value": "",
+            "metafield": "ecoms.capacity"
           }
         },
         "w": {
@@ -429,7 +441,17 @@
           "settings": {
             "icon": "shield",
             "label": "Peso soportado",
-            "value": ""
+            "value": "",
+            "metafield": "ecoms.max_weight"
+          }
+        },
+        "use": {
+          "type": "row",
+          "settings": {
+            "icon": "hand",
+            "label": "Sistema de uso",
+            "value": "",
+            "metafield": "ecoms.usage"
           }
         },
         "col": {
@@ -437,15 +459,17 @@
           "settings": {
             "icon": "sparkle",
             "label": "Colores disponibles",
-            "value": ""
+            "value": "",
+            "metafield": "ecoms.colors"
           }
         },
         "inc": {
           "type": "row",
           "settings": {
             "icon": "box",
-            "label": "Qué incluye el paquete",
-            "value": ""
+            "label": "Contenido del paquete",
+            "value": "",
+            "metafield": "ecoms.package_contents"
           }
         }
       },
@@ -454,6 +478,7 @@
         "d",
         "c",
         "w",
+        "use",
         "col",
         "inc"
       ],
@@ -470,7 +495,7 @@
         "r1": {
           "type": "row",
           "settings": {
-            "feature": "Prendas por espacio en la barra",
+            "feature": "Varias prendas en el espacio de una",
             "value_1": true,
             "value_2": false,
             "value_3": false
@@ -488,7 +513,7 @@
         "r3": {
           "type": "row",
           "settings": {
-            "feature": "Ideal para clósets pequeños",
+            "feature": "Aprovecha el espacio vertical del clóset",
             "value_1": true,
             "value_2": false,
             "value_3": false
@@ -535,9 +560,9 @@
         "t2": {
           "type": "promise",
           "settings": {
-            "icon": "chat",
-            "heading": "Soporte por WhatsApp",
-            "text": "Te ayudamos"
+            "icon": "box",
+            "heading": "Seguimiento del pedido",
+            "text": "Te avisamos del envío"
           }
         },
         "t3": {
@@ -545,7 +570,7 @@
           "settings": {
             "icon": "truck",
             "heading": "Envíos a todo Chile",
-            "text": "Seguimiento"
+            "text": "Despacho a domicilio"
           }
         },
         "t4": {
@@ -641,36 +666,57 @@
         "q1": {
           "type": "faq",
           "settings": {
-            "question": "¿Cuánto peso soporta?",
-            "answer": "<p>Indica aquí la capacidad real según la ficha del proveedor.</p>"
+            "question": "¿Qué significa «9 en 1»?",
+            "answer": "<p>Completa con la explicación validada del proveedor: cuántas prendas caben y cómo se cuelgan.</p>",
+            "draft": true
           }
         },
         "q2": {
           "type": "faq",
           "settings": {
-            "question": "¿De qué material está hecho?",
-            "answer": "<p>Indica el material real del producto.</p>"
+            "question": "¿Qué incluye cada pack?",
+            "answer": "<p>Cada pack incluye la cantidad de colgadores que eliges (5, 10 o 20). Puedes cambiar de pack antes de agregarlo al carrito y el descuento se aplica automáticamente.</p>",
+            "draft": false
           }
         },
         "q3": {
           "type": "faq",
           "settings": {
-            "question": "¿Realmente ahorra espacio?",
-            "answer": "<p>Explica cómo se usa para colgar varias prendas en el espacio de una.</p>"
+            "question": "¿De qué material está hecho?",
+            "answer": "<p>Indica el material real según la ficha del proveedor.</p>",
+            "draft": true
           }
         },
         "q4": {
           "type": "faq",
           "settings": {
-            "question": "¿Cuánto tarda el envío?",
-            "answer": "<p>El plazo depende de tu comuna y lo ves antes de pagar en el checkout.</p>"
+            "question": "¿Cuánto peso soporta?",
+            "answer": "<p>Indica la capacidad real según la ficha del proveedor.</p>",
+            "draft": true
           }
         },
         "q5": {
           "type": "faq",
           "settings": {
-            "question": "¿Qué pasa si llega con un defecto?",
-            "answer": "<p>Describe aquí la política de cambios de la tienda.</p>"
+            "question": "¿Cuánto cuesta el envío y cuánto tarda?",
+            "answer": "<p>Despachamos a todo Chile. El costo y el plazo estimado para tu comuna aparecen en el checkout antes de pagar.</p>",
+            "draft": false
+          }
+        },
+        "q6": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo hago seguimiento de mi pedido?",
+            "answer": "<p>Confirma con Dropi cómo se envía el número de seguimiento (por ejemplo, el email de envío de Shopify) y escríbelo aquí.</p>",
+            "draft": true
+          }
+        },
+        "q7": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Puedo cambiar o devolver mi compra?",
+            "answer": "<p>Resume tu política de cambios y devoluciones y enlázala (Configuración → Políticas).</p>",
+            "draft": true
           }
         }
       },
@@ -679,7 +725,9 @@
         "q2",
         "q3",
         "q4",
-        "q5"
+        "q5",
+        "q6",
+        "q7"
       ],
       "settings": {
         "heading": "Preguntas frecuentes",

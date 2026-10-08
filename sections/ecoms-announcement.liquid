@@ -6,13 +6,39 @@
   <div class="ec-ann__inner">
     <span class="ec-ann__msgs">
       {%- if section.settings.icon != 'none' -%}{% render 'ecoms-icon', name: section.settings.icon %}{%- endif -%}
+      {%- liquid
+        assign shown = 0
+        assign ship_threshold = 0
+        if settings.ecoms_free_shipping_live
+          assign ship_threshold = settings.ecoms_free_shipping_threshold | plus: 0 | times: 100000
+        endif
+      -%}
       {%- for block in section.blocks -%}
-        {%- unless forloop.first %}<span class="ec-ann__sep" aria-hidden="true">{{ section.settings.separator }}</span>{% endunless -%}
+        {%- liquid
+          assign msg = block.settings.text | escape
+          if block.type == 'free_shipping'
+            # Only announced when a real free-shipping rate exists (Theme settings → ECOMS · Carrito).
+            if ship_threshold == 0
+              assign msg = ''
+            else
+              assign ship_amount = ship_threshold | money_without_trailing_zeros
+              assign msg = msg | replace: '[amount]', ship_amount
+            endif
+          endif
+        -%}
+        {%- if msg == blank -%}
+          {%- if request.design_mode and block.type == 'free_shipping' -%}
+            <span class="ec-ann__hidden" {{ block.shopify_attributes }}>(Envío gratis oculto: actívalo en ECOMS · Carrito)</span>
+          {%- endif -%}
+          {%- continue -%}
+        {%- endif -%}
+        {%- if shown > 0 %}<span class="ec-ann__sep" aria-hidden="true">{{ section.settings.separator }}</span>{% endif -%}
+        {%- assign shown = shown | plus: 1 -%}
         <span {{ block.shopify_attributes }}>
           {%- if block.settings.link != blank -%}
-            <a href="{{ block.settings.link }}">{{ block.settings.text | escape }}</a>
+            <a href="{{ block.settings.link }}">{{ msg }}</a>
           {%- else -%}
-            {{- block.settings.text | escape -}}
+            {{- msg -}}
           {%- endif -%}
         </span>
       {%- endfor -%}
@@ -231,6 +257,29 @@
           "id": "text",
           "label": "Texto",
           "default": "Envíos a todo Chile"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Enlace"
+        }
+      ]
+    },
+    {
+      "type": "free_shipping",
+      "name": "Envío gratis",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Solo se muestra cuando el envío gratis está activado en Configuración del tema → ECOMS · Carrito, con el mismo monto."
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Envío gratis sobre [amount]",
+          "info": "[amount] se reemplaza por el monto configurado."
         },
         {
           "type": "url",

@@ -63,9 +63,9 @@
             "icon_3": "return",
             "title_3": "Cambios",
             "text_3": "Según política",
-            "icon_4": "chat",
-            "title_4": "Soporte",
-            "text_4": "Por WhatsApp"
+            "icon_4": "box",
+            "title_4": "Seguimiento del pedido",
+            "text_4": "Te avisamos del envío"
           }
         },
         "media_features": {
@@ -133,9 +133,9 @@
         "s4": {
           "type": "promise",
           "settings": {
-            "icon": "chat",
-            "heading": "Atención real",
-            "text": "Te ayudamos por WhatsApp"
+            "icon": "box",
+            "heading": "Seguimiento del pedido",
+            "text": "Te avisamos cuando se despacha"
           }
         }
       },

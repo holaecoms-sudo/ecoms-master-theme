@@ -19,7 +19,8 @@
       {{ page_title }}
       {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
       {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+      {%- assign ec_store_name = settings.ecoms_store_name | default: shop.name -%}
+      {%- unless page_title contains ec_store_name %} &ndash; {{ ec_store_name }}{% endunless -%}
     </title>
 
     {% if page_description %}

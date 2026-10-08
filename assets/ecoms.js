@@ -103,6 +103,32 @@
     return v ? v.price : 0;
   }
 
+  // «Qué incluye tu pack» + sticky label: read from the selected pack (server-rendered data).
+  function syncPackInfo(qty, total) {
+    const packs = $('[data-ec-packs]');
+    const radio = packs?.querySelector('input[type="radio"]:checked');
+    const label = radio ? radio.dataset.label || '' : '';
+    $$('[data-ec-sticky-pack]').forEach((el) => {
+      el.textContent = label;
+      el.hidden = !label;
+    });
+    $$('[data-ec-pack-summary]').forEach((box) => {
+      const title = box.closest('[data-ec-packs]')?.dataset.title || '';
+      const inc = box.querySelector('[data-ec-ps-inc]');
+      if (inc) inc.textContent = `${qty} × ${title}`;
+      const save = radio ? Number(radio.dataset.save) || 0 : 0;
+      const saveEl = box.querySelector('[data-ec-ps-save]');
+      if (saveEl) {
+        saveEl.hidden = save <= 0;
+        const amount = saveEl.querySelector('[data-ec-ps-save-amount]');
+        if (amount) amount.textContent = money(save);
+      }
+      const threshold = Number(packs?.dataset.shipThreshold) || 0;
+      const shipEl = box.querySelector('[data-ec-ps-ship]');
+      if (shipEl) shipEl.hidden = !(threshold > 0 && total >= threshold);
+    });
+  }
+
   function sync() {
     const qty = currentQty();
     const packs = $('[data-ec-packs]');
@@ -110,6 +136,7 @@
     const total = totalFor(unitPrice(), qty, packs);
     $$('[data-ec-cta-total]').forEach((el) => { el.textContent = money(total); });
     $$('[data-ec-sticky-price]').forEach((el) => { el.textContent = money(total); });
+    syncPackInfo(qty, total);
     $$('[data-ec-shipbar]').forEach((bar) => {
       const threshold = Number(bar.dataset.threshold) || 0;
       if (!threshold) return;
@@ -371,6 +398,7 @@
   async function submitEcForm(form, submitter) {
     const error = form.querySelector('[data-ec-form-error]');
     const buttons = $$('[data-ec-add]');
+    if (buttons.some((b) => b.getAttribute('aria-busy') === 'true')) return;
     buttons.forEach((b) => b.setAttribute('aria-busy', 'true'));
     if (error) error.hidden = true;
     const body = new FormData(form);
@@ -383,7 +411,12 @@
       const json = await postCart(body, false);
       if (!showDrawer(json)) window.location.href = window.routes?.cart_url || '/cart';
     } catch (e) {
-      if (error) { error.textContent = e.message; error.hidden = false; }
+      if (error) {
+        error.textContent = e.message;
+        error.hidden = false;
+        // The sticky bar can sit far from the form: bring the message into view.
+        if (submitter && submitter.closest('[data-ec-sticky]')) error.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     } finally {
       buttons.forEach((b) => b.removeAttribute('aria-busy'));
       submitter?.blur();
@@ -402,6 +435,8 @@
     const t = event.target;
     const pack = t.closest('[data-ec-packs] input[type="radio"]');
     if (pack) {
+      const error = ecForm()?.querySelector('[data-ec-form-error]');
+      if (error) error.hidden = true;
       setQty(Number(pack.value));
       track('ecoms_pack_selected', { quantity: Number(pack.value), discount_pct: Number(pack.dataset.pct) || 0 });
       return;
@@ -425,7 +460,7 @@
     const play = t.closest('[data-ec-play]');
     if (play) {
       const video = play.parentElement.querySelector('video');
-      if (video) { video.controls = true; video.muted = false; video.play(); play.hidden = true; }
+      if (video) { video.controls = true; video.muted = false; video.play().catch(() => {}); play.hidden = true; }
       return;
     }
 
