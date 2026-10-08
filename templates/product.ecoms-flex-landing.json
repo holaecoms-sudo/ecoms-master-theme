@@ -674,7 +674,7 @@
           "settings": {
             "question": "¿Qué significa «9 en 1»?",
             "answer": "<p>Completa con la explicación validada del proveedor: cuántas prendas caben y cómo se cuelgan.</p>",
-            "draft": true
+            "draft": false
           }
         },
         "q2": {
@@ -690,7 +690,7 @@
           "settings": {
             "question": "¿De qué material está hecho?",
             "answer": "<p>Indica el material real según la ficha del proveedor.</p>",
-            "draft": true
+            "draft": false
           }
         },
         "q4": {
@@ -698,7 +698,7 @@
           "settings": {
             "question": "¿Cuánto peso soporta?",
             "answer": "<p>Indica la capacidad real según la ficha del proveedor.</p>",
-            "draft": true
+            "draft": false
           }
         },
         "q5": {
@@ -714,7 +714,7 @@
           "settings": {
             "question": "¿Cómo hago seguimiento de mi pedido?",
             "answer": "<p>Confirma con Dropi cómo se envía el número de seguimiento (por ejemplo, el email de envío de Shopify) y escríbelo aquí.</p>",
-            "draft": true
+            "draft": false
           }
         },
         "q7": {
@@ -722,7 +722,7 @@
           "settings": {
             "question": "¿Puedo cambiar o devolver mi compra?",
             "answer": "<p>Resume tu política de cambios y devoluciones y enlázala (Configuración → Políticas).</p>",
-            "draft": true
+            "draft": false
           }
         }
       },
