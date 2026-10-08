@@ -34,7 +34,7 @@
           "settings": {
             "heading": "",
             "layout": "offer",
-            "show_cta_total": false,
+            "show_cta_total": true,
             "help": "El total final se confirma en el carrito.",
             "discounts_live": true,
             "tier1_qty": 5,
