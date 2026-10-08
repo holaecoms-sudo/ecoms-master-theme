@@ -69,4 +69,17 @@ def long_names(o, where):
 for p in glob.glob(f'{root}/sections/*.liquid'):
     long_names(schema(os.path.basename(p)[:-7]) or {}, os.path.basename(p))
 long_names(s, 'settings_schema.json')
+# Other upload-time rules reported by Shopify's GitHub sync
+for k in ('theme_name', 'theme_author'):
+    if len(s[0].get(k, '')) > 25: errs.append(f'settings_schema.json: {k} too long (max 25)')
+def ranges(o, where):
+    if isinstance(o, dict):
+        if o.get('type') == 'range' and o.get('max', 0) >= 10000:
+            errs.append(f'{where}: range {o.get("id")} max must be less than 10000')
+        for v in o.values(): ranges(v, where)
+    elif isinstance(o, list):
+        for x in o: ranges(x, where)
+ranges(s, 'settings_schema.json')
+for p in glob.glob(f'{root}/sections/*.liquid'):
+    ranges(schema(os.path.basename(p)[:-7]) or {}, os.path.basename(p))
 print('\n'.join(errs) or 'OK: templates valid')

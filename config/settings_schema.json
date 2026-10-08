@@ -3,7 +3,7 @@
     "name": "theme_info",
     "theme_name": "ECOMS Master",
     "theme_version": "1.2.0",
-    "theme_author": "ECOMS (base Dawn 16 de Shopify)",
+    "theme_author": "ECOMS",
     "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
     "theme_support_url": "https://support.shopify.com/"
   },
@@ -1680,12 +1680,12 @@
       {
         "type": "range",
         "id": "ecoms_free_shipping_threshold",
-        "label": "Monto mínimo para envío gratis (CLP)",
+        "label": "Envío gratis desde (miles de CLP)",
         "min": 0,
-        "max": 300000,
-        "step": 5000,
+        "max": 300,
+        "step": 5,
         "default": 0,
-        "info": "Debe coincidir con una tarifa de envío gratis real en Configuración → Envíos. 0 oculta la barra."
+        "info": "Ej.: 40 = $40.000. Debe coincidir con una tarifa de envío gratis real en Configuración → Envíos. 0 oculta la barra."
       },
       {
         "type": "text",

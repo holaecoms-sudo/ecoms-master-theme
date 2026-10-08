@@ -6,7 +6,8 @@
 {%- if cart != empty -%}
   {%- case part -%}
     {%- when 'shipping' -%}
-      {%- assign threshold = settings.ecoms_free_shipping_threshold | plus: 0 | times: 100 -%}
+      {%- comment -%} Setting is in thousands of CLP (Shopify ranges must stay below 10000). {%- endcomment -%}
+      {%- assign threshold = settings.ecoms_free_shipping_threshold | plus: 0 | times: 100000 -%}
       {%- if threshold > 0 -%}
         {%- liquid
           assign left = threshold | minus: cart.total_price
