@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -24,6 +33,7 @@
         "urgency": {
           "type": "urgency",
           "settings": {
+            "end_at": "2026-12-31 23:59\"",
             "icon": "fire",
             "heading": "¡Oferta por tiempo limitado!",
             "text": "La promoción termina en:",
@@ -84,6 +94,7 @@
       ],
       "settings": {
         "layout": "flex",
+        "badge": "",
         "video_loop": true,
         "sticky": true,
         "sticky_desktop": true,
@@ -94,11 +105,6 @@
     },
     "strip": {
       "type": "ecoms-trust",
-      "settings": {
-        "width": "full",
-        "padding_top": 20,
-        "padding_bottom": 20
-      },
       "blocks": {
         "s1": {
           "type": "promise",
@@ -138,24 +144,35 @@
         "s2",
         "s3",
         "s4"
-      ]
+      ],
+      "settings": {
+        "width": "full",
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
     },
     "packs": {
       "type": "ecoms-packs",
       "settings": {
         "title": "Ahorra más con nuestros packs",
         "text": "Llévate más y paga menos. Ideales para ti o para regalar.",
+        "social_text": "+1.200 clientes en Chile",
         "layout": "cards",
         "show_cta_total": true,
         "help": "El total final se confirma en el carrito.",
         "discounts_live": false,
+        "tier1_label": "",
+        "tier1_tag": "",
         "tier2_enabled": true,
         "tier2_qty": 2,
         "tier2_pct": 15,
+        "tier2_label": "",
         "tier2_tag": "Más vendido",
         "tier3_enabled": true,
         "tier3_qty": 3,
         "tier3_pct": 25,
+        "tier3_label": "",
+        "tier3_tag": "",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
@@ -163,12 +180,6 @@
     },
     "features": {
       "type": "ecoms-feature-grid",
-      "settings": {
-        "style": "row",
-        "width": "full",
-        "padding_top": 8,
-        "padding_bottom": 36
-      },
       "blocks": {
         "f1": {
           "type": "feature",
@@ -208,19 +219,17 @@
         "f2",
         "f3",
         "f4"
-      ]
+      ],
+      "settings": {
+        "heading": "",
+        "style": "row",
+        "width": "full",
+        "padding_top": 8,
+        "padding_bottom": 36
+      }
     },
     "lifestyle": {
       "type": "ecoms-lifestyle",
-      "settings": {
-        "heading": "Luce siempre hermosa, donde estés",
-        "text": "<p>En casa, antes de salir o de viaje: un retoque rápido y discreto en segundos.</p>",
-        "button_label": "Comprar ahora",
-        "button_link": "#MainContent",
-        "width": "full",
-        "padding_top": 28,
-        "padding_bottom": 28
-      },
       "blocks": {
         "l1": {
           "type": "card",
@@ -252,26 +261,27 @@
         "l2",
         "l3",
         "l4"
-      ]
+      ],
+      "settings": {
+        "heading": "Luce siempre hermosa, donde estés",
+        "text": "<p>En casa, antes de salir o de viaje: un retoque rápido y discreto en segundos.</p>",
+        "button_label": "Comprar ahora",
+        "button_link": "#MainContent",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
     },
     "comparison": {
       "type": "ecoms-comparison",
-      "settings": {
-        "heading": "¿Por qué elegirlo?",
-        "feature_label": "Característica",
-        "col_1": "Flawless",
-        "col_2": "Pinzas o cera",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
-      },
       "blocks": {
         "r1": {
           "type": "row",
           "settings": {
             "feature": "Sin dolor ni irritación",
             "value_1": true,
-            "value_2": false
+            "value_2": false,
+            "value_3": false
           }
         },
         "r2": {
@@ -279,7 +289,8 @@
           "settings": {
             "feature": "Rápido y en segundos",
             "value_1": true,
-            "value_2": false
+            "value_2": false,
+            "value_3": false
           }
         },
         "r3": {
@@ -287,7 +298,8 @@
           "settings": {
             "feature": "Recargable y portátil",
             "value_1": true,
-            "value_2": false
+            "value_2": false,
+            "value_3": false
           }
         },
         "r4": {
@@ -295,7 +307,8 @@
           "settings": {
             "feature": "Úsalo en casa, cuando quieras",
             "value_1": true,
-            "value_2": true
+            "value_2": true,
+            "value_3": false
           }
         }
       },
@@ -304,12 +317,24 @@
         "r2",
         "r3",
         "r4"
-      ]
+      ],
+      "settings": {
+        "heading": "¿Por qué elegirlo?",
+        "feature_label": "Característica",
+        "col_1": "Flawless",
+        "col_2": "Pinzas o cera",
+        "col_3": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     },
     "reviews": {
       "type": "ecoms-reviews",
       "settings": {
         "heading": "Reseñas de nuestras clientas",
+        "link_label": "Ver todas",
+        "link": "",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
@@ -317,13 +342,6 @@
     },
     "faq": {
       "type": "ecoms-faq",
-      "settings": {
-        "heading": "Preguntas frecuentes",
-        "icon": "chev",
-        "width": "full",
-        "padding_top": 8,
-        "padding_bottom": 36
-      },
       "blocks": {
         "q1": {
           "type": "faq",
@@ -367,12 +385,20 @@
         "q3",
         "q4",
         "q5"
-      ]
+      ],
+      "settings": {
+        "heading": "Preguntas frecuentes",
+        "icon": "chev",
+        "width": "full",
+        "padding_top": 8,
+        "padding_bottom": 36
+      }
     },
     "cross_sell": {
       "type": "ecoms-cross-sell",
       "settings": {
         "heading": "También te puede gustar",
+        "products": [],
         "limit": 3,
         "button_label": "Agregar",
         "width": "left",
@@ -384,6 +410,8 @@
       "type": "ecoms-upsell",
       "settings": {
         "heading": "Completa tu rutina",
+        "product": "",
+        "items": "Producto + accesorio + accesorio",
         "show_saving": true,
         "button_label": "Agregar al carrito",
         "width": "right",
