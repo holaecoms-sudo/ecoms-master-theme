@@ -417,7 +417,7 @@
           "settings": {
             "icon": "gem",
             "label": "Material",
-            "value": "",
+            "value": "Plástico PP reforzado de alta resistencia",
             "metafield": "ecoms.material"
           }
         },
@@ -426,7 +426,7 @@
           "settings": {
             "icon": "grid",
             "label": "Medidas",
-            "value": "",
+            "value": "33 × 5 × 3 cm",
             "metafield": "ecoms.dimensions"
           }
         },
@@ -435,7 +435,7 @@
           "settings": {
             "icon": "check",
             "label": "Capacidad",
-            "value": "",
+            "value": "Hasta 9 perchas por organizador",
             "metafield": "ecoms.capacity"
           }
         },
@@ -444,7 +444,7 @@
           "settings": {
             "icon": "shield",
             "label": "Peso soportado",
-            "value": "",
+            "value": "Hasta 5 kg por organizador",
             "metafield": "ecoms.max_weight"
           }
         },
@@ -453,7 +453,7 @@
           "settings": {
             "icon": "hand",
             "label": "Sistema de uso",
-            "value": "",
+            "value": "Horizontal y vertical, con gancho giratorio",
             "metafield": "ecoms.usage"
           }
         },
@@ -462,7 +462,7 @@
           "settings": {
             "icon": "sparkle",
             "label": "Colores disponibles",
-            "value": "",
+            "value": "Rosa, celeste y gris",
             "metafield": "ecoms.colors"
           }
         },
@@ -471,7 +471,7 @@
           "settings": {
             "icon": "box",
             "label": "Contenido del paquete",
-            "value": "",
+            "value": "5, 10 o 20 organizadores, según pack",
             "metafield": "ecoms.package_contents"
           }
         }
