@@ -16,6 +16,7 @@ Theme Shopify (Online Store 2.0, base **Dawn 16**) para lanzar tiendas de produc
 - **[ECOMS-DEPLOYMENT.md](ECOMS-DEPLOYMENT.md) — despliegue multitienda, ramas, pruebas**
 - [Diagnóstico, arquitectura y plan](docs/01-diagnostico-y-plan.md)
 - [Instalar, personalizar y duplicar](docs/02-instalar-personalizar-duplicar.md)
+- [Checklist: nueva tienda en ~2 horas](docs/03-nueva-tienda-checklist.md)
 - Mockup de referencia: `docs/design/ecoms-master-mockup.html` (imágenes en `docs/design/mockup-images/`)
 
 ## Estructura

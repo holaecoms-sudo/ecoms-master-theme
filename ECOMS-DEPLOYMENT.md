@@ -108,6 +108,8 @@ Además, cualquier ajuste de texto o imagen del editor se puede **conectar a un 
 3. Vuelve a Shopify y verifica la conexión. Márcalo como dominio principal cuando esté listo.
 4. Cada subdominio apunta a **su propia** tienda. No se comparten tiendas entre subdominios.
 
+Paso a paso completo para abrir una tienda nueva (Dropi, pagos, descuentos, subdominio y pruebas): [docs/03-nueva-tienda-checklist.md](docs/03-nueva-tienda-checklist.md).
+
 ---
 
 ## 7. Ramas y actualizaciones
