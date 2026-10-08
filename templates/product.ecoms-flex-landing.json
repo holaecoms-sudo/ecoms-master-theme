@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -26,9 +35,11 @@
             "heading": "",
             "layout": "offer",
             "show_cta_total": false,
-            "discounts_live": false,
+            "help": "El total final se confirma en el carrito.",
+            "discounts_live": true,
             "tier1_qty": 5,
             "tier1_label": "Pack de 5",
+            "tier1_tag": "",
             "tier2_enabled": true,
             "tier2_qty": 10,
             "tier2_pct": 10,
@@ -55,6 +66,7 @@
             "add_label": "Agregar al carrito",
             "show_total": true,
             "show_buy_now": false,
+            "buy_now_icon": "none",
             "buy_now_label": "Comprar ahora"
           }
         },
@@ -78,7 +90,9 @@
         },
         "payments": {
           "type": "payments",
-          "settings": {}
+          "settings": {
+            "text": "Pago seguro y cifrado"
+          }
         },
         "delivery": {
           "type": "delivery",
@@ -116,6 +130,7 @@
       "settings": {
         "layout": "flex",
         "thumbs": "below",
+        "badge": "",
         "video_loop": true,
         "sticky": true,
         "sticky_desktop": true,
@@ -126,16 +141,6 @@
     },
     "row_1": {
       "type": "ecoms-image-text",
-      "settings": {
-        "image_side": "left",
-        "product_image_index": 2,
-        "heading": "Despídete del desorden y gana espacio",
-        "intro": "Tu clóset ordenado en minutos, sin obras ni muebles nuevos.",
-        "button_label": "Ordena tu clóset hoy",
-        "width": "full",
-        "padding_top": 40,
-        "padding_bottom": 20
-      },
       "blocks": {
         "p1": {
           "type": "point",
@@ -163,20 +168,21 @@
         "p1",
         "p2",
         "p3"
-      ]
+      ],
+      "settings": {
+        "image_side": "left",
+        "product_image_index": 2,
+        "heading": "Despídete del desorden y gana espacio",
+        "intro": "Tu clóset ordenado en minutos, sin obras ni muebles nuevos.",
+        "button_label": "Ordena tu clóset hoy",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 40,
+        "padding_bottom": 20
+      }
     },
     "row_2": {
       "type": "ecoms-image-text",
-      "settings": {
-        "image_side": "left",
-        "product_image_index": 3,
-        "heading": "Orden sin esfuerzo, todos los días",
-        "intro": "Se acabó buscar entre montones de ropa.",
-        "button_label": "Lo quiero",
-        "width": "full",
-        "padding_top": 20,
-        "padding_bottom": 20
-      },
       "blocks": {
         "p1": {
           "type": "point",
@@ -204,20 +210,21 @@
         "p1",
         "p2",
         "p3"
-      ]
-    },
-    "row_3": {
-      "type": "ecoms-image-text",
+      ],
       "settings": {
         "image_side": "left",
-        "product_image_index": 4,
-        "heading": "Espacio pequeño, gran organización",
-        "intro": "Ideal para departamentos, piezas compartidas y clósets chicos.",
-        "button_label": "Aprovecha tu espacio",
+        "product_image_index": 3,
+        "heading": "Orden sin esfuerzo, todos los días",
+        "intro": "Se acabó buscar entre montones de ropa.",
+        "button_label": "Lo quiero",
+        "button_link": "",
         "width": "full",
         "padding_top": 20,
         "padding_bottom": 20
-      },
+      }
+    },
+    "row_3": {
+      "type": "ecoms-image-text",
       "blocks": {
         "p1": {
           "type": "point",
@@ -245,17 +252,21 @@
         "p1",
         "p2",
         "p3"
-      ]
+      ],
+      "settings": {
+        "image_side": "left",
+        "product_image_index": 4,
+        "heading": "Espacio pequeño, gran organización",
+        "intro": "Ideal para departamentos, piezas compartidas y clósets chicos.",
+        "button_label": "Aprovecha tu espacio",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
     },
     "riskfree": {
       "type": "ecoms-trust",
-      "settings": {
-        "style": "slant",
-        "heading": "Compra sin riesgo",
-        "width": "full",
-        "padding_top": 0,
-        "padding_bottom": 0
-      },
       "blocks": {
         "t1": {
           "type": "promise",
@@ -295,13 +306,22 @@
         "t2",
         "t3",
         "t4"
-      ]
+      ],
+      "settings": {
+        "style": "slant",
+        "heading": "Compra sin riesgo",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     },
     "reviews": {
       "type": "ecoms-reviews",
       "settings": {
         "style": "masonry",
         "heading": "Opiniones de clientes",
+        "link_label": "Ver todas",
+        "link": "",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
@@ -309,13 +329,6 @@
     },
     "faq": {
       "type": "ecoms-faq",
-      "settings": {
-        "heading": "Preguntas frecuentes",
-        "icon": "chev",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
-      },
       "blocks": {
         "q1": {
           "type": "faq",
@@ -359,7 +372,14 @@
         "q3",
         "q4",
         "q5"
-      ]
+      ],
+      "settings": {
+        "heading": "Preguntas frecuentes",
+        "icon": "chev",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
