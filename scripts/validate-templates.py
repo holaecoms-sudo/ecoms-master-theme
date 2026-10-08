@@ -57,4 +57,16 @@ for p in glob.glob(f'{root}/sections/*.liquid'):
 s = json.load(open(f'{root}/config/settings_schema.json'))
 for g in s:
     check_settings('settings_schema/' + g['name'], g.get('settings', []), {}, errs)
+# Shopify rejects schema/setting-category names longer than 25 characters on upload
+def long_names(o, where):
+    if isinstance(o, dict):
+        for k, v in o.items():
+            if k == 'name' and isinstance(v, str) and not v.startswith('t:') and len(v) > 25:
+                errs.append(f'{where}: name too long ({len(v)} > 25): {v}')
+            long_names(v, where)
+    elif isinstance(o, list):
+        for x in o: long_names(x, where)
+for p in glob.glob(f'{root}/sections/*.liquid'):
+    long_names(schema(os.path.basename(p)[:-7]) or {}, os.path.basename(p))
+long_names(s, 'settings_schema.json')
 print('\n'.join(errs) or 'OK: templates valid')

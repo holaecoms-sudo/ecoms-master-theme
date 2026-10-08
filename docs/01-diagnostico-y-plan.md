@@ -75,7 +75,7 @@ Dawn 16 (intacto salvo 4 enganches mínimos)
 └── snippets/cart-drawer     → render 'ecoms-cart-extras' (envío gratis, sugerido, ahorro)
 
 Capa ECOMS (todo con prefijo ecoms-/ec-)
-├── config/settings_schema   → «ECOMS · Plantilla y marca», «ECOMS · Carrito y conversión»
+├── config/settings_schema   → «ECOMS · Plantilla y marca», «ECOMS · Carrito»
 ├── snippets/
 │   ├── ecoms-skin / -head / -body-class   → resuelve plantilla, tokens --ec-*, fuentes, CSS/JS
 │   ├── ecoms-icon                         → set SVG del mockup (30+ íconos, select en el editor)

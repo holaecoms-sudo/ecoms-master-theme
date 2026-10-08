@@ -21,7 +21,7 @@ Theme Shopify (Online Store 2.0, base **Dawn 16**) para lanzar tiendas de produc
 
 ```
 assets/     ecoms-base.css · ecoms-flex.css · ecoms.js   (+ archivos de Dawn)
-config/     ajustes «ECOMS · Plantilla y marca» y «ECOMS · Carrito y conversión»
+config/     ajustes «ECOMS · Plantilla y marca» y «ECOMS · Carrito»
 sections/   ecoms-*.liquid (13 secciones reutilizables) + main-product con bloques ecoms_*
 snippets/   ecoms-*.liquid (motor: plantilla, íconos, packs, cuenta regresiva, sticky, carrito)
 templates/  product.ecoms-flex.json · product.ecoms-brand.json · product.ecoms-direct.json
