@@ -7,9 +7,15 @@
   if product.metafields.reviews.rating.value != blank
     assign has_rating = true
   endif
+  assign real_blocks = 0
+  for block in section.blocks
+    unless block.type == 'review' and block.settings.example
+      assign real_blocks = real_blocks | plus: 1
+    endunless
+  endfor
   assign style = section.settings.style | default: 'flex'
 -%}
-{%- if section.blocks.size > 0 or has_rating or request.design_mode -%}
+{%- if real_blocks > 0 or has_rating or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-reviews' %}>
   <div class="ec-w">
     <div class="ec-rev-head ec-rev-head--{{ style }}">
@@ -31,9 +37,19 @@
           {%- when '@app' -%}
             <div class="ec-revs__app">{% render block %}</div>
           {%- when 'review' -%}
-            {%- if block.settings.text != blank -%}
+            {%- liquid
+              assign show_review = false
+              if block.settings.text != blank
+                assign show_review = true
+              endif
+              if block.settings.example and request.design_mode == false
+                assign show_review = false
+              endif
+            -%}
+            {%- if show_review -%}
               {%- assign initials = block.settings.author | split: ' ' -%}
-              <article class="ec-rev" {{ block.shopify_attributes }}>
+              <article class="ec-rev{% if block.settings.example %} ec-rev--example{% endif %}" {{ block.shopify_attributes }}>
+                {%- if block.settings.example -%}<span class="ec-rev__example">Ejemplo · no visible en la tienda</span>{%- endif -%}
                 <div class="ec-rev__who">
                   <span class="ec-avatar ec-avatar--{{ forloop.index0 | modulo: 5 }}" aria-hidden="true">
                     {%- for word in initials limit: 2 -%}{{ word | slice: 0 | upcase }}{%- endfor -%}
@@ -196,6 +212,13 @@
       "type": "review",
       "name": "Reseña real",
       "settings": [
+        {
+          "type": "checkbox",
+          "id": "example",
+          "label": "Reseña de ejemplo (solo visible en el editor)",
+          "default": false,
+          "info": "Desmárcalo cuando reemplaces el contenido por una reseña real y autorizada."
+        },
         {
           "type": "text",
           "id": "author",

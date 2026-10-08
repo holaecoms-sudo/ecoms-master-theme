@@ -106,7 +106,7 @@
             {%- capture tag -%}Ahorras {{ discount | money }}{%- endcapture -%}
           {%- endif -%}
           {%- if tag != blank -%}
-            <span class="ec-pack__tag ec-tag">{{ tag | escape }}</span>
+            <span class="ec-pack__tag ec-pack__tag--{{ i }} ec-tag">{{ tag | escape }}</span>
           {%- endif -%}
           <input
             type="radio"
@@ -140,8 +140,19 @@
                 {%- endif -%}
               </span>
               {%- if layout == 'offer' -%}
-                {%- assign offer_save = strike | minus: total -%}
-                {%- if offer_save > 0 -%}<span class="ec-pack__save">Ahorras {{ offer_save | money }}</span>{%- endif -%}
+                {%- liquid
+                  assign offer_save = strike | minus: total
+                  assign offer_pct = 0
+                  if offer_save > 0
+                    assign offer_pct = offer_save | times: 100 | divided_by: strike | floor
+                  endif
+                -%}
+                <span class="ec-pack__meta">
+                  <span class="ec-pack__unit">{{ per_unit | money }} c/u</span>
+                  {%- if offer_save > 0 -%}
+                    <span class="ec-pack__save">Ahorras {{ offer_save | money }}{% if offer_pct > 0 %} ({{ offer_pct }}%){% endif %}</span>
+                  {%- endif -%}
+                </span>
                 <span class="ec-pack__r">
                   <b>{{ total | money }}</b>
                   {%- if offer_save > 0 -%}<s>{{ strike | money }}</s>{%- endif -%}

@@ -152,3 +152,19 @@ Además, cualquier ajuste de texto o imagen del editor se puede **conectar a un 
 6. **Tracking:** eventos de Meta y Google en sus herramientas de prueba (Test Events, Tag Assistant).
 7. **Velocidad:** Lighthouse móvil sobre la página de producto. Fotos optimizadas (máx. ~1600 px).
 8. Recién entonces: **publicar el tema** y conectar el dominio.
+
+---
+
+## 9. Secciones reutilizables para landings de producto
+
+| Sección | Para qué | Datos reales necesarios |
+|---|---|---|
+| `ECOMS · Cómo funciona` (estilo íconos o fotos) | 3–4 pasos de uso | — |
+| `ECOMS · Especificaciones` | Tabla material, medidas, capacidad, peso, colores, contenido | Cada valor; las filas vacías no se publican. Se pueden conectar a metacampos |
+| `ECOMS · Ideal para` | Usos o públicos (íconos o fotos) | — |
+| `ECOMS · Imagen y texto` | Filas alternadas foto + lista + CTA | Fotos del producto (n.º configurable) |
+| `ECOMS · Tabla comparativa` | Producto vs alternativa | Solo afirmaciones comprobables |
+| `ECOMS · Reseñas` (muro de fotos) | Prueba social | Reseñas reales. Las marcadas «Reseña de ejemplo» solo se ven en el editor |
+| `ECOMS · Barra confianza` (banda diagonal) | Compra sin riesgo | Condiciones reales de la tienda |
+
+Bloques de la ficha (`ECOMS · Producto`): Packs (diseño «Ofertas»: total, c/u, ahorro y etiquetas), Stock real, Cuenta regresiva (estilo «Sobrio»), Garantías (estilo «Línea» como apoyo bajo el CTA), Medios de pago, Fechas de entrega, Testimonio destacado e Íconos bajo la galería.

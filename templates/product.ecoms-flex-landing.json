@@ -49,7 +49,7 @@
             "tier3_qty": 20,
             "tier3_pct": 20,
             "tier3_label": "Pack de 20",
-            "tier3_tag": "Mejor oferta"
+            "tier3_tag": "Mejor ahorro"
           }
         },
         "stock": {
@@ -70,30 +70,6 @@
             "buy_now_label": "Comprar ahora"
           }
         },
-        "trust": {
-          "type": "trust",
-          "settings": {
-            "style": "grid2",
-            "icon_1": "truck",
-            "title_1": "Envíos a todo Chile",
-            "text_1": "",
-            "icon_2": "return",
-            "title_2": "Cambios según política",
-            "text_2": "",
-            "icon_3": "chat",
-            "title_3": "Soporte por WhatsApp",
-            "text_3": "",
-            "icon_4": "lock",
-            "title_4": "Pago 100% seguro",
-            "text_4": ""
-          }
-        },
-        "payments": {
-          "type": "payments",
-          "settings": {
-            "text": "Pago seguro y cifrado"
-          }
-        },
         "delivery": {
           "type": "delivery",
           "settings": {
@@ -108,24 +84,82 @@
         "testimonial": {
           "type": "testimonial",
           "settings": {
-            "text": "Agrega aquí un testimonio real y autorizado de un cliente.",
             "author": "Nombre del cliente",
             "stars": 5,
             "verified": true
           }
+        },
+        "eyebrow": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Organización inteligente para tu clóset"
+          }
+        },
+        "sub": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Cuelga hasta 9 prendas en el espacio de una y libera tu clóset en minutos. Sin herramientas, sin muebles nuevos.</p>"
+          }
+        },
+        "urgency": {
+          "type": "urgency",
+          "settings": {
+            "icon": "clock",
+            "heading": "Oferta de lanzamiento",
+            "text": "Termina en:",
+            "style": "subtle",
+            "show_days": true
+          }
+        },
+        "support": {
+          "type": "trust",
+          "settings": {
+            "style": "line",
+            "icon_1": "truck",
+            "title_1": "Envíos a todo Chile",
+            "icon_2": "lock",
+            "title_2": "Pago seguro",
+            "icon_3": "chat",
+            "title_3": "Atención por WhatsApp",
+            "icon_4": "return",
+            "title_4": "Cambios sin complicaciones"
+          }
+        },
+        "media_features": {
+          "type": "media_features",
+          "settings": {
+            "icon_1": "grid",
+            "text_1": "9 espacios por colgador",
+            "icon_2": "return",
+            "text_2": "Gancho giratorio 360°",
+            "icon_3": "home",
+            "text_3": "Ideal clósets chicos",
+            "icon_4": "hand",
+            "text_4": "Se instala en segundos"
+          }
+        },
+        "payments": {
+          "type": "payments",
+          "settings": {
+            "text": "Pago seguro y cifrado"
+          }
         }
       },
       "block_order": [
+        "eyebrow",
         "rating",
         "title",
+        "sub",
         "benefits",
         "packs",
         "stock",
+        "urgency",
         "buy",
-        "trust",
+        "support",
         "payments",
         "delivery",
-        "testimonial"
+        "testimonial",
+        "media_features"
       ],
       "settings": {
         "layout": "flex",
@@ -177,7 +211,7 @@
         "button_label": "Ordena tu clóset hoy",
         "button_link": "",
         "width": "full",
-        "padding_top": 40,
+        "padding_top": 20,
         "padding_bottom": 20
       }
     },
@@ -212,7 +246,7 @@
         "p3"
       ],
       "settings": {
-        "image_side": "left",
+        "image_side": "right",
         "product_image_index": 3,
         "heading": "Orden sin esfuerzo, todos los días",
         "intro": "Se acabó buscar entre montones de ropa.",
@@ -319,13 +353,65 @@
       "type": "ecoms-reviews",
       "settings": {
         "style": "masonry",
-        "heading": "Opiniones de clientes",
+        "heading": "Lo que dicen nuestros clientes",
         "link_label": "Ver todas",
         "link": "",
         "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
+        "padding_top": 28,
+        "padding_bottom": 28
+      },
+      "blocks": {
+        "ex1": {
+          "type": "review",
+          "settings": {
+            "example": true,
+            "author": "Nombre del cliente",
+            "date": "Hace X días",
+            "stars": 5,
+            "verified": true,
+            "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo»."
+          }
+        },
+        "ex2": {
+          "type": "review",
+          "settings": {
+            "example": true,
+            "author": "Nombre del cliente",
+            "date": "Hace X días",
+            "stars": 5,
+            "verified": true,
+            "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo»."
+          }
+        },
+        "ex3": {
+          "type": "review",
+          "settings": {
+            "example": true,
+            "author": "Nombre del cliente",
+            "date": "Hace X días",
+            "stars": 5,
+            "verified": true,
+            "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo»."
+          }
+        },
+        "ex4": {
+          "type": "review",
+          "settings": {
+            "example": true,
+            "author": "Nombre del cliente",
+            "date": "Hace X días",
+            "stars": 5,
+            "verified": true,
+            "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo»."
+          }
+        }
+      },
+      "block_order": [
+        "ex1",
+        "ex2",
+        "ex3",
+        "ex4"
+      ]
     },
     "faq": {
       "type": "ecoms-faq",
@@ -377,16 +463,224 @@
         "heading": "Preguntas frecuentes",
         "icon": "chev",
         "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 20,
+        "padding_bottom": 32
       }
+    },
+    "how": {
+      "type": "ecoms-steps",
+      "settings": {
+        "style": "icons",
+        "heading": "Cómo funciona",
+        "text": "Tres pasos y tu clóset cambia por completo.",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 24
+      },
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "icon": "hand",
+            "heading": "Cuélgalo",
+            "text": "Engánchalo en la barra de tu clóset."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "icon": "grid",
+            "heading": "Organiza tus prendas",
+            "text": "Cuelga hasta 9 prendas, una bajo otra."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "icon": "sparkle",
+            "heading": "Ahorra espacio",
+            "text": "Libera la barra y ve todo de un vistazo."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "ideal": {
+      "type": "ecoms-ideal-for",
+      "settings": {
+        "heading": "Ideal para",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 20
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "icon": "home",
+            "title": "Clósets pequeños",
+            "text": "Aprovecha cada centímetro"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "icon": "box",
+            "title": "Departamentos",
+            "text": "Más orden en menos espacio"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "icon": "users",
+            "title": "Piezas compartidas",
+            "text": "Cada uno con su espacio"
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "icon": "heart",
+            "title": "Ropa de adultos y niños",
+            "text": "Para toda la familia"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4"
+      ]
+    },
+    "specs": {
+      "type": "ecoms-specs",
+      "settings": {
+        "heading": "Especificaciones",
+        "width": "full",
+        "padding_top": 20,
+        "padding_bottom": 20
+      },
+      "blocks": {
+        "m": {
+          "type": "row",
+          "settings": {
+            "icon": "gem",
+            "label": "Material"
+          }
+        },
+        "d": {
+          "type": "row",
+          "settings": {
+            "icon": "grid",
+            "label": "Medidas"
+          }
+        },
+        "c": {
+          "type": "row",
+          "settings": {
+            "icon": "check",
+            "label": "Capacidad"
+          }
+        },
+        "w": {
+          "type": "row",
+          "settings": {
+            "icon": "shield",
+            "label": "Peso soportado"
+          }
+        },
+        "col": {
+          "type": "row",
+          "settings": {
+            "icon": "sparkle",
+            "label": "Colores disponibles"
+          }
+        },
+        "inc": {
+          "type": "row",
+          "settings": {
+            "icon": "box",
+            "label": "Qué incluye el paquete"
+          }
+        }
+      },
+      "block_order": [
+        "m",
+        "d",
+        "c",
+        "w",
+        "col",
+        "inc"
+      ]
+    },
+    "comparison": {
+      "type": "ecoms-comparison",
+      "settings": {
+        "heading": "¿Por qué elegirlo?",
+        "feature_label": "Característica",
+        "col_1": "Colgador Smart 9 en 1",
+        "col_2": "Ganchos tradicionales",
+        "width": "full",
+        "padding_top": 20,
+        "padding_bottom": 20
+      },
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "feature": "Prendas por espacio en la barra",
+            "value_1": true,
+            "value_2": false
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "feature": "Ropa ordenada y a la vista",
+            "value_1": true,
+            "value_2": false
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "feature": "Ideal para clósets pequeños",
+            "value_1": true,
+            "value_2": false
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "feature": "Se instala sin herramientas",
+            "value_1": true,
+            "value_2": true
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
     }
   },
   "order": [
     "main",
+    "how",
     "row_1",
     "row_2",
     "row_3",
+    "ideal",
+    "specs",
+    "comparison",
     "riskfree",
     "reviews",
     "faq"

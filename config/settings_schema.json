@@ -1548,7 +1548,7 @@
         "type": "color",
         "id": "ecoms_primary",
         "label": "Principal (botones, acentos)",
-        "default": "#1D6B47"
+        "default": "#0F5132"
       },
       {
         "type": "color",
@@ -1560,13 +1560,13 @@
         "type": "color",
         "id": "ecoms_dark",
         "label": "Oscuro (anuncios, bandas, footer)",
-        "default": "#12392A"
+        "default": "#0F5132"
       },
       {
         "type": "color",
         "id": "ecoms_accent",
         "label": "Secundario (Comprar ahora)",
-        "default": "#4B3BD6"
+        "default": "#2E7D5A"
       },
       {
         "type": "color",
@@ -1578,19 +1578,19 @@
         "type": "color",
         "id": "ecoms_soft",
         "label": "Fondo suave",
-        "default": "#E2F3E8"
+        "default": "#E8F3ED"
       },
       {
         "type": "color",
         "id": "ecoms_soft_ink",
         "label": "Texto sobre fondo suave",
-        "default": "#1D6B47"
+        "default": "#0F5132"
       },
       {
         "type": "color",
         "id": "ecoms_tag",
         "label": "Etiquetas (Más vendido)",
-        "default": "#1D6B47"
+        "default": "#2E7D5A"
       },
       {
         "type": "color",
@@ -1602,25 +1602,25 @@
         "type": "color",
         "id": "ecoms_sale_bg",
         "label": "Fondo de ahorro",
-        "default": "#D5F0DF"
+        "default": "#E8F3ED"
       },
       {
         "type": "color",
         "id": "ecoms_sale_ink",
         "label": "Texto de ahorro",
-        "default": "#17663F"
+        "default": "#0F5132"
       },
       {
         "type": "color",
         "id": "ecoms_urgent",
         "label": "Urgencia",
-        "default": "#DE2F3B"
+        "default": "#B42318"
       },
       {
         "type": "color",
         "id": "ecoms_urgent_bg",
         "label": "Fondo de urgencia",
-        "default": "#FDE8EA"
+        "default": "#FEF3F2"
       },
       {
         "type": "color",
@@ -1632,31 +1632,31 @@
         "type": "color",
         "id": "ecoms_deep",
         "label": "Banda profunda (Brand)",
-        "default": "#2C4A3B"
+        "default": "#2E7D5A"
       },
       {
         "type": "color",
         "id": "ecoms_bg",
         "label": "Fondo",
-        "default": "#FFFFFF"
+        "default": "#FAFAF7"
       },
       {
         "type": "color",
         "id": "ecoms_ink",
         "label": "Texto",
-        "default": "#15211B"
+        "default": "#1F2937"
       },
       {
         "type": "color",
         "id": "ecoms_muted",
         "label": "Texto secundario",
-        "default": "#5A6660"
+        "default": "#6B7280"
       },
       {
         "type": "color",
         "id": "ecoms_line",
         "label": "Bordes",
-        "default": "#E1E6E3"
+        "default": "#E3E8E5"
       },
       {
         "type": "header",
