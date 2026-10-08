@@ -17,19 +17,22 @@
         "m1": {
           "type": "message",
           "settings": {
-            "text": "Envíos a todo Chile"
+            "text": "Envíos a todo Chile",
+            "link": ""
           }
         },
         "m2": {
           "type": "message",
           "settings": {
-            "text": "Compra segura"
+            "text": "Compra segura",
+            "link": ""
           }
         },
         "m3": {
           "type": "message",
           "settings": {
-            "text": "Atención por WhatsApp"
+            "text": "Atención por WhatsApp",
+            "link": ""
           }
         }
       },
@@ -42,6 +45,7 @@
         "style": "auto",
         "icon": "truck",
         "separator": "|",
+        "end_at": "",
         "timer_label": "Oferta termina en:"
       }
     },
@@ -50,7 +54,8 @@
       "settings": {
         "menu": "main-menu",
         "logo_icon": "bag",
-        "logo_height": 32
+        "logo_height": 32,
+        "social_text": "+1200"
       }
     }
   },
