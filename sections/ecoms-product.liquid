@@ -126,7 +126,11 @@
             <h1 class="ec-pdp__title" {{ block.shopify_attributes }}>{{ product.title | escape }}</h1>
 
           {%- when 'text' -%}
-            {%- if block.settings.text != blank -%}
+            {%- comment -%} Per-product copy: metafield ecoms.subtitle wins over the template text. {%- endcomment -%}
+            {%- assign sub_mf = product.metafields.ecoms.subtitle.value -%}
+            {%- if sub_mf != blank -%}
+              <div class="ec-pdp__sub" {{ block.shopify_attributes }}>{{ product.metafields.ecoms.subtitle | metafield_tag }}</div>
+            {%- elsif block.settings.text != blank -%}
               <div class="ec-pdp__sub" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
             {%- endif -%}
 
@@ -136,13 +140,21 @@
             {%- endif -%}
 
           {%- when 'benefits' -%}
+            {%- comment -%} Per-product list: metafield ecoms.benefits (list of single-line text) wins. {%- endcomment -%}
+            {%- assign benefits_mf = product.metafields.ecoms.benefits.value -%}
             <ul class="ec-checks" role="list" {{ block.shopify_attributes }}>
-              {%- for i in (1..4) -%}
-                {%- assign key = 'item_' | append: i -%}
-                {%- if block.settings[key] != blank -%}
-                  <li>{% render 'ecoms-icon', name: 'check' %}<span>{{ block.settings[key] | escape }}</span></li>
-                {%- endif -%}
-              {%- endfor -%}
+              {%- if benefits_mf != blank -%}
+                {%- for item in benefits_mf -%}
+                  <li>{% render 'ecoms-icon', name: 'check' %}<span>{{ item | escape }}</span></li>
+                {%- endfor -%}
+              {%- else -%}
+                {%- for i in (1..4) -%}
+                  {%- assign key = 'item_' | append: i -%}
+                  {%- if block.settings[key] != blank -%}
+                    <li>{% render 'ecoms-icon', name: 'check' %}<span>{{ block.settings[key] | escape }}</span></li>
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endif -%}
             </ul>
 
           {%- when 'price' -%}

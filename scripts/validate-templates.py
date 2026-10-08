@@ -5,7 +5,13 @@ import json, re, glob, os, sys
 
 def load_json(path):
     # Shopify adds a /* ... */ header to files it writes back (templates, section groups)
-    return json.loads(re.sub(r'^\s*/\*.*?\*/', '', open(path).read(), flags=re.S))
+    def no_dups(pairs):
+        keys = [k for k, _ in pairs]
+        dups = {k for k in keys if keys.count(k) > 1}
+        if dups:
+            raise ValueError(f'{path}: duplicate keys {sorted(dups)}')
+        return dict(pairs)
+    return json.loads(re.sub(r'^\s*/\*.*?\*/', '', open(path).read(), flags=re.S), object_pairs_hook=no_dups)
 
 root = sys.argv[1] if len(sys.argv) > 1 else os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def schema(t):

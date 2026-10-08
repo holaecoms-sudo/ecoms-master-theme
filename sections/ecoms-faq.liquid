@@ -4,7 +4,23 @@
     {%- if section.settings.heading != blank -%}
       <h2 class="ec-h3{% if section.settings.width == 'full' %} ec-h3--center{% endif %}">{{ section.settings.heading | escape }}</h2>
     {%- endif -%}
+    {%- comment -%}
+      Per-product FAQ: product metafield ecoms.faqs (list of metaobjects "ecoms_faq" with fields
+      question + answer) replaces the template questions when present.
+    {%- endcomment -%}
+    {%- assign faq_mf = product.metafields.ecoms.faqs.value -%}
     <div class="ec-faq{% if section.settings.width == 'full' %} ec-faq--narrow{% endif %}">
+      {%- if faq_mf != blank -%}
+        {%- for entry in faq_mf -%}
+          <details>
+            <summary>
+              <span>{{ entry.question.value | escape }}</span>
+              {%- if section.settings.icon == 'plus' -%}{% render 'ecoms-icon', name: 'plus' %}{%- else -%}{% render 'ecoms-icon', name: 'chev-r', class: 'chev' %}{%- endif -%}
+            </summary>
+            <div class="ec-faq__a rte">{{ entry.answer | metafield_tag }}</div>
+          </details>
+        {%- endfor -%}
+      {%- else -%}
       {%- for block in section.blocks -%}
         {%- if block.settings.question != blank -%}
           <details {{ block.shopify_attributes }}>
@@ -20,9 +36,10 @@
           </details>
         {%- endif -%}
       {%- endfor -%}
+      {%- endif -%}
     </div>
   </div>
-  {%- if section.blocks.size > 0 -%}
+  {%- if faq_mf == blank and section.blocks.size > 0 -%}
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
