@@ -31,7 +31,7 @@ shopify theme push --store va2nzt-wh.myshopify.com --unpublished
 2. **Ajustes del tema → Logo, Redes sociales y Carrito.** El tipo de carrito debe ser **Cajón**.
 3. **Ajustes del tema → ECOMS · Carrito y conversión**
    - Umbral de envío gratis en CLP. Debe coincidir con la tarifa real de *Configuración → Envíos*.
-   - Productos sugeridos en el carrito.
+   - Colección de productos sugeridos en el carrito (handle de la colección).
 4. **Producto**: en el admin, *Plantilla del tema → `product.ecoms-flex`*.
 5. **Editor del tema → plantilla `ecoms-flex`**: completa textos, íconos, fotos lifestyle, FAQ, comparativa, cross-sell y upsell. Todo bloque o sección se puede ocultar, reordenar o duplicar.
 
