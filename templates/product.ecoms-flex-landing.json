@@ -577,12 +577,14 @@
         "ex1": {
           "type": "review",
           "settings": {
-            "example": true,
-            "author": "Nombre del cliente",
-            "date": "Hace X días",
+            "example": false,
+            "author": "Daniela F.",
+            "date": "7/03/2026",
             "stars": 5,
-            "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo».",
-            "verified": true
+            "text": "La calidad de fabricación es excelente: no presenta rebabas y no daña las prendas al colgarlas. Su diseño multifuncional es sumamente práctico, ya que permite ajustar de forma flexible la manera de colgar la ropa, adaptándose a distintos tipos de prendas. Con este producto, organizar el armario resulta sencillo y eficiente; es una inversión que vale la pena: ¡adquiérelo cuanto antes y empieza a disfrutarlo!",
+            "verified": true,
+            "image": "shopify://shop_images/wsdo16LD.jpg",
+            "image_2": "shopify://shop_images/Screenshot2026-10-08at12.55.17AM.png"
           }
         },
         "ex2": {
