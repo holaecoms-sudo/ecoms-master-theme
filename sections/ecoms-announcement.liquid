@@ -21,7 +21,9 @@
       assign end_ts = 0
       if section.settings.end_at != blank
         assign end_clean = section.settings.end_at | remove: '"' | remove: "'" | strip
-        assign end_ts = end_clean | date: '%s' | plus: 0
+        if end_clean.size >= 10 and end_clean contains '-'
+          assign end_ts = end_clean | date: '%s' | plus: 0
+        endif
       endif
       assign now_ts = 'now' | date: '%s' | plus: 0
     -%}

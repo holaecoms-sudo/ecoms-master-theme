@@ -14,7 +14,10 @@
   assign end_ts = 0
   if s.end_at != blank
     assign end_clean = s.end_at | remove: '"' | remove: "'" | strip
-    assign end_ts = end_clean | date: '%s' | plus: 0
+    # A full date is required: a bare time ("23:59") would restart every day, i.e. fake urgency.
+    if end_clean.size >= 10 and end_clean contains '-'
+      assign end_ts = end_clean | date: '%s' | plus: 0
+    endif
   endif
   assign now_ts = 'now' | date: '%s' | plus: 0
   assign style = s.style | default: 'boxes'

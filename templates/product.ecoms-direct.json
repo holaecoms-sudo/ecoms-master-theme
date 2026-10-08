@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -54,7 +63,8 @@
         "urgency": {
           "type": "urgency",
           "settings": {
-            "icon": "clock",
+            "end_at": "23:59",
+            "icon": "fire",
             "heading": "Oferta termina en:",
             "text": "",
             "style": "inline",
@@ -76,7 +86,7 @@
         "stock": {
           "type": "stock",
           "settings": {
-            "max_show": 15,
+            "max_show": 10,
             "text": "¡Solo quedan [qty] unidades en stock!"
           }
         },
@@ -87,14 +97,21 @@
             "layout": "rows",
             "show_cta_total": false,
             "help": "",
-            "discounts_live": false,
+            "discounts_live": true,
+            "tier1_label": "",
+            "tier1_tag": "",
+            "tier1_image": "shopify://shop_images/1720621255depi4.jpg",
             "tier2_enabled": true,
             "tier2_qty": 2,
-            "tier2_pct": 10,
+            "tier2_pct": 20,
+            "tier2_label": "",
             "tier2_tag": "Más popular",
+            "tier2_image": "shopify://shop_images/1720621255depi4.jpg",
             "tier3_enabled": true,
             "tier3_qty": 3,
-            "tier3_pct": 20
+            "tier3_pct": 20,
+            "tier3_label": "",
+            "tier3_tag": ""
           }
         },
         "buy": {
@@ -158,17 +175,6 @@
     },
     "problem": {
       "type": "ecoms-problem",
-      "settings": {
-        "heading": "Ventajas que hacen la diferencia",
-        "text": "<p>Explica en dos frases el problema que tiene tu cliente y cómo lo resuelve tu producto.</p>",
-        "before_label": "Antes",
-        "before_caption": "El problema",
-        "after_label": "Después",
-        "after_caption": "El resultado",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
-      },
       "blocks": {
         "b1": {
           "type": "benefit",
@@ -204,7 +210,19 @@
         "b2",
         "b3",
         "b4"
-      ]
+      ],
+      "settings": {
+        "heading": "Ventajas que hacen la diferencia",
+        "text": "<p>Describe el problema que resuelve el producto y cómo lo resuelve.</p>",
+        "before_label": "Antes",
+        "before_caption": "",
+        "after_label": "Después",
+        "after_caption": "",
+        "quote": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     },
     "stats": {
       "type": "ecoms-stats",
@@ -219,6 +237,8 @@
       "settings": {
         "style": "direct",
         "heading": "Lo que dicen nuestros clientes",
+        "link_label": "Ver todas",
+        "link": "",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
@@ -226,22 +246,14 @@
     },
     "comparison": {
       "type": "ecoms-comparison",
-      "settings": {
-        "heading": "¿Por qué elegirnos?",
-        "feature_label": "Característica",
-        "col_1": "Nuestro producto",
-        "col_2": "Otras opciones",
-        "width": "t1",
-        "padding_top": 0,
-        "padding_bottom": 36
-      },
       "blocks": {
         "r1": {
           "type": "row",
           "settings": {
             "feature": "Característica comprobable 1",
             "value_1": true,
-            "value_2": false
+            "value_2": false,
+            "value_3": false
           }
         },
         "r2": {
@@ -249,7 +261,8 @@
           "settings": {
             "feature": "Característica comprobable 2",
             "value_1": true,
-            "value_2": false
+            "value_2": false,
+            "value_3": false
           }
         },
         "r3": {
@@ -257,7 +270,8 @@
           "settings": {
             "feature": "Característica comprobable 3",
             "value_1": true,
-            "value_2": false
+            "value_2": false,
+            "value_3": false
           }
         },
         "r4": {
@@ -265,7 +279,8 @@
           "settings": {
             "feature": "Garantía según política",
             "value_1": true,
-            "value_2": false
+            "value_2": false,
+            "value_3": false
           }
         }
       },
@@ -274,17 +289,20 @@
         "r2",
         "r3",
         "r4"
-      ]
+      ],
+      "settings": {
+        "heading": "¿Por qué elegirnos?",
+        "feature_label": "Característica",
+        "col_1": "Nuestro producto",
+        "col_2": "Otras opciones",
+        "col_3": "",
+        "width": "t1",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
     },
     "faq": {
       "type": "ecoms-faq",
-      "settings": {
-        "heading": "Preguntas frecuentes",
-        "icon": "plus",
-        "width": "t2",
-        "padding_top": 0,
-        "padding_bottom": 36
-      },
       "blocks": {
         "q1": {
           "type": "faq",
@@ -320,17 +338,25 @@
         "q2",
         "q3",
         "q4"
-      ]
+      ],
+      "settings": {
+        "heading": "Preguntas frecuentes",
+        "icon": "plus",
+        "width": "t2",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
     },
     "cross_sell": {
       "type": "ecoms-cross-sell",
       "settings": {
         "style": "rail",
         "heading": "Completa tu compra",
-        "heading_2": "Productos relacionados",
-        "split": 1,
+        "products": [],
         "limit": 3,
         "button_label": "Añadir",
+        "heading_2": "Productos relacionados",
+        "split": 1,
         "width": "t3",
         "padding_top": 0,
         "padding_bottom": 36
