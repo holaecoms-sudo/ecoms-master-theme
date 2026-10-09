@@ -57,6 +57,14 @@ for f in files:
             check_settings(f'{w}/{bid}', bd.get('settings', []), b.get('settings', {}), errs)
         for bid in s.get('block_order', []):
             if bid not in s.get('blocks', {}): errs.append(f'{w}: block_order {bid} missing')
+        # Shopify rejects the whole template when a section has more blocks than max_blocks / limit
+        n = len(s.get('blocks', {}))
+        if 'max_blocks' in sc and n > sc['max_blocks']:
+            errs.append(f'{w}: {n} blocks exceed max_blocks {sc["max_blocks"]}')
+        for bt, bd in bdefs.items():
+            used = sum(1 for b in s.get('blocks', {}).values() if b['type'] == bt)
+            if 'limit' in bd and used > bd['limit']:
+                errs.append(f'{w}: {used} blocks of type {bt} exceed limit {bd["limit"]}')
     for sid in d.get('order', []):
         if sid not in d['sections']: errs.append(f'{f}: order {sid} missing')
 # also check every section schema defaults
