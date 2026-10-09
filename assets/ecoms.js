@@ -457,6 +457,13 @@
     const galTo = t.closest('[data-ec-gal-to]');
     if (galTo) { goGal(galleryOf(galTo), Number(galTo.dataset.ecGalTo)); return; }
 
+    const toBuy = t.closest('[data-ec-scroll-buy]');
+    if (toBuy) {
+      const target = $('[data-ec-packs]') || ecForm();
+      if (target) { event.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      return;
+    }
+
     const play = t.closest('[data-ec-play]');
     if (play) {
       const video = play.parentElement.querySelector('video');

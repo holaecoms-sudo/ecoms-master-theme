@@ -14,7 +14,7 @@
         "sub": {
           "type": "text",
           "settings": {
-            "text": "<p>Limpia baño, azulejos y pisos sin fregar ni agacharte: el cabezal gira solo y tú solo lo guías.</p>"
+            "text": "<p>Limpia baño, juntas y pisos sin fregar ni agacharte: el cabezal gira solo y tú solo lo guías.</p>"
           }
         },
         "benefits": {
@@ -58,7 +58,7 @@
           "settings": {
             "end_at": "",
             "icon": "fire",
-            "heading": "Oferta termina en:",
+            "heading": "Oferta de lanzamiento termina en:",
             "text": "",
             "style": "inline",
             "show_days": false
@@ -77,7 +77,7 @@
             "heading": "Elige tu pack",
             "layout": "rows",
             "show_cta_total": false,
-            "help": "",
+            "help": "El descuento del pack se aplica automáticamente en el carrito.",
             "default_tier": "1",
             "item_name": "cepillos",
             "show_summary": true,
@@ -89,7 +89,7 @@
             "tier1_tag": "",
             "tier2_enabled": true,
             "tier2_qty": 2,
-            "tier2_pct": 0,
+            "tier2_pct": 20,
             "tier2_label": "2 cepillos",
             "tier2_tag": "Para regalar",
             "tier3_enabled": false,
@@ -128,9 +128,38 @@
             "icon_4": "battery",
             "text_4": "Recargable USB"
           }
+        },
+        "eyebrow": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Limpieza sin esfuerzo"
+          }
+        },
+        "includes": {
+          "type": "includes",
+          "settings": {
+            "heading": "Tu compra incluye",
+            "title_1": "Cepillo eléctrico inalámbrico",
+            "qty_1": "x1",
+            "icon_1": "bolt",
+            "badge_1": "",
+            "title_2": "Cabezales intercambiables",
+            "qty_2": "",
+            "icon_2": "grid",
+            "badge_2": "Incluido",
+            "title_3": "Mango extensible",
+            "qty_3": "",
+            "icon_3": "hand",
+            "badge_3": "Incluido",
+            "title_4": "Cable de carga USB",
+            "qty_4": "",
+            "icon_4": "battery",
+            "badge_4": "Incluido"
+          }
         }
       },
       "block_order": [
+        "eyebrow",
         "rating",
         "title",
         "sub",
@@ -139,8 +168,9 @@
         "buybox",
         "price",
         "urgency",
-        "stock",
         "packs",
+        "includes",
+        "stock",
         "buy",
         "payments",
         "media_features"
@@ -447,6 +477,46 @@
     },
     "reviews": {
       "type": "ecoms-reviews",
+      "blocks": {
+        "ex1": {
+          "type": "review",
+          "settings": {
+            "example": true,
+            "author": "Nombre del cliente",
+            "date": "Hace X días",
+            "stars": 5,
+            "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo».",
+            "verified": true
+          }
+        },
+        "ex2": {
+          "type": "review",
+          "settings": {
+            "example": true,
+            "author": "Nombre del cliente",
+            "date": "Hace X días",
+            "stars": 5,
+            "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo».",
+            "verified": true
+          }
+        },
+        "ex3": {
+          "type": "review",
+          "settings": {
+            "example": true,
+            "author": "Nombre del cliente",
+            "date": "Hace X días",
+            "stars": 5,
+            "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo».",
+            "verified": true
+          }
+        }
+      },
+      "block_order": [
+        "ex1",
+        "ex2",
+        "ex3"
+      ],
       "settings": {
         "style": "direct",
         "heading": "Lo que dicen nuestros clientes",
@@ -533,16 +603,279 @@
         "padding_top": 28,
         "padding_bottom": 36
       }
+    },
+    "includes": {
+      "type": "ecoms-includes",
+      "blocks": {
+        "c1": {
+          "type": "item",
+          "settings": {
+            "icon": "bolt",
+            "title": "Cepillo eléctrico",
+            "text": "Motor giratorio recargable",
+            "qty": "x1",
+            "badge": "Incluido",
+            "highlight": true
+          }
+        },
+        "c2": {
+          "type": "item",
+          "settings": {
+            "icon": "grid",
+            "title": "Cabezales intercambiables",
+            "text": "Uno para cada superficie",
+            "qty": "",
+            "badge": "Incluido",
+            "highlight": false
+          }
+        },
+        "c3": {
+          "type": "item",
+          "settings": {
+            "icon": "hand",
+            "title": "Mango extensible",
+            "text": "Llega lejos sin agacharte",
+            "qty": "",
+            "badge": "Incluido",
+            "highlight": false
+          }
+        },
+        "c4": {
+          "type": "item",
+          "settings": {
+            "icon": "battery",
+            "title": "Cable de carga USB",
+            "text": "Carga fácil en casa",
+            "qty": "",
+            "badge": "Incluido",
+            "highlight": false
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ],
+      "settings": {
+        "eyebrow": "Todo en una sola caja",
+        "heading": "Esto incluye tu compra",
+        "text": "No necesitas comprar nada más: viene listo para usar.",
+        "show_price": true,
+        "total_label": "Todo esto por",
+        "button_label": "Lo quiero",
+        "note": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "row_1": {
+      "type": "ecoms-image-text",
+      "blocks": {
+        "p1": {
+          "type": "point",
+          "settings": {
+            "title": "Gira solo",
+            "text": "tú solo lo guías"
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "title": "Juntas y rincones",
+            "text": "donde más se acumula"
+          }
+        },
+        "p3": {
+          "type": "point",
+          "settings": {
+            "title": "Menos productos",
+            "text": "el giro hace el trabajo"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "settings": {
+        "image_side": "left",
+        "product_image_index": 2,
+        "heading": "Juntas y azulejos como nuevos",
+        "intro": "El cabezal giratorio entra en las juntas donde el cepillo a mano no llega.",
+        "button_label": "Quiero el mío",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "row_2": {
+      "type": "ecoms-image-text",
+      "blocks": {
+        "p1": {
+          "type": "point",
+          "settings": {
+            "title": "Cuida tu espalda",
+            "text": "sin arrodillarte"
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "title": "Más alcance",
+            "text": "tina, ducha y paredes"
+          }
+        },
+        "p3": {
+          "type": "point",
+          "settings": {
+            "title": "Sin cables",
+            "text": "recargable por USB"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "settings": {
+        "image_side": "right",
+        "product_image_index": 3,
+        "heading": "Limpia sin agacharte",
+        "intro": "Con el mango extensible llegas al piso de la ducha y a la tina estando de pie.",
+        "button_label": "Lo quiero",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "riskfree": {
+      "type": "ecoms-trust",
+      "blocks": {
+        "t1": {
+          "type": "promise",
+          "settings": {
+            "icon": "truck",
+            "heading": "Envíos a todo Chile",
+            "text": "Despacho a domicilio"
+          }
+        },
+        "t2": {
+          "type": "promise",
+          "settings": {
+            "icon": "lock",
+            "heading": "Pago seguro",
+            "text": "Checkout Shopify"
+          }
+        },
+        "t3": {
+          "type": "promise",
+          "settings": {
+            "icon": "box",
+            "heading": "Seguimiento del pedido",
+            "text": "Te avisamos del envío"
+          }
+        },
+        "t4": {
+          "type": "promise",
+          "settings": {
+            "icon": "return",
+            "heading": "Cambios según política",
+            "text": "Compra tranquilo"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "settings": {
+        "style": "slant",
+        "heading": "Compra sin riesgo",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "ugc": {
+      "type": "ecoms-ugc",
+      "blocks": {
+        "u1": {
+          "type": "media",
+          "settings": {
+            "caption": ""
+          }
+        },
+        "u2": {
+          "type": "media",
+          "settings": {
+            "caption": ""
+          }
+        },
+        "u3": {
+          "type": "media",
+          "settings": {
+            "caption": ""
+          }
+        },
+        "u4": {
+          "type": "media",
+          "settings": {
+            "caption": ""
+          }
+        },
+        "u5": {
+          "type": "media",
+          "settings": {
+            "caption": ""
+          }
+        },
+        "u6": {
+          "type": "media",
+          "settings": {
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "u1",
+        "u2",
+        "u3",
+        "u4",
+        "u5",
+        "u6"
+      ],
+      "settings": {
+        "style": "grid",
+        "heading": "Así quedó su baño",
+        "text": "Fotos reales de clientes, compartidas con su permiso.",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
     }
   },
   "order": [
     "main",
+    "includes",
     "problem",
+    "row_1",
+    "row_2",
     "how",
     "ideal",
-    "specs",
     "comparison",
+    "riskfree",
     "reviews",
+    "ugc",
+    "specs",
     "faq"
   ]
 }

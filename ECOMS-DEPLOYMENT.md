@@ -180,6 +180,8 @@ Bloques de la ficha (`ECOMS · Producto`): Packs (diseño «Ofertas»: total, c/
 | `product.ecoms-flex-landing` | Flex | Orden y hogar (colgador): packs «Ofertas», cómo funciona, filas imagen + texto, especificaciones, comparativa, FAQ |
 | `product.ecoms-direct-landing` | Direct | Limpieza y demostración (cepillo eléctrico): caja de compra lateral, antes/después, cómo se usa, ideal para, especificaciones por metacampo (`ecoms.battery`, `ecoms.charge_time`, `ecoms.heads`, `ecoms.dimensions`, `ecoms.water_resistance`, `ecoms.speed`, `ecoms.package_contents`), comparativa, FAQ con borradores |
 
+**Qué incluye (value stack):** la sección `ECOMS · Qué incluye` muestra cada pieza de la caja (foto o ícono, cantidad, etiqueta «Incluido» o «De regalo») y el precio real con un botón que lleva a la compra. El bloque **Qué incluye (lista)** hace lo mismo dentro de la caja de compra. Usa «De regalo» solo si la pieza de verdad se entrega sin costo adicional.
+
 En la landing Direct la cuenta regresiva y el descuento de packs vienen apagados: actívalos solo con una fecha real y con los descuentos automáticos creados.
 
 ---

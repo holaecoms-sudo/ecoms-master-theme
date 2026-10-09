@@ -1,0 +1,340 @@
+{%- comment -%}
+  ECOMS · Qué incluye (value stack). Shows every piece the customer gets (product, heads, accessories,
+  gifts) so the offer reads as a kit, not a single item. Quantities and badges come from the editor:
+  only list pieces that really ship in the box. The price line uses the real Shopify price.
+{%- endcomment -%}
+{%- liquid
+  assign shown = 0
+  for block in section.blocks
+    if block.settings.title != blank
+      assign shown = shown | plus: 1
+    endif
+  endfor
+  assign variant = product.selected_or_first_available_variant
+-%}
+{%- if shown > 0 or request.design_mode -%}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-incl-sec' %}>
+  <div class="ec-w">
+    <div class="ec-sec-h">
+      {%- if section.settings.eyebrow != blank -%}<p class="ec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
+      {%- if section.settings.text != blank -%}<p>{{ section.settings.text | escape }}</p>{%- endif -%}
+    </div>
+    <ul class="ec-incl" role="list">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.title == blank -%}{%- continue -%}{%- endif -%}
+        <li class="ec-incl__item{% if block.settings.highlight %} ec-incl__item--hl{% endif %}" {{ block.shopify_attributes }}>
+          {%- if block.settings.badge != blank -%}<span class="ec-incl__badge">{{ block.settings.badge | escape }}</span>{%- endif -%}
+          <div class="ec-incl__media{% if block.settings.image == blank %} ec-incl__media--icon{% endif %}">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', widths: '200,300,400', sizes: '(min-width: 990px) 200px, 40vw', alt: block.settings.title }}
+            {%- else -%}
+              <span class="ec-ic">{% render 'ecoms-icon', name: block.settings.icon %}</span>
+            {%- endif -%}
+            {%- if block.settings.qty != blank -%}<span class="ec-incl__qty">{{ block.settings.qty | escape }}</span>{%- endif -%}
+          </div>
+          <div class="ec-incl__body">
+            <b>{{ block.settings.title | escape }}</b>
+            {%- if block.settings.text != blank -%}<span>{{ block.settings.text | escape }}</span>{%- endif -%}
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+    {%- if section.settings.show_price and variant -%}
+      <div class="ec-incl__total">
+        <p>
+          {{ section.settings.total_label | escape }}
+          <b>{{ variant.price | money }}</b>
+          {%- if variant.compare_at_price > variant.price %} <s>{{ variant.compare_at_price | money }}</s>{% endif -%}
+        </p>
+        {%- if section.settings.button_label != blank -%}
+          <a href="#" class="ec-btn ec-btn--primary" data-ec-scroll-buy>{{ section.settings.button_label | escape }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    {%- if section.settings.note != blank -%}<p class="ec-incl__note">{{ section.settings.note | escape }}</p>{%- endif -%}
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ECOMS · Qué incluye",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Antetítulo",
+      "default": "Todo en una sola caja"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Esto incluye tu compra"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Texto"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Mostrar precio real del producto",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "total_label",
+      "label": "Texto antes del precio",
+      "default": "Todo esto por"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Botón (lleva a la compra)",
+      "default": "Lo quiero"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Nota al pie",
+      "info": "Ej.: el contenido puede variar en color. Solo información real."
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Ancho en escritorio",
+      "options": [
+        {
+          "value": "full",
+          "label": "Completo"
+        },
+        {
+          "value": "left",
+          "label": "Mitad izquierda"
+        },
+        {
+          "value": "right",
+          "label": "Mitad derecha"
+        }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Margen superior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Margen inferior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Pieza incluida",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Solo piezas que de verdad vienen en la caja. La cantidad debe coincidir con la ficha del proveedor."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Foto de la pieza"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícono (si no hay foto)",
+          "options": [
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / pago seguro"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "chat",
+              "label": "Soporte"
+            },
+            {
+              "value": "cash",
+              "label": "Pago / efectivo"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "star",
+              "label": "Estrella"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "check",
+              "label": "Check"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "fire",
+              "label": "Fuego / oferta"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo / potencia"
+            },
+            {
+              "value": "sparkle",
+              "label": "Brillo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja / natural"
+            },
+            {
+              "value": "drop",
+              "label": "Gota / agua"
+            },
+            {
+              "value": "snow",
+              "label": "Frío"
+            },
+            {
+              "value": "thermo",
+              "label": "Temperatura"
+            },
+            {
+              "value": "sun",
+              "label": "Sol / luz"
+            },
+            {
+              "value": "gem",
+              "label": "Gema / premium"
+            },
+            {
+              "value": "hand",
+              "label": "Mano / fácil"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "box",
+              "label": "Caja / paquete"
+            },
+            {
+              "value": "grid",
+              "label": "Accesorios"
+            },
+            {
+              "value": "battery",
+              "label": "Batería"
+            },
+            {
+              "value": "home",
+              "label": "Hogar"
+            },
+            {
+              "value": "verified",
+              "label": "Verificado"
+            },
+            {
+              "value": "bag",
+              "label": "Bolsa / tienda"
+            },
+            {
+              "value": "cart",
+              "label": "Carrito"
+            }
+          ],
+          "default": "box"
+        },
+        {
+          "type": "text",
+          "id": "qty",
+          "label": "Cantidad",
+          "info": "Ej.: x8, x1"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Nombre"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Para qué sirve"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Etiqueta",
+          "info": "Ej.: Incluido, De regalo. «De regalo» solo si de verdad se entrega sin costo adicional."
+        },
+        {
+          "type": "checkbox",
+          "id": "highlight",
+          "label": "Destacar",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ECOMS · Qué incluye",
+      "blocks": [
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -33,7 +33,7 @@
           </ul>
         {%- endif -%}
         {%- if section.settings.button_label != blank -%}
-          <a class="ec-btn ec-btn--primary ec-btn--sm ec-imgtxt__btn" href="{{ section.settings.button_link | default: '#MainContent' }}">{{ section.settings.button_label | escape }}</a>
+          <a class="ec-btn ec-btn--primary ec-btn--sm ec-imgtxt__btn" href="{{ section.settings.button_link | default: '#MainContent' }}"{% if section.settings.button_link == blank %} data-ec-scroll-buy{% endif %}>{{ section.settings.button_label | escape }}</a>
         {%- endif -%}
       </div>
     </div>
