@@ -20,6 +20,12 @@
     endif
   endif
   assign now_ts = 'now' | date: '%s' | plus: 0
+  # Long promos always show days (never «2001 horas»), whatever «show_days» says.
+  assign cd_days = s.show_days
+  assign cd_left = end_ts | minus: now_ts
+  if cd_left >= 172800
+    assign cd_days = true
+  endif
   assign style = s.style | default: 'boxes'
 -%}
 {%- if end_ts > now_ts -%}
@@ -36,7 +42,7 @@
       <span class="ec-timer" data-ec-cd-inline>--:--:--</span>
     {%- else -%}
       <div class="ec-cd" role="timer" aria-live="off">
-        {%- if s.show_days -%}
+        {%- if cd_days -%}
           <div><b data-u="d">00</b><small>Días</small></div>
         {%- endif -%}
         <div><b data-u="h">00</b><small>Horas</small></div>
