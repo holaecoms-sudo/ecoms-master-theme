@@ -862,11 +862,161 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "keyspecs": {
+      "type": "ecoms-stats",
+      "blocks": {
+        "k1": {
+          "type": "stat",
+          "settings": {
+            "icon": "battery",
+            "value": "",
+            "label": "de autonomía por carga"
+          }
+        },
+        "k2": {
+          "type": "stat",
+          "settings": {
+            "icon": "drop",
+            "value": "",
+            "label": "resistente al agua"
+          }
+        },
+        "k3": {
+          "type": "stat",
+          "settings": {
+            "icon": "grid",
+            "value": "",
+            "label": "cabezales incluidos"
+          }
+        },
+        "k4": {
+          "type": "stat",
+          "settings": {
+            "icon": "bolt",
+            "value": "",
+            "label": "velocidades de giro"
+          }
+        },
+        "k5": {
+          "type": "stat",
+          "settings": {
+            "icon": "hand",
+            "value": "",
+            "label": "largo máximo del mango"
+          }
+        },
+        "k6": {
+          "type": "stat",
+          "settings": {
+            "icon": "clock",
+            "value": "",
+            "label": "de carga por USB-C"
+          }
+        }
+      },
+      "block_order": [
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5",
+        "k6"
+      ],
+      "settings": {
+        "heading": "Potencia que se nota",
+        "text": "Lo que hace la diferencia frente a un cepillo común.",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 8
+      }
+    },
+    "heads": {
+      "type": "ecoms-includes",
+      "disabled": true,
+      "blocks": {
+        "h1": {
+          "type": "item",
+          "settings": {
+            "icon": "grid",
+            "title": "Cabezal plano grande",
+            "text": "Pisos y muros",
+            "qty": "",
+            "badge": "",
+            "highlight": false
+          }
+        },
+        "h2": {
+          "type": "item",
+          "settings": {
+            "icon": "home",
+            "title": "Cabezal redondo",
+            "text": "Tina y lavamanos",
+            "qty": "",
+            "badge": "",
+            "highlight": false
+          }
+        },
+        "h3": {
+          "type": "item",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Cabezal de esquina",
+            "text": "Juntas y rincones",
+            "qty": "",
+            "badge": "",
+            "highlight": false
+          }
+        },
+        "h4": {
+          "type": "item",
+          "settings": {
+            "icon": "drop",
+            "title": "Esponja",
+            "text": "Vidrios y mamparas",
+            "qty": "",
+            "badge": "",
+            "highlight": false
+          }
+        },
+        "h5": {
+          "type": "item",
+          "settings": {
+            "icon": "check",
+            "title": "Fibra para cocina",
+            "text": "Cubiertas y lavaplatos",
+            "qty": "",
+            "badge": "",
+            "highlight": false
+          }
+        }
+      },
+      "block_order": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5"
+      ],
+      "settings": {
+        "eyebrow": "Cabezales intercambiables",
+        "heading": "Un cabezal para cada trabajo",
+        "text": "Cambia el cabezal en segundos según la superficie.",
+        "show_price": false,
+        "total_label": "",
+        "button_label": "",
+        "note": "",
+        "width": "full",
+        "padding_top": 20,
+        "padding_bottom": 28
+      }
     }
   },
   "order": [
     "main",
+    "keyspecs",
     "includes",
+    "heads",
     "problem",
     "row_1",
     "row_2",

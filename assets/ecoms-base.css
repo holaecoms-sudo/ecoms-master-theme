@@ -722,3 +722,6 @@ body:has(cart-drawer.active) .ec-sticky { visibility: hidden; }
 .ec-incl-mini__ic .ec-i { width: 14px; height: 14px; }
 .ec-incl-mini__t { flex: 1; min-width: 0; }
 .ec-incl-mini em { padding: 1px 8px; border-radius: 999px; background: var(--ec-soft); color: var(--ec-primary); font-size: 11px; font-style: normal; font-weight: 800; white-space: nowrap; }
+/* Key figures: 5–6 values → 3 per row on desktop, centered */
+@media screen and (min-width: 750px) { .ec-stats:has(> div:nth-child(5)) { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.ec-stats-sec .ec-sec-h { margin-bottom: 14px; }
