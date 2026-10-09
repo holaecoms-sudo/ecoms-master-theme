@@ -1,0 +1,153 @@
+{%- comment -%}
+  ECOMS · CTA final: full-width band with the product, its real Shopify price and a button that scrolls
+  back to the buy box. Short reassurance items (only real services).
+{%- endcomment -%}
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign pic = section.settings.image | default: product.featured_image
+-%}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-ctab-sec' %}>
+  <div class="ec-ctab ec-ctab--{{ section.settings.style }}">
+    <div class="ec-w ec-ctab__in">
+      <div class="ec-ctab__copy">
+        {%- if section.settings.eyebrow != blank -%}<p class="ec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<p class="ec-ctab__t">{{ section.settings.text | escape }}</p>{%- endif -%}
+        {%- if variant -%}
+          <p class="ec-ctab__price">
+            <b>{{ variant.price | money }}</b>
+            {%- if variant.compare_at_price > variant.price %} <s>{{ variant.compare_at_price | money }}</s>{% endif -%}
+          </p>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <a href="#" class="ec-btn ec-btn--accent ec-btn--lg" data-ec-scroll-buy>{% render 'ecoms-icon', name: 'cart' %}{{ section.settings.button_label | escape }}</a>
+        {%- endif -%}
+        <ul class="ec-ctab__trust" role="list">
+          {%- for i in (1..3) -%}
+            {%- assign key = 'trust_' | append: i -%}
+            {%- if section.settings[key] != blank -%}<li>{% render 'ecoms-icon', name: 'check' %}{{ section.settings[key] | escape }}</li>{%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+      <div class="ec-ctab__img">
+        {%- if pic != blank -%}
+          {{ pic | image_url: width: 900 | image_tag: loading: 'lazy', widths: '400,600,900', sizes: '(min-width: 990px) 440px, 80vw', alt: '' }}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ECOMS · CTA final",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Estilo",
+      "options": [
+        {
+          "value": "dark",
+          "label": "Oscuro con degradado"
+        },
+        {
+          "value": "soft",
+          "label": "Fondo suave"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Antetítulo"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Tu casa impecable, sin esfuerzo"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Texto"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen (vacío = foto principal)"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Botón",
+      "default": "Comprar ahora"
+    },
+    {
+      "type": "text",
+      "id": "trust_1",
+      "label": "Confianza 1",
+      "default": "Envíos a todo Chile"
+    },
+    {
+      "type": "text",
+      "id": "trust_2",
+      "label": "Confianza 2",
+      "default": "Pago seguro"
+    },
+    {
+      "type": "text",
+      "id": "trust_3",
+      "label": "Confianza 3"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Ancho en escritorio",
+      "options": [
+        {
+          "value": "full",
+          "label": "Completo"
+        },
+        {
+          "value": "left",
+          "label": "Mitad izquierda"
+        },
+        {
+          "value": "right",
+          "label": "Mitad derecha"
+        }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Margen superior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Margen inferior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "ECOMS · CTA final"
+    }
+  ]
+}
+{% endschema %}

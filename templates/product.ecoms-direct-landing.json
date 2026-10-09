@@ -178,12 +178,23 @@
             "icon_4": "battery",
             "text_4": "Recargable USB"
           }
+        },
+        "chips": {
+          "type": "chips",
+          "settings": {
+            "chip_1": "Inalámbrico",
+            "chip_2": "Recargable USB",
+            "chip_3": "Mango extensible",
+            "chip_4": "Cabezales intercambiables",
+            "chip_5": ""
+          }
         }
       },
       "block_order": [
         "eyebrow",
         "rating",
         "title",
+        "chips",
         "sub",
         "benefits",
         "trust",
@@ -229,7 +240,8 @@
         "pal_line": "",
         "pal_deep": "",
         "padding_top": 24,
-        "padding_bottom": 32
+        "padding_bottom": 32,
+        "hero_bg": "glow"
       }
     },
     "includes": {
@@ -350,182 +362,6 @@
         "padding_bottom": 20
       }
     },
-    "row_1": {
-      "type": "ecoms-image-text",
-      "blocks": {
-        "p1": {
-          "type": "point",
-          "settings": {
-            "title": "Gira solo",
-            "text": "tú solo lo guías"
-          }
-        },
-        "p2": {
-          "type": "point",
-          "settings": {
-            "title": "Juntas y rincones",
-            "text": "donde más se acumula"
-          }
-        },
-        "p3": {
-          "type": "point",
-          "settings": {
-            "title": "Menos productos",
-            "text": "el giro hace el trabajo"
-          }
-        }
-      },
-      "block_order": [
-        "p1",
-        "p2",
-        "p3"
-      ],
-      "settings": {
-        "image_side": "left",
-        "product_image_index": 2,
-        "heading": "Juntas y azulejos como nuevos",
-        "intro": "El cabezal giratorio entra en las juntas donde el cepillo a mano no llega.",
-        "button_label": "Quiero el mío",
-        "button_link": "",
-        "width": "full",
-        "padding_top": 20,
-        "padding_bottom": 20
-      }
-    },
-    "row_2": {
-      "type": "ecoms-image-text",
-      "blocks": {
-        "p1": {
-          "type": "point",
-          "settings": {
-            "title": "Cuida tu espalda",
-            "text": "sin arrodillarte"
-          }
-        },
-        "p2": {
-          "type": "point",
-          "settings": {
-            "title": "Más alcance",
-            "text": "tina, ducha y paredes"
-          }
-        },
-        "p3": {
-          "type": "point",
-          "settings": {
-            "title": "Sin cables",
-            "text": "recargable por USB"
-          }
-        }
-      },
-      "block_order": [
-        "p1",
-        "p2",
-        "p3"
-      ],
-      "settings": {
-        "image_side": "right",
-        "product_image_index": 3,
-        "heading": "Limpia sin agacharte",
-        "intro": "Con el mango extensible llegas al piso de la ducha y a la tina estando de pie.",
-        "button_label": "Lo quiero",
-        "button_link": "",
-        "width": "full",
-        "padding_top": 20,
-        "padding_bottom": 20
-      }
-    },
-    "how": {
-      "type": "ecoms-steps",
-      "blocks": {
-        "s1": {
-          "type": "step",
-          "settings": {
-            "icon": "grid",
-            "heading": "Elige el cabezal",
-            "text": "Uno para cada superficie: azulejos, juntas o pisos."
-          }
-        },
-        "s2": {
-          "type": "step",
-          "settings": {
-            "icon": "bolt",
-            "heading": "Enciende y guía",
-            "text": "Apóyalo sobre la superficie y deja que gire."
-          }
-        },
-        "s3": {
-          "type": "step",
-          "settings": {
-            "icon": "sparkle",
-            "heading": "Enjuaga y listo",
-            "text": "Pasa un paño o enjuaga con agua."
-          }
-        }
-      },
-      "block_order": [
-        "s1",
-        "s2",
-        "s3"
-      ],
-      "settings": {
-        "style": "icons",
-        "heading": "Cómo se usa",
-        "text": "Tres pasos y listo.",
-        "width": "full",
-        "padding_top": 28,
-        "padding_bottom": 20
-      }
-    },
-    "ideal": {
-      "type": "ecoms-ideal-for",
-      "blocks": {
-        "i1": {
-          "type": "item",
-          "settings": {
-            "icon": "drop",
-            "title": "Baño y ducha",
-            "text": "Tina, receptáculo y mamparas"
-          }
-        },
-        "i2": {
-          "type": "item",
-          "settings": {
-            "icon": "grid",
-            "title": "Azulejos y juntas",
-            "text": "Donde más se acumula"
-          }
-        },
-        "i3": {
-          "type": "item",
-          "settings": {
-            "icon": "home",
-            "title": "Cocina",
-            "text": "Cubiertas y lavaplatos"
-          }
-        },
-        "i4": {
-          "type": "item",
-          "settings": {
-            "icon": "sparkle",
-            "title": "Pisos",
-            "text": "Cerámica y porcelanato"
-          }
-        }
-      },
-      "block_order": [
-        "i1",
-        "i2",
-        "i3",
-        "i4"
-      ],
-      "settings": {
-        "heading": "Ideal para",
-        "text": "",
-        "width": "full",
-        "padding_top": 24,
-        "padding_bottom": 20
-      }
-    },
     "comparison": {
       "type": "ecoms-comparison",
       "blocks": {
@@ -573,7 +409,7 @@
         "r4"
       ],
       "settings": {
-        "heading": "¿Por qué eléctrico?",
+        "heading": "Fregar a mano vs. limpiar con un cepillo eléctrico",
         "feature_label": "",
         "col_1": "Cepillo eléctrico",
         "show_image": true,
@@ -581,57 +417,8 @@
         "col_3": "",
         "width": "full",
         "padding_top": 28,
-        "padding_bottom": 28
-      }
-    },
-    "riskfree": {
-      "type": "ecoms-trust",
-      "blocks": {
-        "t1": {
-          "type": "promise",
-          "settings": {
-            "icon": "truck",
-            "heading": "Envíos a todo Chile",
-            "text": "Despacho a domicilio"
-          }
-        },
-        "t2": {
-          "type": "promise",
-          "settings": {
-            "icon": "lock",
-            "heading": "Pago seguro",
-            "text": "Checkout Shopify"
-          }
-        },
-        "t3": {
-          "type": "promise",
-          "settings": {
-            "icon": "box",
-            "heading": "Seguimiento del pedido",
-            "text": "Te avisamos del envío"
-          }
-        },
-        "t4": {
-          "type": "promise",
-          "settings": {
-            "icon": "return",
-            "heading": "Cambios según política",
-            "text": "Compra tranquilo"
-          }
-        }
-      },
-      "block_order": [
-        "t1",
-        "t2",
-        "t3",
-        "t4"
-      ],
-      "settings": {
-        "style": "slant",
-        "heading": "Compra sin riesgo",
-        "width": "full",
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 28,
+        "style": "vs"
       }
     },
     "reviews": {
@@ -906,23 +693,314 @@
         "icon": "plus",
         "width": "full",
         "padding_top": 28,
+        "padding_bottom": 36,
+        "style": "split",
+        "text": "¿Tienes otra duda? Escríbenos desde la página de contacto."
+      }
+    },
+    "keyspecs": {
+      "type": "ecoms-stats",
+      "blocks": {
+        "k1": {
+          "type": "stat",
+          "settings": {
+            "icon": "battery",
+            "value": "",
+            "label": "de autonomía por carga"
+          }
+        },
+        "k2": {
+          "type": "stat",
+          "settings": {
+            "icon": "drop",
+            "value": "",
+            "label": "resistente al agua"
+          }
+        },
+        "k3": {
+          "type": "stat",
+          "settings": {
+            "icon": "grid",
+            "value": "",
+            "label": "cabezales incluidos"
+          }
+        },
+        "k4": {
+          "type": "stat",
+          "settings": {
+            "icon": "bolt",
+            "value": "",
+            "label": "velocidades de giro"
+          }
+        },
+        "k5": {
+          "type": "stat",
+          "settings": {
+            "icon": "hand",
+            "value": "",
+            "label": "largo máximo del mango"
+          }
+        },
+        "k6": {
+          "type": "stat",
+          "settings": {
+            "icon": "clock",
+            "value": "",
+            "label": "de carga por USB-C"
+          }
+        }
+      },
+      "block_order": [
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5",
+        "k6"
+      ],
+      "settings": {
+        "style": "dark",
+        "heading": "Potencia que se nota",
+        "text": "Lo que hace la diferencia frente a un cepillo común.",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "anatomy": {
+      "type": "ecoms-anatomy",
+      "blocks": {
+        "a1": {
+          "type": "point",
+          "settings": {
+            "icon": "bolt",
+            "title": "Motor giratorio",
+            "text": "Gira solo y friega por ti."
+          }
+        },
+        "a2": {
+          "type": "point",
+          "settings": {
+            "icon": "grid",
+            "title": "Cabezales intercambiables",
+            "text": "Cambias el cabezal en segundos según la superficie."
+          }
+        },
+        "a3": {
+          "type": "point",
+          "settings": {
+            "icon": "hand",
+            "title": "Mango extensible",
+            "text": "Llegas al piso de la ducha y a lo alto sin agacharte."
+          }
+        },
+        "a4": {
+          "type": "point",
+          "settings": {
+            "icon": "battery",
+            "title": "Inalámbrico y recargable",
+            "text": "Se carga por USB: sin cables mientras limpias."
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3",
+        "a4"
+      ],
+      "settings": {
+        "style": "dark",
+        "eyebrow": "Diseñado para limpiar",
+        "heading": "Cada detalle pensado para tu baño",
+        "text": "",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "heads": {
+      "type": "ecoms-includes",
+      "disabled": true,
+      "blocks": {
+        "h1": {
+          "type": "item",
+          "settings": {
+            "icon": "grid",
+            "title": "Cabezal plano grande",
+            "text": "Pisos y muros",
+            "qty": "",
+            "badge": "",
+            "highlight": false
+          }
+        },
+        "h2": {
+          "type": "item",
+          "settings": {
+            "icon": "home",
+            "title": "Cabezal redondo",
+            "text": "Tina y lavamanos",
+            "qty": "",
+            "badge": "",
+            "highlight": false
+          }
+        },
+        "h3": {
+          "type": "item",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Cabezal de esquina",
+            "text": "Juntas y rincones",
+            "qty": "",
+            "badge": "",
+            "highlight": false
+          }
+        },
+        "h4": {
+          "type": "item",
+          "settings": {
+            "icon": "drop",
+            "title": "Esponja",
+            "text": "Vidrios y mamparas",
+            "qty": "",
+            "badge": "",
+            "highlight": false
+          }
+        },
+        "h5": {
+          "type": "item",
+          "settings": {
+            "icon": "check",
+            "title": "Fibra para cocina",
+            "text": "Cubiertas y lavaplatos",
+            "qty": "",
+            "badge": "",
+            "highlight": false
+          }
+        }
+      },
+      "block_order": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5"
+      ],
+      "settings": {
+        "eyebrow": "Cabezales intercambiables",
+        "heading": "Un cabezal para cada trabajo",
+        "text": "Cambia el cabezal en segundos según la superficie.",
+        "show_price": false,
+        "total_label": "",
+        "button_label": "",
+        "note": "",
+        "width": "full",
+        "padding_top": 20,
+        "padding_bottom": 28
+      }
+    },
+    "tabs": {
+      "type": "ecoms-tabs",
+      "blocks": {
+        "t1": {
+          "type": "tab",
+          "settings": {
+            "label": "Baño",
+            "icon": "drop",
+            "product_image_index": 2,
+            "heading": "Tina, ducha y mampara",
+            "text": "El cabezal giratorio saca el sarro y el jabón acumulado sin que tengas que fregar.",
+            "point_1": "Juntas de cerámica",
+            "point_2": "Receptáculo y tina",
+            "point_3": "Sin agacharte"
+          }
+        },
+        "t2": {
+          "type": "tab",
+          "settings": {
+            "label": "Cocina",
+            "icon": "home",
+            "product_image_index": 3,
+            "heading": "Cubiertas y lavaplatos",
+            "text": "Limpia la grasa del día a día con el cabezal adecuado.",
+            "point_1": "Cubiertas",
+            "point_2": "Lavaplatos",
+            "point_3": "Azulejos de la cocina"
+          }
+        },
+        "t3": {
+          "type": "tab",
+          "settings": {
+            "label": "Pisos",
+            "icon": "grid",
+            "product_image_index": 4,
+            "heading": "Pisos y rincones",
+            "text": "Con el mango extendido recorres el piso de pie y llegas a los rincones.",
+            "point_1": "Cerámica y porcelanato",
+            "point_2": "Rincones y zócalos",
+            "point_3": "De pie, sin arrodillarte"
+          }
+        },
+        "t4": {
+          "type": "tab",
+          "settings": {
+            "label": "Vidrios",
+            "icon": "sparkle",
+            "product_image_index": 5,
+            "heading": "Vidrios y ventanas",
+            "text": "Con un cabezal suave limpias mamparas y vidrios sin rayarlos.",
+            "point_1": "Mamparas",
+            "point_2": "Ventanas",
+            "point_3": "Espejos"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "settings": {
+        "eyebrow": "Un solo cepillo",
+        "heading": "Úsalo en toda la casa",
+        "text": "",
+        "button_label": "Lo quiero",
+        "width": "full",
+        "padding_top": 40,
         "padding_bottom": 36
+      }
+    },
+    "cta": {
+      "type": "ecoms-cta-band",
+      "settings": {
+        "style": "dark",
+        "eyebrow": "Oferta de lanzamiento",
+        "heading": "Tu baño impecable, sin fregar",
+        "text": "Llévate el kit completo y olvídate de arrodillarte para limpiar.",
+        "button_label": "Comprar ahora",
+        "trust_1": "Envíos a todo Chile",
+        "trust_2": "Pago seguro",
+        "trust_3": "Seguimiento del pedido",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
   "order": [
     "main",
+    "keyspecs",
+    "anatomy",
     "includes",
+    "heads",
     "problem",
-    "row_1",
-    "row_2",
-    "how",
-    "ideal",
+    "tabs",
     "comparison",
-    "riskfree",
     "reviews",
     "ugc",
     "specs",
-    "faq"
+    "faq",
+    "cta"
   ]
 }

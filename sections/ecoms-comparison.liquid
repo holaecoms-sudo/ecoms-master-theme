@@ -13,6 +13,37 @@
     {%- if section.settings.heading != blank -%}
       <h2 class="ec-h3{% if section.settings.width == 'full' %} ec-h3--center{% endif %}">{{ section.settings.heading | escape }}</h2>
     {%- endif -%}
+    {%- if section.settings.style == 'vs' -%}
+      {%- comment -%} VS cards: the alternative (col 2) vs this product (col 1), same verifiable rows. {%- endcomment -%}
+      <div class="ec-vs">
+        <div class="ec-vs__card ec-vs__card--them">
+          <p class="ec-vs__h">{{ section.settings.col_2 | escape }}</p>
+          <ul role="list">
+            {%- for block in section.blocks -%}
+              <li class="{% if block.settings.value_2 %}y{% else %}n{% endif %}">
+                {%- if block.settings.value_2 -%}{% render 'ecoms-icon', name: 'check' %}{%- else -%}{% render 'ecoms-icon', name: 'x' %}{%- endif -%}
+                <span>{{ block.settings.feature | escape }}</span>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+        <span class="ec-vs__vs" aria-hidden="true">VS</span>
+        <div class="ec-vs__card ec-vs__card--us">
+          {%- if section.settings.show_image and product.featured_image != blank -%}
+            {{ product.featured_image | image_url: width: 160 | image_tag: class: 'ec-vs__img', loading: 'lazy', width: 56, height: 56, alt: '' }}
+          {%- endif -%}
+          <p class="ec-vs__h">{{ section.settings.col_1 | escape }}</p>
+          <ul role="list">
+            {%- for block in section.blocks -%}
+              <li class="{% if block.settings.value_1 %}y{% else %}n{% endif %}" {{ block.shopify_attributes }}>
+                {%- if block.settings.value_1 -%}{% render 'ecoms-icon', name: 'check' %}{%- else -%}{% render 'ecoms-icon', name: 'x' %}{%- endif -%}
+                <span>{{ block.settings.feature | escape }}</span>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+    {%- else -%}
     <div class="ec-cmp-wrap">
       <table class="ec-cmp">
         <thead>
@@ -45,6 +76,7 @@
         </tbody>
       </table>
     </div>
+    {%- endif -%}
   </div>
 </section>
 
@@ -53,6 +85,22 @@
   "name": "ECOMS · Tabla comparativa",
   "tag": "section",
   "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Estilo",
+      "options": [
+        {
+          "value": "table",
+          "label": "Tabla"
+        },
+        {
+          "value": "vs",
+          "label": "Tarjetas VS (alternativa vs producto)"
+        }
+      ],
+      "default": "table"
+    },
     {
       "type": "text",
       "id": "heading",

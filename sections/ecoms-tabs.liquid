@@ -1,0 +1,330 @@
+{%- comment -%}
+  ECOMS · Uso por zona: tabs (Baño, Cocina, Pisos…) with photo + copy. CSS-only (radio inputs), works
+  without JavaScript. Image falls back to a product photo by position.
+{%- endcomment -%}
+{%- assign tabs = section.blocks | where: 'type', 'tab' -%}
+{%- if tabs.size > 0 -%}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-tabs-sec' %}>
+  <div class="ec-w">
+    <div class="ec-sec-h">
+      {%- if section.settings.eyebrow != blank -%}<p class="ec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
+      {%- if section.settings.text != blank -%}<p>{{ section.settings.text | escape }}</p>{%- endif -%}
+    </div>
+    <div class="ec-tabs">
+      {%- for block in tabs limit: 6 -%}
+        <input class="ec-tabs__r" type="radio" name="ec-tabs-{{ section.id }}" id="ec-tab-{{ block.id }}" {% if forloop.first %}checked{% endif %}>
+      {%- endfor -%}
+      <div class="ec-tabs__nav">
+        {%- for block in tabs limit: 6 -%}
+          <label for="ec-tab-{{ block.id }}" {{ block.shopify_attributes }}>
+            {%- if block.settings.icon != 'none' -%}{% render 'ecoms-icon', name: block.settings.icon %}{%- endif -%}
+            {{- block.settings.label | escape -}}
+          </label>
+        {%- endfor -%}
+      </div>
+      <div class="ec-tabs__panels">
+        {%- for block in tabs limit: 6 -%}
+          {%- liquid
+            assign idx = block.settings.product_image_index | default: 1 | minus: 1
+            assign pic = block.settings.image | default: product.images[idx] | default: product.featured_image
+          -%}
+          <div class="ec-tabs__p">
+            <div class="ec-tabs__img">
+              {%- if pic != blank -%}
+                {{ pic | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '400,600,800,1000', sizes: '(min-width: 990px) 560px, 100vw', alt: block.settings.heading }}
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'ec-placeholder' }}
+              {%- endif -%}
+            </div>
+            <div class="ec-tabs__copy">
+              {%- if block.settings.heading != blank -%}<h3>{{ block.settings.heading | escape }}</h3>{%- endif -%}
+              {%- if block.settings.text != blank -%}<p>{{ block.settings.text | escape }}</p>{%- endif -%}
+              <ul role="list">
+                {%- for i in (1..3) -%}
+                  {%- assign key = 'point_' | append: i -%}
+                  {%- if block.settings[key] != blank -%}<li>{% render 'ecoms-icon', name: 'check' %}<span>{{ block.settings[key] | escape }}</span></li>{%- endif -%}
+                {%- endfor -%}
+              </ul>
+              {%- if section.settings.button_label != blank -%}
+                <a href="#" class="ec-btn ec-btn--primary" data-ec-scroll-buy>{{ section.settings.button_label | escape }}</a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ECOMS · Pestañas de uso",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Antetítulo",
+      "default": "Un solo cepillo"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Úsalo en toda la casa"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Texto"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Botón (lleva a la compra)",
+      "default": "Lo quiero"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Ancho en escritorio",
+      "options": [
+        {
+          "value": "full",
+          "label": "Completo"
+        },
+        {
+          "value": "left",
+          "label": "Mitad izquierda"
+        },
+        {
+          "value": "right",
+          "label": "Mitad derecha"
+        }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Margen superior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Margen inferior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Pestaña",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Nombre de la pestaña",
+          "default": "Baño"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícono",
+          "options": [
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / pago seguro"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "chat",
+              "label": "Soporte"
+            },
+            {
+              "value": "cash",
+              "label": "Pago / efectivo"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "star",
+              "label": "Estrella"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "check",
+              "label": "Check"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "fire",
+              "label": "Fuego / oferta"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo / potencia"
+            },
+            {
+              "value": "sparkle",
+              "label": "Brillo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja / natural"
+            },
+            {
+              "value": "drop",
+              "label": "Gota / agua"
+            },
+            {
+              "value": "snow",
+              "label": "Frío"
+            },
+            {
+              "value": "thermo",
+              "label": "Temperatura"
+            },
+            {
+              "value": "sun",
+              "label": "Sol / luz"
+            },
+            {
+              "value": "gem",
+              "label": "Gema / premium"
+            },
+            {
+              "value": "hand",
+              "label": "Mano / fácil"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "box",
+              "label": "Caja / paquete"
+            },
+            {
+              "value": "grid",
+              "label": "Accesorios"
+            },
+            {
+              "value": "battery",
+              "label": "Batería"
+            },
+            {
+              "value": "home",
+              "label": "Hogar"
+            },
+            {
+              "value": "verified",
+              "label": "Verificado"
+            },
+            {
+              "value": "bag",
+              "label": "Bolsa / tienda"
+            },
+            {
+              "value": "cart",
+              "label": "Carrito"
+            }
+          ],
+          "default": "drop"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen"
+        },
+        {
+          "type": "range",
+          "id": "product_image_index",
+          "label": "Sin imagen: foto n.º del producto",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 1
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Título"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto"
+        },
+        {
+          "type": "text",
+          "id": "point_1",
+          "label": "Punto 1"
+        },
+        {
+          "type": "text",
+          "id": "point_2",
+          "label": "Punto 2"
+        },
+        {
+          "type": "text",
+          "id": "point_3",
+          "label": "Punto 3"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "ECOMS · Pestañas de uso",
+      "blocks": [
+        {
+          "type": "tab"
+        },
+        {
+          "type": "tab"
+        },
+        {
+          "type": "tab"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

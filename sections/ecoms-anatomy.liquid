@@ -1,80 +1,110 @@
 {%- comment -%}
-  ECOMS · Key figures. Store numbers (Direct) or product specs (e.g. «90 min», «IPX7»). Only real,
-  verifiable values: blocks without a value are hidden, and so is the section when none is filled.
+  ECOMS · Anatomía del producto: the product photo in the center with numbered feature callouts on both
+  sides (stacked on mobile). Only describe features the product really has.
 {%- endcomment -%}
 {%- liquid
-  assign filled = 0
+  assign items = 0
   for block in section.blocks
-    if block.settings.value != blank
-      assign filled = filled | plus: 1
+    if block.settings.title != blank
+      assign items = items | plus: 1
     endif
   endfor
+  assign half = items | plus: 1 | divided_by: 2
+  assign pic = section.settings.image | default: product.featured_image
+  assign n = 0
 -%}
-{%- if filled > 0 or request.design_mode -%}
-<section {% render 'ecoms-section-style', section: section, class: 'ec-stats-sec' %}>
-  <div class="ec-stats-wrap ec-stats-wrap--{{ section.settings.style | default: 'box' }}">
-  <div class="ec-w">
-    {%- if section.settings.heading != blank -%}
+{%- if items > 0 or request.design_mode -%}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-anat-sec' %}>
+  <div class="ec-anat-wrap ec-anat-wrap--{{ section.settings.style }}">
+    <div class="ec-w">
       <div class="ec-sec-h">
-        <h2>{{ section.settings.heading | escape }}</h2>
+        {%- if section.settings.eyebrow != blank -%}<p class="ec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
         {%- if section.settings.text != blank -%}<p>{{ section.settings.text | escape }}</p>{%- endif -%}
       </div>
-    {%- endif -%}
-    <div class="ec-stats">
-      {%- for block in section.blocks -%}
-        {%- if block.settings.value == blank and request.design_mode != true -%}{%- continue -%}{%- endif -%}
-        <div {{ block.shopify_attributes }}>
-          {% render 'ecoms-icon', name: block.settings.icon %}
-          <div>
-            <b>{{ block.settings.value | default: '—' | escape }}</b>
-            <span>{{ block.settings.label | escape }}</span>
-          </div>
+      <div class="ec-anat">
+        <div class="ec-anat__img">
+          {%- if pic != blank -%}
+            {{ pic | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '400,600,800,1000', sizes: '(min-width: 990px) 420px, 80vw', alt: section.settings.heading }}
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'ec-placeholder' }}
+          {%- endif -%}
         </div>
-      {%- endfor -%}
+        {%- capture col_l -%}{%- endcapture -%}
+        {%- capture col_r -%}{%- endcapture -%}
+        {%- for block in section.blocks -%}
+          {%- if block.settings.title == blank -%}{%- continue -%}{%- endif -%}
+          {%- assign n = n | plus: 1 -%}
+          {%- capture item -%}
+            <li class="ec-anat__item" {{ block.shopify_attributes }}>
+              <span class="ec-anat__n">{{ n }}</span>
+              <div>
+                <b>{%- if block.settings.icon != 'none' -%}{% render 'ecoms-icon', name: block.settings.icon %}{%- endif -%}{{ block.settings.title | escape }}</b>
+                {%- if block.settings.text != blank -%}<span class="ec-anat__t">{{ block.settings.text | escape }}</span>{%- endif -%}
+              </div>
+            </li>
+          {%- endcapture -%}
+          {%- if n <= half -%}
+            {%- capture col_l -%}{{ col_l }}{{ item }}{%- endcapture -%}
+          {%- else -%}
+            {%- capture col_r -%}{{ col_r }}{{ item }}{%- endcapture -%}
+          {%- endif -%}
+        {%- endfor -%}
+        <ul class="ec-anat__col ec-anat__col--l" role="list">{{ col_l }}</ul>
+        <ul class="ec-anat__col ec-anat__col--r" role="list">{{ col_r }}</ul>
+      </div>
     </div>
-  </div>
   </div>
 </section>
 {%- endif -%}
 
 {% schema %}
 {
-  "name": "ECOMS · Cifras",
+  "name": "ECOMS · Anatomía",
   "tag": "section",
   "settings": [
-    {
-      "type": "paragraph",
-      "content": "Usa solo cifras reales y verificables (de la tienda o de la ficha técnica del producto). Los bloques sin valor no se muestran."
-    },
     {
       "type": "select",
       "id": "style",
       "label": "Estilo",
       "options": [
         {
-          "value": "box",
-          "label": "Caja gris"
+          "value": "dark",
+          "label": "Oscuro (color principal)"
         },
         {
-          "value": "dark",
-          "label": "Franja oscura (color principal)"
+          "value": "soft",
+          "label": "Fondo suave"
+        },
+        {
+          "value": "plain",
+          "label": "Sin fondo"
         }
       ],
-      "default": "box"
+      "default": "dark"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Antetítulo",
+      "default": "Diseñado para limpiar"
     },
     {
       "type": "text",
       "id": "heading",
-      "label": "Título (opcional)"
+      "label": "Título",
+      "default": "Cada detalle cuenta"
     },
     {
       "type": "text",
       "id": "text",
-      "label": "Texto (opcional)"
+      "label": "Texto"
     },
     {
-      "type": "header",
-      "content": "Diseño"
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen (vacío = foto principal del producto)",
+      "info": "Ideal: producto recortado sobre fondo transparente o liso."
     },
     {
       "type": "select",
@@ -92,18 +122,6 @@
         {
           "value": "right",
           "label": "Mitad derecha"
-        },
-        {
-          "value": "t1",
-          "label": "Tercio 1"
-        },
-        {
-          "value": "t2",
-          "label": "Tercio 2"
-        },
-        {
-          "value": "t3",
-          "label": "Tercio 3"
         }
       ],
       "default": "full"
@@ -115,8 +133,8 @@
       "min": 0,
       "max": 80,
       "step": 4,
-      "default": 36,
-      "unit": "px"
+      "unit": "px",
+      "default": 0
     },
     {
       "type": "range",
@@ -125,19 +143,19 @@
       "min": 0,
       "max": 80,
       "step": 4,
-      "default": 36,
-      "unit": "px"
+      "unit": "px",
+      "default": 0
     }
   ],
   "blocks": [
     {
-      "type": "stat",
-      "name": "Cifra",
+      "type": "point",
+      "name": "Característica",
       "settings": [
         {
           "type": "select",
           "id": "icon",
-          "label": "Icono",
+          "label": "Ícono",
           "options": [
             {
               "value": "none",
@@ -260,27 +278,39 @@
               "label": "Carrito"
             }
           ],
-          "default": "users"
+          "default": "check"
         },
         {
           "type": "text",
-          "id": "value",
-          "label": "Cifra",
-          "default": "+1.000"
+          "id": "title",
+          "label": "Título"
         },
         {
           "type": "text",
-          "id": "label",
-          "label": "Texto",
-          "default": "Clientes en Chile"
+          "id": "text",
+          "label": "Detalle",
+          "info": "Solo características reales del producto."
         }
       ]
     }
   ],
-  "max_blocks": 4,
   "presets": [
     {
-      "name": "ECOMS · Cifras"
+      "name": "ECOMS · Anatomía",
+      "blocks": [
+        {
+          "type": "point"
+        },
+        {
+          "type": "point"
+        },
+        {
+          "type": "point"
+        },
+        {
+          "type": "point"
+        }
+      ]
     }
   ]
 }

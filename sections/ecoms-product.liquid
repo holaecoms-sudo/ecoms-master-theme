@@ -100,7 +100,7 @@
 {%- endif -%}
 <section
   id="EcProduct-{{ section.id }}"
-  class="ec-pdp ec-pdp--{{ section.settings.layout }} ec-pdp--thumbs-{{ section.settings.thumbs | default: 'auto' }}"
+  class="ec-pdp ec-pdp--{{ section.settings.layout }} ec-pdp--thumbs-{{ section.settings.thumbs | default: 'auto' }} ec-pdp--bg-{{ section.settings.hero_bg | default: 'none' }}"
   data-ec-product
   data-section-id="{{ section.id }}"
   data-product-url="{{ product.url }}"
@@ -315,6 +315,18 @@
                 {{ product | json }}
               </script>
             </div>
+
+          {%- when 'chips' -%}
+            {%- comment -%} Spec pills under the title (e.g. IPX7 · 90 min · USB-C). Empty pills are skipped. {%- endcomment -%}
+            {%- capture chips -%}
+              {%- for i in (1..5) -%}
+                {%- assign key = 'chip_' | append: i -%}
+                {%- if block.settings[key] != blank -%}<li>{{ block.settings[key] | escape }}</li>{%- endif -%}
+              {%- endfor -%}
+            {%- endcapture -%}
+            {%- if chips != blank -%}
+              <ul class="ec-chips" role="list" {{ block.shopify_attributes }}>{{ chips }}</ul>
+            {%- endif -%}
 
           {%- when 'includes' -%}
             {%- comment -%} Compact «Tu compra incluye» list for the buy box (only pieces that really ship). {%- endcomment -%}
@@ -548,6 +560,26 @@
       "id": "badge",
       "label": "Etiqueta sobre la foto",
       "info": "Ej.: Más vendido. Solo si es real."
+    },
+    {
+      "type": "select",
+      "id": "hero_bg",
+      "label": "Fondo de la ficha",
+      "options": [
+        {
+          "value": "none",
+          "label": "Liso"
+        },
+        {
+          "value": "glow",
+          "label": "Degradado suave con el color de acento"
+        },
+        {
+          "value": "split",
+          "label": "Galería sobre bloque de color suave"
+        }
+      ],
+      "default": "none"
     },
     {
       "type": "select",
@@ -812,6 +844,42 @@
       "name": "Título",
       "limit": 1,
       "settings": []
+    },
+    {
+      "type": "chips",
+      "name": "Datos destacados",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Datos técnicos cortos y reales, ej.: IPX7, 90 min, USB-C."
+        },
+        {
+          "type": "text",
+          "id": "chip_1",
+          "label": "Dato 1"
+        },
+        {
+          "type": "text",
+          "id": "chip_2",
+          "label": "Dato 2"
+        },
+        {
+          "type": "text",
+          "id": "chip_3",
+          "label": "Dato 3"
+        },
+        {
+          "type": "text",
+          "id": "chip_4",
+          "label": "Dato 4"
+        },
+        {
+          "type": "text",
+          "id": "chip_5",
+          "label": "Dato 5"
+        }
+      ]
     },
     {
       "type": "text",
