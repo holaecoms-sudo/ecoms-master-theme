@@ -68,6 +68,36 @@
     assign start_total = start_sub | minus: start_discount
   endif
 -%}
+{%- comment -%} Page palette: overrides the store colors only on pages using this template (e.g. a cleaning category). {%- endcomment -%}
+{%- liquid
+  assign pal = section.settings.palette | default: 'store'
+-%}
+{%- if pal != 'store' -%}
+  <style>
+    :root {
+      --ec-primary:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- else -%}{{ section.settings.pal_primary | default: settings.ecoms_primary }}{%- endcase -%};
+      --ec-primary-ink:       {%- case pal -%}{%- when 'agua' -%}#FFFFFF{%- when 'grafito' -%}#FFFFFF{%- else -%}{{ section.settings.pal_primary_ink | default: settings.ecoms_primary_ink }}{%- endcase -%};
+      --ec-dark:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- else -%}{{ section.settings.pal_dark | default: settings.ecoms_dark }}{%- endcase -%};
+      --ec-accent:       {%- case pal -%}{%- when 'agua' -%}#14B8C9{%- when 'grafito' -%}#F2643D{%- else -%}{{ section.settings.pal_accent | default: settings.ecoms_accent }}{%- endcase -%};
+      --ec-accent-ink:       {%- case pal -%}{%- when 'agua' -%}#06283A{%- when 'grafito' -%}#FFFFFF{%- else -%}{{ section.settings.pal_accent_ink | default: settings.ecoms_accent_ink }}{%- endcase -%};
+      --ec-soft:       {%- case pal -%}{%- when 'agua' -%}#E9F7FA{%- when 'grafito' -%}#F5F3F0{%- else -%}{{ section.settings.pal_soft | default: settings.ecoms_soft }}{%- endcase -%};
+      --ec-soft-ink:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- else -%}{{ section.settings.pal_soft_ink | default: settings.ecoms_soft_ink }}{%- endcase -%};
+      --ec-tag:       {%- case pal -%}{%- when 'agua' -%}#14B8C9{%- when 'grafito' -%}#F2643D{%- else -%}{{ section.settings.pal_tag | default: settings.ecoms_tag }}{%- endcase -%};
+      --ec-tag-ink:       {%- case pal -%}{%- when 'agua' -%}#06283A{%- when 'grafito' -%}#FFFFFF{%- else -%}{{ section.settings.pal_tag_ink | default: settings.ecoms_tag_ink }}{%- endcase -%};
+      --ec-sale-bg:       {%- case pal -%}{%- when 'agua' -%}#E0F5F8{%- when 'grafito' -%}#FDEBE5{%- else -%}{{ section.settings.pal_sale_bg | default: settings.ecoms_sale_bg }}{%- endcase -%};
+      --ec-sale-ink:       {%- case pal -%}{%- when 'agua' -%}#0B4F63{%- when 'grafito' -%}#9A3412{%- else -%}{{ section.settings.pal_sale_ink | default: settings.ecoms_sale_ink }}{%- endcase -%};
+      --ec-urgent:       {%- case pal -%}{%- when 'agua' -%}#B54708{%- when 'grafito' -%}#B54708{%- else -%}{{ section.settings.pal_urgent | default: settings.ecoms_urgent }}{%- endcase -%};
+      --ec-urgent-bg:       {%- case pal -%}{%- when 'agua' -%}#FFF4E5{%- when 'grafito' -%}#FFF4E5{%- else -%}{{ section.settings.pal_urgent_bg | default: settings.ecoms_urgent_bg }}{%- endcase -%};
+      --ec-bg:       {%- case pal -%}{%- when 'agua' -%}#FFFFFF{%- when 'grafito' -%}#FFFFFF{%- else -%}{{ section.settings.pal_bg | default: settings.ecoms_bg }}{%- endcase -%};
+      --ec-ink:       {%- case pal -%}{%- when 'agua' -%}#0F1B2A{%- when 'grafito' -%}#141414{%- else -%}{{ section.settings.pal_ink | default: settings.ecoms_ink }}{%- endcase -%};
+      --ec-muted:       {%- case pal -%}{%- when 'agua' -%}#5B6B7B{%- when 'grafito' -%}#6B6B6B{%- else -%}{{ section.settings.pal_muted | default: settings.ecoms_muted }}{%- endcase -%};
+      --ec-line:       {%- case pal -%}{%- when 'agua' -%}#E2E8EF{%- when 'grafito' -%}#E8E5E1{%- else -%}{{ section.settings.pal_line | default: settings.ecoms_line }}{%- endcase -%};
+      --ec-deep:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- else -%}{{ section.settings.pal_deep | default: settings.ecoms_deep }}{%- endcase -%};
+      --ec-primary-hover: color-mix(in srgb, var(--ec-primary) 86%, #000);
+    }
+    body.ec-skin { background: var(--ec-bg); }
+  </style>
+{%- endif -%}
 <section
   id="EcProduct-{{ section.id }}"
   class="ec-pdp ec-pdp--{{ section.settings.layout }} ec-pdp--thumbs-{{ section.settings.thumbs | default: 'auto' }}"
@@ -600,6 +630,129 @@
       "id": "sticky_label",
       "label": "Texto del botón fijo",
       "default": "Agregar"
+    },
+    {
+      "type": "header",
+      "content": "Paleta de esta página"
+    },
+    {
+      "type": "select",
+      "id": "palette",
+      "label": "Colores",
+      "options": [
+        {
+          "value": "store",
+          "label": "Los de la tienda"
+        },
+        {
+          "value": "agua",
+          "label": "Agua: azul marino + turquesa"
+        },
+        {
+          "value": "grafito",
+          "label": "Grafito: negro + coral"
+        },
+        {
+          "value": "custom",
+          "label": "Personalizada"
+        }
+      ],
+      "default": "store",
+      "info": "Cambia los colores solo en las páginas que usan esta plantilla (por ejemplo, una categoría de limpieza)."
+    },
+    {
+      "type": "paragraph",
+      "content": "Personalizada: los colores vacíos usan los de la tienda."
+    },
+    {
+      "type": "color",
+      "id": "pal_primary",
+      "label": "Principal (botones)"
+    },
+    {
+      "type": "color",
+      "id": "pal_primary_ink",
+      "label": "Texto sobre principal"
+    },
+    {
+      "type": "color",
+      "id": "pal_dark",
+      "label": "Oscuro (bandas)"
+    },
+    {
+      "type": "color",
+      "id": "pal_accent",
+      "label": "Acento"
+    },
+    {
+      "type": "color",
+      "id": "pal_accent_ink",
+      "label": "Texto sobre acento"
+    },
+    {
+      "type": "color",
+      "id": "pal_soft",
+      "label": "Fondo suave"
+    },
+    {
+      "type": "color",
+      "id": "pal_soft_ink",
+      "label": "Texto sobre fondo suave"
+    },
+    {
+      "type": "color",
+      "id": "pal_tag",
+      "label": "Etiquetas"
+    },
+    {
+      "type": "color",
+      "id": "pal_tag_ink",
+      "label": "Texto de etiquetas"
+    },
+    {
+      "type": "color",
+      "id": "pal_sale_bg",
+      "label": "Fondo de ahorro"
+    },
+    {
+      "type": "color",
+      "id": "pal_sale_ink",
+      "label": "Texto de ahorro"
+    },
+    {
+      "type": "color",
+      "id": "pal_urgent",
+      "label": "Urgencia"
+    },
+    {
+      "type": "color",
+      "id": "pal_urgent_bg",
+      "label": "Fondo de urgencia"
+    },
+    {
+      "type": "color",
+      "id": "pal_bg",
+      "label": "Fondo de página"
+    },
+    {
+      "type": "color",
+      "id": "pal_ink",
+      "label": "Texto"
+    },
+    {
+      "type": "color",
+      "id": "pal_muted",
+      "label": "Texto secundario"
+    },
+    {
+      "type": "color",
+      "id": "pal_line",
+      "label": "Bordes"
+    },
+    {
+      "type": "color",
+      "id": "pal_deep",
+      "label": "Profundo"
     },
     {
       "type": "header",

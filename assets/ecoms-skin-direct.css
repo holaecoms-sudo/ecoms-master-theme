@@ -47,7 +47,7 @@ body.ec-skin--direct { --gal-ratio: 1 / 1.08; }
 .ec-skin--direct .ec-packs--rows .ec-pack input:checked + .ec-pack__card { background: var(--ec-soft); box-shadow: none; }
 .ec-skin--direct .ec-packs--rows .ec-pack__q { font-size: 15px; }
 .ec-skin--direct .ec-packs--rows .ec-pack__tag { top: -10px; right: 10px; left: auto; padding: 2px 8px; border-radius: 5px; background: var(--ec-primary); color: var(--ec-primary-ink); font-size: 11px; font-weight: 800; }
-.ec-skin--direct .ec-packs--rows .ec-badge-sale { background: var(--ec-urgent); color: #fff; }
+.ec-skin--direct .ec-packs--rows .ec-badge-sale { background: var(--ec-sale-bg); color: var(--ec-sale-ink); }
 
 /* Buttons */
 .ec-skin--direct .ec-btn--lg { min-height: 52px; font-size: 17px; font-weight: 800; }

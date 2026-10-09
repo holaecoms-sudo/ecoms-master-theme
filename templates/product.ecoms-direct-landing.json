@@ -58,9 +58,9 @@
           "settings": {
             "end_at": "",
             "icon": "fire",
-            "heading": "Oferta de lanzamiento termina en:",
-            "text": "",
-            "style": "inline",
+            "heading": "Oferta de lanzamiento",
+            "text": "Termina en:",
+            "style": "subtle",
             "show_days": false
           }
         },
@@ -188,7 +188,8 @@
         "sticky_desktop": false,
         "sticky_label": "Comprar",
         "padding_top": 24,
-        "padding_bottom": 32
+        "padding_bottom": 32,
+        "palette": "agua"
       }
     },
     "problem": {
