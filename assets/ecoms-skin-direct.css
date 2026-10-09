@@ -68,3 +68,8 @@ body.ec-skin--direct { --gal-ratio: 1 / 1.08; }
 @media screen and (min-width: 1120px) {
   .ec-skin--direct .ec-pdp__grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 0.85fr); grid-template-areas: 'media info buy'; }
 }
+
+/* Option: two columns on wide screens (buy box under the info column) */
+@media screen and (min-width: 1120px) {
+  .ec-skin--direct .ec-pdp--cols-two .ec-pdp__grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); grid-template-areas: 'media info' 'media buy'; gap: 20px 48px; }
+}

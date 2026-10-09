@@ -77,7 +77,7 @@
             "heading": "Oferta de lanzamiento",
             "text": "Termina en:",
             "style": "subtle",
-            "show_days": false
+            "show_days": true
           }
         },
         "packs": {
@@ -241,7 +241,8 @@
         "pal_deep": "",
         "padding_top": 24,
         "padding_bottom": 32,
-        "hero_bg": "glow"
+        "hero_bg": "glow",
+        "columns": "two"
       }
     },
     "includes": {
