@@ -173,6 +173,17 @@ Bloques de la ficha (`ECOMS · Producto`): Packs (diseño «Ofertas»: total, c/
 
 ---
 
+## 9b. Plantillas de landing listas
+
+| Plantilla | Estilo | Uso |
+|---|---|---|
+| `product.ecoms-flex-landing` | Flex | Orden y hogar (colgador): packs «Ofertas», cómo funciona, filas imagen + texto, especificaciones, comparativa, FAQ |
+| `product.ecoms-direct-landing` | Direct | Limpieza y demostración (cepillo eléctrico): caja de compra lateral, antes/después, cómo se usa, ideal para, especificaciones por metacampo (`ecoms.battery`, `ecoms.charge_time`, `ecoms.heads`, `ecoms.dimensions`, `ecoms.water_resistance`, `ecoms.speed`, `ecoms.package_contents`), comparativa, FAQ con borradores |
+
+En la landing Direct la cuenta regresiva y el descuento de packs vienen apagados: actívalos solo con una fecha real y con los descuentos automáticos creados.
+
+---
+
 ## 10. Packs predeterminados, envío gratis y fichas por metacampos (v1.4)
 
 ### Pack seleccionado al cargar

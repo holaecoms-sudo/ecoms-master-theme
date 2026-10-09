@@ -1,0 +1,548 @@
+{
+  "sections": {
+    "main": {
+      "type": "ecoms-product",
+      "blocks": {
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "sub": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Limpia baño, azulejos y pisos sin fregar ni agacharte: el cabezal gira solo y tú solo lo guías.</p>"
+          }
+        },
+        "benefits": {
+          "type": "benefits",
+          "settings": {
+            "item_1": "Gira solo: menos esfuerzo al limpiar",
+            "item_2": "Mango extensible para llegar sin agacharte",
+            "item_3": "Cabezales intercambiables para cada superficie",
+            "item_4": "Recargable, sin cables mientras limpias"
+          }
+        },
+        "trust": {
+          "type": "trust",
+          "settings": {
+            "icon_1": "truck",
+            "title_1": "Envíos",
+            "text_1": "A todo Chile",
+            "icon_2": "lock",
+            "title_2": "Pago seguro",
+            "text_2": "Checkout Shopify",
+            "icon_3": "box",
+            "title_3": "Seguimiento",
+            "text_3": "De tu pedido",
+            "icon_4": "return",
+            "title_4": "Cambios",
+            "text_4": "Según política"
+          }
+        },
+        "buybox": {
+          "type": "buybox",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "style": "direct"
+          }
+        },
+        "urgency": {
+          "type": "urgency",
+          "settings": {
+            "end_at": "",
+            "icon": "fire",
+            "heading": "Oferta termina en:",
+            "text": "",
+            "style": "inline",
+            "show_days": false
+          }
+        },
+        "stock": {
+          "type": "stock",
+          "settings": {
+            "max_show": 10,
+            "text": "¡Solo quedan [qty] unidades en stock!"
+          }
+        },
+        "packs": {
+          "type": "packs",
+          "settings": {
+            "heading": "Elige tu pack",
+            "layout": "rows",
+            "show_cta_total": false,
+            "help": "",
+            "default_tier": "1",
+            "item_name": "cepillos",
+            "show_summary": true,
+            "summary_label": "Tu pack incluye",
+            "show_free_shipping": true,
+            "discounts_live": false,
+            "tier1_qty": 1,
+            "tier1_label": "1 cepillo",
+            "tier1_tag": "",
+            "tier2_enabled": true,
+            "tier2_qty": 2,
+            "tier2_pct": 0,
+            "tier2_label": "2 cepillos",
+            "tier2_tag": "Para regalar",
+            "tier3_enabled": false,
+            "tier3_qty": 3,
+            "tier3_pct": 0,
+            "tier3_label": "",
+            "tier3_tag": ""
+          }
+        },
+        "buy": {
+          "type": "buy",
+          "settings": {
+            "show_quantity": false,
+            "add_label": "Añadir al carrito",
+            "show_total": true,
+            "show_buy_now": true,
+            "buy_now_icon": "bolt",
+            "buy_now_label": "Comprar ahora"
+          }
+        },
+        "payments": {
+          "type": "payments",
+          "settings": {
+            "text": ""
+          }
+        },
+        "media_features": {
+          "type": "media_features",
+          "settings": {
+            "icon_1": "bolt",
+            "text_1": "Rotación eléctrica",
+            "icon_2": "hand",
+            "text_2": "Mango extensible",
+            "icon_3": "grid",
+            "text_3": "Cabezales intercambiables",
+            "icon_4": "battery",
+            "text_4": "Recargable USB"
+          }
+        }
+      },
+      "block_order": [
+        "rating",
+        "title",
+        "sub",
+        "benefits",
+        "trust",
+        "buybox",
+        "price",
+        "urgency",
+        "stock",
+        "packs",
+        "buy",
+        "payments",
+        "media_features"
+      ],
+      "settings": {
+        "layout": "direct",
+        "thumbs": "auto",
+        "badge": "",
+        "media_ratio": "auto",
+        "media_fit": "contain",
+        "video_first": true,
+        "video_autoplay": true,
+        "video_loop": true,
+        "sticky": true,
+        "sticky_desktop": false,
+        "sticky_label": "Comprar",
+        "padding_top": 24,
+        "padding_bottom": 32
+      }
+    },
+    "problem": {
+      "type": "ecoms-problem",
+      "blocks": {
+        "b1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "clock",
+            "text": "Limpia en menos tiempo"
+          }
+        },
+        "b2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "hand",
+            "text": "Sin agacharte ni fregar"
+          }
+        },
+        "b3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "sparkle",
+            "text": "Juntas y rincones"
+          }
+        },
+        "b4": {
+          "type": "benefit",
+          "settings": {
+            "icon": "home",
+            "text": "Baño, cocina y pisos"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ],
+      "settings": {
+        "heading": "De fregar a mano… a limpiar sin esfuerzo",
+        "text": "<p>Las juntas, la ducha y los rincones son lo más pesado de limpiar. El cabezal giratorio hace el trabajo de fregar y el mango extensible te evita agacharte.</p>",
+        "before_label": "Antes",
+        "before_caption": "",
+        "after_label": "Después",
+        "after_caption": "",
+        "quote": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 20
+      }
+    },
+    "how": {
+      "type": "ecoms-steps",
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "icon": "grid",
+            "heading": "Elige el cabezal",
+            "text": "Uno para cada superficie: azulejos, juntas o pisos."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "icon": "bolt",
+            "heading": "Enciende y guía",
+            "text": "Apóyalo sobre la superficie y deja que gire."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "icon": "sparkle",
+            "heading": "Enjuaga y listo",
+            "text": "Pasa un paño o enjuaga con agua."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "settings": {
+        "style": "icons",
+        "heading": "Cómo se usa",
+        "text": "Tres pasos y listo.",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 20
+      }
+    },
+    "ideal": {
+      "type": "ecoms-ideal-for",
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "icon": "drop",
+            "title": "Baño y ducha",
+            "text": "Tina, receptáculo y mamparas"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "icon": "grid",
+            "title": "Azulejos y juntas",
+            "text": "Donde más se acumula"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "icon": "home",
+            "title": "Cocina",
+            "text": "Cubiertas y lavaplatos"
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Pisos",
+            "text": "Cerámica y porcelanato"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4"
+      ],
+      "settings": {
+        "heading": "Ideal para",
+        "text": "",
+        "width": "full",
+        "padding_top": 24,
+        "padding_bottom": 20
+      }
+    },
+    "specs": {
+      "type": "ecoms-specs",
+      "blocks": {
+        "bat": {
+          "type": "row",
+          "settings": {
+            "icon": "battery",
+            "label": "Batería y autonomía",
+            "value": "",
+            "metafield": "ecoms.battery"
+          }
+        },
+        "chg": {
+          "type": "row",
+          "settings": {
+            "icon": "clock",
+            "label": "Tiempo de carga",
+            "value": "",
+            "metafield": "ecoms.charge_time"
+          }
+        },
+        "hd": {
+          "type": "row",
+          "settings": {
+            "icon": "grid",
+            "label": "Cabezales incluidos",
+            "value": "",
+            "metafield": "ecoms.heads"
+          }
+        },
+        "len": {
+          "type": "row",
+          "settings": {
+            "icon": "hand",
+            "label": "Largo del mango",
+            "value": "",
+            "metafield": "ecoms.dimensions"
+          }
+        },
+        "wat": {
+          "type": "row",
+          "settings": {
+            "icon": "drop",
+            "label": "Resistencia al agua",
+            "value": "",
+            "metafield": "ecoms.water_resistance"
+          }
+        },
+        "rpm": {
+          "type": "row",
+          "settings": {
+            "icon": "bolt",
+            "label": "Velocidad de giro",
+            "value": "",
+            "metafield": "ecoms.speed"
+          }
+        },
+        "inc": {
+          "type": "row",
+          "settings": {
+            "icon": "box",
+            "label": "Contenido del paquete",
+            "value": "",
+            "metafield": "ecoms.package_contents"
+          }
+        }
+      },
+      "block_order": [
+        "bat",
+        "chg",
+        "hd",
+        "len",
+        "wat",
+        "rpm",
+        "inc"
+      ],
+      "settings": {
+        "heading": "Especificaciones",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "comparison": {
+      "type": "ecoms-comparison",
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "feature": "Gira solo, sin fregar",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "feature": "Llega lejos sin agacharte",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "feature": "Un cabezal para cada superficie",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "feature": "Menos esfuerzo en muñecas y espalda",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ],
+      "settings": {
+        "heading": "¿Por qué eléctrico?",
+        "feature_label": "",
+        "col_1": "Cepillo eléctrico",
+        "show_image": true,
+        "col_2": "Cepillo a mano",
+        "col_3": "",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "reviews": {
+      "type": "ecoms-reviews",
+      "settings": {
+        "style": "direct",
+        "heading": "Lo que dicen nuestros clientes",
+        "link_label": "",
+        "link": "",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "faq": {
+      "type": "ecoms-faq",
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuánto dura la batería?",
+            "answer": "<p>Indica la autonomía y el tiempo de carga reales según la ficha del proveedor.</p>",
+            "draft": true
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Qué cabezales incluye?",
+            "answer": "<p>Detalla la cantidad y el tipo de cabezales que vienen en la caja.</p>",
+            "draft": true
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Se puede mojar?",
+            "answer": "<p>Indica la resistencia al agua real (por ejemplo, la certificación IPX) según la ficha del proveedor.</p>",
+            "draft": true
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "question": "¿En qué superficies lo puedo usar?",
+            "answer": "<p>Está pensado para superficies duras del hogar: baño, ducha, azulejos, cocina y pisos. En superficies delicadas usa el cabezal más suave y prueba primero en una zona poco visible.</p>",
+            "draft": false
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuánto cuesta el envío y cuánto tarda?",
+            "answer": "<p>Despachamos a todo Chile. El costo y el plazo estimado para tu comuna aparecen en el checkout antes de pagar.</p>",
+            "draft": false
+          }
+        },
+        "q6": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo puedo pagar?",
+            "answer": "<p>Con los medios de pago disponibles en el checkout seguro de Shopify.</p>",
+            "draft": false
+          }
+        },
+        "q7": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Puedo cambiar o devolver mi compra?",
+            "answer": "<p>Resume tu política de cambios y devoluciones y enlázala (Configuración → Políticas).</p>",
+            "draft": true
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7"
+      ],
+      "settings": {
+        "heading": "Preguntas frecuentes",
+        "icon": "plus",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "problem",
+    "how",
+    "ideal",
+    "specs",
+    "comparison",
+    "reviews",
+    "faq"
+  ]
+}
