@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ecoms · Inicio (maqueta)</title>
+<style>
+  :root {
+    --primary: #0F5132; --accent: #14B8A6; --accent-soft: #E6F7F4; --soft: #F1F7F4;
+    --ink: #1F2937; --muted: #6B7280; --line: #E3E8E5; --bg: #FFFFFF; --navy: #0B2E4F;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  .w { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+  .i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Announcement + header (as in the theme) */
+  .ann { background: var(--primary); color: #fff; font-size: 13px; text-align: center; padding: 9px 16px; }
+  .ann span { opacity: .45; margin: 0 10px; }
+  .hdr { border-bottom: 1px solid var(--line); background: #fff; }
+  .hdr .w { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .logo { font-size: 28px; font-weight: 800; letter-spacing: -0.03em; color: var(--primary); }
+  .logo b { color: var(--accent); }
+  .nav { display: flex; gap: 28px; font-size: 15px; }
+  .icons { display: flex; gap: 18px; }
+
+  /* Section 1 · Hero */
+  .hero { position: relative; overflow: hidden; background:
+    radial-gradient(700px 420px at 85% 30%, rgba(20,184,166,.18), transparent 70%),
+    radial-gradient(600px 400px at 0% 100%, rgba(15,81,50,.08), transparent 70%), var(--soft); }
+  .hero .w { display: grid; gap: 40px; align-items: center; padding-top: 64px; padding-bottom: 64px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 14px; padding: 6px 12px; border-radius: 999px; background: #fff; color: var(--primary); font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; box-shadow: 0 1px 0 var(--line); }
+  .eyebrow i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  h1 { margin: 0 0 16px; font-size: clamp(34px, 5.2vw, 56px); line-height: 1.04; letter-spacing: -0.035em; font-weight: 800; }
+  h1 em { font-style: normal; color: var(--primary); background: linear-gradient(transparent 62%, rgba(20,184,166,.28) 62%); }
+  .lead { margin: 0 0 26px; max-width: 520px; color: var(--muted); font-size: 17px; line-height: 1.55; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; min-height: 52px; padding: 0 26px; border-radius: 12px; font-size: 16px; font-weight: 700; }
+  .btn--primary { background: var(--primary); color: #fff; box-shadow: 0 10px 24px -12px rgba(15,81,50,.8); }
+  .btn--ghost { border: 1.5px solid var(--primary); color: var(--primary); background: #fff; }
+  .trust { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 20px; margin: 34px 0 0; padding: 0; list-style: none; max-width: 520px; }
+  .trust li { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; }
+  .trust .ic { display: grid; place-items: center; width: 36px; height: 36px; flex-shrink: 0; border-radius: 10px; background: #fff; color: var(--primary); box-shadow: 0 1px 0 var(--line); }
+  .trust small { display: block; color: var(--muted); font-weight: 500; font-size: 12.5px; }
+
+  .feature { position: relative; justify-self: center; width: min(100%, 470px); }
+  .feature__img { overflow: hidden; border-radius: 26px; background: #fff; box-shadow: 0 30px 60px -30px rgba(11,46,79,.45); aspect-ratio: 1; }
+  .feature__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .feature__tag { position: absolute; top: 18px; left: 18px; padding: 6px 12px; border-radius: 999px; background: var(--navy); color: #fff; font-size: 12px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+  .feature__card { position: absolute; left: -22px; right: 40px; bottom: -26px; display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 16px; background: #fff; box-shadow: 0 18px 40px -18px rgba(0,0,0,.35); }
+  .feature__card b { display: block; font-size: 15px; }
+  .feature__card span { color: var(--muted); font-size: 13px; }
+  .feature__card .price { margin-left: auto; text-align: right; white-space: nowrap; }
+  .feature__card .price b { color: var(--primary); font-size: 18px; }
+  .feature__card a { display: grid; place-items: center; width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; background: var(--accent); color: #fff; }
+
+  /* Section 2 · Products */
+  .prods { padding: 84px 0 72px; }
+  .sec-h { text-align: center; margin: 0 auto 36px; max-width: 620px; }
+  .sec-h p.k { margin: 0 0 8px; color: var(--accent); font-size: 12.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .sec-h h2 { margin: 0 0 10px; font-size: clamp(26px, 3.6vw, 38px); letter-spacing: -0.03em; }
+  .sec-h p { margin: 0; color: var(--muted); font-size: 16px; }
+  .grid { display: grid; gap: 22px; }
+  .card { display: grid; overflow: hidden; border: 1px solid var(--line); border-radius: 22px; background: #fff; transition: transform .2s, box-shadow .2s; }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 24px 50px -30px rgba(0,0,0,.35); }
+  .card__img { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
+  .card__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card__img--ph { display: grid; place-items: center; background: linear-gradient(135deg, #E9F5EF, #D7EEE6); color: var(--primary); }
+  .card__img--ph svg { width: 120px; height: 120px; stroke-width: 1.4; opacity: .8; }
+  .chip { position: absolute; top: 14px; left: 14px; padding: 5px 11px; border-radius: 999px; background: #fff; font-size: 12px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+  .chip--clean { color: var(--navy); } .chip--order { color: var(--primary); }
+  .card__body { padding: 22px 22px 24px; }
+  .card__body h3 { margin: 0 0 6px; font-size: 21px; letter-spacing: -0.02em; }
+  .card__body p { margin: 0 0 14px; color: var(--muted); font-size: 14.5px; line-height: 1.5; }
+  .card__body ul { display: grid; gap: 8px; margin: 0 0 20px; padding: 0; list-style: none; font-size: 14px; font-weight: 600; }
+  .card__body li { display: flex; gap: 8px; align-items: center; }
+  .card__body li .i { width: 18px; height: 18px; padding: 3px; border-radius: 50%; background: var(--accent-soft); color: var(--primary); stroke-width: 3; }
+  .card__foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; border-top: 1px solid var(--line); }
+  .card__foot .from { color: var(--muted); font-size: 12.5px; }
+  .card__foot .from b { display: block; color: var(--ink); font-size: 22px; letter-spacing: -0.02em; }
+  .card .btn { min-height: 46px; padding: 0 20px; font-size: 15px; }
+  .note { margin: 22px 0 0; color: var(--muted); font-size: 13px; text-align: center; }
+
+  .ft { padding: 28px 0; background: var(--primary); color: rgba(255,255,255,.75); font-size: 13px; }
+  .ft .w { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .ft .logo { font-size: 22px; color: #fff; }
+
+  @media (min-width: 900px) {
+    .hero .w { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); padding-top: 84px; padding-bottom: 96px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 899px) {
+    .nav { display: none; }
+    .hero .w { padding-top: 40px; padding-bottom: 70px; }
+    .feature__card { left: 10px; right: 10px; bottom: -30px; }
+    .btns .btn { flex: 1 1 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="truck" viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></symbol>
+  <symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="box" viewBox="0 0 24 24"><path d="M3.5 7.5L12 3l8.5 4.5v9L12 21l-8.5-4.5zM3.5 7.5L12 12l8.5-4.5M12 12v9"/></symbol>
+  <symbol id="return" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></symbol>
+  <symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+  <symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="cart" viewBox="0 0 24 24"><path d="M3 4h2l2.4 11h11L21 7H6.2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></symbol>
+  <symbol id="hanger" viewBox="0 0 24 24"><path d="M12 6a2 2 0 1 1 2 2c-1 .4-2 1-2 2v1M12 11L3 17.5a1 1 0 0 0 .6 1.8h16.8a1 1 0 0 0 .6-1.8z"/></symbol>
+</svg>
+
+<div class="ann">Envíos a todo Chile<span>|</span>Compra segura<span>|</span>Seguimiento de tu pedido</div>
+<header class="hdr"><div class="w">
+  <a class="logo" href="#">ecoms<b>.</b></a>
+  <nav class="nav"><a href="#">Inicio</a><a href="#">Productos</a><a href="#">Contacto</a></nav>
+  <div class="icons"><svg class="i"><use href="#search"/></svg><svg class="i"><use href="#user"/></svg><svg class="i"><use href="#cart"/></svg></div>
+</div></header>
+
+<!-- ================= SECCIÓN 1 · HERO DE CONFIANZA ================= -->
+<section class="hero"><div class="w">
+  <div>
+    <p class="eyebrow"><i></i>Hogar práctico</p>
+    <h1>Soluciones simples para un hogar <em>más fácil</em></h1>
+    <p class="lead">Elegimos productos útiles para ordenar y limpiar tu casa. Los probamos, te explicamos cómo funcionan y te los enviamos a todo Chile.</p>
+    <div class="btns">
+      <a class="btn btn--primary" href="#productos">Ver productos <svg class="i"><use href="#arrow"/></svg></a>
+      <a class="btn btn--ghost" href="#">Más información</a>
+    </div>
+    <ul class="trust">
+      <li><span class="ic"><svg class="i"><use href="#truck"/></svg></span><div>Envíos a todo Chile<small>Directo a tu domicilio</small></div></li>
+      <li><span class="ic"><svg class="i"><use href="#lock"/></svg></span><div>Pago 100% seguro<small>Webpay y Mercado Pago</small></div></li>
+      <li><span class="ic"><svg class="i"><use href="#box"/></svg></span><div>Seguimiento del pedido<small>Te avisamos del envío</small></div></li>
+      <li><span class="ic"><svg class="i"><use href="#return"/></svg></span><div>Cambios y devoluciones<small>Según nuestra política</small></div></li>
+    </ul>
+  </div>
+  <div class="feature">
+    <div class="feature__img"><img src="mockup-images/d_hero.jpg" alt=""></div>
+    <span class="feature__tag">Nuevo</span>
+    <div class="feature__card">
+      <div><b>Cepillo Eléctrico de Limpieza</b><span>Limpia sin fregar ni agacharte</span></div>
+      <div class="price"><span>desde</span><br><b>$29.990</b></div>
+      <a href="#" aria-label="Más información"><svg class="i"><use href="#arrow"/></svg></a>
+    </div>
+  </div>
+</div></section>
+
+<!-- ================= SECCIÓN 2 · PRODUCTOS DESTACADOS ================= -->
+<section class="prods" id="productos"><div class="w">
+  <div class="sec-h">
+    <p class="k">Nuestros productos</p>
+    <h2>Pocos productos, muy bien elegidos</h2>
+    <p>Cada uno resuelve un problema concreto de la casa. Entra para ver cómo funciona, qué incluye y los packs con descuento.</p>
+  </div>
+  <div class="grid">
+    <article class="card">
+      <div class="card__img"><img src="mockup-images/d_hand.jpg" alt=""><span class="chip chip--clean">Limpieza</span></div>
+      <div class="card__body">
+        <h3>Cepillo Eléctrico de Limpieza</h3>
+        <p>Baño, juntas y pisos impecables: el cabezal gira solo y el mango extensible te evita agacharte.</p>
+        <ul>
+          <li><svg class="i"><use href="#check"/></svg>Inalámbrico y recargable</li>
+          <li><svg class="i"><use href="#check"/></svg>Cabezales para cada superficie</li>
+          <li><svg class="i"><use href="#check"/></svg>Mango extensible</li>
+        </ul>
+        <div class="card__foot">
+          <span class="from">Desde<b>$29.990</b></span>
+          <a class="btn btn--primary" href="#">Más información <svg class="i"><use href="#arrow"/></svg></a>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card__img card__img--ph"><svg class="i"><use href="#hanger"/></svg><span class="chip chip--order">Orden</span></div>
+      <div class="card__body">
+        <h3>Colgador Smart Organizador 9 en 1</h3>
+        <p>Cuelga varias prendas en el espacio de una y libera tu clóset en minutos, sin herramientas.</p>
+        <ul>
+          <li><svg class="i"><use href="#check"/></svg>Más espacio en el clóset</li>
+          <li><svg class="i"><use href="#check"/></svg>Ropa ordenada y a la vista</li>
+          <li><svg class="i"><use href="#check"/></svg>Packs de 5, 10 y 20</li>
+        </ul>
+        <div class="card__foot">
+          <span class="from">Desde<b>$17.500</b></span>
+          <a class="btn btn--primary" href="#">Más información <svg class="i"><use href="#arrow"/></svg></a>
+        </div>
+      </div>
+    </article>
+  </div>
+  <p class="note">Precios y fotos salen automáticamente de cada producto en Shopify.</p>
+</div></section>
+
+<footer class="ft"><div class="w"><span class="logo">ecoms<b style="color:var(--accent)">.</b></span><span>© 2026 ecoms · Envíos a todo Chile</span></div></footer>
+</body>
+</html>
