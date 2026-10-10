@@ -1507,6 +1507,13 @@
       },
       {
         "type": "checkbox",
+        "id": "ecoms_protect_images",
+        "label": "Proteger imágenes (sin clic derecho ni descarga)",
+        "default": false,
+        "info": "Bloquea el clic derecho, arrastrar imágenes y la descarga con pulsación larga en el celular. Desalienta la copia, pero no la impide del todo (capturas de pantalla). No se aplica en el editor."
+      },
+      {
+        "type": "checkbox",
         "id": "ecoms_skin_chrome",
         "label": "Aplicar estilo ECOMS a anuncios, header y footer",
         "default": true

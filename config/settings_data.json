@@ -130,6 +130,7 @@
     "cart_color_scheme": "scheme-1",
     "customer_account_menu": "customer-account-main-menu",
     "ecoms_store_name": "Ecoms",
+    "ecoms_protect_images": true,
     "ecoms_primary": "#0F5132",
     "ecoms_primary_ink": "#FFFFFF",
     "ecoms_dark": "#0F5132",

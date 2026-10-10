@@ -88,3 +88,19 @@
   {{ 'ecoms-skin-' | append: ec_skin | append: '.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 <script src="{{ 'ecoms.js' | asset_url }}" defer="defer"></script>
+{%- if settings.ecoms_protect_images and request.design_mode != true -%}
+  <style>
+    img, video, picture, svg image { -webkit-user-drag: none; user-drag: none; -webkit-touch-callout: none; user-select: none; -webkit-user-select: none; }
+  </style>
+  <script>
+    (function () {
+      var editable = function (el) { return el && el.closest && el.closest('input, textarea, select, [contenteditable="true"]'); };
+      document.addEventListener('contextmenu', function (e) { if (!editable(e.target)) e.preventDefault(); });
+      document.addEventListener('dragstart', function (e) { if (e.target && /^(IMG|VIDEO|PICTURE)$/.test(e.target.tagName)) e.preventDefault(); });
+      document.addEventListener('keydown', function (e) {
+        var k = (e.key || '').toLowerCase();
+        if ((e.ctrlKey || e.metaKey) && (k === 's' || k === 'u')) e.preventDefault();
+      });
+    })();
+  </script>
+{%- endif -%}
