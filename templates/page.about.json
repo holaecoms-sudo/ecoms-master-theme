@@ -1,0 +1,126 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "about": {
+      "type": "ecoms-about",
+      "blocks": {
+        "v1": {
+          "type": "value",
+          "settings": {
+            "icon": "verified",
+            "title": "Información clara",
+            "text": "Medidas, contenido de la caja y plazos reales de cada producto, sin letra chica."
+          }
+        },
+        "v2": {
+          "type": "value",
+          "settings": {
+            "icon": "lock",
+            "title": "Pago seguro",
+            "text": "Pagas en un checkout cifrado. Nunca vemos ni guardamos los datos de tu tarjeta."
+          }
+        },
+        "v3": {
+          "type": "value",
+          "settings": {
+            "icon": "truck",
+            "title": "Seguimiento de tu pedido",
+            "text": "Te avisamos por email cuando tu pedido sale, con su número de seguimiento."
+          }
+        },
+        "v4": {
+          "type": "value",
+          "settings": {
+            "icon": "return",
+            "title": "Tus derechos, sin trámites",
+            "text": "10 días de retracto y 6 meses de garantía legal, como dice la ley."
+          }
+        },
+        "v5": {
+          "type": "value",
+          "settings": {
+            "icon": "chat",
+            "title": "Personas reales",
+            "text": "Respondemos tus dudas por email en menos de 24 horas hábiles."
+          }
+        },
+        "v6": {
+          "type": "value",
+          "settings": {
+            "icon": "home",
+            "title": "Pensado para tu casa",
+            "text": "Productos que resuelven algo concreto: limpiar, ordenar, ahorrar tiempo."
+          }
+        },
+        "s1": {
+          "type": "step",
+          "settings": {
+            "title": "Eliges y pagas seguro",
+            "text": "Con los medios de pago que ves en el checkout."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "title": "Preparamos tu pedido",
+            "text": "En 1 día hábil desde que se confirma el pago."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "title": "Te enviamos el seguimiento",
+            "text": "Por email, apenas sale tu pedido."
+          }
+        },
+        "s4": {
+          "type": "step",
+          "settings": {
+            "title": "Lo recibes en tu casa",
+            "text": "En un plazo estimado de 3 a 6 días hábiles."
+          }
+        }
+      },
+      "block_order": [
+        "v1",
+        "v2",
+        "v3",
+        "v4",
+        "v5",
+        "v6",
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "settings": {
+        "eyebrow": "Quiénes somos",
+        "heading": "Una tienda chilena de soluciones simples para tu casa",
+        "intro": "<p>Elegimos pocos productos, que resuelven problemas concretos del día a día, y te explicamos con claridad cómo funcionan, qué incluyen y cuánto demoran en llegar.</p>",
+        "story_heading": "Por qué existe Ecoms",
+        "story": "<p>Ecoms nació en Chile con una idea simple: que comprar online algo para tu casa sea tan tranquilo como comprarlo en una tienda física.</p><p>Por eso elegimos pocos productos, te mostramos sus datos reales, el precio final con envío antes de pagar y nuestras políticas siempre a la vista. Despachamos a todo Chile y te enviamos el seguimiento de tu pedido por email.</p>",
+        "show_page_content": false,
+        "values_heading": "Lo que puedes esperar de nosotros",
+        "steps_heading": "Cómo funciona tu compra",
+        "company_heading": "Datos de la empresa",
+        "cta_heading": "¿Tienes alguna duda?",
+        "cta_text": "Escríbenos antes de comprar: te respondemos por email.",
+        "button_1_label": "Ver productos",
+        "button_2_label": "Contáctanos",
+        "padding_top": 0,
+        "padding_bottom": 64
+      }
+    }
+  },
+  "order": [
+    "about"
+  ]
+}

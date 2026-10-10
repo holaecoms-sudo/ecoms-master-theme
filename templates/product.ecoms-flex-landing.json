@@ -676,10 +676,10 @@
           "settings": {
             "example": false,
             "author": "Daniela F.",
-            "date": "7/03/2026",
+            "date": "03/07/2026",
             "stars": 5,
             "text": "La calidad de fabricación es excelente: no presenta rebabas y no daña las prendas al colgarlas. Su diseño multifuncional es sumamente práctico, ya que permite ajustar de forma flexible la manera de colgar la ropa, adaptándose a distintos tipos de prendas. Con este producto, organizar el armario resulta sencillo y eficiente; es una inversión que vale la pena: ¡adquiérelo cuanto antes y empieza a disfrutarlo!",
-            "verified": true,
+            "verified": false,
             "image": "shopify://shop_images/wsdo16LD.jpg",
             "image_2": "shopify://shop_images/Screenshot2026-10-08at12.55.17AM.png"
           }
@@ -689,10 +689,10 @@
           "settings": {
             "example": false,
             "author": "Amanda N.",
-            "date": "6/27/2026",
+            "date": "27/06/2026",
             "stars": 5,
             "text": "Al principio me mostraba escéptico, pero realmente redujo el estrés que me causaba el armario. Lo recomiendo encarecidamente si tienes poco espacio.",
-            "verified": true,
+            "verified": false,
             "image": "shopify://shop_images/rVwhGkmHfN.jpg"
           }
         },
@@ -701,10 +701,10 @@
           "settings": {
             "example": false,
             "author": "Jessica C.",
-            "date": "6/09/2026",
+            "date": "09/06/2026",
             "stars": 5,
             "text": "Es fácil de usar, tiene capacidad para varios artículos e hizo que mi armario pareciera más espacioso al instante. Me encanta.",
-            "verified": true,
+            "verified": false,
             "image": "shopify://shop_images/w5wFssLr8.jpg"
           }
         },
@@ -713,10 +713,10 @@
           "settings": {
             "example": false,
             "author": "Ashley W.",
-            "date": "6/6/2026",
+            "date": "06/06/2026",
             "stars": 5,
             "text": "La percha es práctica, permite colgar varios conjuntos de ropa, tiene una gran capacidad de carga y ahorra espacio en vertical; además, permite visualizar mejor el estilo en horizontal, se puede manejar con una sola mano, es fácil de transportar al viajar y no ocupa espacio al guardarla.",
-            "verified": true,
+            "verified": false,
             "image": "shopify://shop_images/BtWNljd3E_mid.jpg"
           }
         }
@@ -729,7 +729,7 @@
       ],
       "settings": {
         "style": "widget",
-        "heading": "Opiniones de compradores",
+        "heading": "Opiniones de compradores internacionales",
         "link_label": "Ver todas",
         "link": "",
         "per_page": 6,
@@ -737,7 +737,8 @@
         "write_link": "/pages/contact",
         "width": "full",
         "padding_top": 28,
-        "padding_bottom": 28
+        "padding_bottom": 28,
+        "source_note": "Reseñas de compradores de este mismo modelo en tiendas internacionales, traducidas al español. Pronto sumaremos las de nuestros clientes en Chile."
       }
     },
     "ugc": {
