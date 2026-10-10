@@ -745,7 +745,9 @@
             "date": "Hace X días",
             "stars": 5,
             "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo».",
-            "verified": true
+            "verified": true,
+            "image": "shopify://shop_images/56.jpg",
+            "image_2": "shopify://shop_images/55.jpg"
           }
         },
         "ex2": {
@@ -843,7 +845,7 @@
       "settings": {
         "style": "grid",
         "heading": "Así se ve en casa",
-        "text": "Imágenes referenciales de uso. Pronto sumaremos fotos de nuestros clientes.",
+        "text": "Imágenes referenciales de uso.",
         "width": "full",
         "padding_top": 28,
         "padding_bottom": 28
