@@ -1,36 +1,51 @@
 {
   "sections": {
-    "banner": {
-      "type": "main-collection-banner",
+    "catalog": {
+      "type": "ecoms-collection",
+      "blocks": {
+        "t1": {
+          "type": "trust",
+          "settings": {
+            "icon": "truck",
+            "text": "Envío gratis desde $30.000"
+          }
+        },
+        "t2": {
+          "type": "trust",
+          "settings": {
+            "icon": "lock",
+            "text": "Pago seguro"
+          }
+        },
+        "t3": {
+          "type": "trust",
+          "settings": {
+            "icon": "return",
+            "text": "10 días de retracto"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ],
       "settings": {
-        "show_collection_description": true,
-        "show_collection_image": false,
-        "color_scheme": "scheme-1"
-      }
-    },
-    "product-grid": {
-      "type": "main-collection-product-grid",
-      "settings": {
-        "products_per_page": 16,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "enable_filtering": true,
-        "filter_type": "horizontal",
-        "enable_sorting": true,
-        "columns_mobile": "2",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "per_page": 24,
+        "columns": 3,
+        "show_sort": true,
+        "show_badge": true,
+        "hover_image": true,
+        "eyebrow": "Catálogo",
+        "all_title": "Todos nuestros productos",
+        "text": "Productos elegidos para resolver problemas reales de la casa. Entra a cada uno para ver cómo funciona, qué incluye y sus packs.",
+        "button_label": "Ver producto",
+        "padding_top": 0,
+        "padding_bottom": 56
       }
     }
   },
   "order": [
-    "banner",
-    "product-grid"
+    "catalog"
   ]
 }

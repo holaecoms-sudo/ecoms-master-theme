@@ -28,13 +28,6 @@
             "menu": "main-menu"
           }
         },
-        "help": {
-          "type": "menu",
-          "settings": {
-            "heading": "Ayuda",
-            "menu": "footer"
-          }
-        },
         "pay": {
           "type": "payments",
           "settings": {
@@ -59,7 +52,6 @@
       "block_order": [
         "brand",
         "links",
-        "help",
         "policies",
         "pay",
         "social"

@@ -1,0 +1,274 @@
+{%- comment -%}
+  ECOMS · Contacto: intro + real contact channels (blocks) on the left, Shopify contact form on the right.
+  The form is the native {% form 'contact' %}: messages arrive at the store email (Configuración → Notificaciones).
+{%- endcomment -%}
+{%- assign store_email = section.settings.email | default: shop.email -%}
+<section class="ec-ct" style="--ec-pt: {{ section.settings.padding_top }}px; --ec-pb: {{ section.settings.padding_bottom }}px;">
+  <div class="ec-w ec-ct__in">
+    <div class="ec-ct__info">
+      {%- if section.settings.eyebrow != blank -%}<p class="ec-ct__k">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h1 class="ec-ct__h">{{ section.settings.heading | default: page.title | escape }}</h1>
+      {%- if section.settings.text != blank -%}<div class="ec-ct__text">{{ section.settings.text }}</div>{%- endif -%}
+      {%- if page.content != blank and section.settings.show_page_content -%}<div class="ec-ct__text rte">{{ page.content }}</div>{%- endif -%}
+
+      <ul class="ec-ct__list" role="list">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign b = block.settings
+            assign b_text = b.text
+            assign b_url = b.link
+            if block.type == 'email'
+              assign b_text = store_email
+              assign b_url = 'mailto:' | append: store_email
+            endif
+          -%}
+          {%- if b_text == blank and request.design_mode != true -%}{%- continue -%}{%- endif -%}
+          <li class="ec-ct__item" {{ block.shopify_attributes }}>
+            <span class="ec-ct__ic">{% render 'ecoms-icon', name: b.icon %}</span>
+            <span class="ec-ct__it">
+              <b>{{ b.title | escape }}</b>
+              {%- if b_url != blank -%}
+                <a href="{{ b_url }}">{{ b_text | escape }}</a>
+              {%- else -%}
+                <span>{{ b_text | escape }}</span>
+              {%- endif -%}
+            </span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+
+    <div class="ec-ct__card">
+      {%- if section.settings.form_heading != blank -%}<h2 class="ec-ct__fh">{{ section.settings.form_heading | escape }}</h2>{%- endif -%}
+      {%- if section.settings.form_text != blank -%}<p class="ec-ct__fs">{{ section.settings.form_text | escape }}</p>{%- endif -%}
+      {%- form 'contact', id: 'EcContactForm', class: 'ec-ct__form' -%}
+        {%- if form.posted_successfully? -%}
+          <div class="ec-ct__ok" role="status" tabindex="-1" autofocus>
+            {% render 'ecoms-icon', name: 'check' %}
+            <div><b>¡Mensaje enviado!</b><span>{{ section.settings.success | escape }}</span></div>
+          </div>
+        {%- elsif form.errors -%}
+          <div class="ec-ct__err" role="alert" tabindex="-1" autofocus>
+            Revisa los campos marcados: {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+        <div class="ec-ct__row">
+          <label class="ec-ct__f">
+            <span>Nombre</span>
+            <input type="text" name="contact[Nombre]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" autocomplete="name" required>
+          </label>
+          <label class="ec-ct__f">
+            <span>Email</span>
+            <input type="email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" autocomplete="email" spellcheck="false" autocapitalize="off" required{% if form.errors contains 'email' %} aria-invalid="true"{% endif %}>
+          </label>
+        </div>
+        <div class="ec-ct__row">
+          <label class="ec-ct__f">
+            <span>Teléfono <small>(opcional)</small></span>
+            <input type="tel" name="contact[Teléfono]" value="{{ form.phone }}" autocomplete="tel" inputmode="tel" placeholder="+56 9">
+          </label>
+          {%- if section.settings.show_order -%}
+            <label class="ec-ct__f">
+              <span>N° de pedido <small>(si ya compraste)</small></span>
+              <input type="text" name="contact[Pedido]" placeholder="#1001">
+            </label>
+          {%- endif -%}
+        </div>
+        <label class="ec-ct__f">
+          <span>Mensaje</span>
+          <textarea name="contact[body]" rows="5" required placeholder="{{ section.settings.placeholder | escape }}">{{ form.body }}</textarea>
+        </label>
+        <button type="submit" class="ec-btn ec-btn--primary ec-ct__btn">
+          {% render 'ecoms-icon', name: 'chat' %}{{ section.settings.button_label | default: 'Enviar mensaje' | escape }}
+        </button>
+        {%- if section.settings.note != blank -%}<p class="ec-ct__note">{% render 'ecoms-icon', name: 'lock' %}{{ section.settings.note | escape }}</p>{%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ECOMS · Contacto",
+  "tag": "section",
+  "class": "ec-ct-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Antetítulo",
+      "default": "Contacto"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "¿En qué te podemos ayudar?",
+      "info": "Vacío = título de la página."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto",
+      "default": "<p>Escríbenos por dudas de un producto, el estado de tu pedido o un cambio. Te respondemos por email en menos de 24 horas hábiles.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_page_content",
+      "label": "Mostrar también el contenido de la página",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email de contacto",
+      "info": "Vacío = email de la tienda (Configuración → Detalles de la tienda)."
+    },
+    {
+      "type": "header",
+      "content": "Formulario"
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Título del formulario",
+      "default": "Envíanos un mensaje"
+    },
+    {
+      "type": "text",
+      "id": "form_text",
+      "label": "Texto del formulario",
+      "default": "Completa el formulario y te respondemos a tu email."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_order",
+      "label": "Campo «N° de pedido»",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Ejemplo en el mensaje",
+      "default": "Cuéntanos en qué te podemos ayudar"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto del botón",
+      "default": "Enviar mensaje"
+    },
+    {
+      "type": "text",
+      "id": "success",
+      "label": "Mensaje de envío correcto",
+      "default": "Te responderemos a tu email lo antes posible."
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Nota bajo el botón",
+      "default": "Tus datos solo se usan para responder tu consulta."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "email",
+      "name": "Email",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícono",
+          "options": [
+            { "value": "chat", "label": "Mensaje" },
+            { "value": "verified", "label": "Verificado" }
+          ],
+          "default": "chat"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Escríbenos"
+        },
+        {
+          "type": "paragraph",
+          "content": "Muestra el email configurado en la sección (o el de la tienda)."
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "name": "Dato de contacto",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícono",
+          "options": [
+            { "value": "chat", "label": "Mensaje" },
+            { "value": "clock", "label": "Reloj" },
+            { "value": "truck", "label": "Camión" },
+            { "value": "return", "label": "Devolución" },
+            { "value": "shield", "label": "Escudo" },
+            { "value": "lock", "label": "Candado" },
+            { "value": "home", "label": "Casa" },
+            { "value": "box", "label": "Caja" },
+            { "value": "verified", "label": "Verificado" }
+          ],
+          "default": "clock"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Horario de atención"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Lunes a viernes, 9:00 a 18:00 h"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Enlace (opcional)"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "ECOMS · Contacto",
+      "blocks": [
+        { "type": "email" },
+        { "type": "item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

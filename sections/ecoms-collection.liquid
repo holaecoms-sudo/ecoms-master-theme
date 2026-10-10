@@ -1,0 +1,254 @@
+{%- comment -%}
+  ECOMS · Catálogo (colección): header, sort, product cards with real price/compare/rating, pagination, trust strip.
+  Discount badge only when the product has a real compare-at price; rating only from review-app metafields.
+{%- endcomment -%}
+{%- paginate collection.products by section.settings.per_page -%}
+  {%- liquid
+    assign cols = section.settings.columns
+    if collection.products_count < cols and collection.products_count > 0
+      assign cols = collection.products_count
+    endif
+    assign sort_by = collection.sort_by | default: collection.default_sort_by
+  -%}
+  <section class="ec-cg" style="--ec-pt: {{ section.settings.padding_top }}px; --ec-pb: {{ section.settings.padding_bottom }}px; --cg-cols: {{ cols }};">
+    <div class="ec-cg__head">
+      <div class="ec-w">
+        {%- if section.settings.eyebrow != blank -%}<p class="ec-cg__k">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        {%- liquid
+          assign cg_title = collection.title
+          if collection.handle == 'all' and section.settings.all_title != blank
+            assign cg_title = section.settings.all_title
+          endif
+        -%}
+        <h1 class="ec-cg__h">{{ cg_title | escape }}</h1>
+        {%- if collection.description != blank -%}
+          <div class="ec-cg__desc rte">{{ collection.description }}</div>
+        {%- elsif section.settings.text != blank -%}
+          <p class="ec-cg__desc">{{ section.settings.text | escape }}</p>
+        {%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <ul class="ec-cg__trust" role="list">
+            {%- for block in section.blocks -%}
+              <li {{ block.shopify_attributes }}>{% render 'ecoms-icon', name: block.settings.icon %}<span>{{ block.settings.text | escape }}</span></li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="ec-w">
+      {%- if collection.products_count > 0 -%}
+        <div class="ec-cg__bar">
+          <p class="ec-cg__count">
+            {{ collection.products_count }}
+            {% if collection.products_count == 1 %}producto{% else %}productos{% endif %}
+          </p>
+          {%- if section.settings.show_sort and collection.products_count > 1 -%}
+            <form class="ec-cg__sort" method="get">
+              <label for="EcSort-{{ section.id }}">Ordenar por</label>
+              <select id="EcSort-{{ section.id }}" name="sort_by" onchange="this.form.submit()">
+                {%- for option in collection.sort_options -%}
+                  <option value="{{ option.value | escape }}"{% if option.value == sort_by %} selected{% endif %}>{{ option.name | escape }}</option>
+                {%- endfor -%}
+              </select>
+              <noscript><button type="submit" class="ec-btn ec-btn--sm">Ordenar</button></noscript>
+            </form>
+          {%- endif -%}
+        </div>
+
+        <ul class="ec-cg__grid" role="list">
+          {%- for product in collection.products -%}
+            {%- liquid
+              assign v = product.selected_or_first_available_variant
+              assign img = product.featured_media.preview_image | default: product.featured_image
+              assign img2 = product.media[1].preview_image
+              assign pct = 0
+              if product.compare_at_price > product.price
+                assign pct = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price | floor
+              endif
+            -%}
+            <li class="ec-cg__card">
+              <a class="ec-cg__img{% if img2 != blank and section.settings.hover_image %} ec-cg__img--swap{% endif %}" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+                {%- if img != blank -%}
+                  {{ img | image_url: width: 800 | image_tag: loading: 'lazy', widths: '360,540,800', sizes: '(min-width: 990px) 380px, (min-width: 750px) 45vw, 92vw', alt: '' }}
+                  {%- if img2 != blank and section.settings.hover_image -%}
+                    {{ img2 | image_url: width: 800 | image_tag: loading: 'lazy', widths: '360,540,800', sizes: '(min-width: 990px) 380px, 45vw', alt: '', class: 'ec-cg__img2' }}
+                  {%- endif -%}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'ec-placeholder' }}
+                {%- endif -%}
+                {%- if product.available == false -%}
+                  <span class="ec-cg__badge ec-cg__badge--out">Agotado</span>
+                {%- elsif pct > 0 and section.settings.show_badge -%}
+                  <span class="ec-cg__badge">-{{ pct }}%</span>
+                {%- endif -%}
+              </a>
+              <div class="ec-cg__body">
+                <h2 class="ec-cg__t"><a href="{{ product.url }}">{{ product.title | escape }}</a></h2>
+                {%- render 'ecoms-rating', product: product, star_size: '13px' -%}
+                <div class="ec-cg__price">
+                  {%- if product.price_varies -%}<small>Desde</small>{%- endif -%}
+                  <b>{{ product.price | money }}</b>
+                  {%- if product.compare_at_price > product.price -%}<s>{{ product.compare_at_price | money }}</s>{%- endif -%}
+                </div>
+                <a class="ec-btn ec-btn--primary ec-cg__btn" href="{{ product.url }}">
+                  {{ section.settings.button_label | default: 'Ver producto' | escape }} {% render 'ecoms-icon', name: 'arrow' %}
+                </a>
+              </div>
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        {%- if paginate.pages > 1 -%}
+          <nav class="ec-cg__pag" aria-label="Paginación">
+            {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}" aria-label="Página anterior">{% render 'ecoms-icon', name: 'chev-l' %}</a>{%- endif -%}
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}
+                <a href="{{ part.url }}">{{ part.title }}</a>
+              {%- elsif part.title == paginate.current_page -%}
+                <span aria-current="page">{{ part.title }}</span>
+              {%- else -%}
+                <span>{{ part.title }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if paginate.next -%}<a href="{{ paginate.next.url }}" aria-label="Página siguiente">{% render 'ecoms-icon', name: 'chev-r' %}</a>{%- endif -%}
+          </nav>
+        {%- endif -%}
+      {%- else -%}
+        <div class="ec-cg__empty">
+          {% render 'ecoms-icon', name: 'box' %}
+          <p>Pronto tendremos productos en esta categoría.</p>
+          <a class="ec-btn ec-btn--primary" href="{{ routes.root_url }}">Volver al inicio</a>
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "ECOMS · Catálogo",
+  "tag": "section",
+  "class": "ec-cg-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Antetítulo",
+      "default": "Catálogo"
+    },
+    {
+      "type": "text",
+      "id": "all_title",
+      "label": "Título para «Todos los productos»",
+      "default": "Todos nuestros productos",
+      "info": "Las demás colecciones usan su propio título."
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Texto",
+      "default": "Productos elegidos para resolver problemas reales de la casa. Entra a cada uno para ver cómo funciona, qué incluye y sus packs.",
+      "info": "Se muestra si la colección no tiene descripción."
+    },
+    {
+      "type": "range",
+      "id": "per_page",
+      "label": "Productos por página",
+      "min": 4,
+      "max": 48,
+      "step": 4,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columnas en escritorio",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sort",
+      "label": "Mostrar «Ordenar por»",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Mostrar % de descuento",
+      "default": true,
+      "info": "Solo aparece si el producto tiene un precio de comparación real."
+    },
+    {
+      "type": "checkbox",
+      "id": "hover_image",
+      "label": "Segunda foto al pasar el mouse",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto del botón",
+      "default": "Ver producto"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust",
+      "name": "Sello de confianza",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícono",
+          "options": [
+            { "value": "truck", "label": "Camión" },
+            { "value": "lock", "label": "Candado" },
+            { "value": "shield", "label": "Escudo" },
+            { "value": "return", "label": "Devolución" },
+            { "value": "box", "label": "Caja" },
+            { "value": "verified", "label": "Verificado" },
+            { "value": "chat", "label": "Mensaje" }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Envíos a todo Chile"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "ECOMS · Catálogo"
+    }
+  ]
+}
+{% endschema %}
