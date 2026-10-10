@@ -413,7 +413,7 @@
           "settings": {
             "image": "shopify://shop_images/31.jpg",
             "icon": "hand",
-            "qty": "x2",
+            "qty": "",
             "title": "Barras de extensión",
             "text": "Llega lejos sin agacharte",
             "badge": "Incluido",
