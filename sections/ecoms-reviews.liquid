@@ -58,7 +58,7 @@
       assign rv_avg_pct = rv_avg | times: 20
       assign rv_limit = section.settings.per_page | default: 6
     -%}
-    <div class="ec-w ec-rw" data-ec-rw>
+    <div class="ec-w ec-rw" id="ec-reviews" data-ec-rw{% if rv_n > 0 %} data-count="{{ rv_n }}" data-avg="{{ rv_avg_label }}" data-pct="{{ rv_avg_pct }}"{% endif %}>
       {%- if section.settings.heading != blank -%}<h2 class="ec-h3 ec-rw__h">{{ section.settings.heading | escape }}</h2>{%- endif -%}
       {%- if rv_n > 0 -%}
         <div class="ec-rw__sum">

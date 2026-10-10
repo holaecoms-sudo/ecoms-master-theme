@@ -1108,3 +1108,6 @@ body:has(cart-drawer.active) .ec-sticky { visibility: hidden; }
 }
 /* Image + text: full image, never cropped (infographics with text) */
 .ec-imgtxt__media--full img, .ec-imgtxt__media--full video { aspect-ratio: auto !important; height: auto !important; max-height: none !important; object-fit: contain !important; }
+a.ec-rating--auto { text-decoration: none; color: var(--ec-muted); }
+a.ec-rating--auto[hidden] { display: none; }
+a.ec-rating--auto:hover b + span { text-decoration: underline; }

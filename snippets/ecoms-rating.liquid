@@ -36,8 +36,36 @@
       <span>({{ ec_count_label }} {% if ec_count == 1 %}reseña{% else %}reseñas{% endif %})</span>
     {%- endif -%}
   </div>
-{%- elsif request.design_mode and block -%}
-  <p class="ec-editor-note" {{ block.shopify_attributes }}>
-    Calificación: aparecerá cuando una app de reseñas complete los metacampos reviews.rating y reviews.rating_count.
-  </p>
+{%- elsif block -%}
+  {%- comment -%}
+    No review-app rating: fall back to the summary of the real reviews published on this page
+    (ECOMS · Reseñas, style «Resumen + tarjetas»). Filled by JS; stays hidden when there are none.
+  {%- endcomment -%}
+  <a class="ec-rating ec-rating--auto" href="#ec-reviews" data-ec-rating-auto hidden {{ block.shopify_attributes }}>
+    <span class="ec-stars" style="--r: 0%;{% if star_size != blank %} --s: {{ star_size }};{% endif %}" role="img"></span>
+    <b></b><span></span>
+  </a>
+  {%- if request.design_mode -%}
+    <p class="ec-editor-note" data-ec-rating-note>
+      Calificación: se calcula sola con las reseñas reales de la sección «Reseñas» (estilo «Resumen + tarjetas») o la completa una app de reseñas.
+    </p>
+  {%- endif -%}
+  <script>
+    (function () {
+      var a = document.currentScript.parentNode.querySelector('[data-ec-rating-auto]');
+      function fill() {
+        var w = document.querySelector('[data-ec-rw][data-count]');
+        if (!a || !w || Number(w.dataset.count) < 1) return;
+        var n = Number(w.dataset.count);
+        a.querySelector('.ec-stars').style.setProperty('--r', w.dataset.pct + '%');
+        a.querySelector('.ec-stars').setAttribute('aria-label', w.dataset.avg + ' de 5 estrellas');
+        a.querySelector('b').textContent = w.dataset.avg;
+        a.querySelector('b + span').textContent = '(' + n + (n === 1 ? ' reseña)' : ' reseñas)');
+        a.hidden = false;
+        var note = a.parentNode.querySelector('[data-ec-rating-note]');
+        if (note) note.remove();
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fill); else fill();
+    })();
+  </script>
 {%- endif -%}
