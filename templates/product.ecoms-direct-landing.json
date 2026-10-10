@@ -189,17 +189,6 @@
             "icon_4": "battery",
             "text_4": "Recargable USB"
           }
-        },
-        "delivery": {
-          "type": "delivery",
-          "settings": {
-            "step_1": "Pedido realizado",
-            "ready_days": 1,
-            "step_2": "Pedido listo",
-            "min_days": 3,
-            "max_days": 6,
-            "step_3": "Entregado"
-          }
         }
       },
       "block_order": [
@@ -218,7 +207,6 @@
         "stock",
         "buy",
         "payments",
-        "delivery",
         "media_features"
       ],
       "settings": {
@@ -266,7 +254,7 @@
           "settings": {
             "icon": "battery",
             "value": "5 horas",
-            "label": "de autonomía por carga"
+            "label": "de uso por carga"
           }
         },
         "k2": {
@@ -281,15 +269,15 @@
           "type": "stat",
           "settings": {
             "icon": "grid",
-            "value": "5",
-            "label": "cabezales incluidos"
+            "value": "8",
+            "label": "cabezales intercambiables"
           }
         },
         "k4": {
           "type": "stat",
           "settings": {
             "icon": "bolt",
-            "value": "30rpm",
+            "value": "2",
             "label": "velocidades de giro"
           }
         },
@@ -297,7 +285,7 @@
           "type": "stat",
           "settings": {
             "icon": "hand",
-            "value": "1,5 metross",
+            "value": "1,37 metross",
             "label": "largo máximo del mango"
           }
         },
@@ -305,8 +293,8 @@
           "type": "stat",
           "settings": {
             "icon": "clock",
-            "value": "5",
-            "label": "de carga por USB-C"
+            "value": "USB-C",
+            "label": "carga rápida y universal"
           }
         }
       },
