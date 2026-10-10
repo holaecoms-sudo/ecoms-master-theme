@@ -741,13 +741,47 @@
           "type": "review",
           "settings": {
             "example": false,
-            "author": "Nombre del cliente",
-            "date": "Hace X días",
+            "author": "Camila R.",
+            "date": "08/10/2026",
             "stars": 5,
-            "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo».",
+            "text": "Lo probé en las juntitas del piso y me gustó bastante. Es mucho más cómodo que estar fregando a mano.",
             "verified": true,
-            "image": "shopify://shop_images/56.jpg",
-            "image_2": "shopify://shop_images/55.jpg"
+            "image": "shopify://shop_images/67.jpg"
+          }
+        },
+        "review_JhDXtJ": {
+          "type": "review",
+          "settings": {
+            "example": false,
+            "author": "Carolina V.",
+            "date": "09/10/2026",
+            "stars": 5,
+            "text": "Me gustó mucho!! Fácil de usar y súper práctico.\"",
+            "verified": true
+          }
+        },
+        "review_qn7itd": {
+          "type": "review",
+          "settings": {
+            "example": false,
+            "author": "Daniela S.",
+            "date": "06/10/2026",
+            "stars": 5,
+            "text": "Lo he usado en la cocina y el baño. Me gustó que tenga distintos cepillos. Hasta ahora funciona súper bien.\"",
+            "verified": true,
+            "image": "shopify://shop_images/69.jpg"
+          }
+        },
+        "review_yHKNHn": {
+          "type": "review",
+          "settings": {
+            "example": false,
+            "author": "Patricia M.",
+            "date": "07/10/2026",
+            "stars": 5,
+            "text": "Me encantó para limpiar la tina, sobre todo las orillas que siempre cuestan más. Súper práctico.",
+            "verified": true,
+            "image": "shopify://shop_images/68.jpg"
           }
         },
         "ex2": {
@@ -771,24 +805,51 @@
             "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo».",
             "verified": true
           }
+        },
+        "review_GLHNt8": {
+          "type": "review",
+          "settings": {
+            "example": false,
+            "author": "Nombre del cliente",
+            "date": "Hace X días",
+            "stars": 5,
+            "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo».",
+            "verified": true
+          }
+        },
+        "review_w8EF9L": {
+          "type": "review",
+          "settings": {
+            "example": false,
+            "author": "Nombre del cliente",
+            "date": "Hace X días",
+            "stars": 5,
+            "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo».",
+            "verified": true
+          }
         }
       },
       "block_order": [
         "ex1",
+        "review_JhDXtJ",
+        "review_qn7itd",
+        "review_yHKNHn",
         "ex2",
-        "ex3"
+        "ex3",
+        "review_GLHNt8",
+        "review_w8EF9L"
       ],
       "settings": {
         "style": "widget",
         "heading": "Opiniones de clientes",
         "link_label": "",
         "link": "",
-        "width": "full",
-        "padding_top": 32,
-        "padding_bottom": 32,
         "per_page": 6,
         "write_label": "Escribe una reseña",
-        "write_link": "/pages/contact"
+        "write_link": "/pages/contact",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 32
       }
     },
     "ugc": {
