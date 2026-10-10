@@ -756,7 +756,18 @@
             "author": "Carolina V.",
             "date": "09/10/2026",
             "stars": 5,
-            "text": "Me gustó mucho!! Fácil de usar y súper práctico.\"",
+            "text": "Me gustó mucho!! Fácil de usar y súper práctico.",
+            "verified": false
+          }
+        },
+        "review_xkmGgw": {
+          "type": "review",
+          "settings": {
+            "example": false,
+            "author": "Carla Z.",
+            "date": "09/10/2026",
+            "stars": 5,
+            "text": "Me gustó mucho!",
             "verified": false
           }
         },
@@ -810,10 +821,10 @@
           "type": "review",
           "settings": {
             "example": false,
-            "author": "Nombre del cliente",
-            "date": "Hace X días",
-            "stars": 5,
-            "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo».",
+            "author": "Verónica L.",
+            "date": "03/10/2026",
+            "stars": 4,
+            "text": "Me gustó, es cómodo y fácil de armar. El mango extensible es lo mejor para mí.",
             "verified": true
           }
         },
@@ -821,10 +832,10 @@
           "type": "review",
           "settings": {
             "example": false,
-            "author": "Nombre del cliente",
-            "date": "Hace X días",
+            "author": "Claudia F.",
+            "date": "04/10/2026",
             "stars": 5,
-            "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo».",
+            "text": "Pensé que era una compra innecesaria, pero la verdad ayuda bastante. Feliz con la compra.",
             "verified": true
           }
         }
@@ -832,6 +843,7 @@
       "block_order": [
         "ex1",
         "review_JhDXtJ",
+        "review_xkmGgw",
         "review_qn7itd",
         "review_yHKNHn",
         "ex2",
