@@ -63,7 +63,10 @@
         "menu": "main-menu",
         "logo_icon": "bag",
         "logo_height": 32,
-        "social_text": ""
+        "social_text": "",
+        "menu_visibility": "not_product",
+        "show_search": false,
+        "show_account": false
       }
     }
   },

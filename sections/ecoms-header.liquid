@@ -1,8 +1,17 @@
 {%- comment -%} ECOMS · Header (mockup): logo, centered menu, search / account / cart, mobile menu. {%- endcomment -%}
-{%- assign store_name = settings.ecoms_store_name | default: shop.name -%}
+{%- liquid
+  assign store_name = settings.ecoms_store_name | default: shop.name
+  # Focus mode: hide the menu on product pages (or everywhere) so shoppers stay on the offer.
+  assign show_menu = true
+  if section.settings.menu_visibility == 'never'
+    assign show_menu = false
+  elsif section.settings.menu_visibility == 'not_product' and template.name == 'product'
+    assign show_menu = false
+  endif
+-%}
 <header class="ec-hdr" role="banner">
   <div class="ec-w ec-hdr__bar">
-    {%- if section.settings.menu.links.size > 0 -%}
+    {%- if show_menu and section.settings.menu.links.size > 0 -%}
       <details class="ec-hdr__mobile">
         <summary class="ec-icon-btn" aria-label="Abrir menú">{% render 'ecoms-icon', name: 'menu' %}</summary>
         <nav class="ec-hdr__drawer" aria-label="Menú móvil">
@@ -25,16 +34,20 @@
       {%- endif -%}
     </a>
     <nav class="ec-nav" aria-label="Principal">
-      {%- for link in section.settings.menu.links -%}
-        <a href="{{ link.url }}" class="{% if link.active or link.child_active %}on{% endif %}">{{ link.title | escape }}</a>
-      {%- endfor -%}
+      {%- if show_menu -%}
+        {%- for link in section.settings.menu.links -%}
+          <a href="{{ link.url }}" class="{% if link.active or link.child_active %}on{% endif %}">{{ link.title | escape }}</a>
+        {%- endfor -%}
+      {%- endif -%}
     </nav>
     {%- if section.settings.social_text != blank -%}
       <div class="ec-hdr__social">{% render 'ecoms-icon', name: 'star' %}{{ section.settings.social_text | escape }}</div>
     {%- endif -%}
     <div class="ec-hdr__icons">
-      <a href="{{ routes.search_url }}" class="ec-icon-btn" aria-label="Buscar">{% render 'ecoms-icon', name: 'search' %}</a>
-      {%- if shop.customer_accounts_enabled -%}
+      {%- if section.settings.show_search -%}
+        <a href="{{ routes.search_url }}" class="ec-icon-btn" aria-label="Buscar">{% render 'ecoms-icon', name: 'search' %}</a>
+      {%- endif -%}
+      {%- if section.settings.show_account and shop.customer_accounts_enabled -%}
         <a href="{{ routes.account_url }}" class="ec-icon-btn" aria-label="Mi cuenta">{% render 'ecoms-icon', name: 'user' %}</a>
       {%- endif -%}
       <a href="{{ routes.cart_url }}" class="ec-icon-btn ec-hdr__cart" id="cart-icon-bubble">
@@ -60,6 +73,39 @@
       "id": "menu",
       "label": "Menú",
       "default": "main-menu"
+    },
+    {
+      "type": "select",
+      "id": "menu_visibility",
+      "label": "Mostrar menú",
+      "options": [
+        {
+          "value": "always",
+          "label": "En todas las páginas"
+        },
+        {
+          "value": "not_product",
+          "label": "Ocultar en páginas de producto"
+        },
+        {
+          "value": "never",
+          "label": "Nunca (solo logo y carrito)"
+        }
+      ],
+      "default": "always",
+      "info": "Ocultarlo en las páginas de producto evita que el cliente se distraiga de la compra."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Mostrar buscador",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Mostrar inicio de sesión",
+      "default": true
     },
     {
       "type": "select",

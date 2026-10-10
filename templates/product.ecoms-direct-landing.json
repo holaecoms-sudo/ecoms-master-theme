@@ -189,6 +189,17 @@
             "icon_4": "battery",
             "text_4": "Recargable USB"
           }
+        },
+        "delivery": {
+          "type": "delivery",
+          "settings": {
+            "step_1": "Pedido realizado",
+            "ready_days": 1,
+            "step_2": "Pedido listo",
+            "min_days": 3,
+            "max_days": 6,
+            "step_3": "Entregado"
+          }
         }
       },
       "block_order": [
@@ -207,6 +218,7 @@
         "stock",
         "buy",
         "payments",
+        "delivery",
         "media_features"
       ],
       "settings": {
