@@ -388,7 +388,7 @@
           "settings": {
             "image": "shopify://shop_images/30.jpg",
             "icon": "grid",
-            "qty": "",
+            "qty": "x8",
             "title": "Cabezales intercambiables",
             "text": "Uno para cada superficie",
             "badge": "Incluido",
