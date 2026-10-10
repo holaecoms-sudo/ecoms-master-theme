@@ -116,7 +116,9 @@
         "button_1_label": "Ver productos",
         "button_2_label": "Contáctanos",
         "padding_top": 0,
-        "padding_bottom": 64
+        "padding_bottom": 64,
+        "legal_name": "Comercializadora SB SpA",
+        "rut": "78.529.134-4"
       }
     }
   },
