@@ -7,7 +7,7 @@
   assign pic = section.settings.image | default: product.featured_image
 -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-ctab-sec' %}>
-  <div class="ec-ctab ec-ctab--{{ section.settings.style }}">
+  <div class="ec-ctab ec-ctab--{{ section.settings.style }}{% if section.settings.image_plain %} ec-ctab--plainimg{% endif %}">
     <div class="ec-w ec-ctab__in">
       <div class="ec-ctab__copy">
         {%- if section.settings.eyebrow != blank -%}<p class="ec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
@@ -79,6 +79,13 @@
       "type": "image_picker",
       "id": "image",
       "label": "Imagen (vacío = foto principal)"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_plain",
+      "label": "La imagen no tiene fondo (PNG transparente)",
+      "default": false,
+      "info": "Actívalo si subes el producto recortado: se muestra flotando, sin tarjeta."
     },
     {
       "type": "text",

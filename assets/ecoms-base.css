@@ -953,3 +953,10 @@ body:has(cart-drawer.active) .ec-sticky { visibility: hidden; }
 .ec-baimg img { aspect-ratio: 4 / 3; }
 .ec-hand img { aspect-ratio: 1 / 1; }
 @media screen and (min-width: 990px) { .ec-hand img { aspect-ratio: 4 / 5; } .ec-prob { align-items: center; } }
+/* CTA band: compact height, product image as a clean rounded card (or floating if it's a transparent PNG) */
+.ec-ctab__in { padding-block: 36px; }
+.ec-ctab__img { display: grid; place-items: center; }
+.ec-ctab__img img { width: min(100%, 360px); height: auto; border-radius: 24px; box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.06), 0 24px 50px -20px rgba(0, 0, 0, 0.55); filter: none; }
+.ec-ctab--plainimg .ec-ctab__img img { border-radius: 0; box-shadow: none; filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.45)); }
+@media screen and (min-width: 750px) { .ec-ctab__in { grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); padding-block: 44px; } }
+@media screen and (max-width: 749px) { .ec-ctab__img img { width: min(100%, 280px); } }
