@@ -85,8 +85,8 @@
             "show_quantity": false,
             "add_label": "Agregar al carrito",
             "show_total": true,
-            "show_buy_now": false,
-            "buy_now_icon": "none",
+            "show_buy_now": true,
+            "buy_now_icon": "bolt",
             "buy_now_label": "Comprar ahora"
           }
         },
@@ -95,7 +95,7 @@
           "settings": {
             "style": "line2",
             "icon_1": "truck",
-            "title_1": "Envíos a todo Chile",
+            "title_1": "Envío gratis desde $30.000",
             "text_1": "",
             "icon_2": "lock",
             "title_2": "Compra segura",
@@ -104,7 +104,7 @@
             "title_3": "Seguimiento del pedido",
             "text_3": "",
             "icon_4": "return",
-            "title_4": "Cambios y devoluciones",
+            "title_4": "10 días de retracto",
             "text_4": ""
           }
         },
@@ -136,15 +136,6 @@
             "step_3": "Entregado"
           }
         },
-        "testimonial": {
-          "type": "testimonial",
-          "settings": {
-            "text": "",
-            "author": "Nombre del cliente",
-            "stars": 5,
-            "verified": true
-          }
-        },
         "media_features": {
           "type": "media_features",
           "settings": {
@@ -172,7 +163,6 @@
         "urgency",
         "payments",
         "delivery",
-        "testimonial",
         "media_features"
       ],
       "settings": {
@@ -557,8 +547,8 @@
           "type": "promise",
           "settings": {
             "icon": "shield",
-            "heading": "Cambios según política",
-            "text": "Compra tranquilo"
+            "heading": "10 días de retracto",
+            "text": "Y 6 meses de garantía legal"
           }
         },
         "t2": {
@@ -573,8 +563,8 @@
           "type": "promise",
           "settings": {
             "icon": "truck",
-            "heading": "Envíos a todo Chile",
-            "text": "Despacho a domicilio"
+            "heading": "Envío gratis desde $30.000",
+            "text": "Despacho a todo Chile"
           }
         },
         "t4": {
@@ -660,13 +650,16 @@
         "ex4"
       ],
       "settings": {
-        "style": "masonry",
-        "heading": "Lo que dicen nuestros clientes",
+        "style": "widget",
+        "heading": "Opiniones de compradores",
         "link_label": "Ver todas",
         "link": "",
         "width": "full",
         "padding_top": 28,
-        "padding_bottom": 28
+        "padding_bottom": 28,
+        "per_page": 6,
+        "write_label": "Escribe una reseña",
+        "write_link": "/pages/contact"
       }
     },
     "faq": {
@@ -675,8 +668,8 @@
         "q1": {
           "type": "faq",
           "settings": {
-            "question": "¿Qué significa «9 en 1»?",
-            "answer": "<p>Completa con la explicación validada del proveedor: cuántas prendas caben y cómo se cuelgan.</p>",
+            "question": "¿Cómo funciona el «9 en 1»?",
+            "answer": "<p>Cada organizador tiene 9 espacios: cuelgas hasta 9 perchas, una bajo otra, en el lugar que antes ocupaba una sola. Lo enganchas en la barra de tu clóset con su gancho giratorio y lo puedes usar en vertical (en cascada, para ahorrar espacio) o en horizontal (para ver todas tus prendas de frente).</p>",
             "draft": false
           }
         },
@@ -684,7 +677,7 @@
           "type": "faq",
           "settings": {
             "question": "¿Qué incluye cada pack?",
-            "answer": "<p>Cada pack incluye la cantidad de colgadores que eliges (5, 10 o 20). Puedes cambiar de pack antes de agregarlo al carrito y el descuento se aplica automáticamente.</p>",
+            "answer": "<p>Cada pack incluye la cantidad de organizadores que eliges: 5, 10 o 20. El descuento del pack se aplica automáticamente en el carrito y, si tu compra llega a $30.000, el envío es gratis.</p>",
             "draft": false
           }
         },
@@ -692,7 +685,7 @@
           "type": "faq",
           "settings": {
             "question": "¿De qué material está hecho?",
-            "answer": "<p>Indica el material real según la ficha del proveedor.</p>",
+            "answer": "<p>Está hecho de plástico PP reforzado de alta resistencia, liviano y sin bordes que dañen la ropa. Mide 33 × 5 × 3 cm.</p>",
             "draft": false
           }
         },
@@ -700,7 +693,7 @@
           "type": "faq",
           "settings": {
             "question": "¿Cuánto peso soporta?",
-            "answer": "<p>Indica la capacidad real según la ficha del proveedor.</p>",
+            "answer": "<p>Cada organizador soporta hasta 5 kg en total. Te recomendamos repartir el peso: prendas pesadas, como abrigos, en los espacios de arriba y las más livianas abajo.</p>",
             "draft": false
           }
         },
@@ -708,7 +701,7 @@
           "type": "faq",
           "settings": {
             "question": "¿Cuánto cuesta el envío y cuánto tarda?",
-            "answer": "<p>Despachamos a todo Chile. El costo y el plazo estimado para tu comuna aparecen en el checkout antes de pagar.</p>",
+            "answer": "<p>Despachamos a todo Chile. El envío es <strong>gratis en compras desde $30.000</strong> y cuesta $4.000 en compras menores. Preparamos tu pedido en 1 día hábil y llega en un plazo estimado de 3 a 6 días hábiles.</p>",
             "draft": false
           }
         },
@@ -716,7 +709,7 @@
           "type": "faq",
           "settings": {
             "question": "¿Cómo hago seguimiento de mi pedido?",
-            "answer": "<p>Confirma con Dropi cómo se envía el número de seguimiento (por ejemplo, el email de envío de Shopify) y escríbelo aquí.</p>",
+            "answer": "<p>Cuando tu pedido sale, te enviamos por email el número de seguimiento para que sepas dónde está. Si tienes dudas, escríbenos desde la página de contacto.</p>",
             "draft": false
           }
         },
@@ -724,7 +717,7 @@
           "type": "faq",
           "settings": {
             "question": "¿Puedo cambiar o devolver mi compra?",
-            "answer": "<p>Resume tu política de cambios y devoluciones y enlázala (Configuración → Políticas).</p>",
+            "answer": "<p>Sí. Tienes <strong>10 días desde que recibes tu pedido</strong> para arrepentirte de la compra (derecho de retracto), siempre que el producto esté sin uso y con su embalaje. Además, si presenta una falla, tienes la <strong>garantía legal de 6 meses</strong>. Revisa el detalle en nuestra Política de reembolso.</p>",
             "draft": false
           }
         }
@@ -743,12 +736,128 @@
         "icon": "chev",
         "width": "full",
         "padding_top": 20,
-        "padding_bottom": 32
+        "padding_bottom": 32,
+        "style": "split",
+        "text": "¿Tienes otra duda? Escríbenos desde la página de contacto."
+      }
+    },
+    "keyspecs": {
+      "type": "ecoms-stats",
+      "blocks": {
+        "k1": {
+          "type": "stat",
+          "settings": {
+            "icon": "grid",
+            "value": "9",
+            "label": "prendas en el espacio de una"
+          }
+        },
+        "k2": {
+          "type": "stat",
+          "settings": {
+            "icon": "shield",
+            "value": "5 kg",
+            "label": "de carga por organizador"
+          }
+        },
+        "k3": {
+          "type": "stat",
+          "settings": {
+            "icon": "return",
+            "value": "360°",
+            "label": "gancho giratorio"
+          }
+        },
+        "k4": {
+          "type": "stat",
+          "settings": {
+            "icon": "hand",
+            "value": "2 usos",
+            "label": "vertical u horizontal"
+          }
+        }
+      },
+      "block_order": [
+        "k1",
+        "k2",
+        "k3",
+        "k4"
+      ],
+      "settings": {
+        "style": "dark",
+        "heading": "Más espacio, sin muebles nuevos",
+        "text": "Lo que cambia en tu clóset desde el primer día.",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "ugc": {
+      "type": "ecoms-ugc",
+      "blocks": {
+        "u1": {
+          "type": "media",
+          "settings": {}
+        },
+        "u2": {
+          "type": "media",
+          "settings": {}
+        },
+        "u3": {
+          "type": "media",
+          "settings": {}
+        },
+        "u4": {
+          "type": "media",
+          "settings": {}
+        },
+        "u5": {
+          "type": "media",
+          "settings": {}
+        },
+        "u6": {
+          "type": "media",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "u1",
+        "u2",
+        "u3",
+        "u4",
+        "u5",
+        "u6"
+      ],
+      "settings": {
+        "style": "grid",
+        "heading": "Así se ve en casa",
+        "text": "Imágenes referenciales de uso.",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "cta": {
+      "type": "ecoms-cta-band",
+      "settings": {
+        "style": "dark",
+        "eyebrow": "Ordena tu clóset hoy",
+        "heading": "Más espacio en el mismo clóset",
+        "text": "Elige tu pack y libera la barra en minutos, sin herramientas.",
+        "image_plain": false,
+        "button_label": "Elegir mi pack",
+        "trust_1": "Envío gratis desde $30.000",
+        "trust_2": "Pago seguro",
+        "trust_3": "10 días de retracto",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
   "order": [
     "main",
+    "keyspecs",
     "how",
     "row_1",
     "row_2",
@@ -758,6 +867,8 @@
     "comparison",
     "riskfree",
     "reviews",
-    "faq"
+    "ugc",
+    "faq",
+    "cta"
   ]
 }
