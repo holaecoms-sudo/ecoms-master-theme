@@ -1,75 +1,106 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "hero": {
+      "type": "ecoms-home-hero",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "t1": {
+          "type": "trust",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "icon": "truck",
+            "title": "Envíos a todo Chile",
+            "text": "Directo a tu domicilio"
           }
         },
-        "button": {
-          "type": "buttons",
+        "t2": {
+          "type": "trust",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "icon": "lock",
+            "title": "Pago seguro",
+            "text": "Checkout protegido"
+          }
+        },
+        "t3": {
+          "type": "trust",
+          "settings": {
+            "icon": "box",
+            "title": "Seguimiento del pedido",
+            "text": "Te avisamos del envío"
+          }
+        },
+        "t4": {
+          "type": "trust",
+          "settings": {
+            "icon": "return",
+            "title": "Cambios y devoluciones",
+            "text": "Según nuestra política"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "t1",
+        "t2",
+        "t3",
+        "t4"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "eyebrow": "Hogar práctico",
+        "heading": "Soluciones simples para un hogar",
+        "heading_em": "más fácil",
+        "text": "Elegimos productos útiles para ordenar y limpiar tu casa. Los probamos, te explicamos cómo funcionan y te los enviamos a todo Chile.",
+        "button_1_label": "Ver productos",
+        "button_2_label": "Más información",
+        "product": "cepillo-electrico-de-limpieza-9-en-1",
+        "tag": "Nuevo",
+        "card_text": "Limpia sin fregar ni agacharte",
+        "accent": "#14B8A6",
+        "padding_top": 84,
+        "padding_bottom": 96
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "products": {
+      "type": "ecoms-home-products",
+      "blocks": {
+        "p1": {
+          "type": "product",
+          "settings": {
+            "product": "cepillo-electrico-de-limpieza-9-en-1",
+            "chip": "Limpieza",
+            "text": "Baño, juntas y pisos impecables: el cabezal gira solo y el mango extensible te evita agacharte.",
+            "point_1": "Inalámbrico y recargable",
+            "point_2": "Cabezales para cada superficie",
+            "point_3": "Mango extensible"
+          }
+        },
+        "p2": {
+          "type": "product",
+          "settings": {
+            "product": "colgador-smart-organizador-9-en-1",
+            "chip": "Orden",
+            "text": "Cuelga varias prendas en el espacio de una y libera tu clóset en minutos, sin herramientas.",
+            "point_1": "Más espacio en el clóset",
+            "point_2": "Ropa ordenada y a la vista",
+            "point_3": "Packs de 5, 10 y 20"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2"
+      ],
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "eyebrow": "Nuestros productos",
+        "heading": "Pocos productos, muy bien elegidos",
+        "text": "Cada uno resuelve un problema concreto de la casa. Entra para ver cómo funciona, qué incluye y los packs con descuento.",
+        "button_label": "Más información",
+        "note": "",
+        "accent": "#14B8A6",
+        "padding_top": 84,
+        "padding_bottom": 72
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "hero",
+    "products"
   ]
 }

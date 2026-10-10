@@ -1,0 +1,168 @@
+{%- comment -%}
+  ECOMS · Productos destacados (home): one card per chosen product with category chip, short pitch,
+  3 points, real «desde» price and a button to the product page.
+{%- endcomment -%}
+<section id="ec-home-products" class="ec-hp" style="--hh-accent: {{ section.settings.accent | default: '#14B8A6' }}; --ec-pt: {{ section.settings.padding_top }}px; --ec-pb: {{ section.settings.padding_bottom }}px;">
+  <div class="ec-w">
+    <div class="ec-hp__h">
+      {%- if section.settings.eyebrow != blank -%}<p class="ec-hp__k">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
+      {%- if section.settings.text != blank -%}<p>{{ section.settings.text | escape }}</p>{%- endif -%}
+    </div>
+    <div class="ec-hp__grid">
+      {%- for block in section.blocks -%}
+        {%- assign p = block.settings.product -%}
+        {%- if p == blank and request.design_mode != true -%}{%- continue -%}{%- endif -%}
+        {%- assign pic = block.settings.image | default: p.featured_image -%}
+        <article class="ec-hp__card" {{ block.shopify_attributes }}>
+          <a class="ec-hp__img" href="{{ p.url | default: '#' }}" tabindex="-1" aria-hidden="true">
+            {%- if pic != blank -%}
+              {{ pic | image_url: width: 900 | image_tag: loading: 'lazy', widths: '400,600,900', sizes: '(min-width: 990px) 560px, 92vw', alt: '' }}
+            {%- else -%}
+              {{ 'product-2' | placeholder_svg_tag: 'ec-placeholder' }}
+            {%- endif -%}
+            {%- if block.settings.chip != blank -%}<span class="ec-hp__chip">{{ block.settings.chip | escape }}</span>{%- endif -%}
+          </a>
+          <div class="ec-hp__body">
+            <h3><a href="{{ p.url | default: '#' }}">{{ p.title | default: 'Elige un producto' | escape }}</a></h3>
+            {%- if block.settings.text != blank -%}<p>{{ block.settings.text | escape }}</p>{%- endif -%}
+            <ul role="list">
+              {%- for i in (1..3) -%}
+                {%- assign key = 'point_' | append: i -%}
+                {%- if block.settings[key] != blank -%}<li>{% render 'ecoms-icon', name: 'check' %}{{ block.settings[key] | escape }}</li>{%- endif -%}
+              {%- endfor -%}
+            </ul>
+            <div class="ec-hp__foot">
+              {%- if p != blank -%}<span class="ec-hp__from">Desde<b>{{ p.price_min | money }}</b></span>{%- endif -%}
+              <a class="ec-btn ec-btn--primary" href="{{ p.url | default: '#' }}">{{ section.settings.button_label | default: 'Más información' | escape }} {% render 'ecoms-icon', name: 'arrow' %}</a>
+            </div>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.note != blank -%}<p class="ec-hp__note">{{ section.settings.note | escape }}</p>{%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ECOMS · Productos portada",
+  "tag": "section",
+  "class": "ec-hp-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Antetítulo",
+      "default": "Nuestros productos"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Pocos productos, muy bien elegidos"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Texto",
+      "default": "Cada uno resuelve un problema concreto de la casa. Entra para ver cómo funciona, qué incluye y los packs con descuento."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto del botón",
+      "default": "Más información"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Nota al pie"
+    },
+    {
+      "type": "color",
+      "id": "accent",
+      "label": "Color de acento",
+      "default": "#14B8A6"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Margen superior",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 84
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Margen inferior",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Producto",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Producto"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen (vacío = foto principal)"
+        },
+        {
+          "type": "text",
+          "id": "chip",
+          "label": "Categoría",
+          "default": "Limpieza"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Frase corta"
+        },
+        {
+          "type": "text",
+          "id": "point_1",
+          "label": "Beneficio 1"
+        },
+        {
+          "type": "text",
+          "id": "point_2",
+          "label": "Beneficio 2"
+        },
+        {
+          "type": "text",
+          "id": "point_3",
+          "label": "Beneficio 3"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "ECOMS · Productos portada",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

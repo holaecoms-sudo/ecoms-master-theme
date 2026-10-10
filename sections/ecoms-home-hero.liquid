@@ -1,0 +1,343 @@
+{%- comment -%}
+  ECOMS · Portada (home): trust-first hero. Copy + two buttons + up to 4 trust points on the left,
+  a featured product on the right (photo, real «desde» price from Shopify, link to its page).
+{%- endcomment -%}
+{%- liquid
+  assign fp = section.settings.product
+  assign fp_url = fp.url | default: routes.all_products_collection_url
+  assign fp_img = section.settings.image | default: fp.featured_image
+  assign more_url = section.settings.button_2_link | default: fp_url
+-%}
+<section class="ec-hh" style="--hh-accent: {{ section.settings.accent | default: '#14B8A6' }}; --ec-pt: {{ section.settings.padding_top }}px; --ec-pb: {{ section.settings.padding_bottom }}px;">
+  <div class="ec-w ec-hh__in">
+    <div class="ec-hh__copy">
+      {%- if section.settings.eyebrow != blank -%}<p class="ec-hh__eyebrow"><i></i>{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h1 class="ec-hh__h">
+        {{- section.settings.heading | escape -}}
+        {%- if section.settings.heading_em != blank %} <em>{{ section.settings.heading_em | escape }}</em>{% endif -%}
+      </h1>
+      {%- if section.settings.text != blank -%}<p class="ec-hh__lead">{{ section.settings.text | escape }}</p>{%- endif -%}
+      <div class="ec-hh__btns">
+        {%- if section.settings.button_1_label != blank -%}
+          <a class="ec-btn ec-btn--primary ec-btn--lg" href="{{ section.settings.button_1_link | default: '#ec-home-products' }}">{{ section.settings.button_1_label | escape }} {% render 'ecoms-icon', name: 'arrow' %}</a>
+        {%- endif -%}
+        {%- if section.settings.button_2_label != blank -%}
+          <a class="ec-btn ec-btn--lg ec-hh__ghost" href="{{ more_url }}">{{ section.settings.button_2_label | escape }}</a>
+        {%- endif -%}
+      </div>
+      <ul class="ec-hh__trust" role="list">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.title != blank -%}
+            <li {{ block.shopify_attributes }}>
+              <span class="ec-hh__ic">{% render 'ecoms-icon', name: block.settings.icon %}</span>
+              <div>{{ block.settings.title | escape }}{%- if block.settings.text != blank -%}<small>{{ block.settings.text | escape }}</small>{%- endif -%}</div>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+    <div class="ec-hh__feat">
+      <a class="ec-hh__img" href="{{ fp_url }}" tabindex="-1" aria-hidden="true">
+        {%- if fp_img != blank -%}
+          {{ fp_img | image_url: width: 1100 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '400,600,800,1100', sizes: '(min-width: 990px) 470px, 92vw', alt: '' }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'ec-placeholder' }}
+        {%- endif -%}
+      </a>
+      {%- if section.settings.tag != blank -%}<span class="ec-hh__tag">{{ section.settings.tag | escape }}</span>{%- endif -%}
+      {%- if fp != blank -%}
+        <a class="ec-hh__card" href="{{ fp_url }}">
+          <div><b>{{ fp.title | escape }}</b>{%- if section.settings.card_text != blank -%}<span>{{ section.settings.card_text | escape }}</span>{%- endif -%}</div>
+          <div class="ec-hh__price"><span>desde</span><b>{{ fp.price_min | money }}</b></div>
+          <span class="ec-hh__go" aria-hidden="true">{% render 'ecoms-icon', name: 'arrow' %}</span>
+          <span class="visually-hidden">Más información sobre {{ fp.title | escape }}</span>
+        </a>
+      {%- elsif request.design_mode -%}
+        <p class="ec-editor-note">Elige el producto destacado en la configuración de la sección.</p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ECOMS · Portada",
+  "tag": "section",
+  "class": "ec-hh-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Etiqueta",
+      "default": "Hogar práctico"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Soluciones simples para un hogar"
+    },
+    {
+      "type": "text",
+      "id": "heading_em",
+      "label": "Final del título (destacado)",
+      "default": "más fácil"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Texto",
+      "default": "Elegimos productos útiles para ordenar y limpiar tu casa. Los probamos, te explicamos cómo funcionan y te los enviamos a todo Chile."
+    },
+    {
+      "type": "text",
+      "id": "button_1_label",
+      "label": "Botón principal",
+      "default": "Ver productos"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Enlace del botón principal",
+      "info": "Vacío = baja a la sección de productos."
+    },
+    {
+      "type": "text",
+      "id": "button_2_label",
+      "label": "Botón secundario",
+      "default": "Más información"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Enlace del botón secundario",
+      "info": "Vacío = página del producto destacado."
+    },
+    {
+      "type": "header",
+      "content": "Producto destacado"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Producto"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen (vacío = foto principal del producto)"
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Etiqueta sobre la foto",
+      "default": "Nuevo"
+    },
+    {
+      "type": "text",
+      "id": "card_text",
+      "label": "Frase corta en la tarjeta",
+      "default": "Limpia sin fregar ni agacharte"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "color",
+      "id": "accent",
+      "label": "Color de acento",
+      "default": "#14B8A6"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Margen superior",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 84
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Margen inferior",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust",
+      "name": "Garantía",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícono",
+          "options": [
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / pago seguro"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "chat",
+              "label": "Soporte"
+            },
+            {
+              "value": "cash",
+              "label": "Pago / efectivo"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "star",
+              "label": "Estrella"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "check",
+              "label": "Check"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "fire",
+              "label": "Fuego / oferta"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo / potencia"
+            },
+            {
+              "value": "sparkle",
+              "label": "Brillo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja / natural"
+            },
+            {
+              "value": "drop",
+              "label": "Gota / agua"
+            },
+            {
+              "value": "snow",
+              "label": "Frío"
+            },
+            {
+              "value": "thermo",
+              "label": "Temperatura"
+            },
+            {
+              "value": "sun",
+              "label": "Sol / luz"
+            },
+            {
+              "value": "gem",
+              "label": "Gema / premium"
+            },
+            {
+              "value": "hand",
+              "label": "Mano / fácil"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "box",
+              "label": "Caja / paquete"
+            },
+            {
+              "value": "grid",
+              "label": "Accesorios"
+            },
+            {
+              "value": "battery",
+              "label": "Batería"
+            },
+            {
+              "value": "home",
+              "label": "Hogar"
+            },
+            {
+              "value": "verified",
+              "label": "Verificado"
+            },
+            {
+              "value": "bag",
+              "label": "Bolsa / tienda"
+            },
+            {
+              "value": "cart",
+              "label": "Carrito"
+            }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Envíos a todo Chile"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Detalle",
+          "default": "Directo a tu domicilio"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "ECOMS · Portada",
+      "blocks": [
+        {
+          "type": "trust"
+        },
+        {
+          "type": "trust"
+        },
+        {
+          "type": "trust"
+        },
+        {
+          "type": "trust"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
