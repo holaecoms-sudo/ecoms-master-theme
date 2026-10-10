@@ -435,6 +435,7 @@
         "c5": {
           "type": "item",
           "settings": {
+            "image": "shopify://shop_images/Limpieza_Profunda_de_juntas.jpg",
             "icon": "sparkle",
             "qty": "x1",
             "title": "Cepillo para detalles",
