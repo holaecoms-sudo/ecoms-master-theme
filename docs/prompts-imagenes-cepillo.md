@@ -138,6 +138,15 @@ Image I4. Only the USB charging cable neatly coiled, connector visible, pure whi
 background, studio light. Square 1:1.
 ```
 
+**I5 · Cepillo para detalles**
+```
+Image I5. Only the small handheld detail brush that comes in the box (exactly as in my
+photos: same size, shape, bristle color and handle color), placed diagonally at a 3/4 angle
+so the bristles are clearly visible, on pure white background, soft shadow under it,
+studio product shot. No other parts, no scrubber body. Square 1:1, 1600 x 1600.
+```
+> Si en tus fotos no se ve bien el cepillo de detalles, adjunta una foto donde salga solo. Si el producto no trae ese cepillo, avísame para sacarlo de la página.
+
 ---
 
 ## 4 · PESTAÑAS «ÚSALO EN TODA LA CASA» (4:3 horizontal, 1600 × 1200)
@@ -246,7 +255,7 @@ them. Realistic. No text.
 |---|---|
 | G1–G8 | **Productos → Cepillo → Multimedia**, en ese orden. Si tienes un video demostrativo, súbelo primero. |
 | A1 | Editor → sección **Anatomía** → Imagen |
-| I1–I4 | Sección **Esto incluye tu compra** → cada pieza → Foto. También bloque «Tu compra incluye» → Foto 1–4 |
+| I1–I5 | Sección **Esto incluye tu compra** → cada pieza → Foto (I5 = «Cepillo para detalles»). También bloque «Tu compra incluye» → Foto 1–5 |
 | T1–T4 | Sección **Pestañas de uso** → cada pestaña → Imagen |
 | P1 | Sección **De fregar a mano…** → Imagen |
 | C1 | Sección **CTA final** → Imagen |

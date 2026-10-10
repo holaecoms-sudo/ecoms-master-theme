@@ -46,12 +46,21 @@
           "settings": {
             "heading": "Síguenos"
           }
+        },
+        "policies": {
+          "type": "policies",
+          "settings": {
+            "heading": "Políticas",
+            "link_label": "Contacto",
+            "link": "/pages/contact"
+          }
         }
       },
       "block_order": [
         "brand",
         "links",
         "help",
+        "policies",
         "pay",
         "social"
       ],

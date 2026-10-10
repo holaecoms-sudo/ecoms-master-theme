@@ -66,7 +66,7 @@
             "text_3": "De tu pedido",
             "icon_4": "return",
             "title_4": "Cambios",
-            "text_4": "Según política"
+            "text_4": "10 días de retracto"
           }
         },
         "buybox": {
@@ -986,8 +986,8 @@
           "type": "faq",
           "settings": {
             "question": "¿Puedo cambiar o devolver mi compra?",
-            "answer": "<p>Sí. Si el producto llega con una falla de fábrica o no corresponde a lo que compraste, escríbenos dentro de los 10 días desde que lo recibes a través de la página de contacto y te lo cambiamos o te devolvemos el dinero. Revisa el detalle en nuestra Política de cambios y devoluciones.</p>",
-            "draft": true
+            "answer": "<p>Sí. Tienes <strong>10 días desde que recibes tu pedido</strong> para arrepentirte de la compra (derecho de retracto), siempre que el producto esté sin uso y con su embalaje. Además, si presenta una falla, tienes la <strong>garantía legal de 6 meses</strong>: eliges cambio, reparación o devolución del dinero. Escríbenos desde la página de contacto y revisa el detalle en nuestra Política de reembolso.</p>",
+            "draft": false
           }
         }
       },

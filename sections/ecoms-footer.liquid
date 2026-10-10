@@ -64,6 +64,19 @@
                 {%- if form.errors -%}<p class="ec-news__err" role="alert">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>{%- endif -%}
               {%- endif -%}
             {%- endform -%}
+          {%- when 'policies' -%}
+            {%- if block.settings.heading != blank -%}<h2 class="ec-ft__h">{{ block.settings.heading | escape }}</h2>{%- endif -%}
+            <ul role="list">
+              {%- for policy in shop.policies -%}
+                {%- if policy != blank -%}<li><a href="{{ policy.url }}">{{ policy.title | escape }}</a></li>{%- endif -%}
+              {%- endfor -%}
+              {%- if block.settings.link != blank and block.settings.link_label != blank -%}
+                <li><a href="{{ block.settings.link }}">{{ block.settings.link_label | escape }}</a></li>
+              {%- endif -%}
+            </ul>
+            {%- if request.design_mode and shop.policies.size == 0 -%}
+              <p class="ec-editor-note">Crea las políticas en Configuración → Políticas y aparecerán aquí.</p>
+            {%- endif -%}
           {%- when 'text' -%}
             {%- if block.settings.heading != blank -%}<h2 class="ec-ft__h">{{ block.settings.heading | escape }}</h2>{%- endif -%}
             <div class="ec-ft__text">{{ block.settings.text }}</div>
@@ -71,13 +84,15 @@
       </div>
     {%- endfor -%}
   </div>
+  {%- assign ft_has_pol = false -%}
+  {%- for block in section.blocks -%}{%- if block.type == 'policies' -%}{%- assign ft_has_pol = true -%}{%- endif -%}{%- endfor -%}
   <div class="ec-ft__legal">
     <div class="ec-w">
       © {{ 'now' | date: '%Y' }} {{ store_name | escape }}.
       {%- if section.settings.legal != blank %} {{ section.settings.legal | escape }}{% endif -%}
-      {%- for policy in shop.policies -%}
+      {%- unless ft_has_pol -%}{%- for policy in shop.policies -%}
         {%- if policy != blank %} · <a href="{{ policy.url }}">{{ policy.title | escape }}</a>{% endif -%}
-      {%- endfor -%}
+      {%- endfor -%}{%- endunless -%}
     </div>
   </div>
 </footer>
@@ -188,6 +203,34 @@
         {
           "type": "paragraph",
           "content": "Los enlaces se configuran en Ajustes del tema → Redes sociales."
+        }
+      ]
+    },
+    {
+      "type": "policies",
+      "name": "Políticas",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Título",
+          "default": "Políticas"
+        },
+        {
+          "type": "paragraph",
+          "content": "Muestra automáticamente las políticas creadas en Configuración → Políticas."
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Enlace extra (texto)",
+          "default": "Contacto"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Enlace extra"
         }
       ]
     },
