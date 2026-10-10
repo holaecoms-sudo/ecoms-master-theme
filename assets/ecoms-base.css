@@ -944,3 +944,12 @@ body:has(cart-drawer.active) .ec-sticky { visibility: hidden; }
   .ec-anat--plain .ec-anat__col--l .ec-anat__item b { justify-content: flex-start; }
   .ec-anat--plain .ec-anat__item { min-height: 128px; align-items: center; }
 }
+
+/* Fix: Shopify image_tag adds width/height attributes; with height set, CSS aspect-ratio is ignored and
+   photos stretch. Force height:auto wherever a section relies on aspect-ratio. */
+.ec-baimg img, .ec-hand img, .ec-tabs__img img, .ec-anat__img img, .ec-ctab__img img,
+.ec-imgtxt__media img, .ec-specs__media img, .ec-ideal__img, .ec-ba img, .ec-up__media img { height: auto; }
+/* Problem → solution photos: before/after 4:3, side photo 4:5 (1:1 on mobile) */
+.ec-baimg img { aspect-ratio: 4 / 3; }
+.ec-hand img { aspect-ratio: 1 / 1; }
+@media screen and (min-width: 990px) { .ec-hand img { aspect-ratio: 4 / 5; } .ec-prob { align-items: center; } }
