@@ -1106,3 +1106,5 @@ body:has(cart-drawer.active) .ec-sticky { visibility: hidden; }
   .ec-rw__grid { columns: 2; }
   .ec-rw__big { font-size: 60px; }
 }
+/* Image + text: full image, never cropped (infographics with text) */
+.ec-imgtxt__media--full img, .ec-imgtxt__media--full video { aspect-ratio: auto !important; height: auto !important; max-height: none !important; object-fit: contain !important; }

@@ -10,7 +10,7 @@
 <section {% render 'ecoms-section-style', section: section, class: 'ec-imgtxt-sec' %}>
   <div class="ec-w">
     <div class="ec-imgtxt ec-imgtxt--{{ section.settings.image_side }}">
-      <div class="ec-imgtxt__media">
+      <div class="ec-imgtxt__media{% if section.settings.image_full %} ec-imgtxt__media--full{% endif %}">
         {%- if section.settings.video != blank -%}
           {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, preload: 'metadata', image_size: '900x' }}
         {%- elsif row_img != blank -%}
@@ -65,6 +65,13 @@
       "type": "image_picker",
       "id": "image",
       "label": "Imagen"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_full",
+      "label": "Mostrar la imagen completa (sin recortar)",
+      "default": false,
+      "info": "Recomendado para imágenes con texto o infografías."
     },
     {
       "type": "range",

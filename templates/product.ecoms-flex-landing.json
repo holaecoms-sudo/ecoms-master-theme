@@ -335,7 +335,8 @@
         "button_link": "",
         "width": "full",
         "padding_top": 20,
-        "padding_bottom": 20
+        "padding_bottom": 20,
+        "image_full": true
       }
     },
     "row_2": {
@@ -377,7 +378,8 @@
         "button_link": "",
         "width": "full",
         "padding_top": 20,
-        "padding_bottom": 20
+        "padding_bottom": 20,
+        "image_full": true
       }
     },
     "row_3": {
@@ -419,7 +421,8 @@
         "button_link": "",
         "width": "full",
         "padding_top": 20,
-        "padding_bottom": 20
+        "padding_bottom": 20,
+        "image_full": true
       }
     },
     "ideal": {
