@@ -167,8 +167,10 @@
       ],
       "settings": {
         "layout": "flex",
+        "columns": "auto",
         "thumbs": "below",
         "badge": "",
+        "hero_bg": "none",
         "media_ratio": "square",
         "media_fit": "contain",
         "video_first": true,
@@ -177,8 +179,78 @@
         "sticky": true,
         "sticky_desktop": true,
         "sticky_label": "Agregar al carrito",
+        "palette": "store",
+        "pal_primary": "",
+        "pal_primary_ink": "",
+        "pal_dark": "",
+        "pal_accent": "",
+        "pal_accent_ink": "",
+        "pal_soft": "",
+        "pal_soft_ink": "",
+        "pal_tag": "",
+        "pal_tag_ink": "",
+        "pal_sale_bg": "",
+        "pal_sale_ink": "",
+        "pal_urgent": "",
+        "pal_urgent_bg": "",
+        "pal_bg": "",
+        "pal_ink": "",
+        "pal_muted": "",
+        "pal_line": "",
+        "pal_deep": "",
         "padding_top": 24,
         "padding_bottom": 32
+      }
+    },
+    "keyspecs": {
+      "type": "ecoms-stats",
+      "blocks": {
+        "k1": {
+          "type": "stat",
+          "settings": {
+            "icon": "grid",
+            "value": "9",
+            "label": "prendas en el espacio de una"
+          }
+        },
+        "k2": {
+          "type": "stat",
+          "settings": {
+            "icon": "shield",
+            "value": "5 kg",
+            "label": "de carga por organizador"
+          }
+        },
+        "k3": {
+          "type": "stat",
+          "settings": {
+            "icon": "return",
+            "value": "360°",
+            "label": "gancho giratorio"
+          }
+        },
+        "k4": {
+          "type": "stat",
+          "settings": {
+            "icon": "hand",
+            "value": "2 usos",
+            "label": "vertical u horizontal"
+          }
+        }
+      },
+      "block_order": [
+        "k1",
+        "k2",
+        "k3",
+        "k4"
+      ],
+      "settings": {
+        "style": "dark",
+        "heading": "Más espacio, sin muebles nuevos",
+        "text": "Lo que cambia en tu clóset desde el primer día.",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "how": {
@@ -255,6 +327,7 @@
       ],
       "settings": {
         "image_side": "left",
+        "image": "shopify://shop_images/7_a929078c-50a1-4cbe-9617-69ecb9bb3582.jpg",
         "product_image_index": 2,
         "heading": "Despídete del desorden y gana espacio",
         "intro": "Tu clóset ordenado en minutos, sin obras ni muebles nuevos.",
@@ -529,6 +602,7 @@
         "r4"
       ],
       "settings": {
+        "style": "table",
         "heading": "¿Por qué elegirlo?",
         "feature_label": "Característica",
         "col_1": "Colgador Smart 9 en 1",
@@ -654,12 +728,75 @@
         "heading": "Opiniones de compradores",
         "link_label": "Ver todas",
         "link": "",
-        "width": "full",
-        "padding_top": 28,
-        "padding_bottom": 28,
         "per_page": 6,
         "write_label": "Escribe una reseña",
-        "write_link": "/pages/contact"
+        "write_link": "/pages/contact",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "ugc": {
+      "type": "ecoms-ugc",
+      "blocks": {
+        "u1": {
+          "type": "media",
+          "settings": {
+            "quote": "",
+            "caption": ""
+          }
+        },
+        "u2": {
+          "type": "media",
+          "settings": {
+            "quote": "",
+            "caption": ""
+          }
+        },
+        "u3": {
+          "type": "media",
+          "settings": {
+            "quote": "",
+            "caption": ""
+          }
+        },
+        "u4": {
+          "type": "media",
+          "settings": {
+            "quote": "",
+            "caption": ""
+          }
+        },
+        "u5": {
+          "type": "media",
+          "settings": {
+            "quote": "",
+            "caption": ""
+          }
+        },
+        "u6": {
+          "type": "media",
+          "settings": {
+            "quote": "",
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "u1",
+        "u2",
+        "u3",
+        "u4",
+        "u5",
+        "u6"
+      ],
+      "settings": {
+        "style": "grid",
+        "heading": "Así se ve en casa",
+        "text": "Imágenes referenciales de uso.",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 28
       }
     },
     "faq": {
@@ -732,109 +869,13 @@
         "q7"
       ],
       "settings": {
+        "style": "split",
         "heading": "Preguntas frecuentes",
+        "text": "¿Tienes otra duda? Escríbenos desde la página de contacto.",
         "icon": "chev",
         "width": "full",
         "padding_top": 20,
-        "padding_bottom": 32,
-        "style": "split",
-        "text": "¿Tienes otra duda? Escríbenos desde la página de contacto."
-      }
-    },
-    "keyspecs": {
-      "type": "ecoms-stats",
-      "blocks": {
-        "k1": {
-          "type": "stat",
-          "settings": {
-            "icon": "grid",
-            "value": "9",
-            "label": "prendas en el espacio de una"
-          }
-        },
-        "k2": {
-          "type": "stat",
-          "settings": {
-            "icon": "shield",
-            "value": "5 kg",
-            "label": "de carga por organizador"
-          }
-        },
-        "k3": {
-          "type": "stat",
-          "settings": {
-            "icon": "return",
-            "value": "360°",
-            "label": "gancho giratorio"
-          }
-        },
-        "k4": {
-          "type": "stat",
-          "settings": {
-            "icon": "hand",
-            "value": "2 usos",
-            "label": "vertical u horizontal"
-          }
-        }
-      },
-      "block_order": [
-        "k1",
-        "k2",
-        "k3",
-        "k4"
-      ],
-      "settings": {
-        "style": "dark",
-        "heading": "Más espacio, sin muebles nuevos",
-        "text": "Lo que cambia en tu clóset desde el primer día.",
-        "width": "full",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "ugc": {
-      "type": "ecoms-ugc",
-      "blocks": {
-        "u1": {
-          "type": "media",
-          "settings": {}
-        },
-        "u2": {
-          "type": "media",
-          "settings": {}
-        },
-        "u3": {
-          "type": "media",
-          "settings": {}
-        },
-        "u4": {
-          "type": "media",
-          "settings": {}
-        },
-        "u5": {
-          "type": "media",
-          "settings": {}
-        },
-        "u6": {
-          "type": "media",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "u1",
-        "u2",
-        "u3",
-        "u4",
-        "u5",
-        "u6"
-      ],
-      "settings": {
-        "style": "grid",
-        "heading": "Así se ve en casa",
-        "text": "Imágenes referenciales de uso.",
-        "width": "full",
-        "padding_top": 28,
-        "padding_bottom": 28
+        "padding_bottom": 32
       }
     },
     "cta": {
