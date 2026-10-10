@@ -102,7 +102,7 @@
             "show_summary": true,
             "summary_label": "Tu pack incluye",
             "show_free_shipping": true,
-            "discounts_live": false,
+            "discounts_live": true,
             "tier1_qty": 1,
             "tier1_label": "1 cepillo",
             "tier1_tag": "",
@@ -177,6 +177,17 @@
             "text": ""
           }
         },
+        "delivery": {
+          "type": "delivery",
+          "settings": {
+            "step_1": "Pedido realizado",
+            "ready_days": 1,
+            "step_2": "Pedido listo",
+            "min_days": 3,
+            "max_days": 6,
+            "step_3": "Entregado"
+          }
+        },
         "media_features": {
           "type": "media_features",
           "settings": {
@@ -188,17 +199,6 @@
             "text_3": "Cabezales intercambiables",
             "icon_4": "battery",
             "text_4": "Recargable USB"
-          }
-        },
-        "delivery": {
-          "type": "delivery",
-          "settings": {
-            "step_1": "Pedido realizado",
-            "ready_days": 1,
-            "step_2": "Pedido listo",
-            "min_days": 3,
-            "max_days": 6,
-            "step_3": "Entregado"
           }
         }
       },
@@ -375,6 +375,7 @@
         "heading": "Cada detalle pensado para tu baño",
         "text": "",
         "image": "shopify://shop_images/25.jpg",
+        "show_numbers": false,
         "width": "full",
         "padding_top": 0,
         "padding_bottom": 0
@@ -1005,6 +1006,7 @@
         "heading": "Tu baño impecable, sin fregar",
         "text": "Llévate el kit completo y olvídate de arrodillarte para limpiar.",
         "image": "shopify://shop_images/Limpieza_Profunda_de_juntas.png",
+        "image_plain": false,
         "button_label": "Comprar ahora",
         "trust_1": "Envíos a todo Chile",
         "trust_2": "Pago seguro",
