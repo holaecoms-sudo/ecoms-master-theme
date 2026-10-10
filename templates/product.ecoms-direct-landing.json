@@ -831,7 +831,7 @@
           "settings": {
             "icon": "battery",
             "label": "Batería y autonomía",
-            "value": "",
+            "value": "Batería recargable de litio · hasta 5 horas de uso por carga",
             "metafield": "ecoms.battery"
           }
         },
@@ -840,7 +840,7 @@
           "settings": {
             "icon": "clock",
             "label": "Tiempo de carga",
-            "value": "",
+            "value": "Carga completa en aprox. 5 horas por USB-C",
             "metafield": "ecoms.charge_time"
           }
         },
@@ -849,7 +849,7 @@
           "settings": {
             "icon": "grid",
             "label": "Cabezales incluidos",
-            "value": "",
+            "value": "8 cabezales intercambiables: 4 cepillos (grande, mediano, pequeño y de punta) y 4 esponjas para distintas superficies",
             "metafield": "ecoms.heads"
           }
         },
@@ -858,7 +858,7 @@
           "settings": {
             "icon": "hand",
             "label": "Largo del mango",
-            "value": "",
+            "value": "Ajustable en 3 largos: 30 cm (sin barras), 110 cm y 137 cm",
             "metafield": "ecoms.dimensions"
           }
         },
@@ -867,7 +867,7 @@
           "settings": {
             "icon": "drop",
             "label": "Resistencia al agua",
-            "value": "",
+            "value": "Resistente al agua: se puede usar en la ducha y enjuagar los cabezales",
             "metafield": "ecoms.water_resistance"
           }
         },
@@ -876,7 +876,7 @@
           "settings": {
             "icon": "bolt",
             "label": "Velocidad de giro",
-            "value": "",
+            "value": "2 velocidades: suave para superficies delicadas y fuerte para suciedad difícil",
             "metafield": "ecoms.speed"
           }
         },
@@ -885,7 +885,7 @@
           "settings": {
             "icon": "box",
             "label": "Contenido del paquete",
-            "value": "",
+            "value": "1 cepillo eléctrico inalámbrico, 8 cabezales intercambiables, 2 barras de extensión, 1 cepillo pequeño para detalles y 1 cable de carga USB-C",
             "metafield": "ecoms.package_contents"
           }
         }
@@ -913,31 +913,31 @@
           "type": "faq",
           "settings": {
             "question": "¿Cuánto dura la batería?",
-            "answer": "<p>Indica la autonomía y el tiempo de carga reales según la ficha del proveedor.</p>",
-            "draft": true
+            "answer": "<p>Con la batería completamente cargada tienes hasta 5 horas de uso, suficiente para limpiar el baño, la cocina y los pisos varias veces. Se carga en aprox. 5 horas con el cable USB-C incluido, desde un cargador de celular o un computador.</p>",
+            "draft": false
           }
         },
         "q2": {
           "type": "faq",
           "settings": {
             "question": "¿Qué cabezales incluye?",
-            "answer": "<p>Detalla la cantidad y el tipo de cabezales que vienen en la caja.</p>",
-            "draft": true
+            "answer": "<p>Incluye 8 cabezales intercambiables: 4 cepillos (grande para pisos y muros, mediano para la tina y el lavamanos, pequeño para juntas y de punta para rincones) y 4 esponjas para vidrios, cubiertas y superficies delicadas. Se cambian en segundos, sin herramientas.</p>",
+            "draft": false
           }
         },
         "q3": {
           "type": "faq",
           "settings": {
             "question": "¿Se puede mojar?",
-            "answer": "<p>Indica la resistencia al agua real (por ejemplo, la certificación IPX) según la ficha del proveedor.</p>",
-            "draft": true
+            "answer": "<p>Sí. Está pensado para usarse en la ducha, con agua y productos de limpieza, y puedes enjuagar los cabezales después de cada uso. Antes de cargarlo, sécalo bien y verifica que la tapa del puerto de carga esté cerrada.</p>",
+            "draft": false
           }
         },
         "q4": {
           "type": "faq",
           "settings": {
             "question": "¿En qué superficies lo puedo usar?",
-            "answer": "<p>Está pensado para superficies duras del hogar: baño, ducha, azulejos, cocina y pisos. En superficies delicadas usa el cabezal más suave y prueba primero en una zona poco visible.</p>",
+            "answer": "<p>En superficies duras del hogar: cerámica, porcelanato, azulejos, juntas, tina, ducha, mamparas, vidrios, lavaplatos y cubiertas de cocina. En superficies delicadas usa una esponja suave y prueba primero en una zona poco visible.</p>",
             "draft": false
           }
         },
@@ -945,7 +945,7 @@
           "type": "faq",
           "settings": {
             "question": "¿Cuánto cuesta el envío y cuánto tarda?",
-            "answer": "<p>Despachamos a todo Chile. El costo y el plazo estimado para tu comuna aparecen en el checkout antes de pagar.</p>",
+            "answer": "<p>Despachamos a todo Chile. El costo y el plazo estimado para tu comuna aparecen en el checkout antes de pagar. Cuando tu pedido sale, te enviamos el número de seguimiento por email.</p>",
             "draft": false
           }
         },
@@ -953,7 +953,7 @@
           "type": "faq",
           "settings": {
             "question": "¿Cómo puedo pagar?",
-            "answer": "<p>Con los medios de pago disponibles en el checkout seguro de Shopify.</p>",
+            "answer": "<p>Con tarjeta de débito o crédito y los demás medios disponibles en el checkout, que es seguro y está protegido por Shopify. Tus datos de pago están cifrados y nosotros nunca los vemos.</p>",
             "draft": false
           }
         },
@@ -961,7 +961,7 @@
           "type": "faq",
           "settings": {
             "question": "¿Puedo cambiar o devolver mi compra?",
-            "answer": "<p>Resume tu política de cambios y devoluciones y enlázala (Configuración → Políticas).</p>",
+            "answer": "<p>Sí. Si el producto llega con una falla de fábrica o no corresponde a lo que compraste, escríbenos dentro de los 10 días desde que lo recibes a través de la página de contacto y te lo cambiamos o te devolvemos el dinero. Revisa el detalle en nuestra Política de cambios y devoluciones.</p>",
             "draft": true
           }
         }
