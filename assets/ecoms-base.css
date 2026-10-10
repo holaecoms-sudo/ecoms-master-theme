@@ -930,3 +930,17 @@ body:has(cart-drawer.active) .ec-sticky { visibility: hidden; }
 .ec-hh__card, .ec-hp__body h3 a { color: inherit; }
 .ec-hp__body h3 a:hover { color: var(--ec-primary); }
 .ec-hh__h, .ec-hp__h h2 { line-height: 1.08; }
+/* Anatomy «plain» (no numbers): larger cards, icon badge, left-aligned text on both sides */
+.ec-anat__ic { display: grid; flex-shrink: 0; place-items: center; width: 46px; height: 46px; border-radius: 12px; background: color-mix(in srgb, var(--ec-accent) 22%, transparent); color: var(--ec-accent); }
+.ec-anat__ic .ec-i { width: 22px; height: 22px; }
+.ec-anat--plain .ec-anat__item { gap: 16px; padding: 22px 22px; border-radius: 18px; }
+.ec-anat--plain .ec-anat__item b { font-size: 18px; }
+.ec-anat--plain .ec-anat__t { margin-top: 5px; font-size: 15px; line-height: 1.45; }
+.ec-anat--plain .ec-anat__col { gap: 16px; }
+@media screen and (min-width: 990px) {
+  .ec-anat--plain { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1.2fr); gap: 32px; }
+  .ec-anat--plain .ec-anat__col--l { text-align: left; }
+  .ec-anat--plain .ec-anat__col--l .ec-anat__item { flex-direction: row; }
+  .ec-anat--plain .ec-anat__col--l .ec-anat__item b { justify-content: flex-start; }
+  .ec-anat--plain .ec-anat__item { min-height: 128px; align-items: center; }
+}
