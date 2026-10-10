@@ -16,8 +16,8 @@
           "type": "trust",
           "settings": {
             "icon": "truck",
-            "title": "Envíos a todo Chile",
-            "text": "Directo a tu domicilio"
+            "title": "Envío gratis desde $30.000",
+            "text": "A todo Chile"
           }
         },
         "t2": {
@@ -40,8 +40,8 @@
           "type": "trust",
           "settings": {
             "icon": "return",
-            "title": "Cambios y devoluciones",
-            "text": "Según nuestra política"
+            "title": "10 días de retracto",
+            "text": "Y 6 meses de garantía legal"
           }
         }
       },

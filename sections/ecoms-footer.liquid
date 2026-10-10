@@ -16,7 +16,14 @@
 {%- assign store_name = settings.ecoms_store_name | default: shop.name -%}
 <footer class="ec-ft ec-ft--{{ ft_style }}">
   <div class="ec-w ec-ft__grid">
+    {%- liquid
+      assign has_social = false
+      if settings.social_instagram_link != blank or settings.social_tiktok_link != blank or settings.social_youtube_link != blank or settings.social_facebook_link != blank
+        assign has_social = true
+      endif
+    -%}
     {%- for block in section.blocks -%}
+      {%- if block.type == 'social' and has_social == false and request.design_mode != true -%}{%- continue -%}{%- endif -%}
       <div class="ec-ft__col ec-ft__col--{{ block.type }}" {{ block.shopify_attributes }}>
         {%- case block.type -%}
           {%- when 'brand' -%}
@@ -43,6 +50,7 @@
               {%- endfor -%}
             </ul>
           {%- when 'social' -%}
+            {%- unless has_social -%}<p class="ec-editor-note">Agrega tus redes en Configuración del tema → Redes sociales. Sin enlaces, esta columna no se muestra en la tienda.</p>{%- endunless -%}
             {%- if block.settings.heading != blank -%}<h2 class="ec-ft__h">{{ block.settings.heading | escape }}</h2>{%- endif -%}
             <div class="ec-ft__social">
               {%- if settings.social_instagram_link != blank -%}<a href="{{ settings.social_instagram_link }}" aria-label="Instagram">{% render 'ecoms-social-icon', name: 'ig' %}</a>{%- endif -%}
