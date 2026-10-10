@@ -204,8 +204,8 @@
       },
       "block_order": [
         "eyebrow",
-        "rating",
         "title",
+        "rating",
         "chips",
         "sub",
         "benefits",

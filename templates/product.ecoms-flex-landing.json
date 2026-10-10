@@ -152,8 +152,8 @@
       },
       "block_order": [
         "eyebrow",
-        "rating",
         "title",
+        "rating",
         "sub",
         "benefits",
         "packs",
