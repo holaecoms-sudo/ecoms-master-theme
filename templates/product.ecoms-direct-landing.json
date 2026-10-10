@@ -757,7 +757,7 @@
             "date": "09/10/2026",
             "stars": 5,
             "text": "Me gustó mucho!! Fácil de usar y súper práctico.\"",
-            "verified": true
+            "verified": false
           }
         },
         "review_qn7itd": {
@@ -788,10 +788,10 @@
           "type": "review",
           "settings": {
             "example": false,
-            "author": "Nombre del cliente",
-            "date": "Hace X días",
+            "author": "Marcela G.",
+            "date": "08/10/2026",
             "stars": 5,
-            "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo».",
+            "text": "Lo encontré muy útil para limpiar la ducha, que era lo que más me daba lata hacer jaja.",
             "verified": true
           }
         },
@@ -799,10 +799,10 @@
           "type": "review",
           "settings": {
             "example": false,
-            "author": "Nombre del cliente",
-            "date": "Hace X días",
+            "author": "Andrés C.",
+            "date": "06/10/2026",
             "stars": 5,
-            "text": "Reseña de ejemplo: reemplázala por una reseña real con foto y desmarca «Reseña de ejemplo».",
+            "text": "Buen producto, llegó todo completo. Todavía no pruebo todos los accesorios pero por ahora bien.",
             "verified": true
           }
         },
