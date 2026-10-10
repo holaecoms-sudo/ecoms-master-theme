@@ -137,6 +137,21 @@
     $$('[data-ec-cta-total]').forEach((el) => { el.textContent = money(total); });
     $$('[data-ec-sticky-price]').forEach((el) => { el.textContent = money(total); });
     syncPackInfo(qty, total);
+    // Price block follows the selected pack: total, compare-at for that quantity and savings.
+    $$('[data-ec-price-live]').forEach((box) => {
+      const unitCmp = Number(box.dataset.unitCompare) || 0;
+      const was = unitCmp * qty;
+      const save = was - total;
+      const set = (sel, text) => box.querySelectorAll(sel).forEach((el) => { el.textContent = text; });
+      set('[data-ec-pp-now]', money(total));
+      set('[data-ec-pp-was]', money(was));
+      set('[data-ec-pp-save]', money(Math.max(0, save)));
+      set('[data-ec-pp-pct]', String(was > 0 ? Math.floor((Math.max(0, save) * 100) / was) : 0));
+      set('[data-ec-pp-n]', String(qty));
+      set('[data-ec-pp-each]', money(Math.round(total / qty)));
+      box.querySelectorAll('[data-ec-pp-was], [data-ec-pp-savebox]').forEach((el) => { el.hidden = save <= 0; });
+      box.querySelectorAll('[data-ec-pp-qty]').forEach((el) => { el.hidden = qty <= 1; });
+    });
     $$('[data-ec-shipbar]').forEach((bar) => {
       const threshold = Number(bar.dataset.threshold) || 0;
       if (!threshold) return;

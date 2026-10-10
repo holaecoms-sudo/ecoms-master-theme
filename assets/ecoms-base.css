@@ -960,3 +960,6 @@ body:has(cart-drawer.active) .ec-sticky { visibility: hidden; }
 .ec-ctab--plainimg .ec-ctab__img img { border-radius: 0; box-shadow: none; filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.45)); }
 @media screen and (min-width: 750px) { .ec-ctab__in { grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); padding-block: 44px; } }
 @media screen and (max-width: 749px) { .ec-ctab__img img { width: min(100%, 280px); } }
+/* Price follows the pack: quantity line under the price */
+.ec-pp [hidden] { display: none !important; }
+.ec-pp__qty { display: block; margin-top: 4px; color: var(--ec-muted); font-size: 13px; }

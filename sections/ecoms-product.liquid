@@ -40,9 +40,11 @@
   assign start_qty = 1
   assign start_total = variant.price
   assign start_label = ''
+  assign start_unit_name = ''
   assign packs_block = section.blocks | where: 'type', 'packs' | first
   if packs_block
     assign ps = packs_block.settings
+    assign start_unit_name = ps.item_name | strip
     assign start_tier = ps.default_tier | default: '1' | plus: 0
     if start_tier > 1
       assign start_on = 'tier' | append: start_tier | append: '_enabled'
@@ -247,7 +249,7 @@
 
           {%- when 'price' -%}
             <div id="EcPrice-{{ section.id }}" class="ec-pdp__price" data-ec-refresh {{ block.shopify_attributes }}>
-              {%- render 'ecoms-price', variant: variant, style: block.settings.style -%}
+              {%- render 'ecoms-price', variant: variant, style: block.settings.style, qty: start_qty, total: start_total, unit_name: start_unit_name -%}
             </div>
 
           {%- when 'urgency' -%}

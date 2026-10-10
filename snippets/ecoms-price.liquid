@@ -1,37 +1,48 @@
 {%- comment -%}
-  ECOMS · Price row: price, compare-at (only when real and higher) and savings pill.
+  ECOMS · Price row: price, compare-at (only when real and higher) and savings.
+  Follows the selected pack: ecoms.js updates [data-ec-pp-*] with the pack total, the compare-at for the
+  same quantity and the savings (data-unit / data-unit-compare are per-unit prices in cents).
   Accepts:
   - variant: {Object}
   - style: {String} 'pill' (Flex, default) | 'badge' (Brand) | 'direct'
+  - qty: {Number} optional starting quantity (default 1)
+  - total: {Number} optional starting total in cents for that quantity (pack discount included)
+  - unit_name: {String} optional plural noun for the quantity line (e.g. «cepillos»)
 {%- endcomment -%}
 {%- liquid
-  assign ec_save = 0
-  if variant.compare_at_price > variant.price
-    assign ec_save = variant.compare_at_price | minus: variant.price
-    assign ec_save_pct = ec_save | times: 100 | divided_by: variant.compare_at_price | floor
+  assign pp_qty = qty | default: 1
+  assign pp_total = total | default: variant.price
+  assign pp_unit_cmp = variant.compare_at_price | default: 0
+  if pp_unit_cmp < variant.price
+    assign pp_unit_cmp = variant.price
+  endif
+  assign pp_was = pp_unit_cmp | times: pp_qty
+  assign ec_save = pp_was | minus: pp_total
+  assign ec_save_pct = 0
+  if ec_save > 0
+    assign ec_save_pct = ec_save | times: 100 | divided_by: pp_was | floor
   endif
 -%}
+<div class="ec-pp" data-ec-price-live data-unit="{{ variant.price }}" data-unit-compare="{{ pp_unit_cmp }}">
 {%- if style == 'direct' -%}
-  {%- if ec_save > 0 -%}
-    <div class="ec-price ec-price--direct-top">
-      <s class="ec-strike">{{ variant.compare_at_price | money }}</s>
-      <span class="ec-badge-sale">Ahorras {{ ec_save | money }}</span>
-    </div>
-  {%- endif -%}
-  <div class="ec-price__big">{{ variant.price | money }}</div>
+  <div class="ec-price ec-price--direct-top" data-ec-pp-savebox {% if ec_save <= 0 %}hidden{% endif %}>
+    <s class="ec-strike" data-ec-pp-was>{{ pp_was | money }}</s>
+    <span class="ec-badge-sale">Ahorras <span data-ec-pp-save>{{ ec_save | money }}</span></span>
+  </div>
+  <div class="ec-price__big" data-ec-pp-now>{{ pp_total | money }}</div>
 {%- else -%}
-<div class="ec-price ec-price--{{ style | default: 'pill' }}">
-  <span class="ec-price__now">{{ variant.price | money }}</span>
-  {%- if ec_save > 0 -%}
-    <s class="ec-strike">{{ variant.compare_at_price | money }}</s>
+  <div class="ec-price ec-price--{{ style | default: 'pill' }}">
+    <span class="ec-price__now" data-ec-pp-now>{{ pp_total | money }}</span>
+    <s class="ec-strike" data-ec-pp-was {% if ec_save <= 0 %}hidden{% endif %}>{{ pp_was | money }}</s>
     {%- if style == 'badge' -%}
-      <span class="ec-badge-up">Ahorra {{ ec_save_pct }}%</span>
+      <span class="ec-badge-up" data-ec-pp-savebox {% if ec_save <= 0 %}hidden{% endif %}>Ahorra <span data-ec-pp-pct>{{ ec_save_pct }}</span>%</span>
     {%- else -%}
-      <span class="ec-pill-save">Ahorras {{ ec_save | money }} ({{ ec_save_pct }}%)</span>
+      <span class="ec-pill-save" data-ec-pp-savebox {% if ec_save <= 0 %}hidden{% endif %}>Ahorras <span data-ec-pp-save>{{ ec_save | money }}</span> (<span data-ec-pp-pct>{{ ec_save_pct }}</span>%)</span>
     {%- endif -%}
-  {%- endif -%}
-</div>
+  </div>
 {%- endif -%}
+  <small class="ec-pp__qty" data-ec-pp-qty {% if pp_qty <= 1 %}hidden{% endif %}>Total por <span data-ec-pp-n>{{ pp_qty }}</span> {{ unit_name | default: 'unidades' | escape }} · <span data-ec-pp-each>{{ pp_total | divided_by: pp_qty | money }}</span> c/u</small>
+</div>
 {%- if variant.unit_price_measurement -%}
   <small class="ec-price__unit">
     {{ variant.unit_price | money }}/
