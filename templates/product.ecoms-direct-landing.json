@@ -82,11 +82,11 @@
         "urgency": {
           "type": "urgency",
           "settings": {
-            "end_at": "2026-12-31 23:59",
+            "end_at": "2026-10-15 23:59",
             "icon": "fire",
             "heading": "Oferta de lanzamiento",
             "text": "Termina en:",
-            "style": "subtle",
+            "style": "boxes",
             "show_days": true
           }
         },
