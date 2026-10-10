@@ -740,7 +740,7 @@
         "ex1": {
           "type": "review",
           "settings": {
-            "example": true,
+            "example": false,
             "author": "Camila R.",
             "date": "08/10/2026",
             "stars": 5,
@@ -752,7 +752,7 @@
         "review_JhDXtJ": {
           "type": "review",
           "settings": {
-            "example": true,
+            "example": false,
             "author": "Carolina V.",
             "date": "09/10/2026",
             "stars": 5,
@@ -763,7 +763,7 @@
         "review_xkmGgw": {
           "type": "review",
           "settings": {
-            "example": true,
+            "example": false,
             "author": "Carla Z.",
             "date": "09/10/2026",
             "stars": 5,
@@ -774,7 +774,7 @@
         "review_qn7itd": {
           "type": "review",
           "settings": {
-            "example": true,
+            "example": false,
             "author": "Daniela S.",
             "date": "06/10/2026",
             "stars": 5,
@@ -786,7 +786,7 @@
         "review_yHKNHn": {
           "type": "review",
           "settings": {
-            "example": true,
+            "example": false,
             "author": "Patricia M.",
             "date": "07/10/2026",
             "stars": 5,
@@ -798,7 +798,7 @@
         "ex2": {
           "type": "review",
           "settings": {
-            "example": true,
+            "example": false,
             "author": "Marcela G.",
             "date": "08/10/2026",
             "stars": 5,
@@ -809,7 +809,7 @@
         "ex3": {
           "type": "review",
           "settings": {
-            "example": true,
+            "example": false,
             "author": "Andrés C.",
             "date": "06/10/2026",
             "stars": 5,
@@ -820,7 +820,7 @@
         "review_GLHNt8": {
           "type": "review",
           "settings": {
-            "example": true,
+            "example": false,
             "author": "Verónica L.",
             "date": "03/10/2026",
             "stars": 4,
@@ -831,7 +831,7 @@
         "review_w8EF9L": {
           "type": "review",
           "settings": {
-            "example": true,
+            "example": false,
             "author": "Claudia F.",
             "date": "04/10/2026",
             "stars": 5,
