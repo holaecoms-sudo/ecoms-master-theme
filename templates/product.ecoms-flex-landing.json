@@ -335,8 +335,7 @@
         "button_link": "",
         "width": "full",
         "padding_top": 20,
-        "padding_bottom": 20,
-        "image_full": true
+        "padding_bottom": 20
       }
     },
     "row_2": {
@@ -371,6 +370,7 @@
       ],
       "settings": {
         "image_side": "right",
+        "image": "shopify://shop_images/9_06f75202-7d88-4098-a34f-91ed15485638.jpg",
         "product_image_index": 3,
         "heading": "Orden sin esfuerzo, todos los días",
         "intro": "Se acabó buscar entre montones de ropa.",
@@ -378,8 +378,7 @@
         "button_link": "",
         "width": "full",
         "padding_top": 20,
-        "padding_bottom": 20,
-        "image_full": true
+        "padding_bottom": 20
       }
     },
     "row_3": {
@@ -421,8 +420,7 @@
         "button_link": "",
         "width": "full",
         "padding_top": 20,
-        "padding_bottom": 20,
-        "image_full": true
+        "padding_bottom": 20
       }
     },
     "ideal": {
@@ -660,7 +658,7 @@
         "t4"
       ],
       "settings": {
-        "style": "slant",
+        "style": "band",
         "heading": "Compra sin riesgo",
         "width": "full",
         "padding_top": 0,
@@ -727,7 +725,7 @@
         "ex4"
       ],
       "settings": {
-        "style": "widget",
+        "style": "masonry",
         "heading": "Opiniones de compradores",
         "link_label": "Ver todas",
         "link": "",
