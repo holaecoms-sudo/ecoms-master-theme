@@ -30,7 +30,7 @@
           "type": "chips",
           "settings": {
             "chip_1": "Inalámbrico",
-            "chip_2": "Recargable USB",
+            "chip_2": "Recargable USB-C",
             "chip_3": "Mango extensible",
             "chip_4": "Cabezales intercambiables",
             "chip_5": ""
@@ -56,8 +56,8 @@
           "settings": {
             "style": "grid",
             "icon_1": "truck",
-            "title_1": "Envíos",
-            "text_1": "A todo Chile",
+            "title_1": "Envío gratis",
+            "text_1": "Desde $30.000",
             "icon_2": "lock",
             "title_2": "Pago seguro",
             "text_2": "Checkout Shopify",
@@ -132,21 +132,21 @@
             "icon_1": "bolt",
             "badge_1": "",
             "title_2": "Cabezales intercambiables",
-            "qty_2": "",
+            "qty_2": "x8",
             "icon_2": "grid",
             "badge_2": "Incluido",
-            "title_3": "Mango extensible",
-            "qty_3": "",
+            "title_3": "Barras de extensión",
+            "qty_3": "x2",
             "icon_3": "hand",
             "badge_3": "Incluido",
-            "title_4": "Cable de carga USB",
-            "qty_4": "",
+            "title_4": "Cable de carga USB-C",
+            "qty_4": "x1",
             "icon_4": "battery",
             "badge_4": "Incluido",
-            "title_5": "",
-            "qty_5": "",
-            "icon_5": "check",
-            "badge_5": "",
+            "title_5": "Cepillo para detalles",
+            "qty_5": "x1",
+            "icon_5": "sparkle",
+            "badge_5": "Incluido",
             "title_6": "",
             "qty_6": "",
             "icon_6": "check",
@@ -198,7 +198,7 @@
             "icon_3": "grid",
             "text_3": "Cabezales intercambiables",
             "icon_4": "battery",
-            "text_4": "Recargable USB"
+            "text_4": "Recargable USB-C"
           }
         }
       },
@@ -273,8 +273,8 @@
           "type": "stat",
           "settings": {
             "icon": "drop",
-            "value": "100%",
-            "label": "resistente al agua"
+            "value": "Ducha",
+            "label": "resistente al agua: úsalo mojado"
           }
         },
         "k3": {
@@ -297,7 +297,7 @@
           "type": "stat",
           "settings": {
             "icon": "hand",
-            "value": "1,37 metross",
+            "value": "137 cm",
             "label": "largo máximo del mango"
           }
         },
@@ -306,7 +306,7 @@
           "settings": {
             "icon": "clock",
             "value": "USB-C",
-            "label": "carga rápida y universal"
+            "label": "carga con cable incluido"
           }
         }
       },
@@ -359,7 +359,7 @@
           "settings": {
             "icon": "battery",
             "title": "Inalámbrico y recargable",
-            "text": "Se carga por USB: sin cables mientras limpias."
+            "text": "Se carga por USB-C: sin cables mientras limpias."
           }
         }
       },
@@ -413,8 +413,8 @@
           "settings": {
             "image": "shopify://shop_images/31.jpg",
             "icon": "hand",
-            "qty": "",
-            "title": "Mango extensible",
+            "qty": "x2",
+            "title": "Barras de extensión",
             "text": "Llega lejos sin agacharte",
             "badge": "Incluido",
             "highlight": false
@@ -425,9 +425,20 @@
           "settings": {
             "image": "shopify://shop_images/32.jpg",
             "icon": "battery",
-            "qty": "",
-            "title": "Cable de carga USB",
+            "qty": "x1",
+            "title": "Cable de carga USB-C",
             "text": "Carga fácil en casa",
+            "badge": "Incluido",
+            "highlight": false
+          }
+        },
+        "c5": {
+          "type": "item",
+          "settings": {
+            "icon": "sparkle",
+            "qty": "x1",
+            "title": "Cepillo para detalles",
+            "text": "Para bordes y rincones",
             "badge": "Incluido",
             "highlight": false
           }
@@ -437,7 +448,8 @@
         "c1",
         "c2",
         "c3",
-        "c4"
+        "c4",
+        "c5"
       ],
       "settings": {
         "eyebrow": "Todo en una sola caja",
@@ -580,7 +592,7 @@
         "after_label": "Después",
         "after_caption": "Imagen referencial",
         "image": "shopify://shop_images/56.jpg",
-        "quote": "Imagen referencial",
+        "quote": "",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 20
@@ -958,7 +970,7 @@
           "type": "faq",
           "settings": {
             "question": "¿Cuánto cuesta el envío y cuánto tarda?",
-            "answer": "<p>Despachamos a todo Chile. El costo y el plazo estimado para tu comuna aparecen en el checkout antes de pagar. Cuando tu pedido sale, te enviamos el número de seguimiento por email.</p>",
+            "answer": "<p>Despachamos a todo Chile. El envío es <strong>gratis en compras desde $30.000</strong> (por ejemplo, el pack de 2) y cuesta $4.000 en compras menores. Preparamos tu pedido en 1 día hábil y llega en un plazo estimado de 3 a 6 días hábiles. Cuando sale, te enviamos el número de seguimiento por email.</p>",
             "draft": false
           }
         },
@@ -1008,7 +1020,7 @@
         "image": "shopify://shop_images/Limpieza_Profunda_de_juntas.png",
         "image_plain": false,
         "button_label": "Comprar ahora",
-        "trust_1": "Envíos a todo Chile",
+        "trust_1": "Envío gratis desde $30.000",
         "trust_2": "Pago seguro",
         "trust_3": "Seguimiento del pedido",
         "width": "full",
