@@ -779,13 +779,16 @@
         "ex3"
       ],
       "settings": {
-        "style": "direct",
-        "heading": "Lo que dicen nuestros clientes",
+        "style": "widget",
+        "heading": "Opiniones de clientes",
         "link_label": "",
         "link": "",
         "width": "full",
         "padding_top": 32,
-        "padding_bottom": 32
+        "padding_bottom": 32,
+        "per_page": 6,
+        "write_label": "Escribe una reseña",
+        "write_link": "/pages/contact"
       }
     },
     "ugc": {

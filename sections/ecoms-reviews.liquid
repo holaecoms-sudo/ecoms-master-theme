@@ -17,6 +17,154 @@
 -%}
 {%- if real_blocks > 0 or has_rating or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-reviews' %}>
+  {%- if style == 'widget' -%}
+    {%- liquid
+      assign rv_n = 0
+      assign rv_sum = 0
+      assign c5 = 0
+      assign c4 = 0
+      assign c3 = 0
+      assign c2 = 0
+      assign c1 = 0
+      for block in section.blocks
+        if block.type == 'review' and block.settings.text != blank
+          if block.settings.example and request.design_mode == false
+            continue
+          endif
+          assign rv_n = rv_n | plus: 1
+          assign rv_sum = rv_sum | plus: block.settings.stars
+          case block.settings.stars
+            when 5
+              assign c5 = c5 | plus: 1
+            when 4
+              assign c4 = c4 | plus: 1
+            when 3
+              assign c3 = c3 | plus: 1
+            when 2
+              assign c2 = c2 | plus: 1
+            else
+              assign c1 = c1 | plus: 1
+          endcase
+        endif
+      endfor
+      assign rv_avg = 0
+      if rv_n > 0
+        assign rv_avg = rv_sum | times: 1.0 | divided_by: rv_n | round: 1
+      endif
+      assign rv_avg_label = rv_avg | append: '' | replace: '.', ','
+      unless rv_avg_label contains ','
+        assign rv_avg_label = rv_avg_label | append: ',0'
+      endunless
+      assign rv_avg_pct = rv_avg | times: 20
+      assign rv_limit = section.settings.per_page | default: 6
+    -%}
+    <div class="ec-w ec-rw" data-ec-rw>
+      {%- if section.settings.heading != blank -%}<h2 class="ec-h3 ec-rw__h">{{ section.settings.heading | escape }}</h2>{%- endif -%}
+      {%- if rv_n > 0 -%}
+        <div class="ec-rw__sum">
+          <div class="ec-rw__avg">
+            <span class="ec-rw__big">{% render 'ecoms-icon', name: 'star' %}{{ rv_avg_label }}</span>
+            <span class="ec-stars" style="--s: 18px; --r: {{ rv_avg_pct }}%" role="img" aria-label="{{ rv_avg_label }} de 5 estrellas"></span>
+            <span class="ec-rw__n">{{ rv_n }} {% if rv_n == 1 %}reseña{% else %}reseñas{% endif %}</span>
+          </div>
+          <ul class="ec-rw__bars" role="list">
+            {%- for st in (1..5) reversed -%}
+              {%- case st -%}{%- when 5 -%}{%- assign cnt = c5 -%}{%- when 4 -%}{%- assign cnt = c4 -%}{%- when 3 -%}{%- assign cnt = c3 -%}{%- when 2 -%}{%- assign cnt = c2 -%}{%- else -%}{%- assign cnt = c1 -%}{%- endcase -%}
+              {%- assign bar = cnt | times: 100 | divided_by: rv_n -%}
+              <li>
+                <span class="ec-stars" style="--s: 14px; --r: {{ st | times: 20 }}%" role="img" aria-label="{{ st }} estrellas"></span>
+                <span class="ec-rw__bar"><i style="width: {{ bar }}%"></i></span>
+                <span class="ec-rw__c">({{ cnt }})</span>
+              </li>
+            {%- endfor -%}
+          </ul>
+          {%- if section.settings.write_label != blank and section.settings.write_link != blank -%}
+            <a class="ec-btn ec-rw__write" href="{{ section.settings.write_link }}">{{ section.settings.write_label | escape }}</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <div class="ec-rw__grid">
+        {%- assign shown = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == '@app' -%}
+            <div class="ec-revs__app">{% render block %}</div>
+            {%- continue -%}
+          {%- endif -%}
+          {%- if block.type != 'review' or block.settings.text == blank -%}{%- continue -%}{%- endif -%}
+          {%- if block.settings.example and request.design_mode == false -%}{%- continue -%}{%- endif -%}
+          {%- assign shown = shown | plus: 1 -%}
+          <article class="ec-rw__card{% if block.settings.example %} ec-rev--example{% endif %}"{% if shown > rv_limit %} hidden data-ec-rw-more{% endif %} {{ block.shopify_attributes }}>
+            {%- if block.settings.example -%}<span class="ec-rev__example">Ejemplo · no visible en la tienda</span>{%- endif -%}
+            <div class="ec-rw__top">
+              <b>{{ block.settings.author | escape }}</b>
+              {%- if block.settings.verified -%}<span class="ec-rw__ver">{% render 'ecoms-icon', name: 'verified' %}Verificada</span>{%- endif -%}
+            </div>
+            {%- if block.settings.date != blank -%}<small class="ec-rw__date">{{ block.settings.date | escape }}</small>{%- endif -%}
+            <span class="ec-stars" style="--s: 15px; --r: {{ block.settings.stars | times: 20 }}%" role="img" aria-label="{{ block.settings.stars }} de 5 estrellas"></span>
+            <p class="ec-rw__text">{{ block.settings.text | escape | newline_to_br }}</p>
+            {%- if block.settings.image != blank or block.settings.image_2 != blank or block.settings.image_3 != blank or block.settings.video != blank -%}
+              <div class="ec-rw__media">
+                {%- if block.settings.video != blank -%}
+                  {%- assign vprev = block.settings.video.preview_image -%}
+                  <button type="button" class="ec-rw__th ec-rw__th--video" data-ec-rw-open="video" data-src="{{ block.settings.video.sources | where: 'format', 'mp4' | map: 'url' | first | default: block.settings.video.sources[0].url }}" aria-label="Ver video de {{ block.settings.author | escape }}">
+                    {%- if vprev != blank -%}{{ vprev | image_url: width: 240 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}
+                    <span class="ec-rw__play">{% render 'ecoms-icon', name: 'play' %}</span>
+                  </button>
+                {%- endif -%}
+                {%- for k in (1..3) -%}
+                  {%- if k == 1 -%}{%- assign ph = block.settings.image -%}{%- else -%}{%- assign key = 'image_' | append: k -%}{%- assign ph = block.settings[key] -%}{%- endif -%}
+                  {%- if ph != blank -%}
+                    <button type="button" class="ec-rw__th" data-ec-rw-open="image" data-src="{{ ph | image_url: width: 1400 }}" aria-label="Ver foto de {{ block.settings.author | escape }}">
+                      {{ ph | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120,240', sizes: '96px', alt: '' }}
+                    </button>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </article>
+        {%- endfor -%}
+      </div>
+      {%- if shown > rv_limit -%}
+        <div class="ec-rw__morewrap"><button type="button" class="ec-btn ec-rw__write" data-ec-rw-showmore>Ver más reseñas</button></div>
+      {%- endif -%}
+      {%- if shown == 0 and request.design_mode -%}
+        <p class="ec-editor-note">Agrega reseñas reales y autorizadas (bloque «Reseña real»). El promedio y las barras se calculan solos con esas reseñas.</p>
+      {%- endif -%}
+      <dialog class="ec-rw__lb" data-ec-rw-lb>
+        <button type="button" class="ec-rw__x" data-ec-rw-close aria-label="Cerrar">{% render 'ecoms-icon', name: 'x' %}</button>
+        <div class="ec-rw__lbin" data-ec-rw-lbin></div>
+      </dialog>
+    </div>
+    <script>
+      (function () {
+        var root = document.currentScript.previousElementSibling;
+        if (!root || root.dataset.ready) return;
+        root.dataset.ready = '1';
+        var lb = root.querySelector('[data-ec-rw-lb]');
+        var box = root.querySelector('[data-ec-rw-lbin]');
+        root.addEventListener('click', function (e) {
+          var t = e.target.closest('[data-ec-rw-open]');
+          if (t && lb && lb.showModal) {
+            box.innerHTML = '';
+            var el = document.createElement(t.dataset.ecRwOpen === 'video' ? 'video' : 'img');
+            el.src = t.dataset.src;
+            if (el.tagName === 'VIDEO') { el.controls = true; el.autoplay = true; el.playsInline = true; } else { el.alt = ''; }
+            box.appendChild(el);
+            lb.showModal();
+            return;
+          }
+          if (e.target.closest('[data-ec-rw-close]') || e.target === lb) { lb.close(); box.innerHTML = ''; return; }
+          var more = e.target.closest('[data-ec-rw-showmore]');
+          if (more) {
+            root.querySelectorAll('[data-ec-rw-more]').forEach(function (c) { c.hidden = false; });
+            more.parentNode.remove();
+          }
+        });
+        if (lb) lb.addEventListener('close', function () { box.innerHTML = ''; });
+      })();
+    </script>
+  {%- else -%}
   <div class="ec-w">
     <div class="ec-rev-head ec-rev-head--{{ style }}">
       <div class="ec-rev-head__t">
@@ -94,6 +242,7 @@
       {%- endfor -%}
     </div>
   </div>
+  {%- endif -%}
 </section>
 {%- endif -%}
 
@@ -122,6 +271,10 @@
         {
           "value": "masonry",
           "label": "Muro de fotos (Landing)"
+        },
+        {
+          "value": "widget",
+          "label": "Resumen + tarjetas (tipo app)"
         }
       ],
       "default": "flex"
@@ -142,6 +295,31 @@
       "type": "url",
       "id": "link",
       "label": "Enlace"
+    },
+    {
+      "type": "header",
+      "content": "Estilo «Resumen + tarjetas»"
+    },
+    {
+      "type": "range",
+      "id": "per_page",
+      "label": "Reseñas visibles antes de «Ver más»",
+      "min": 2,
+      "max": 20,
+      "step": 2,
+      "default": 6
+    },
+    {
+      "type": "text",
+      "id": "write_label",
+      "label": "Botón para dejar reseña",
+      "default": "Escribe una reseña"
+    },
+    {
+      "type": "url",
+      "id": "write_link",
+      "label": "Enlace del botón",
+      "info": "Ej.: tu página de contacto. El promedio y las barras se calculan solos con las reseñas reales de esta sección."
     },
     {
       "type": "paragraph",
@@ -265,6 +443,11 @@
           "type": "image_picker",
           "id": "image_3",
           "label": "Foto 3"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video autorizado"
         }
       ]
     },
@@ -305,7 +488,7 @@
       ]
     }
   ],
-  "max_blocks": 12,
+  "max_blocks": 50,
   "presets": [
     {
       "name": "ECOMS · Reseñas"
