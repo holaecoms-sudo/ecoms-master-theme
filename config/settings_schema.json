@@ -1772,7 +1772,13 @@
         "max": 8,
         "step": 1,
         "default": 4,
-        "info": "Sin colección elegida, sugiere otros productos de la tienda que no estén en el carrito. 0 lo oculta."
+        "info": "Primero muestra los productos elegidos en cada producto (metacampo ecoms.cart_suggestions). Después, la colección de arriba o el resto de la tienda. 0 lo oculta."
+      },
+      {
+        "type": "checkbox",
+        "id": "ecoms_cart_only_chosen",
+        "label": "Si el producto tiene sugerencias elegidas, mostrar solo esas",
+        "default": true
       },
       {
         "type": "checkbox",

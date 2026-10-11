@@ -1,0 +1,18 @@
+{%- comment -%}
+  ECOMS · One product card for «Completa tu pedido» in the cart drawer.
+  Accepts:
+  - item: {Object} product
+{%- endcomment -%}
+<li class="ec-cart-xs__card">
+  <a href="{{ item.url }}" class="ec-cart-xs__img" tabindex="-1" aria-hidden="true">
+    {%- if item.featured_image != blank -%}
+      {{ item.featured_image | image_url: width: 240 | image_tag: loading: 'lazy', width: 96, height: 96, alt: '' }}
+    {%- endif -%}
+  </a>
+  <a href="{{ item.url }}" class="ec-cart-xs__name">{{ item.title | escape }}</a>
+  <span class="ec-cart-xs__price">
+    {%- if item.price_varies -%}Desde {% endif -%}{{ item.price | money }}
+    {%- if item.compare_at_price > item.price %} <s>{{ item.compare_at_price | money }}</s>{%- endif -%}
+  </span>
+  {%- render 'ecoms-add-button', item: item, label: '+ Agregar', class: 'ec-btn ec-btn--primary ec-btn--sm ec-cart-xs__add', source: 'cart_drawer' -%}
+</li>

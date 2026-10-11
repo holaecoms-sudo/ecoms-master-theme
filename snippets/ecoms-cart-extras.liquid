@@ -38,34 +38,42 @@
       {%- endif -%}
 
     {%- when 'suggestion' -%}
+      {%- comment -%}
+        Order: 1) products chosen per product in the metafield ecoms.cart_suggestions (list of products)
+        of the items in the cart; 2) the collection set in theme settings; 3) other store products.
+        Never repeats a product and never suggests one already in the cart or sold out.
+      {%- endcomment -%}
       {%- liquid
         assign in_cart = cart.items | map: 'product_id'
-        assign suggest_from = collections.all.products
-        if settings.ecoms_cart_collection != blank
-          assign suggest_from = collections[settings.ecoms_cart_collection].products
-        endif
         assign max_suggest = settings.ecoms_cart_suggest_count | default: 4
         assign shown = 0
+        assign used = ','
+        assign fallback = collections.all.products
+        if settings.ecoms_cart_collection != blank
+          assign fallback = collections[settings.ecoms_cart_collection].products
+        endif
       -%}
       {%- capture cards -%}
-        {%- for item in suggest_from limit: 24 -%}
-          {%- if in_cart contains item.id or item.available == false -%}{%- continue -%}{%- endif -%}
-          {%- if shown >= max_suggest -%}{%- break -%}{%- endif -%}
-          {%- assign shown = shown | plus: 1 -%}
-          <li class="ec-cart-xs__card">
-            <a href="{{ item.url }}" class="ec-cart-xs__img" tabindex="-1" aria-hidden="true">
-              {%- if item.featured_image != blank -%}
-                {{ item.featured_image | image_url: width: 240 | image_tag: loading: 'lazy', width: 96, height: 96, alt: '' }}
-              {%- endif -%}
-            </a>
-            <a href="{{ item.url }}" class="ec-cart-xs__name">{{ item.title | escape }}</a>
-            <span class="ec-cart-xs__price">
-              {%- if item.price_varies -%}Desde {% endif -%}{{ item.price | money }}
-              {%- if item.compare_at_price > item.price %} <s>{{ item.compare_at_price | money }}</s>{%- endif -%}
-            </span>
-            {%- render 'ecoms-add-button', item: item, label: '+ Agregar', class: 'ec-btn ec-btn--primary ec-btn--sm ec-cart-xs__add', source: 'cart_drawer' -%}
-          </li>
+        {%- for line in cart.items -%}
+          {%- assign picks = line.product.metafields.ecoms.cart_suggestions.value -%}
+          {%- for item in picks -%}
+            {%- assign key = ',' | append: item.id | append: ',' -%}
+            {%- if shown >= max_suggest or in_cart contains item.id or item.available == false or used contains key -%}{%- continue -%}{%- endif -%}
+            {%- assign shown = shown | plus: 1 -%}
+            {%- assign used = used | append: item.id | append: ',' -%}
+            {%- render 'ecoms-cart-suggestion', item: item -%}
+          {%- endfor -%}
         {%- endfor -%}
+        {%- unless settings.ecoms_cart_only_chosen and shown > 0 -%}
+          {%- for item in fallback limit: 24 -%}
+            {%- assign key = ',' | append: item.id | append: ',' -%}
+            {%- if shown >= max_suggest -%}{%- break -%}{%- endif -%}
+            {%- if in_cart contains item.id or item.available == false or used contains key -%}{%- continue -%}{%- endif -%}
+            {%- assign shown = shown | plus: 1 -%}
+            {%- assign used = used | append: item.id | append: ',' -%}
+            {%- render 'ecoms-cart-suggestion', item: item -%}
+          {%- endfor -%}
+        {%- endunless -%}
       {%- endcapture -%}
       {%- if shown > 0 -%}
         <div class="ec-cart-xs">
