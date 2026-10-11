@@ -39,8 +39,9 @@
 
     {%- when 'suggestion' -%}
       {%- comment -%}
-        Order: 1) products chosen per product in the metafield ecoms.cart_suggestions (list of products)
-        of the items in the cart; 2) the collection set in theme settings; 3) other store products.
+        Only the products chosen per product in the metafield ecoms.cart_suggestions (list of products)
+        of the items in the cart. Empty metafield = no suggestions, unless «completar con otros productos»
+        is on (then: collection from theme settings, or other store products).
         Never repeats a product and never suggests one already in the cart or sold out.
       {%- endcomment -%}
       {%- liquid
@@ -64,7 +65,7 @@
             {%- render 'ecoms-cart-suggestion', item: item -%}
           {%- endfor -%}
         {%- endfor -%}
-        {%- unless settings.ecoms_cart_only_chosen and shown > 0 -%}
+        {%- if settings.ecoms_cart_fill_others -%}
           {%- for item in fallback limit: 24 -%}
             {%- assign key = ',' | append: item.id | append: ',' -%}
             {%- if shown >= max_suggest -%}{%- break -%}{%- endif -%}
@@ -73,7 +74,7 @@
             {%- assign used = used | append: item.id | append: ',' -%}
             {%- render 'ecoms-cart-suggestion', item: item -%}
           {%- endfor -%}
-        {%- endunless -%}
+        {%- endif -%}
       {%- endcapture -%}
       {%- if shown > 0 -%}
         <div class="ec-cart-xs">
