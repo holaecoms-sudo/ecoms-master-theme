@@ -1,7 +1,7 @@
 {%- comment -%}
   ECOMS · Cart drawer extras, rendered inside Dawn's cart drawer so they refresh with it.
   Accepts:
-  - part: {String} 'shipping' | 'suggestion' | 'savings'
+  - part: {String} 'shipping' | 'suggestion' | 'savings' | 'trust'
 {%- endcomment -%}
 {%- if cart != empty -%}
   {%- case part -%}
@@ -36,40 +36,56 @@
     {%- when 'suggestion' -%}
       {%- liquid
         assign in_cart = cart.items | map: 'product_id'
-        assign suggestion = blank
-        assign suggest_from = blank
+        assign suggest_from = collections.all.products
         if settings.ecoms_cart_collection != blank
           assign suggest_from = collections[settings.ecoms_cart_collection].products
         endif
-        for item in suggest_from limit: 12
-          if in_cart contains item.id or item.available == false
-            continue
-          endif
-          assign suggestion = item
-          break
-        endfor
+        assign max_suggest = settings.ecoms_cart_suggest_count | default: 4
+        assign shown = 0
       -%}
-      {%- if suggestion != blank -%}
+      {%- capture cards -%}
+        {%- for item in suggest_from limit: 24 -%}
+          {%- if in_cart contains item.id or item.available == false -%}{%- continue -%}{%- endif -%}
+          {%- if shown >= max_suggest -%}{%- break -%}{%- endif -%}
+          {%- assign shown = shown | plus: 1 -%}
+          <li class="ec-cart-xs__card">
+            <a href="{{ item.url }}" class="ec-cart-xs__img" tabindex="-1" aria-hidden="true">
+              {%- if item.featured_image != blank -%}
+                {{ item.featured_image | image_url: width: 240 | image_tag: loading: 'lazy', width: 96, height: 96, alt: '' }}
+              {%- endif -%}
+            </a>
+            <a href="{{ item.url }}" class="ec-cart-xs__name">{{ item.title | escape }}</a>
+            <span class="ec-cart-xs__price">
+              {%- if item.price_varies -%}Desde {% endif -%}{{ item.price | money }}
+              {%- if item.compare_at_price > item.price %} <s>{{ item.compare_at_price | money }}</s>{%- endif -%}
+            </span>
+            {%- render 'ecoms-add-button', item: item, label: '+ Agregar', class: 'ec-btn ec-btn--primary ec-btn--sm ec-cart-xs__add', source: 'cart_drawer' -%}
+          </li>
+        {%- endfor -%}
+      {%- endcapture -%}
+      {%- if shown > 0 -%}
         <div class="ec-cart-xs">
           {%- if settings.ecoms_cart_products_heading != blank -%}
             <p class="ec-cart-xs__h">{{ settings.ecoms_cart_products_heading | escape }}</p>
           {%- endif -%}
-          <div class="ec-cart-xs__item">
-            {%- if suggestion.featured_image != blank -%}
-              {{ suggestion.featured_image | image_url: width: 120 | image_tag: loading: 'lazy', width: 48, height: 48, alt: '' }}
-            {%- endif -%}
-            <div>
-              <a href="{{ suggestion.url }}" class="ec-cart-xs__name">{{ suggestion.title | escape }}</a>
-              <span class="ec-cart-xs__price">{{ suggestion.price | money }}</span>
-            </div>
-            {%- render 'ecoms-add-button',
-              item: suggestion,
-              label: 'Agregar',
-              class: 'ec-btn ec-btn--ghost ec-btn--sm',
-              source: 'cart_drawer'
-            -%}
-          </div>
+          <ul class="ec-cart-xs__list{% if shown == 1 %} ec-cart-xs__list--one{% endif %}" role="list">{{ cards }}</ul>
         </div>
+      {%- endif -%}
+
+    {%- when 'trust' -%}
+      {%- if shop.enabled_payment_types.size > 0 and settings.ecoms_cart_show_payments -%}
+        <ul class="ec-cart-pay" role="list" aria-label="Medios de pago">
+          {%- for type in shop.enabled_payment_types -%}
+            <li>{{ type | payment_type_svg_tag: class: 'ec-cart-pay__icon' }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+      {%- if settings.ecoms_cart_trust_1 != blank or settings.ecoms_cart_trust_2 != blank or settings.ecoms_cart_trust_3 != blank -%}
+        <ul class="ec-cart-trust" role="list">
+          {%- if settings.ecoms_cart_trust_1 != blank -%}<li>{% render 'ecoms-icon', name: 'lock' %}{{ settings.ecoms_cart_trust_1 | escape }}</li>{%- endif -%}
+          {%- if settings.ecoms_cart_trust_2 != blank -%}<li>{% render 'ecoms-icon', name: 'truck' %}{{ settings.ecoms_cart_trust_2 | escape }}</li>{%- endif -%}
+          {%- if settings.ecoms_cart_trust_3 != blank -%}<li>{% render 'ecoms-icon', name: 'return' %}{{ settings.ecoms_cart_trust_3 | escape }}</li>{%- endif -%}
+        </ul>
       {%- endif -%}
 
     {%- when 'savings' -%}

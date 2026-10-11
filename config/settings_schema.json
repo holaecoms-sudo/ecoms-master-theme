@@ -1765,6 +1765,16 @@
         "default": "Completa tu pedido"
       },
       {
+        "type": "range",
+        "id": "ecoms_cart_suggest_count",
+        "label": "Productos sugeridos en el carrito",
+        "min": 0,
+        "max": 8,
+        "step": 1,
+        "default": 4,
+        "info": "Sin colección elegida, sugiere otros productos de la tienda que no estén en el carrito. 0 lo oculta."
+      },
+      {
         "type": "checkbox",
         "id": "ecoms_cart_show_savings",
         "label": "Mostrar ahorro total del pedido",
@@ -1776,6 +1786,38 @@
         "id": "ecoms_cart_note",
         "label": "Nota bajo el total",
         "info": "Opcional. Dawn ya muestra la nota de impuestos y envío."
+      },
+      {
+        "type": "text",
+        "id": "ecoms_cart_checkout_label",
+        "label": "Texto del botón de pago",
+        "default": "Pagar de forma segura",
+        "info": "Se muestra con un candado y el total del carrito."
+      },
+      {
+        "type": "checkbox",
+        "id": "ecoms_cart_show_payments",
+        "label": "Mostrar medios de pago bajo el botón",
+        "default": true,
+        "info": "Solo los medios activos en Configuración → Pagos."
+      },
+      {
+        "type": "text",
+        "id": "ecoms_cart_trust_1",
+        "label": "Confianza 1 (candado)",
+        "default": "Pago seguro"
+      },
+      {
+        "type": "text",
+        "id": "ecoms_cart_trust_2",
+        "label": "Confianza 2 (camión)",
+        "default": "Envío con seguimiento"
+      },
+      {
+        "type": "text",
+        "id": "ecoms_cart_trust_3",
+        "label": "Confianza 3 (devolución)",
+        "default": "10 días de retracto"
       },
       {
         "type": "header",

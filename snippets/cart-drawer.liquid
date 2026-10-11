@@ -588,8 +588,13 @@
               disabled
             {% endif %}
           >
-            {{ 'sections.cart.checkout' | t }}
+            {%- if cart != empty -%}
+              {% render 'ecoms-icon', name: 'lock' %}{{ settings.ecoms_cart_checkout_label | default: 'Pagar de forma segura' | escape }} · {{ cart.total_price | money }}
+            {%- else -%}
+              {{ 'sections.cart.checkout' | t }}
+            {%- endif -%}
           </button>
+          {%- render 'ecoms-cart-extras', part: 'trust' -%}
         </div>
       </div>
     </div>
