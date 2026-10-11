@@ -1224,3 +1224,11 @@ a.ec-rating--auto:hover b + span { text-decoration: underline; }
   .cart-drawer .totals__total, .cart-drawer .totals__total-value { font-size: 1.6rem; }
   .cart-drawer .cart-item__name { font-size: 1.45rem; }
 }
+/* Free-shipping bar: truck icons */
+.ec-ship p { display: flex; align-items: center; gap: 7px; }
+.ec-ship p > .ec-i { flex-shrink: 0; width: 18px; height: 18px; color: var(--ec-primary); }
+.ec-ship__track { display: flex; align-items: center; gap: 8px; margin-top: 7px; }
+.ec-ship__track .ec-bar { flex: 1; margin: 0 !important; }
+.ec-ship__goal { display: grid; flex-shrink: 0; place-items: center; width: 26px; height: 26px; border: 2px solid var(--ec-line, #ddd); border-radius: 50%; background: #fff; color: var(--ec-muted, #888); }
+.ec-ship__goal .ec-i { width: 14px; height: 14px; }
+.ec-ship--done .ec-ship__goal { border-color: var(--ec-primary); background: var(--ec-primary); color: #fff; }

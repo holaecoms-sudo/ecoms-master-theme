@@ -22,14 +22,18 @@
         -%}
         <div class="ec-ship{% if left <= 0 %} ec-ship--done{% endif %}" role="status">
           <p>
+            {% render 'ecoms-icon', name: 'truck' %}<span>
             {%- if left > 0 -%}
               {%- capture amount -%}<b>{{ left | money }}</b>{%- endcapture -%}
               {{ settings.ecoms_free_shipping_progress | escape | replace: '[amount]', amount }}
             {%- else -%}
               {{ settings.ecoms_free_shipping_success | escape }}
             {%- endif -%}
-          </p>
-          <div class="ec-bar" aria-hidden="true"><span style="width: {{ progress }}%"></span></div>
+          </span></p>
+          <div class="ec-ship__track" aria-hidden="true">
+            <div class="ec-bar"><span style="width: {{ progress }}%"></span></div>
+            <span class="ec-ship__goal">{% render 'ecoms-icon', name: 'truck' %}</span>
+          </div>
         </div>
       {%- endif -%}
 
