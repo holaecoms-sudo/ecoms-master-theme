@@ -1264,3 +1264,10 @@ a.ec-rating--auto:hover b + span { text-decoration: underline; }
 .cart-drawer #CartDrawer-Checkout { min-height: 48px; }
 .cart-drawer .ec-cart-pay { margin-top: 8px; }
 .cart-drawer .ec-cart-trust { margin-top: 6px; font-size: 11px; gap: 2px 8px; }
+/* Cart drawer CTAs: always stacked (Dawn puts them side by side from 750px) */
+.cart-drawer .cart__ctas { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+.cart-drawer .cart__ctas #CartDrawer-Checkout { width: 100%; }
+.cart-drawer .cart__ctas > * + * { margin-top: 0; }
+@media screen and (min-width: 750px) {
+  .cart-drawer .ec-cart-trust { flex-wrap: nowrap; white-space: nowrap; }
+}
