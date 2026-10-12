@@ -62,7 +62,7 @@
         "t3"
       ],
       "settings": {
-        "style": "strip",
+        "style": "band",
         "heading": "",
         "width": "full",
         "padding_top": 0,
@@ -118,6 +118,7 @@
       "settings": {
         "heading": "¿Qué quieres limpiar?",
         "text": "",
+        "collection": "",
         "show_all": true,
         "all_label": "Ver todos los productos",
         "padding_top": 32,
@@ -146,6 +147,7 @@
       "type": "ecoms-product-row",
       "settings": {
         "heading": "Más vendidos",
+        "products": [],
         "collection": "clean",
         "limit": 4,
         "columns": 4,
@@ -153,6 +155,7 @@
         "hover_image": true,
         "button_label": "Ver producto",
         "link_label": "",
+        "link": "",
         "padding_top": 8,
         "padding_bottom": 32
       }
@@ -216,6 +219,7 @@
           "type": "post",
           "settings": {
             "alt": "",
+            "link": "",
             "video_icon": false
           }
         },
@@ -223,6 +227,7 @@
           "type": "post",
           "settings": {
             "alt": "",
+            "link": "",
             "video_icon": false
           }
         },
@@ -230,6 +235,7 @@
           "type": "post",
           "settings": {
             "alt": "",
+            "link": "",
             "video_icon": true
           }
         },
@@ -237,6 +243,7 @@
           "type": "post",
           "settings": {
             "alt": "",
+            "link": "",
             "video_icon": false
           }
         },
@@ -244,6 +251,7 @@
           "type": "post",
           "settings": {
             "alt": "",
+            "link": "",
             "video_icon": true
           }
         },
@@ -251,6 +259,7 @@
           "type": "post",
           "settings": {
             "alt": "",
+            "link": "",
             "video_icon": false
           }
         }
