@@ -1876,20 +1876,17 @@
         "type": "text",
         "id": "ecoms_v2_key",
         "label": "Clave (sufijo de plantilla)",
-        "default": "",
         "info": "Ej.: clean. Activa la vertical en plantillas collection.clean / product.clean (o clean-*). Vacío = espacio sin usar."
       },
       {
         "type": "text",
         "id": "ecoms_v2_name",
-        "label": "Nombre",
-        "default": ""
+        "label": "Nombre"
       },
       {
         "type": "text",
         "id": "ecoms_v2_tagline",
-        "label": "Tagline",
-        "default": ""
+        "label": "Tagline"
       },
       {
         "type": "image_picker",
@@ -1905,14 +1902,12 @@
         "type": "text",
         "id": "ecoms_v2_logo_asset",
         "label": "Logo por defecto (archivo del tema)",
-        "default": "",
         "info": "Se usa si no subes un logo. Archivo dentro de assets/."
       },
       {
         "type": "text",
         "id": "ecoms_v2_logo_dark_asset",
-        "label": "Logo oscuro por defecto (archivo del tema)",
-        "default": ""
+        "label": "Logo oscuro por defecto (archivo del tema)"
       },
       {
         "type": "range",
@@ -1932,8 +1927,7 @@
       {
         "type": "text",
         "id": "ecoms_v2_favicon_asset",
-        "label": "Favicon por defecto (archivo del tema)",
-        "default": ""
+        "label": "Favicon por defecto (archivo del tema)"
       },
       {
         "type": "select",
@@ -2006,7 +2000,6 @@
         "type": "text",
         "id": "ecoms_v2_handle",
         "label": "Usuario en redes",
-        "default": "",
         "info": "Ej.: @ecoms.clean"
       },
       {
@@ -2034,20 +2027,17 @@
         "type": "text",
         "id": "ecoms_v3_key",
         "label": "Clave (sufijo de plantilla)",
-        "default": "",
         "info": "Ej.: clean. Activa la vertical en plantillas collection.clean / product.clean (o clean-*). Vacío = espacio sin usar."
       },
       {
         "type": "text",
         "id": "ecoms_v3_name",
-        "label": "Nombre",
-        "default": ""
+        "label": "Nombre"
       },
       {
         "type": "text",
         "id": "ecoms_v3_tagline",
-        "label": "Tagline",
-        "default": ""
+        "label": "Tagline"
       },
       {
         "type": "image_picker",
@@ -2063,14 +2053,12 @@
         "type": "text",
         "id": "ecoms_v3_logo_asset",
         "label": "Logo por defecto (archivo del tema)",
-        "default": "",
         "info": "Se usa si no subes un logo. Archivo dentro de assets/."
       },
       {
         "type": "text",
         "id": "ecoms_v3_logo_dark_asset",
-        "label": "Logo oscuro por defecto (archivo del tema)",
-        "default": ""
+        "label": "Logo oscuro por defecto (archivo del tema)"
       },
       {
         "type": "range",
@@ -2090,8 +2078,7 @@
       {
         "type": "text",
         "id": "ecoms_v3_favicon_asset",
-        "label": "Favicon por defecto (archivo del tema)",
-        "default": ""
+        "label": "Favicon por defecto (archivo del tema)"
       },
       {
         "type": "select",
@@ -2164,7 +2151,6 @@
         "type": "text",
         "id": "ecoms_v3_handle",
         "label": "Usuario en redes",
-        "default": "",
         "info": "Ej.: @ecoms.clean"
       },
       {

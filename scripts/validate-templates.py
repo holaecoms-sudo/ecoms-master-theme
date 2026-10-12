@@ -101,4 +101,15 @@ def ranges(o, where):
 ranges(s, 'settings_schema.json')
 for p in glob.glob(f'{root}/sections/*.liquid'):
     ranges(schema(os.path.basename(p)[:-7]) or {}, os.path.basename(p))
+def blank_defaults(o, where):
+    # Shopify rejects the whole file when a setting has "default": "" (blank)
+    if isinstance(o, dict):
+        if 'id' in o and 'type' in o and o.get('default', None) == '':
+            errs.append(f'{where}: setting {o["id"]} default can\'t be blank')
+        for v in o.values(): blank_defaults(v, where)
+    elif isinstance(o, list):
+        for x in o: blank_defaults(x, where)
+blank_defaults(s, 'settings_schema.json')
+for p in glob.glob(f'{root}/sections/*.liquid'):
+    blank_defaults(schema(os.path.basename(p)[:-7]) or {}, os.path.basename(p))
 print('\n'.join(errs) or 'OK: templates valid')
