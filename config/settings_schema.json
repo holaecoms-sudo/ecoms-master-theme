@@ -1837,7 +1837,7 @@
         "type": "color_scheme",
         "id": "ecoms_v1_scheme",
         "label": "Esquema de colores (partes nativas: carrito, formularios)",
-        "default": "scheme-6"
+        "default": "scheme-1"
       },
       {
         "type": "link_list",
