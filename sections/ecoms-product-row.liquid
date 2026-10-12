@@ -19,7 +19,8 @@
     {%- render 'ecoms-product-card', item: item, hover: section.settings.hover_image, badge: section.settings.show_badge, button_label: section.settings.button_label -%}
   {%- endfor -%}
 {%- endcapture -%}
-{%- if shown > 0 or request.design_mode -%}
+{%- assign min_show = section.settings.min_products | default: 1 -%}
+{%- if shown >= min_show or request.design_mode -%}
   <section class="ec-pr ec-cg" style="--ec-pt: {{ section.settings.padding_top }}px; --ec-pb: {{ section.settings.padding_bottom }}px; --cg-cols: {{ section.settings.columns }};">
     <div class="ec-w">
       <div class="ec-pr__head">
@@ -28,10 +29,10 @@
           <a class="ec-pr__link" href="{{ section.settings.link }}">{{ section.settings.link_label | escape }} {% render 'ecoms-icon', name: 'arrow' %}</a>
         {%- endif -%}
       </div>
-      {%- if shown > 0 -%}
+      {%- if shown >= min_show -%}
         <ul class="ec-cg__grid ec-pr__grid" role="list">{{ cards }}</ul>
       {%- else -%}
-        <p class="ec-editor-note">Elige productos o una colección para esta fila.</p>
+        <p class="ec-editor-note">Esta fila se oculta en la tienda hasta tener al menos {{ min_show }} productos (hoy: {{ shown }}).</p>
       {%- endif -%}
     </div>
   </section>
@@ -47,6 +48,7 @@
     { "type": "product_list", "id": "products", "label": "Productos (manual)", "limit": 12 },
     { "type": "collection", "id": "collection", "label": "O colección", "info": "Si no eliges productos, muestra los primeros de esta colección (o de la colección de la página) en su orden. Ordénala por «Más vendidos» en el admin." },
     { "type": "range", "id": "limit", "label": "Cantidad", "min": 2, "max": 12, "step": 1, "default": 4 },
+    { "type": "range", "id": "min_products", "label": "Mostrar solo con al menos", "min": 1, "max": 6, "step": 1, "default": 3, "info": "Evita repetir la grilla cuando la colección tiene pocos productos." },
     { "type": "range", "id": "columns", "label": "Columnas en escritorio", "min": 2, "max": 4, "step": 1, "default": 4 },
     { "type": "checkbox", "id": "show_badge", "label": "Mostrar % de descuento", "default": true },
     { "type": "checkbox", "id": "hover_image", "label": "Segunda foto al pasar el mouse", "default": true },
