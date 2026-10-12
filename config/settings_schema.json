@@ -1862,6 +1862,11 @@
         "label": "TikTok"
       },
       {
+        "type": "url",
+        "id": "ecoms_v1_facebook",
+        "label": "Facebook"
+      },
+      {
         "type": "checkbox",
         "id": "ecoms_v1_by_tag",
         "label": "Activar también en productos con el tag vertical-<clave>",
@@ -2013,6 +2018,11 @@
         "label": "TikTok"
       },
       {
+        "type": "url",
+        "id": "ecoms_v2_facebook",
+        "label": "Facebook"
+      },
+      {
         "type": "checkbox",
         "id": "ecoms_v2_by_tag",
         "label": "Activar también en productos con el tag vertical-<clave>",
@@ -2162,6 +2172,11 @@
         "type": "url",
         "id": "ecoms_v3_tiktok",
         "label": "TikTok"
+      },
+      {
+        "type": "url",
+        "id": "ecoms_v3_facebook",
+        "label": "Facebook"
       },
       {
         "type": "checkbox",
