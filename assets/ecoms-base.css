@@ -1369,3 +1369,6 @@ a.ec-rating--auto:hover b + span { text-decoration: underline; }
   .ec-zn__item { flex-direction: column; align-items: flex-start; gap: 8px; }
   .ec-zn__t small { display: none; }
 }
+/* Catalog with a single product: keep the card at a normal size */
+.ec-cg__grid:not(:has(> :nth-child(2))) { grid-template-columns: minmax(0, 1fr); max-width: 360px; margin-inline: auto; }
+@media screen and (max-width: 749px) { .ec-cg__grid:not(:has(> :nth-child(2))) { max-width: 300px; } }
