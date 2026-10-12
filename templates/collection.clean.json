@@ -12,8 +12,8 @@
     "hero": {
       "type": "ecoms-vertical-hero",
       "settings": {
-        "style": "soft",
-        "show_logo": true,
+        "style": "dark",
+        "show_logo": false,
         "logo_height": 40,
         "tagline": "",
         "heading": "Tu casa limpia, con menos esfuerzo",
