@@ -17,9 +17,37 @@
 <footer class="ec-ft ec-ft--{{ ft_style }}">
   <div class="ec-w ec-ft__grid">
     {%- liquid
+      # Vertical (sub-brand): its logo, tagline, menu and social links replace the store's on its pages.
+      capture ec_vslot
+        render 'ecoms-vertical'
+      endcapture
+      assign ig = settings.social_instagram_link
+      assign tt = settings.social_tiktok_link
+      assign yt = settings.social_youtube_link
+      assign fb = settings.social_facebook_link
+      assign v_menu = nil
+      assign v_tagline = ''
+      if ec_vslot != blank
+        assign vpre = 'ecoms_v' | append: ec_vslot | append: '_'
+        assign vk = vpre | append: 'instagram'
+        assign ig = settings[vk]
+        assign vk = vpre | append: 'tiktok'
+        assign tt = settings[vk]
+        assign yt = ''
+        assign fb = ''
+        assign vk = vpre | append: 'menu'
+        assign v_menu = settings[vk]
+        assign vk = vpre | append: 'tagline'
+        assign v_tagline = settings[vk]
+      endif
       assign has_social = false
-      if settings.social_instagram_link != blank or settings.social_tiktok_link != blank or settings.social_youtube_link != blank or settings.social_facebook_link != blank
+      if ig != blank or tt != blank or yt != blank or fb != blank
         assign has_social = true
+      endif
+      assign first_menu_done = false
+      assign logo_variant = 'light'
+      if ft_style == 'dark'
+        assign logo_variant = 'dark'
       endif
     -%}
     {%- for block in section.blocks -%}
@@ -28,17 +56,30 @@
         {%- case block.type -%}
           {%- when 'brand' -%}
             <a href="{{ routes.root_url }}" class="ec-logo">
-              {%- if block.settings.logo != blank -%}
+              {%- if ec_vslot != blank -%}
+                {%- render 'ecoms-vertical-logo', slot: ec_vslot, variant: logo_variant, height: 30 -%}
+              {%- elsif block.settings.logo != blank -%}
                 {{ block.settings.logo | image_url: height: 80 | image_tag: height: 32, alt: store_name, loading: 'lazy' }}
               {%- else -%}
                 {% render 'ecoms-icon', name: 'bag' %}<span>{{ store_name | escape }}</span>
               {%- endif -%}
             </a>
-            {%- if block.settings.text != blank -%}<div class="ec-ft__text">{{ block.settings.text }}</div>{%- endif -%}
+            {%- if v_tagline != blank -%}
+              <p class="ec-ft__text">{{ v_tagline | escape }}</p>
+            {%- elsif block.settings.text != blank -%}
+              <div class="ec-ft__text">{{ block.settings.text }}</div>
+            {%- endif -%}
           {%- when 'menu' -%}
+            {%- liquid
+              assign ft_menu = block.settings.menu
+              if v_menu != blank and first_menu_done == false
+                assign ft_menu = v_menu
+              endif
+              assign first_menu_done = true
+            -%}
             {%- if block.settings.heading != blank -%}<h2 class="ec-ft__h">{{ block.settings.heading | escape }}</h2>{%- endif -%}
             <ul role="list">
-              {%- for link in block.settings.menu.links -%}
+              {%- for link in ft_menu.links -%}
                 <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
               {%- endfor -%}
             </ul>
@@ -53,10 +94,10 @@
             {%- unless has_social -%}<p class="ec-editor-note">Agrega tus redes en Configuración del tema → Redes sociales. Sin enlaces, esta columna no se muestra en la tienda.</p>{%- endunless -%}
             {%- if block.settings.heading != blank -%}<h2 class="ec-ft__h">{{ block.settings.heading | escape }}</h2>{%- endif -%}
             <div class="ec-ft__social">
-              {%- if settings.social_instagram_link != blank -%}<a href="{{ settings.social_instagram_link }}" aria-label="Instagram">{% render 'ecoms-social-icon', name: 'ig' %}</a>{%- endif -%}
-              {%- if settings.social_tiktok_link != blank -%}<a href="{{ settings.social_tiktok_link }}" aria-label="TikTok">{% render 'ecoms-social-icon', name: 'tt' %}</a>{%- endif -%}
-              {%- if settings.social_youtube_link != blank -%}<a href="{{ settings.social_youtube_link }}" aria-label="YouTube">{% render 'ecoms-social-icon', name: 'yt' %}</a>{%- endif -%}
-              {%- if settings.social_facebook_link != blank -%}<a href="{{ settings.social_facebook_link }}" aria-label="Facebook">{% render 'ecoms-social-icon', name: 'fb' %}</a>{%- endif -%}
+              {%- if ig != blank -%}<a href="{{ ig }}" aria-label="Instagram">{% render 'ecoms-social-icon', name: 'ig' %}</a>{%- endif -%}
+              {%- if tt != blank -%}<a href="{{ tt }}" aria-label="TikTok">{% render 'ecoms-social-icon', name: 'tt' %}</a>{%- endif -%}
+              {%- if yt != blank -%}<a href="{{ yt }}" aria-label="YouTube">{% render 'ecoms-social-icon', name: 'yt' %}</a>{%- endif -%}
+              {%- if fb != blank -%}<a href="{{ fb }}" aria-label="Facebook">{% render 'ecoms-social-icon', name: 'fb' %}</a>{%- endif -%}
             </div>
           {%- when 'newsletter' -%}
             {%- if block.settings.heading != blank -%}<h2 class="ec-ft__h">{{ block.settings.heading | escape }}</h2>{%- endif -%}

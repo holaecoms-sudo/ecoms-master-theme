@@ -1,0 +1,73 @@
+{%- comment -%}
+  ECOMS · Head output for the active vertical: palette tokens for ECOMS sections, the vertical's color
+  scheme for native parts (cart drawer, forms, buttons) and its favicon. Renders nothing outside a vertical.
+  Accepts:
+  - slot: {String} slot number from 'ecoms-vertical'
+{%- endcomment -%}
+{%- if slot != blank -%}
+  {%- liquid
+    assign pre = 'ecoms_v' | append: slot | append: '_'
+    assign k = pre | append: 'primary'
+    assign c_primary = settings[k]
+    assign k = pre | append: 'accent'
+    assign c_accent = settings[k]
+    assign k = pre | append: 'highlight'
+    assign c_high = settings[k]
+    assign k = pre | append: 'soft'
+    assign c_soft = settings[k]
+    assign k = pre | append: 'bg'
+    assign c_bg = settings[k]
+    assign k = pre | append: 'ink'
+    assign c_ink = settings[k]
+    assign k = pre | append: 'scheme'
+    assign scheme = settings[k]
+    assign k = pre | append: 'favicon'
+    assign fav = settings[k]
+    assign k = pre | append: 'favicon_asset'
+    assign fav_asset = settings[k]
+    assign line = c_soft | color_darken: 6
+    assign muted = c_ink | color_lighten: 32
+  -%}
+  {%- if fav != blank -%}
+    <link rel="icon" type="image/png" href="{{ fav | image_url: width: 32, height: 32 }}">
+  {%- elsif fav_asset != blank -%}
+    <link rel="icon" type="image/png" href="{{ fav_asset | asset_url }}">
+  {%- endif -%}
+  <style>
+    :root, body.ec-skin {
+      --ec-primary: {{ c_primary }};
+      --ec-primary-ink: #FFFFFF;
+      --ec-primary-hover: {{ c_primary | color_darken: 6 }};
+      --ec-dark: {{ c_primary }};
+      --ec-accent: {{ c_accent }};
+      --ec-accent-ink: #FFFFFF;
+      --ec-highlight: {{ c_high }};
+      --ec-soft: {{ c_soft }};
+      --ec-soft-ink: {{ c_primary }};
+      --ec-tag: {{ c_accent }};
+      --ec-tag-ink: #FFFFFF;
+      --ec-sale-bg: {{ c_soft }};
+      --ec-sale-ink: {{ c_primary }};
+      --ec-deep: {{ c_primary }};
+      --ec-bg: {{ c_bg }};
+      --ec-ink: {{ c_ink }};
+      --ec-muted: {{ muted }};
+      --ec-line: {{ line }};
+    }
+    body.ec-skin { background: var(--ec-bg); }
+    {%- if scheme != blank -%}
+      {%- capture scheme_sel -%}:root{% for s in settings.color_schemes %}, .color-{{ s.id }}{% endfor %}{%- endcapture -%}
+      {{ scheme_sel }} {
+        --color-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
+        --gradient-background: {{ scheme.settings.background }};
+        --color-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
+        --color-shadow: {{ scheme.settings.shadow.red }},{{ scheme.settings.shadow.green }},{{ scheme.settings.shadow.blue }};
+        --color-button: {{ scheme.settings.button.red }},{{ scheme.settings.button.green }},{{ scheme.settings.button.blue }};
+        --color-button-text: {{ scheme.settings.button_label.red }},{{ scheme.settings.button_label.green }},{{ scheme.settings.button_label.blue }};
+        --color-secondary-button: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
+        --color-secondary-button-text: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
+        --color-link: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
+      }
+    {%- endif -%}
+  </style>
+{%- endif -%}

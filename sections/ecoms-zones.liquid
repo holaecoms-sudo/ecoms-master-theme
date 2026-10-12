@@ -1,0 +1,111 @@
+{%- comment -%}
+  ECOMS · Shortcuts by zone (Baño, Cocina…). Each block filters the current collection by a product tag
+  using Shopify's native tag URL (/collections/<handle>/<tag>). Outside a collection it uses the collection
+  chosen in the section, or "all".
+{%- endcomment -%}
+{%- liquid
+  assign base = collection
+  if section.settings.collection != blank
+    assign base = section.settings.collection
+  endif
+  if base != blank
+    assign base_url = base.url
+  else
+    assign base_url = routes.all_products_collection_url
+  endif
+-%}
+<section class="ec-zn" style="--ec-pt: {{ section.settings.padding_top }}px; --ec-pb: {{ section.settings.padding_bottom }}px;">
+  <div class="ec-w">
+    {%- if section.settings.heading != blank -%}<h2 class="ec-zn__h">{{ section.settings.heading | escape }}</h2>{%- endif -%}
+    {%- if section.settings.text != blank -%}<p class="ec-zn__s">{{ section.settings.text | escape }}</p>{%- endif -%}
+    <ul class="ec-zn__grid" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign tag = block.settings.tag | strip | handleize
+          assign url = base_url
+          if tag != blank
+            assign url = base_url | append: '/' | append: tag
+          endif
+          assign active = false
+          if current_tags contains tag
+            assign active = true
+          endif
+        -%}
+        <li {{ block.shopify_attributes }}>
+          <a class="ec-zn__item{% if active %} is-active{% endif %}" href="{{ url }}"{% if active %} aria-current="page"{% endif %}>
+            {%- if block.settings.image != blank -%}
+              <span class="ec-zn__img">{{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', widths: '160,280,400', sizes: '(min-width: 990px) 220px, 44vw', alt: '' }}</span>
+            {%- else -%}
+              <span class="ec-zn__ic">{% render 'ecoms-icon', name: block.settings.icon %}</span>
+            {%- endif -%}
+            <span class="ec-zn__t">
+              <b>{{ block.settings.label | escape }}</b>
+              {%- if block.settings.text != blank -%}<small>{{ block.settings.text | escape }}</small>{%- endif -%}
+            </span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+    {%- if current_tags.size > 0 and section.settings.show_all -%}
+      <p class="ec-zn__all"><a href="{{ base_url }}">{{ section.settings.all_label | escape }}</a></p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ECOMS · Accesos por zona",
+  "tag": "section",
+  "class": "ec-zn-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "Encuentra lo que necesitas" },
+    { "type": "text", "id": "text", "label": "Texto" },
+    { "type": "collection", "id": "collection", "label": "Colección a filtrar", "info": "Vacío = la colección de la página." },
+    { "type": "checkbox", "id": "show_all", "label": "Enlace «Ver todo» al filtrar", "default": true },
+    { "type": "text", "id": "all_label", "label": "Texto «Ver todo»", "default": "Ver todos los productos" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 28 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 20 }
+  ],
+  "blocks": [
+    {
+      "type": "zone",
+      "name": "Zona",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Nombre", "default": "Baño" },
+        { "type": "text", "id": "text", "label": "Texto corto" },
+        { "type": "text", "id": "tag", "label": "Tag de producto", "default": "zona-bano", "info": "Los productos con este tag aparecen al tocar la zona." },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícono (si no hay imagen)",
+          "options": [
+            { "value": "drop", "label": "Gota" },
+            { "value": "home", "label": "Casa" },
+            { "value": "sparkle", "label": "Brillo" },
+            { "value": "grid", "label": "Grilla" },
+            { "value": "box", "label": "Caja" },
+            { "value": "hand", "label": "Mano" },
+            { "value": "bolt", "label": "Rayo" },
+            { "value": "leaf", "label": "Hoja" },
+            { "value": "sun", "label": "Sol" }
+          ],
+          "default": "drop"
+        },
+        { "type": "image_picker", "id": "image", "label": "Imagen (opcional)", "info": "Recomendado 1:1, 400 × 400." }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "ECOMS · Accesos por zona",
+      "blocks": [
+        { "type": "zone", "settings": { "label": "Baño", "tag": "zona-bano", "icon": "drop" } },
+        { "type": "zone", "settings": { "label": "Cocina", "tag": "zona-cocina", "icon": "home" } },
+        { "type": "zone", "settings": { "label": "Pisos y vidrios", "tag": "zona-pisos", "icon": "sparkle" } },
+        { "type": "zone", "settings": { "label": "Orden", "tag": "zona-orden", "icon": "box" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,17 +1,24 @@
 {%- comment -%} ECOMS · Cross-sell with real add-to-cart (AJAX Cart API). Styles: cards (Flex), grid (Brand), rail (Direct). {%- endcomment -%}
-{%- assign style = section.settings.style | default: 'cards' -%}
-{%- if section.settings.products != blank or request.design_mode -%}
+{%- liquid
+  assign style = section.settings.style | default: 'cards'
+  # Manual picks first; otherwise products of the chosen collection (e.g. the vertical's), current product excluded.
+  assign xs_items = section.settings.products
+  if xs_items == blank and section.settings.collection != blank
+    assign xs_items = section.settings.collection.products
+  endif
+-%}
+{%- if xs_items != blank or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-cross' %}>
   <div class="ec-w">
     <div class="ec-cross__wrap ec-cross--{{ style }}">
       {%- if section.settings.heading != blank -%}
         <h2 class="ec-h3{% if style == 'grid' %} ec-h3--center{% endif %}">{{ section.settings.heading | escape }}</h2>
       {%- endif -%}
-      {%- if section.settings.products != blank -%}
+      {%- if xs_items != blank -%}
         <div class="ec-xs">
           {%- assign shown = 0 -%}
           {%- assign split_at = section.settings.split | plus: 1 -%}
-          {%- for item in section.settings.products -%}
+          {%- for item in xs_items limit: 24 -%}
             {%- if item.id == product.id or shown >= section.settings.limit -%}{%- continue -%}{%- endif -%}
             {%- assign shown = shown | plus: 1 -%}
             {%- if style == 'rail' and section.settings.heading_2 != blank and shown == split_at -%}
@@ -84,6 +91,12 @@
       "id": "products",
       "label": "Productos",
       "limit": 6
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "O colección",
+      "info": "Si no eliges productos, muestra productos de esta colección (sin repetir el producto actual)."
     },
     {
       "type": "range",

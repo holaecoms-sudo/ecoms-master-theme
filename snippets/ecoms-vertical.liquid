@@ -1,0 +1,56 @@
+{%- comment -%}
+  ECOMS · Resolves the active vertical (sub-brand) and outputs its slot number (1-3) or nothing.
+  A vertical is active when:
+  1. the template suffix is its key or starts with "<key>-" (collection.clean, product.clean, product.clean-flex…);
+  2. on a product page, the product has the tag "vertical-<key>" and the slot allows it;
+  3. the store-wide setting «Vertical por defecto» has its key (dedicated store, Fase 2).
+  Usage: {%- capture ec_vslot -%}{% render 'ecoms-vertical' %}{%- endcapture -%}
+  Then read its settings with: settings[ 'ecoms_v' | append: ec_vslot | append: '_name' ]
+{%- endcomment -%}
+{%- liquid
+  assign ec_found = ''
+  assign ec_sfx = template.suffix | default: '' | downcase
+  assign ec_sfx_key = ec_sfx | split: '-' | first
+
+  if ec_sfx != blank
+    for n in (1..3)
+      assign k = 'ecoms_v' | append: n | append: '_key'
+      assign vkey = settings[k] | strip | downcase
+      if vkey != blank
+        if ec_sfx == vkey or ec_sfx_key == vkey
+          assign ec_found = n
+          break
+        endif
+      endif
+    endfor
+  endif
+
+  if ec_found == '' and template.name == 'product' and product != blank
+    for n in (1..3)
+      assign k = 'ecoms_v' | append: n | append: '_key'
+      assign kt = 'ecoms_v' | append: n | append: '_by_tag'
+      assign vkey = settings[k] | strip | downcase
+      if vkey != blank and settings[kt]
+        assign vtag = 'vertical-' | append: vkey
+        if product.tags contains vtag
+          assign ec_found = n
+          break
+        endif
+      endif
+    endfor
+  endif
+
+  if ec_found == '' and settings.ecoms_vertical_default != blank
+    assign dkey = settings.ecoms_vertical_default | strip | downcase
+    for n in (1..3)
+      assign k = 'ecoms_v' | append: n | append: '_key'
+      assign vkey = settings[k] | strip | downcase
+      if vkey != blank and vkey == dkey
+        assign ec_found = n
+        break
+      endif
+    endfor
+  endif
+
+  echo ec_found
+-%}

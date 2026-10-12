@@ -1,0 +1,46 @@
+{%- comment -%}
+  ECOMS · Product card (catalog grids, «Más vendidos»). Real price, compare-at and discount badge only
+  when the product has a real compare-at price; rating only from review-app metafields.
+  Accepts:
+  - item: {Object} product
+  - hover: {Boolean} show second image on hover
+  - badge: {Boolean} show % discount badge
+  - button_label: {String}
+{%- endcomment -%}
+{%- liquid
+  assign img = item.featured_media.preview_image | default: item.featured_image
+  assign img2 = item.media[1].preview_image
+  assign pct = 0
+  if item.compare_at_price > item.price
+    assign pct = item.compare_at_price | minus: item.price | times: 100 | divided_by: item.compare_at_price | floor
+  endif
+-%}
+<li class="ec-cg__card">
+  <a class="ec-cg__img{% if img2 != blank and hover %} ec-cg__img--swap{% endif %}" href="{{ item.url }}" tabindex="-1" aria-hidden="true">
+    {%- if img != blank -%}
+      {{ img | image_url: width: 800 | image_tag: loading: 'lazy', widths: '360,540,800', sizes: '(min-width: 990px) 380px, (min-width: 750px) 45vw, 46vw', alt: '' }}
+      {%- if img2 != blank and hover -%}
+        {{ img2 | image_url: width: 800 | image_tag: loading: 'lazy', widths: '360,540,800', sizes: '(min-width: 990px) 380px, 45vw', alt: '', class: 'ec-cg__img2' }}
+      {%- endif -%}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'ec-placeholder' }}
+    {%- endif -%}
+    {%- if item.available == false -%}
+      <span class="ec-cg__badge ec-cg__badge--out">Agotado</span>
+    {%- elsif pct > 0 and badge -%}
+      <span class="ec-cg__badge">-{{ pct }}%</span>
+    {%- endif -%}
+  </a>
+  <div class="ec-cg__body">
+    <h3 class="ec-cg__t"><a href="{{ item.url }}">{{ item.title | escape }}</a></h3>
+    {%- render 'ecoms-rating', product: item, star_size: '13px' -%}
+    <div class="ec-cg__price">
+      {%- if item.price_varies -%}<small>Desde</small>{%- endif -%}
+      <b>{{ item.price | money }}</b>
+      {%- if item.compare_at_price > item.price -%}<s>{{ item.compare_at_price | money }}</s>{%- endif -%}
+    </div>
+    <a class="ec-btn ec-btn--primary ec-cg__btn" href="{{ item.url }}">
+      {{ button_label | default: 'Ver producto' | escape }} {% render 'ecoms-icon', name: 'arrow' %}
+    </a>
+  </div>
+</li>

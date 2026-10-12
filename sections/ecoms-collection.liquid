@@ -11,6 +11,7 @@
     assign sort_by = collection.sort_by | default: collection.default_sort_by
   -%}
   <section class="ec-cg" style="--ec-pt: {{ section.settings.padding_top }}px; --ec-pb: {{ section.settings.padding_bottom }}px; --cg-cols: {{ cols }};">
+    {%- if section.settings.show_header -%}
     <div class="ec-cg__head">
       <div class="ec-w">
         {%- if section.settings.eyebrow != blank -%}<p class="ec-cg__k">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
@@ -36,7 +37,11 @@
       </div>
     </div>
 
-    <div class="ec-w">
+    {%- endif -%}
+    <div class="ec-w" id="productos">
+      {%- if section.settings.show_header == false and section.settings.grid_heading != blank -%}
+        <h2 class="ec-cg__gh">{{ section.settings.grid_heading | escape }}</h2>
+      {%- endif -%}
       {%- if collection.products_count > 0 -%}
         <div class="ec-cg__bar">
           <p class="ec-cg__count">
@@ -58,44 +63,7 @@
 
         <ul class="ec-cg__grid" role="list">
           {%- for product in collection.products -%}
-            {%- liquid
-              assign v = product.selected_or_first_available_variant
-              assign img = product.featured_media.preview_image | default: product.featured_image
-              assign img2 = product.media[1].preview_image
-              assign pct = 0
-              if product.compare_at_price > product.price
-                assign pct = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price | floor
-              endif
-            -%}
-            <li class="ec-cg__card">
-              <a class="ec-cg__img{% if img2 != blank and section.settings.hover_image %} ec-cg__img--swap{% endif %}" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
-                {%- if img != blank -%}
-                  {{ img | image_url: width: 800 | image_tag: loading: 'lazy', widths: '360,540,800', sizes: '(min-width: 990px) 380px, (min-width: 750px) 45vw, 92vw', alt: '' }}
-                  {%- if img2 != blank and section.settings.hover_image -%}
-                    {{ img2 | image_url: width: 800 | image_tag: loading: 'lazy', widths: '360,540,800', sizes: '(min-width: 990px) 380px, 45vw', alt: '', class: 'ec-cg__img2' }}
-                  {%- endif -%}
-                {%- else -%}
-                  {{ 'product-1' | placeholder_svg_tag: 'ec-placeholder' }}
-                {%- endif -%}
-                {%- if product.available == false -%}
-                  <span class="ec-cg__badge ec-cg__badge--out">Agotado</span>
-                {%- elsif pct > 0 and section.settings.show_badge -%}
-                  <span class="ec-cg__badge">-{{ pct }}%</span>
-                {%- endif -%}
-              </a>
-              <div class="ec-cg__body">
-                <h2 class="ec-cg__t"><a href="{{ product.url }}">{{ product.title | escape }}</a></h2>
-                {%- render 'ecoms-rating', product: product, star_size: '13px' -%}
-                <div class="ec-cg__price">
-                  {%- if product.price_varies -%}<small>Desde</small>{%- endif -%}
-                  <b>{{ product.price | money }}</b>
-                  {%- if product.compare_at_price > product.price -%}<s>{{ product.compare_at_price | money }}</s>{%- endif -%}
-                </div>
-                <a class="ec-btn ec-btn--primary ec-cg__btn" href="{{ product.url }}">
-                  {{ section.settings.button_label | default: 'Ver producto' | escape }} {% render 'ecoms-icon', name: 'arrow' %}
-                </a>
-              </div>
-            </li>
+            {%- render 'ecoms-product-card', item: product, hover: section.settings.hover_image, badge: section.settings.show_badge, button_label: section.settings.button_label -%}
           {%- endfor -%}
         </ul>
 
@@ -131,6 +99,19 @@
   "tag": "section",
   "class": "ec-cg-section",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_header",
+      "label": "Mostrar encabezado (título, texto y sellos)",
+      "default": true,
+      "info": "Desactívalo si la página ya tiene un hero arriba."
+    },
+    {
+      "type": "text",
+      "id": "grid_heading",
+      "label": "Título de la grilla (sin encabezado)",
+      "default": "Todos los productos"
+    },
     {
       "type": "text",
       "id": "eyebrow",

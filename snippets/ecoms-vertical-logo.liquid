@@ -1,0 +1,37 @@
+{%- comment -%}
+  ECOMS · Logo of a vertical: uploaded image, else the theme asset set in its settings, else its name.
+  Accepts:
+  - slot: {String} vertical slot number
+  - variant: {String} 'light' (default, for light backgrounds) | 'dark' (for dark backgrounds)
+  - height: {Number} display height in px
+  - eager: {Boolean} load eagerly (header)
+{%- endcomment -%}
+{%- liquid
+  assign pre = 'ecoms_v' | append: slot | append: '_'
+  assign k = pre | append: 'name'
+  assign v_name = settings[k]
+  if variant == 'dark'
+    assign k = pre | append: 'logo_dark'
+    assign v_logo = settings[k]
+    assign k = pre | append: 'logo_dark_asset'
+    assign v_asset = settings[k]
+  endif
+  if v_logo == blank and v_asset == blank
+    assign k = pre | append: 'logo'
+    assign v_logo = settings[k]
+    assign k = pre | append: 'logo_asset'
+    assign v_asset = settings[k]
+  endif
+  assign v_h = height | default: 30
+  assign v_load = 'lazy'
+  if eager
+    assign v_load = 'eager'
+  endif
+-%}
+{%- if v_logo != blank -%}
+  {{ v_logo | image_url: height: 160 | image_tag: height: v_h, alt: v_name, loading: v_load, class: 'ec-vlogo' }}
+{%- elsif v_asset != blank -%}
+  <img src="{{ v_asset | asset_url }}" alt="{{ v_name | escape }}" width="{{ v_h | times: 6 }}" height="{{ v_h }}" loading="{{ v_load }}" class="ec-vlogo" style="height: {{ v_h }}px; width: auto;">
+{%- else -%}
+  <span>{{ v_name | escape }}</span>
+{%- endif -%}

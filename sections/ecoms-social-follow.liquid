@@ -1,0 +1,93 @@
+{%- comment -%}
+  ECOMS · «Síguenos en @…»: handle, short text, up to 6 uploaded images and buttons to Instagram / TikTok.
+  No feed API, no apps. Handle and links default to the active vertical, then to the store's social settings.
+{%- endcomment -%}
+{%- liquid
+  capture ec_vslot
+    render 'ecoms-vertical'
+  endcapture
+  assign handle = section.settings.handle
+  assign ig = settings.social_instagram_link
+  assign tt = settings.social_tiktok_link
+  if ec_vslot != blank
+    assign vpre = 'ecoms_v' | append: ec_vslot | append: '_'
+    assign vk = vpre | append: 'handle'
+    if handle == blank
+      assign handle = settings[vk]
+    endif
+    assign vk = vpre | append: 'instagram'
+    if settings[vk] != blank
+      assign ig = settings[vk]
+    endif
+    assign vk = vpre | append: 'tiktok'
+    if settings[vk] != blank
+      assign tt = settings[vk]
+    endif
+  endif
+  assign main_link = ig | default: tt
+-%}
+{%- if main_link != blank or request.design_mode -%}
+<section class="ec-sf" style="--ec-pt: {{ section.settings.padding_top }}px; --ec-pb: {{ section.settings.padding_bottom }}px;">
+  <div class="ec-w">
+    <div class="ec-sf__head">
+      <h2 class="ec-sf__h">{{ section.settings.heading | escape }} {% if handle != blank %}<a href="{{ main_link }}" target="_blank" rel="noopener">{{ handle | escape }}</a>{% endif %}</h2>
+      {%- if section.settings.text != blank -%}<p class="ec-sf__t">{{ section.settings.text | escape }}</p>{%- endif -%}
+    </div>
+    {%- if section.blocks.size > 0 -%}
+      <ul class="ec-sf__grid" role="list">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.image == blank and request.design_mode != true -%}{%- continue -%}{%- endif -%}
+          <li {{ block.shopify_attributes }}>
+            <a class="ec-sf__item" href="{{ block.settings.link | default: main_link }}" target="_blank" rel="noopener" aria-label="Ver en redes">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 500 | image_tag: loading: 'lazy', widths: '200,350,500', sizes: '(min-width: 990px) 190px, 31vw', alt: block.settings.alt }}
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'ec-placeholder' }}
+              {%- endif -%}
+              {%- if block.settings.video_icon -%}<span class="ec-sf__play">{% render 'ecoms-icon', name: 'play' %}</span>{%- endif -%}
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+    <div class="ec-sf__btns">
+      {%- if ig != blank -%}<a class="ec-btn ec-btn--primary ec-sf__btn" href="{{ ig }}" target="_blank" rel="noopener">{% render 'ecoms-social-icon', name: 'ig' %}{{ section.settings.ig_label | escape }}</a>{%- endif -%}
+      {%- if tt != blank -%}<a class="ec-btn ec-sf__btn ec-sf__btn--2" href="{{ tt }}" target="_blank" rel="noopener">{% render 'ecoms-social-icon', name: 'tt' %}{{ section.settings.tt_label | escape }}</a>{%- endif -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ECOMS · Síguenos",
+  "tag": "section",
+  "class": "ec-sf-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "Síguenos en" },
+    { "type": "text", "id": "handle", "label": "Usuario", "info": "Vacío = usuario de la vertical activa (ej. @ecoms.clean)." },
+    { "type": "text", "id": "text", "label": "Texto", "default": "Trucos de limpieza, antes y después reales y novedades." },
+    { "type": "text", "id": "ig_label", "label": "Botón Instagram", "default": "Instagram" },
+    { "type": "text", "id": "tt_label", "label": "Botón TikTok", "default": "TikTok" },
+    { "type": "paragraph", "content": "Los enlaces salen de la vertical activa (Configuración del tema → ECOMS · Verticales) o de Redes sociales." },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 32 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "post",
+      "name": "Publicación",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen", "info": "Captura o portada del post. 1:1 o 4:5." },
+        { "type": "text", "id": "alt", "label": "Descripción (accesibilidad)" },
+        { "type": "url", "id": "link", "label": "Enlace al post", "info": "Vacío = perfil." },
+        { "type": "checkbox", "id": "video_icon", "label": "Mostrar ícono de video", "default": false }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    { "name": "ECOMS · Síguenos", "blocks": [ { "type": "post" }, { "type": "post" }, { "type": "post" } ] }
+  ]
+}
+{% endschema %}

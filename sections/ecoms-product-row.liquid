@@ -1,0 +1,61 @@
+{%- comment -%}
+  ECOMS · Product row («Más vendidos», «Novedades»…). Manual picks, or the first products of a collection
+  in that collection's sort order (set it to «Más vendidos» in the admin for real best sellers).
+{%- endcomment -%}
+{%- liquid
+  assign src = section.settings.products
+  if src == blank
+    assign src_col = section.settings.collection | default: collection
+    assign src = src_col.products
+  endif
+  assign limit = section.settings.limit
+-%}
+{%- capture cards -%}
+  {%- assign shown = 0 -%}
+  {%- for item in src -%}
+    {%- if shown >= limit -%}{%- break -%}{%- endif -%}
+    {%- if item.id == product.id -%}{%- continue -%}{%- endif -%}
+    {%- assign shown = shown | plus: 1 -%}
+    {%- render 'ecoms-product-card', item: item, hover: section.settings.hover_image, badge: section.settings.show_badge, button_label: section.settings.button_label -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- if shown > 0 or request.design_mode -%}
+  <section class="ec-pr ec-cg" style="--ec-pt: {{ section.settings.padding_top }}px; --ec-pb: {{ section.settings.padding_bottom }}px; --cg-cols: {{ section.settings.columns }};">
+    <div class="ec-w">
+      <div class="ec-pr__head">
+        {%- if section.settings.heading != blank -%}<h2 class="ec-cg__gh">{{ section.settings.heading | escape }}</h2>{%- endif -%}
+        {%- if section.settings.link_label != blank and section.settings.link != blank -%}
+          <a class="ec-pr__link" href="{{ section.settings.link }}">{{ section.settings.link_label | escape }} {% render 'ecoms-icon', name: 'arrow' %}</a>
+        {%- endif -%}
+      </div>
+      {%- if shown > 0 -%}
+        <ul class="ec-cg__grid ec-pr__grid" role="list">{{ cards }}</ul>
+      {%- else -%}
+        <p class="ec-editor-note">Elige productos o una colección para esta fila.</p>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ECOMS · Fila de productos",
+  "tag": "section",
+  "class": "ec-pr-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "Más vendidos" },
+    { "type": "product_list", "id": "products", "label": "Productos (manual)", "limit": 12 },
+    { "type": "collection", "id": "collection", "label": "O colección", "info": "Si no eliges productos, muestra los primeros de esta colección (o de la colección de la página) en su orden. Ordénala por «Más vendidos» en el admin." },
+    { "type": "range", "id": "limit", "label": "Cantidad", "min": 2, "max": 12, "step": 1, "default": 4 },
+    { "type": "range", "id": "columns", "label": "Columnas en escritorio", "min": 2, "max": 4, "step": 1, "default": 4 },
+    { "type": "checkbox", "id": "show_badge", "label": "Mostrar % de descuento", "default": true },
+    { "type": "checkbox", "id": "hover_image", "label": "Segunda foto al pasar el mouse", "default": true },
+    { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Ver producto" },
+    { "type": "text", "id": "link_label", "label": "Enlace junto al título" },
+    { "type": "url", "id": "link", "label": "Enlace" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 28 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 28 }
+  ],
+  "presets": [ { "name": "ECOMS · Fila de productos" } ]
+}
+{% endschema %}

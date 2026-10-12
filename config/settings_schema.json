@@ -1698,6 +1698,495 @@
     ]
   },
   {
+    "name": "ECOMS · Verticales",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Una vertical es una sub-marca dentro de la tienda (ej. Ecoms Clean). Se activa en las plantillas cuyo sufijo empieza con su clave (collection.clean, product.clean, product.clean-flex…) y cambia logo, colores, menú y redes solo en esas páginas."
+      },
+      {
+        "type": "text",
+        "id": "ecoms_vertical_default",
+        "label": "Vertical por defecto de toda la tienda",
+        "info": "Vacío en ecoms.cl. En una tienda dedicada (Fase 2) escribe la clave (ej. clean) y toda la tienda usa esa identidad."
+      },
+      {
+        "type": "header",
+        "content": "Vertical 1"
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v1_key",
+        "label": "Clave (sufijo de plantilla)",
+        "default": "clean",
+        "info": "Ej.: clean. Activa la vertical en plantillas collection.clean / product.clean (o clean-*). Vacío = espacio sin usar."
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v1_name",
+        "label": "Nombre",
+        "default": "Ecoms Clean"
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v1_tagline",
+        "label": "Tagline",
+        "default": "Soluciones de limpieza para el hogar"
+      },
+      {
+        "type": "image_picker",
+        "id": "ecoms_v1_logo",
+        "label": "Logo (fondo claro)"
+      },
+      {
+        "type": "image_picker",
+        "id": "ecoms_v1_logo_dark",
+        "label": "Logo (fondo oscuro, footer)"
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v1_logo_asset",
+        "label": "Logo por defecto (archivo del tema)",
+        "default": "ecoms-clean-logo.png",
+        "info": "Se usa si no subes un logo. Archivo dentro de assets/."
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v1_logo_dark_asset",
+        "label": "Logo oscuro por defecto (archivo del tema)",
+        "default": "ecoms-clean-logo-white.png"
+      },
+      {
+        "type": "range",
+        "id": "ecoms_v1_logo_height",
+        "label": "Alto del logo en el header",
+        "min": 20,
+        "max": 64,
+        "step": 2,
+        "unit": "px",
+        "default": 30
+      },
+      {
+        "type": "image_picker",
+        "id": "ecoms_v1_favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v1_favicon_asset",
+        "label": "Favicon por defecto (archivo del tema)",
+        "default": "ecoms-clean-icon.png"
+      },
+      {
+        "type": "select",
+        "id": "ecoms_v1_skin",
+        "label": "Estilo base de las fichas",
+        "options": [
+          {
+            "value": "direct",
+            "label": "Direct"
+          },
+          {
+            "value": "flex",
+            "label": "Flex"
+          },
+          {
+            "value": "brand",
+            "label": "Brand"
+          }
+        ],
+        "default": "direct"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_v1_primary",
+        "label": "Color principal (botones, títulos)",
+        "default": "#011F49"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_v1_accent",
+        "label": "Color de acento",
+        "default": "#008FFC"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_v1_highlight",
+        "label": "Color destacado (detalles, íconos)",
+        "default": "#00B4FB"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_v1_soft",
+        "label": "Fondo suave (bandas, chips)",
+        "default": "#EAF5FF"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_v1_bg",
+        "label": "Fondo de página",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_v1_ink",
+        "label": "Texto",
+        "default": "#0B1B33"
+      },
+      {
+        "type": "color_scheme",
+        "id": "ecoms_v1_scheme",
+        "label": "Esquema de colores (partes nativas: carrito, formularios)",
+        "default": "scheme-6"
+      },
+      {
+        "type": "link_list",
+        "id": "ecoms_v1_menu",
+        "label": "Menú de la vertical"
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v1_handle",
+        "label": "Usuario en redes",
+        "default": "@ecoms.clean",
+        "info": "Ej.: @ecoms.clean"
+      },
+      {
+        "type": "url",
+        "id": "ecoms_v1_instagram",
+        "label": "Instagram"
+      },
+      {
+        "type": "url",
+        "id": "ecoms_v1_tiktok",
+        "label": "TikTok"
+      },
+      {
+        "type": "checkbox",
+        "id": "ecoms_v1_by_tag",
+        "label": "Activar también en productos con el tag vertical-<clave>",
+        "default": true,
+        "info": "Útil para mantener la landing propia de un producto (ej. Direct) con la identidad de la vertical."
+      },
+      {
+        "type": "header",
+        "content": "Vertical 2"
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v2_key",
+        "label": "Clave (sufijo de plantilla)",
+        "default": "",
+        "info": "Ej.: clean. Activa la vertical en plantillas collection.clean / product.clean (o clean-*). Vacío = espacio sin usar."
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v2_name",
+        "label": "Nombre",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v2_tagline",
+        "label": "Tagline",
+        "default": ""
+      },
+      {
+        "type": "image_picker",
+        "id": "ecoms_v2_logo",
+        "label": "Logo (fondo claro)"
+      },
+      {
+        "type": "image_picker",
+        "id": "ecoms_v2_logo_dark",
+        "label": "Logo (fondo oscuro, footer)"
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v2_logo_asset",
+        "label": "Logo por defecto (archivo del tema)",
+        "default": "",
+        "info": "Se usa si no subes un logo. Archivo dentro de assets/."
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v2_logo_dark_asset",
+        "label": "Logo oscuro por defecto (archivo del tema)",
+        "default": ""
+      },
+      {
+        "type": "range",
+        "id": "ecoms_v2_logo_height",
+        "label": "Alto del logo en el header",
+        "min": 20,
+        "max": 64,
+        "step": 2,
+        "unit": "px",
+        "default": 30
+      },
+      {
+        "type": "image_picker",
+        "id": "ecoms_v2_favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v2_favicon_asset",
+        "label": "Favicon por defecto (archivo del tema)",
+        "default": ""
+      },
+      {
+        "type": "select",
+        "id": "ecoms_v2_skin",
+        "label": "Estilo base de las fichas",
+        "options": [
+          {
+            "value": "direct",
+            "label": "Direct"
+          },
+          {
+            "value": "flex",
+            "label": "Flex"
+          },
+          {
+            "value": "brand",
+            "label": "Brand"
+          }
+        ],
+        "default": "direct"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_v2_primary",
+        "label": "Color principal (botones, títulos)",
+        "default": "#111111"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_v2_accent",
+        "label": "Color de acento",
+        "default": "#555555"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_v2_highlight",
+        "label": "Color destacado (detalles, íconos)",
+        "default": "#888888"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_v2_soft",
+        "label": "Fondo suave (bandas, chips)",
+        "default": "#F4F4F4"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_v2_bg",
+        "label": "Fondo de página",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_v2_ink",
+        "label": "Texto",
+        "default": "#111111"
+      },
+      {
+        "type": "color_scheme",
+        "id": "ecoms_v2_scheme",
+        "label": "Esquema de colores (partes nativas: carrito, formularios)",
+        "default": "scheme-1"
+      },
+      {
+        "type": "link_list",
+        "id": "ecoms_v2_menu",
+        "label": "Menú de la vertical"
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v2_handle",
+        "label": "Usuario en redes",
+        "default": "",
+        "info": "Ej.: @ecoms.clean"
+      },
+      {
+        "type": "url",
+        "id": "ecoms_v2_instagram",
+        "label": "Instagram"
+      },
+      {
+        "type": "url",
+        "id": "ecoms_v2_tiktok",
+        "label": "TikTok"
+      },
+      {
+        "type": "checkbox",
+        "id": "ecoms_v2_by_tag",
+        "label": "Activar también en productos con el tag vertical-<clave>",
+        "default": true,
+        "info": "Útil para mantener la landing propia de un producto (ej. Direct) con la identidad de la vertical."
+      },
+      {
+        "type": "header",
+        "content": "Vertical 3"
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v3_key",
+        "label": "Clave (sufijo de plantilla)",
+        "default": "",
+        "info": "Ej.: clean. Activa la vertical en plantillas collection.clean / product.clean (o clean-*). Vacío = espacio sin usar."
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v3_name",
+        "label": "Nombre",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v3_tagline",
+        "label": "Tagline",
+        "default": ""
+      },
+      {
+        "type": "image_picker",
+        "id": "ecoms_v3_logo",
+        "label": "Logo (fondo claro)"
+      },
+      {
+        "type": "image_picker",
+        "id": "ecoms_v3_logo_dark",
+        "label": "Logo (fondo oscuro, footer)"
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v3_logo_asset",
+        "label": "Logo por defecto (archivo del tema)",
+        "default": "",
+        "info": "Se usa si no subes un logo. Archivo dentro de assets/."
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v3_logo_dark_asset",
+        "label": "Logo oscuro por defecto (archivo del tema)",
+        "default": ""
+      },
+      {
+        "type": "range",
+        "id": "ecoms_v3_logo_height",
+        "label": "Alto del logo en el header",
+        "min": 20,
+        "max": 64,
+        "step": 2,
+        "unit": "px",
+        "default": 30
+      },
+      {
+        "type": "image_picker",
+        "id": "ecoms_v3_favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v3_favicon_asset",
+        "label": "Favicon por defecto (archivo del tema)",
+        "default": ""
+      },
+      {
+        "type": "select",
+        "id": "ecoms_v3_skin",
+        "label": "Estilo base de las fichas",
+        "options": [
+          {
+            "value": "direct",
+            "label": "Direct"
+          },
+          {
+            "value": "flex",
+            "label": "Flex"
+          },
+          {
+            "value": "brand",
+            "label": "Brand"
+          }
+        ],
+        "default": "direct"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_v3_primary",
+        "label": "Color principal (botones, títulos)",
+        "default": "#111111"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_v3_accent",
+        "label": "Color de acento",
+        "default": "#555555"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_v3_highlight",
+        "label": "Color destacado (detalles, íconos)",
+        "default": "#888888"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_v3_soft",
+        "label": "Fondo suave (bandas, chips)",
+        "default": "#F4F4F4"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_v3_bg",
+        "label": "Fondo de página",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "ecoms_v3_ink",
+        "label": "Texto",
+        "default": "#111111"
+      },
+      {
+        "type": "color_scheme",
+        "id": "ecoms_v3_scheme",
+        "label": "Esquema de colores (partes nativas: carrito, formularios)",
+        "default": "scheme-1"
+      },
+      {
+        "type": "link_list",
+        "id": "ecoms_v3_menu",
+        "label": "Menú de la vertical"
+      },
+      {
+        "type": "text",
+        "id": "ecoms_v3_handle",
+        "label": "Usuario en redes",
+        "default": "",
+        "info": "Ej.: @ecoms.clean"
+      },
+      {
+        "type": "url",
+        "id": "ecoms_v3_instagram",
+        "label": "Instagram"
+      },
+      {
+        "type": "url",
+        "id": "ecoms_v3_tiktok",
+        "label": "TikTok"
+      },
+      {
+        "type": "checkbox",
+        "id": "ecoms_v3_by_tag",
+        "label": "Activar también en productos con el tag vertical-<clave>",
+        "default": true,
+        "info": "Útil para mantener la landing propia de un producto (ej. Direct) con la identidad de la vertical."
+      }
+    ]
+  },
+  {
     "name": "ECOMS · Carrito",
     "settings": [
       {

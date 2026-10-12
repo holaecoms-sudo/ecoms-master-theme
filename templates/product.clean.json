@@ -1,0 +1,279 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "ecoms-product",
+      "blocks": {
+        "eyebrow": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Ecoms Clean"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
+        "sub": {
+          "type": "text",
+          "settings": {
+            "text": ""
+          }
+        },
+        "benefits": {
+          "type": "benefits",
+          "settings": {
+            "item_1": "",
+            "item_2": "",
+            "item_3": "",
+            "item_4": ""
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "style": "direct"
+          }
+        },
+        "buy": {
+          "type": "buy",
+          "settings": {
+            "show_quantity": false,
+            "add_label": "Añadir al carrito",
+            "show_total": true,
+            "show_buy_now": true,
+            "buy_now_icon": "bolt",
+            "buy_now_label": "Comprar ahora"
+          }
+        },
+        "trust": {
+          "type": "trust",
+          "settings": {
+            "style": "grid",
+            "icon_1": "truck",
+            "title_1": "Envíos",
+            "text_1": "A todo Chile",
+            "icon_2": "lock",
+            "title_2": "Pago seguro",
+            "text_2": "Webpay o Mercado Pago",
+            "icon_3": "box",
+            "title_3": "Seguimiento",
+            "text_3": "De tu pedido",
+            "icon_4": "return",
+            "title_4": "Cambios",
+            "text_4": "10 días de retracto"
+          }
+        },
+        "payments": {
+          "type": "payments",
+          "settings": {
+            "text": ""
+          }
+        },
+        "delivery": {
+          "type": "delivery",
+          "settings": {
+            "step_1": "Pedido realizado",
+            "ready_days": 1,
+            "step_2": "Pedido listo",
+            "min_days": 3,
+            "max_days": 6,
+            "step_3": "Entregado"
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow",
+        "title",
+        "rating",
+        "sub",
+        "benefits",
+        "price",
+        "buy",
+        "trust",
+        "payments",
+        "delivery"
+      ],
+      "settings": {
+        "layout": "direct",
+        "columns": "two",
+        "thumbs": "auto",
+        "badge": "",
+        "hero_bg": "glow",
+        "media_ratio": "square",
+        "media_fit": "contain",
+        "video_first": true,
+        "video_autoplay": true,
+        "video_loop": true,
+        "sticky": true,
+        "sticky_desktop": true,
+        "sticky_label": "Comprar",
+        "palette": "store",
+        "pal_primary": "",
+        "pal_primary_ink": "",
+        "pal_dark": "",
+        "pal_accent": "",
+        "pal_accent_ink": "",
+        "pal_soft": "",
+        "pal_soft_ink": "",
+        "pal_tag": "",
+        "pal_tag_ink": "",
+        "pal_sale_bg": "",
+        "pal_sale_ink": "",
+        "pal_urgent": "",
+        "pal_urgent_bg": "",
+        "pal_bg": "",
+        "pal_ink": "",
+        "pal_muted": "",
+        "pal_line": "",
+        "pal_deep": "",
+        "padding_top": 24,
+        "padding_bottom": 32
+      }
+    },
+    "specs": {
+      "type": "ecoms-specs",
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "icon": "box",
+            "label": "Contenido del paquete",
+            "value": "",
+            "metafield": "ecoms.package_contents"
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "icon": "grid",
+            "label": "Medidas",
+            "value": "",
+            "metafield": "ecoms.dimensions"
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "icon": "gem",
+            "label": "Material",
+            "value": "",
+            "metafield": "ecoms.material"
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "icon": "hand",
+            "label": "Cómo se usa",
+            "value": "",
+            "metafield": "ecoms.usage"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ],
+      "settings": {
+        "heading": "Especificaciones",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 20
+      }
+    },
+    "cross": {
+      "type": "ecoms-cross-sell",
+      "settings": {
+        "style": "rail",
+        "heading": "Completa tu limpieza",
+        "collection": "clean",
+        "limit": 4,
+        "button_label": "Agregar",
+        "heading_2": "",
+        "split": 1,
+        "width": "full",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "reviews": {
+      "type": "ecoms-reviews",
+      "settings": {
+        "style": "widget",
+        "heading": "Opiniones de clientes",
+        "per_page": 6,
+        "write_label": "Escribe una reseña",
+        "write_link": "/pages/contact",
+        "source_note": "",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "faq": {
+      "type": "ecoms-faq",
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuánto demora y cuánto cuesta el envío?",
+            "answer": "<p>Despachamos a todo Chile. El costo y el plazo para tu comuna aparecen en el checkout antes de pagar, y te enviamos el número de seguimiento por email cuando tu pedido sale.</p>",
+            "draft": false
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo puedo pagar?",
+            "answer": "<p>Pagas por adelantado de forma segura con Webpay (débito o crédito) o Mercado Pago. Nunca vemos ni guardamos los datos de tu tarjeta.</p>",
+            "draft": false
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Puedo cambiar o devolver mi compra?",
+            "answer": "<p>Sí. Tienes 10 días desde que recibes tu pedido para arrepentirte, con el producto sin uso y en su embalaje, y 6 meses de garantía legal si presenta una falla.</p>",
+            "draft": false
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ],
+      "settings": {
+        "style": "split",
+        "heading": "Preguntas frecuentes",
+        "text": "¿Tienes otra duda? Escríbenos desde la página de contacto.",
+        "icon": "plus",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "specs",
+    "cross",
+    "reviews",
+    "faq"
+  ]
+}

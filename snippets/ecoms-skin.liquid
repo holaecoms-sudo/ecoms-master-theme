@@ -14,6 +14,15 @@
     else
       assign ec_skin = 'flex'
     endif
+  else
+    # Vertical templates (product.clean…) use the base style chosen for that vertical.
+    capture ec_vslot
+      render 'ecoms-vertical'
+    endcapture
+    if ec_vslot != blank and template.name == 'product'
+      assign ec_vsk = 'ecoms_v' | append: ec_vslot | append: '_skin'
+      assign ec_skin = settings[ec_vsk] | default: 'direct'
+    endif
   endif
   echo ec_skin
 -%}

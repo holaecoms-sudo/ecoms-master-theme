@@ -1,0 +1,92 @@
+{%- comment -%}
+  ECOMS · Vertical hero: logo of the active vertical, tagline, heading, text, featured product CTA and image.
+  Works without a vertical too (logo hidden, store colors).
+{%- endcomment -%}
+{%- liquid
+  capture ec_vslot
+    render 'ecoms-vertical'
+  endcapture
+  assign s = section.settings
+  assign tagline = s.tagline
+  if tagline == blank and ec_vslot != blank
+    assign vk = 'ecoms_v' | append: ec_vslot | append: '_tagline'
+    assign tagline = settings[vk]
+  endif
+  assign star = s.product
+  assign pic = s.image | default: star.featured_image
+  assign logo_variant = 'light'
+  if s.style == 'dark'
+    assign logo_variant = 'dark'
+  endif
+-%}
+<section class="ec-vh ec-vh--{{ s.style }}" style="--ec-pt: {{ s.padding_top }}px; --ec-pb: {{ s.padding_bottom }}px;">
+  <div class="ec-w ec-vh__in{% if pic == blank %} ec-vh__in--noimg{% endif %}">
+    <div class="ec-vh__copy">
+      {%- if s.show_logo and ec_vslot != blank -%}
+        <div class="ec-vh__logo">{% render 'ecoms-vertical-logo', slot: ec_vslot, variant: logo_variant, height: s.logo_height, eager: true %}</div>
+      {%- endif -%}
+      {%- if tagline != blank -%}<p class="ec-vh__k">{{ tagline | escape }}</p>{%- endif -%}
+      {%- if s.heading != blank -%}<h1 class="ec-vh__h">{{ s.heading | escape }}</h1>{%- endif -%}
+      {%- if s.text != blank -%}<div class="ec-vh__t">{{ s.text }}</div>{%- endif -%}
+      <div class="ec-vh__btns">
+        {%- if star != blank and s.button_label != blank -%}
+          <a class="ec-btn ec-btn--primary ec-vh__btn" href="{{ star.url }}">{{ s.button_label | escape }} {% render 'ecoms-icon', name: 'arrow' %}</a>
+        {%- elsif request.design_mode -%}
+          <p class="ec-editor-note">Elige el producto estrella para mostrar el botón.</p>
+        {%- endif -%}
+        {%- if s.button_2_label != blank -%}
+          <a class="ec-btn ec-vh__btn2" href="{{ s.button_2_link | default: '#productos' }}">{{ s.button_2_label | escape }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+    {%- if pic != blank -%}
+      <div class="ec-vh__media">
+        <a href="{{ star.url | default: '#productos' }}" class="ec-vh__img" tabindex="-1" aria-hidden="true">
+          {{ pic | image_url: width: 1200 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '480,720,960,1200', sizes: '(min-width: 990px) 520px, 92vw', alt: '' }}
+        </a>
+        {%- if star != blank and s.show_card -%}
+          <a href="{{ star.url }}" class="ec-vh__card">
+            <span class="ec-vh__cardt"><b>{{ star.title | escape }}</b>{% if s.card_text != blank %}<span>{{ s.card_text | escape }}</span>{% endif %}</span>
+            <span class="ec-vh__cardp">{% if star.price_varies %}<small>Desde</small>{% endif %}{{ star.price | money }}</span>
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ECOMS · Hero vertical",
+  "tag": "section",
+  "class": "ec-vh-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Estilo",
+      "options": [
+        { "value": "soft", "label": "Claro (fondo suave)" },
+        { "value": "dark", "label": "Oscuro (color principal)" }
+      ],
+      "default": "soft"
+    },
+    { "type": "checkbox", "id": "show_logo", "label": "Mostrar logo de la vertical", "default": true },
+    { "type": "range", "id": "logo_height", "label": "Alto del logo", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 40 },
+    { "type": "text", "id": "tagline", "label": "Tagline", "info": "Vacío = tagline de la vertical (Configuración del tema → ECOMS · Verticales)." },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Tu casa limpia, con menos esfuerzo" },
+    { "type": "richtext", "id": "text", "label": "Texto", "default": "<p>Herramientas pensadas para baño, cocina, pisos y orden. Te explicamos cómo funciona cada una y te las enviamos a todo Chile.</p>" },
+    { "type": "header", "content": "Producto estrella" },
+    { "type": "product", "id": "product", "label": "Producto estrella" },
+    { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Ver producto estrella" },
+    { "type": "text", "id": "button_2_label", "label": "Botón secundario", "default": "Ver todos" },
+    { "type": "url", "id": "button_2_link", "label": "Enlace botón secundario", "info": "Vacío = baja a la grilla de productos." },
+    { "type": "image_picker", "id": "image", "label": "Imagen", "info": "Vacío = foto del producto estrella. Recomendado 1:1, 1200 × 1200." },
+    { "type": "checkbox", "id": "show_card", "label": "Tarjeta con precio sobre la imagen", "default": true },
+    { "type": "text", "id": "card_text", "label": "Texto de la tarjeta", "default": "El favorito de la casa" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 }
+  ],
+  "presets": [ { "name": "ECOMS · Hero vertical" } ]
+}
+{% endschema %}

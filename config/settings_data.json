@@ -222,8 +222,21 @@
           "secondary_button_label": "#ffffff",
           "shadow": "#121212"
         }
+      },
+      "scheme-6": {
+        "settings": {
+          "background": "#FFFFFF",
+          "background_gradient": "",
+          "text": "#0B1B33",
+          "button": "#011F49",
+          "button_label": "#FFFFFF",
+          "secondary_button_label": "#008FFC",
+          "shadow": "#011F49"
+        }
       }
-    }
+    },
+    "ecoms_v1_instagram": "https://www.instagram.com/ecoms.clean",
+    "ecoms_v1_tiktok": "https://www.tiktok.com/@ecoms.clean"
   },
   "presets": {
     "Dawn": {
@@ -283,6 +296,17 @@
             "button_label": "#334FB4",
             "secondary_button_label": "#FFFFFF",
             "shadow": "#121212"
+          }
+        },
+        "scheme-6": {
+          "settings": {
+            "background": "#FFFFFF",
+            "background_gradient": "",
+            "text": "#0B1B33",
+            "button": "#011F49",
+            "button_label": "#FFFFFF",
+            "secondary_button_label": "#008FFC",
+            "shadow": "#011F49"
           }
         }
       },
