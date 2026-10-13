@@ -17,17 +17,33 @@ Configurado en la tienda el 13-10-2026. Todos los productos nuevos quedaron en *
 | Mini Aspiradora y Sopladora 3 en 1 | mini-aspiradora-sopladora-3-en-1 | **pendiente** | ? | Complemento | orden |
 | Colgador Smart Organizador 9 en 1 | colgador-smart-organizador-9-en-1 | $3.500 | — | Complemento (plantilla propia) | orden |
 
-## Cómo se arma cada ficha (plantilla `product.clean`)
+## Cómo se arma cada ficha (plantilla compartida `product.clean`)
 
-Todo sale de metacampos del producto, así una sola plantilla sirve para todos:
+Todos los productos de Clean usan la **misma landing** (misma estructura que la del cepillo: cifras, anatomía,
+qué incluye, problema/solución, usos, comparativa, reseñas, fotos de uso, especificaciones, FAQ, venta cruzada y
+banda final). El contenido sale de **metacampos del producto** (Admin → producto → Metacampos):
 
-- `ecoms.subtitle`: texto bajo el título
-- `ecoms.benefits`: lista con check
-- `ecoms.package_contents`, `ecoms.dimensions`, `ecoms.material`, `ecoms.usage`: tabla de especificaciones (filas vacías se ocultan)
-- `ecoms.faqs`: lista de metaobjetos `ecoms_faq` (pregunta + respuesta). Cada producto lleva sus preguntas + 3 generales (envío, pago, cambios)
-- `ecoms.cart_suggestions`: productos para «Completa tu pedido» en el carrito
+| Sección | Metacampo | Tipo |
+|---|---|---|
+| Antetítulo | `ecoms.eyebrow` | texto |
+| Etiquetas bajo el título | `ecoms.chips` | lista de textos |
+| Subtítulo / beneficios | `ecoms.subtitle` / `ecoms.benefits` | texto / lista |
+| Íconos bajo la foto y beneficios de «problema» | `ecoms.highlights` | lista de «Ítem de contenido» (ícono + título) |
+| Cifras clave | `ecoms.stats` | lista de «Ítem de contenido» (ícono, valor, etiqueta) |
+| Anatomía | `ecoms.features` + `ecoms.feature_image` | ítems (ícono, título, texto) + imagen |
+| Qué incluye (bloque y sección) | `ecoms.includes` | ítems (ícono o imagen, cantidad, título, texto, insignia) |
+| Problema / solución | `ecoms.problem_heading`, `ecoms.problem_text`, `ecoms.before_image`, `ecoms.after_image` | texto, texto enriquecido, imágenes |
+| Usos por zona (pestañas) | `ecoms.uses` | ítems (etiqueta, subtítulo, texto, imagen) |
+| Comparativa | `ecoms.compare_us`, `ecoms.compare_them`, `ecoms.compare_rows` | textos + lista de filas |
+| Reseñas | `ecoms.reviews` | lista de «Reseña» (solo reseñas reales) |
+| Fotos de uso | `ecoms.ugc` | ítems con imagen |
+| Especificaciones | `ecoms.package_contents`, `ecoms.dimensions`, `ecoms.material`, `ecoms.usage` | textos |
+| Preguntas frecuentes | `ecoms.faqs` | lista de «Pregunta frecuente» |
+| Banda final | `ecoms.cta_heading` | texto |
+| «Completa tu pedido» | `ecoms.cart_suggestions` | lista de productos |
 
-Reseñas: la sección se oculta si el producto no tiene reseñas reales.
+Cada sección se oculta sola si el producto no tiene ese contenido. Las plantillas con bloques (la del cepillo)
+siguen funcionando igual: los metacampos solo reemplazan los bloques cuando existen.
 
 ## Antes de activar un producto
 
