@@ -130,7 +130,7 @@
     "cart_color_scheme": "scheme-1",
     "customer_account_menu": "customer-account-main-menu",
     "ecoms_store_name": "Ecoms",
-    "ecoms_payment_icons": "visa, master, webpay",
+    "ecoms_payment_icons": "visa, master",
     "ecoms_pay_logo_1": "shopify://shop_images/mercadopago-isotipo.png",
     "ecoms_pay_logo_2": "shopify://shop_images/webpay.png",
     "ecoms_protect_images": true,
