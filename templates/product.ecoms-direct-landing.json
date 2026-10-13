@@ -18,12 +18,12 @@
             "text": "Limpieza sin esfuerzo"
           }
         },
-        "rating": {
-          "type": "rating",
-          "settings": {}
-        },
         "title": {
           "type": "title",
+          "settings": {}
+        },
+        "rating": {
+          "type": "rating",
           "settings": {}
         },
         "chips": {
@@ -273,7 +273,7 @@
           "type": "stat",
           "settings": {
             "icon": "drop",
-            "value": "Ducha",
+            "value": "Loza",
             "label": "resistente al agua: úsalo mojado"
           }
         },
@@ -856,13 +856,13 @@
         "heading": "Opiniones de clientes",
         "link_label": "",
         "link": "",
+        "source_note": "",
         "per_page": 6,
         "write_label": "Escribe una reseña",
         "write_link": "/pages/contact",
         "width": "full",
         "padding_top": 32,
-        "padding_bottom": 32,
-        "source_note": ""
+        "padding_bottom": 32
       }
     },
     "ugc": {
