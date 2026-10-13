@@ -132,6 +132,7 @@
     "ecoms_store_name": "Ecoms",
     "ecoms_payment_icons": "visa, master, webpay",
     "ecoms_pay_logo_1": "shopify://shop_images/mercadopago-isotipo.png",
+    "ecoms_pay_logo_2": "shopify://shop_images/webpay.png",
     "ecoms_protect_images": true,
     "ecoms_primary": "#0F5132",
     "ecoms_primary_ink": "#FFFFFF",
