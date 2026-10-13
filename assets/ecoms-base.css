@@ -1372,3 +1372,7 @@ a.ec-rating--auto:hover b + span { text-decoration: underline; }
 /* Catalog with a single product: keep the card at a normal size */
 .ec-cg__grid:not(:has(> :nth-child(2))) { grid-template-columns: minmax(0, 1fr); max-width: 360px; margin-inline: auto; }
 @media screen and (max-width: 749px) { .ec-cg__grid:not(:has(> :nth-child(2))) { max-width: 300px; } }
+/* Uploaded official payment logos: same box as the SVG icons */
+.ec-pay-logo { display: inline-grid; place-items: center; width: 38px; height: 24px; padding: 2px; border: 1px solid #D9D9D9; border-radius: 3px; background: #fff; box-sizing: border-box; overflow: hidden; }
+.ec-pay-logo img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+.ec-cart-pay:empty, .ec-ft__pay:empty, .ec-payments__list:empty { display: none; }

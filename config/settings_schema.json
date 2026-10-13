@@ -1513,6 +1513,27 @@
         "info": "Separados por coma, en orden. Disponibles: webpay, mercadopago, redcompra, mach, khipu, visa, master, american_express, diners_club, maestro, paypal. Vacío = los que detecta Shopify. Muestra solo los que realmente aceptas."
       },
       {
+        "type": "image_picker",
+        "id": "ecoms_pay_logo_1",
+        "label": "Logo oficial de pago 1",
+        "info": "Opcional. Sube el logo oficial (ej. Mercado Pago o Webpay desde su kit de marca). Se muestra antes de los íconos de la lista; quita ese nombre de la lista para no repetirlo."
+      },
+      {
+        "type": "image_picker",
+        "id": "ecoms_pay_logo_2",
+        "label": "Logo oficial de pago 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "ecoms_pay_logo_3",
+        "label": "Logo oficial de pago 3"
+      },
+      {
+        "type": "image_picker",
+        "id": "ecoms_pay_logo_4",
+        "label": "Logo oficial de pago 4"
+      },
+      {
         "type": "checkbox",
         "id": "ecoms_protect_images",
         "label": "Proteger imágenes (sin clic derecho ni descarga)",

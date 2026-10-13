@@ -7,6 +7,14 @@
   Accepts:
   - class: {String} class for each icon
 {%- endcomment -%}
+{%- comment -%} Official logos uploaded in theme settings go first (e.g. Mercado Pago / Webpay brand kit). {%- endcomment -%}
+{%- for n in (1..4) -%}
+  {%- assign lk = 'ecoms_pay_logo_' | append: n -%}
+  {%- assign logo = settings[lk] -%}
+  {%- if logo != blank -%}
+    <li><span class="{{ class }} ec-pay-logo">{{ logo | image_url: height: 48 | image_tag: height: 24, loading: 'lazy', alt: logo.alt | default: 'Medio de pago' }}</span></li>
+  {%- endif -%}
+{%- endfor -%}
 {%- if settings.ecoms_payment_icons != blank -%}
   {%- assign pay_list = settings.ecoms_payment_icons | downcase | replace: ' ', '' | split: ',' -%}
   {%- for name in pay_list -%}
@@ -15,7 +23,7 @@
       {%- case name -%}
         {%- when 'webpay' -%}
           <svg class="{{ class }}" viewBox="0 0 38 24" role="img" aria-label="Webpay"><rect x=".5" y=".5" width="37" height="23" rx="3" fill="#fff" stroke="#D9D9D9"/><text x="19" y="15.2" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="8.6" font-weight="700" fill="#D5007F">webpay</text></svg>
-        {%- when 'mercadopago', 'mercado_pago' -%}
+        {%- when 'mercadopago' -%}
           <svg class="{{ class }}" viewBox="0 0 38 24" role="img" aria-label="Mercado Pago"><rect width="38" height="24" rx="3" fill="#00B1EA"/><text x="19" y="10.6" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="6.4" font-weight="700" fill="#fff">mercado</text><text x="19" y="18.4" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="6.4" font-weight="700" fill="#fff">pago</text></svg>
         {%- when 'redcompra' -%}
           <svg class="{{ class }}" viewBox="0 0 38 24" role="img" aria-label="Redcompra"><rect x=".5" y=".5" width="37" height="23" rx="3" fill="#fff" stroke="#D9D9D9"/><text x="19" y="14.8" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="6.6" font-weight="700" fill="#E2001A">Redcompra</text></svg>

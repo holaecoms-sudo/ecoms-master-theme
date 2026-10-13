@@ -86,7 +86,7 @@
       {%- endif -%}
 
     {%- when 'trust' -%}
-      {%- if settings.ecoms_cart_show_payments and settings.ecoms_payment_icons != blank or settings.ecoms_cart_show_payments and shop.enabled_payment_types.size > 0 -%}
+      {%- if settings.ecoms_cart_show_payments -%}
         <ul class="ec-cart-pay" role="list" aria-label="Medios de pago">
           {%- render 'ecoms-payment-icons', class: 'ec-cart-pay__icon' -%}
         </ul>
