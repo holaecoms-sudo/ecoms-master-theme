@@ -407,6 +407,8 @@
     }
     const json = await postCart(JSON.stringify(payload), true);
     track('ecoms_upsell_added', { variant_id: Number(variantId), quantity, source });
+    // Cart page: reload so the line items, totals and suggestions update together.
+    if (document.getElementById('main-cart-items')) { window.location.reload(); return; }
     if (!showDrawer(json)) window.location.href = window.routes?.cart_url || '/cart';
   }
 

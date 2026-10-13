@@ -62,6 +62,7 @@
                   <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
                   <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
                 </div>
+                {%- render 'ecoms-cart-extras', part: 'savings' -%}
 
                 <small class="tax-note caption-large rte">
                   {%- if cart.duties_included and cart.taxes_included -%}
@@ -115,8 +116,13 @@
                   {% endif %}
                   form="cart"
                 >
-                  {{ 'sections.cart.checkout' | t }}
+                  {%- if cart != empty -%}
+                    {% render 'ecoms-icon', name: 'lock' %}{{ settings.ecoms_cart_checkout_label | default: 'Pagar de forma segura' | escape }}
+                  {%- else -%}
+                    {{ 'sections.cart.checkout' | t }}
+                  {%- endif -%}
                 </button>
+                {%- render 'ecoms-cart-extras', part: 'trust' -%}
               </div>
 
               {%- if additional_checkout_buttons -%}

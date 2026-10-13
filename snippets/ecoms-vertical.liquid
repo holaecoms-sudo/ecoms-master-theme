@@ -3,6 +3,7 @@
   A vertical is active when:
   1. the template suffix is its key or starts with "<key>-" (collection.clean, product.clean, product.clean-flex…);
   2. on a product page, the product has the tag "vertical-<key>" and the slot allows it;
+     on the cart page, the same test (or a "<key>" template suffix) on the first product in the cart;
   3. the store-wide setting «Vertical por defecto» has its key (dedicated store, Fase 2).
   Usage: {%- capture ec_vslot -%}{% render 'ecoms-vertical' %}{%- endcapture -%}
   Then read its settings with: settings[ 'ecoms_v' | append: ec_vslot | append: '_name' ]
@@ -25,14 +26,25 @@
     endfor
   endif
 
-  if ec_found == '' and template.name == 'product' and product != blank
+  assign ec_prod = blank
+  if template.name == 'product'
+    assign ec_prod = product
+  elsif template.name == 'cart' and cart.item_count > 0
+    assign ec_prod = cart.items.first.product
+  endif
+  if ec_found == '' and ec_prod != blank
+    assign ec_psfx = ec_prod.template_suffix | default: '' | downcase | split: '-' | first
     for n in (1..3)
       assign k = 'ecoms_v' | append: n | append: '_key'
       assign kt = 'ecoms_v' | append: n | append: '_by_tag'
       assign vkey = settings[k] | strip | downcase
-      if vkey != blank and settings[kt]
+      if vkey != blank
         assign vtag = 'vertical-' | append: vkey
-        if product.tags contains vtag
+        if template.name == 'cart' and ec_psfx == vkey
+          assign ec_found = n
+          break
+        endif
+        if settings[kt] and ec_prod.tags contains vtag
           assign ec_found = n
           break
         endif

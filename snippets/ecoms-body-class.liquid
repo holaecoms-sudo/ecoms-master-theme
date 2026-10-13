@@ -1,6 +1,7 @@
 {%- comment -%} ECOMS · Body classes for the active skin. Rendered inside <body class="…">. {%- endcomment -%}
 {%- capture ec_skin -%}{% render 'ecoms-skin' %}{%- endcapture -%}
 {%- if ec_skin != 'none' %} ec-skin ec-skin--{{ ec_skin }}{% if settings.ecoms_skin_chrome %} ec-chrome{% endif %}{% if settings.ecoms_use_skin_fonts %} ec-fonts{% endif %}{% endif -%}
+{%- if template.name == 'cart' %} ec-cart-page{% endif -%}
 {%- capture ec_vslot -%}{% render 'ecoms-vertical' %}{%- endcapture -%}
 {%- if template.name == 'product' -%}
   {%- if template.suffix contains 'ecoms-' or ec_vslot != blank %} ec-pdp-page{% endif -%}
