@@ -27,7 +27,7 @@
     endif
   endfor
   assign half = items | plus: 1 | divided_by: 2
-  assign pic = section.settings.image | default: product.featured_image
+  assign pic = product.metafields.ecoms.feature_image.value | default: section.settings.image | default: product.featured_image
   assign n = 0
 -%}
 {%- if items > 0 or request.design_mode -%}

@@ -1,5 +1,16 @@
 {%- comment -%} ECOMS · Problem → solution (Direct): copy + before/after, benefit icons, real customer quote on a photo. {%- endcomment -%}
 {%- liquid
+  # Per-product copy (ecoms.problem_heading / problem_text / before_image / after_image) wins when present.
+  assign p_heading = product.metafields.ecoms.problem_heading.value | default: section.settings.heading
+  assign p_before = product.metafields.ecoms.before_image.value | default: section.settings.before
+  assign p_after = product.metafields.ecoms.after_image.value | default: section.settings.after
+  if product.metafields.ecoms.problem_text != blank
+    assign p_text = product.metafields.ecoms.problem_text | metafield_tag
+  else
+    assign p_text = section.settings.text
+  endif
+-%}
+{%- liquid
   # Items come from the section blocks, or from a product metafield (list of metaobjects «ecoms_item»)
   # when «Contenido desde metacampo» is set and the product has it. One template then serves every product.
   assign ec_src = section.blocks
@@ -13,25 +24,25 @@
     endif
   endif
 -%}
-{%- if section.settings.heading != blank or section.settings.text != blank or ec_src.size > 0 or request.design_mode -%}
+{%- if p_heading != blank or p_text != blank or ec_src.size > 0 or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-problem' %}>
   <div class="ec-w">
     <div class="ec-prob">
       <div class="ec-prob__txt">
-        {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
-        {%- if section.settings.text != blank -%}<div class="ec-prob__p rte">{{ section.settings.text }}</div>{%- endif -%}
-        {%- if section.settings.before != blank or section.settings.after != blank -%}
+        {%- if p_heading != blank -%}<h2>{{ p_heading | escape }}</h2>{%- endif -%}
+        {%- if p_text != blank -%}<div class="ec-prob__p rte">{{ p_text }}</div>{%- endif -%}
+        {%- if p_before != blank or p_after != blank -%}
           <div class="ec-baimg">
             <figure>
-              {%- if section.settings.before != blank -%}
-                {{ section.settings.before | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300,450,600', sizes: '(min-width: 990px) 200px, 45vw', alt: section.settings.before_label }}
+              {%- if p_before != blank -%}
+                {{ p_before | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300,450,600', sizes: '(min-width: 990px) 200px, 45vw', alt: section.settings.before_label }}
               {%- endif -%}
               <figcaption><b>{{ section.settings.before_label | escape }}</b>{{ section.settings.before_caption | escape }}</figcaption>
             </figure>
             <span class="ec-baimg__arrow" aria-hidden="true">{% render 'ecoms-icon', name: 'arrow' %}</span>
             <figure>
-              {%- if section.settings.after != blank -%}
-                {{ section.settings.after | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300,450,600', sizes: '(min-width: 990px) 200px, 45vw', alt: section.settings.after_label }}
+              {%- if p_after != blank -%}
+                {{ p_after | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300,450,600', sizes: '(min-width: 990px) 200px, 45vw', alt: section.settings.after_label }}
               {%- endif -%}
               <figcaption><b>{{ section.settings.after_label | escape }}</b>{{ section.settings.after_caption | escape }}</figcaption>
             </figure>

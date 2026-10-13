@@ -15,7 +15,7 @@
         "eyebrow": {
           "type": "eyebrow",
           "settings": {
-            "text": "{{ product.metafields.ecoms.eyebrow.value }}"
+            "text": "Ecoms Clean"
           }
         },
         "title": {
@@ -265,7 +265,7 @@
       "blocks": {},
       "block_order": [],
       "settings": {
-        "heading": "{{ product.metafields.ecoms.problem_heading.value }}",
+        "heading": "",
         "text": "",
         "before_label": "Antes",
         "before_caption": "Imagen referencial",
@@ -301,9 +301,9 @@
         "style": "vs",
         "heading": "La diferencia se nota",
         "feature_label": "",
-        "col_1": "{{ product.metafields.ecoms.compare_us.value }}",
+        "col_1": "",
         "show_image": true,
-        "col_2": "{{ product.metafields.ecoms.compare_them.value }}",
+        "col_2": "",
         "col_3": "",
         "width": "full",
         "padding_top": 28,
@@ -445,7 +445,7 @@
       "settings": {
         "style": "dark",
         "eyebrow": "",
-        "heading": "{{ product.metafields.ecoms.cta_heading.value }}",
+        "heading": "Tu casa limpia, con menos esfuerzo",
         "text": "Envío a todo Chile y pago seguro con Webpay o Mercado Pago.",
         "image_plain": false,
         "button_label": "Comprar ahora",

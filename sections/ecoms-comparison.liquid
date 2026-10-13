@@ -1,5 +1,10 @@
 {%- comment -%} ECOMS · Comparison table. Every row must be verifiable before publishing. {%- endcomment -%}
 {%- liquid
+  # Per-product column names (ecoms.compare_us / compare_them) win when present.
+  assign c_col_1 = product.metafields.ecoms.compare_us.value | default: section.settings.col_1
+  assign c_col_2 = product.metafields.ecoms.compare_them.value | default: section.settings.col_2
+-%}
+{%- liquid
   # Items come from the section blocks, or from a product metafield (list of metaobjects «ecoms_item»)
   # when «Contenido desde metacampo» is set and the product has it. One template then serves every product.
   assign ec_src = section.blocks
@@ -17,7 +22,7 @@
 -%}
 {%- liquid
   assign cols = 1
-  if section.settings.col_2 != blank
+  if c_col_2 != blank
     assign cols = 2
   endif
   if section.settings.col_3 != blank
@@ -34,7 +39,7 @@
       {%- comment -%} VS cards: the alternative (col 2) vs this product (col 1), same verifiable rows. {%- endcomment -%}
       <div class="ec-vs">
         <div class="ec-vs__card ec-vs__card--them">
-          <p class="ec-vs__h">{{ section.settings.col_2 | escape }}</p>
+          <p class="ec-vs__h">{{ c_col_2 | escape }}</p>
           <ul role="list">
             {%- for block in ec_src -%}
               {%- liquid
@@ -59,7 +64,7 @@
           {%- if section.settings.show_image and product.featured_image != blank -%}
             {{ product.featured_image | image_url: width: 160 | image_tag: class: 'ec-vs__img', loading: 'lazy', width: 56, height: 56, alt: '' }}
           {%- endif -%}
-          <p class="ec-vs__h">{{ section.settings.col_1 | escape }}</p>
+          <p class="ec-vs__h">{{ c_col_1 | escape }}</p>
           <ul role="list">
             {%- for block in ec_src -%}
               {%- liquid
@@ -90,9 +95,9 @@
               {%- if section.settings.show_image and product.featured_image != blank -%}
                 {{ product.featured_image | image_url: width: 120 | image_tag: class: 'ec-cmp__img', loading: 'lazy', width: 44, height: 44, alt: '' }}
               {%- endif -%}
-              {{- section.settings.col_1 | escape -}}
+              {{- c_col_1 | escape -}}
             </th>
-            {%- if cols > 1 %}<th scope="col">{{ section.settings.col_2 | escape }}</th>{% endif -%}
+            {%- if cols > 1 %}<th scope="col">{{ c_col_2 | escape }}</th>{% endif -%}
             {%- if cols > 2 %}<th scope="col">{{ section.settings.col_3 | escape }}</th>{% endif -%}
           </tr>
         </thead>

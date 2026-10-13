@@ -205,8 +205,10 @@
             <div class="ec-pdp__buy" {{ block.shopify_attributes }}>
 
           {%- when 'eyebrow' -%}
-            {%- if block.settings.text != blank -%}
-              <p class="ec-eyebrow" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</p>
+            {%- comment -%} Per-product metafield ecoms.eyebrow wins over the template text. {%- endcomment -%}
+            {%- assign eyebrow_text = product.metafields.ecoms.eyebrow.value | default: block.settings.text -%}
+            {%- if eyebrow_text != blank -%}
+              <p class="ec-eyebrow" {{ block.shopify_attributes }}>{{ eyebrow_text | escape }}</p>
             {%- endif -%}
 
           {%- when 'rating' -%}
