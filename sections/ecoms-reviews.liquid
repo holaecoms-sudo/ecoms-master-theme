@@ -3,13 +3,43 @@
   the merchant, or the review app's own block (@app). Hidden on the storefront when there is nothing real.
 {%- endcomment -%}
 {%- liquid
+  # Items come from the section blocks, or from a product metafield (list of metaobjects «ecoms_item»)
+  # when «Contenido desde metacampo» is set and the product has it. One template then serves every product.
+  assign ec_src = section.blocks
+  if section.settings.metafield != blank and product
+    assign ec_mfp = section.settings.metafield | strip | split: '.'
+    if ec_mfp.size == 2
+      assign ec_mfl = product.metafields[ec_mfp[0]][ec_mfp[1]].value
+      if ec_mfl != blank
+        assign ec_src = ec_mfl
+      endif
+    endif
+  endif
+-%}
+{%- liquid
   assign has_rating = false
   if product.metafields.reviews.rating.value != blank
     assign has_rating = true
   endif
   assign real_blocks = 0
-  for block in section.blocks
-    unless block.type == 'review' and block.settings.example
+  for block in ec_src
+    assign bk_type = block.type | default: 'review'
+    assign bk_author = block.settings.author | default: block.author.value
+    assign bk_date = block.settings.date | default: block.date.value
+    assign bk_example = block.settings.example | default: block.example.value
+    assign bk_image = block.settings.image | default: block.image.value
+    assign bk_image_2 = block.settings.image_2 | default: block.image_2.value
+    assign bk_image_3 = block.settings.image_3 | default: block.image_3.value
+    assign bk_label = block.settings.label | default: block.label.value
+    assign bk_quote = block.settings.quote | default: block.quote.value
+    assign bk_show_stars = block.settings.show_stars | default: block.show_stars.value
+    assign bk_stars = block.settings.stars | default: block.stars.value
+    assign bk_text = block.settings.text | default: block.text.value
+    assign bk_title = block.settings.title | default: block.title.value
+    assign bk_value = block.settings.value | default: block.value.value
+    assign bk_verified = block.settings.verified | default: block.verified.value
+    assign bk_video = block.settings.video | default: block.video.value
+    unless bk_type == 'review' and bk_example
       assign real_blocks = real_blocks | plus: 1
     endunless
   endfor
@@ -26,14 +56,30 @@
       assign c3 = 0
       assign c2 = 0
       assign c1 = 0
-      for block in section.blocks
-        if block.type == 'review' and block.settings.text != blank
-          if block.settings.example and request.design_mode == false
+      for block in ec_src
+        assign bk_type = block.type | default: 'review'
+        assign bk_author = block.settings.author | default: block.author.value
+        assign bk_date = block.settings.date | default: block.date.value
+        assign bk_example = block.settings.example | default: block.example.value
+        assign bk_image = block.settings.image | default: block.image.value
+        assign bk_image_2 = block.settings.image_2 | default: block.image_2.value
+        assign bk_image_3 = block.settings.image_3 | default: block.image_3.value
+        assign bk_label = block.settings.label | default: block.label.value
+        assign bk_quote = block.settings.quote | default: block.quote.value
+        assign bk_show_stars = block.settings.show_stars | default: block.show_stars.value
+        assign bk_stars = block.settings.stars | default: block.stars.value
+        assign bk_text = block.settings.text | default: block.text.value
+        assign bk_title = block.settings.title | default: block.title.value
+        assign bk_value = block.settings.value | default: block.value.value
+        assign bk_verified = block.settings.verified | default: block.verified.value
+        assign bk_video = block.settings.video | default: block.video.value
+        if bk_type == 'review' and bk_text != blank
+          if bk_example and request.design_mode == false
             continue
           endif
           assign rv_n = rv_n | plus: 1
-          assign rv_sum = rv_sum | plus: block.settings.stars
-          case block.settings.stars
+          assign rv_sum = rv_sum | plus: bk_stars
+          case bk_stars
             when 5
               assign c5 = c5 | plus: 1
             when 4
@@ -87,36 +133,54 @@
 
       <div class="ec-rw__grid">
         {%- assign shown = 0 -%}
-        {%- for block in section.blocks -%}
-          {%- if block.type == '@app' -%}
+        {%- for block in ec_src -%}
+          {%- liquid
+            assign bk_type = block.type | default: 'review'
+            assign bk_author = block.settings.author | default: block.author.value
+            assign bk_date = block.settings.date | default: block.date.value
+            assign bk_example = block.settings.example | default: block.example.value
+            assign bk_image = block.settings.image | default: block.image.value
+            assign bk_image_2 = block.settings.image_2 | default: block.image_2.value
+            assign bk_image_3 = block.settings.image_3 | default: block.image_3.value
+            assign bk_label = block.settings.label | default: block.label.value
+            assign bk_quote = block.settings.quote | default: block.quote.value
+            assign bk_show_stars = block.settings.show_stars | default: block.show_stars.value
+            assign bk_stars = block.settings.stars | default: block.stars.value
+            assign bk_text = block.settings.text | default: block.text.value
+            assign bk_title = block.settings.title | default: block.title.value
+            assign bk_value = block.settings.value | default: block.value.value
+            assign bk_verified = block.settings.verified | default: block.verified.value
+            assign bk_video = block.settings.video | default: block.video.value
+          -%}
+          {%- if bk_type == '@app' -%}
             <div class="ec-revs__app">{% render block %}</div>
             {%- continue -%}
           {%- endif -%}
-          {%- if block.type != 'review' or block.settings.text == blank -%}{%- continue -%}{%- endif -%}
-          {%- if block.settings.example and request.design_mode == false -%}{%- continue -%}{%- endif -%}
+          {%- if bk_type != 'review' or bk_text == blank -%}{%- continue -%}{%- endif -%}
+          {%- if bk_example and request.design_mode == false -%}{%- continue -%}{%- endif -%}
           {%- assign shown = shown | plus: 1 -%}
-          <article class="ec-rw__card{% if block.settings.example %} ec-rev--example{% endif %}"{% if shown > rv_limit %} hidden data-ec-rw-more{% endif %} {{ block.shopify_attributes }}>
-            {%- if block.settings.example -%}<span class="ec-rev__example">Ejemplo · no visible en la tienda</span>{%- endif -%}
+          <article class="ec-rw__card{% if bk_example %} ec-rev--example{% endif %}"{% if shown > rv_limit %} hidden data-ec-rw-more{% endif %} {{ block.shopify_attributes }}>
+            {%- if bk_example -%}<span class="ec-rev__example">Ejemplo · no visible en la tienda</span>{%- endif -%}
             <div class="ec-rw__top">
-              <b>{{ block.settings.author | escape }}</b>
-              {%- if block.settings.verified -%}<span class="ec-rw__ver">{% render 'ecoms-icon', name: 'verified' %}Verificada</span>{%- endif -%}
+              <b>{{ bk_author | escape }}</b>
+              {%- if bk_verified -%}<span class="ec-rw__ver">{% render 'ecoms-icon', name: 'verified' %}Verificada</span>{%- endif -%}
             </div>
-            {%- if block.settings.date != blank -%}<small class="ec-rw__date">{{ block.settings.date | escape }}</small>{%- endif -%}
-            <span class="ec-stars" style="--s: 15px; --r: {{ block.settings.stars | times: 20 }}%" role="img" aria-label="{{ block.settings.stars }} de 5 estrellas"></span>
-            <p class="ec-rw__text">{{ block.settings.text | escape | newline_to_br }}</p>
-            {%- if block.settings.image != blank or block.settings.image_2 != blank or block.settings.image_3 != blank or block.settings.video != blank -%}
+            {%- if bk_date != blank -%}<small class="ec-rw__date">{{ bk_date | escape }}</small>{%- endif -%}
+            <span class="ec-stars" style="--s: 15px; --r: {{ bk_stars | times: 20 }}%" role="img" aria-label="{{ bk_stars }} de 5 estrellas"></span>
+            <p class="ec-rw__text">{{ bk_text | escape | newline_to_br }}</p>
+            {%- if bk_image != blank or bk_image_2 != blank or bk_image_3 != blank or bk_video != blank -%}
               <div class="ec-rw__media">
-                {%- if block.settings.video != blank -%}
-                  {%- assign vprev = block.settings.video.preview_image -%}
-                  <button type="button" class="ec-rw__th ec-rw__th--video" data-ec-rw-open="video" data-src="{{ block.settings.video.sources | where: 'format', 'mp4' | map: 'url' | first | default: block.settings.video.sources[0].url }}" aria-label="Ver video de {{ block.settings.author | escape }}">
+                {%- if bk_video != blank -%}
+                  {%- assign vprev = bk_video.preview_image -%}
+                  <button type="button" class="ec-rw__th ec-rw__th--video" data-ec-rw-open="video" data-src="{{ bk_video.sources | where: 'format', 'mp4' | map: 'url' | first | default: bk_video.sources[0].url }}" aria-label="Ver video de {{ bk_author | escape }}">
                     {%- if vprev != blank -%}{{ vprev | image_url: width: 240 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}
                     <span class="ec-rw__play">{% render 'ecoms-icon', name: 'play' %}</span>
                   </button>
                 {%- endif -%}
                 {%- for k in (1..3) -%}
-                  {%- if k == 1 -%}{%- assign ph = block.settings.image -%}{%- else -%}{%- assign key = 'image_' | append: k -%}{%- assign ph = block.settings[key] -%}{%- endif -%}
+                  {%- if k == 1 -%}{%- assign ph = bk_image -%}{%- else -%}{%- if k == 2 -%}{%- assign ph = bk_image_2 -%}{%- else -%}{%- assign ph = bk_image_3 -%}{%- endif -%}{%- endif -%}
                   {%- if ph != blank -%}
-                    <button type="button" class="ec-rw__th" data-ec-rw-open="image" data-src="{{ ph | image_url: width: 1400 }}" aria-label="Ver foto de {{ block.settings.author | escape }}">
+                    <button type="button" class="ec-rw__th" data-ec-rw-open="image" data-src="{{ ph | image_url: width: 1400 }}" aria-label="Ver foto de {{ bk_author | escape }}">
                       {{ ph | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120,240', sizes: '96px', alt: '' }}
                     </button>
                   {%- endif -%}
@@ -181,47 +245,65 @@
       {%- endif -%}
     </div>
     <div class="ec-revs ec-revs--{{ style }}">
-      {%- for block in section.blocks -%}
-        {%- case block.type -%}
+      {%- for block in ec_src -%}
+        {%- liquid
+          assign bk_type = block.type | default: 'review'
+          assign bk_author = block.settings.author | default: block.author.value
+          assign bk_date = block.settings.date | default: block.date.value
+          assign bk_example = block.settings.example | default: block.example.value
+          assign bk_image = block.settings.image | default: block.image.value
+          assign bk_image_2 = block.settings.image_2 | default: block.image_2.value
+          assign bk_image_3 = block.settings.image_3 | default: block.image_3.value
+          assign bk_label = block.settings.label | default: block.label.value
+          assign bk_quote = block.settings.quote | default: block.quote.value
+          assign bk_show_stars = block.settings.show_stars | default: block.show_stars.value
+          assign bk_stars = block.settings.stars | default: block.stars.value
+          assign bk_text = block.settings.text | default: block.text.value
+          assign bk_title = block.settings.title | default: block.title.value
+          assign bk_value = block.settings.value | default: block.value.value
+          assign bk_verified = block.settings.verified | default: block.verified.value
+          assign bk_video = block.settings.video | default: block.video.value
+        -%}
+        {%- case bk_type -%}
           {%- when '@app' -%}
             <div class="ec-revs__app">{% render block %}</div>
           {%- when 'review' -%}
             {%- liquid
               assign show_review = false
-              if block.settings.text != blank
+              if bk_text != blank
                 assign show_review = true
               endif
-              if block.settings.example and request.design_mode == false
+              if bk_example and request.design_mode == false
                 assign show_review = false
               endif
             -%}
             {%- if show_review -%}
-              {%- assign initials = block.settings.author | split: ' ' -%}
-              <article class="ec-rev{% if block.settings.example %} ec-rev--example{% endif %}" {{ block.shopify_attributes }}>
-                {%- if block.settings.example -%}<span class="ec-rev__example">Ejemplo · no visible en la tienda</span>{%- endif -%}
+              {%- assign initials = bk_author | split: ' ' -%}
+              <article class="ec-rev{% if bk_example %} ec-rev--example{% endif %}" {{ block.shopify_attributes }}>
+                {%- if bk_example -%}<span class="ec-rev__example">Ejemplo · no visible en la tienda</span>{%- endif -%}
                 <div class="ec-rev__who">
                   <span class="ec-avatar ec-avatar--{{ forloop.index0 | modulo: 5 }}" aria-hidden="true">
                     {%- for word in initials limit: 2 -%}{{ word | slice: 0 | upcase }}{%- endfor -%}
                   </span>
                   <div>
                     <b>
-                      {{- block.settings.author | escape -}}
-                      {%- if block.settings.verified %}{% render 'ecoms-icon', name: 'verified' %}<span class="visually-hidden">Compra verificada</span>{% endif -%}
+                      {{- bk_author | escape -}}
+                      {%- if bk_verified %}{% render 'ecoms-icon', name: 'verified' %}<span class="visually-hidden">Compra verificada</span>{% endif -%}
                     </b>
                     <span class="ec-rev__meta">
-                      {%- assign pct = block.settings.stars | times: 20 -%}
-                      <span class="ec-stars" style="--s: 12px; --r: {{ pct }}%" role="img" aria-label="{{ block.settings.stars }} de 5 estrellas"></span>
-                      {%- if block.settings.date != blank -%}<small>{{ block.settings.date | escape }}</small>{%- endif -%}
+                      {%- assign pct = bk_stars | times: 20 -%}
+                      <span class="ec-stars" style="--s: 12px; --r: {{ pct }}%" role="img" aria-label="{{ bk_stars }} de 5 estrellas"></span>
+                      {%- if bk_date != blank -%}<small>{{ bk_date | escape }}</small>{%- endif -%}
                     </span>
                   </div>
                 </div>
-                <p>{% if style != 'flex' %}“{% endif %}{{ block.settings.text | escape }}{% if style != 'flex' %}”{% endif %}</p>
-                {%- if block.settings.image != blank or block.settings.image_2 != blank -%}
+                <p>{% if style != 'flex' %}“{% endif %}{{ bk_text | escape }}{% if style != 'flex' %}”{% endif %}</p>
+                {%- if bk_image != blank or bk_image_2 != blank -%}
                   <div class="ec-rev__ph">
                     {%- for k in (1..3) -%}
-                      {%- if k == 1 -%}{%- assign ph = block.settings.image -%}{%- else -%}{%- assign key = 'image_' | append: k -%}{%- assign ph = block.settings[key] -%}{%- endif -%}
+                      {%- if k == 1 -%}{%- assign ph = bk_image -%}{%- else -%}{%- if k == 2 -%}{%- assign ph = bk_image_2 -%}{%- else -%}{%- assign ph = bk_image_3 -%}{%- endif -%}{%- endif -%}
                       {%- if ph != blank -%}
-                        {{ ph | image_url: width: 500 | image_tag: loading: 'lazy', widths: '160,300,500', sizes: '(min-width: 990px) 220px, 90vw', alt: block.settings.author }}
+                        {{ ph | image_url: width: 500 | image_tag: loading: 'lazy', widths: '160,300,500', sizes: '(min-width: 990px) 220px, 90vw', alt: bk_author }}
                       {%- endif -%}
                     {%- endfor -%}
                   </div>
@@ -230,10 +312,10 @@
             {%- endif -%}
           {%- when 'join' -%}
             <div class="ec-join" {{ block.shopify_attributes }}>
-              {%- if block.settings.title != blank -%}<h3>{{ block.settings.title | escape }}</h3>{%- endif -%}
-              {%- if block.settings.value != blank -%}<div><b>{{ block.settings.value | escape }}</b><br><span>{{ block.settings.label | escape }}</span></div>{%- endif -%}
-              {%- if block.settings.quote != blank -%}<p>“{{ block.settings.quote | escape }}”</p>{%- endif -%}
-              {%- if block.settings.show_stars -%}<span class="ec-stars" style="--r: 100%; --ec-star: #FFD21F" aria-hidden="true"></span>{%- endif -%}
+              {%- if bk_title != blank -%}<h3>{{ bk_title | escape }}</h3>{%- endif -%}
+              {%- if bk_value != blank -%}<div><b>{{ bk_value | escape }}</b><br><span>{{ bk_label | escape }}</span></div>{%- endif -%}
+              {%- if bk_quote != blank -%}<p>“{{ bk_quote | escape }}”</p>{%- endif -%}
+              {%- if bk_show_stars -%}<span class="ec-stars" style="--r: 100%; --ec-star: #FFD21F" aria-hidden="true"></span>{%- endif -%}
             </div>
         {%- endcase -%}
       {%- else -%}
@@ -252,6 +334,12 @@
   "name": "ECOMS · Reseñas",
   "tag": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "metafield",
+      "label": "Contenido desde metacampo del producto",
+      "info": "Opcional. Ej.: ecoms.stats. Si el producto tiene ese metacampo (lista de «Reseña»), reemplaza los bloques. Así una plantilla sirve para todos los productos."
+    },
     {
       "type": "select",
       "id": "style",

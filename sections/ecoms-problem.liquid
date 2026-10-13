@@ -1,4 +1,19 @@
 {%- comment -%} ECOMS · Problem → solution (Direct): copy + before/after, benefit icons, real customer quote on a photo. {%- endcomment -%}
+{%- liquid
+  # Items come from the section blocks, or from a product metafield (list of metaobjects «ecoms_item»)
+  # when «Contenido desde metacampo» is set and the product has it. One template then serves every product.
+  assign ec_src = section.blocks
+  if section.settings.metafield != blank and product
+    assign ec_mfp = section.settings.metafield | strip | split: '.'
+    if ec_mfp.size == 2
+      assign ec_mfl = product.metafields[ec_mfp[0]][ec_mfp[1]].value
+      if ec_mfl != blank
+        assign ec_src = ec_mfl
+      endif
+    endif
+  endif
+-%}
+{%- if section.settings.heading != blank or section.settings.text != blank or ec_src.size > 0 or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-problem' %}>
   <div class="ec-w">
     <div class="ec-prob">
@@ -23,10 +38,14 @@
           </div>
         {%- endif -%}
       </div>
-      {%- if section.blocks.size > 0 -%}
+      {%- if ec_src.size > 0 -%}
         <div class="ec-dben">
-          {%- for block in section.blocks -%}
-            <div {{ block.shopify_attributes }}><span class="ec-ic">{% render 'ecoms-icon', name: block.settings.icon %}</span>{{ block.settings.text | escape }}</div>
+          {%- for block in ec_src -%}
+            {%- liquid
+              assign bk_icon = block.settings.icon | default: block.icon.value
+              assign bk_text = block.settings.text | default: block.text.value | default: block.title.value
+            -%}
+            <div {{ block.shopify_attributes }}><span class="ec-ic">{% render 'ecoms-icon', name: bk_icon %}</span>{{ bk_text | escape }}</div>
           {%- endfor -%}
         </div>
       {%- endif -%}
@@ -42,12 +61,19 @@
     </div>
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {
   "name": "ECOMS · Problema/solución",
   "tag": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "metafield",
+      "label": "Contenido desde metacampo del producto",
+      "info": "Opcional. Ej.: ecoms.stats. Si el producto tiene ese metacampo (lista de «Ítem de contenido»), reemplaza los bloques. Así una plantilla sirve para todos los productos."
+    },
     {
       "type": "text",
       "id": "heading",

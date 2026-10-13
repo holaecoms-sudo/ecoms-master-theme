@@ -4,9 +4,30 @@
   only list pieces that really ship in the box. The price line uses the real Shopify price.
 {%- endcomment -%}
 {%- liquid
+  # Items come from the section blocks, or from a product metafield (list of metaobjects «ecoms_item»)
+  # when «Contenido desde metacampo» is set and the product has it. One template then serves every product.
+  assign ec_src = section.blocks
+  if section.settings.metafield != blank and product
+    assign ec_mfp = section.settings.metafield | strip | split: '.'
+    if ec_mfp.size == 2
+      assign ec_mfl = product.metafields[ec_mfp[0]][ec_mfp[1]].value
+      if ec_mfl != blank
+        assign ec_src = ec_mfl
+      endif
+    endif
+  endif
+-%}
+{%- liquid
   assign shown = 0
-  for block in section.blocks
-    if block.settings.title != blank
+  for block in ec_src
+    assign bk_badge = block.settings.badge | default: block.badge.value
+    assign bk_highlight = block.settings.highlight | default: block.highlight.value
+    assign bk_icon = block.settings.icon | default: block.icon.value
+    assign bk_image = block.settings.image | default: block.image.value
+    assign bk_qty = block.settings.qty | default: block.qty.value
+    assign bk_text = block.settings.text | default: block.text.value
+    assign bk_title = block.settings.title | default: block.title.value
+    if bk_title != blank
       assign shown = shown | plus: 1
     endif
   endfor
@@ -21,21 +42,30 @@
       {%- if section.settings.text != blank -%}<p>{{ section.settings.text | escape }}</p>{%- endif -%}
     </div>
     <ul class="ec-incl" role="list">
-      {%- for block in section.blocks -%}
-        {%- if block.settings.title == blank -%}{%- continue -%}{%- endif -%}
-        <li class="ec-incl__item{% if block.settings.highlight %} ec-incl__item--hl{% endif %}" {{ block.shopify_attributes }}>
-          {%- if block.settings.badge != blank -%}<span class="ec-incl__badge">{{ block.settings.badge | escape }}</span>{%- endif -%}
-          <div class="ec-incl__media{% if block.settings.image == blank %} ec-incl__media--icon{% endif %}">
-            {%- if block.settings.image != blank -%}
-              {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', widths: '200,300,400', sizes: '(min-width: 990px) 200px, 40vw', alt: block.settings.title }}
+      {%- for block in ec_src -%}
+        {%- liquid
+          assign bk_badge = block.settings.badge | default: block.badge.value
+          assign bk_highlight = block.settings.highlight | default: block.highlight.value
+          assign bk_icon = block.settings.icon | default: block.icon.value
+          assign bk_image = block.settings.image | default: block.image.value
+          assign bk_qty = block.settings.qty | default: block.qty.value
+          assign bk_text = block.settings.text | default: block.text.value
+          assign bk_title = block.settings.title | default: block.title.value
+        -%}
+        {%- if bk_title == blank -%}{%- continue -%}{%- endif -%}
+        <li class="ec-incl__item{% if bk_highlight %} ec-incl__item--hl{% endif %}" {{ block.shopify_attributes }}>
+          {%- if bk_badge != blank -%}<span class="ec-incl__badge">{{ bk_badge | escape }}</span>{%- endif -%}
+          <div class="ec-incl__media{% if bk_image == blank %} ec-incl__media--icon{% endif %}">
+            {%- if bk_image != blank -%}
+              {{ bk_image | image_url: width: 400 | image_tag: loading: 'lazy', widths: '200,300,400', sizes: '(min-width: 990px) 200px, 40vw', alt: bk_title }}
             {%- else -%}
-              <span class="ec-ic">{% render 'ecoms-icon', name: block.settings.icon %}</span>
+              <span class="ec-ic">{% render 'ecoms-icon', name: bk_icon %}</span>
             {%- endif -%}
-            {%- if block.settings.qty != blank -%}<span class="ec-incl__qty">{{ block.settings.qty | escape }}</span>{%- endif -%}
+            {%- if bk_qty != blank -%}<span class="ec-incl__qty">{{ bk_qty | escape }}</span>{%- endif -%}
           </div>
           <div class="ec-incl__body">
-            <b>{{ block.settings.title | escape }}</b>
-            {%- if block.settings.text != blank -%}<span>{{ block.settings.text | escape }}</span>{%- endif -%}
+            <b>{{ bk_title | escape }}</b>
+            {%- if bk_text != blank -%}<span>{{ bk_text | escape }}</span>{%- endif -%}
           </div>
         </li>
       {%- endfor -%}
@@ -62,6 +92,12 @@
   "name": "ECOMS · Qué incluye",
   "tag": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "metafield",
+      "label": "Contenido desde metacampo del producto",
+      "info": "Opcional. Ej.: ecoms.stats. Si el producto tiene ese metacampo (lista de «Ítem de contenido»), reemplaza los bloques. Así una plantilla sirve para todos los productos."
+    },
     {
       "type": "text",
       "id": "eyebrow",

@@ -2,7 +2,29 @@
   ECOMS · Uso por zona: tabs (Baño, Cocina, Pisos…) with photo + copy. CSS-only (radio inputs), works
   without JavaScript. Image falls back to a product photo by position.
 {%- endcomment -%}
-{%- assign tabs = section.blocks | where: 'type', 'tab' -%}
+{%- liquid
+  # Items come from the section blocks, or from a product metafield (list of metaobjects «ecoms_item»)
+  # when «Contenido desde metacampo» is set and the product has it. One template then serves every product.
+  assign ec_src = section.blocks
+  assign ec_from_mf = false
+  if section.settings.metafield != blank and product
+    assign ec_mfp = section.settings.metafield | strip | split: '.'
+    if ec_mfp.size == 2
+      assign ec_mfl = product.metafields[ec_mfp[0]][ec_mfp[1]].value
+      if ec_mfl != blank
+        assign ec_src = ec_mfl
+        assign ec_from_mf = true
+      endif
+    endif
+  endif
+-%}
+{%- liquid
+  if ec_from_mf
+    assign tabs = ec_src
+  else
+    assign tabs = ec_src | where: 'type', 'tab'
+  endif
+-%}
 {%- if tabs.size > 0 -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-tabs-sec' %}>
   <div class="ec-w">
@@ -13,33 +35,57 @@
     </div>
     <div class="ec-tabs">
       {%- for block in tabs limit: 6 -%}
-        <input class="ec-tabs__r" type="radio" name="ec-tabs-{{ section.id }}" id="ec-tab-{{ block.id }}" {% if forloop.first %}checked{% endif %}>
+        {%- liquid
+          assign bk_heading = block.settings.heading | default: block.heading.value
+          assign bk_icon = block.settings.icon | default: block.icon.value
+          assign bk_image = block.settings.image | default: block.image.value
+          assign bk_label = block.settings.label | default: block.label.value
+          assign bk_product_image_index = block.settings.product_image_index | default: block.product_image_index.value
+          assign bk_text = block.settings.text | default: block.text.value
+        -%}
+        <input class="ec-tabs__r" type="radio" name="ec-tabs-{{ section.id }}" id="ec-tab-{{ section.id }}-{{ forloop.index }}" {% if forloop.first %}checked{% endif %}>
       {%- endfor -%}
       <div class="ec-tabs__nav">
         {%- for block in tabs limit: 6 -%}
-          <label for="ec-tab-{{ block.id }}" {{ block.shopify_attributes }}>
-            {%- if block.settings.icon != 'none' -%}{% render 'ecoms-icon', name: block.settings.icon %}{%- endif -%}
-            {{- block.settings.label | escape -}}
+          {%- liquid
+            assign bk_heading = block.settings.heading | default: block.heading.value
+            assign bk_icon = block.settings.icon | default: block.icon.value
+            assign bk_image = block.settings.image | default: block.image.value
+            assign bk_label = block.settings.label | default: block.label.value
+            assign bk_product_image_index = block.settings.product_image_index | default: block.product_image_index.value
+            assign bk_text = block.settings.text | default: block.text.value
+          -%}
+          <label for="ec-tab-{{ section.id }}-{{ forloop.index }}" {{ block.shopify_attributes }}>
+            {%- if bk_icon != 'none' -%}{% render 'ecoms-icon', name: bk_icon %}{%- endif -%}
+            {{- bk_label | escape -}}
           </label>
         {%- endfor -%}
       </div>
       <div class="ec-tabs__panels">
         {%- for block in tabs limit: 6 -%}
           {%- liquid
-            assign idx = block.settings.product_image_index | default: 1 | minus: 1
-            assign pic = block.settings.image | default: product.images[idx] | default: product.featured_image
+            assign bk_heading = block.settings.heading | default: block.heading.value
+            assign bk_icon = block.settings.icon | default: block.icon.value
+            assign bk_image = block.settings.image | default: block.image.value
+            assign bk_label = block.settings.label | default: block.label.value
+            assign bk_product_image_index = block.settings.product_image_index | default: block.product_image_index.value
+            assign bk_text = block.settings.text | default: block.text.value
+          -%}
+          {%- liquid
+            assign idx = bk_product_image_index | default: 1 | minus: 1
+            assign pic = bk_image | default: product.images[idx] | default: product.featured_image
           -%}
           <div class="ec-tabs__p">
             <div class="ec-tabs__img">
               {%- if pic != blank -%}
-                {{ pic | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '400,600,800,1000', sizes: '(min-width: 990px) 560px, 100vw', alt: block.settings.heading }}
+                {{ pic | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '400,600,800,1000', sizes: '(min-width: 990px) 560px, 100vw', alt: bk_heading }}
               {%- else -%}
                 {{ 'image' | placeholder_svg_tag: 'ec-placeholder' }}
               {%- endif -%}
             </div>
             <div class="ec-tabs__copy">
-              {%- if block.settings.heading != blank -%}<h3>{{ block.settings.heading | escape }}</h3>{%- endif -%}
-              {%- if block.settings.text != blank -%}<p>{{ block.settings.text | escape }}</p>{%- endif -%}
+              {%- if bk_heading != blank -%}<h3>{{ bk_heading | escape }}</h3>{%- endif -%}
+              {%- if bk_text != blank -%}<p>{{ bk_text | escape }}</p>{%- endif -%}
               <ul role="list">
                 {%- for i in (1..3) -%}
                   {%- assign key = 'point_' | append: i -%}
@@ -63,6 +109,12 @@
   "name": "ECOMS · Pestañas de uso",
   "tag": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "metafield",
+      "label": "Contenido desde metacampo del producto",
+      "info": "Opcional. Ej.: ecoms.stats. Si el producto tiene ese metacampo (lista de «Ítem de contenido»), reemplaza los bloques. Así una plantilla sirve para todos los productos."
+    },
     {
       "type": "text",
       "id": "eyebrow",

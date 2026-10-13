@@ -1,5 +1,21 @@
 {%- comment -%} ECOMS · Comparison table. Every row must be verifiable before publishing. {%- endcomment -%}
 {%- liquid
+  # Items come from the section blocks, or from a product metafield (list of metaobjects «ecoms_item»)
+  # when «Contenido desde metacampo» is set and the product has it. One template then serves every product.
+  assign ec_src = section.blocks
+  assign ec_from_mf = false
+  if section.settings.metafield != blank and product
+    assign ec_mfp = section.settings.metafield | strip | split: '.'
+    if ec_mfp.size == 2
+      assign ec_mfl = product.metafields[ec_mfp[0]][ec_mfp[1]].value
+      if ec_mfl != blank
+        assign ec_src = ec_mfl
+        assign ec_from_mf = true
+      endif
+    endif
+  endif
+-%}
+{%- liquid
   assign cols = 1
   if section.settings.col_2 != blank
     assign cols = 2
@@ -8,6 +24,7 @@
     assign cols = 3
   endif
 -%}
+{%- if ec_src.size > 0 or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-compare' %}>
   <div class="ec-w">
     {%- if section.settings.heading != blank -%}
@@ -19,10 +36,20 @@
         <div class="ec-vs__card ec-vs__card--them">
           <p class="ec-vs__h">{{ section.settings.col_2 | escape }}</p>
           <ul role="list">
-            {%- for block in section.blocks -%}
-              <li class="{% if block.settings.value_2 %}y{% else %}n{% endif %}">
-                {%- if block.settings.value_2 -%}{% render 'ecoms-icon', name: 'check' %}{%- else -%}{% render 'ecoms-icon', name: 'x' %}{%- endif -%}
-                <span>{{ block.settings.feature | escape }}</span>
+            {%- for block in ec_src -%}
+              {%- liquid
+                assign bk_feature = block.settings.feature | default: block.feature.value
+                assign bk_value_1 = block.settings.value_1 | default: block.value_1.value
+                assign bk_value_2 = block.settings.value_2 | default: block.value_2.value
+                if ec_from_mf
+                  assign bk_feature = block
+                  assign bk_value_1 = true
+                  assign bk_value_2 = false
+                endif
+              -%}
+              <li class="{% if bk_value_2 %}y{% else %}n{% endif %}">
+                {%- if bk_value_2 -%}{% render 'ecoms-icon', name: 'check' %}{%- else -%}{% render 'ecoms-icon', name: 'x' %}{%- endif -%}
+                <span>{{ bk_feature | escape }}</span>
               </li>
             {%- endfor -%}
           </ul>
@@ -34,10 +61,20 @@
           {%- endif -%}
           <p class="ec-vs__h">{{ section.settings.col_1 | escape }}</p>
           <ul role="list">
-            {%- for block in section.blocks -%}
-              <li class="{% if block.settings.value_1 %}y{% else %}n{% endif %}" {{ block.shopify_attributes }}>
-                {%- if block.settings.value_1 -%}{% render 'ecoms-icon', name: 'check' %}{%- else -%}{% render 'ecoms-icon', name: 'x' %}{%- endif -%}
-                <span>{{ block.settings.feature | escape }}</span>
+            {%- for block in ec_src -%}
+              {%- liquid
+                assign bk_feature = block.settings.feature | default: block.feature.value
+                assign bk_value_1 = block.settings.value_1 | default: block.value_1.value
+                assign bk_value_2 = block.settings.value_2 | default: block.value_2.value
+                if ec_from_mf
+                  assign bk_feature = block
+                  assign bk_value_1 = true
+                  assign bk_value_2 = false
+                endif
+              -%}
+              <li class="{% if bk_value_1 %}y{% else %}n{% endif %}" {{ block.shopify_attributes }}>
+                {%- if bk_value_1 -%}{% render 'ecoms-icon', name: 'check' %}{%- else -%}{% render 'ecoms-icon', name: 'x' %}{%- endif -%}
+                <span>{{ bk_feature | escape }}</span>
               </li>
             {%- endfor -%}
           </ul>
@@ -60,12 +97,31 @@
           </tr>
         </thead>
         <tbody>
-          {%- for block in section.blocks -%}
+          {%- for block in ec_src -%}
+            {%- liquid
+              assign bk_feature = block.settings.feature | default: block.feature.value
+              assign bk_value_1 = block.settings.value_1 | default: block.value_1.value
+              assign bk_value_2 = block.settings.value_2 | default: block.value_2.value
+              if ec_from_mf
+                assign bk_feature = block
+                assign bk_value_1 = true
+                assign bk_value_2 = false
+              endif
+            -%}
             <tr {{ block.shopify_attributes }}>
-              <th scope="row">{{ block.settings.feature | escape }}</th>
+              <th scope="row">{{ bk_feature | escape }}</th>
               {%- for c in (1..cols) -%}
                 {%- assign key = 'value_' | append: c -%}
-                {%- assign yes = block.settings[key] -%}
+                {%- liquid
+                  if ec_from_mf
+                    assign yes = false
+                    if c == 1
+                      assign yes = true
+                    endif
+                  else
+                    assign yes = block.settings[key]
+                  endif
+                -%}
                 <td class="{% if yes %}y{% else %}n{% endif %}{% if c == 1 %} us{% endif %}">
                   {%- if yes -%}{% render 'ecoms-icon', name: 'check' %}{%- else -%}{% render 'ecoms-icon', name: 'x' %}{%- endif -%}
                   <span class="visually-hidden">{% if yes %}Sí{% else %}No{% endif %}</span>
@@ -79,12 +135,19 @@
     {%- endif -%}
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {
   "name": "ECOMS · Tabla comparativa",
   "tag": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "metafield",
+      "label": "Contenido desde metacampo del producto",
+      "info": "Opcional. Ej.: ecoms.stats. Si el producto tiene ese metacampo (lista de textos de una línea: cada uno es una fila con ✓ para este producto y ✗ para la alternativa), reemplaza los bloques. Así una plantilla sirve para todos los productos."
+    },
     {
       "type": "select",
       "id": "style",

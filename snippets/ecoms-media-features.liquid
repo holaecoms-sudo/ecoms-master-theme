@@ -2,8 +2,21 @@
   ECOMS · Four icon features shown under the product gallery (main-product media column).
   Accepts:
   - block: {Object} ecoms_media_features block
+  - product: {Object} product (optional). Its metafield ecoms.highlights (list of «Ítem de contenido»: icon + title)
+    replaces the block texts, so one template serves every product.
 {%- endcomment -%}
+{%- assign hl_mf = product.metafields.ecoms.highlights.value -%}
 <div class="ec-minifeat" {{ block.shopify_attributes }}>
+  {%- if hl_mf != blank -%}
+    {%- for item in hl_mf limit: 4 -%}
+      {%- if item.title != blank -%}
+        <div>
+          <span class="ec-ic">{% render 'ecoms-icon', name: item.icon.value %}</span>
+          {{- item.title.value | escape -}}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- else -%}
   {%- for i in (1..4) -%}
     {%- assign t_key = 'text_' | append: i -%}
     {%- assign i_key = 'icon_' | append: i -%}
@@ -14,4 +27,5 @@
       </div>
     {%- endif -%}
   {%- endfor -%}
+  {%- endif -%}
 </div>

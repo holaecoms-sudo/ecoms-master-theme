@@ -3,11 +3,29 @@
   Only content shared with the customer's permission.
 {%- endcomment -%}
 {%- liquid
+  # Items come from the section blocks, or from a product metafield (list of metaobjects «ecoms_item»)
+  # when «Contenido desde metacampo» is set and the product has it. One template then serves every product.
+  assign ec_src = section.blocks
+  if section.settings.metafield != blank and product
+    assign ec_mfp = section.settings.metafield | strip | split: '.'
+    if ec_mfp.size == 2
+      assign ec_mfl = product.metafields[ec_mfp[0]][ec_mfp[1]].value
+      if ec_mfl != blank
+        assign ec_src = ec_mfl
+      endif
+    endif
+  endif
+-%}
+{%- liquid
   assign style = section.settings.style | default: 'grid'
   # Only photos or videos actually uploaded are published; empty blocks are editor placeholders.
   assign real_items = 0
-  for block in section.blocks
-    if block.settings.image != blank or block.settings.video != blank
+  for block in ec_src
+    assign bk_caption = block.settings.caption | default: block.caption.value
+    assign bk_image = block.settings.image | default: block.image.value
+    assign bk_quote = block.settings.quote | default: block.quote.value
+    assign bk_video = block.settings.video | default: block.video.value
+    if bk_image != blank or bk_video != blank
       assign real_items = real_items | plus: 1
     endif
   endfor
@@ -25,23 +43,29 @@
       {%- if section.settings.text != blank -%}<p class="ec-sub ec-ugc__sub">{{ section.settings.text | escape }}</p>{%- endif -%}
     {%- endif -%}
     <div class="ec-ugc ec-ugc--{{ style }}">
-      {%- for block in section.blocks -%}
-        {%- if block.settings.image == blank and block.settings.video == blank and request.design_mode != true -%}{%- continue -%}{%- endif -%}
+      {%- for block in ec_src -%}
+        {%- liquid
+          assign bk_caption = block.settings.caption | default: block.caption.value
+          assign bk_image = block.settings.image | default: block.image.value
+          assign bk_quote = block.settings.quote | default: block.quote.value
+          assign bk_video = block.settings.video | default: block.video.value
+        -%}
+        {%- if bk_image == blank and bk_video == blank and request.design_mode != true -%}{%- continue -%}{%- endif -%}
         <figure class="ec-ugc__fig" {{ block.shopify_attributes }}>
           <div class="ec-ugc__item">
-            {%- if block.settings.video != blank -%}
-              {{ block.settings.video | video_tag: autoplay: false, controls: false, muted: true, playsinline: true, preload: 'none', image_size: '600x' }}
+            {%- if bk_video != blank -%}
+              {{ bk_video | video_tag: autoplay: false, controls: false, muted: true, playsinline: true, preload: 'none', image_size: '600x' }}
               <button type="button" class="ec-gal__play" data-ec-play aria-label="Reproducir video">{% render 'ecoms-icon', name: 'play' %}</button>
-            {%- elsif block.settings.image != blank -%}
-              {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '200,300,450,600', sizes: '(min-width: 990px) 280px, 45vw', alt: block.settings.caption }}
+            {%- elsif bk_image != blank -%}
+              {{ bk_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '200,300,450,600', sizes: '(min-width: 990px) 280px, 45vw', alt: bk_caption }}
             {%- else -%}
               {{ 'image' | placeholder_svg_tag: 'ec-placeholder' }}
             {%- endif -%}
-            {%- if style == 'grid' and block.settings.caption != blank -%}<span class="ec-ugc__cap">{{ block.settings.caption | escape }}</span>{%- endif -%}
+            {%- if style == 'grid' and bk_caption != blank -%}<span class="ec-ugc__cap">{{ bk_caption | escape }}</span>{%- endif -%}
           </div>
           {%- if style == 'quotes' -%}
-            {%- if block.settings.quote != blank -%}<blockquote>“{{ block.settings.quote | escape }}”</blockquote>{%- endif -%}
-            {%- if block.settings.caption != blank -%}<figcaption>{{ block.settings.caption | escape }}</figcaption>{%- endif -%}
+            {%- if bk_quote != blank -%}<blockquote>“{{ bk_quote | escape }}”</blockquote>{%- endif -%}
+            {%- if bk_caption != blank -%}<figcaption>{{ bk_caption | escape }}</figcaption>{%- endif -%}
           {%- endif -%}
         </figure>
       {%- endfor -%}
@@ -55,6 +79,12 @@
   "name": "ECOMS · Clientes (UGC)",
   "tag": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "metafield",
+      "label": "Contenido desde metacampo del producto",
+      "info": "Opcional. Ej.: ecoms.stats. Si el producto tiene ese metacampo (lista de «Ítem de contenido»), reemplaza los bloques. Así una plantilla sirve para todos los productos."
+    },
     {
       "type": "select",
       "id": "style",

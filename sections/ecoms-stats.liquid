@@ -3,9 +3,26 @@
   verifiable values: blocks without a value are hidden, and so is the section when none is filled.
 {%- endcomment -%}
 {%- liquid
+  # Items come from the section blocks, or from a product metafield (list of metaobjects «ecoms_item»)
+  # when «Contenido desde metacampo» is set and the product has it. One template then serves every product.
+  assign ec_src = section.blocks
+  if section.settings.metafield != blank and product
+    assign ec_mfp = section.settings.metafield | strip | split: '.'
+    if ec_mfp.size == 2
+      assign ec_mfl = product.metafields[ec_mfp[0]][ec_mfp[1]].value
+      if ec_mfl != blank
+        assign ec_src = ec_mfl
+      endif
+    endif
+  endif
+-%}
+{%- liquid
   assign filled = 0
-  for block in section.blocks
-    if block.settings.value != blank
+  for block in ec_src
+    assign bk_icon = block.settings.icon | default: block.icon.value
+    assign bk_label = block.settings.label | default: block.label.value
+    assign bk_value = block.settings.value | default: block.value.value
+    if bk_value != blank
       assign filled = filled | plus: 1
     endif
   endfor
@@ -21,13 +38,18 @@
       </div>
     {%- endif -%}
     <div class="ec-stats">
-      {%- for block in section.blocks -%}
-        {%- if block.settings.value == blank and request.design_mode != true -%}{%- continue -%}{%- endif -%}
+      {%- for block in ec_src -%}
+        {%- liquid
+          assign bk_icon = block.settings.icon | default: block.icon.value
+          assign bk_label = block.settings.label | default: block.label.value
+          assign bk_value = block.settings.value | default: block.value.value
+        -%}
+        {%- if bk_value == blank and request.design_mode != true -%}{%- continue -%}{%- endif -%}
         <div {{ block.shopify_attributes }}>
-          {% render 'ecoms-icon', name: block.settings.icon %}
+          {% render 'ecoms-icon', name: bk_icon %}
           <div>
-            <b>{{ block.settings.value | default: '—' | escape }}</b>
-            <span>{{ block.settings.label | escape }}</span>
+            <b>{{ bk_value | default: '—' | escape }}</b>
+            <span>{{ bk_label | escape }}</span>
           </div>
         </div>
       {%- endfor -%}
@@ -42,6 +64,12 @@
   "name": "ECOMS · Cifras",
   "tag": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "metafield",
+      "label": "Contenido desde metacampo del producto",
+      "info": "Opcional. Ej.: ecoms.stats. Si el producto tiene ese metacampo (lista de «Ítem de contenido»), reemplaza los bloques. Así una plantilla sirve para todos los productos."
+    },
     {
       "type": "paragraph",
       "content": "Usa solo cifras reales y verificables (de la tienda o de la ficha técnica del producto). Los bloques sin valor no se muestran."

@@ -188,7 +188,7 @@
         {%- endif -%}
       </div>
       {%- if feature_block -%}
-        {%- render 'ecoms-media-features', block: feature_block -%}
+        {%- render 'ecoms-media-features', block: feature_block, product: product -%}
       {%- endif -%}
     </div>
 
@@ -320,21 +320,48 @@
 
           {%- when 'chips' -%}
             {%- comment -%} Spec pills under the title (e.g. IPX7 · 90 min · USB-C). Empty pills are skipped. {%- endcomment -%}
+            {%- assign chips_mf = product.metafields.ecoms.chips.value -%}
             {%- capture chips -%}
+              {%- if chips_mf != blank -%}
+                {%- for chip in chips_mf limit: 5 -%}<li>{{ chip | escape }}</li>{%- endfor -%}
+              {%- else -%}
               {%- for i in (1..5) -%}
                 {%- assign key = 'chip_' | append: i -%}
                 {%- if block.settings[key] != blank -%}<li>{{ block.settings[key] | escape }}</li>{%- endif -%}
               {%- endfor -%}
+              {%- endif -%}
             {%- endcapture -%}
             {%- if chips != blank -%}
               <ul class="ec-chips" role="list" {{ block.shopify_attributes }}>{{ chips }}</ul>
             {%- endif -%}
 
           {%- when 'includes' -%}
-            {%- comment -%} Compact «Tu compra incluye» list for the buy box (only pieces that really ship). {%- endcomment -%}
+            {%- comment -%}
+              Compact «Tu compra incluye» list for the buy box (only pieces that really ship).
+              Product metafield ecoms.includes (list of «Ítem de contenido») replaces the block rows.
+            {%- endcomment -%}
+            {%- assign incl_mf = product.metafields.ecoms.includes.value -%}
+            {%- if incl_mf != blank or block.settings.title_1 != blank -%}
             <div class="ec-incl-mini" {{ block.shopify_attributes }}>
               {%- if block.settings.heading != blank -%}<p class="ec-incl-mini__h">{{ block.settings.heading | escape }}</p>{%- endif -%}
               <ul role="list">
+                {%- if incl_mf != blank -%}
+                  {%- for item in incl_mf limit: 6 -%}
+                    {%- if item.title == blank -%}{%- continue -%}{%- endif -%}
+                    <li>
+                      {%- if item.image != blank -%}
+                        {{ item.image.value | image_url: width: 96 | image_tag: loading: 'lazy', width: 36, height: 36, alt: '' }}
+                      {%- else -%}
+                        <span class="ec-incl-mini__ic">{% render 'ecoms-icon', name: item.icon.value %}</span>
+                      {%- endif -%}
+                      <span class="ec-incl-mini__t">
+                        {%- if item.qty != blank %}<b>{{ item.qty.value | escape }}</b> {% endif -%}
+                        {{- item.title.value | escape -}}
+                      </span>
+                      {%- if item.badge != blank -%}<em>{{ item.badge.value | escape }}</em>{%- endif -%}
+                    </li>
+                  {%- endfor -%}
+                {%- else -%}
                 {%- for i in (1..6) -%}
                   {%- liquid
                     assign t_key = 'title_' | append: i
@@ -358,8 +385,10 @@
                     </li>
                   {%- endif -%}
                 {%- endfor -%}
+                {%- endif -%}
               </ul>
             </div>
+            {%- endif -%}
 
           {%- when 'variants' -%}
             {%- unless product.has_only_default_variant -%}

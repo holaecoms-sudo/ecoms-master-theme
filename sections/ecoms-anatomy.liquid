@@ -3,9 +3,26 @@
   sides (stacked on mobile). Only describe features the product really has.
 {%- endcomment -%}
 {%- liquid
+  # Items come from the section blocks, or from a product metafield (list of metaobjects «ecoms_item»)
+  # when «Contenido desde metacampo» is set and the product has it. One template then serves every product.
+  assign ec_src = section.blocks
+  if section.settings.metafield != blank and product
+    assign ec_mfp = section.settings.metafield | strip | split: '.'
+    if ec_mfp.size == 2
+      assign ec_mfl = product.metafields[ec_mfp[0]][ec_mfp[1]].value
+      if ec_mfl != blank
+        assign ec_src = ec_mfl
+      endif
+    endif
+  endif
+-%}
+{%- liquid
   assign items = 0
-  for block in section.blocks
-    if block.settings.title != blank
+  for block in ec_src
+    assign bk_icon = block.settings.icon | default: block.icon.value
+    assign bk_text = block.settings.text | default: block.text.value
+    assign bk_title = block.settings.title | default: block.title.value
+    if bk_title != blank
       assign items = items | plus: 1
     endif
   endfor
@@ -32,22 +49,27 @@
         </div>
         {%- capture col_l -%}{%- endcapture -%}
         {%- capture col_r -%}{%- endcapture -%}
-        {%- for block in section.blocks -%}
-          {%- if block.settings.title == blank -%}{%- continue -%}{%- endif -%}
+        {%- for block in ec_src -%}
+          {%- liquid
+            assign bk_icon = block.settings.icon | default: block.icon.value
+            assign bk_text = block.settings.text | default: block.text.value
+            assign bk_title = block.settings.title | default: block.title.value
+          -%}
+          {%- if bk_title == blank -%}{%- continue -%}{%- endif -%}
           {%- assign n = n | plus: 1 -%}
           {%- capture item -%}
             <li class="ec-anat__item" {{ block.shopify_attributes }}>
               {%- if section.settings.show_numbers -%}
                 <span class="ec-anat__n">{{ n }}</span>
-              {%- elsif block.settings.icon != 'none' -%}
-                <span class="ec-anat__ic">{% render 'ecoms-icon', name: block.settings.icon %}</span>
+              {%- elsif bk_icon != 'none' -%}
+                <span class="ec-anat__ic">{% render 'ecoms-icon', name: bk_icon %}</span>
               {%- endif -%}
               <div>
                 <b>
-                  {%- if section.settings.show_numbers and block.settings.icon != 'none' -%}{% render 'ecoms-icon', name: block.settings.icon %}{%- endif -%}
-                  {{- block.settings.title | escape -}}
+                  {%- if section.settings.show_numbers and bk_icon != 'none' -%}{% render 'ecoms-icon', name: bk_icon %}{%- endif -%}
+                  {{- bk_title | escape -}}
                 </b>
-                {%- if block.settings.text != blank -%}<span class="ec-anat__t">{{ block.settings.text | escape }}</span>{%- endif -%}
+                {%- if bk_text != blank -%}<span class="ec-anat__t">{{ bk_text | escape }}</span>{%- endif -%}
               </div>
             </li>
           {%- endcapture -%}
@@ -70,6 +92,12 @@
   "name": "ECOMS · Anatomía",
   "tag": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "metafield",
+      "label": "Contenido desde metacampo del producto",
+      "info": "Opcional. Ej.: ecoms.stats. Si el producto tiene ese metacampo (lista de «Ítem de contenido»), reemplaza los bloques. Así una plantilla sirve para todos los productos."
+    },
     {
       "type": "select",
       "id": "style",
