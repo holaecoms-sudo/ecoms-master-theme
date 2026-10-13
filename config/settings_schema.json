@@ -1506,6 +1506,13 @@
         "info": "Se muestra en la tienda (pie de página, títulos, redes) en lugar del nombre interno de Shopify. Ej.: ecoms."
       },
       {
+        "type": "text",
+        "id": "ecoms_payment_icons",
+        "label": "Íconos de medios de pago",
+        "default": "mercadopago, visa, master, american_express",
+        "info": "Separados por coma, en orden. Disponibles: webpay, mercadopago, redcompra, mach, khipu, visa, master, american_express, diners_club, maestro, paypal. Vacío = los que detecta Shopify. Muestra solo los que realmente aceptas."
+      },
+      {
         "type": "checkbox",
         "id": "ecoms_protect_images",
         "label": "Proteger imágenes (sin clic derecho ni descarga)",

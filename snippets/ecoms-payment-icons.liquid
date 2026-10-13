@@ -1,0 +1,35 @@
+{%- comment -%}
+  ECOMS · Payment method icons (list items only; the caller provides the <ul>).
+  Offsite providers such as Mercado Pago Checkout Pro or Webpay do not always appear in
+  shop.enabled_payment_types, so the theme setting «Íconos de medios de pago» lists them explicitly.
+  Names: webpay, mercadopago, redcompra, mach, khipu, or any Shopify payment icon (visa, master,
+  american_express, diners_club, maestro, paypal…). Empty setting = icons detected by Shopify.
+  Accepts:
+  - class: {String} class for each icon
+{%- endcomment -%}
+{%- if settings.ecoms_payment_icons != blank -%}
+  {%- assign pay_list = settings.ecoms_payment_icons | downcase | replace: ' ', '' | split: ',' -%}
+  {%- for name in pay_list -%}
+    {%- if name == blank -%}{%- continue -%}{%- endif -%}
+    <li>
+      {%- case name -%}
+        {%- when 'webpay' -%}
+          <svg class="{{ class }}" viewBox="0 0 38 24" role="img" aria-label="Webpay"><rect x=".5" y=".5" width="37" height="23" rx="3" fill="#fff" stroke="#D9D9D9"/><text x="19" y="15.2" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="8.6" font-weight="700" fill="#D5007F">webpay</text></svg>
+        {%- when 'mercadopago', 'mercado_pago' -%}
+          <svg class="{{ class }}" viewBox="0 0 38 24" role="img" aria-label="Mercado Pago"><rect width="38" height="24" rx="3" fill="#00B1EA"/><text x="19" y="10.6" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="6.4" font-weight="700" fill="#fff">mercado</text><text x="19" y="18.4" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="6.4" font-weight="700" fill="#fff">pago</text></svg>
+        {%- when 'redcompra' -%}
+          <svg class="{{ class }}" viewBox="0 0 38 24" role="img" aria-label="Redcompra"><rect x=".5" y=".5" width="37" height="23" rx="3" fill="#fff" stroke="#D9D9D9"/><text x="19" y="14.8" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="6.6" font-weight="700" fill="#E2001A">Redcompra</text></svg>
+        {%- when 'mach' -%}
+          <svg class="{{ class }}" viewBox="0 0 38 24" role="img" aria-label="MACH"><rect width="38" height="24" rx="3" fill="#6E2CF4"/><text x="19" y="15.4" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="8.6" font-weight="700" fill="#fff">MACH</text></svg>
+        {%- when 'khipu' -%}
+          <svg class="{{ class }}" viewBox="0 0 38 24" role="img" aria-label="Khipu"><rect x=".5" y=".5" width="37" height="23" rx="3" fill="#fff" stroke="#D9D9D9"/><text x="19" y="15.2" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="8.6" font-weight="700" fill="#8A2BE2">khipu</text></svg>
+        {%- else -%}
+          {{ name | payment_type_svg_tag: class: class }}
+      {%- endcase -%}
+    </li>
+  {%- endfor -%}
+{%- else -%}
+  {%- for type in shop.enabled_payment_types -%}
+    <li>{{ type | payment_type_svg_tag: class: class }}</li>
+  {%- endfor -%}
+{%- endif -%}

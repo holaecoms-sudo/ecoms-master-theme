@@ -426,9 +426,7 @@
             <div class="ec-payments" {{ block.shopify_attributes }}>
               {%- if block.settings.text != blank -%}<p class="ec-secure">{% render 'ecoms-icon', name: 'lock' %}{{ block.settings.text | escape }}</p>{%- endif -%}
               <ul class="ec-payments__list" role="list">
-                {%- for type in shop.enabled_payment_types -%}
-                  <li>{{ type | payment_type_svg_tag: class: 'ec-payments__icon' }}</li>
-                {%- endfor -%}
+                {%- render 'ecoms-payment-icons', class: 'ec-payments__icon' -%}
               </ul>
             </div>
 

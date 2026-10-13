@@ -87,9 +87,7 @@
           {%- when 'payments' -%}
             {%- if block.settings.heading != blank -%}<h2 class="ec-ft__h">{{ block.settings.heading | escape }}</h2>{%- endif -%}
             <ul class="ec-ft__pay" role="list">
-              {%- for type in shop.enabled_payment_types -%}
-                <li>{{ type | payment_type_svg_tag: class: 'ec-ft__pay-icon' }}</li>
-              {%- endfor -%}
+              {%- render 'ecoms-payment-icons', class: 'ec-ft__pay-icon' -%}
             </ul>
           {%- when 'social' -%}
             {%- unless has_social -%}<p class="ec-editor-note">Agrega tus redes en Configuración del tema → Redes sociales. Sin enlaces, esta columna no se muestra en la tienda.</p>{%- endunless -%}

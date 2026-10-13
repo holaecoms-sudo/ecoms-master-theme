@@ -86,11 +86,9 @@
       {%- endif -%}
 
     {%- when 'trust' -%}
-      {%- if shop.enabled_payment_types.size > 0 and settings.ecoms_cart_show_payments -%}
+      {%- if settings.ecoms_cart_show_payments and settings.ecoms_payment_icons != blank or settings.ecoms_cart_show_payments and shop.enabled_payment_types.size > 0 -%}
         <ul class="ec-cart-pay" role="list" aria-label="Medios de pago">
-          {%- for type in shop.enabled_payment_types -%}
-            <li>{{ type | payment_type_svg_tag: class: 'ec-cart-pay__icon' }}</li>
-          {%- endfor -%}
+          {%- render 'ecoms-payment-icons', class: 'ec-cart-pay__icon' -%}
         </ul>
       {%- endif -%}
       {%- if settings.ecoms_cart_trust_1 != blank or settings.ecoms_cart_trust_2 != blank or settings.ecoms_cart_trust_3 != blank -%}
