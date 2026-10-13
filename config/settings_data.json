@@ -130,6 +130,7 @@
     "cart_color_scheme": "scheme-1",
     "customer_account_menu": "customer-account-main-menu",
     "ecoms_store_name": "Ecoms",
+    "ecoms_payment_icons": "visa, master, american_express",
     "ecoms_pay_logo_1": "shopify://shop_images/MP_RGB_HANDSHAKE_color_horizontal.png",
     "ecoms_protect_images": true,
     "ecoms_primary": "#0F5132",
