@@ -112,6 +112,16 @@
       el.textContent = label;
       el.hidden = !label;
     });
+    // Sticky thumbnail follows the selected pack's card image (e.g. the gift photo of the pack of 2).
+    const packImg = radio ? radio.dataset.img || '' : '';
+    $$('.ec-sticky__img').forEach((img) => {
+      if (!img.dataset.src0) img.dataset.src0 = img.currentSrc || img.src;
+      const next = packImg || img.dataset.src0;
+      if (img.getAttribute('src') !== next) {
+        img.removeAttribute('srcset');
+        img.src = next;
+      }
+    });
     $$('[data-ec-pack-summary]').forEach((box) => {
       const title = box.closest('[data-ec-packs]')?.dataset.title || '';
       const inc = box.querySelector('[data-ec-ps-inc]');

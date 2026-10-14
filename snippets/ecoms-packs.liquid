@@ -232,6 +232,7 @@
             data-inc="{{ inc | strip }}"
             {% if mf_label != blank %}data-sum="{{ mf_label | escape }}"{% endif %}
             data-total="{{ total }}"
+            {% if pack_image != blank %}data-img="{{ pack_image | image_url: width: 120 }}"{% endif %}
             data-save="{% if offer_save > 0 %}{{ offer_save }}{% else %}0{% endif %}"
             {% if ships_free %}
               data-ship-free
