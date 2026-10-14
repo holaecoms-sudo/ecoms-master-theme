@@ -147,3 +147,18 @@ Esta ficha usa la plantilla compartida `clean`: las fotos de las secciones van e
 | T1–T3 | Metacampos → Usos por zona → Imagen de cada ítem |
 
 O mándame el zip y yo selecciono, recorto y asigno, como con las pastillas.
+
+---
+
+## 8 · PACK «PARA REGALAR» (1:1, 1200 × 1200)
+
+Igual que la foto de 2 cepillos con moño. Adjunta la foto principal de la aspiradora (fondo gris) y pega:
+
+```
+Image P2. Two identical white 2-in-1 vacuum cleaners exactly like the attached photo (white body,
+curved handle, orange cap, copper ring, transparent dust container, straight white tube, wide floor
+head), standing side by side and slightly overlapping, leaning a little to the right. A navy blue
+satin ribbon wraps the tube of the front one and ends in a neat bow, like a gift. Clean light-grey
+to white studio background, soft shadow, no text, no logos. Square 1:1.
+```
+> Súbela en el producto → Metacampos → **Imágenes de los packs**: primero la foto principal y segundo esta (pack de 2).
