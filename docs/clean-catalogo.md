@@ -60,6 +60,8 @@ siguen funcionando igual: los metacampos solo reemplazan los bloques cuando exis
 |---|---|---|
 | ~~Limpiador a Vapor + Pastillas~~ | Desactivado (distinto proveedor = doble flete). Las pastillas quedan solo como sugerencia en el carrito. | — |
 | Pack 2 limpiadores a vapor | «Pack 2 limpiadores a vapor» (20% desde 2 unidades) | Limpiador: `pack2_pct` = 20, `unit_name` = limpiadores |
+| Pack 2 pastillas para lavadora | «Pack 2 packs de pastillas para lavadora» (20% desde 2) | Pastillas: `pack2_pct` = 20, `unit_name` = packs de 24 pastillas |
+| Pastillas + Destapador | «Pack Pastillas + Destapador: 50% en el destapador» (1 por pedido) | Pastillas: `pack_product` = Destapador, `pack_discount` = 50 |
 | Cepillo 9 en 1 + Destapador de Cañerías | «Pack Cepillo 9 en 1 + Destapador: 50% en el destapador» (1 por pedido) | Cepillo: `pack_product` = Destapador, `pack_discount` = 50 |
 
 Si cambias el % en Descuentos, cambia también `ecoms.pack_discount` del producto.
