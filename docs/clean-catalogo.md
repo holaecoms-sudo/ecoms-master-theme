@@ -9,8 +9,8 @@ Configurado en la tienda el 13-10-2026. Todos los productos nuevos quedaron en *
 | Cepillo Eléctrico de Limpieza 9 en 1 | cepillo-electrico-de-limpieza-9-en-1 | $29.990 | $9.300 | Estrella 1 (landing propia) | baño, cocina |
 | Limpiador a Vapor 1000 W + Guatero de Regalo | limpiador-a-vapor | $39.990 | $15.799 | Estrella 2 | cocina, baño |
 | Aspiradora Inalámbrica 2 en 1 | aspiradora-2-en-1 | $29.990 | $9.500 | Ticket medio · proveedor MEIBO · cifras y accesorios según el mismo modelo en Zaffary, **por confirmar con MEIBO** | pisos |
-| Pastillas Limpiadoras para Lavadora · 24 u | pastillas-limpiadoras-lavadora | $9.990 | $1.600 | Complemento | orden |
-| Destapador de Cañerías en Polvo · 3 u | destapador-canerias-polvo | $8.990 | $2.430 | Complemento | baño, cocina |
+| Pastillas Limpiadoras para Lavadora · 12 u | pastillas-limpiadoras-lavadora | $6.990 | por confirmar (MEIBO) | Complemento | orden |
+| Destapador de Cañerías en Polvo · 3 u | destapador-canerias-polvo | $8.990 | por confirmar (MEIBO) | Complemento | baño, cocina |
 | Mopa Giratoria de Microfibra con Exprimidor | mopa-giratoria-microfibra | $12.990 | $3.510 | Complemento | pisos |
 | Cepillo Eléctrico Compacto Inalámbrico | cepillo-electrico-compacto | $14.990 | $3.770 | Alternativa económica (puede canibalizar al 9 en 1) | cocina, baño |
 | Cepillo de Silicona para Baño con Dispensador | cepillo-silicona-bano | $15.990 | $7.500 | Complemento | baño |
@@ -60,9 +60,9 @@ siguen funcionando igual: los metacampos solo reemplazan los bloques cuando exis
 |---|---|---|
 | ~~Limpiador a Vapor + Pastillas~~ | Desactivado (distinto proveedor = doble flete). Las pastillas quedan solo como sugerencia en el carrito. | — |
 | Pack 2 limpiadores a vapor | «Pack 2 limpiadores a vapor» (20% desde 2 unidades) | Limpiador: `pack2_pct` = 20, `unit_name` = limpiadores |
-| Pack 2 y 3 pastillas para lavadora | «Pack 2 o más (pastillas y destapador) · 20%» (20% desde 2 unidades, mezclando pastillas y destapador) y «Pack 3 packs…» (30% desde 3 pastillas) | Pastillas: `pack2_pct` = 20, `pack3_pct` = 30, `pack_labels` = 1 pack · 24 / 2 packs · 48 / 3 packs · 72 pastillas |
-| Pastillas + Destapador | El mismo «Pack 2 o más · 20%»: el destapador sale 20% más barato junto a cualquier pack de pastillas (y las pastillas también). Reemplaza al antiguo «Compra X lleva Y» al 50%, desactivado porque partía la línea del carrito y anulaba el pack de 2 | Pastillas: `pack_product` = Destapador, `pack_discount` = 20 |
-| Cepillo 9 en 1 + Destapador de Cañerías | «Pack Cepillo 9 en 1 + Destapador: 50% en el destapador» (1 por pedido) | Cepillo: `pack_product` = Destapador, `pack_discount` = 50 |
+| Packs MEIBO (pastillas, destapador y bolsa para zapatillas) | «Pack 2 o más · 20%» y «Pack 3 o más · 30%»: cuentan unidades mezclando los productos de MEIBO | Pastillas: `pack_labels` = 1 caja · 12 / 2 cajas · 24 / 3 cajas · 36 pastillas. Destapador: 1/2/3 packs de 3 unidades. Ambos `pack2_pct` 20 y `pack3_pct` 30 |
+| «Llévalo en pack» | Los mismos descuentos por cantidad (sin «Compra X lleva Y», que parte la línea del carrito) | Pastillas → bolsa (o destapador), destapador → pastillas; `pack_discount` = 20 |
+| ~~Cepillo 9 en 1 + Destapador~~ | Desactivado: el destapador pasó a MEIBO (otro proveedor que el cepillo) | — |
 
 Si cambias el % en Descuentos, cambia también `ecoms.pack_discount` del producto.
 
