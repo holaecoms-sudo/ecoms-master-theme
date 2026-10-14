@@ -1278,6 +1278,20 @@ a.ec-rating--auto:hover b + span { text-decoration: underline; }
 @media screen and (min-width: 750px) {
   .cart-drawer .ec-cart-trust { flex-wrap: nowrap; white-space: nowrap; }
 }
+/* Cart drawer footer: room between the checkout button and the payment logos; uploaded logos never clipped */
+.cart-drawer .ec-cart-pay { gap: 6px; margin-top: 14px; }
+.cart-drawer .ec-cart-pay__icon { width: 36px; height: 23px; }
+.cart-drawer .ec-cart-pay .ec-pay-logo { width: auto; min-width: 36px; max-width: 76px; height: 23px; padding: 2px 5px; }
+.cart-drawer .ec-cart-pay .ec-pay-logo img { height: 15px; max-height: 15px; max-width: 64px; }
+.cart-drawer .ec-cart-trust { margin-top: 10px; }
+@media screen and (max-width: 749px) {
+  .cart-drawer .drawer__footer { padding: 12px 0 calc(14px + env(safe-area-inset-bottom)); box-shadow: 0 -8px 18px -12px rgba(0, 0, 0, 0.18); }
+  .cart-drawer .totals { margin-bottom: 2px; }
+  .cart-drawer .tax-note { margin: 4px 0 12px; line-height: 1.4; }
+  .cart-drawer #CartDrawer-Checkout { min-height: 52px; border-radius: 12px; }
+  .cart-drawer .ec-cart-trust { gap: 4px 12px; padding-bottom: 2px; font-size: 11px; line-height: 1.5; }
+  .cart-drawer .cart-item { gap: 0.6rem 1.2rem; padding: 1.4rem 0; }
+}
 .ec-cg__gh { margin: 0 0 14px; font-family: var(--font-heading-family); font-size: clamp(22px, 3vw, 30px); letter-spacing: -0.02em; color: var(--ec-ink); }
 
 /* =====================  ECOMS · Verticales  ===================== */
