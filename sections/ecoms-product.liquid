@@ -73,6 +73,8 @@
         assign start_pct = 0
         if start_tier == 2
           assign start_pct = pk_mf_pct
+        elsif start_tier == 3
+          assign start_pct = product.metafields.ecoms.pack3_pct.value | default: 0 | plus: 0
         endif
       endif
     endif

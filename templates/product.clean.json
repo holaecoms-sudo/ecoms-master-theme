@@ -187,13 +187,13 @@
             "tier2_qty": 2,
             "tier2_pct": 0,
             "tier2_label": "",
-            "tier2_tag": "Para regalar",
+            "tier2_tag": "Más popular",
             "tier2_note": "",
-            "tier3_enabled": false,
+            "tier3_enabled": true,
             "tier3_qty": 3,
             "tier3_pct": 0,
             "tier3_label": "",
-            "tier3_tag": "",
+            "tier3_tag": "Más ahorro",
             "tier3_note": ""
           }
         }

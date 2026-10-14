@@ -115,7 +115,7 @@
     $$('[data-ec-pack-summary]').forEach((box) => {
       const title = box.closest('[data-ec-packs]')?.dataset.title || '';
       const inc = box.querySelector('[data-ec-ps-inc]');
-      if (inc) inc.textContent = `${qty} × ${title}`;
+      if (inc) inc.textContent = (radio && radio.dataset.sum) || `${qty} × ${title}`;
       const save = radio ? Number(radio.dataset.save) || 0 : 0;
       const saveEl = box.querySelector('[data-ec-ps-save]');
       if (saveEl) {
