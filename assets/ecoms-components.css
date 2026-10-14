@@ -69,11 +69,11 @@
 .ec-hdr__drawer { position: absolute; top: 100%; left: 0; right: 0; display: grid; padding: 8px 16px 16px; border-bottom: 1px solid var(--ec-line); background: var(--ec-bg); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08); }
 .ec-hdr__drawer a { padding: 12px 0; border-bottom: 1px solid var(--ec-line); font-size: 15px; font-weight: 600; }
 .ec-hdr__drawer .ec-hdr__sub { padding-left: 14px; font-weight: 500; }
-/* Mobile/tablet: logo centered between the menu button and the cart */
+/* Mobile/tablet: logo centered between the menu button and the cart (only when the menu button is shown) */
 @media screen and (max-width: 989px) {
   .ec-hdr__bar { position: relative; }
-  .ec-hdr__bar > .ec-logo { position: absolute; left: 50%; top: 50%; max-width: calc(100% - 136px); transform: translate(-50%, -50%); justify-content: center; }
-  .ec-hdr__bar > .ec-logo img { max-width: 100%; height: auto; max-height: 40px; object-fit: contain; }
+  .ec-hdr__bar:has(> .ec-hdr__mobile) > .ec-logo { position: absolute; left: 50%; top: 50%; max-width: calc(100% - 136px); transform: translate(-50%, -50%); justify-content: center; }
+  .ec-hdr__bar:has(> .ec-hdr__mobile) > .ec-logo img { max-width: 100%; height: auto; max-height: 40px; object-fit: contain; }
 }
 @media screen and (min-width: 990px) {
   .ec-nav { display: flex; }

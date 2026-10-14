@@ -160,9 +160,12 @@
             if mf_tags[tier_idx] != blank and mf_tags[tier_idx] != '-'
               assign tag = mf_tags[tier_idx]
             endif
-            if mf_imgs[tier_idx] != blank
-              assign pack_image = mf_imgs[tier_idx]
-            endif
+            # File lists don't support [i]: walk the list to pick this tier's image.
+            for mf_img in mf_imgs
+              if forloop.index0 == tier_idx and mf_img != blank
+                assign pack_image = mf_img
+              endif
+            endfor
           endif
 
           assign subtotal = unit | times: q
