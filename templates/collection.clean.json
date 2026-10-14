@@ -53,10 +53,19 @@
             "heading": "Cambios y devoluciones",
             "text": "10 días de retracto y garantía legal"
           }
+        },
+        "t4": {
+          "type": "promise",
+          "settings": {
+            "icon": "gift",
+            "heading": "Envío gratis",
+            "text": "En compras desde $30.000"
+          }
         }
       },
       "block_order": [
         "t1",
+        "t4",
         "t2",
         "t3"
       ],
