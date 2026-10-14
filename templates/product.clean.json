@@ -79,6 +79,38 @@
             "style": "direct"
           }
         },
+        "packs": {
+          "type": "packs",
+          "settings": {
+            "from_metafield": true,
+            "heading": "Elige tu pack",
+            "layout": "cards",
+            "show_cta_total": true,
+            "help": "El descuento del pack se aplica automáticamente en el carrito.",
+            "default_tier": "2",
+            "item_name": "",
+            "show_summary": true,
+            "summary_label": "Tu pack incluye",
+            "show_free_shipping": true,
+            "discounts_live": true,
+            "tier1_qty": 1,
+            "tier1_label": "",
+            "tier1_tag": "",
+            "tier1_note": "",
+            "tier2_enabled": true,
+            "tier2_qty": 2,
+            "tier2_pct": 0,
+            "tier2_label": "",
+            "tier2_tag": "Más popular",
+            "tier2_note": "",
+            "tier3_enabled": true,
+            "tier3_qty": 3,
+            "tier3_pct": 0,
+            "tier3_label": "",
+            "tier3_tag": "Más ahorro",
+            "tier3_note": ""
+          }
+        },
         "includes": {
           "type": "includes",
           "settings": {
@@ -107,6 +139,14 @@
             "qty_6": "",
             "icon_6": "check",
             "badge_6": ""
+          }
+        },
+        "pack_offer": {
+          "type": "pack_offer",
+          "settings": {
+            "heading": "Llévalo en pack",
+            "note": "El descuento se aplica automáticamente en el carrito.",
+            "button_label": "+ Agregar"
           }
         },
         "stock": {
@@ -155,46 +195,6 @@
             "text_3": "",
             "icon_4": "battery",
             "text_4": ""
-          }
-        },
-        "pack_offer": {
-          "type": "pack_offer",
-          "settings": {
-            "heading": "Llévalo en pack",
-            "note": "El descuento se aplica automáticamente en el carrito.",
-            "button_label": "+ Agregar"
-          }
-        },
-        "packs": {
-          "type": "packs",
-          "settings": {
-            "from_metafield": true,
-            "heading": "Elige tu pack",
-            "layout": "cards",
-            "show_cta_total": true,
-            "help": "El descuento del pack se aplica automáticamente en el carrito.",
-            "default_tier": "2",
-            "item_name": "",
-            "show_summary": true,
-            "summary_label": "Tu pack incluye",
-            "show_free_shipping": true,
-            "discounts_live": true,
-            "tier1_qty": 1,
-            "tier1_label": "",
-            "tier1_tag": "",
-            "tier1_note": "",
-            "tier2_enabled": true,
-            "tier2_qty": 2,
-            "tier2_pct": 0,
-            "tier2_label": "",
-            "tier2_tag": "Más popular",
-            "tier2_note": "",
-            "tier3_enabled": true,
-            "tier3_qty": 3,
-            "tier3_pct": 0,
-            "tier3_label": "",
-            "tier3_tag": "Más ahorro",
-            "tier3_note": ""
           }
         }
       },
@@ -490,7 +490,6 @@
         "eyebrow": "",
         "heading": "Tu casa limpia, con menos esfuerzo",
         "text": "Envío a todo Chile y pago seguro con Webpay o Mercado Pago.",
-        "image": "shopify://shop_images/limpiador-vapor-A1-limpiador-sin-fondo.png",
         "image_plain": false,
         "button_label": "Comprar ahora",
         "trust_1": "Envío gratis desde $30.000",
