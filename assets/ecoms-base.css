@@ -724,6 +724,13 @@ body:has(cart-drawer.active) .ec-sticky { visibility: hidden; }
 .ec-incl-mini em { padding: 1px 8px; border-radius: 999px; background: var(--ec-soft); color: var(--ec-primary); font-size: 11px; font-style: normal; font-weight: 800; white-space: nowrap; }
 /* Key figures: 5–6 values → 3 per row on desktop, centered */
 @media screen and (min-width: 750px) { .ec-stats:has(> div:nth-child(5)) { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+/* Fewer than 4 values: fill the row instead of leaving an empty column */
+@media screen and (min-width: 750px) {
+  .ec-stats:has(> div:nth-child(3)):not(:has(> div:nth-child(4))) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ec-stats:has(> div:nth-child(2)):not(:has(> div:nth-child(3))) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* Odd count on mobile (2 per row): last value takes the full row */
+@media screen and (max-width: 749px) { .ec-stats > div:last-child:nth-child(odd) { grid-column: 1 / -1; } }
 .ec-stats-sec .ec-sec-h { margin-bottom: 14px; }
 
 /* =====================================================================
