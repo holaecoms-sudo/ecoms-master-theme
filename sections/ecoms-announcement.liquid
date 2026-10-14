@@ -2,10 +2,9 @@
 {%- capture ec_skin -%}{% render 'ecoms-skin' %}{%- endcapture -%}
 {%- assign ann_style = section.settings.style -%}
 {%- if ann_style == 'auto' -%}{%- assign ann_style = ec_skin -%}{%- endif -%}
-<div class="ec-ann ec-ann--{{ ann_style }}" role="region" aria-label="Anuncios">
+<div class="ec-ann ec-ann--{{ ann_style }} ec-ann--motion-{{ section.settings.motion | default: 'static' }}" role="region" aria-label="Anuncios">
   <div class="ec-ann__inner">
-    <span class="ec-ann__msgs">
-      {%- if section.settings.icon != 'none' -%}{% render 'ecoms-icon', name: section.settings.icon %}{%- endif -%}
+    {%- capture ann_items -%}
       {%- liquid
         assign shown = 0
         assign ship_threshold = 0
@@ -42,7 +41,20 @@
           {%- endif -%}
         </span>
       {%- endfor -%}
-    </span>
+    {%- endcapture -%}
+    {%- capture ann_icon -%}{%- if section.settings.icon != 'none' -%}{% render 'ecoms-icon', name: section.settings.icon %}{%- endif -%}{%- endcapture -%}
+    {%- assign ann_motion = section.settings.motion | default: 'static' -%}
+    {%- if ann_motion == 'static' -%}
+      <span class="ec-ann__msgs">{{ ann_icon }}{{ ann_items }}</span>
+    {%- else -%}
+      {%- comment -%} Ticker: the message group is rendered twice and the track slides by half its width, so the loop has no seam. {%- endcomment -%}
+      <div class="ec-ann__marquee">
+        <div class="ec-ann__track" style="--ec-ann-speed: {{ section.settings.speed | default: 25 }}s;">
+          <span class="ec-ann__msgs">{{ ann_icon }}{{ ann_items }}<span class="ec-ann__sep ec-ann__sep--loop" aria-hidden="true">{{ section.settings.separator }}</span></span>
+          <span class="ec-ann__msgs ec-ann__msgs--copy" aria-hidden="true">{{ ann_icon }}{{ ann_items }}<span class="ec-ann__sep ec-ann__sep--loop">{{ section.settings.separator }}</span></span>
+        </div>
+      </div>
+    {%- endif -%}
     {%- liquid
       assign end_ts = 0
       if section.settings.end_at != blank
@@ -229,6 +241,37 @@
       "id": "separator",
       "label": "Separador",
       "default": "|"
+    },
+    {
+      "type": "select",
+      "id": "motion",
+      "label": "Movimiento",
+      "options": [
+        {
+          "value": "static",
+          "label": "Fija (los mensajes se acomodan en varias líneas)"
+        },
+        {
+          "value": "marquee_mobile",
+          "label": "Cinta en movimiento solo en celular"
+        },
+        {
+          "value": "marquee",
+          "label": "Cinta en movimiento siempre"
+        }
+      ],
+      "default": "static",
+      "info": "La cinta se detiene al pasar el cursor y queda fija si el visitante pidió reducir animaciones."
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Duración de una vuelta de la cinta",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "default": 25
     },
     {
       "type": "header",

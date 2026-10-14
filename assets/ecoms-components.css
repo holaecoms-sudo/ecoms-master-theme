@@ -21,6 +21,25 @@
 .ec-ann--direct .ec-i { width: 17px; height: 17px; color: var(--ec-accent); }
 .ec-ann--direct .ec-ann__timer { text-transform: none; letter-spacing: 0; }
 @media screen and (min-width: 990px) { .ec-ann--direct .ec-ann__inner { justify-content: space-between; padding-inline: 32px; } }
+/* Announcement ticker («Movimiento»): one line that scrolls; each half fills at least the bar width */
+.ec-ann--motion-marquee .ec-ann__inner, .ec-ann--motion-marquee_mobile .ec-ann__inner { flex-wrap: nowrap; padding-inline: 0; }
+.ec-ann__marquee { flex: 1 1 auto; min-width: 0; overflow: hidden; }
+.ec-ann__track { display: flex; width: max-content; animation: ec-ann-scroll var(--ec-ann-speed, 25s) linear infinite; }
+.ec-ann__track .ec-ann__msgs { flex-shrink: 0; flex-wrap: nowrap; justify-content: space-around; min-width: 100vw; padding-inline: 5px; white-space: nowrap; }
+.ec-ann__marquee:hover .ec-ann__track, .ec-ann__marquee:focus-within .ec-ann__track { animation-play-state: paused; }
+@keyframes ec-ann-scroll { to { transform: translateX(-50%); } }
+@media screen and (min-width: 750px) {
+  .ec-ann--motion-marquee_mobile .ec-ann__inner { flex-wrap: wrap; padding-inline: 14px; }
+  .ec-ann--motion-marquee_mobile .ec-ann__track { width: auto; animation: none; justify-content: center; }
+  .ec-ann--motion-marquee_mobile .ec-ann__track .ec-ann__msgs { flex-wrap: wrap; min-width: 0; white-space: normal; }
+  .ec-ann--motion-marquee_mobile .ec-ann__msgs--copy, .ec-ann--motion-marquee_mobile .ec-ann__sep--loop { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ec-ann__track { width: auto; animation: none; justify-content: center; }
+  .ec-ann__track .ec-ann__msgs { flex-wrap: wrap; min-width: 0; white-space: normal; }
+  .ec-ann__msgs--copy, .ec-ann__sep--loop { display: none; }
+  .ec-ann--motion-marquee .ec-ann__inner, .ec-ann--motion-marquee_mobile .ec-ann__inner { flex-wrap: wrap; padding-inline: 14px; }
+}
 
 /* ---------- Header ---------- */
 .ec-hdr { position: relative; z-index: 20; border-bottom: 1px solid var(--ec-line); background: var(--ec-bg); }

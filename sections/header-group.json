@@ -53,6 +53,8 @@
         "style": "auto",
         "icon": "truck",
         "separator": "|",
+        "motion": "marquee_mobile",
+        "speed": 25,
         "end_at": "",
         "timer_label": "Oferta termina en:"
       }
