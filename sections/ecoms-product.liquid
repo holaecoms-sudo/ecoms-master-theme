@@ -481,7 +481,7 @@
                   <div class="ec-packoff__t">
                     <a href="{{ po_item.url }}">{{ po_item.title | escape }}</a>
                     <span><b>{{ po_price | money }}</b> <s>{{ po_variant.price | money }}</s> <em>-{{ po_pct }}%</em></span>
-                    {%- if block.settings.note != blank -%}<small>{{ block.settings.note | escape }}</small>{%- endif -%}
+                    {%- assign po_note = product.metafields.ecoms.pack_note.value | default: block.settings.note -%}{%- if po_note != blank -%}<small>{{ po_note | escape }}</small>{%- endif -%}
                   </div>
                   {%- render 'ecoms-add-button', item: po_item, label: block.settings.button_label, class: 'ec-btn ec-btn--primary ec-btn--sm ec-packoff__add', source: 'pack_offer' -%}
                 </div>

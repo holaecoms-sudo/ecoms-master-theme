@@ -17,6 +17,8 @@
   «Desde metacampo» (shared templates): the pack 2 / pack 3 % come from the product metafields
   ecoms.pack2_pct / ecoms.pack3_pct (same % as the real automatic discounts), the unit name from
   ecoms.unit_name and optional card titles from ecoms.pack_labels (e.g. «2 packs · 48 pastillas»).
+  Optional per-product tags (ecoms.pack_tags, e.g. «Para regalar») and card images (ecoms.pack_images)
+  replace the template ones tier by tier; «-» keeps the template tag for that tier.
   Products without ecoms.pack2_pct don't show the packs at all; pack 3 shows only with ecoms.pack3_pct.
 {%- endcomment -%}
 {%- liquid
@@ -35,6 +37,8 @@
   assign mf_pct2 = product.metafields.ecoms.pack2_pct.value | default: 0 | plus: 0
   assign mf_pct3 = product.metafields.ecoms.pack3_pct.value | default: 0 | plus: 0
   assign mf_labels = product.metafields.ecoms.pack_labels.value
+  assign mf_tags = product.metafields.ecoms.pack_tags.value
+  assign mf_imgs = product.metafields.ecoms.pack_images.value
   if mf_mode
     assign live = true
     assign item_name = product.metafields.ecoms.unit_name.value | default: item_name | strip
@@ -151,6 +155,15 @@
           assign tag = s[tag_key]
           assign note = s[note_key]
           assign pack_image = s[img_key] | default: product.featured_image
+          if mf_mode
+            assign tier_idx = i | minus: 1
+            if mf_tags[tier_idx] != blank and mf_tags[tier_idx] != '-'
+              assign tag = mf_tags[tier_idx]
+            endif
+            if mf_imgs[tier_idx] != blank
+              assign pack_image = mf_imgs[tier_idx]
+            endif
+          endif
 
           assign subtotal = unit | times: q
           assign discount = subtotal | times: pct | divided_by: 10000.0 | round | times: 100
