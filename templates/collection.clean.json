@@ -17,15 +17,14 @@
         "logo_height": 40,
         "tagline": "",
         "heading": "Tu casa limpia, con menos esfuerzo",
-        "text": "<p>Herramientas pensadas para baño, cocina, pisos y orden. Te explicamos cómo funciona cada una y te las enviamos a todo Chile.</p>",
-        "product": "cepillo-electrico-de-limpieza-9-en-1",
-        "button_label": "Ver producto estrella",
-        "button_2_label": "Ver todos",
+        "text": "<p>Herramientas para baño, cocina, pisos y lavado. Te explicamos cómo funciona cada una y te las enviamos a todo Chile.</p>",
+        "button_label": "Ver productos",
+        "button_2_label": "",
         "button_2_link": "",
-        "show_card": true,
+        "show_card": false,
         "card_text": "El favorito de la casa",
-        "padding_top": 40,
-        "padding_bottom": 48
+        "padding_top": 32,
+        "padding_bottom": 36
       }
     },
     "trust": {
@@ -76,36 +75,40 @@
           "type": "zone",
           "settings": {
             "label": "Baño",
-            "text": "Ducha, tina y juntas",
+            "text": "Ducha, inodoro y juntas",
             "tag": "zona-bano",
-            "icon": "drop"
+            "icon": "drop",
+            "image": "shopify://shop_images/limpiador-vapor-uso-bano.jpg"
           }
         },
         "z2": {
           "type": "zone",
           "settings": {
             "label": "Cocina",
-            "text": "Grasa, lavaplatos y cubiertas",
+            "text": "Grasa, lavaplatos y cañerías",
             "tag": "zona-cocina",
-            "icon": "home"
+            "icon": "home",
+            "image": "shopify://shop_images/limpiador-vapor-uso-cocina.jpg"
           }
         },
         "z3": {
           "type": "zone",
           "settings": {
-            "label": "Pisos y vidrios",
-            "text": "Cerámica, mamparas y ventanas",
+            "label": "Pisos y aspirado",
+            "text": "Aspiradoras y mopa",
             "tag": "zona-pisos",
-            "icon": "sparkle"
+            "icon": "sparkle",
+            "image": "shopify://shop_images/aspiradora-uso-pisos.jpg"
           }
         },
         "z4": {
           "type": "zone",
           "settings": {
-            "label": "Orden",
-            "text": "Clóset y espacios",
-            "tag": "zona-orden",
-            "icon": "box"
+            "label": "Lavado y ropa",
+            "text": "Lavadora, zapatillas y clóset",
+            "tag": "zona-ropa",
+            "icon": "leaf",
+            "image": "shopify://shop_images/pastillas-lavadora-galeria-4.jpg"
           }
         }
       },

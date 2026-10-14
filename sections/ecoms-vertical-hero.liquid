@@ -29,10 +29,11 @@
       {%- if s.heading != blank -%}<h1 class="ec-vh__h">{{ s.heading | escape }}</h1>{%- endif -%}
       {%- if s.text != blank -%}<div class="ec-vh__t">{{ s.text }}</div>{%- endif -%}
       <div class="ec-vh__btns">
-        {%- if star != blank and s.button_label != blank -%}
-          <a class="ec-btn ec-btn--primary ec-vh__btn" href="{{ star.url }}">{{ s.button_label | escape }} {% render 'ecoms-icon', name: 'arrow' %}</a>
+        {%- assign main_url = star.url | default: s.button_link | default: '#productos' -%}
+        {%- if main_url != blank and s.button_label != blank -%}
+          <a class="ec-btn ec-btn--primary ec-vh__btn" href="{{ main_url }}">{{ s.button_label | escape }} {% render 'ecoms-icon', name: 'arrow' %}</a>
         {%- elsif request.design_mode -%}
-          <p class="ec-editor-note">Elige el producto estrella para mostrar el botón.</p>
+          <p class="ec-editor-note">Elige un producto estrella o un enlace para mostrar el botón principal.</p>
         {%- endif -%}
         {%- if s.button_2_label != blank -%}
           <a class="ec-btn ec-vh__btn2" href="{{ s.button_2_link | default: '#productos' }}">{{ s.button_2_label | escape }}</a>
@@ -77,8 +78,9 @@
     { "type": "text", "id": "heading", "label": "Título", "default": "Tu casa limpia, con menos esfuerzo" },
     { "type": "richtext", "id": "text", "label": "Texto", "default": "<p>Herramientas pensadas para baño, cocina, pisos y orden. Te explicamos cómo funciona cada una y te las enviamos a todo Chile.</p>" },
     { "type": "header", "content": "Producto estrella" },
-    { "type": "product", "id": "product", "label": "Producto estrella" },
+    { "type": "product", "id": "product", "label": "Producto estrella", "info": "Opcional. Vacío = hero sin producto (solo texto, o con la imagen de abajo)." },
     { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Ver producto estrella" },
+    { "type": "url", "id": "button_link", "label": "Enlace del botón (sin producto estrella)", "info": "Se usa solo si no eliges producto estrella. Vacío = baja a la grilla de productos." },
     { "type": "text", "id": "button_2_label", "label": "Botón secundario", "default": "Ver todos" },
     { "type": "url", "id": "button_2_link", "label": "Enlace botón secundario", "info": "Vacío = baja a la grilla de productos." },
     { "type": "image_picker", "id": "image", "label": "Imagen", "info": "Vacío = foto del producto estrella. Recomendado 1:1, 1200 × 1200." },
