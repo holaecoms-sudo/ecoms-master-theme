@@ -41,6 +41,7 @@ banda final). El contenido sale de **metacampos del producto** (Admin → produc
 | Preguntas frecuentes | `ecoms.faqs` | lista de «Pregunta frecuente» |
 | Banda final | `ecoms.cta_heading` | texto |
 | «Completa tu pedido» | `ecoms.cart_suggestions` | lista de productos |
+| «Llévalo en pack» | `ecoms.pack_product` + `ecoms.pack_discount` | producto + % (debe ser igual al descuento automático real) |
 
 Cada sección se oculta sola si el producto no tiene ese contenido. Las plantillas con bloques (la del cepillo)
 siguen funcionando igual: los metacampos solo reemplazan los bloques cuando existen.
@@ -51,3 +52,11 @@ siguen funcionando igual: los metacampos solo reemplazan los bloques cuando exis
 2. Subir 4–6 fotos propias (1:1, 2048 px).
 3. Confirmar datos marcados como pendientes.
 4. Cambiar a **Active**.
+
+## Packs activos (descuentos automáticos reales)
+
+| Pack | Descuento en Shopify | Metacampos |
+|---|---|---|
+| Limpiador a Vapor + Pastillas para Lavadora | «Pack Limpiador a Vapor + Pastillas: 50% en las pastillas» (Compra X y llévate Y, 1 por pedido) | Limpiador: `pack_product` = Pastillas, `pack_discount` = 50 |
+
+Si cambias el % en Descuentos, cambia también `ecoms.pack_discount` del producto.
