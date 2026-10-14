@@ -1474,3 +1474,19 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 }
 @media screen and (min-width: 750px) { .ec-vt__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; } }
 @media screen and (min-width: 990px) { .ec-vt__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* Líneas: «Avísame» form and «Solo próximas» strip */
+.ec-vt__form { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 10px; }
+.ec-vt__form input[type=email] { flex: 1 1 140px; min-width: 0; height: 40px; padding: 0 12px; border: 1px solid var(--ec-line, #dfe3e8); border-radius: 10px; background: #fff; color: var(--ec-ink); font: inherit; font-size: 14px; }
+.ec-vt__form button { height: 40px; padding: 0 14px; border: 0; border-radius: 10px; background: var(--vt-accent); color: #fff; font: inherit; font-size: 14px; font-weight: 800; cursor: pointer; }
+.ec-vt__form .errors, .ec-vt__form .form__message { flex-basis: 100%; margin: 0; color: #b42318; font-size: 12.5px; }
+.ec-vt__ok { flex-basis: 100%; margin: 0; color: var(--vt-accent); font-size: 13.5px; font-weight: 700; }
+.ec-vt__form.is-done input, .ec-vt__form.is-done button { display: none; }
+.ec-vt--soon .ec-vt__grid { grid-template-columns: minmax(0, 1fr); }
+.ec-vt--soon .ec-vt__item--soon, .ec-vt--soon .ec-vt__item--soon:last-child:nth-child(even) { grid-column: auto; }
+.ec-vt--soon .ec-vt__item--soon .ec-vt__body { padding: 16px; }
+.ec-vt--soon .ec-vt__item--soon .ec-vt__top { flex-direction: row; align-items: center; }
+.ec-vt--soon .ec-vt__item--soon .ec-vt__name { font-size: 18px; }
+.ec-vt--soon .ec-vt__item--soon .ec-vt__text { font-size: 13.5px; }
+@media screen and (min-width: 750px) { .ec-vt--soon .ec-vt__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.ec-vt__body > form { margin: auto 0 0; }

@@ -2,7 +2,8 @@
   ECOMS · Store lines (verticals) for the home page. Each block is one line of the store: a live one links to its
   collection and shows its real product count; a «Próximamente» one is shown muted and is not a link.
 {%- endcomment -%}
-<section class="ec-sec ec-vt" id="lineas" style="--ec-pt: {{ section.settings.padding_top }}px; --ec-pb: {{ section.settings.padding_bottom }}px;">
+{%- assign vt_layout = section.settings.layout | default: 'grid' -%}
+<section class="ec-sec ec-vt ec-vt--{{ vt_layout }}" id="{{ section.settings.anchor | default: 'lineas' | handleize }}" style="--ec-pt: {{ section.settings.padding_top }}px; --ec-pb: {{ section.settings.padding_bottom }}px;">
   <div class="ec-w">
     {%- if section.settings.heading != blank or section.settings.text != blank -%}
       <div class="ec-sec-h">
@@ -18,6 +19,10 @@
           assign live = false
           if b.status == 'live' and b.collection != blank
             assign live = true
+          endif
+          # «Solo próximas» layout: live lines are already sold above, so only upcoming ones are listed.
+          if vt_layout == 'soon' and live
+            continue
           endif
           assign count = 0
           if live
@@ -42,6 +47,18 @@
               </span>
               <span class="ec-vt__name">{{ b.name | escape }}</span>
               {%- if b.text != blank -%}<span class="ec-vt__text">{{ b.text | escape }}</span>{%- endif -%}
+              {%- if live == false and section.settings.show_notify -%}
+                {%- assign nf_id = 'ec-notify-' | append: block.id -%}
+                {%- assign nf_tag = b.notify_tag | default: b.name | handleize -%}
+                {%- form 'customer', id: nf_id -%}<div class="ec-vt__form">
+                  <input type="hidden" name="contact[tags]" value="newsletter,interes-{{ nf_tag | escape }}">
+                  <label class="visually-hidden" for="{{ nf_id }}-email">Email</label>
+                  <input id="{{ nf_id }}-email" type="email" name="contact[email]" required autocomplete="email" placeholder="{{ section.settings.notify_placeholder | escape }}">
+                  <button type="submit">{{ section.settings.notify_button | escape }}</button>
+                  {{ form.errors | default_errors }}
+                  <p class="ec-vt__ok" hidden>{{ section.settings.notify_success | escape }}</p>
+                </div>{%- endform -%}
+              {%- endif -%}
               {%- if live -%}
                 <span class="ec-vt__cta">{{ b.button_label | default: section.settings.button_label | escape }} {% render 'ecoms-icon', name: 'arrow' %}</span>
               {%- endif -%}
@@ -51,6 +68,21 @@
       {%- endfor -%}
     </ul>
   </div>
+  {%- if section.settings.show_notify -%}
+    <script>
+      (function () {
+        // Shopify returns to the page with ?customer_posted=true#<form id>: confirm on that card only.
+        if (!/customer_posted=true/.test(location.search) || !location.hash) return;
+        var f = document.getElementById(location.hash.slice(1));
+        var box = f && f.querySelector('.ec-vt__form');
+        if (!box) return;
+        box.classList.add('is-done');
+        f = box;
+        var ok = f.querySelector('.ec-vt__ok');
+        if (ok) ok.hidden = false;
+      })();
+    </script>
+  {%- endif -%}
 </section>
 
 {% schema %}
@@ -62,9 +94,25 @@
     { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Nuestras líneas" },
     { "type": "text", "id": "heading", "label": "Título", "default": "Encuentra lo que necesitas" },
     { "type": "text", "id": "text", "label": "Texto" },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Mostrar",
+      "options": [
+        { "value": "grid", "label": "Todas las líneas" },
+        { "value": "soon", "label": "Solo las próximas (franja «Próximamente»)" }
+      ],
+      "default": "grid"
+    },
+    { "type": "text", "id": "anchor", "label": "Ancla del enlace", "default": "lineas", "info": "Para enlazar desde el menú, ej.: /#proximamente." },
     { "type": "text", "id": "button_label", "label": "Botón de las líneas disponibles", "default": "Ver productos" },
     { "type": "text", "id": "live_label", "label": "Etiqueta de línea disponible", "default": "Disponible" },
     { "type": "text", "id": "soon_label", "label": "Etiqueta de línea próxima", "default": "Próximamente" },
+    { "type": "header", "content": "Avísame cuando llegue" },
+    { "type": "checkbox", "id": "show_notify", "label": "Formulario en las líneas próximas", "default": true, "info": "Guarda el email como cliente suscrito con la etiqueta interes-<línea> (Clientes en Shopify)." },
+    { "type": "text", "id": "notify_placeholder", "label": "Texto del campo", "default": "Tu email" },
+    { "type": "text", "id": "notify_button", "label": "Botón", "default": "Avísame" },
+    { "type": "text", "id": "notify_success", "label": "Mensaje al enviar", "default": "¡Listo! Te avisaremos cuando llegue." },
     { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
     { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 }
   ],
@@ -105,7 +153,8 @@
         },
         { "type": "color", "id": "accent", "label": "Color de la línea", "default": "#3B82F6" },
         { "type": "image_picker", "id": "image", "label": "Imagen (opcional)", "info": "Recomendado 4:3, 800 × 600." },
-        { "type": "text", "id": "button_label", "label": "Texto del botón", "info": "Vacío = el de la sección." }
+        { "type": "text", "id": "button_label", "label": "Texto del botón", "info": "Vacío = el de la sección." },
+        { "type": "text", "id": "notify_tag", "label": "Etiqueta de interesados", "info": "Vacío = el nombre de la línea. Ej.: belleza → interes-belleza." }
       ]
     }
   ],

@@ -56,7 +56,18 @@
     <nav class="ec-nav" aria-label="Principal">
       {%- if show_menu -%}
         {%- for link in hdr_menu.links -%}
-          <a href="{{ link.url }}" class="{% if link.active or link.child_active %}on{% endif %}">{{ link.title | escape }}</a>
+          {%- if link.links.size > 0 -%}
+            <div class="ec-nav__dd">
+              <a href="{{ link.url }}" class="{% if link.active or link.child_active %}on{% endif %}" aria-haspopup="true">{{ link.title | escape }} <span class="ec-nav__caret" aria-hidden="true"></span></a>
+              <div class="ec-nav__menu">
+                {%- for child in link.links -%}
+                  <a href="{{ child.url }}"{% if child.active %} class="on" aria-current="page"{% endif %}>{{ child.title | escape }}</a>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- else -%}
+            <a href="{{ link.url }}" class="{% if link.active or link.child_active %}on{% endif %}">{{ link.title | escape }}</a>
+          {%- endif -%}
         {%- endfor -%}
       {%- endif -%}
     </nav>

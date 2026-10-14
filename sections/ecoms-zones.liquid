@@ -14,7 +14,7 @@
     assign base_url = routes.all_products_collection_url
   endif
 -%}
-<section class="ec-zn" style="--ec-pt: {{ section.settings.padding_top }}px; --ec-pb: {{ section.settings.padding_bottom }}px;">
+<section class="ec-zn" id="categorias" style="--ec-pt: {{ section.settings.padding_top }}px; --ec-pb: {{ section.settings.padding_bottom }}px;">
   <div class="ec-w">
     {%- if section.settings.heading != blank -%}<h2 class="ec-zn__h">{{ section.settings.heading | escape }}</h2>{%- endif -%}
     {%- if section.settings.text != blank -%}<p class="ec-zn__s">{{ section.settings.text | escape }}</p>{%- endif -%}

@@ -50,6 +50,14 @@
 .ec-nav { display: none; gap: 26px; margin: 0 auto; font-size: 14px; font-weight: 500; }
 .ec-nav a:hover { color: var(--ec-primary); }
 .ec-nav a.on { color: var(--ec-primary); font-weight: 700; }
+/* Desktop dropdown for menu items with children (hover or keyboard focus) */
+.ec-nav__dd { position: relative; display: flex; align-items: center; }
+.ec-nav__caret { display: inline-block; width: 6px; height: 6px; margin: 0 0 3px 4px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); }
+.ec-nav__menu { position: absolute; top: 100%; left: -14px; z-index: 30; display: none; min-width: 200px; padding: 8px; border: 1px solid var(--ec-line, #e5e7eb); border-radius: 12px; background: var(--ec-bg, #fff); box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.2); }
+.ec-nav__dd::after { content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 10px; }
+.ec-nav__menu a { display: block; padding: 8px 10px; border-radius: 8px; white-space: nowrap; }
+.ec-nav__menu a:hover { background: var(--ec-soft, #f3f5f8); }
+.ec-nav__dd:hover .ec-nav__menu, .ec-nav__dd:focus-within .ec-nav__menu { display: block; margin-top: 8px; }
 .ec-hdr__social { display: none; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; }
 .ec-hdr__social .ec-i { width: 17px; height: 17px; color: var(--ec-star); fill: currentColor; stroke: none; }
 .ec-hdr__icons { display: flex; gap: 2px; margin-left: auto; }

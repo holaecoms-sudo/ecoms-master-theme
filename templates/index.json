@@ -52,12 +52,12 @@
         "t4"
       ],
       "settings": {
-        "eyebrow": "Ecoms · Tienda chilena",
-        "heading": "Productos útiles para tu casa y tu",
-        "heading_em": "bienestar",
-        "text": "Elegimos pocos productos, te explicamos cómo funciona cada uno y te los enviamos a todo Chile. Empieza por Ecoms Clean, nuestra línea de limpieza.",
-        "button_1_label": "Ver Ecoms Clean",
-        "button_2_label": "Ver todas las líneas",
+        "eyebrow": "Ecoms Clean · Limpieza y aseo",
+        "heading": "Tu casa limpia, con",
+        "heading_em": "menos esfuerzo",
+        "text": "Herramientas para baño, cocina, pisos y lavado. Te explicamos cómo funciona cada una y te las enviamos a todo Chile.",
+        "button_1_label": "Ver productos",
+        "button_2_label": "Comprar por categoría",
         "product": "cepillo-electrico-de-limpieza-9-en-1",
         "tag": "Ecoms Clean",
         "card_text": "Limpia sin fregar ni agacharte",
@@ -89,7 +89,8 @@
             "text": "Orden, cocina y cuidado de tus mascotas.",
             "status": "soon",
             "icon": "paw",
-            "accent": "#F59E0B"
+            "accent": "#F59E0B",
+            "notify_tag": "hogar"
           }
         },
         "v3": {
@@ -99,7 +100,8 @@
             "text": "Cuidado personal y de la piel.",
             "status": "soon",
             "icon": "gem",
-            "accent": "#EC4899"
+            "accent": "#EC4899",
+            "notify_tag": "belleza"
           }
         },
         "v4": {
@@ -109,7 +111,8 @@
             "text": "Descanso, relajación y vida sana.",
             "status": "soon",
             "icon": "leaf",
-            "accent": "#14B8A6"
+            "accent": "#14B8A6",
+            "notify_tag": "bienestar"
           }
         }
       },
@@ -120,20 +123,26 @@
         "v4"
       ],
       "settings": {
-        "eyebrow": "Nuestras líneas",
-        "heading": "Una tienda, cuatro líneas",
-        "text": "Partimos con limpieza y aseo. Las demás líneas vienen pronto.",
+        "eyebrow": "Próximamente",
+        "heading": "Nuevas líneas en camino",
+        "text": "Déjanos tu email y te avisamos cuando lleguen.",
         "button_label": "Ver productos",
         "live_label": "Disponible",
         "soon_label": "Próximamente",
-        "padding_top": 52,
-        "padding_bottom": 24
+        "padding_top": 40,
+        "padding_bottom": 56,
+        "layout": "soon",
+        "anchor": "proximamente",
+        "show_notify": true,
+        "notify_placeholder": "Tu email",
+        "notify_button": "Avísame",
+        "notify_success": "¡Listo! Te avisaremos cuando llegue."
       }
     },
     "clean_row": {
       "type": "ecoms-product-row",
       "settings": {
-        "heading": "Lo nuevo de Ecoms Clean",
+        "heading": "Productos Ecoms Clean",
         "collection": "clean",
         "limit": 8,
         "min_products": 3,
@@ -143,7 +152,7 @@
         "button_label": "Ver producto",
         "link_label": "Ver todo",
         "link": "shopify://collections/clean",
-        "padding_top": 32,
+        "padding_top": 40,
         "padding_bottom": 32
       }
     },
@@ -186,14 +195,71 @@
         "text": "",
         "width": "full",
         "padding_top": 36,
-        "padding_bottom": 56
+        "padding_bottom": 24
+      }
+    },
+    "zonas": {
+      "type": "ecoms-zones",
+      "blocks": {
+        "z1": {
+          "type": "zone",
+          "settings": {
+            "label": "Baño",
+            "text": "Ducha, inodoro y juntas",
+            "tag": "zona-bano",
+            "icon": "drop"
+          }
+        },
+        "z2": {
+          "type": "zone",
+          "settings": {
+            "label": "Cocina",
+            "text": "Grasa, lavaplatos y cañerías",
+            "tag": "zona-cocina",
+            "icon": "home"
+          }
+        },
+        "z3": {
+          "type": "zone",
+          "settings": {
+            "label": "Pisos y aspirado",
+            "text": "Aspiradoras y mopa",
+            "tag": "zona-pisos",
+            "icon": "sparkle"
+          }
+        },
+        "z4": {
+          "type": "zone",
+          "settings": {
+            "label": "Lavado y ropa",
+            "text": "Lavadora, zapatillas y clóset",
+            "tag": "zona-ropa",
+            "icon": "washer"
+          }
+        }
+      },
+      "block_order": [
+        "z1",
+        "z2",
+        "z3",
+        "z4"
+      ],
+      "settings": {
+        "heading": "Compra por categoría",
+        "text": "",
+        "collection": "clean",
+        "show_all": true,
+        "all_label": "Ver todo Ecoms Clean",
+        "padding_top": 28,
+        "padding_bottom": 20
       }
     }
   },
   "order": [
     "hero",
-    "lineas",
     "clean_row",
-    "como"
+    "zonas",
+    "como",
+    "lineas"
   ]
 }
