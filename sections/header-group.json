@@ -67,6 +67,7 @@
         "logo_height": 32,
         "social_text": "",
         "menu_visibility": "not_product",
+        "logo_link": "not_product",
         "show_search": false,
         "show_account": false
       }

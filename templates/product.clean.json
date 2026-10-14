@@ -482,6 +482,7 @@
     },
     "cross": {
       "type": "ecoms-cross-sell",
+      "disabled": true,
       "settings": {
         "style": "rail",
         "heading": "Completa tu limpieza",

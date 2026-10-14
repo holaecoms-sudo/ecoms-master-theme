@@ -58,7 +58,8 @@
       ],
       "settings": {
         "style": "light",
-        "legal": "Comercializadora SB SpA · RUT 78.529.134-4"
+        "legal": "Comercializadora SB SpA · RUT 78.529.134-4",
+        "product_focus": true
       }
     }
   },

@@ -25,6 +25,13 @@
   elsif section.settings.menu_visibility == 'not_product' and template.name == 'product'
     assign show_menu = false
   endif
+  # Same focus rule for the logo: on product pages it can stay as a plain logo, not a link out of the offer.
+  assign logo_link = true
+  if section.settings.logo_link == 'never'
+    assign logo_link = false
+  elsif section.settings.logo_link == 'not_product' and template.name == 'product'
+    assign logo_link = false
+  endif
 -%}
 <header class="ec-hdr" role="banner">
   <div class="ec-w ec-hdr__bar">
@@ -41,7 +48,7 @@
         </nav>
       </details>
     {%- endif -%}
-    <a href="{{ hdr_home }}" class="ec-logo{% if ec_vslot != blank %} ec-logo--vertical{% endif %}">
+    {%- if logo_link -%}<a href="{{ hdr_home }}" class="ec-logo{% if ec_vslot != blank %} ec-logo--vertical{% endif %}">{%- else -%}<span class="ec-logo{% if ec_vslot != blank %} ec-logo--vertical{% endif %}">{%- endif -%}
       {%- if ec_vslot != blank -%}
         {%- assign vk = 'ecoms_v' | append: ec_vslot | append: '_logo_height' -%}
         {%- render 'ecoms-vertical-logo', slot: ec_vslot, height: settings[vk], eager: true -%}
@@ -52,7 +59,7 @@
         {%- if section.settings.logo_icon != 'none' -%}{% render 'ecoms-icon', name: section.settings.logo_icon %}{%- endif -%}
         <span>{{ store_name | escape }}</span>
       {%- endif -%}
-    </a>
+    {%- if logo_link -%}</a>{%- else -%}</span>{%- endif -%}
     <nav class="ec-nav" aria-label="Principal">
       {%- if show_menu -%}
         {%- for link in hdr_menu.links -%}
@@ -265,6 +272,18 @@
         }
       ],
       "default": "bag"
+    },
+    {
+      "type": "select",
+      "id": "logo_link",
+      "label": "Logo con enlace",
+      "options": [
+        { "value": "always", "label": "En todas las páginas" },
+        { "value": "not_product", "label": "Sin enlace en páginas de producto" },
+        { "value": "never", "label": "Nunca" }
+      ],
+      "default": "always",
+      "info": "Sin enlace, el comprador no sale de la ficha por el logo."
     },
     {
       "type": "range",

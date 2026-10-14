@@ -14,6 +14,13 @@
   endif
 -%}
 {%- assign store_name = settings.ecoms_store_name | default: shop.name -%}
+{%- liquid
+  # Focus mode on product pages: no menus or links that take the shopper away; keep policies, payments and social.
+  assign ft_focus = false
+  if section.settings.product_focus and template.name == 'product'
+    assign ft_focus = true
+  endif
+-%}
 <footer class="ec-ft ec-ft--{{ ft_style }}">
   <div class="ec-w ec-ft__grid">
     {%- liquid
@@ -53,10 +60,11 @@
     -%}
     {%- for block in section.blocks -%}
       {%- if block.type == 'social' and has_social == false and request.design_mode != true -%}{%- continue -%}{%- endif -%}
+      {%- if ft_focus -%}{%- if block.type == 'menu' or block.type == 'newsletter' -%}{%- continue -%}{%- endif -%}{%- endif -%}
       <div class="ec-ft__col ec-ft__col--{{ block.type }}" {{ block.shopify_attributes }}>
         {%- case block.type -%}
           {%- when 'brand' -%}
-            <a href="{{ routes.root_url }}" class="ec-logo">
+            {%- if ft_focus -%}<span class="ec-logo">{%- else -%}<a href="{{ routes.root_url }}" class="ec-logo">{%- endif -%}
               {%- if ec_vslot != blank -%}
                 {%- render 'ecoms-vertical-logo', slot: ec_vslot, variant: logo_variant, height: 30 -%}
               {%- elsif block.settings.logo != blank -%}
@@ -64,7 +72,7 @@
               {%- else -%}
                 {% render 'ecoms-icon', name: 'bag' %}<span>{{ store_name | escape }}</span>
               {%- endif -%}
-            </a>
+            {%- if ft_focus -%}</span>{%- else -%}</a>{%- endif -%}
             {%- if v_tagline != blank -%}
               <p class="ec-ft__text">{{ v_tagline | escape }}</p>
             {%- elsif block.settings.text != blank -%}
@@ -118,7 +126,7 @@
               {%- for policy in shop.policies -%}
                 {%- if policy != blank -%}<li><a href="{{ policy.url }}">{{ policy.title | escape }}</a></li>{%- endif -%}
               {%- endfor -%}
-              {%- if block.settings.link != blank and block.settings.link_label != blank -%}
+              {%- if block.settings.link != blank and block.settings.link_label != blank and ft_focus == false -%}
                 <li><a href="{{ block.settings.link }}">{{ block.settings.link_label | escape }}</a></li>
               {%- endif -%}
             </ul>
@@ -185,6 +193,13 @@
       "id": "legal",
       "label": "Texto legal",
       "default": "Razón social y RUT"
+    },
+    {
+      "type": "checkbox",
+      "id": "product_focus",
+      "label": "Footer simple en páginas de producto",
+      "default": false,
+      "info": "Oculta los menús y el newsletter, y quita el enlace del logo. Deja políticas, medios de pago y redes."
     }
   ],
   "blocks": [
