@@ -214,39 +214,35 @@
     },
     "keyspecs": {
       "type": "ecoms-stats",
-      "blocks": {},
-      "block_order": [],
       "settings": {
+        "metafield": "ecoms.stats",
         "style": "dark",
         "heading": "Lo que lo hace diferente",
         "text": "",
         "width": "full",
         "padding_top": 0,
-        "padding_bottom": 0,
-        "metafield": "ecoms.stats"
+        "padding_bottom": 0
       }
     },
     "anatomy": {
       "type": "ecoms-anatomy",
-      "blocks": {},
-      "block_order": [],
       "settings": {
+        "metafield": "ecoms.features",
         "style": "dark",
         "eyebrow": "Diseño práctico",
         "heading": "Pensado para limpiar con menos esfuerzo",
         "text": "",
+        "image": "shopify://shop_images/2_0296e42b-2d4e-444e-a0b4-35c17c1caac4.jpg",
         "show_numbers": false,
         "width": "full",
         "padding_top": 0,
-        "padding_bottom": 0,
-        "metafield": "ecoms.features"
+        "padding_bottom": 0
       }
     },
     "includes": {
       "type": "ecoms-includes",
-      "blocks": {},
-      "block_order": [],
       "settings": {
+        "metafield": "ecoms.includes",
         "eyebrow": "Todo en una sola caja",
         "heading": "Esto incluye tu compra",
         "text": "",
@@ -256,15 +252,13 @@
         "note": "",
         "width": "full",
         "padding_top": 36,
-        "padding_bottom": 28,
-        "metafield": "ecoms.includes"
+        "padding_bottom": 28
       }
     },
     "problem": {
       "type": "ecoms-problem",
-      "blocks": {},
-      "block_order": [],
       "settings": {
+        "metafield": "ecoms.highlights",
         "heading": "",
         "text": "",
         "before_label": "Antes",
@@ -274,30 +268,26 @@
         "quote": "",
         "width": "full",
         "padding_top": 36,
-        "padding_bottom": 20,
-        "metafield": "ecoms.highlights"
+        "padding_bottom": 20
       }
     },
     "tabs": {
       "type": "ecoms-tabs",
-      "blocks": {},
-      "block_order": [],
       "settings": {
+        "metafield": "ecoms.uses",
         "eyebrow": "",
         "heading": "Úsalo en toda la casa",
         "text": "",
         "button_label": "Lo quiero",
         "width": "full",
         "padding_top": 40,
-        "padding_bottom": 32,
-        "metafield": "ecoms.uses"
+        "padding_bottom": 32
       }
     },
     "comparison": {
       "type": "ecoms-comparison",
-      "blocks": {},
-      "block_order": [],
       "settings": {
+        "metafield": "ecoms.compare_rows",
         "style": "vs",
         "heading": "La diferencia se nota",
         "feature_label": "",
@@ -307,15 +297,13 @@
         "col_3": "",
         "width": "full",
         "padding_top": 28,
-        "padding_bottom": 28,
-        "metafield": "ecoms.compare_rows"
+        "padding_bottom": 28
       }
     },
     "reviews": {
       "type": "ecoms-reviews",
-      "blocks": {},
-      "block_order": [],
       "settings": {
+        "metafield": "ecoms.reviews",
         "style": "widget",
         "heading": "Opiniones de clientes",
         "link_label": "",
@@ -326,22 +314,19 @@
         "write_link": "/pages/contact",
         "width": "full",
         "padding_top": 32,
-        "padding_bottom": 32,
-        "metafield": "ecoms.reviews"
+        "padding_bottom": 32
       }
     },
     "ugc": {
       "type": "ecoms-ugc",
-      "blocks": {},
-      "block_order": [],
       "settings": {
+        "metafield": "ecoms.ugc",
         "style": "grid",
         "heading": "Así se ve en casa",
         "text": "Imágenes referenciales de uso.",
         "width": "full",
         "padding_top": 28,
-        "padding_bottom": 28,
-        "metafield": "ecoms.ugc"
+        "padding_bottom": 28
       }
     },
     "specs": {
@@ -440,28 +425,12 @@
         "padding_bottom": 36
       }
     },
-    "cta": {
-      "type": "ecoms-cta-band",
-      "settings": {
-        "style": "dark",
-        "eyebrow": "",
-        "heading": "Tu casa limpia, con menos esfuerzo",
-        "text": "Envío a todo Chile y pago seguro con Webpay o Mercado Pago.",
-        "image_plain": false,
-        "button_label": "Comprar ahora",
-        "trust_1": "Envío gratis desde $30.000",
-        "trust_2": "Pago seguro",
-        "trust_3": "Seguimiento del pedido",
-        "width": "full",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
     "cross": {
       "type": "ecoms-cross-sell",
       "settings": {
         "style": "rail",
         "heading": "Completa tu limpieza",
+        "products": [],
         "collection": "clean",
         "limit": 4,
         "button_label": "Agregar",
@@ -470,6 +439,24 @@
         "width": "full",
         "padding_top": 24,
         "padding_bottom": 24
+      }
+    },
+    "cta": {
+      "type": "ecoms-cta-band",
+      "settings": {
+        "style": "dark",
+        "eyebrow": "",
+        "heading": "Tu casa limpia, con menos esfuerzo",
+        "text": "Envío a todo Chile y pago seguro con Webpay o Mercado Pago.",
+        "image": "shopify://shop_images/limpiador-vapor-A1-limpiador-sin-fondo.png",
+        "image_plain": false,
+        "button_label": "Comprar ahora",
+        "trust_1": "Envío gratis desde $30.000",
+        "trust_2": "Pago seguro",
+        "trust_3": "Seguimiento del pedido",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
