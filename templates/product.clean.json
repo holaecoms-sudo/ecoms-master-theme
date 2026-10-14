@@ -79,6 +79,17 @@
             "style": "direct"
           }
         },
+        "urgency": {
+          "type": "urgency",
+          "settings": {
+            "end_at": "",
+            "icon": "fire",
+            "heading": "Oferta por tiempo limitado",
+            "text": "Termina en:",
+            "style": "boxes",
+            "show_days": true
+          }
+        },
         "packs": {
           "type": "packs",
           "settings": {
@@ -152,7 +163,7 @@
         "stock": {
           "type": "stock",
           "settings": {
-            "max_show": 10,
+            "max_show": 5,
             "text": "¡Solo quedan [qty] unidades en stock!"
           }
         },
@@ -195,17 +206,6 @@
             "text_3": "",
             "icon_4": "battery",
             "text_4": ""
-          }
-        },
-        "urgency": {
-          "type": "urgency",
-          "settings": {
-            "end_at": "",
-            "icon": "fire",
-            "heading": "Oferta por tiempo limitado",
-            "text": "Termina en:",
-            "style": "boxes",
-            "show_days": true
           }
         }
       },
