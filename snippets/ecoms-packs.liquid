@@ -13,6 +13,10 @@
   - attrs: {String} optional editor attributes
   - section_url_id: {String} optional, set when rendered from a standalone section so the
     script can re-render it through the Section Rendering API on variant change
+
+  «Desde metacampo» (shared templates): the pack 2 % comes from the product metafield ecoms.pack2_pct
+  (same % as the real automatic discount) and the unit name from ecoms.unit_name. Products without
+  ecoms.pack2_pct don't show the packs at all.
 {%- endcomment -%}
 {%- liquid
   assign s = source.settings
@@ -26,6 +30,12 @@
   assign layout = s.layout | default: 'cards'
   assign has_pending_discount = false
   assign item_name = s.item_name | strip
+  assign mf_mode = s.from_metafield
+  assign mf_pct2 = product.metafields.ecoms.pack2_pct.value | default: 0 | plus: 0
+  if mf_mode
+    assign live = true
+    assign item_name = product.metafields.ecoms.unit_name.value | default: item_name | strip
+  endif
 
   # Default tier (Theme Editor). Falls back to pack 1 when the chosen pack is hidden.
   assign default_tier = s.default_tier | default: '1' | plus: 0
@@ -42,6 +52,7 @@
     assign ship_threshold = settings.ecoms_free_shipping_threshold | plus: 0 | times: 100000
   endif
 -%}
+{%- if mf_mode != true or mf_pct2 > 0 -%}
 {%- capture tiers_json -%}
   [{"q":{{ s.tier1_qty | default: 1 }},"pct":0}
   {%- for i in (2..3) -%}
@@ -50,6 +61,7 @@
     {%- assign on_key = 'tier' | append: i | append: '_enabled' -%}
     {%- if s[on_key] -%}
       {%- assign pct = s[p_key] | default: 0 -%}
+      {%- if mf_mode -%}{%- if i == 2 -%}{%- assign pct = mf_pct2 -%}{%- else -%}{%- assign pct = 0 -%}{%- endif -%}{%- endif -%}
       {%- unless live -%}{%- assign pct = 0 -%}{%- endunless -%}
       ,{"q":{{ s[q_key] | default: i }},"pct":{{ pct }}}
     {%- endif -%}
@@ -95,6 +107,13 @@
             assign p_key = 'tier' | append: i | append: '_pct'
             assign q = s[q_key] | default: i
             assign pct = s[p_key] | default: 0
+            if mf_mode
+              if i == 2
+                assign pct = mf_pct2
+              else
+                assign pct = 0
+              endif
+            endif
             if pct > 0 and live != true
               assign has_pending_discount = true
               assign pct = 0
@@ -278,3 +297,4 @@
     </p>
   {%- endif -%}
 </div>
+{%- endif -%}

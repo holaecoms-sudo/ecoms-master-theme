@@ -42,9 +42,16 @@
   assign start_label = ''
   assign start_unit_name = ''
   assign packs_block = section.blocks | where: 'type', 'packs' | first
+  assign pk_mf_pct = product.metafields.ecoms.pack2_pct.value | default: 0 | plus: 0
+  if packs_block and packs_block.settings.from_metafield and pk_mf_pct == 0
+    assign packs_block = nil
+  endif
   if packs_block
     assign ps = packs_block.settings
     assign start_unit_name = ps.item_name | strip
+    if ps.from_metafield
+      assign start_unit_name = product.metafields.ecoms.unit_name.value | default: start_unit_name | strip
+    endif
     assign start_tier = ps.default_tier | default: '1' | plus: 0
     if start_tier > 1
       assign start_on = 'tier' | append: start_tier | append: '_enabled'
@@ -61,6 +68,12 @@
       assign start_qty = ps[start_q_key] | default: start_tier
       if ps.discounts_live
         assign start_pct = ps[start_p_key] | default: 0
+      endif
+      if ps.from_metafield
+        assign start_pct = 0
+        if start_tier == 2
+          assign start_pct = pk_mf_pct
+        endif
       endif
     endif
     assign start_label_key = 'tier' | append: start_tier | append: '_label'
@@ -1399,6 +1412,13 @@
       "name": "Packs",
       "limit": 1,
       "settings": [
+        {
+          "type": "checkbox",
+          "id": "from_metafield",
+          "label": "Desde metacampo del producto",
+          "default": false,
+          "info": "Para plantillas compartidas: el % del pack de 2 sale del metacampo ecoms.pack2_pct (igual al descuento automático real) y el nombre de la unidad de ecoms.unit_name. Sin ese metacampo, los packs no se muestran."
+        },
         {
           "type": "text",
           "id": "heading",

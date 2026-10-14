@@ -164,6 +164,38 @@
             "note": "El descuento se aplica automáticamente en el carrito.",
             "button_label": "+ Agregar"
           }
+        },
+        "packs": {
+          "type": "packs",
+          "settings": {
+            "from_metafield": true,
+            "heading": "Elige tu pack",
+            "layout": "cards",
+            "show_cta_total": true,
+            "help": "El descuento del pack se aplica automáticamente en el carrito.",
+            "default_tier": "1",
+            "item_name": "",
+            "show_summary": true,
+            "summary_label": "Tu pack incluye",
+            "show_free_shipping": true,
+            "discounts_live": true,
+            "tier1_qty": 1,
+            "tier1_label": "",
+            "tier1_tag": "",
+            "tier1_note": "",
+            "tier2_enabled": true,
+            "tier2_qty": 2,
+            "tier2_pct": 0,
+            "tier2_label": "",
+            "tier2_tag": "Para regalar",
+            "tier2_note": "",
+            "tier3_enabled": false,
+            "tier3_qty": 3,
+            "tier3_pct": 0,
+            "tier3_label": "",
+            "tier3_tag": "",
+            "tier3_note": ""
+          }
         }
       },
       "block_order": [
@@ -176,6 +208,7 @@
         "trust",
         "buybox",
         "price",
+        "packs",
         "includes",
         "pack_offer",
         "stock",
