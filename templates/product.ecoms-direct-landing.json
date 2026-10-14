@@ -200,6 +200,14 @@
             "icon_4": "battery",
             "text_4": "Recargable USB-C"
           }
+        },
+        "pack_offer": {
+          "type": "pack_offer",
+          "settings": {
+            "heading": "Llévalo en pack",
+            "note": "El descuento se aplica automáticamente en el carrito.",
+            "button_label": "+ Agregar"
+          }
         }
       },
       "block_order": [
@@ -215,6 +223,7 @@
         "urgency",
         "packs",
         "includes",
+        "pack_offer",
         "stock",
         "buy",
         "payments",
