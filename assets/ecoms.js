@@ -139,6 +139,33 @@
     });
   }
 
+  // «Esto incluye tu compra»: piece counts are per unit, so they follow the selected pack/quantity,
+  // and the price line shows that pack's real total (same math as the automatic discounts).
+  function syncIncludes(qty, total) {
+    const radio = $('[data-ec-packs] input[type="radio"]:checked');
+    const label = radio && Number(radio.value) === qty ? radio.dataset.label || '' : '';
+    $$('[data-ec-incl-pack]').forEach((el) => {
+      el.textContent = qty > 1 ? label || `${qty} unidades` : '';
+      el.hidden = qty <= 1;
+    });
+    $$('[data-ec-incl-qty]').forEach((el) => {
+      const base = el.dataset.ecInclQty || '';
+      const m = base.match(/^(\D*)(\d+)(.*)$/);
+      if (m) {
+        el.textContent = `${m[1]}${Number(m[2]) * qty}${m[3]}`;
+      } else if (!base) {
+        el.textContent = `x${qty}`;
+        el.hidden = qty <= 1;
+      }
+    });
+    $$('[data-ec-incl-total]').forEach((el) => { el.textContent = money(total); });
+    $$('[data-ec-incl-was]').forEach((el) => {
+      const was = (Number(el.dataset.unitWas) || 0) * qty;
+      el.textContent = money(was);
+      el.hidden = was <= total;
+    });
+  }
+
   function sync() {
     const qty = currentQty();
     const packs = $('[data-ec-packs]');
@@ -147,6 +174,7 @@
     $$('[data-ec-cta-total]').forEach((el) => { el.textContent = money(total); });
     $$('[data-ec-sticky-price]').forEach((el) => { el.textContent = money(total); });
     syncPackInfo(qty, total);
+    syncIncludes(qty, total);
     // Price block follows the selected pack: total, compare-at for that quantity and savings.
     $$('[data-ec-price-live]').forEach((box) => {
       const unitCmp = Number(box.dataset.unitCompare) || 0;

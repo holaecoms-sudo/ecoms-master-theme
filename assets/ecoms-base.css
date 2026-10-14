@@ -709,6 +709,8 @@ body:has(cart-drawer.active) .ec-sticky { visibility: hidden; }
 .ec-incl__total p { margin: 0; font-size: 16px; }
 .ec-incl__total b { color: var(--ec-primary); font-size: 22px; font-weight: 900; }
 .ec-incl__total s { color: var(--ec-muted); font-size: 14px; }
+.ec-incl__pack { display: inline-block; margin: 10px 0 0; padding: 4px 14px; border-radius: 999px; background: var(--ec-soft); color: var(--ec-primary); font-size: 14px; font-weight: 800; }
+.ec-incl__pack[hidden] { display: none; }
 .ec-incl__note { margin-top: 10px !important; color: var(--ec-muted); font-size: 12px; text-align: center; }
 @media screen and (min-width: 750px) { .ec-incl { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; } }
 @media screen and (min-width: 990px) { .ec-incl:has(> li:nth-child(5)) { grid-template-columns: repeat(5, minmax(0, 1fr)); } .ec-incl:has(> li:nth-child(6)) { grid-template-columns: repeat(6, minmax(0, 1fr)); } }

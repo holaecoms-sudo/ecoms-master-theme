@@ -2,6 +2,8 @@
   ECOMS · Qué incluye (value stack). Shows every piece the customer gets (product, heads, accessories,
   gifts) so the offer reads as a kit, not a single item. Quantities and badges come from the editor:
   only list pieces that really ship in the box. The price line uses the real Shopify price.
+  Quantities are per unit: when the customer picks a pack (or changes the quantity), ecoms.js multiplies
+  them and swaps the price for that pack's real total, so the box always matches what is being bought.
 {%- endcomment -%}
 {%- liquid
   # Items come from the section blocks, or from a product metafield (list of metaobjects «ecoms_item»)
@@ -40,8 +42,9 @@
       {%- if section.settings.eyebrow != blank -%}<p class="ec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
       {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
       {%- if section.settings.text != blank -%}<p>{{ section.settings.text | escape }}</p>{%- endif -%}
+      <p class="ec-incl__pack" data-ec-incl-pack hidden></p>
     </div>
-    <ul class="ec-incl" role="list">
+    <ul class="ec-incl" role="list" data-ec-incl>
       {%- for block in ec_src -%}
         {%- liquid
           assign bk_badge = block.settings.badge | default: block.badge.value
@@ -61,7 +64,7 @@
             {%- else -%}
               <span class="ec-ic">{% render 'ecoms-icon', name: bk_icon %}</span>
             {%- endif -%}
-            {%- if bk_qty != blank -%}<span class="ec-incl__qty">{{ bk_qty | escape }}</span>{%- endif -%}
+            <span class="ec-incl__qty" data-ec-incl-qty="{{ bk_qty | escape }}"{% if bk_qty == blank %} hidden{% endif %}>{{ bk_qty | escape }}</span>
           </div>
           <div class="ec-incl__body">
             <b>{{ bk_title | escape }}</b>
@@ -71,11 +74,13 @@
       {%- endfor -%}
     </ul>
     {%- if section.settings.show_price and variant -%}
+      {%- assign incl_was = variant.compare_at_price | default: 0 -%}
+      {%- if incl_was < variant.price -%}{%- assign incl_was = variant.price -%}{%- endif -%}
       <div class="ec-incl__total">
         <p>
           {{ section.settings.total_label | escape }}
-          <b>{{ variant.price | money }}</b>
-          {%- if variant.compare_at_price > variant.price %} <s>{{ variant.compare_at_price | money }}</s>{% endif -%}
+          <b data-ec-incl-total>{{ variant.price | money }}</b>
+          <s data-ec-incl-was data-unit-was="{{ incl_was }}"{% unless incl_was > variant.price %} hidden{% endunless %}>{{ incl_was | money }}</s>
         </p>
         {%- if section.settings.button_label != blank -%}
           <a href="#" class="ec-btn ec-btn--primary" data-ec-scroll-buy>{{ section.settings.button_label | escape }}</a>
