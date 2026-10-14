@@ -57,7 +57,7 @@ siguen funcionando igual: los metacampos solo reemplazan los bloques cuando exis
 
 | Pack | Descuento en Shopify | Metacampos |
 |---|---|---|
-| Limpiador a Vapor + Pastillas para Lavadora | «Pack Limpiador a Vapor + Pastillas: 50% en las pastillas» (Compra X y llévate Y, 1 por pedido) | Limpiador: `pack_product` = Pastillas, `pack_discount` = 50 |
+| ~~Limpiador a Vapor + Pastillas~~ | Desactivado (distinto proveedor = doble flete). Las pastillas quedan solo como sugerencia en el carrito. | — |
 | Cepillo 9 en 1 + Destapador de Cañerías | «Pack Cepillo 9 en 1 + Destapador: 50% en el destapador» (1 por pedido) | Cepillo: `pack_product` = Destapador, `pack_discount` = 50 |
 
 Si cambias el % en Descuentos, cambia también `ecoms.pack_discount` del producto.
@@ -65,3 +65,10 @@ Si cambias el % en Descuentos, cambia también `ecoms.pack_discount` del product
 **Proveedores y envío:** cada proveedor de Dropi despacha por separado y cobra su propio flete. Arma los packs con
 productos del **mismo proveedor** (ej.: cepillo, destapador y pastillas = VIDA Y HOGAR SPA) para pagar un solo envío.
 El limpiador a vapor es de otro proveedor (IMPORTADORA PING): su pack con pastillas genera 2 despachos.
+
+**Regla:** packs con descuento solo entre productos del mismo proveedor. Entre proveedores distintos, solo sugerencia
+(«Completa tu pedido»), sin descuento.
+
+**Limitación de Shopify:** un producto que ya recibe un descuento (ej.: «Pack 2 cepillos») no puede usarse como condición
+de un «Compra X y llévate Y». Por eso el destapador al 50% aplica con 1 cepillo (o 3+), pero no junto al pack de 2.
+Para que se acumulen haría falta una app de descuentos basada en Shopify Functions.
