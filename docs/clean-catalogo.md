@@ -63,6 +63,7 @@ siguen funcionando igual: los metacampos solo reemplazan los bloques cuando exis
 | Packs MEIBO (pastillas, destapador y bolsa para zapatillas) | «Pack 2 o más · 20%» y «Pack 3 o más · 30%»: cuentan unidades mezclando los productos de MEIBO | Pastillas: `pack_labels` = 1 caja · 12 / 2 cajas · 24 / 3 cajas · 36 pastillas. Destapador: 1/2/3 packs de 3 unidades. Ambos `pack2_pct` 20 y `pack3_pct` 30 |
 | «Llévalo en pack» | Los mismos descuentos por cantidad (sin «Compra X lleva Y», que parte la línea del carrito) | Pastillas → bolsa (o destapador), destapador → pastillas; `pack_discount` = 20 |
 | ~~Cepillo 9 en 1 + Destapador~~ | Desactivado: el destapador pasó a MEIBO (otro proveedor que el cepillo) | — |
+| Aspiradora 2 en 1 + Pastillas | «Pack Aspiradora + Pastillas: 50% en las pastillas» (Compra X lleva Y, 1 por pedido; ambos de MEIBO). La aspiradora no tiene otros descuentos, así que no choca con los packs 2+/3+ | Aspiradora: `pack_product` = Pastillas, `pack_discount` = 50 |
 
 Si cambias el % en Descuentos, cambia también `ecoms.pack_discount` del producto.
 
