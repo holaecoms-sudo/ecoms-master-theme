@@ -1,5 +1,7 @@
 # Prompts de imágenes · Aspiradora 2 en 1
 
+> El brief maestro (PDF del 13/10) trae la matriz completa de 18 imágenes y manda sobre este documento: sin cifras en las imágenes hasta que MEIBO las confirme, sin cable, sin luces LED y solo los accesorios que se vean en las fotos de referencia.
+
 Misma estructura que el cepillo, el limpiador a vapor y las pastillas: galería, infografía, producto sin fondo, «qué incluye», usos por zona y cierre.
 Para Gemini (Nano Banana), ChatGPT o Flux Kontext.
 

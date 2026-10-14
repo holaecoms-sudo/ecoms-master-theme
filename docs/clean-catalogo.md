@@ -8,7 +8,7 @@ Configurado en la tienda el 13-10-2026. Todos los productos nuevos quedaron en *
 |---|---|---|---|---|---|
 | Cepillo Eléctrico de Limpieza 9 en 1 | cepillo-electrico-de-limpieza-9-en-1 | $29.990 | $9.300 | Estrella 1 (landing propia) | baño, cocina |
 | Limpiador a Vapor 1000 W + Guatero de Regalo | limpiador-a-vapor | $39.990 | $15.799 | Estrella 2 | cocina, baño |
-| Aspiradora 2 en 1 | aspiradora-2-en-1 | $29.990 | $9.500 | Ticket medio · **faltan specs reales** | pisos |
+| Aspiradora Inalámbrica 2 en 1 | aspiradora-2-en-1 | $29.990 | $9.500 | Ticket medio · proveedor MEIBO · cifras y accesorios según el mismo modelo en Zaffary, **por confirmar con MEIBO** | pisos |
 | Pastillas Limpiadoras para Lavadora · 24 u | pastillas-limpiadoras-lavadora | $9.990 | $1.600 | Complemento | orden |
 | Destapador de Cañerías en Polvo · 3 u | destapador-canerias-polvo | $8.990 | $2.430 | Complemento | baño, cocina |
 | Mopa Giratoria de Microfibra con Exprimidor | mopa-giratoria-microfibra | $12.990 | $3.510 | Complemento | pisos |
