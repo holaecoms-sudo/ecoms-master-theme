@@ -1,13 +1,26 @@
 {%- comment -%} ECOMS · Cross-sell with real add-to-cart (AJAX Cart API). Styles: cards (Flex), grid (Brand), rail (Direct). {%- endcomment -%}
 {%- liquid
   assign style = section.settings.style | default: 'cards'
-  # Manual picks first; otherwise products of the chosen collection (e.g. the vertical's), current product excluded.
+  # Manual picks first; then the product's own suggestions (ecoms.cart_suggestions); otherwise products of the
+  # chosen collection (e.g. the vertical's), current product excluded.
   assign xs_items = section.settings.products
+  if xs_items == blank and section.settings.use_suggestions and product
+    assign xs_items = product.metafields.ecoms.cart_suggestions.value
+  endif
   if xs_items == blank and section.settings.collection != blank
     assign xs_items = section.settings.collection.products
   endif
+  # Star products already cross-sell inside their pack (ecoms.pack_product): keep the shopper on that offer.
+  assign xs_hide = false
+  if product
+    if product.metafields.ecoms.hide_cross_sell.value == true
+      assign xs_hide = true
+    elsif section.settings.hide_with_pack_offer and product.metafields.ecoms.pack_product.value != blank
+      assign xs_hide = true
+    endif
+  endif
 -%}
-{%- if xs_items != blank or request.design_mode -%}
+{%- unless xs_hide -%}{%- if xs_items != blank or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-cross' %}>
   <div class="ec-w">
     <div class="ec-cross__wrap ec-cross--{{ style }}">
@@ -53,7 +66,7 @@
     </div>
   </div>
 </section>
-{%- endif -%}
+{%- endif -%}{%- endunless -%}
 
 {% schema %}
 {
@@ -97,6 +110,20 @@
       "id": "collection",
       "label": "O colección",
       "info": "Si no eliges productos, muestra productos de esta colección (sin repetir el producto actual)."
+    },
+    {
+      "type": "checkbox",
+      "id": "use_suggestions",
+      "label": "Usar las sugerencias del producto",
+      "default": true,
+      "info": "Metacampo ecoms.cart_suggestions. Si el producto no tiene, se usa la colección."
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_with_pack_offer",
+      "label": "Ocultar en productos con «Llévalo en pack»",
+      "default": true,
+      "info": "Los productos estrella ya venden otro producto dentro del pack (ecoms.pack_product). También puedes ocultarla en un producto con el metacampo ecoms.hide_cross_sell."
     },
     {
       "type": "range",

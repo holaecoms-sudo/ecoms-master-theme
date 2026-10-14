@@ -482,12 +482,13 @@
     },
     "cross": {
       "type": "ecoms-cross-sell",
-      "disabled": true,
       "settings": {
         "style": "rail",
         "heading": "Completa tu limpieza",
         "products": [],
         "collection": "clean",
+        "use_suggestions": true,
+        "hide_with_pack_offer": true,
         "limit": 4,
         "button_label": "Agregar",
         "heading_2": "",
