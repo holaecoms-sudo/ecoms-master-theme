@@ -1,0 +1,124 @@
+{%- comment -%}
+  ECOMS · Store lines (verticals) for the home page. Each block is one line: a live one links to its
+  collection and shows its real product count; a «Próximamente» one is shown muted and is not a link.
+{%- endcomment -%}
+<section class="ec-sec ec-vt" id="lineas" style="--ec-pt: {{ section.settings.padding_top }}px; --ec-pb: {{ section.settings.padding_bottom }}px;">
+  <div class="ec-w">
+    {%- if section.settings.heading != blank or section.settings.text != blank -%}
+      <div class="ec-sec-h">
+        {%- if section.settings.eyebrow != blank -%}<p class="ec-vt__k">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<p>{{ section.settings.text | escape }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <ul class="ec-vt__grid" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign b = block.settings
+          assign live = false
+          if b.status == 'live' and b.collection != blank
+            assign live = true
+          endif
+          assign count = 0
+          if live
+            assign count = b.collection.products_count
+          endif
+        -%}
+        <li class="ec-vt__item{% unless live %} ec-vt__item--soon{% endunless %}" style="--vt-accent: {{ b.accent | default: '#3B82F6' }};" {{ block.shopify_attributes }}>
+          {%- if live -%}<a class="ec-vt__card" href="{{ b.collection.url }}">{%- else -%}<div class="ec-vt__card" aria-disabled="true">{%- endif -%}
+            {%- if b.image != blank -%}
+              <span class="ec-vt__img">{{ b.image | image_url: width: 640 | image_tag: loading: 'lazy', widths: '320,480,640', sizes: '(min-width: 990px) 280px, (min-width: 750px) 45vw, 92vw', alt: '' }}</span>
+            {%- endif -%}
+            <span class="ec-vt__body">
+              <span class="ec-vt__top">
+                <span class="ec-vt__ic">{% render 'ecoms-icon', name: b.icon %}</span>
+                <span class="ec-vt__pill">
+                  {%- if live -%}
+                    {%- if count > 0 -%}{{ count }} {% if count == 1 %}producto{% else %}productos{% endif %}{%- else -%}{{ section.settings.live_label | escape }}{%- endif -%}
+                  {%- else -%}
+                    {{ section.settings.soon_label | escape }}
+                  {%- endif -%}
+                </span>
+              </span>
+              <span class="ec-vt__name">{{ b.name | escape }}</span>
+              {%- if b.text != blank -%}<span class="ec-vt__text">{{ b.text | escape }}</span>{%- endif -%}
+              {%- if live -%}
+                <span class="ec-vt__cta">{{ b.button_label | default: section.settings.button_label | escape }} {% render 'ecoms-icon', name: 'arrow' %}</span>
+              {%- endif -%}
+            </span>
+          {%- if live -%}</a>{%- else -%}</div>{%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ECOMS · Líneas de la tienda",
+  "tag": "div",
+  "class": "ec-vt-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Nuestras líneas" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Encuentra lo que necesitas" },
+    { "type": "text", "id": "text", "label": "Texto" },
+    { "type": "text", "id": "button_label", "label": "Botón de las líneas disponibles", "default": "Ver productos" },
+    { "type": "text", "id": "live_label", "label": "Etiqueta de línea disponible", "default": "Disponible" },
+    { "type": "text", "id": "soon_label", "label": "Etiqueta de línea próxima", "default": "Próximamente" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 }
+  ],
+  "blocks": [
+    {
+      "type": "line",
+      "name": "Línea",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Nombre", "default": "Ecoms Clean" },
+        { "type": "text", "id": "text", "label": "Descripción corta" },
+        {
+          "type": "select",
+          "id": "status",
+          "label": "Estado",
+          "options": [
+            { "value": "live", "label": "Disponible (enlaza a la colección)" },
+            { "value": "soon", "label": "Próximamente" }
+          ],
+          "default": "soon"
+        },
+        { "type": "collection", "id": "collection", "label": "Colección", "info": "Obligatoria para «Disponible»." },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícono",
+          "options": [
+            { "value": "sparkle", "label": "Brillo" },
+            { "value": "home", "label": "Casa" },
+            { "value": "paw", "label": "Huella" },
+            { "value": "gem", "label": "Gema" },
+            { "value": "heart", "label": "Corazón" },
+            { "value": "leaf", "label": "Hoja" },
+            { "value": "drop", "label": "Gota" },
+            { "value": "washer", "label": "Lavadora" },
+            { "value": "sun", "label": "Sol" }
+          ],
+          "default": "sparkle"
+        },
+        { "type": "color", "id": "accent", "label": "Color de la línea", "default": "#3B82F6" },
+        { "type": "image_picker", "id": "image", "label": "Imagen (opcional)", "info": "Recomendado 4:3, 800 × 600." },
+        { "type": "text", "id": "button_label", "label": "Texto del botón", "info": "Vacío = el de la sección." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ECOMS · Líneas de la tienda",
+      "blocks": [
+        { "type": "line", "settings": { "name": "Ecoms Clean", "status": "live", "icon": "sparkle" } },
+        { "type": "line", "settings": { "name": "Hogar y mascotas", "icon": "paw" } },
+        { "type": "line", "settings": { "name": "Belleza", "icon": "gem" } },
+        { "type": "line", "settings": { "name": "Bienestar", "icon": "leaf" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

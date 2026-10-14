@@ -6,7 +6,7 @@
   assign fp = section.settings.product
   assign fp_url = fp.url | default: routes.all_products_collection_url
   assign fp_img = section.settings.image | default: fp.featured_image
-  assign more_url = section.settings.button_2_link | default: fp_url
+  assign more_url = section.settings.button_2_link | default: '#lineas'
 -%}
 <section class="ec-hh" style="--hh-accent: {{ section.settings.accent | default: '#14B8A6' }}; --ec-pt: {{ section.settings.padding_top }}px; --ec-pb: {{ section.settings.padding_bottom }}px;">
   <div class="ec-w ec-hh__in">

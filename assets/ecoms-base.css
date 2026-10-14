@@ -1441,3 +1441,36 @@ a.ec-rating--auto:hover b + span { text-decoration: underline; }
 .ec-packoff__t small { color: var(--ec-muted, #6B7280); font-size: 11.5px; }
 .ec-packoff__add { min-height: 38px; padding-inline: 14px; white-space: nowrap; }
 .ec-packoff .ec-add-error { grid-column: 1 / -1; margin: 6px 0 0; font-size: 12px; }
+
+/* =====================  ECOMS · Líneas de la tienda (home)  ===================== */
+.ec-vt__k { margin: 0 0 6px !important; color: var(--ec-accent); font-size: 12.5px !important; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.ec-vt__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.ec-vt__card { display: flex; flex-direction: column; height: 100%; overflow: hidden; border: 1px solid color-mix(in srgb, var(--vt-accent) 22%, var(--ec-line, #e5e7eb)); border-radius: 18px; background: color-mix(in srgb, var(--vt-accent) 7%, #fff); color: var(--ec-ink); text-decoration: none; transition: transform .2s ease, box-shadow .2s ease; }
+a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px color-mix(in srgb, var(--vt-accent) 55%, transparent); }
+.ec-vt__img { display: block; aspect-ratio: 4 / 3; overflow: hidden; background: color-mix(in srgb, var(--vt-accent) 12%, #fff); }
+.ec-vt__img img { width: 100%; height: 100%; object-fit: cover; }
+.ec-vt__body { display: flex; flex: 1; flex-direction: column; gap: 6px; padding: 16px 18px 18px; }
+.ec-vt__top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 4px; }
+.ec-vt__ic { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px; background: var(--vt-accent); color: #fff; }
+.ec-vt__ic .ec-i { width: 22px; height: 22px; }
+.ec-vt__pill { padding: 3px 10px; border-radius: 999px; background: #fff; color: var(--vt-accent); font-size: 12px; font-weight: 800; white-space: nowrap; }
+.ec-vt__name { font-family: var(--font-heading-family); font-size: 20px; font-weight: 800; line-height: 1.15; }
+.ec-vt__text { color: var(--ec-muted); font-size: 14px; line-height: 1.45; }
+.ec-vt__cta { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 8px; color: var(--vt-accent); font-size: 14.5px; font-weight: 800; }
+.ec-vt__cta .ec-i { width: 16px; height: 16px; }
+.ec-vt__item--soon .ec-vt__card { border-style: dashed; background: #f7f8fa; }
+.ec-vt__item--soon .ec-vt__ic { background: color-mix(in srgb, var(--vt-accent) 55%, #fff); }
+.ec-vt__item--soon .ec-vt__pill { background: color-mix(in srgb, var(--vt-accent) 12%, #fff); }
+.ec-vt__item--soon .ec-vt__img { filter: grayscale(.35); opacity: .75; }
+@media screen and (max-width: 749px) {
+  /* Mobile: the live line full width, «próximamente» lines in a compact 2-column grid */
+  .ec-vt__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ec-vt__item:not(.ec-vt__item--soon) { grid-column: 1 / -1; }
+  .ec-vt__item--soon .ec-vt__body { padding: 14px; }
+  .ec-vt__item--soon .ec-vt__top { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .ec-vt__item--soon .ec-vt__name { font-size: 16px; }
+  .ec-vt__item--soon .ec-vt__text { font-size: 12.5px; }
+  .ec-vt__item--soon:last-child:nth-child(even) { grid-column: 1 / -1; }
+}
+@media screen and (min-width: 750px) { .ec-vt__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; } }
+@media screen and (min-width: 990px) { .ec-vt__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
