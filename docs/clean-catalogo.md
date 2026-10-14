@@ -60,8 +60,8 @@ siguen funcionando igual: los metacampos solo reemplazan los bloques cuando exis
 |---|---|---|
 | ~~Limpiador a Vapor + Pastillas~~ | Desactivado (distinto proveedor = doble flete). Las pastillas quedan solo como sugerencia en el carrito. | — |
 | Pack 2 limpiadores a vapor | «Pack 2 limpiadores a vapor» (20% desde 2 unidades) | Limpiador: `pack2_pct` = 20, `unit_name` = limpiadores |
-| Pack 2 y 3 pastillas para lavadora | «Pack 2 packs…» (20% desde 2) y «Pack 3 packs…» (30% desde 3) | Pastillas: `pack2_pct` = 20, `pack3_pct` = 30, `pack_labels` = 1 pack · 24 / 2 packs · 48 / 3 packs · 72 pastillas |
-| Pastillas + Destapador | «Pack Pastillas + Destapador: 50% en el destapador» (1 por pedido) | Pastillas: `pack_product` = Destapador, `pack_discount` = 50 |
+| Pack 2 y 3 pastillas para lavadora | «Pack 2 o más (pastillas y destapador) · 20%» (20% desde 2 unidades, mezclando pastillas y destapador) y «Pack 3 packs…» (30% desde 3 pastillas) | Pastillas: `pack2_pct` = 20, `pack3_pct` = 30, `pack_labels` = 1 pack · 24 / 2 packs · 48 / 3 packs · 72 pastillas |
+| Pastillas + Destapador | El mismo «Pack 2 o más · 20%»: el destapador sale 20% más barato junto a cualquier pack de pastillas (y las pastillas también). Reemplaza al antiguo «Compra X lleva Y» al 50%, desactivado porque partía la línea del carrito y anulaba el pack de 2 | Pastillas: `pack_product` = Destapador, `pack_discount` = 20 |
 | Cepillo 9 en 1 + Destapador de Cañerías | «Pack Cepillo 9 en 1 + Destapador: 50% en el destapador» (1 por pedido) | Cepillo: `pack_product` = Destapador, `pack_discount` = 50 |
 
 Si cambias el % en Descuentos, cambia también `ecoms.pack_discount` del producto.
@@ -76,3 +76,14 @@ El limpiador a vapor es de otro proveedor (IMPORTADORA PING): su pack con pastil
 **Limitación de Shopify:** un producto que ya recibe un descuento (ej.: «Pack 2 cepillos») no puede usarse como condición
 de un «Compra X y llévate Y». Por eso el destapador al 50% aplica con 1 cepillo (o 3+), pero no junto al pack de 2.
 Para que se acumulen haría falta una app de descuentos basada en Shopify Functions.
+En pastillas + destapador se evita usando un solo descuento por cantidad que cubre ambos productos (sin «Compra X lleva Y»).
+
+| Carrito | Total |
+|---|---|
+| 1 pastilla | $9.990 |
+| 2 pastillas | $15.984 |
+| 3 pastillas | $20.979 |
+| 1 pastilla + destapador | $15.184 |
+| 2 pastillas + destapador | $23.176 |
+| 3 pastillas + destapador | $28.171 |
+| 2 destapadores | $14.384 |
