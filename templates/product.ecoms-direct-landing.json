@@ -205,7 +205,7 @@
           "type": "pack_offer",
           "settings": {
             "heading": "Llévalo en pack",
-            "note": "El descuento se aplica automáticamente en el carrito.",
+            "note": "Válido comprando 1 cepillo. No se acumula con el pack de 2 cepillos.",
             "button_label": "+ Agregar"
           }
         }
