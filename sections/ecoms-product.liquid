@@ -270,7 +270,8 @@
             </div>
 
           {%- when 'urgency' -%}
-            {%- render 'ecoms-countdown', source: block, attrs: block.shopify_attributes -%}
+            {%- comment -%} Per-product end date (ecoms.offer_end) wins over the block date, so a shared template only times real promos {%- endcomment -%}
+            {%- render 'ecoms-countdown', source: block, end_at: product.metafields.ecoms.offer_end.value, heading: product.metafields.ecoms.offer_label.value, attrs: block.shopify_attributes -%}
 
           {%- when 'buy' -%}
             <div class="ec-buy" {{ block.shopify_attributes }}>
@@ -1057,7 +1058,7 @@
       "settings": [
         {
           "type": "paragraph",
-          "content": "Solo se muestra con una fecha de término futura de una promoción real. Puedes conectarla a un metacampo de fecha del producto."
+          "content": "Solo se muestra con una fecha de término futura de una promoción real. Si el producto tiene el metacampo «Fin de la oferta» (ecoms.offer_end), se usa esa fecha; si no, la de abajo. Déjala vacía en plantillas compartidas."
         },
         {
           "type": "text",

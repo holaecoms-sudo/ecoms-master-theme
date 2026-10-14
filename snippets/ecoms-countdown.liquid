@@ -7,13 +7,17 @@
 
   Accepts:
   - source: {Object} block or section with settings: end_at, heading, text, show_days, style
+  - end_at: {String} optional end date that overrides the block setting (e.g. a product metafield)
+  - heading: {String} optional heading that overrides the block setting
   - attrs: {String} optional editor attributes
 {%- endcomment -%}
 {%- liquid
   assign s = source.settings
   assign end_ts = 0
-  if s.end_at != blank
-    assign end_clean = s.end_at | remove: '"' | remove: "'" | strip
+  assign end_raw = end_at | default: s.end_at
+  assign cd_heading = heading | default: s.heading
+  if end_raw != blank
+    assign end_clean = end_raw | append: '' | remove: '"' | remove: "'" | strip
     # A full date is required: a bare time ("23:59") would restart every day, i.e. fake urgency.
     if end_clean.size >= 10 and end_clean contains '-'
       assign end_ts = end_clean | date: '%s' | plus: 0
@@ -31,8 +35,8 @@
 {%- if end_ts > now_ts -%}
   <div class="ec-urg ec-urg--{{ style }}" data-ec-countdown="{{ end_ts }}" {{ attrs }}>
     <div class="ec-urg__copy">
-      {%- if s.heading != blank -%}
-        <p class="ec-urg__t">{% render 'ecoms-icon', name: s.icon %}<span>{{ s.heading | escape }}</span></p>
+      {%- if cd_heading != blank -%}
+        <p class="ec-urg__t">{% render 'ecoms-icon', name: s.icon %}<span>{{ cd_heading | escape }}</span></p>
       {%- endif -%}
       {%- if s.text != blank -%}
         <p class="ec-urg__s">{{ s.text | escape }}</p>

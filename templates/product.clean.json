@@ -196,6 +196,17 @@
             "icon_4": "battery",
             "text_4": ""
           }
+        },
+        "urgency": {
+          "type": "urgency",
+          "settings": {
+            "end_at": "",
+            "icon": "fire",
+            "heading": "Oferta por tiempo limitado",
+            "text": "Termina en:",
+            "style": "boxes",
+            "show_days": true
+          }
         }
       },
       "block_order": [
@@ -208,6 +219,7 @@
         "trust",
         "buybox",
         "price",
+        "urgency",
         "packs",
         "includes",
         "pack_offer",
