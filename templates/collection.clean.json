@@ -77,8 +77,7 @@
             "label": "Baño",
             "text": "Ducha, inodoro y juntas",
             "tag": "zona-bano",
-            "icon": "drop",
-            "image": "shopify://shop_images/limpiador-vapor-uso-bano.jpg"
+            "icon": "drop"
           }
         },
         "z2": {
@@ -87,8 +86,7 @@
             "label": "Cocina",
             "text": "Grasa, lavaplatos y cañerías",
             "tag": "zona-cocina",
-            "icon": "home",
-            "image": "shopify://shop_images/limpiador-vapor-uso-cocina.jpg"
+            "icon": "home"
           }
         },
         "z3": {
@@ -97,8 +95,7 @@
             "label": "Pisos y aspirado",
             "text": "Aspiradoras y mopa",
             "tag": "zona-pisos",
-            "icon": "sparkle",
-            "image": "shopify://shop_images/aspiradora-uso-pisos.jpg"
+            "icon": "sparkle"
           }
         },
         "z4": {
@@ -107,8 +104,7 @@
             "label": "Lavado y ropa",
             "text": "Lavadora, zapatillas y clóset",
             "tag": "zona-ropa",
-            "icon": "leaf",
-            "image": "shopify://shop_images/pastillas-lavadora-galeria-4.jpg"
+            "icon": "washer"
           }
         }
       },
