@@ -1405,3 +1405,18 @@ a.ec-rating--auto:hover b + span { text-decoration: underline; }
   .ec-cart-page #main-cart-footer .cart__footer { margin-top: 0; }
   .ec-cart-page #main-cart-footer .cart__footer.isolate { padding-top: 20px; padding-bottom: 20px; }
 }
+
+/* ---------- Pack offer block («Llévalo en pack») ---------- */
+.ec-packoff { margin: 14px 0 4px; padding: 12px 14px; border: 1.5px dashed var(--ec-accent, #008FFC); border-radius: 14px; background: color-mix(in srgb, var(--ec-accent, #008FFC) 6%, #fff); }
+.ec-packoff__h { margin: 0 0 8px; font-size: 13px; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; color: var(--ec-primary, #011F49); }
+.ec-packoff__row { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; align-items: center; gap: 12px; }
+.ec-packoff__img { display: block; width: 56px; height: 56px; overflow: hidden; border-radius: 10px; background: #fff; }
+.ec-packoff__img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ec-packoff__t { display: flex; flex-direction: column; gap: 2px; min-width: 0; font-size: 13px; line-height: 1.3; }
+.ec-packoff__t a { color: inherit; font-weight: 700; text-decoration: none; }
+.ec-packoff__t b { color: var(--ec-primary, #011F49); font-size: 15px; }
+.ec-packoff__t s { color: var(--ec-muted, #6B7280); }
+.ec-packoff__t em { padding: 1px 6px; border-radius: 999px; background: var(--ec-accent, #008FFC); color: #fff; font-size: 11px; font-style: normal; font-weight: 800; }
+.ec-packoff__t small { color: var(--ec-muted, #6B7280); font-size: 11.5px; }
+.ec-packoff__add { min-height: 38px; padding-inline: 14px; white-space: nowrap; }
+.ec-packoff .ec-add-error { grid-column: 1 / -1; margin: 6px 0 0; font-size: 12px; }

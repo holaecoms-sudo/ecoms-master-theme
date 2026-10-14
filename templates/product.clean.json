@@ -156,6 +156,14 @@
             "icon_4": "battery",
             "text_4": ""
           }
+        },
+        "pack_offer": {
+          "type": "pack_offer",
+          "settings": {
+            "heading": "Llévalo en pack",
+            "note": "El descuento se aplica automáticamente en el carrito.",
+            "button_label": "+ Agregar"
+          }
         }
       },
       "block_order": [
@@ -169,6 +177,7 @@
         "buybox",
         "price",
         "includes",
+        "pack_offer",
         "stock",
         "buy",
         "payments",

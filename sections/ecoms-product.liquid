@@ -438,6 +438,40 @@
               <p class="ec-shipbar ec-shipbar--free" {{ block.shopify_attributes }}><b>{{ block.settings.free_text | escape }}</b></p>
             {%- endif -%}
 
+          {%- when 'pack_offer' -%}
+            {%- comment -%}
+              «Llévalo en pack»: the product in metafield ecoms.pack_product with the % of the REAL automatic
+              discount in ecoms.pack_discount (Shopify → Descuentos, «Compra X y llévate Y»). Both must match:
+              the price shown here is only a preview, Shopify applies the discount in the cart.
+            {%- endcomment -%}
+            {%- liquid
+              assign po_item = product.metafields.ecoms.pack_product.value
+              assign po_pct = product.metafields.ecoms.pack_discount.value | default: 0 | plus: 0
+            -%}
+            {%- if po_item != blank and po_item.available and po_pct > 0 -%}
+              {%- liquid
+                assign po_variant = po_item.selected_or_first_available_variant
+                assign po_off = po_variant.price | times: po_pct | divided_by: 100
+                assign po_price = po_variant.price | minus: po_off
+              -%}
+              <div class="ec-packoff" {{ block.shopify_attributes }}>
+                {%- if block.settings.heading != blank -%}<p class="ec-packoff__h">{{ block.settings.heading | escape }}</p>{%- endif -%}
+                <div class="ec-packoff__row">
+                  <a class="ec-packoff__img" href="{{ po_item.url }}" tabindex="-1" aria-hidden="true">
+                    {%- if po_item.featured_image != blank -%}
+                      {{ po_item.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', width: 56, height: 56, alt: '' }}
+                    {%- endif -%}
+                  </a>
+                  <div class="ec-packoff__t">
+                    <a href="{{ po_item.url }}">{{ po_item.title | escape }}</a>
+                    <span><b>{{ po_price | money }}</b> <s>{{ po_variant.price | money }}</s> <em>-{{ po_pct }}%</em></span>
+                    {%- if block.settings.note != blank -%}<small>{{ block.settings.note | escape }}</small>{%- endif -%}
+                  </div>
+                  {%- render 'ecoms-add-button', item: po_item, label: block.settings.button_label, class: 'ec-btn ec-btn--primary ec-btn--sm ec-packoff__add', source: 'pack_offer' -%}
+                </div>
+              </div>
+            {%- endif -%}
+
           {%- when 'stock' -%}
             <div id="EcStock-{{ section.id }}" data-ec-refresh {{ block.shopify_attributes }}>
               {%- liquid
@@ -3705,6 +3739,35 @@
           "type": "text",
           "id": "free_text",
           "label": "Texto si todo envío es gratis"
+        }
+      ]
+    },
+    {
+      "type": "pack_offer",
+      "name": "Pack con descuento",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Muestra el producto del metacampo ecoms.pack_product con el % de ecoms.pack_discount. Crea el descuento real en Shopify → Descuentos («Compra X y llévate Y») con el mismo %."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Título",
+          "default": "Llévalo en pack"
+        },
+        {
+          "type": "text",
+          "id": "note",
+          "label": "Nota",
+          "default": "El descuento se aplica automáticamente en el carrito."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Texto del botón",
+          "default": "+ Agregar"
         }
       ]
     },
