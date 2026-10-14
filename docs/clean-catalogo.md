@@ -42,7 +42,7 @@ banda final). El contenido sale de **metacampos del producto** (Admin → produc
 | Banda final | `ecoms.cta_heading` | texto |
 | «Completa tu pedido» | `ecoms.cart_suggestions` | lista de productos |
 | «Llévalo en pack» | `ecoms.pack_product` + `ecoms.pack_discount` | producto + % (debe ser igual al descuento automático real) |
-| «Elige tu pack» (1 o 2 unidades) | `ecoms.pack2_pct` + `ecoms.unit_name` | % del pack de 2 (igual al descuento automático real) + nombre en plural. Sin `pack2_pct` no se muestran packs |
+| «Elige tu pack» (1, 2 o 3) | `ecoms.pack2_pct`, `ecoms.pack3_pct` (opcional), `ecoms.pack_labels` (títulos: «2 packs · 48 pastillas»), `ecoms.unit_name` | % del pack de 2 (igual al descuento automático real) + nombre en plural. Sin `pack2_pct` no se muestran packs |
 
 Cada sección se oculta sola si el producto no tiene ese contenido. Las plantillas con bloques (la del cepillo)
 siguen funcionando igual: los metacampos solo reemplazan los bloques cuando existen.
@@ -60,7 +60,7 @@ siguen funcionando igual: los metacampos solo reemplazan los bloques cuando exis
 |---|---|---|
 | ~~Limpiador a Vapor + Pastillas~~ | Desactivado (distinto proveedor = doble flete). Las pastillas quedan solo como sugerencia en el carrito. | — |
 | Pack 2 limpiadores a vapor | «Pack 2 limpiadores a vapor» (20% desde 2 unidades) | Limpiador: `pack2_pct` = 20, `unit_name` = limpiadores |
-| Pack 2 pastillas para lavadora | «Pack 2 packs de pastillas para lavadora» (20% desde 2) | Pastillas: `pack2_pct` = 20, `unit_name` = packs de 24 pastillas |
+| Pack 2 y 3 pastillas para lavadora | «Pack 2 packs…» (20% desde 2) y «Pack 3 packs…» (30% desde 3) | Pastillas: `pack2_pct` = 20, `pack3_pct` = 30, `pack_labels` = 1 pack · 24 / 2 packs · 48 / 3 packs · 72 pastillas |
 | Pastillas + Destapador | «Pack Pastillas + Destapador: 50% en el destapador» (1 por pedido) | Pastillas: `pack_product` = Destapador, `pack_discount` = 50 |
 | Cepillo 9 en 1 + Destapador de Cañerías | «Pack Cepillo 9 en 1 + Destapador: 50% en el destapador» (1 por pedido) | Cepillo: `pack_product` = Destapador, `pack_discount` = 50 |
 
