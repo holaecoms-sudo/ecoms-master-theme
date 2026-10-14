@@ -160,6 +160,18 @@
 .ec-skin .button--primary:not([disabled]):hover, .ec-skin .cart__checkout-button:not([disabled]):hover { background: var(--ec-primary-hover); }
 .ec-skin .drawer__heading { font-weight: 800; letter-spacing: 0; }
 
+/* Gallery option (mobile/tablet): photo with side margins and rounded corners, thumbnails below */
+@media screen and (max-width: 989px) {
+  .ec-pdp--gm-inset .ec-pdp__media { margin-inline: 0; }
+  .ec-pdp--gm-inset .ec-gal { gap: 10px; }
+  .ec-pdp--gm-inset .ec-gal__main { border-radius: 16px; }
+  .ec-pdp--gm-inset .ec-gal__thumbs { display: flex; gap: 8px; overflow-x: auto; padding: 2px 0; scrollbar-width: none; }
+  .ec-pdp--gm-inset .ec-gal__thumbs::-webkit-scrollbar { display: none; }
+  .ec-pdp--gm-inset .ec-gal__thumbs li { flex-shrink: 0; }
+  .ec-pdp--gm-inset .ec-gal__thumb { width: 60px; border-radius: 10px; }
+  .ec-pdp--gm-inset .ec-gal__arrow { width: 34px; height: 34px; }
+}
+
 /* Gallery option: thumbnails below the main photo (any template) */
 .ec-pdp--thumbs-below .ec-gal__thumbs { display: flex; gap: 8px; overflow-x: auto; padding-inline: 16px; scrollbar-width: none; }
 .ec-pdp--thumbs-below .ec-gal__thumb { width: 64px; }

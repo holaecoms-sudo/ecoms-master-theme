@@ -232,6 +232,7 @@
       "settings": {
         "layout": "direct",
         "columns": "two",
+        "gallery_mobile": "inset",
         "thumbs": "auto",
         "badge": "",
         "hero_bg": "glow",
