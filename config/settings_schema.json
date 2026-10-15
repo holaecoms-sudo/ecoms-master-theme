@@ -2238,14 +2238,11 @@
         "info": "Mientras esté desactivado no se muestra ningún mensaje de envío gratis (anuncio, packs, barra del carrito)."
       },
       {
-        "type": "range",
+        "type": "number",
         "id": "ecoms_free_shipping_threshold",
-        "label": "Envío gratis desde (miles de CLP)",
-        "min": 0,
-        "max": 300,
-        "step": 5,
+        "label": "Envío gratis desde (CLP)",
         "default": 0,
-        "info": "Ej.: 40 = $40.000. Se compara con el total del carrito con descuentos aplicados. 0 oculta la barra."
+        "info": "El mismo monto de la tarifa gratis en Shopify, ej.: 39990. También acepta miles (40 = $40.000). Se compara con el total del carrito con descuentos. 0 oculta la barra."
       },
       {
         "type": "text",

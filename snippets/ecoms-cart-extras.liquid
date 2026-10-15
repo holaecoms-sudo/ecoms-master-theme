@@ -10,7 +10,14 @@
       {%- comment -%} Hidden until «El envío gratis ya existe en Shopify» is checked (no promise the checkout won't keep). {%- endcomment -%}
       {%- assign threshold = 0 -%}
       {%- if settings.ecoms_free_shipping_live -%}
-        {%- assign threshold = settings.ecoms_free_shipping_threshold | plus: 0 | times: 100000 -%}
+        {%- liquid
+          # Exact CLP amount (39990) or thousands (40 = $40.000), as cents.
+          assign threshold = settings.ecoms_free_shipping_threshold | plus: 0
+          if threshold < 1000
+            assign threshold = threshold | times: 1000
+          endif
+          assign threshold = threshold | times: 100
+        -%}
       {%- endif -%}
       {%- if threshold > 0 -%}
         {%- liquid

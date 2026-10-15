@@ -95,7 +95,7 @@
           "settings": {
             "style": "line2",
             "icon_1": "truck",
-            "title_1": "Envío gratis desde $30.000",
+            "title_1": "Envío gratis desde $39.990",
             "text_1": "",
             "icon_2": "lock",
             "title_2": "Compra segura",
@@ -641,7 +641,7 @@
           "type": "promise",
           "settings": {
             "icon": "truck",
-            "heading": "Envío gratis desde $30.000",
+            "heading": "Envío gratis desde $39.990",
             "text": "Despacho a todo Chile"
           }
         },
@@ -819,7 +819,7 @@
           "type": "faq",
           "settings": {
             "question": "¿Qué incluye cada pack?",
-            "answer": "<p>Cada pack incluye la cantidad de organizadores que eliges: 5, 10 o 20. El descuento del pack se aplica automáticamente en el carrito y, si tu compra llega a $30.000, el envío es gratis.</p>",
+            "answer": "<p>Cada pack incluye la cantidad de organizadores que eliges: 5, 10 o 20. El descuento del pack se aplica automáticamente en el carrito y, si tu compra llega a $39.990, el envío es gratis.</p>",
             "draft": false
           }
         },
@@ -843,7 +843,7 @@
           "type": "faq",
           "settings": {
             "question": "¿Cuánto cuesta el envío y cuánto tarda?",
-            "answer": "<p>Despachamos a todo Chile. El envío es <strong>gratis en compras desde $30.000</strong> y cuesta $4.000 en compras menores. Preparamos tu pedido en 1 día hábil y llega en un plazo estimado de 3 a 6 días hábiles.</p>",
+            "answer": "<p>Despachamos a todo Chile. El envío es <strong>gratis en compras desde $39.990</strong> y cuesta $4.000 en compras menores. Preparamos tu pedido en 1 día hábil y llega en un plazo estimado de 3 a 6 días hábiles.</p>",
             "draft": false
           }
         },
@@ -892,7 +892,7 @@
         "text": "Elige tu pack y libera la barra en minutos, sin herramientas.",
         "image_plain": false,
         "button_label": "Elegir mi pack",
-        "trust_1": "Envío gratis desde $30.000",
+        "trust_1": "Envío gratis desde $39.990",
         "trust_2": "Pago seguro",
         "trust_3": "10 días de retracto",
         "width": "full",

@@ -159,7 +159,7 @@
     "ecoms_v1_tiktok": "https://www.tiktok.com/@ecoms.clean",
     "ecoms_v1_facebook": "https://www.facebook.com/profile.php?id=61595370719462",
     "ecoms_free_shipping_live": true,
-    "ecoms_free_shipping_threshold": 30,
+    "ecoms_free_shipping_threshold": 39990,
     "sections": {
       "main-password-header": {
         "type": "main-password-header",

@@ -9,7 +9,12 @@
         assign shown = 0
         assign ship_threshold = 0
         if settings.ecoms_free_shipping_live
-          assign ship_threshold = settings.ecoms_free_shipping_threshold | plus: 0 | times: 100000
+          # Exact CLP amount (39990) or thousands (40 = $40.000), as cents.
+          assign ship_threshold = settings.ecoms_free_shipping_threshold | plus: 0
+          if ship_threshold < 1000
+            assign ship_threshold = ship_threshold | times: 1000
+          endif
+          assign ship_threshold = ship_threshold | times: 100
         endif
       -%}
       {%- for block in section.blocks -%}

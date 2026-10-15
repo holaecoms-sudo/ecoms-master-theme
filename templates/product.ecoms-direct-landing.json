@@ -57,7 +57,7 @@
             "style": "grid",
             "icon_1": "truck",
             "title_1": "Envío gratis",
-            "text_1": "Desde $30.000",
+            "text_1": "Desde $39.990",
             "icon_2": "lock",
             "title_2": "Pago seguro",
             "text_2": "Checkout Shopify",
@@ -1065,7 +1065,7 @@
           "type": "faq",
           "settings": {
             "question": "¿Cuánto cuesta el envío y cuánto tarda?",
-            "answer": "<p>Despachamos a todo Chile. El envío es <strong>gratis en compras desde $30.000</strong> (por ejemplo, el pack de 2) y cuesta $4.000 en compras menores. Preparamos tu pedido en 1 día hábil y llega en un plazo estimado de 3 a 6 días hábiles. Cuando sale, te enviamos el número de seguimiento por email.</p>",
+            "answer": "<p>Despachamos a todo Chile. El envío es <strong>gratis en compras desde $39.990</strong> (por ejemplo, el pack de 2) y cuesta $4.000 en compras menores. Preparamos tu pedido en 1 día hábil y llega en un plazo estimado de 3 a 6 días hábiles. Cuando sale, te enviamos el número de seguimiento por email.</p>",
             "draft": false
           }
         },
@@ -1115,7 +1115,7 @@
         "image": "shopify://shop_images/Limpieza_Profunda_de_juntas.png",
         "image_plain": false,
         "button_label": "Comprar ahora",
-        "trust_1": "Envío gratis desde $30.000",
+        "trust_1": "Envío gratis desde $39.990",
         "trust_2": "Pago seguro",
         "trust_3": "Seguimiento del pedido",
         "width": "full",
