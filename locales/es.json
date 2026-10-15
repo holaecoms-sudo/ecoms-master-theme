@@ -432,7 +432,7 @@
       "company": "Empresa",
       "address1": "Dirección 1",
       "address2": "Dirección 2",
-      "city": "Ciudad",
+      "city": "Comuna",
       "country": "País/región",
       "province": "Provincia",
       "zip": "Código postal",
@@ -553,6 +553,18 @@
     "checkout": {
       "contact": {
         "city_label": "Comuna"
+      },
+      "field_errors": {
+        "address_city_blank": "Introduce la comuna",
+        "address_city_too_long": "El nombre de la comuna es demasiado largo (el máximo es 255 caracteres)"
+      },
+      "wallets": {
+        "errors": {
+          "missing": {
+            "city": "Introduce una comuna",
+            "billing_city": "Introduce la comuna de la dirección de facturación"
+          }
+        }
       }
     }
   }
