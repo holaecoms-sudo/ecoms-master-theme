@@ -373,7 +373,7 @@
                         <span class="ec-incl-mini__ic">{% render 'ecoms-icon', name: item.icon.value %}</span>
                       {%- endif -%}
                       <span class="ec-incl-mini__t">
-                        {%- if item.qty != blank %}<b>{{ item.qty.value | escape }}</b> {% endif -%}
+                        {%- if item.qty != blank %}<b data-ec-incl-qty="{{ item.qty.value | escape }}">{{ item.qty.value | escape }}</b> {% endif -%}
                         {{- item.title.value | escape -}}
                       </span>
                       {%- if item.badge != blank -%}<em>{{ item.badge.value | escape }}</em>{%- endif -%}
@@ -396,7 +396,7 @@
                         <span class="ec-incl-mini__ic">{% render 'ecoms-icon', name: block.settings[i_key] %}</span>
                       {%- endif -%}
                       <span class="ec-incl-mini__t">
-                        {%- if block.settings[q_key] != blank %}<b>{{ block.settings[q_key] | escape }}</b> {% endif -%}
+                        {%- if block.settings[q_key] != blank %}<b data-ec-incl-qty="{{ block.settings[q_key] | escape }}">{{ block.settings[q_key] | escape }}</b> {% endif -%}
                         {{- block.settings[t_key] | escape -}}
                       </span>
                       {%- if block.settings[b_key] != blank -%}<em>{{ block.settings[b_key] | escape }}</em>{%- endif -%}
