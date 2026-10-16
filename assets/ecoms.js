@@ -436,8 +436,8 @@
     return drawer ? drawer.getSectionsToRender().map((s) => s.id) : [];
   }
 
-  async function addVariant(variantId, quantity = 1, source = 'cross_sell') {
-    const payload = { items: [{ id: Number(variantId), quantity }] };
+  async function addVariant(variantId, quantity = 1, source = 'cross_sell', extraItems = []) {
+    const payload = { items: [...extraItems, { id: Number(variantId), quantity }] };
     const sections = drawerSections();
     if (sections.length) {
       payload.sections = sections;
@@ -448,6 +448,21 @@
     // Cart page: reload so the line items, totals and suggestions update together.
     if (document.getElementById('main-cart-items')) { window.location.reload(); return; }
     if (!showDrawer(json)) window.location.href = window.routes?.cart_url || '/cart';
+  }
+
+  // «Llévalo en pack»: the offer only applies with the main product, so the same click also adds one unit
+  // of the variant selected on this page, unless the product is already in the cart.
+  async function mainItems(button) {
+    const productId = Number(button.dataset.ecWithProduct);
+    if (!productId) return [];
+    const form = button.closest('section, .shopify-section')?.querySelector('[data-ec-form]') || $('[data-ec-form]');
+    const variantId = Number(form?.querySelector('[name="id"]')?.value);
+    if (!variantId) return [];
+    try {
+      const cart = await fetch(`${window.Shopify?.routes?.root || '/'}cart.js`, { headers: { Accept: 'application/json' } }).then((r) => r.json());
+      if (cart.items?.some((line) => line.product_id === productId)) return [];
+    } catch (e) { /* cart unknown: add it anyway */ }
+    return [{ id: variantId, quantity: 1 }];
   }
 
   async function submitEcForm(form, submitter) {
@@ -553,7 +568,7 @@
       add.disabled = true;
       add.setAttribute('aria-busy', 'true');
       try {
-        await addVariant(add.dataset.ecAddVariant, 1, add.dataset.ecSource || 'cross_sell');
+        await addVariant(add.dataset.ecAddVariant, 1, add.dataset.ecSource || 'cross_sell', await mainItems(add));
       } catch (e) {
         const note = add.parentElement.querySelector('[data-ec-add-error]');
         if (note) { note.textContent = e.message; note.hidden = false; }

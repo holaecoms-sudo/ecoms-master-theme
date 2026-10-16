@@ -8,6 +8,8 @@
   - label: {String} button text
   - class: {String} button classes
   - source: {String} analytics source name
+  - with_product: {Object} optional main product: one unit of its selected variant is added with the item
+    (in the same request) unless it is already in the cart. Used by «Llévalo en pack».
 {%- endcomment -%}
 {%- assign item_variant = item.selected_or_first_available_variant -%}
 {%- if item.available == false -%}
@@ -18,6 +20,7 @@
     class="{{ class }}"
     data-ec-add-variant="{{ item_variant.id }}"
     data-ec-source="{{ source | default: 'cross_sell' }}"
+    {%- if with_product != blank %} data-ec-with-product="{{ with_product.id }}"{% endif %}
     aria-label="{{ label | escape }}: {{ item.title | escape }}"
   >
     {{- label | escape -}}

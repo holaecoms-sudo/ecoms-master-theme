@@ -488,7 +488,7 @@
                     <span><b>{{ po_price | money }}</b> <s>{{ po_variant.price | money }}</s> <em>-{{ po_pct }}%</em></span>
                     {%- assign po_note = product.metafields.ecoms.pack_note.value | default: block.settings.note -%}{%- if po_note != blank -%}<small>{{ po_note | escape }}</small>{%- endif -%}
                   </div>
-                  {%- render 'ecoms-add-button', item: po_item, label: block.settings.button_label, class: 'ec-btn ec-btn--primary ec-btn--sm ec-packoff__add', source: 'pack_offer' -%}
+                  {%- render 'ecoms-add-button', item: po_item, label: block.settings.button_label, class: 'ec-btn ec-btn--primary ec-btn--sm ec-packoff__add', source: 'pack_offer', with_product: product -%}
                 </div>
               </div>
             {%- endif -%}
