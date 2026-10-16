@@ -1,0 +1,129 @@
+{%- comment -%}
+  ECOMS · Míralo en acción: short product videos (muted loop, like a GIF but lighter), GIFs or photos of the
+  product in use. Per product from metafields ecoms.demo_media (list of files: video or image) and
+  ecoms.demo_captions (one caption per file, same order); otherwise from the section blocks. Hidden when empty.
+  Videos only load and play while on screen, so the page stays fast for ad traffic.
+{%- endcomment -%}
+{%- liquid
+  assign dm_files = product.metafields.ecoms.demo_media.value
+  assign dm_caps = product.metafields.ecoms.demo_captions.value
+  assign dm_from_mf = false
+  if dm_files != blank
+    assign dm_from_mf = true
+    assign dm_count = dm_files.size
+  else
+    assign dm_count = 0
+    for block in section.blocks
+      if block.settings.video != blank or block.settings.image != blank
+        assign dm_count = dm_count | plus: 1
+      endif
+    endfor
+  endif
+  assign dm_ratio = section.settings.ratio | default: 'portrait'
+-%}
+{%- if dm_count > 0 or request.design_mode -%}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-demo-sec' %}>
+  <div class="ec-w">
+    {%- if section.settings.heading != blank or section.settings.text != blank -%}
+      <div class="ec-sec-h">
+        {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<p>{{ section.settings.text | escape }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="ec-demo ec-demo--{{ dm_ratio }}" style="--dm-n: {{ dm_count | at_most: 4 | at_least: 1 }};" data-ec-demo>
+      {%- if dm_from_mf -%}
+        {%- for file in dm_files -%}
+          {%- assign dm_cap = dm_caps[forloop.index0] -%}
+          {%- render 'ecoms-demo-item', file: file, caption: dm_cap -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for block in section.blocks -%}
+          {%- assign dm_file = block.settings.video | default: block.settings.image -%}
+          {%- if dm_file == blank and request.design_mode != true -%}{%- continue -%}{%- endif -%}
+          {%- render 'ecoms-demo-item', file: dm_file, caption: block.settings.caption, attrs: block.shopify_attributes -%}
+        {%- endfor -%}
+        {%- if section.blocks.size == 0 and request.design_mode -%}
+          <p class="ec-editor-note">Agrega videos, GIF o fotos en el metacampo «Videos de uso» del producto (ecoms.demo_media) o como bloques de esta sección.</p>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+<script>
+  (function () {
+    var root = document.querySelector('#ec-{{ section.id }} [data-ec-demo]');
+    if (!root) return;
+    var vids = root.querySelectorAll('video');
+    if (!vids.length) return;
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    vids.forEach(function (v) {
+      v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.removeAttribute('controls');
+    });
+    if (reduce || !('IntersectionObserver' in window)) {
+      vids.forEach(function (v) { v.setAttribute('controls', ''); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) { if (v.preload === 'none') v.preload = 'auto'; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        else v.pause();
+      });
+    }, { threshold: 0.35 });
+    vids.forEach(function (v) { io.observe(v); });
+  })();
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ECOMS · Videos de uso",
+  "tag": "section",
+  "class": "ec-demo-section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Muestra videos cortos (se reproducen solos, sin sonido y en loop, como un GIF pero mucho más livianos), GIF o fotos del producto en uso. En la plantilla de producto se toman del metacampo «Videos de uso» (ecoms.demo_media) y sus textos de «Textos de los videos de uso» (ecoms.demo_captions). Si el producto no tiene, se usan los bloques; sin contenido, la sección no aparece."
+    },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Míralo en acción" },
+    { "type": "text", "id": "text", "label": "Texto", "default": "" },
+    {
+      "type": "select",
+      "id": "ratio",
+      "label": "Formato",
+      "options": [
+        { "value": "portrait", "label": "Vertical 4:5 (videos de celular)" },
+        { "value": "square", "label": "Cuadrado" },
+        { "value": "story", "label": "Vertical 9:16 (historias, reels)" }
+      ],
+      "default": "portrait"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Ancho en escritorio",
+      "options": [
+        { "value": "full", "label": "Completo" },
+        { "value": "left", "label": "Mitad izquierda" },
+        { "value": "right", "label": "Mitad derecha" }
+      ],
+      "default": "full"
+    },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 32 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 32 }
+  ],
+  "blocks": [
+    {
+      "type": "media",
+      "name": "Video, GIF o foto",
+      "settings": [
+        { "type": "video", "id": "video", "label": "Video", "info": "MP4 corto (5 a 15 s). Se reproduce solo, sin sonido y en loop." },
+        { "type": "image_picker", "id": "image", "label": "Foto o GIF", "info": "Se usa si no hay video." },
+        { "type": "text", "id": "caption", "label": "Texto", "default": "" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [{ "name": "ECOMS · Videos de uso" }]
+}
+{% endschema %}

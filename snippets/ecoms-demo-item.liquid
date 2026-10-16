@@ -1,0 +1,27 @@
+{%- comment -%}
+  ECOMS · One item of «Videos de uso»: a muted looping video (played by the section only while visible),
+  or an image / GIF. GIFs are served as the original file so they keep their animation.
+
+  Accepts:
+  - file: {Object} video or image (media / file reference)
+  - caption: {String} optional
+  - attrs: {String} optional block attributes
+{%- endcomment -%}
+<figure class="ec-demo__item" {{ attrs }}>
+  <div class="ec-demo__media">
+    {%- if file.media_type == 'video' or file.sources -%}
+      {{ file | video_tag: autoplay: false, loop: true, muted: true, playsinline: true, controls: false, preload: 'none', image_size: '720x' }}
+    {%- elsif file != blank -%}
+      {%- assign dm_src = file.src | default: file.preview_image.src | append: '' | downcase -%}
+      {%- assign dm_alt = caption | default: file.alt -%}
+      {%- if dm_src contains '.gif' -%}
+        <img src="{{ file | image_url }}" alt="{{ dm_alt | escape }}" loading="lazy" width="{{ file.width }}" height="{{ file.height }}">
+      {%- else -%}
+        {{ file | image_url: width: 900 | image_tag: loading: 'lazy', widths: '360,540,720,900', sizes: '(min-width: 990px) 380px, 78vw', alt: dm_alt }}
+      {%- endif -%}
+    {%- else -%}
+      {{ 'image' | placeholder_svg_tag }}
+    {%- endif -%}
+  </div>
+  {%- if caption != blank -%}<figcaption>{{ caption | escape }}</figcaption>{%- endif -%}
+</figure>
