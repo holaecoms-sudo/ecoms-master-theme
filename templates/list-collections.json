@@ -1,17 +1,274 @@
 {
   "sections": {
-    "main": {
-      "type": "main-list-collections",
+    "hero": {
+      "type": "ecoms-vertical-hero",
       "settings": {
-        "title": "Collections",
-        "sort": "alphabetical",
-        "image_ratio": "square",
-        "columns_desktop": 3,
-        "columns_mobile": "2"
+        "style": "dark",
+        "show_logo": false,
+        "tagline": "Categorías",
+        "heading": "Encuentra lo que necesitas para tu casa",
+        "text": "<p>Elige la zona de la casa que quieres resolver o una de nuestras líneas. Envío a todo Chile y pago seguro con Webpay o Mercado Pago.</p>",
+        "button_label": "Ver todos los productos",
+        "button_link": "shopify://collections/all",
+        "button_2_label": "¿Qué quieres limpiar?",
+        "button_2_link": "#categorias",
+        "show_card": false,
+        "padding_top": 32,
+        "padding_bottom": 36
+      }
+    },
+    "zones": {
+      "type": "ecoms-zones",
+      "blocks": {
+        "z1": {
+          "type": "zone",
+          "settings": {
+            "label": "Baño",
+            "text": "Ducha, inodoro y juntas",
+            "tag": "zona-bano",
+            "icon": "drop"
+          }
+        },
+        "z2": {
+          "type": "zone",
+          "settings": {
+            "label": "Cocina",
+            "text": "Grasa, lavaplatos y cañerías",
+            "tag": "zona-cocina",
+            "icon": "home"
+          }
+        },
+        "z3": {
+          "type": "zone",
+          "settings": {
+            "label": "Pisos y aspirado",
+            "text": "Aspiradoras y mopa",
+            "tag": "zona-pisos",
+            "icon": "sparkle"
+          }
+        },
+        "z4": {
+          "type": "zone",
+          "settings": {
+            "label": "Lavado y ropa",
+            "text": "Lavadora, zapatillas y clóset",
+            "tag": "zona-ropa",
+            "icon": "washer"
+          }
+        }
+      },
+      "block_order": [
+        "z1",
+        "z2",
+        "z3",
+        "z4"
+      ],
+      "settings": {
+        "heading": "¿Qué quieres limpiar?",
+        "collection": "clean",
+        "show_all": true,
+        "all_label": "Ver todo Ecoms Clean",
+        "padding_top": 36,
+        "padding_bottom": 16
+      }
+    },
+    "lines": {
+      "type": "ecoms-verticals",
+      "blocks": {
+        "l1": {
+          "type": "line",
+          "settings": {
+            "name": "Ecoms Clean · Limpieza y aseo",
+            "text": "Baño, cocina, pisos y lavado: herramientas que te ahorran esfuerzo.",
+            "status": "live",
+            "icon": "sparkle",
+            "accent": "#2F7BEA",
+            "collection": "clean",
+            "button_label": "Ver productos"
+          }
+        },
+        "l2": {
+          "type": "line",
+          "settings": {
+            "name": "Hogar y mascotas",
+            "text": "Orden, cocina y cuidado de tus mascotas.",
+            "status": "soon",
+            "icon": "paw",
+            "accent": "#F59E0B",
+            "notify_tag": "hogar"
+          }
+        },
+        "l3": {
+          "type": "line",
+          "settings": {
+            "name": "Belleza",
+            "text": "Cuidado personal y de la piel.",
+            "status": "soon",
+            "icon": "gem",
+            "accent": "#EC4899",
+            "notify_tag": "belleza"
+          }
+        },
+        "l4": {
+          "type": "line",
+          "settings": {
+            "name": "Bienestar",
+            "text": "Descanso, relajación y vida sana.",
+            "status": "soon",
+            "icon": "leaf",
+            "accent": "#14B8A6",
+            "notify_tag": "bienestar"
+          }
+        }
+      },
+      "block_order": [
+        "l1",
+        "l2",
+        "l3",
+        "l4"
+      ],
+      "settings": {
+        "eyebrow": "Nuestras líneas",
+        "heading": "Compra por línea",
+        "text": "Ecoms Clean ya está disponible. Déjanos tu email en las próximas y te avisamos cuando lleguen.",
+        "layout": "grid",
+        "anchor": "lineas",
+        "button_label": "Ver productos",
+        "live_label": "Disponible",
+        "soon_label": "Próximamente",
+        "show_notify": true,
+        "notify_placeholder": "Tu email",
+        "notify_button": "Avísame",
+        "notify_success": "¡Listo! Te avisaremos cuando llegue.",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "best": {
+      "type": "ecoms-product-row",
+      "settings": {
+        "heading": "Productos Ecoms Clean",
+        "collection": "clean",
+        "limit": 8,
+        "min_products": 3,
+        "columns": 4,
+        "show_badge": true,
+        "hover_image": true,
+        "button_label": "Ver producto",
+        "link_label": "Ver todo",
+        "link": "shopify://collections/clean",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "trust": {
+      "type": "ecoms-trust",
+      "blocks": {
+        "p1": {
+          "type": "promise",
+          "settings": {
+            "icon": "truck",
+            "heading": "Envíos a todo Chile",
+            "text": "Con seguimiento de tu pedido"
+          }
+        },
+        "p2": {
+          "type": "promise",
+          "settings": {
+            "icon": "gift",
+            "heading": "Envío gratis",
+            "text": "En compras desde $39.990"
+          }
+        },
+        "p3": {
+          "type": "promise",
+          "settings": {
+            "icon": "lock",
+            "heading": "Pago seguro",
+            "text": "Con Webpay o Mercado Pago"
+          }
+        },
+        "p4": {
+          "type": "promise",
+          "settings": {
+            "icon": "return",
+            "heading": "Cambios y devoluciones",
+            "text": "10 días de retracto y garantía legal"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ],
+      "settings": {
+        "style": "band",
+        "width": "full",
+        "padding_top": 16,
+        "padding_bottom": 0
+      }
+    },
+    "faq": {
+      "type": "ecoms-faq",
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuánto demora y cuánto cuesta el envío?",
+            "answer": "<p>Despachamos a todo Chile. El envío es <strong>gratis en compras desde $39.990</strong>; en compras menores, el costo para tu comuna aparece en el checkout antes de pagar. Preparamos tu pedido en 1 día hábil y te enviamos el número de seguimiento por email cuando sale.</p>",
+            "draft": false
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo puedo pagar?",
+            "answer": "<p>Pagas por adelantado de forma segura con Webpay (débito o crédito) o Mercado Pago. Nunca vemos ni guardamos los datos de tu tarjeta.</p>",
+            "draft": false
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Puedo cambiar o devolver mi compra?",
+            "answer": "<p>Sí. Tienes 10 días desde que recibes tu pedido para arrepentirte, con el producto sin uso y en su embalaje, y 6 meses de garantía legal si presenta una falla.</p>",
+            "draft": false
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Los packs tienen descuento?",
+            "answer": "<p>Sí. En cada producto puedes elegir el pack de 2 y el descuento se aplica automáticamente en el carrito, sin códigos.</p>",
+            "draft": false
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4"
+      ],
+      "settings": {
+        "style": "split",
+        "heading": "Preguntas frecuentes",
+        "text": "¿Tienes otra duda? Escríbenos desde la página de contacto.",
+        "icon": "plus",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 48
       }
     }
   },
   "order": [
-    "main"
+    "hero",
+    "zones",
+    "lines",
+    "best",
+    "trust",
+    "faq"
   ]
 }

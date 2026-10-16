@@ -12,6 +12,38 @@
     "catalog": {
       "type": "ecoms-collection",
       "blocks": {
+        "z1": {
+          "type": "filter",
+          "settings": {
+            "label": "Baño",
+            "tag": "zona-bano",
+            "icon": "drop"
+          }
+        },
+        "z2": {
+          "type": "filter",
+          "settings": {
+            "label": "Cocina",
+            "tag": "zona-cocina",
+            "icon": "home"
+          }
+        },
+        "z3": {
+          "type": "filter",
+          "settings": {
+            "label": "Pisos y aspirado",
+            "tag": "zona-pisos",
+            "icon": "sparkle"
+          }
+        },
+        "z4": {
+          "type": "filter",
+          "settings": {
+            "label": "Lavado y ropa",
+            "tag": "zona-ropa",
+            "icon": "washer"
+          }
+        },
         "t1": {
           "type": "trust",
           "settings": {
@@ -35,26 +67,87 @@
         }
       },
       "block_order": [
+        "z1",
+        "z2",
+        "z3",
+        "z4",
         "t1",
         "t2",
         "t3"
       ],
       "settings": {
+        "show_header": true,
+        "grid_heading": "Todos los productos",
+        "eyebrow": "Catálogo",
+        "all_title": "Todos nuestros productos",
+        "text": "Productos elegidos para resolver problemas reales de la casa. Filtra por zona y entra a cada uno para ver cómo funciona, qué incluye y sus packs.",
         "per_page": 24,
         "columns": 3,
         "show_sort": true,
         "show_badge": true,
         "hover_image": true,
-        "eyebrow": "Catálogo",
-        "all_title": "Todos nuestros productos",
-        "text": "Productos elegidos para resolver problemas reales de la casa. Entra a cada uno para ver cómo funciona, qué incluye y sus packs.",
         "button_label": "Ver producto",
+        "chips_all": "Todos",
+        "chips_label": "Filtrar por zona",
         "padding_top": 0,
-        "padding_bottom": 56
+        "padding_bottom": 40
+      }
+    },
+    "faq": {
+      "type": "ecoms-faq",
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuánto demora y cuánto cuesta el envío?",
+            "answer": "<p>Despachamos a todo Chile. El envío es <strong>gratis en compras desde $39.990</strong>; en compras menores, el costo para tu comuna aparece en el checkout antes de pagar. Preparamos tu pedido en 1 día hábil y te enviamos el número de seguimiento por email cuando sale.</p>",
+            "draft": false
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo puedo pagar?",
+            "answer": "<p>Pagas por adelantado de forma segura con Webpay (débito o crédito) o Mercado Pago. Nunca vemos ni guardamos los datos de tu tarjeta.</p>",
+            "draft": false
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Puedo cambiar o devolver mi compra?",
+            "answer": "<p>Sí. Tienes 10 días desde que recibes tu pedido para arrepentirte, con el producto sin uso y en su embalaje, y 6 meses de garantía legal si presenta una falla.</p>",
+            "draft": false
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Los packs tienen descuento?",
+            "answer": "<p>Sí. En cada producto puedes elegir el pack de 2 y el descuento se aplica automáticamente en el carrito, sin códigos.</p>",
+            "draft": false
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4"
+      ],
+      "settings": {
+        "style": "split",
+        "heading": "Preguntas frecuentes",
+        "text": "¿Tienes otra duda? Escríbenos desde la página de contacto.",
+        "icon": "plus",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 48
       }
     }
   },
   "order": [
-    "catalog"
+    "catalog",
+    "faq"
   ]
 }

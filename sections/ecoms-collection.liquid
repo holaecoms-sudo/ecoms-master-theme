@@ -1,6 +1,7 @@
 {%- comment -%}
-  ECOMS · Catálogo (colección): header, sort, product cards with real price/compare/rating, pagination, trust strip.
-  Discount badge only when the product has a real compare-at price; rating only from review-app metafields.
+  ECOMS · Catálogo (colección): header, zone chips, sort, product cards with real price/compare/rating, pagination,
+  trust strip. Discount badge only when the product has a real compare-at price; rating only from review-app metafields.
+  Zone chips («Filtro por zona» blocks) use Shopify's native tag URL (/collections/<handle>/<tag>).
 {%- endcomment -%}
 {%- paginate collection.products by section.settings.per_page -%}
   {%- liquid
@@ -9,6 +10,15 @@
       assign cols = collection.products_count
     endif
     assign sort_by = collection.sort_by | default: collection.default_sort_by
+    assign trust_blocks = section.blocks | where: 'type', 'trust'
+    assign chip_blocks = section.blocks | where: 'type', 'filter'
+    assign active_label = ''
+    for block in chip_blocks
+      assign chip_tag = block.settings.tag | strip | handleize
+      if chip_tag != blank and current_tags contains chip_tag
+        assign active_label = block.settings.label
+      endif
+    endfor
   -%}
   <section class="ec-cg" style="--ec-pt: {{ section.settings.padding_top }}px; --ec-pb: {{ section.settings.padding_bottom }}px; --cg-cols: {{ cols }};">
     {%- if section.settings.show_header -%}
@@ -27,9 +37,9 @@
         {%- elsif section.settings.text != blank -%}
           <p class="ec-cg__desc">{{ section.settings.text | escape }}</p>
         {%- endif -%}
-        {%- if section.blocks.size > 0 -%}
+        {%- if trust_blocks.size > 0 -%}
           <ul class="ec-cg__trust" role="list">
-            {%- for block in section.blocks -%}
+            {%- for block in trust_blocks -%}
               <li {{ block.shopify_attributes }}>{% render 'ecoms-icon', name: block.settings.icon %}<span>{{ block.settings.text | escape }}</span></li>
             {%- endfor -%}
           </ul>
@@ -42,11 +52,27 @@
       {%- if section.settings.show_header == false and section.settings.grid_heading != blank -%}
         <h2 class="ec-cg__gh">{{ section.settings.grid_heading | escape }}</h2>
       {%- endif -%}
+      {%- if chip_blocks.size > 0 -%}
+        <nav class="ec-cg__chips" aria-label="{{ section.settings.chips_label | escape }}">
+          <a class="ec-cg__chip{% if current_tags.size == 0 %} is-active{% endif %}" href="{{ collection.url }}#productos"{% if current_tags.size == 0 %} aria-current="page"{% endif %}>{{ section.settings.chips_all | escape }}</a>
+          {%- for block in chip_blocks -%}
+            {%- assign chip_tag = block.settings.tag | strip | handleize -%}
+            {%- if chip_tag != blank -%}
+              {%- assign chip_on = false -%}{%- if current_tags contains chip_tag -%}{%- assign chip_on = true -%}{%- endif -%}
+              <a class="ec-cg__chip{% if chip_on %} is-active{% endif %}" href="{{ collection.url }}/{{ chip_tag }}#productos"{% if chip_on %} aria-current="page"{% endif %} {{ block.shopify_attributes }}>
+                {%- if block.settings.icon != blank and block.settings.icon != 'none' -%}{% render 'ecoms-icon', name: block.settings.icon %}{%- endif -%}
+                {{- block.settings.label | escape -}}
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        </nav>
+      {%- endif -%}
       {%- if collection.products_count > 0 -%}
         <div class="ec-cg__bar">
           <p class="ec-cg__count">
             {{ collection.products_count }}
             {% if collection.products_count == 1 %}producto{% else %}productos{% endif %}
+            {%- if active_label != blank %} en <b>{{ active_label | escape }}</b>{% endif -%}
           </p>
           {%- if section.settings.show_sort and collection.products_count > 1 -%}
             <form class="ec-cg__sort" method="get">
@@ -86,7 +112,11 @@
         <div class="ec-cg__empty">
           {% render 'ecoms-icon', name: 'box' %}
           <p>Pronto tendremos productos en esta categoría.</p>
-          <a class="ec-btn ec-btn--primary" href="{{ routes.root_url }}">Volver al inicio</a>
+          {%- if current_tags.size > 0 -%}
+            <a class="ec-btn ec-btn--primary" href="{{ collection.url }}">{{ section.settings.chips_all | escape }}</a>
+          {%- else -%}
+            <a class="ec-btn ec-btn--primary" href="{{ routes.root_url }}">Volver al inicio</a>
+          {%- endif -%}
         </div>
       {%- endif -%}
     </div>
@@ -175,6 +205,9 @@
       "label": "Texto del botón",
       "default": "Ver producto"
     },
+    { "type": "header", "content": "Filtros por zona" },
+    { "type": "text", "id": "chips_all", "label": "Texto del filtro «Todos»", "default": "Todos" },
+    { "type": "text", "id": "chips_label", "label": "Nombre accesible de los filtros", "default": "Filtrar por zona" },
     {
       "type": "range",
       "id": "padding_top",
@@ -223,9 +256,34 @@
           "default": "Envíos a todo Chile"
         }
       ]
+    },
+    {
+      "type": "filter",
+      "name": "Filtro por zona",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Texto", "default": "Baño" },
+        { "type": "text", "id": "tag", "label": "Etiqueta de producto", "default": "zona-bano", "info": "Muestra los productos de la colección con esa etiqueta, ej.: zona-cocina." },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícono",
+          "options": [
+            { "value": "none", "label": "Sin ícono" },
+            { "value": "drop", "label": "Gota" },
+            { "value": "home", "label": "Casa" },
+            { "value": "sparkle", "label": "Brillo" },
+            { "value": "washer", "label": "Lavadora" },
+            { "value": "grid", "label": "Cuadrícula" },
+            { "value": "leaf", "label": "Hoja" },
+            { "value": "paw", "label": "Huella" },
+            { "value": "gem", "label": "Gema" }
+          ],
+          "default": "none"
+        }
+      ]
     }
   ],
-  "max_blocks": 4,
+  "max_blocks": 12,
   "presets": [
     {
       "name": "ECOMS · Catálogo"
