@@ -85,12 +85,13 @@
         "v2": {
           "type": "line",
           "settings": {
-            "name": "Hogar y mascotas",
-            "text": "Orden, cocina y cuidado de tus mascotas.",
-            "status": "soon",
-            "icon": "paw",
-            "accent": "#F59E0B",
-            "notify_tag": "hogar"
+            "name": "Ecoms Hogar · Cocina y orden",
+            "text": "Soluciones prácticas para la cocina, el orden y el día a día.",
+            "status": "live",
+            "collection": "hogar",
+            "icon": "home",
+            "accent": "#F07F1A",
+            "button_label": "Ver productos"
           }
         },
         "v3": {
@@ -253,6 +254,23 @@
         "padding_top": 28,
         "padding_bottom": 20
       }
+    },
+    "hogar_row": {
+      "type": "ecoms-product-row",
+      "settings": {
+        "heading": "Nuevo: Ecoms Hogar",
+        "collection": "hogar",
+        "limit": 4,
+        "min_products": 1,
+        "columns": 4,
+        "show_badge": true,
+        "hover_image": true,
+        "button_label": "Ver producto",
+        "link_label": "Ver Ecoms Hogar",
+        "link": "shopify://collections/hogar",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
     }
   },
   "order": [
@@ -260,6 +278,7 @@
     "clean_row",
     "zonas",
     "como",
+    "hogar_row",
     "lineas"
   ]
 }

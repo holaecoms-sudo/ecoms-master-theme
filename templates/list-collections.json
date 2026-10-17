@@ -90,12 +90,13 @@
         "l2": {
           "type": "line",
           "settings": {
-            "name": "Hogar y mascotas",
-            "text": "Orden, cocina y cuidado de tus mascotas.",
-            "status": "soon",
-            "icon": "paw",
-            "accent": "#F59E0B",
-            "notify_tag": "hogar"
+            "name": "Ecoms Hogar · Cocina y orden",
+            "text": "Soluciones prácticas para la cocina, el orden y el día a día.",
+            "status": "live",
+            "collection": "hogar",
+            "icon": "home",
+            "accent": "#F07F1A",
+            "button_label": "Ver productos"
           }
         },
         "l3": {
