@@ -6,7 +6,7 @@
         "eyebrow": {
           "type": "eyebrow",
           "settings": {
-            "text": "Ecoms Hogar"
+            "text": "Ecoms Hogar y mascotas"
           }
         },
         "title": {
@@ -493,7 +493,7 @@
       "settings": {
         "style": "dark",
         "eyebrow": "",
-        "heading": "Tu casa más práctica, sin complicaciones",
+        "heading": "Tu casa y tus mascotas, más fáciles de cuidar",
         "text": "Envío a todo Chile y pago seguro con Webpay o Mercado Pago.",
         "image_plain": false,
         "button_label": "Comprar ahora",

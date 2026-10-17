@@ -7,8 +7,8 @@
         "show_logo": false,
         "logo_height": 40,
         "tagline": "",
-        "heading": "Tu casa más práctica, sin complicaciones",
-        "text": "<p>Soluciones simples para la cocina, el orden y el día a día. Te explicamos cómo funciona cada una y te las enviamos a todo Chile.</p>",
+        "heading": "Hogar y mascotas",
+        "text": "<p>Orden, cocina y cuidado de tus mascotas. Te explicamos cómo funciona cada producto y te lo enviamos a todo Chile.</p>",
         "button_label": "Ver productos",
         "button_2_label": "",
         "button_2_link": "",
@@ -88,11 +88,21 @@
             "tag": "zona-orden",
             "icon": "grid"
           }
+        },
+        "z3": {
+          "type": "zone",
+          "settings": {
+            "label": "Mascotas",
+            "text": "Cuidado y comodidad de tus mascotas",
+            "tag": "zona-mascotas",
+            "icon": "paw"
+          }
         }
       },
       "block_order": [
         "z1",
-        "z2"
+        "z2",
+        "z3"
       ],
       "settings": {
         "heading": "¿Qué quieres resolver?",

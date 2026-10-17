@@ -1916,13 +1916,13 @@
         "type": "text",
         "id": "ecoms_v2_name",
         "label": "Nombre",
-        "default": "Ecoms Hogar"
+        "default": "Ecoms Hogar y mascotas"
       },
       {
         "type": "text",
         "id": "ecoms_v2_tagline",
         "label": "Tagline",
-        "default": "Soluciones prácticas para tu casa"
+        "default": "Orden, cocina y cuidado de tus mascotas"
       },
       {
         "type": "image_picker",
