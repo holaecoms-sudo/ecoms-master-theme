@@ -98,7 +98,7 @@
             "layout": "cards",
             "show_cta_total": true,
             "help": "El descuento del pack se aplica automáticamente en el carrito.",
-            "default_tier": "2",
+            "default_tier": "1",
             "item_name": "",
             "show_summary": true,
             "summary_label": "Tu pack incluye",
