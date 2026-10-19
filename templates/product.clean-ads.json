@@ -74,10 +74,11 @@
         "pack_offer": {
           "type": "pack_offer",
           "settings": {
-            "heading": "Pack limpieza: aspiradora + cepillo eléctrico",
+            "heading": "[pack]: aspiradora + cepillo eléctrico",
             "note": "El descuento se aplica automáticamente en el carrito.",
-            "button_label": "Llevar el pack",
-            "show_total": true
+            "button_label": "Agregar [pack] · [total]",
+            "show_total": true,
+            "or_text": "o ahorra llevando el pack"
           }
         },
         "stock": {
@@ -91,11 +92,12 @@
           "type": "buy",
           "settings": {
             "show_quantity": false,
-            "add_label": "Añadir al carrito",
+            "add_label": "Agregar aspiradora",
             "show_total": true,
             "show_buy_now": true,
             "buy_now_icon": "bolt",
-            "buy_now_label": "Comprar ahora"
+            "buy_now_label": "Comprar aspiradora ahora",
+            "heading": "Solo la aspiradora"
           }
         },
         "payments": {
@@ -136,8 +138,8 @@
         "chips",
         "buybox",
         "price",
-        "pack_offer",
         "buy",
+        "pack_offer",
         "payments",
         "delivery",
         "trust",

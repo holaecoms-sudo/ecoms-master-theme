@@ -74,6 +74,43 @@
           assign fallback = collections[settings.ecoms_cart_collection].products
         endif
       -%}
+      {%- comment -%}
+        Pack upsell: the first cart product whose pack (metafields ecoms.pack_product + ecoms.pack_discount,
+        the same real «Compra X y llévate Y» discount as on the product page) is not complete yet.
+      {%- endcomment -%}
+      {%- assign pack_main = nil -%}
+      {%- for line in cart.items -%}
+        {%- assign pk_item = line.product.metafields.ecoms.pack_product.value -%}
+        {%- assign pk_pct = line.product.metafields.ecoms.pack_discount.value | default: 0 | plus: 0 -%}
+        {%- if pk_item != blank and pk_pct > 0 and pk_item.available and pk_item.has_only_default_variant -%}
+          {%- unless in_cart contains pk_item.id -%}
+            {%- assign pack_main = line.product -%}
+            {%- assign pack_item = pk_item -%}
+            {%- assign pack_pct = pk_pct -%}
+            {%- break -%}
+          {%- endunless -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if pack_main != nil -%}
+        {%- liquid
+          assign used = used | append: pack_item.id | append: ','
+          assign pk_variant = pack_item.selected_or_first_available_variant
+          assign pk_off = pk_variant.price | times: pack_pct | divided_by: 100
+          assign pk_price = pk_variant.price | minus: pk_off
+          assign pk_name = pack_main.metafields.ecoms.pack_name.value | default: 'tu pack'
+        -%}
+        <div class="ec-cart-pack">
+          <span class="ec-cart-pack__img">
+            {%- if pack_item.featured_image != blank -%}{{ pack_item.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', width: 56, height: 56, alt: '' }}{%- endif -%}
+          </span>
+          <div class="ec-cart-pack__t">
+            <p class="ec-cart-pack__h">Completa el {{ pk_name | escape }}</p>
+            <p>{{ pack_item.title | escape }}</p>
+            <p><b>{{ pk_price | money }}</b> <s>{{ pk_variant.price | money }}</s> <em>-{{ pack_pct }}%</em></p>
+          </div>
+          {%- render 'ecoms-add-button', item: pack_item, label: '+ Agregar', class: 'ec-btn ec-btn--primary ec-btn--sm ec-cart-pack__add', source: 'cart_pack' -%}
+        </div>
+      {%- endif -%}
       {%- capture cards -%}
         {%- for line in cart.items -%}
           {%- assign picks = line.product.metafields.ecoms.cart_suggestions.value -%}

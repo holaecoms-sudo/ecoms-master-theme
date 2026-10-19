@@ -321,6 +321,7 @@
 
           {%- when 'buy' -%}
             <div class="ec-buy" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}<p class="ec-buy__h">{{ block.settings.heading | escape }}</p>{%- endif -%}
               {%- form 'product', product, id: form_id, class: 'ec-form', novalidate: 'novalidate', data-ec-form: '' -%}
                 <input type="hidden" name="id" value="{{ variant.id }}" data-ec-variant-input>
                 <div class="ec-optrow">
@@ -521,37 +522,80 @@
                 assign po_off = po_variant.price | times: po_pct | divided_by: 100
                 assign po_price = po_variant.price | minus: po_off
               -%}
-              <div class="ec-packoff" data-ec-packoff {% if start_qty > 1 %}hidden{% endif %} {{ block.shopify_attributes }}>
-                {%- if block.settings.heading != blank -%}<p class="ec-packoff__h">{{ block.settings.heading | escape }}</p>{%- endif -%}
-                <div class="ec-packoff__row">
-                  <a class="ec-packoff__img" href="{{ po_item.url }}" tabindex="-1" aria-hidden="true">
-                    {%- if po_item.featured_image != blank -%}
-                      {{ po_item.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', width: 56, height: 56, alt: '' }}
-                    {%- endif -%}
-                  </a>
-                  <div class="ec-packoff__t">
-                    <a href="{{ po_item.url }}">{{ po_item.title | escape }}</a>
-                    <span><b>{{ po_price | money }}</b> <s>{{ po_variant.price | money }}</s> <em>-{{ po_pct }}%</em></span>
-                    {%- liquid
-                      assign po_free_at = 0
-                      if settings.ecoms_free_shipping_live
-                        assign po_free_at = settings.ecoms_free_shipping_threshold | plus: 0
-                        if po_free_at < 1000
-                          assign po_free_at = po_free_at | times: 1000
-                        endif
-                        assign po_free_at = po_free_at | times: 100
-                      endif
-                      assign po_combo = variant.price | plus: po_price
-                    -%}
-                    {%- if block.settings.show_total -%}
-                      {%- assign po_was = variant.price | plus: po_variant.price -%}
-                      <span class="ec-packoff__total">Pack completo <b>{{ po_combo | money }}</b> <s>{{ po_was | money }}</s> <em>Ahorras {{ po_off | money }}</em></span>
-                    {%- endif -%}
-                    {%- if po_free_at > 0 and variant.price < po_free_at and po_combo >= po_free_at -%}<small class="ec-packoff__ship">{% render 'ecoms-icon', name: 'truck' %}Con el pack, envío gratis a todo Chile</small>{%- endif -%}
-                    {%- assign po_note = product.metafields.ecoms.pack_note.value | default: block.settings.note -%}{%- if po_note != blank -%}<small>{{ po_note | escape }}</small>{%- endif -%}
+              {%- if block.settings.show_total -%}
+                {%- comment -%}
+                  Bundle mode: a separate offer for the whole pack (main product + pack product), below the
+                  main buttons, with its own total and button, so it's clear those buttons buy the main product only.
+                {%- endcomment -%}
+                {%- liquid
+                  assign po_free_at = 0
+                  if settings.ecoms_free_shipping_live
+                    assign po_free_at = settings.ecoms_free_shipping_threshold | plus: 0
+                    if po_free_at < 1000
+                      assign po_free_at = po_free_at | times: 1000
+                    endif
+                    assign po_free_at = po_free_at | times: 100
+                  endif
+                  assign po_combo = variant.price | plus: po_price
+                  assign po_was = variant.price | plus: po_variant.price
+                  assign po_name = product.metafields.ecoms.pack_name.value | default: 'el pack'
+                  assign po_combo_money = po_combo | money
+                  assign po_off_money = po_off | money
+                  assign po_heading = block.settings.heading | replace: '[pack]', po_name | replace: '[save]', po_off_money
+                  assign po_label = block.settings.button_label | replace: '[pack]', po_name | replace: '[total]', po_combo_money
+                  assign po_note = product.metafields.ecoms.pack_note.value | default: block.settings.note
+                -%}
+                <div class="ec-packoff ec-packoff--bundle" data-ec-packoff {% if start_qty > 1 %}hidden{% endif %} {{ block.shopify_attributes }}>
+                  {%- if block.settings.or_text != blank -%}<p class="ec-packoff__or"><span>{{ block.settings.or_text | escape }}</span></p>{%- endif -%}
+                  {%- if po_heading != blank -%}<p class="ec-packoff__h">{{ po_heading | escape }}</p>{%- endif -%}
+                  <div class="ec-packoff__pair">
+                    <span class="ec-packoff__img">
+                      {%- if product.featured_image != blank -%}{{ product.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', width: 56, height: 56, alt: '' }}{%- endif -%}
+                    </span>
+                    <span class="ec-packoff__plus" aria-hidden="true">+</span>
+                    <a class="ec-packoff__img" href="{{ po_item.url }}" tabindex="-1" aria-hidden="true">
+                      {%- if po_item.featured_image != blank -%}{{ po_item.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', width: 56, height: 56, alt: '' }}{%- endif -%}
+                    </a>
+                    <ul class="ec-packoff__list" role="list">
+                      {%- assign po_main_label = product.metafields.ecoms.pack_labels.value.first | default: product.title -%}
+                      <li>{{ po_main_label | escape }}</li>
+                      <li><a href="{{ po_item.url }}">1 {{ po_item.title | escape }}</a> <em>-{{ po_pct }}%</em></li>
+                    </ul>
                   </div>
-                  {%- render 'ecoms-add-button', item: po_item, label: block.settings.button_label, class: 'ec-btn ec-btn--primary ec-btn--sm ec-packoff__add', source: 'pack_offer', with_product: product -%}
+                  <p class="ec-packoff__total">{{ po_name | escape }} <b>{{ po_combo_money }}</b> <s>{{ po_was | money }}</s> <em>Ahorras {{ po_off_money }}</em></p>
+                  {%- if po_free_at > 0 and po_combo >= po_free_at -%}<p class="ec-packoff__ship">{% render 'ecoms-icon', name: 'truck' %}Con el pack, envío gratis a todo Chile</p>{%- endif -%}
+                  {%- render 'ecoms-add-button', item: po_item, label: po_label, class: 'ec-btn ec-btn--block ec-packoff__add', source: 'pack_offer', with_product: product -%}
+                  {%- if po_note != blank -%}<p class="ec-packoff__note">{{ po_note | escape }}</p>{%- endif -%}
                 </div>
+              {%- else -%}
+                <div class="ec-packoff" data-ec-packoff {% if start_qty > 1 %}hidden{% endif %} {{ block.shopify_attributes }}>
+                  {%- if block.settings.heading != blank -%}<p class="ec-packoff__h">{{ block.settings.heading | escape }}</p>{%- endif -%}
+                  <div class="ec-packoff__row">
+                    <a class="ec-packoff__img" href="{{ po_item.url }}" tabindex="-1" aria-hidden="true">
+                      {%- if po_item.featured_image != blank -%}
+                        {{ po_item.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', width: 56, height: 56, alt: '' }}
+                      {%- endif -%}
+                    </a>
+                    <div class="ec-packoff__t">
+                      <a href="{{ po_item.url }}">{{ po_item.title | escape }}</a>
+                      <span><b>{{ po_price | money }}</b> <s>{{ po_variant.price | money }}</s> <em>-{{ po_pct }}%</em></span>
+                      {%- liquid
+                        assign po_free_at = 0
+                        if settings.ecoms_free_shipping_live
+                          assign po_free_at = settings.ecoms_free_shipping_threshold | plus: 0
+                          if po_free_at < 1000
+                            assign po_free_at = po_free_at | times: 1000
+                          endif
+                          assign po_free_at = po_free_at | times: 100
+                        endif
+                        assign po_combo = variant.price | plus: po_price
+                      -%}
+                      {%- if po_free_at > 0 and variant.price < po_free_at and po_combo >= po_free_at -%}<small class="ec-packoff__ship">{% render 'ecoms-icon', name: 'truck' %}Con el pack, envío gratis a todo Chile</small>{%- endif -%}
+                      {%- assign po_note = product.metafields.ecoms.pack_note.value | default: block.settings.note -%}{%- if po_note != blank -%}<small>{{ po_note | escape }}</small>{%- endif -%}
+                    </div>
+                    {%- render 'ecoms-add-button', item: po_item, label: block.settings.button_label, class: 'ec-btn ec-btn--primary ec-btn--sm ec-packoff__add', source: 'pack_offer', with_product: product -%}
+                  </div>
+              {%- endif -%}
               </div>
             {%- endif -%}
 
@@ -1390,6 +1434,12 @@
       "name": "Variantes y compra",
       "limit": 1,
       "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Texto sobre los botones",
+          "info": "Opcional. Ej.: Solo la aspiradora (aclara qué agregan los botones cuando hay un pack aparte)."
+        },
         {
           "type": "checkbox",
           "id": "show_quantity",
@@ -3946,9 +3996,15 @@
         {
           "type": "checkbox",
           "id": "show_total",
-          "label": "Mostrar el precio del pack completo",
-          "info": "Producto principal + producto del pack con su descuento, y el ahorro.",
+          "label": "Mostrar como pack completo",
+          "info": "Tarjeta aparte con ambos productos, el total del pack y el ahorro. En el título y el botón puedes usar [pack] (metacampo ecoms.pack_name), [save] y [total].",
           "default": false
+        },
+        {
+          "type": "text",
+          "id": "or_text",
+          "label": "Separador sobre la tarjeta",
+          "info": "Ej.: o llévate el pack. Solo en «pack completo»."
         }
       ]
     },
