@@ -16,6 +16,13 @@
 .ec-ann__msgs { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px 10px; }
 .ec-ann .ec-i { width: 16px; height: 16px; }
 .ec-ann__sep { opacity: 0.45; }
+.ec-ann__item { display: inline-flex; align-items: center; gap: 6px; }
+.ec-ann .ec-flag { flex: none; width: 18px; height: 12px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25); }
+@media screen and (max-width: 749px) {
+  .ec-ann { font-size: 11.5px; }
+  .ec-ann--direct { letter-spacing: 0.01em; }
+  .ec-ann .ec-i { width: 14px; height: 14px; }
+}
 .ec-ann__timer { display: flex; align-items: center; gap: 8px; font-weight: 600; }
 .ec-ann--direct { font-weight: 800; letter-spacing: 0.02em; text-transform: uppercase; }
 .ec-ann--direct .ec-i { width: 17px; height: 17px; color: var(--ec-accent); }

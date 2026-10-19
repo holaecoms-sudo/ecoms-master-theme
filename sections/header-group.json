@@ -18,28 +18,32 @@
           "type": "message",
           "settings": {
             "text": "Envíos a todo Chile",
-            "link": ""
+            "link": "",
+            "icon": "flag_cl"
           }
         },
         "m2": {
           "type": "message",
           "settings": {
             "text": "Compra segura",
-            "link": ""
+            "link": "",
+            "icon": "lock"
           }
         },
         "m3": {
           "type": "message",
           "settings": {
             "text": "Seguimiento de tu pedido",
-            "link": ""
+            "link": "",
+            "icon": "box"
           }
         },
         "fs": {
           "type": "free_shipping",
           "settings": {
-            "text": "Envío gratis en [zone] desde [local_amount] · Regiones desde [amount]",
-            "link": ""
+            "text": "Envío gratis en Santiago desde [local_amount]",
+            "link": "",
+            "icon": "truck"
           }
         }
       },
@@ -51,7 +55,7 @@
       ],
       "settings": {
         "style": "auto",
-        "icon": "truck",
+        "icon": "none",
         "separator": "|",
         "motion": "marquee_mobile",
         "speed": 25,

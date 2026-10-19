@@ -50,7 +50,12 @@
         {%- endif -%}
         {%- if shown > 0 %}<span class="ec-ann__sep" aria-hidden="true">{{ section.settings.separator }}</span>{% endif -%}
         {%- assign shown = shown | plus: 1 -%}
-        <span {{ block.shopify_attributes }}>
+        <span class="ec-ann__item" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon == 'flag_cl' -%}
+            {%- render 'ecoms-flag-cl' -%}
+          {%- elsif block.settings.icon != blank and block.settings.icon != 'none' -%}
+            {%- render 'ecoms-icon', name: block.settings.icon -%}
+          {%- endif -%}
           {%- if block.settings.link != blank -%}
             <a href="{{ block.settings.link }}">{{ msg }}</a>
           {%- else -%}
@@ -313,6 +318,23 @@
       "name": "Mensaje",
       "settings": [
         {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            { "value": "none", "label": "Sin icono" },
+            { "value": "truck", "label": "Camión / envío" },
+            { "value": "flag_cl", "label": "Bandera de Chile" },
+            { "value": "lock", "label": "Candado / compra segura" },
+            { "value": "box", "label": "Caja / pedido" },
+            { "value": "return", "label": "Devolución" },
+            { "value": "shield", "label": "Escudo / garantía" },
+            { "value": "gift", "label": "Regalo" },
+            { "value": "clock", "label": "Reloj" }
+          ],
+          "default": "none"
+        },
+        {
           "type": "text",
           "id": "text",
           "label": "Texto",
@@ -330,6 +352,23 @@
       "name": "Envío gratis",
       "limit": 1,
       "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            { "value": "none", "label": "Sin icono" },
+            { "value": "truck", "label": "Camión / envío" },
+            { "value": "flag_cl", "label": "Bandera de Chile" },
+            { "value": "lock", "label": "Candado / compra segura" },
+            { "value": "box", "label": "Caja / pedido" },
+            { "value": "return", "label": "Devolución" },
+            { "value": "shield", "label": "Escudo / garantía" },
+            { "value": "gift", "label": "Regalo" },
+            { "value": "clock", "label": "Reloj" }
+          ],
+          "default": "none"
+        },
         {
           "type": "paragraph",
           "content": "Solo se muestra cuando el envío gratis está activado en Configuración del tema → ECOMS · Carrito, con el mismo monto."
