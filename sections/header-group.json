@@ -38,7 +38,7 @@
         "fs": {
           "type": "free_shipping",
           "settings": {
-            "text": "Envío gratis sobre [amount]",
+            "text": "Envío gratis en [zone] desde [local_amount] · Regiones desde [amount]",
             "link": ""
           }
         }

@@ -288,10 +288,29 @@
                 if ship_free_at > 0 and start_total >= ship_free_at
                   assign ship_is_free = true
                 endif
+                # Lower free-shipping amount for one zone (theme setting), e.g. Región Metropolitana.
+                assign ship_local_at = 0
+                if ship_free_at > 0
+                  assign ship_local_at = settings.ecoms_free_shipping_local_threshold | plus: 0 | times: 100
+                endif
+                assign ship_zone = settings.ecoms_free_shipping_local_zone | escape
+                assign ship_is_local = false
+                if ship_local_at > 0 and ship_is_free == false and start_total >= ship_local_at
+                  assign ship_is_local = true
+                endif
               -%}
-              <p class="ec-shipline{% if ship_is_free %} is-free{% endif %}" data-ec-shipline data-cost="{{ ship_cost }}" data-free-at="{{ ship_free_at }}">
+              <p class="ec-shipline{% if ship_is_free or ship_is_local %} is-free{% endif %}" data-ec-shipline data-cost="{{ ship_cost }}" data-free-at="{{ ship_free_at }}" data-local-at="{{ ship_local_at }}">
                 {% render 'ecoms-icon', name: 'truck' %}
-                <span data-ec-shipline-paid {% if ship_is_free %}hidden{% endif %}>Envío {{ ship_cost | money }} · Total <b data-ec-shipline-total>{{ start_total | plus: ship_cost | money }}</b>{% if ship_free_at > 0 %}<small>Gratis desde {{ ship_free_at | money }}</small>{% endif %}</span>
+                <span data-ec-shipline-paid {% if ship_is_free or ship_is_local %}hidden{% endif %}>Envío {{ ship_cost | money }} · Total <b data-ec-shipline-total>{{ start_total | plus: ship_cost | money }}</b>
+                  {%- if ship_local_at > 0 -%}
+                    <small>Gratis en {{ ship_zone }} desde {{ ship_local_at | money }} · regiones desde {{ ship_free_at | money }}</small>
+                  {%- elsif ship_free_at > 0 -%}
+                    <small>Gratis desde {{ ship_free_at | money }}</small>
+                  {%- endif -%}
+                </span>
+                {%- if ship_local_at > 0 -%}
+                  <span data-ec-shipline-local {% unless ship_is_local %}hidden{% endunless %}><b>Envío gratis en {{ ship_zone }}</b><small>Regiones: envío {{ ship_cost | money }} · gratis desde {{ ship_free_at | money }}</small></span>
+                {%- endif -%}
                 <span data-ec-shipline-free {% unless ship_is_free %}hidden{% endunless %}><b>Envío gratis</b> a todo Chile</span>
               </p>
             {%- endif -%}

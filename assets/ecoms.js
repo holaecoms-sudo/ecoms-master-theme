@@ -186,12 +186,16 @@
     $$('[data-ec-shipline]').forEach((line) => {
       const cost = Number(line.dataset.cost) || 0;
       const freeAt = Number(line.dataset.freeAt) || 0;
+      const localAt = Number(line.dataset.localAt) || 0;
       const free = freeAt > 0 && total >= freeAt;
-      line.classList.toggle('is-free', free);
+      const local = !free && localAt > 0 && total >= localAt;
+      line.classList.toggle('is-free', free || local);
       const paid = line.querySelector('[data-ec-shipline-paid]');
       const freeEl = line.querySelector('[data-ec-shipline-free]');
-      if (paid) paid.hidden = free;
+      const localEl = line.querySelector('[data-ec-shipline-local]');
+      if (paid) paid.hidden = free || local;
       if (freeEl) freeEl.hidden = !free;
+      if (localEl) localEl.hidden = !local;
       line.querySelectorAll('[data-ec-shipline-total]').forEach((el) => { el.textContent = money(total + cost); });
     });
     // «Llévalo en pack» applies to a single unit only: hide it while a bigger pack is selected.

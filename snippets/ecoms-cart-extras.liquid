@@ -21,8 +21,16 @@
       {%- endif -%}
       {%- if threshold > 0 -%}
         {%- liquid
-          assign left = threshold | minus: cart.total_price
-          assign progress = cart.total_price | times: 100 | divided_by: threshold
+          # Optional lower amount for one zone (e.g. Región Metropolitana): the bar first aims at it,
+          # then at the amount for the rest of the country.
+          assign local_at = settings.ecoms_free_shipping_local_threshold | plus: 0 | times: 100
+          assign zone = settings.ecoms_free_shipping_local_zone | escape
+          assign goal = threshold
+          if local_at > 0 and local_at < threshold and cart.total_price < local_at
+            assign goal = local_at
+          endif
+          assign left = goal | minus: cart.total_price
+          assign progress = cart.total_price | times: 100 | divided_by: goal
           if progress > 100
             assign progress = 100
           endif
@@ -30,7 +38,12 @@
         <div class="ec-ship{% if left <= 0 %} ec-ship--done{% endif %}" role="status">
           <p>
             {% render 'ecoms-icon', name: 'truck' %}<span>
-            {%- if left > 0 -%}
+            {%- if left > 0 and goal == local_at -%}
+              {%- capture amount -%}<b>{{ left | money }}</b>{%- endcapture -%}
+              {{ settings.ecoms_free_shipping_progress | escape | replace: '[amount]', amount }} en {{ zone }}
+            {%- elsif left > 0 and local_at > 0 and local_at < threshold -%}
+              <b>Envío gratis en {{ zone }}.</b> Para regiones te faltan <b>{{ left | money }}</b>
+            {%- elsif left > 0 -%}
               {%- capture amount -%}<b>{{ left | money }}</b>{%- endcapture -%}
               {{ settings.ecoms_free_shipping_progress | escape | replace: '[amount]', amount }}
             {%- else -%}

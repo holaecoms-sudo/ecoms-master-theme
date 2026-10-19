@@ -16,6 +16,11 @@
           endif
           assign ship_threshold = ship_threshold | times: 100
         endif
+        # Lower free-shipping amount for one zone (e.g. Región Metropolitana), when set.
+        assign ship_local = 0
+        if ship_threshold > 0
+          assign ship_local = settings.ecoms_free_shipping_local_threshold | plus: 0 | times: 100
+        endif
       -%}
       {%- for block in section.blocks -%}
         {%- liquid
@@ -27,6 +32,13 @@
             else
               assign ship_amount = ship_threshold | money_without_trailing_zeros
               assign msg = msg | replace: '[amount]', ship_amount
+              if ship_local > 0
+                assign local_amount = ship_local | money_without_trailing_zeros
+                assign local_zone = settings.ecoms_free_shipping_local_zone | escape
+                assign msg = msg | replace: '[local_amount]', local_amount | replace: '[zone]', local_zone
+              elsif msg contains '[local_amount]'
+                assign msg = ''
+              endif
             endif
           endif
         -%}

@@ -2252,6 +2252,18 @@
         "info": "El mismo monto de la tarifa gratis en Shopify, ej.: 39990. También acepta miles (40 = $40.000). Se compara con el total del carrito con descuentos. 0 oculta la barra."
       },
       {
+        "type": "number",
+        "id": "ecoms_free_shipping_local_threshold",
+        "label": "Envío gratis local desde (CLP)",
+        "info": "Opcional: monto más bajo para una zona (ej.: 29990 en la Región Metropolitana). Crea antes la tarifa real en esa zona de Shopify. 0 = no aplica."
+      },
+      {
+        "type": "text",
+        "id": "ecoms_free_shipping_local_zone",
+        "label": "Nombre de la zona local",
+        "info": "Ej.: Santiago (RM). En el anuncio usa [zone], [local_amount] y [amount]."
+      },
+      {
         "type": "text",
         "id": "ecoms_free_shipping_progress",
         "label": "Mensaje en progreso",
