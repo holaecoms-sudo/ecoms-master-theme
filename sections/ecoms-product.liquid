@@ -604,7 +604,12 @@
         <p class="ec-sticky__name">{{ product.title | escape }}</p>
         <p class="ec-sticky__price">
           <span class="ec-sticky__pack" data-ec-sticky-pack {% if start_label == blank %}hidden{% endif %}>{{ start_label | escape }}</span>
-          <span data-ec-sticky-price>{{ start_total | money }}</span>
+          <span class="ec-sticky__row">
+            <span data-ec-sticky-price>{{ start_total | money }}</span>
+            {%- if section.settings.sticky_save -%}
+              <span class="ec-sticky__save" data-ec-sticky-save hidden>Ahorras <span data-ec-sticky-save-amount></span></span>
+            {%- endif -%}
+          </span>
         </p>
       </div>
       <button
@@ -820,6 +825,13 @@
       "id": "sticky_desktop",
       "label": "También en escritorio (tarjeta flotante)",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_save",
+      "label": "Mostrar el ahorro en el botón fijo",
+      "info": "Cápsula con el ahorro real del pack elegido. No aparece si no hay ahorro.",
+      "default": false
     },
     {
       "type": "checkbox",

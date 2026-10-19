@@ -122,6 +122,13 @@
         img.src = next;
       }
     });
+    // Sticky savings pill: same real savings as the selected pack card.
+    const stickySave = radio ? Number(radio.dataset.save) || 0 : 0;
+    $$('[data-ec-sticky-save]').forEach((el) => {
+      el.hidden = stickySave <= 0;
+      const amount = el.querySelector('[data-ec-sticky-save-amount]');
+      if (amount) amount.textContent = money(stickySave);
+    });
     $$('[data-ec-pack-summary]').forEach((box) => {
       const title = box.closest('[data-ec-packs]')?.dataset.title || '';
       const inc = box.querySelector('[data-ec-ps-inc]');
