@@ -181,7 +181,7 @@
       "settings": {
         "layout": "direct",
         "columns": "two",
-        "gallery_mobile": "inset",
+        "gallery_mobile": "compact",
         "thumbs": "auto",
         "badge": "",
         "hero_bg": "glow",
@@ -192,6 +192,7 @@
         "video_loop": true,
         "sticky": true,
         "sticky_desktop": true,
+        "sticky_early": true,
         "sticky_label": "Comprar",
         "palette": "store",
         "pal_primary": "",

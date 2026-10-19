@@ -205,6 +205,17 @@
   .ec-pdp--gm-inset .ec-gal__arrow { width: 34px; height: 34px; }
 }
 
+/* Gallery option (mobile/tablet): compact. Lower photo, no thumbnails and no feature strip (the chips
+   repeat it), so title and price reach the first screen. Photos still swipe, with arrows and counter. */
+@media screen and (max-width: 989px) {
+  .ec-pdp--gm-compact .ec-pdp__media { margin-inline: 0; }
+  .ec-pdp--gm-compact .ec-gal { gap: 0; }
+  .ec-pdp--gm-compact .ec-gal__main { border-radius: 16px; }
+  .ec-pdp--gm-compact .ec-gal__slide { aspect-ratio: 5 / 4; }
+  .ec-pdp--gm-compact .ec-gal__thumbs, .ec-pdp--gm-compact .ec-minifeat { display: none; }
+  .ec-pdp--gm-compact .ec-gal__arrow { width: 34px; height: 34px; }
+}
+
 /* Gallery option: thumbnails below the main photo (any template) */
 .ec-pdp--thumbs-below .ec-gal__thumbs { display: flex; gap: 8px; overflow-x: auto; padding-inline: 16px; scrollbar-width: none; }
 .ec-pdp--thumbs-below .ec-gal__thumb { width: 64px; }

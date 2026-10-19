@@ -592,6 +592,7 @@
       id="EcSticky-{{ section.id }}"
       class="ec-sticky{% if section.settings.sticky_desktop %} ec-sticky--desktop{% endif %}"
       data-ec-sticky
+      {% if section.settings.sticky_early %}data-ec-sticky-early{% endif %}
       data-ec-refresh
       aria-hidden="true"
       inert
@@ -693,9 +694,14 @@
         {
           "value": "inset",
           "label": "Con margen y miniaturas debajo"
+        },
+        {
+          "value": "compact",
+          "label": "Compacta: foto más baja y sin miniaturas"
         }
       ],
-      "default": "full"
+      "default": "full",
+      "info": "«Compacta» deja el precio y el título en la primera pantalla del celular. Las fotos se recorren deslizando o con las flechas."
     },
     {
       "type": "select",
@@ -814,6 +820,13 @@
       "id": "sticky_desktop",
       "label": "También en escritorio (tarjeta flotante)",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_early",
+      "label": "En celular, mostrarlo desde que carga la página",
+      "info": "El botón fijo aparece de inmediato y se oculta al llegar al botón de compra.",
+      "default": false
     },
     {
       "type": "text",

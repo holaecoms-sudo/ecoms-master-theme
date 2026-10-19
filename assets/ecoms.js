@@ -416,8 +416,10 @@
       sticky.setAttribute('aria-hidden', String(!on));
       document.body.classList.toggle('ec-sticky-on', on);
     };
+    // «Desde que carga» (mobile only): also show it while the buy button is still below the screen.
+    const early = sticky.hasAttribute('data-ec-sticky-early') && window.matchMedia('(max-width: 989px)').matches;
     stickyObserver = new IntersectionObserver(([entry]) => {
-      setVisible(!entry.isIntersecting && entry.boundingClientRect.top < 0);
+      setVisible(!entry.isIntersecting && (entry.boundingClientRect.top < 0 || early));
     });
     stickyObserver.observe(target);
   }

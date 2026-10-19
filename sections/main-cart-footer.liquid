@@ -117,7 +117,7 @@
                   form="cart"
                 >
                   {%- if cart != empty -%}
-                    {% render 'ecoms-icon', name: 'lock' %}{{ settings.ecoms_cart_checkout_label | default: 'Pagar de forma segura' | escape }}
+                    {% render 'ecoms-icon', name: 'lock' %}{{ settings.ecoms_cart_checkout_label | default: 'Continuar al pago' | escape }}
                   {%- else -%}
                     {{ 'sections.cart.checkout' | t }}
                   {%- endif -%}

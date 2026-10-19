@@ -2320,8 +2320,8 @@
         "type": "text",
         "id": "ecoms_cart_checkout_label",
         "label": "Texto del botón de pago",
-        "default": "Pagar de forma segura",
-        "info": "Se muestra con un candado y el total del carrito."
+        "default": "Continuar al pago",
+        "info": "Se muestra con un candado. Sin monto, porque el despacho se suma en el pago."
       },
       {
         "type": "checkbox",
