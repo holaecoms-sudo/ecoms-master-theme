@@ -520,6 +520,12 @@
               {%- liquid
                 assign po_variant = po_item.selected_or_first_available_variant
                 assign po_off = po_variant.price | times: po_pct | divided_by: 100
+                # Fixed CLP discount (ecoms.pack_discount_amount) wins, e.g. to land the pack on $49.990.
+                assign po_amount = product.metafields.ecoms.pack_discount_amount.value | default: 0 | plus: 0
+                if po_amount > 0
+                  assign po_off = po_amount | times: 100 | at_most: po_variant.price
+                  assign po_pct = po_off | times: 100 | divided_by: po_variant.price | floor
+                endif
                 assign po_price = po_variant.price | minus: po_off
               -%}
               {%- if block.settings.show_total -%}
@@ -537,10 +543,16 @@
                     assign po_free_at = po_free_at | times: 100
                   endif
                   assign po_combo = variant.price | plus: po_price
-                  assign po_was = variant.price | plus: po_variant.price
+                  # Original pack price: the main product's compare-at (when set) + the pack product's price.
+                  assign po_main_was = variant.price
+                  if variant.compare_at_price > variant.price
+                    assign po_main_was = variant.compare_at_price
+                  endif
+                  assign po_was = po_main_was | plus: po_variant.price
+                  assign po_save = po_was | minus: po_combo
                   assign po_name = product.metafields.ecoms.pack_name.value | default: 'el pack'
                   assign po_combo_money = po_combo | money
-                  assign po_off_money = po_off | money
+                  assign po_off_money = po_save | money
                   assign po_heading = block.settings.heading | replace: '[pack]', po_name | replace: '[save]', po_off_money
                   assign po_label = block.settings.button_label | replace: '[pack]', po_name | replace: '[total]', po_combo_money
                   assign po_note = product.metafields.ecoms.pack_note.value | default: block.settings.note
@@ -3997,7 +4009,7 @@
           "type": "checkbox",
           "id": "show_total",
           "label": "Mostrar como pack completo",
-          "info": "Tarjeta aparte con ambos productos, el total del pack y el ahorro. En el título y el botón puedes usar [pack] (metacampo ecoms.pack_name), [save] y [total].",
+          "info": "Tarjeta aparte con ambos productos, el total del pack y el ahorro (incluye el precio de comparación del producto principal, si tiene). En el título y el botón puedes usar [pack] (metacampo ecoms.pack_name), [save] y [total]. Para un descuento en pesos usa el metacampo ecoms.pack_discount_amount.",
           "default": false
         },
         {

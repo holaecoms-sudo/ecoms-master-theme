@@ -96,6 +96,11 @@
           assign used = used | append: pack_item.id | append: ','
           assign pk_variant = pack_item.selected_or_first_available_variant
           assign pk_off = pk_variant.price | times: pack_pct | divided_by: 100
+          assign pk_amount = pack_main.metafields.ecoms.pack_discount_amount.value | default: 0 | plus: 0
+          if pk_amount > 0
+            assign pk_off = pk_amount | times: 100 | at_most: pk_variant.price
+            assign pack_pct = pk_off | times: 100 | divided_by: pk_variant.price | floor
+          endif
           assign pk_price = pk_variant.price | minus: pk_off
           assign pk_name = pack_main.metafields.ecoms.pack_name.value | default: 'tu pack'
         -%}
