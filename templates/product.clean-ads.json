@@ -468,7 +468,7 @@
       "type": "ecoms-demo",
       "settings": {
         "heading": "Míralo en acción",
-        "ratio": "portrait",
+        "ratio": "story",
         "width": "full",
         "padding_top": 28,
         "padding_bottom": 24
