@@ -543,7 +543,11 @@
                       endif
                       assign po_combo = variant.price | plus: po_price
                     -%}
-                    {%- if po_free_at > 0 and variant.price < po_free_at and po_combo >= po_free_at -%}<small class="ec-packoff__ship">{% render 'ecoms-icon', name: 'truck' %}Y tu envío sale gratis</small>{%- endif -%}
+                    {%- if block.settings.show_total -%}
+                      {%- assign po_was = variant.price | plus: po_variant.price -%}
+                      <span class="ec-packoff__total">Pack completo <b>{{ po_combo | money }}</b> <s>{{ po_was | money }}</s> <em>Ahorras {{ po_off | money }}</em></span>
+                    {%- endif -%}
+                    {%- if po_free_at > 0 and variant.price < po_free_at and po_combo >= po_free_at -%}<small class="ec-packoff__ship">{% render 'ecoms-icon', name: 'truck' %}Con el pack, envío gratis a todo Chile</small>{%- endif -%}
                     {%- assign po_note = product.metafields.ecoms.pack_note.value | default: block.settings.note -%}{%- if po_note != blank -%}<small>{{ po_note | escape }}</small>{%- endif -%}
                   </div>
                   {%- render 'ecoms-add-button', item: po_item, label: block.settings.button_label, class: 'ec-btn ec-btn--primary ec-btn--sm ec-packoff__add', source: 'pack_offer', with_product: product -%}
@@ -625,6 +629,36 @@
           <span class="ec-sticky__pack" data-ec-sticky-pack {% if start_label == blank %}hidden{% endif %}>{{ start_label | escape }}</span>
           <span class="ec-sticky__row">
             <span data-ec-sticky-price>{{ start_total | money }}</span>
+            {%- if section.settings.sticky_ship -%}
+              {%- liquid
+                assign st_free_at = 0
+                if settings.ecoms_free_shipping_live
+                  assign st_free_at = settings.ecoms_free_shipping_threshold | plus: 0
+                  if st_free_at < 1000
+                    assign st_free_at = st_free_at | times: 1000
+                  endif
+                  assign st_free_at = st_free_at | times: 100
+                endif
+                assign st_local_at = 0
+                if st_free_at > 0
+                  assign st_local_at = settings.ecoms_free_shipping_local_threshold | plus: 0 | times: 100
+                endif
+                assign st_all = false
+                assign st_local = false
+                if st_free_at > 0 and start_total >= st_free_at
+                  assign st_all = true
+                elsif st_local_at > 0 and start_total >= st_local_at
+                  assign st_local = true
+                endif
+              -%}
+              {%- if st_free_at > 0 -%}
+                <span class="ec-sticky__ship" data-ec-sticky-ship data-free-at="{{ st_free_at }}" data-local-at="{{ st_local_at }}" {% unless st_all or st_local %}hidden{% endunless %}>
+                  {%- render 'ecoms-icon', name: 'truck' -%}
+                  <span data-ec-sticky-ship-all {% unless st_all %}hidden{% endunless %}>Envío gratis</span>
+                  <span data-ec-sticky-ship-local {% unless st_local %}hidden{% endunless %}>Envío gratis {{ settings.ecoms_free_shipping_local_short | default: 'RM' | escape }}</span>
+                </span>
+              {%- endif -%}
+            {%- endif -%}
             {%- if section.settings.sticky_save -%}
               <span class="ec-sticky__save" data-ec-sticky-save hidden>Ahorras <span data-ec-sticky-save-amount></span></span>
             {%- endif -%}
@@ -844,6 +878,13 @@
       "id": "sticky_desktop",
       "label": "También en escritorio (tarjeta flotante)",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_ship",
+      "label": "Mostrar el envío gratis en el botón fijo",
+      "info": "Cápsula «Envío gratis» cuando el total lo alcanza (o «Envío gratis RM» con el monto local).",
+      "default": false
     },
     {
       "type": "checkbox",
@@ -3901,6 +3942,13 @@
           "id": "button_label",
           "label": "Texto del botón",
           "default": "+ Agregar"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_total",
+          "label": "Mostrar el precio del pack completo",
+          "info": "Producto principal + producto del pack con su descuento, y el ahorro.",
+          "default": false
         }
       ]
     },

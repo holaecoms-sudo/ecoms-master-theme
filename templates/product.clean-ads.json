@@ -71,44 +71,13 @@
             "shipping_cost": 4000
           }
         },
-        "packs": {
-          "type": "packs",
-          "settings": {
-            "from_metafield": true,
-            "heading": "Elige tu pack",
-            "layout": "cards",
-            "show_cta_total": true,
-            "help": "El descuento del pack se aplica automáticamente en el carrito.",
-            "default_tier": "1",
-            "item_name": "",
-            "show_summary": true,
-            "summary_label": "Tu pack incluye",
-            "show_free_shipping": true,
-            "discounts_live": true,
-            "tier1_qty": 1,
-            "tier1_label": "",
-            "tier1_tag": "",
-            "tier1_note": "",
-            "tier2_enabled": true,
-            "tier2_qty": 2,
-            "tier2_pct": 0,
-            "tier2_label": "",
-            "tier2_tag": "Pack ahorro",
-            "tier2_note": "",
-            "tier3_enabled": true,
-            "tier3_qty": 3,
-            "tier3_pct": 0,
-            "tier3_label": "",
-            "tier3_tag": "Más ahorro",
-            "tier3_note": ""
-          }
-        },
         "pack_offer": {
           "type": "pack_offer",
           "settings": {
-            "heading": "Llévalo en pack",
+            "heading": "Pack limpieza: aspiradora + cepillo eléctrico",
             "note": "El descuento se aplica automáticamente en el carrito.",
-            "button_label": "+ Agregar"
+            "button_label": "Llevar el pack",
+            "show_total": true
           }
         },
         "stock": {
@@ -167,9 +136,8 @@
         "chips",
         "buybox",
         "price",
-        "packs",
-        "buy",
         "pack_offer",
+        "buy",
         "payments",
         "delivery",
         "trust",
@@ -215,7 +183,8 @@
         "pal_line": "",
         "pal_deep": "",
         "padding_top": 24,
-        "padding_bottom": 32
+        "padding_bottom": 32,
+        "sticky_ship": true
       }
     },
     "keyspecs": {

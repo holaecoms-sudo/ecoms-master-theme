@@ -180,6 +180,15 @@
     const total = totalFor(unitPrice(), qty, packs);
     $$('[data-ec-cta-total]').forEach((el) => { el.textContent = money(total); });
     $$('[data-ec-sticky-price]').forEach((el) => { el.textContent = money(total); });
+    $$('[data-ec-sticky-ship]').forEach((pill) => {
+      const freeAt = Number(pill.dataset.freeAt) || 0;
+      const localAt = Number(pill.dataset.localAt) || 0;
+      const all = freeAt > 0 && total >= freeAt;
+      const local = !all && localAt > 0 && total >= localAt;
+      pill.hidden = !(all || local);
+      pill.querySelectorAll('[data-ec-sticky-ship-all]').forEach((el) => { el.hidden = !all; });
+      pill.querySelectorAll('[data-ec-sticky-ship-local]').forEach((el) => { el.hidden = !local; });
+    });
     syncPackInfo(qty, total);
     syncIncludes(qty, total);
     // Shipping line under the price: delivered total, or «Envío gratis» once the threshold is reached.

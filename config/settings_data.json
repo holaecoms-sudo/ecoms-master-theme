@@ -162,6 +162,7 @@
     "ecoms_free_shipping_threshold": 39990,
     "ecoms_free_shipping_local_threshold": 29990,
     "ecoms_free_shipping_local_zone": "Santiago (RM)",
+    "ecoms_free_shipping_local_short": "RM",
     "sections": {
       "main-password-header": {
         "type": "main-password-header",

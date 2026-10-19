@@ -2265,6 +2265,13 @@
       },
       {
         "type": "text",
+        "id": "ecoms_free_shipping_local_short",
+        "label": "Nombre corto de la zona local",
+        "info": "Para espacios chicos, como el botón fijo. Ej.: RM.",
+        "default": "RM"
+      },
+      {
+        "type": "text",
         "id": "ecoms_free_shipping_progress",
         "label": "Mensaje en progreso",
         "default": "Te faltan [amount] para el envío gratis",
