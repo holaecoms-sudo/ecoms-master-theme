@@ -685,6 +685,17 @@
           <span class="ec-sticky__pack" data-ec-sticky-pack {% if start_label == blank %}hidden{% endif %}>{{ start_label | escape }}</span>
           <span class="ec-sticky__row">
             <span data-ec-sticky-price>{{ start_total | money }}</span>
+            {%- if section.settings.sticky_save -%}
+              {%- comment -%} Without a pack selector, the savings come from the product's compare-at price. {%- endcomment -%}
+              {%- liquid
+                assign st_unit_save = 0
+                if variant.compare_at_price > variant.price
+                  assign st_unit_save = variant.compare_at_price | minus: variant.price
+                endif
+                assign st_save = st_unit_save | times: start_qty
+              -%}
+              <span class="ec-sticky__save" data-ec-sticky-save data-unit-save="{{ st_unit_save }}" {% if st_save <= 0 %}hidden{% endif %}>Ahorras <span data-ec-sticky-save-amount>{{ st_save | money }}</span></span>
+            {%- endif -%}
             {%- if section.settings.sticky_ship -%}
               {%- liquid
                 assign st_free_at = 0
@@ -714,9 +725,6 @@
                   <span data-ec-sticky-ship-local {% unless st_local %}hidden{% endunless %}>Envío gratis {{ settings.ecoms_free_shipping_local_short | default: 'RM' | escape }}</span>
                 </span>
               {%- endif -%}
-            {%- endif -%}
-            {%- if section.settings.sticky_save -%}
-              <span class="ec-sticky__save" data-ec-sticky-save hidden>Ahorras <span data-ec-sticky-save-amount></span></span>
             {%- endif -%}
           </span>
         </p>

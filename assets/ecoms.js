@@ -123,8 +123,8 @@
       }
     });
     // Sticky savings pill: same real savings as the selected pack card.
-    const stickySave = radio ? Number(radio.dataset.save) || 0 : 0;
     $$('[data-ec-sticky-save]').forEach((el) => {
+      const stickySave = radio ? Number(radio.dataset.save) || 0 : (Number(el.dataset.unitSave) || 0) * qty;
       el.hidden = stickySave <= 0;
       const amount = el.querySelector('[data-ec-sticky-save-amount]');
       if (amount) amount.textContent = money(stickySave);
