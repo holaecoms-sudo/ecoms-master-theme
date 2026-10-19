@@ -1,0 +1,494 @@
+{
+  "sections": {
+    "main": {
+      "type": "ecoms-product",
+      "blocks": {
+        "eyebrow": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Ecoms Clean"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
+        "chips": {
+          "type": "chips",
+          "settings": {
+            "chip_1": "",
+            "chip_2": "",
+            "chip_3": "",
+            "chip_4": "",
+            "chip_5": ""
+          }
+        },
+        "sub": {
+          "type": "text",
+          "settings": {
+            "text": ""
+          }
+        },
+        "benefits": {
+          "type": "benefits",
+          "settings": {
+            "item_1": "",
+            "item_2": "",
+            "item_3": "",
+            "item_4": ""
+          }
+        },
+        "trust": {
+          "type": "trust",
+          "settings": {
+            "style": "grid",
+            "icon_1": "truck",
+            "title_1": "Envíos",
+            "text_1": "A todo Chile",
+            "icon_2": "lock",
+            "title_2": "Pago seguro",
+            "text_2": "Webpay o Mercado Pago",
+            "icon_3": "box",
+            "title_3": "Seguimiento",
+            "text_3": "De tu pedido",
+            "icon_4": "return",
+            "title_4": "Cambios",
+            "text_4": "10 días de retracto"
+          }
+        },
+        "buybox": {
+          "type": "buybox",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "style": "direct",
+            "shipping_cost": 4000
+          }
+        },
+        "packs": {
+          "type": "packs",
+          "settings": {
+            "from_metafield": true,
+            "heading": "Elige tu pack",
+            "layout": "cards",
+            "show_cta_total": true,
+            "help": "El descuento del pack se aplica automáticamente en el carrito.",
+            "default_tier": "1",
+            "item_name": "",
+            "show_summary": true,
+            "summary_label": "Tu pack incluye",
+            "show_free_shipping": true,
+            "discounts_live": true,
+            "tier1_qty": 1,
+            "tier1_label": "",
+            "tier1_tag": "",
+            "tier1_note": "",
+            "tier2_enabled": true,
+            "tier2_qty": 2,
+            "tier2_pct": 0,
+            "tier2_label": "",
+            "tier2_tag": "Pack ahorro",
+            "tier2_note": "",
+            "tier3_enabled": true,
+            "tier3_qty": 3,
+            "tier3_pct": 0,
+            "tier3_label": "",
+            "tier3_tag": "Más ahorro",
+            "tier3_note": ""
+          }
+        },
+        "pack_offer": {
+          "type": "pack_offer",
+          "settings": {
+            "heading": "Llévalo en pack",
+            "note": "El descuento se aplica automáticamente en el carrito.",
+            "button_label": "+ Agregar"
+          }
+        },
+        "stock": {
+          "type": "stock",
+          "settings": {
+            "max_show": 5,
+            "text": "¡Solo quedan [qty] unidades en stock!"
+          }
+        },
+        "buy": {
+          "type": "buy",
+          "settings": {
+            "show_quantity": false,
+            "add_label": "Añadir al carrito",
+            "show_total": true,
+            "show_buy_now": true,
+            "buy_now_icon": "bolt",
+            "buy_now_label": "Comprar ahora"
+          }
+        },
+        "payments": {
+          "type": "payments",
+          "settings": {
+            "text": ""
+          }
+        },
+        "delivery": {
+          "type": "delivery",
+          "settings": {
+            "step_1": "Pedido realizado",
+            "ready_days": 1,
+            "step_2": "Pedido listo",
+            "min_days": 3,
+            "max_days": 6,
+            "step_3": "Entregado"
+          }
+        },
+        "media_features": {
+          "type": "media_features",
+          "settings": {
+            "icon_1": "bolt",
+            "text_1": "",
+            "icon_2": "hand",
+            "text_2": "",
+            "icon_3": "grid",
+            "text_3": "",
+            "icon_4": "battery",
+            "text_4": ""
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow",
+        "title",
+        "rating",
+        "chips",
+        "buybox",
+        "price",
+        "packs",
+        "buy",
+        "pack_offer",
+        "payments",
+        "delivery",
+        "trust",
+        "sub",
+        "benefits",
+        "stock",
+        "media_features"
+      ],
+      "settings": {
+        "layout": "direct",
+        "columns": "two",
+        "gallery_mobile": "inset",
+        "thumbs": "auto",
+        "badge": "",
+        "hero_bg": "glow",
+        "media_ratio": "square",
+        "media_fit": "contain",
+        "video_first": true,
+        "video_autoplay": true,
+        "video_loop": true,
+        "sticky": true,
+        "sticky_desktop": true,
+        "sticky_label": "Comprar",
+        "palette": "store",
+        "pal_primary": "",
+        "pal_primary_ink": "",
+        "pal_dark": "",
+        "pal_accent": "",
+        "pal_accent_ink": "",
+        "pal_soft": "",
+        "pal_soft_ink": "",
+        "pal_tag": "",
+        "pal_tag_ink": "",
+        "pal_sale_bg": "",
+        "pal_sale_ink": "",
+        "pal_urgent": "",
+        "pal_urgent_bg": "",
+        "pal_bg": "",
+        "pal_ink": "",
+        "pal_muted": "",
+        "pal_line": "",
+        "pal_deep": "",
+        "padding_top": 24,
+        "padding_bottom": 32
+      }
+    },
+    "keyspecs": {
+      "type": "ecoms-stats",
+      "settings": {
+        "metafield": "ecoms.stats",
+        "style": "dark",
+        "heading": "Lo que lo hace diferente",
+        "text": "",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "anatomy": {
+      "type": "ecoms-anatomy",
+      "settings": {
+        "metafield": "ecoms.features",
+        "style": "dark",
+        "eyebrow": "Diseño práctico",
+        "heading": "Pensado para limpiar con menos esfuerzo",
+        "text": "",
+        "image": "shopify://shop_images/2_0296e42b-2d4e-444e-a0b4-35c17c1caac4.jpg",
+        "show_numbers": false,
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "includes": {
+      "type": "ecoms-includes",
+      "settings": {
+        "metafield": "ecoms.includes",
+        "eyebrow": "Todo en una sola caja",
+        "heading": "Esto incluye tu compra",
+        "text": "",
+        "show_price": true,
+        "total_label": "Todo esto por",
+        "button_label": "Lo quiero",
+        "note": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "problem": {
+      "type": "ecoms-problem",
+      "settings": {
+        "metafield": "ecoms.highlights",
+        "heading": "",
+        "text": "",
+        "before_label": "Antes",
+        "before_caption": "Imagen referencial",
+        "after_label": "Después",
+        "after_caption": "Imagen referencial",
+        "quote": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 20
+      }
+    },
+    "tabs": {
+      "type": "ecoms-tabs",
+      "settings": {
+        "metafield": "ecoms.uses",
+        "eyebrow": "",
+        "heading": "Úsalo en toda la casa",
+        "text": "",
+        "button_label": "Lo quiero",
+        "width": "full",
+        "padding_top": 40,
+        "padding_bottom": 32
+      }
+    },
+    "comparison": {
+      "type": "ecoms-comparison",
+      "settings": {
+        "metafield": "ecoms.compare_rows",
+        "style": "vs",
+        "heading": "La diferencia se nota",
+        "feature_label": "",
+        "col_1": "",
+        "show_image": true,
+        "col_2": "",
+        "col_3": "",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "reviews": {
+      "type": "ecoms-reviews",
+      "settings": {
+        "metafield": "ecoms.reviews",
+        "style": "widget",
+        "heading": "Opiniones de clientes",
+        "link_label": "",
+        "link": "",
+        "source_note": "",
+        "per_page": 6,
+        "write_label": "Escribe una reseña",
+        "write_link": "/pages/contact",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "ugc": {
+      "type": "ecoms-ugc",
+      "settings": {
+        "metafield": "ecoms.ugc",
+        "style": "grid",
+        "heading": "Así se ve en casa",
+        "text": "Imágenes referenciales de uso.",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "specs": {
+      "type": "ecoms-specs",
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "icon": "box",
+            "label": "Contenido del paquete",
+            "value": "",
+            "metafield": "ecoms.package_contents"
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "icon": "grid",
+            "label": "Medidas",
+            "value": "",
+            "metafield": "ecoms.dimensions"
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "icon": "gem",
+            "label": "Material",
+            "value": "",
+            "metafield": "ecoms.material"
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "icon": "hand",
+            "label": "Cómo se usa",
+            "value": "",
+            "metafield": "ecoms.usage"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ],
+      "settings": {
+        "heading": "Especificaciones",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 20
+      }
+    },
+    "faq": {
+      "type": "ecoms-faq",
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuánto demora y cuánto cuesta el envío?",
+            "answer": "<p>Despachamos a todo Chile. El costo y el plazo para tu comuna aparecen en el checkout antes de pagar, y te enviamos el número de seguimiento por email cuando tu pedido sale.</p>",
+            "draft": false
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo puedo pagar?",
+            "answer": "<p>Pagas por adelantado de forma segura con Webpay (débito o crédito) o Mercado Pago. Nunca vemos ni guardamos los datos de tu tarjeta.</p>",
+            "draft": false
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Puedo cambiar o devolver mi compra?",
+            "answer": "<p>Sí. Tienes 10 días desde que recibes tu pedido para arrepentirte, con el producto sin uso y en su embalaje, y 6 meses de garantía legal si presenta una falla.</p>",
+            "draft": false
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ],
+      "settings": {
+        "style": "split",
+        "heading": "Preguntas frecuentes",
+        "text": "¿Tienes otra duda? Escríbenos desde la página de contacto.",
+        "icon": "plus",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 36
+      }
+    },
+    "cross": {
+      "type": "ecoms-cross-sell",
+      "settings": {
+        "style": "rail",
+        "heading": "Completa tu limpieza",
+        "products": [],
+        "collection": "clean",
+        "use_suggestions": true,
+        "hide_with_pack_offer": true,
+        "limit": 4,
+        "button_label": "Agregar",
+        "heading_2": "",
+        "split": 1,
+        "width": "full",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "cta": {
+      "type": "ecoms-cta-band",
+      "settings": {
+        "style": "dark",
+        "eyebrow": "",
+        "heading": "Tu casa limpia, con menos esfuerzo",
+        "text": "Envío a todo Chile y pago seguro con Webpay o Mercado Pago.",
+        "image_plain": false,
+        "button_label": "Comprar ahora",
+        "trust_1": "Envío gratis desde $39.990",
+        "trust_2": "Pago seguro",
+        "trust_3": "Seguimiento del pedido",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "demo": {
+      "type": "ecoms-demo",
+      "settings": {
+        "heading": "Míralo en acción",
+        "ratio": "portrait",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 24
+      }
+    }
+  },
+  "order": [
+    "main",
+    "demo",
+    "keyspecs",
+    "anatomy",
+    "includes",
+    "problem",
+    "tabs",
+    "comparison",
+    "reviews",
+    "ugc",
+    "specs",
+    "faq",
+    "cross",
+    "cta"
+  ]
+}

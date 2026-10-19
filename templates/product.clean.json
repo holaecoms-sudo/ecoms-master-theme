@@ -88,7 +88,8 @@
             "text": "Termina en:",
             "style": "boxes",
             "show_days": true
-          }
+          },
+          "disabled": true
         },
         "packs": {
           "type": "packs",
@@ -112,7 +113,7 @@
             "tier2_qty": 2,
             "tier2_pct": 0,
             "tier2_label": "",
-            "tier2_tag": "Más popular",
+            "tier2_tag": "Pack ahorro",
             "tier2_note": "",
             "tier3_enabled": true,
             "tier3_qty": 3,

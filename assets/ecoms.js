@@ -175,6 +175,20 @@
     $$('[data-ec-sticky-price]').forEach((el) => { el.textContent = money(total); });
     syncPackInfo(qty, total);
     syncIncludes(qty, total);
+    // Shipping line under the price: delivered total, or «Envío gratis» once the threshold is reached.
+    $$('[data-ec-shipline]').forEach((line) => {
+      const cost = Number(line.dataset.cost) || 0;
+      const freeAt = Number(line.dataset.freeAt) || 0;
+      const free = freeAt > 0 && total >= freeAt;
+      line.classList.toggle('is-free', free);
+      const paid = line.querySelector('[data-ec-shipline-paid]');
+      const freeEl = line.querySelector('[data-ec-shipline-free]');
+      if (paid) paid.hidden = free;
+      if (freeEl) freeEl.hidden = !free;
+      line.querySelectorAll('[data-ec-shipline-total]').forEach((el) => { el.textContent = money(total + cost); });
+    });
+    // «Llévalo en pack» applies to a single unit only: hide it while a bigger pack is selected.
+    $$('[data-ec-packoff]').forEach((el) => { el.hidden = qty > 1; });
     // Price block follows the selected pack: total, compare-at for that quantity and savings.
     $$('[data-ec-price-live]').forEach((box) => {
       const unitCmp = Number(box.dataset.unitCompare) || 0;

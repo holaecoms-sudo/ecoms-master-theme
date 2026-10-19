@@ -268,6 +268,33 @@
             <div id="EcPrice-{{ section.id }}" class="ec-pdp__price" data-ec-refresh {{ block.shopify_attributes }}>
               {%- render 'ecoms-price', variant: variant, style: block.settings.style, qty: start_qty, total: start_total, unit_name: start_unit_name -%}
             </div>
+            {%- comment -%}
+              Shipping line under the price: the real standard rate (block setting) and the free-shipping
+              threshold (theme setting), so the delivered total is clear before the cart. ecoms.js keeps it in
+              sync with the selected pack.
+            {%- endcomment -%}
+            {%- assign ship_cost = block.settings.shipping_cost | default: 0 | plus: 0 | times: 100 -%}
+            {%- if ship_cost > 0 -%}
+              {%- liquid
+                assign ship_free_at = 0
+                if settings.ecoms_free_shipping_live
+                  assign ship_free_at = settings.ecoms_free_shipping_threshold | plus: 0
+                  if ship_free_at < 1000
+                    assign ship_free_at = ship_free_at | times: 1000
+                  endif
+                  assign ship_free_at = ship_free_at | times: 100
+                endif
+                assign ship_is_free = false
+                if ship_free_at > 0 and start_total >= ship_free_at
+                  assign ship_is_free = true
+                endif
+              -%}
+              <p class="ec-shipline{% if ship_is_free %} is-free{% endif %}" data-ec-shipline data-cost="{{ ship_cost }}" data-free-at="{{ ship_free_at }}">
+                {% render 'ecoms-icon', name: 'truck' %}
+                <span data-ec-shipline-paid {% if ship_is_free %}hidden{% endif %}>Envío {{ ship_cost | money }} · Total <b data-ec-shipline-total>{{ start_total | plus: ship_cost | money }}</b>{% if ship_free_at > 0 %}<small>Gratis desde {{ ship_free_at | money }}</small>{% endif %}</span>
+                <span data-ec-shipline-free {% unless ship_is_free %}hidden{% endunless %}><b>Envío gratis</b> a todo Chile</span>
+              </p>
+            {%- endif -%}
 
           {%- when 'urgency' -%}
             {%- comment -%} Per-product end date (ecoms.offer_end) wins over the block date, so a shared template only times real promos {%- endcomment -%}
@@ -475,7 +502,7 @@
                 assign po_off = po_variant.price | times: po_pct | divided_by: 100
                 assign po_price = po_variant.price | minus: po_off
               -%}
-              <div class="ec-packoff" {{ block.shopify_attributes }}>
+              <div class="ec-packoff" data-ec-packoff {% if start_qty > 1 %}hidden{% endif %} {{ block.shopify_attributes }}>
                 {%- if block.settings.heading != blank -%}<p class="ec-packoff__h">{{ block.settings.heading | escape }}</p>{%- endif -%}
                 <div class="ec-packoff__row">
                   <a class="ec-packoff__img" href="{{ po_item.url }}" tabindex="-1" aria-hidden="true">
@@ -486,6 +513,18 @@
                   <div class="ec-packoff__t">
                     <a href="{{ po_item.url }}">{{ po_item.title | escape }}</a>
                     <span><b>{{ po_price | money }}</b> <s>{{ po_variant.price | money }}</s> <em>-{{ po_pct }}%</em></span>
+                    {%- liquid
+                      assign po_free_at = 0
+                      if settings.ecoms_free_shipping_live
+                        assign po_free_at = settings.ecoms_free_shipping_threshold | plus: 0
+                        if po_free_at < 1000
+                          assign po_free_at = po_free_at | times: 1000
+                        endif
+                        assign po_free_at = po_free_at | times: 100
+                      endif
+                      assign po_combo = variant.price | plus: po_price
+                    -%}
+                    {%- if po_free_at > 0 and variant.price < po_free_at and po_combo >= po_free_at -%}<small class="ec-packoff__ship">{% render 'ecoms-icon', name: 'truck' %}Y tu envío sale gratis</small>{%- endif -%}
                     {%- assign po_note = product.metafields.ecoms.pack_note.value | default: block.settings.note -%}{%- if po_note != blank -%}<small>{{ po_note | escape }}</small>{%- endif -%}
                   </div>
                   {%- render 'ecoms-add-button', item: po_item, label: block.settings.button_label, class: 'ec-btn ec-btn--primary ec-btn--sm ec-packoff__add', source: 'pack_offer', with_product: product -%}
@@ -1069,6 +1108,12 @@
             }
           ],
           "default": "pill"
+        },
+        {
+          "type": "number",
+          "id": "shipping_cost",
+          "label": "Costo del envío estándar (CLP)",
+          "info": "Muestra bajo el precio el envío y el total a pagar, o «Envío gratis» cuando se alcanza el monto del ajuste «Envío gratis desde». Vacío = no se muestra."
         }
       ]
     },

@@ -1514,3 +1514,12 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 @media screen and (min-width: 750px) {
   .ec-demo { grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: repeat(var(--dm-n, 3), minmax(0, 1fr)); max-width: calc(var(--dm-n, 3) * 340px); margin: 0 auto; padding: 0; overflow: visible; gap: 18px; }
 }
+
+/* ECOMS · Shipping line under the price */
+.ec-shipline { display: flex; align-items: flex-start; gap: 8px; margin: 6px 0 4px; color: var(--ec-ink); font-size: 14px; line-height: 1.4; }
+.ec-shipline > .ec-i { flex: none; width: 18px; height: 18px; margin-top: 1px; color: var(--ec-accent); }
+.ec-shipline small { display: block; color: var(--ec-muted); font-size: 12.5px; }
+.ec-shipline.is-free { color: var(--ec-success, #0f7a3d); }
+.ec-shipline.is-free > .ec-i { color: currentColor; }
+.ec-packoff__ship { display: inline-flex !important; align-items: center; gap: 5px; color: var(--ec-success, #0f7a3d) !important; font-weight: 700; }
+.ec-packoff__ship .ec-i { width: 15px; height: 15px; }
