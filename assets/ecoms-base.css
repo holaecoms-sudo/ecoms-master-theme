@@ -1441,16 +1441,24 @@ a.ec-rating--auto:hover b + span { text-decoration: underline; }
 /* ---------- Pack offer block («Llévalo en pack») ---------- */
 .ec-packoff { margin: 14px 0 4px; padding: 12px 14px; border: 1.5px dashed var(--ec-accent, #008FFC); border-radius: 14px; background: color-mix(in srgb, var(--ec-accent, #008FFC) 6%, #fff); }
 .ec-packoff__h { margin: 0 0 8px; font-size: 13px; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; color: var(--ec-primary, #011F49); }
-.ec-packoff__row { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; align-items: center; gap: 12px; }
-.ec-packoff__img { display: block; width: 56px; height: 56px; overflow: hidden; border-radius: 10px; background: #fff; }
+.ec-packoff__row { display: grid; grid-template-columns: 64px minmax(0, 1fr); grid-template-areas: "img info" "add add"; align-items: start; gap: 10px 12px; }
+.ec-packoff__img { grid-area: img; }
+.ec-packoff__t { grid-area: info; }
+.ec-packoff__add { grid-area: add; }
+.ec-packoff__img { display: block; width: 64px; height: 64px; overflow: hidden; border-radius: 10px; background: #fff; }
 .ec-packoff__img img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.ec-packoff__t { display: flex; flex-direction: column; gap: 2px; min-width: 0; font-size: 13px; line-height: 1.3; }
-.ec-packoff__t a { color: inherit; font-weight: 700; text-decoration: none; }
+.ec-packoff__t { display: flex; flex-direction: column; gap: 4px; min-width: 0; font-size: 13px; line-height: 1.3; }
+.ec-packoff__t > span { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.ec-packoff__t a { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; color: inherit; font-size: 14px; font-weight: 700; text-decoration: none; }
 .ec-packoff__t b { color: var(--ec-primary, #011F49); font-size: 15px; }
 .ec-packoff__t s { color: var(--ec-muted, #6B7280); }
 .ec-packoff__t em { padding: 1px 6px; border-radius: 999px; background: var(--ec-accent, #008FFC); color: #fff; font-size: 11px; font-style: normal; font-weight: 800; }
-.ec-packoff__t small { color: var(--ec-muted, #6B7280); font-size: 11.5px; }
-.ec-packoff__add { min-height: 38px; padding-inline: 14px; white-space: nowrap; }
+.ec-packoff__t small { color: var(--ec-muted, #6B7280); font-size: 12px; line-height: 1.35; }
+.ec-packoff__add { justify-content: center; width: 100%; min-height: 44px; padding-inline: 14px; white-space: nowrap; }
+@media screen and (min-width: 750px) {
+  .ec-packoff__row { grid-template-columns: 64px minmax(0, 1fr) auto; grid-template-areas: "img info add"; align-items: center; }
+  .ec-packoff__add { width: auto; min-height: 40px; }
+}
 .ec-packoff .ec-add-error { grid-column: 1 / -1; margin: 6px 0 0; font-size: 12px; }
 
 /* =====================  ECOMS · Líneas de la tienda (home)  ===================== */
@@ -1521,5 +1529,5 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 .ec-shipline small { display: block; color: var(--ec-muted); font-size: 12.5px; }
 .ec-shipline.is-free { color: var(--ec-success, #0f7a3d); }
 .ec-shipline.is-free > .ec-i { color: currentColor; }
-.ec-packoff__ship { display: inline-flex !important; align-items: center; gap: 5px; color: var(--ec-success, #0f7a3d) !important; font-weight: 700; }
+.ec-packoff__ship { display: inline-flex !important; align-items: center; gap: 5px; font-size: 12.5px !important; color: var(--ec-success, #0f7a3d) !important; font-weight: 700; }
 .ec-packoff__ship .ec-i { width: 15px; height: 15px; }
