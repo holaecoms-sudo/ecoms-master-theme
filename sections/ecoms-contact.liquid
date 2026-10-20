@@ -19,7 +19,7 @@
             assign b_url = b.link
             if block.type == 'email'
               assign b_text = store_email
-              assign b_url = 'mailto:' | append: store_email
+              assign b_url = ''
             endif
           -%}
           {%- if b_text == blank and request.design_mode != true -%}{%- continue -%}{%- endif -%}
@@ -27,7 +27,9 @@
             <span class="ec-ct__ic">{% render 'ecoms-icon', name: b.icon %}</span>
             <span class="ec-ct__it">
               <b>{{ b.title | escape }}</b>
-              {%- if b_url != blank -%}
+              {%- if block.type == 'email' -%}
+                {%- render 'ecoms-email-safe', email: b_text -%}
+              {%- elsif b_url != blank -%}
                 <a href="{{ b_url }}">{{ b_text | escape }}</a>
               {%- else -%}
                 <span>{{ b_text | escape }}</span>

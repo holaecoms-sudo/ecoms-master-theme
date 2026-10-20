@@ -1,0 +1,26 @@
+{%- comment -%}
+  ECOMS · Email link hidden from address harvesters (the main source of spam to the store inbox).
+  The HTML only holds the address reversed, plus a readable "nombre (arroba) dominio" fallback; a small
+  script turns it into a normal mailto link for people.
+
+  Accepts:
+  - email: {String}
+{%- endcomment -%}
+{%- if email != blank -%}
+  {%- liquid
+    assign em_parts = email | split: '@'
+    assign em_reversed = email | replace: '@', '|' | split: '' | reverse | join: ''
+  -%}
+  <span class="ec-mail" data-ec-mail="{{ em_reversed | escape }}">{{ em_parts[0] | escape }} (arroba) {{ em_parts[1] | escape }}</span>
+  <script>
+    (function () {
+      document.querySelectorAll('[data-ec-mail]').forEach(function (el) {
+        var addr = el.getAttribute('data-ec-mail').split('').reverse().join('').replace('|', '@');
+        var a = document.createElement('a');
+        a.href = 'mailto:' + addr;
+        a.textContent = addr;
+        el.replaceWith(a);
+      });
+    })();
+  </script>
+{%- endif -%}

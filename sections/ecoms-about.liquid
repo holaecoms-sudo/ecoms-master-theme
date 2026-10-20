@@ -89,7 +89,7 @@
           {%- if s.legal_name != blank -%}<div><dt>Razón social</dt><dd>{{ s.legal_name | escape }}</dd></div>{%- endif -%}
           {%- if s.rut != blank -%}<div><dt>RUT</dt><dd>{{ s.rut | escape }}</dd></div>{%- endif -%}
           {%- if s.city != blank -%}<div><dt>Ubicación</dt><dd>{{ s.city | escape }}</dd></div>{%- endif -%}
-          {%- if s.email != blank -%}<div><dt>Email</dt><dd><a href="mailto:{{ s.email | escape }}">{{ s.email | escape }}</a></dd></div>{%- endif -%}
+          {%- if s.email != blank -%}<div><dt>Email</dt><dd>{%- render 'ecoms-email-safe', email: s.email -%}</dd></div>{%- endif -%}
         </dl>
         {%- if shop.policies.size > 0 -%}
           <p class="ec-ab__pol">
