@@ -2350,6 +2350,19 @@
         "info": "Solo los medios activos en Configuración → Pagos."
       },
       {
+        "type": "checkbox",
+        "id": "ecoms_cod_live",
+        "label": "El pago contra entrega ya está activo en Shopify",
+        "default": false,
+        "info": "Actívalo solo después de agregar «Pago contra entrega (COD)» en Configuración → Pagos. Muestra el aviso en la página de producto y en el carrito."
+      },
+      {
+        "type": "text",
+        "id": "ecoms_cod_text",
+        "label": "Aviso de pago contra entrega",
+        "default": "También puedes pagar al recibir tu pedido"
+      },
+      {
         "type": "text",
         "id": "ecoms_cart_trust_1",
         "label": "Confianza 1 (candado)",

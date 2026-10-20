@@ -629,6 +629,9 @@
           {%- when 'payments' -%}
             <div class="ec-payments" {{ block.shopify_attributes }}>
               {%- if block.settings.text != blank -%}<p class="ec-secure">{% render 'ecoms-icon', name: 'lock' %}{{ block.settings.text | escape }}</p>{%- endif -%}
+              {%- if settings.ecoms_cod_live and settings.ecoms_cod_text != blank -%}
+                <p class="ec-cod">{% render 'ecoms-icon', name: 'cash' %}<span>{{ settings.ecoms_cod_text | escape }}</span></p>
+              {%- endif -%}
               <ul class="ec-payments__list" role="list">
                 {%- render 'ecoms-payment-icons', class: 'ec-payments__icon' -%}
               </ul>

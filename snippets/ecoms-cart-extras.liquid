@@ -148,6 +148,9 @@
       {%- endif -%}
 
     {%- when 'trust' -%}
+      {%- if settings.ecoms_cod_live and settings.ecoms_cod_text != blank -%}
+        <p class="ec-cod ec-cod--cart">{% render 'ecoms-icon', name: 'cash' %}<span>{{ settings.ecoms_cod_text | escape }}</span></p>
+      {%- endif -%}
       {%- if settings.ecoms_cart_show_payments -%}
         <ul class="ec-cart-pay" role="list" aria-label="Medios de pago">
           {%- render 'ecoms-payment-icons', class: 'ec-cart-pay__icon' -%}
