@@ -2358,6 +2358,25 @@
       },
       {
         "type": "text",
+        "id": "ecoms_cod_short",
+        "label": "Pago contra entrega: título junto al precio",
+        "default": "Paga al recibir tu pedido"
+      },
+      {
+        "type": "text",
+        "id": "ecoms_cod_detail",
+        "label": "Pago contra entrega: detalle junto al precio",
+        "default": "En efectivo, en todo Chile y sin costo adicional"
+      },
+      {
+        "type": "text",
+        "id": "ecoms_cart_checkout_label_cod",
+        "label": "Botón del carrito con pago contra entrega",
+        "default": "Finalizar pedido",
+        "info": "Reemplaza «Continuar al pago», porque el cliente puede pagar al recibir."
+      },
+      {
+        "type": "text",
         "id": "ecoms_cod_text",
         "label": "Aviso de pago contra entrega",
         "default": "También puedes pagar al recibir tu pedido"

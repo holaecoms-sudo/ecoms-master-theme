@@ -313,6 +313,9 @@
                 {%- endif -%}
                 <span data-ec-shipline-free {% unless ship_is_free %}hidden{% endunless %}><b>Envío gratis</b> a todo Chile</span>
               </p>
+              {%- if settings.ecoms_cod_live and settings.ecoms_cod_short != blank -%}
+                <p class="ec-codline">{% render 'ecoms-icon', name: 'cash' %}<span><b>{{ settings.ecoms_cod_short | escape }}</b>{%- if settings.ecoms_cod_detail != blank -%}<small>{{ settings.ecoms_cod_detail | escape }}</small>{%- endif -%}</span></p>
+              {%- endif -%}
             {%- endif -%}
 
           {%- when 'urgency' -%}
@@ -362,7 +365,7 @@
                     {% render 'ecoms-icon', name: 'cart' %}
                     <span>
                       {%- if variant.available -%}
-                        {{ block.settings.add_label | escape }}
+                        {%- if settings.ecoms_cod_live and block.settings.add_label_cod != blank -%}{{ block.settings.add_label_cod | escape }}{%- else -%}{{ block.settings.add_label | escape }}{%- endif -%}
                         {%- if block.settings.show_total %} · <span data-ec-cta-total>{{ start_total | money }}</span>{% endif -%}
                       {%- else -%}
                         {{ 'products.product.sold_out' | t }}
@@ -372,7 +375,7 @@
                   {%- if block.settings.show_buy_now and variant.available -%}
                     <button type="button" class="ec-btn ec-btn--accent ec-btn--block ec-btn--lg" data-ec-buy-now data-form="{{ form_id }}">
                       {%- if block.settings.buy_now_icon != 'none' -%}{% render 'ecoms-icon', name: block.settings.buy_now_icon %}{%- endif -%}
-                      {{ block.settings.buy_now_label | escape }}
+                      {%- if settings.ecoms_cod_live and block.settings.buy_now_label_cod != blank -%}{{ block.settings.buy_now_label_cod | escape }}{%- else -%}{{ block.settings.buy_now_label | escape }}{%- endif -%}
                     </button>
                   {%- endif -%}
                 </div>
@@ -745,7 +748,7 @@
         {% render 'ecoms-icon', name: 'cart' %}
         <span>
           {%- if variant.available -%}
-            {{ section.settings.sticky_label | escape }}
+            {%- if settings.ecoms_cod_live and section.settings.sticky_label_cod != blank -%}{{ section.settings.sticky_label_cod | escape }}{%- else -%}{{ section.settings.sticky_label | escape }}{%- endif -%}
           {%- else -%}
             {{ 'products.product.sold_out' | t }}
           {%- endif -%}
@@ -972,6 +975,12 @@
       "id": "sticky_label",
       "label": "Texto del botón fijo",
       "default": "Agregar"
+    },
+    {
+      "type": "text",
+      "id": "sticky_label_cod",
+      "label": "Texto del botón fijo con pago contra entrega",
+      "info": "Ej.: Pedir ahora. Vacío = el texto normal."
     },
     {
       "type": "header",
@@ -1620,6 +1629,25 @@
           "id": "buy_now_label",
           "label": "Texto «Comprar ahora»",
           "default": "Comprar ahora"
+        },
+        {
+          "type": "header",
+          "content": "Con pago contra entrega activo"
+        },
+        {
+          "type": "paragraph",
+          "content": "Se usan cuando está activado «El pago contra entrega ya está activo» en Configuración del tema → ECOMS · Carrito. Vacíos = textos normales."
+        },
+        {
+          "type": "text",
+          "id": "add_label_cod",
+          "label": "Texto del botón de agregar"
+        },
+        {
+          "type": "text",
+          "id": "buy_now_label_cod",
+          "label": "Texto «Comprar ahora»",
+          "info": "Ej.: Pedir ahora y pagar al recibir"
         }
       ]
     },

@@ -45,9 +45,18 @@
             "link": "",
             "icon": "truck"
           }
+        },
+        "cod": {
+          "type": "cod",
+          "settings": {
+            "icon": "cash",
+            "text": "Paga al recibir tu pedido",
+            "link": ""
+          }
         }
       },
       "block_order": [
+        "cod",
         "fs",
         "m1",
         "m2",

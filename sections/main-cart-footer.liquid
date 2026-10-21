@@ -117,7 +117,7 @@
                   form="cart"
                 >
                   {%- if cart != empty -%}
-                    {% render 'ecoms-icon', name: 'lock' %}{{ settings.ecoms_cart_checkout_label | default: 'Continuar al pago' | escape }}
+                    {% render 'ecoms-icon', name: 'lock' %}{%- if settings.ecoms_cod_live and settings.ecoms_cart_checkout_label_cod != blank -%}{{ settings.ecoms_cart_checkout_label_cod | escape }}{%- else -%}{{ settings.ecoms_cart_checkout_label | default: 'Continuar al pago' | escape }}{%- endif -%}
                   {%- else -%}
                     {{ 'sections.cart.checkout' | t }}
                   {%- endif -%}

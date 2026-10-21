@@ -25,6 +25,10 @@
       {%- for block in section.blocks -%}
         {%- liquid
           assign msg = block.settings.text | escape
+          if block.type == 'cod' and settings.ecoms_cod_live != true
+            # Only announced once cash on delivery is active (Theme settings → ECOMS · Carrito).
+            assign msg = ''
+          endif
           if block.type == 'free_shipping'
             # Only announced when a real free-shipping rate exists (Theme settings → ECOMS · Carrito).
             if ship_threshold == 0
@@ -322,15 +326,46 @@
           "id": "icon",
           "label": "Icono",
           "options": [
-            { "value": "none", "label": "Sin icono" },
-            { "value": "truck", "label": "Camión / envío" },
-            { "value": "flag_cl", "label": "Bandera de Chile" },
-            { "value": "lock", "label": "Candado / compra segura" },
-            { "value": "box", "label": "Caja / pedido" },
-            { "value": "return", "label": "Devolución" },
-            { "value": "shield", "label": "Escudo / garantía" },
-            { "value": "gift", "label": "Regalo" },
-            { "value": "clock", "label": "Reloj" }
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "flag_cl",
+              "label": "Bandera de Chile"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / compra segura"
+            },
+            {
+              "value": "box",
+              "label": "Caja / pedido"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "cash",
+              "label": "Billete / pago al recibir"
+            }
           ],
           "default": "none"
         },
@@ -357,15 +392,46 @@
           "id": "icon",
           "label": "Icono",
           "options": [
-            { "value": "none", "label": "Sin icono" },
-            { "value": "truck", "label": "Camión / envío" },
-            { "value": "flag_cl", "label": "Bandera de Chile" },
-            { "value": "lock", "label": "Candado / compra segura" },
-            { "value": "box", "label": "Caja / pedido" },
-            { "value": "return", "label": "Devolución" },
-            { "value": "shield", "label": "Escudo / garantía" },
-            { "value": "gift", "label": "Regalo" },
-            { "value": "clock", "label": "Reloj" }
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "flag_cl",
+              "label": "Bandera de Chile"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / compra segura"
+            },
+            {
+              "value": "box",
+              "label": "Caja / pedido"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "cash",
+              "label": "Billete / pago al recibir"
+            }
           ],
           "default": "none"
         },
@@ -379,6 +445,76 @@
           "label": "Texto",
           "default": "Envío gratis sobre [amount]",
           "info": "[amount] se reemplaza por el monto configurado."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Enlace"
+        }
+      ]
+    },
+    {
+      "type": "cod",
+      "name": "Pago contra entrega",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Solo se muestra cuando está activado «El pago contra entrega ya está activo» en Configuración del tema → ECOMS · Carrito."
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            {
+              "value": "none",
+              "label": "Sin icono"
+            },
+            {
+              "value": "truck",
+              "label": "Camión / envío"
+            },
+            {
+              "value": "flag_cl",
+              "label": "Bandera de Chile"
+            },
+            {
+              "value": "lock",
+              "label": "Candado / compra segura"
+            },
+            {
+              "value": "box",
+              "label": "Caja / pedido"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "shield",
+              "label": "Escudo / garantía"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "cash",
+              "label": "Billete / pago al recibir"
+            }
+          ],
+          "default": "cash"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Paga al recibir tu pedido"
         },
         {
           "type": "url",

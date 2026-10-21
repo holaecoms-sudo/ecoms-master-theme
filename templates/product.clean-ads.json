@@ -97,7 +97,9 @@
             "show_buy_now": true,
             "buy_now_icon": "bolt",
             "buy_now_label": "Comprar aspiradora ahora",
-            "heading": "Solo la aspiradora"
+            "heading": "Solo la aspiradora",
+            "add_label_cod": "Agregar aspiradora",
+            "buy_now_label_cod": "Pedir ahora y pagar al recibir"
           }
         },
         "payments": {
@@ -186,7 +188,8 @@
         "pal_deep": "",
         "padding_top": 24,
         "padding_bottom": 32,
-        "sticky_ship": true
+        "sticky_ship": true,
+        "sticky_label_cod": "Pedir ahora"
       }
     },
     "keyspecs": {
