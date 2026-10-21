@@ -565,7 +565,17 @@
                   assign po_combo_money = po_combo | money
                   assign po_off_money = po_save | money
                   assign po_heading = block.settings.heading | replace: '[pack]', po_name | replace: '[save]', po_off_money
-                  assign po_label = block.settings.button_label | replace: '[pack]', po_name | replace: '[total]', po_combo_money
+                  assign po_label_src = block.settings.button_label
+                  assign po_open_cod = ''
+                  if settings.ecoms_cod_live
+                    if block.settings.button_label_cod != blank
+                      assign po_label_src = block.settings.button_label_cod
+                    endif
+                    if block.settings.open_cod
+                      assign po_open_cod = settings.ecoms_cod_app_button
+                    endif
+                  endif
+                  assign po_label = po_label_src | replace: '[pack]', po_name | replace: '[total]', po_combo_money
                   assign po_note = product.metafields.ecoms.pack_note.value | default: block.settings.note
                 -%}
                 <div class="ec-packoff ec-packoff--bundle" data-ec-packoff {% if start_qty > 1 %}hidden{% endif %} {{ block.shopify_attributes }}>
@@ -587,7 +597,7 @@
                   </div>
                   <p class="ec-packoff__total">{{ po_name | escape }} <b>{{ po_combo_money }}</b> <s>{{ po_was | money }}</s> <em>Ahorras {{ po_off_money }}</em></p>
                   {%- if po_free_at > 0 and po_combo >= po_free_at -%}<p class="ec-packoff__ship">{% render 'ecoms-icon', name: 'truck' %}Con el pack, envío gratis a todo Chile</p>{%- endif -%}
-                  {%- render 'ecoms-add-button', item: po_item, label: po_label, class: 'ec-btn ec-btn--block ec-packoff__add', source: 'pack_offer', with_product: product -%}
+                  {%- render 'ecoms-add-button', item: po_item, label: po_label, class: 'ec-btn ec-btn--block ec-packoff__add', source: 'pack_offer', with_product: product, open_cod: po_open_cod -%}
                   {%- if po_note != blank -%}<p class="ec-packoff__note">{{ po_note | escape }}</p>{%- endif -%}
                 </div>
               {%- else -%}
@@ -4064,6 +4074,23 @@
           "id": "show_total",
           "label": "Mostrar como pack completo",
           "info": "Tarjeta aparte con ambos productos, el total del pack y el ahorro (incluye el precio de comparación del producto principal, si tiene). En el título y el botón puedes usar [pack] (metacampo ecoms.pack_name), [save] y [total]. Para un descuento en pesos usa el metacampo ecoms.pack_discount_amount.",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Con pago contra entrega activo"
+        },
+        {
+          "type": "text",
+          "id": "button_label_cod",
+          "label": "Texto del botón",
+          "info": "Ej.: Pedir [pack] · [total]. Vacío = el texto normal."
+        },
+        {
+          "type": "checkbox",
+          "id": "open_cod",
+          "label": "Abrir el formulario de la app al agregar el pack",
+          "info": "Agrega los dos productos y abre el formulario de pago contra entrega (botón configurado en Configuración del tema → ECOMS · Carrito).",
           "default": false
         },
         {

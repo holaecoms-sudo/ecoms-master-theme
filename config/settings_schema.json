@@ -2377,6 +2377,13 @@
       },
       {
         "type": "text",
+        "id": "ecoms_cod_app_button",
+        "label": "Texto del botón de la app de pago contra entrega",
+        "default": "Pedir y pagar al recibir",
+        "info": "El mismo texto del botón de la app (ej.: Releasit). Con él, «Pack con descuento» puede abrir el formulario de la app después de agregar el pack."
+      },
+      {
+        "type": "text",
         "id": "ecoms_cod_text",
         "label": "Aviso de pago contra entrega",
         "default": "También puedes pagar al recibir tu pedido"

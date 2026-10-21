@@ -486,6 +486,29 @@
     if (!showDrawer(json)) window.location.href = window.routes?.cart_url || '/cart';
   }
 
+  // Cash on delivery app (e.g. Releasit): after the pack is in the cart, click the app's cart button (found by
+  // its text, preferring the one in the cart drawer) so its form opens with both products. The app renders the
+  // button on its own, so wait for it a few seconds; if it never shows, the cart drawer stays open.
+  function openCodForm(text) {
+    const wanted = text.trim().toLowerCase();
+    const ours = '[data-ec-add-variant], [data-ec-add], .ec-packoff, .ec-sticky, .ec-ann';
+    const find = () => {
+      const hits = $$('button, a, [role="button"]').filter((el) => {
+        if (el.closest(ours) || !el.offsetParent) return false;
+        return (el.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase() === wanted;
+      });
+      return hits.find((el) => el.closest('cart-drawer, #CartDrawer, .drawer')) || hits[0];
+    };
+    let tries = 0;
+    const timer = setInterval(() => {
+      const btn = find();
+      if (btn || ++tries > 20) {
+        clearInterval(timer);
+        if (btn) btn.click();
+      }
+    }, 200);
+  }
+
   // «Llévalo en pack»: the offer only applies with the main product, so the same click also adds one unit
   // of the variant selected on this page, unless the product is already in the cart.
   async function mainItems(button) {
@@ -605,6 +628,7 @@
       add.setAttribute('aria-busy', 'true');
       try {
         await addVariant(add.dataset.ecAddVariant, 1, add.dataset.ecSource || 'cross_sell', await mainItems(add));
+        if (add.dataset.ecOpenCod) openCodForm(add.dataset.ecOpenCod);
       } catch (e) {
         const note = add.parentElement.querySelector('[data-ec-add-error]');
         if (note) { note.textContent = e.message; note.hidden = false; }
