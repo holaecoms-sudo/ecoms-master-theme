@@ -2366,7 +2366,7 @@
         "type": "text",
         "id": "ecoms_cod_detail",
         "label": "Pago contra entrega: detalle junto al precio",
-        "default": "En efectivo, en todo Chile y sin costo adicional"
+        "default": "En todo Chile y sin costo adicional"
       },
       {
         "type": "text",
