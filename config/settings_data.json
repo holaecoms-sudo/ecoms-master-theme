@@ -160,6 +160,7 @@
     "ecoms_v1_facebook": "https://www.facebook.com/profile.php?id=61595370719462",
     "ecoms_free_shipping_live": true,
     "ecoms_cod_live": true,
+    "ecoms_cart_checkout_label_cod": "Pagar con tarjeta",
     "ecoms_free_shipping_threshold": 39990,
     "ecoms_free_shipping_local_threshold": 29990,
     "ecoms_free_shipping_local_zone": "Santiago (RM)",
