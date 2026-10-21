@@ -158,7 +158,8 @@
           "settings": {
             "heading": "Llévalo en pack",
             "note": "El descuento se aplica automáticamente en el carrito.",
-            "button_label": "+ Agregar"
+            "button_label": "+ Agregar",
+            "open_cod": true
           }
         },
         "stock": {
@@ -174,9 +175,10 @@
             "show_quantity": false,
             "add_label": "Añadir al carrito",
             "show_total": true,
-            "show_buy_now": true,
+            "show_buy_now": false,
             "buy_now_icon": "bolt",
-            "buy_now_label": "Comprar ahora"
+            "buy_now_label": "Comprar ahora",
+            "add_label_cod": "Comprar con tarjeta"
           }
         },
         "payments": {
