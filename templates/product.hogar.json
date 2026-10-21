@@ -444,7 +444,7 @@
           "type": "faq",
           "settings": {
             "question": "¿Cómo puedo pagar?",
-            "answer": "<p>Pagas por adelantado de forma segura con Webpay (débito o crédito) o Mercado Pago. Nunca vemos ni guardamos los datos de tu tarjeta.</p>",
+            "answer": "<p>Puedes pagar en línea con Webpay (débito o crédito) o Mercado Pago, o <strong>pagar al recibir tu pedido</strong> (pago contra entrega), en todo Chile y sin costo adicional. Si eliges pagar al recibir, te contactaremos para confirmar tu pedido antes de despacharlo. Nunca vemos ni guardamos los datos de tu tarjeta.</p>",
             "draft": false
           }
         },
