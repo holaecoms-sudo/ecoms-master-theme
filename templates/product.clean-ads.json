@@ -160,8 +160,8 @@
         "media_features"
       ],
       "custom_css": [
-        ".ec-buy [data-ec-add] {display: none !important; }",
-        ".ec-buy__h {display: none; }"
+        ".ec-buy [data-ec-add] {display: none !important;}",
+        ".ec-buy__h {display: none;}"
       ],
       "settings": {
         "layout": "direct",
@@ -175,7 +175,7 @@
         "video_first": true,
         "video_autoplay": true,
         "video_loop": true,
-        "sticky": true,
+        "sticky": false,
         "sticky_desktop": true,
         "sticky_ship": true,
         "sticky_save": true,
