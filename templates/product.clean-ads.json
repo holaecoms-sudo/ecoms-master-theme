@@ -36,39 +36,6 @@
             "chip_5": ""
           }
         },
-        "sub": {
-          "type": "text",
-          "settings": {
-            "text": ""
-          }
-        },
-        "benefits": {
-          "type": "benefits",
-          "settings": {
-            "item_1": "",
-            "item_2": "",
-            "item_3": "",
-            "item_4": ""
-          }
-        },
-        "trust": {
-          "type": "trust",
-          "settings": {
-            "style": "grid",
-            "icon_1": "truck",
-            "title_1": "Envíos",
-            "text_1": "A todo Chile",
-            "icon_2": "lock",
-            "title_2": "Pago seguro",
-            "text_2": "Webpay o Mercado Pago",
-            "icon_3": "box",
-            "title_3": "Seguimiento",
-            "text_3": "De tu pedido",
-            "icon_4": "return",
-            "title_4": "Cambios",
-            "text_4": "10 días de retracto"
-          }
-        },
         "buybox": {
           "type": "buybox",
           "settings": {}
@@ -80,6 +47,20 @@
             "shipping_cost": 4000
           }
         },
+        "buy": {
+          "type": "buy",
+          "settings": {
+            "heading": "Solo la aspiradora",
+            "show_quantity": false,
+            "add_label": "Agregar aspiradora",
+            "show_total": true,
+            "show_buy_now": false,
+            "buy_now_icon": "bolt",
+            "buy_now_label": "Comprar aspiradora ahora",
+            "add_label_cod": "Comprar con tarjeta",
+            "buy_now_label_cod": "Pedir ahora y pagar al recibir"
+          }
+        },
         "pack_offer": {
           "type": "pack_offer",
           "settings": {
@@ -88,26 +69,6 @@
             "button_label": "Agregar [pack] · [total]",
             "show_total": true,
             "or_text": "o ahorra llevando el pack"
-          }
-        },
-        "stock": {
-          "type": "stock",
-          "settings": {
-            "max_show": 5,
-            "text": "¡Solo quedan [qty] unidades en stock!"
-          }
-        },
-        "buy": {
-          "type": "buy",
-          "settings": {
-            "show_quantity": false,
-            "add_label": "Agregar aspiradora",
-            "show_total": true,
-            "show_buy_now": false,
-            "buy_now_icon": "bolt",
-            "buy_now_label": "Comprar aspiradora ahora",
-            "heading": "Solo la aspiradora",
-            "add_label_cod": "Comprar con tarjeta"
           }
         },
         "payments": {
@@ -125,6 +86,46 @@
             "min_days": 3,
             "max_days": 6,
             "step_3": "Entregado"
+          }
+        },
+        "trust": {
+          "type": "trust",
+          "settings": {
+            "style": "grid",
+            "icon_1": "truck",
+            "title_1": "Envíos",
+            "text_1": "A todo Chile",
+            "icon_2": "lock",
+            "title_2": "Pago seguro",
+            "text_2": "Tarjeta o al recibir",
+            "icon_3": "box",
+            "title_3": "Seguimiento",
+            "text_3": "De tu pedido",
+            "icon_4": "return",
+            "title_4": "Cambios",
+            "text_4": "10 días de retracto"
+          }
+        },
+        "sub": {
+          "type": "text",
+          "settings": {
+            "text": ""
+          }
+        },
+        "benefits": {
+          "type": "benefits",
+          "settings": {
+            "item_1": "",
+            "item_2": "",
+            "item_3": "",
+            "item_4": ""
+          }
+        },
+        "stock": {
+          "type": "stock",
+          "settings": {
+            "max_show": 5,
+            "text": "¡Solo quedan [qty] unidades en stock!"
           }
         },
         "media_features": {
@@ -172,9 +173,11 @@
         "video_loop": true,
         "sticky": true,
         "sticky_desktop": true,
+        "sticky_ship": true,
         "sticky_save": true,
         "sticky_early": true,
         "sticky_label": "Comprar",
+        "sticky_label_cod": "Pedir ahora",
         "palette": "store",
         "pal_primary": "",
         "pal_primary_ink": "",
@@ -195,9 +198,18 @@
         "pal_line": "",
         "pal_deep": "",
         "padding_top": 24,
-        "padding_bottom": 32,
-        "sticky_ship": true,
-        "sticky_label_cod": "Comprar"
+        "padding_bottom": 32
+      }
+    },
+    "demo": {
+      "type": "ecoms-demo",
+      "settings": {
+        "heading": "Míralo en acción",
+        "text": "",
+        "ratio": "story",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 24
       }
     },
     "keyspecs": {
@@ -446,16 +458,6 @@
         "width": "full",
         "padding_top": 0,
         "padding_bottom": 0
-      }
-    },
-    "demo": {
-      "type": "ecoms-demo",
-      "settings": {
-        "heading": "Míralo en acción",
-        "ratio": "story",
-        "width": "full",
-        "padding_top": 28,
-        "padding_bottom": 24
       }
     }
   },
