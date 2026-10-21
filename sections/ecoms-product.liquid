@@ -323,8 +323,16 @@
             {%- render 'ecoms-countdown', source: block, end_at: product.metafields.ecoms.offer_end.value, heading: product.metafields.ecoms.offer_label.value, attrs: block.shopify_attributes -%}
 
           {%- when 'buy' -%}
-            <div class="ec-buy" {{ block.shopify_attributes }}>
-              {%- if block.settings.heading != blank -%}<p class="ec-buy__h">{{ block.settings.heading | escape }}</p>{%- endif -%}
+            {%- liquid
+              # «Solo pago al recibir»: the cash on delivery app's button is the only way to buy here, so our
+              # add-to-cart button (and the heading that explains it) is hidden; the product form stays for the app.
+              assign buy_cod_only = false
+              if settings.ecoms_cod_live and block.settings.cod_only
+                assign buy_cod_only = true
+              endif
+            -%}
+            <div class="ec-buy{% if buy_cod_only %} ec-buy--cod-only{% endif %}" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank and buy_cod_only == false -%}<p class="ec-buy__h">{{ block.settings.heading | escape }}</p>{%- endif -%}
               {%- form 'product', product, id: form_id, class: 'ec-form', novalidate: 'novalidate', data-ec-form: '' -%}
                 <input type="hidden" name="id" value="{{ variant.id }}" data-ec-variant-input>
                 <div class="ec-optrow">
@@ -1637,6 +1645,13 @@
         {
           "type": "paragraph",
           "content": "Se usan cuando está activado «El pago contra entrega ya está activo» en Configuración del tema → ECOMS · Carrito. Vacíos = textos normales."
+        },
+        {
+          "type": "checkbox",
+          "id": "cod_only",
+          "label": "Solo pago al recibir (ocultar el botón de agregar)",
+          "info": "Deja como única opción el botón de la app de pago contra entrega (ej.: Releasit). El formulario del producto se mantiene para la app.",
+          "default": false
         },
         {
           "type": "text",
