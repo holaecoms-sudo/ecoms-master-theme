@@ -159,6 +159,10 @@
         "stock",
         "media_features"
       ],
+      "custom_css": [
+        ".ec-buy [data-ec-add] {display: none !important; }",
+        ".ec-buy__h {display: none; }"
+      ],
       "settings": {
         "layout": "direct",
         "columns": "two",
