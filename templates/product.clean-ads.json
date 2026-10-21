@@ -58,17 +58,20 @@
             "buy_now_icon": "bolt",
             "buy_now_label": "Comprar aspiradora ahora",
             "add_label_cod": "Comprar con tarjeta",
-            "buy_now_label_cod": "Pedir ahora y pagar al recibir"
+            "buy_now_label_cod": "Pedir ahora y pagar al recibir",
+            "cod_only": true
           }
         },
         "pack_offer": {
           "type": "pack_offer",
           "settings": {
             "heading": "[pack]: aspiradora + cepillo eléctrico",
-            "note": "El descuento se aplica automáticamente en el carrito.",
+            "note": "Agrega los dos productos y pagas al recibir. El descuento del cepillo ya está incluido.",
             "button_label": "Agregar [pack] · [total]",
             "show_total": true,
-            "or_text": "o ahorra llevando el pack"
+            "or_text": "o ahorra llevando el pack",
+            "button_label_cod": "Pedir [pack] · [total]",
+            "open_cod": true
           }
         },
         "payments": {
@@ -159,10 +162,7 @@
         "stock",
         "media_features"
       ],
-      "custom_css": [
-        ".ec-buy [data-ec-add] {display: none !important;}",
-        ".ec-buy__h {display: none;}"
-      ],
+      "custom_css": [],
       "settings": {
         "layout": "direct",
         "columns": "two",
