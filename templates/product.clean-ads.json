@@ -107,8 +107,7 @@
             "buy_now_icon": "bolt",
             "buy_now_label": "Comprar aspiradora ahora",
             "heading": "Solo la aspiradora",
-            "add_label_cod": "Comprar con tarjeta",
-            "buy_now_label_cod": ""
+            "add_label_cod": "Comprar con tarjeta"
           }
         },
         "payments": {
