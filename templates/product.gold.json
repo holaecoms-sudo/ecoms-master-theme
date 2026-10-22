@@ -91,7 +91,7 @@
       "settings": {
         "layout": "direct",
         "columns": "two",
-        "gallery_mobile": "full",
+        "gallery_mobile": "inset",
         "thumbs": "auto",
         "badge": "",
         "media_tag": "Skincare coreano",
