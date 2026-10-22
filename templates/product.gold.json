@@ -12,6 +12,19 @@
     "main": {
       "type": "ecoms-product",
       "blocks": {
+        "badge_box": {
+          "type": "badge_box",
+          "settings": {
+            "text": "Sérum 🇰🇷 coreano | Pago al recibir"
+          }
+        },
+        "social": {
+          "type": "social",
+          "settings": {
+            "rating": "4,9",
+            "text": "+15.403 Mujeres en Chile🇨🇱 y EEUU 🇺🇸"
+          }
+        },
         "title": {
           "type": "title",
           "settings": {}
@@ -54,6 +67,30 @@
             "text": "<p><strong>Elige 1, 2 o 3 frascos en el siguiente paso.</strong> No pagas nada hoy.</p>"
           }
         },
+        "review_slider": {
+          "type": "review_slider",
+          "settings": {
+            "image_1": "shopify://shop_images/before_after_volufiline_best_2.avif",
+            "text_1": "COOL",
+            "author_1": "fEERNANDA PERES",
+            "place_1": "VIña del mar",
+            "stars_1": 5,
+            "text_2": "",
+            "author_2": "",
+            "place_2": "",
+            "stars_2": 5,
+            "text_3": "",
+            "author_3": "",
+            "place_3": "",
+            "stars_3": 5
+          }
+        },
+        "logos": {
+          "type": "logos",
+          "settings": {
+            "heading": ""
+          }
+        },
         "trust": {
           "type": "trust",
           "settings": {
@@ -70,42 +107,6 @@
             "icon_4": "return",
             "title_4": "Retracto",
             "text_4": "10 días"
-          }
-        },
-        "badge_box": {
-          "type": "badge_box",
-          "settings": {
-            "text": "Sérum 🇰🇷 coreano | Pago al recibir"
-          }
-        },
-        "social": {
-          "type": "social",
-          "settings": {
-            "rating": "",
-            "text": ""
-          }
-        },
-        "review_slider": {
-          "type": "review_slider",
-          "settings": {
-            "text_1": "",
-            "author_1": "",
-            "place_1": "",
-            "stars_1": 5,
-            "text_2": "",
-            "author_2": "",
-            "place_2": "",
-            "stars_2": 5,
-            "text_3": "",
-            "author_3": "",
-            "place_3": "",
-            "stars_3": 5
-          }
-        },
-        "logos": {
-          "type": "logos",
-          "settings": {
-            "heading": ""
           }
         }
       },
