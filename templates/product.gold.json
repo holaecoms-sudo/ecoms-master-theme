@@ -12,12 +12,6 @@
     "main": {
       "type": "ecoms-product",
       "blocks": {
-        "eyebrow": {
-          "type": "eyebrow",
-          "settings": {
-            "text": "Ampolla coreana · 30 ml"
-          }
-        },
         "title": {
           "type": "title",
           "settings": {}
@@ -77,15 +71,54 @@
             "title_4": "Retracto",
             "text_4": "10 días"
           }
+        },
+        "badge_box": {
+          "type": "badge_box",
+          "settings": {
+            "text": "Sérum 🇰🇷 coreano | Pago al recibir"
+          }
+        },
+        "social": {
+          "type": "social",
+          "settings": {
+            "rating": "",
+            "text": ""
+          }
+        },
+        "review_slider": {
+          "type": "review_slider",
+          "settings": {
+            "text_1": "",
+            "author_1": "",
+            "place_1": "",
+            "stars_1": 5,
+            "text_2": "",
+            "author_2": "",
+            "place_2": "",
+            "stars_2": 5,
+            "text_3": "",
+            "author_3": "",
+            "place_3": "",
+            "stars_3": 5
+          }
+        },
+        "logos": {
+          "type": "logos",
+          "settings": {
+            "heading": ""
+          }
         }
       },
       "block_order": [
-        "eyebrow",
+        "badge_box",
+        "social",
         "title",
         "lead",
         "benefits",
         "buy",
         "next",
+        "review_slider",
+        "logos",
         "trust"
       ],
       "settings": {
