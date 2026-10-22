@@ -489,6 +489,25 @@
   // Cash on delivery app (e.g. Releasit): after the pack is in the cart, click the app's cart button (found by
   // its text, preferring the one in the cart drawer) so its form opens with both products. The app renders the
   // button on its own, so wait for it a few seconds; if it never shows, the cart drawer stays open.
+  // Rotating reviews under the buy button: one at a time, every 5 s, dots to jump; stops on interaction.
+  function initReviewSliders() {
+    $$('[data-ec-rsl]').forEach((box) => {
+      if (box.dataset.ecRslOn) return;
+      box.dataset.ecRslOn = '1';
+      const items = $$('.ec-rsl__item', box);
+      const dots = $$('[data-ec-rsl-to]', box);
+      if (items.length < 2) return;
+      let at = 0;
+      const show = (i) => {
+        at = (i + items.length) % items.length;
+        items.forEach((el, n) => { el.hidden = n !== at; });
+        dots.forEach((d, n) => d.setAttribute('aria-current', n === at ? 'true' : 'false'));
+      };
+      let timer = setInterval(() => show(at + 1), 5000);
+      dots.forEach((d) => d.addEventListener('click', () => { clearInterval(timer); show(Number(d.dataset.ecRslTo)); }));
+    });
+  }
+
   function codButton(text, fromCart) {
     const wanted = text.trim().toLowerCase();
     const ours = '[data-ec-add-variant], [data-ec-add], [data-ec-scroll-buy], .ec-packoff, .ec-sticky, .ec-ann';
@@ -666,6 +685,7 @@
     initDelivery(root);
     initCountdowns();
     initSticky();
+    initReviewSliders();
     sync();
   }
 
