@@ -1,0 +1,556 @@
+{
+  "sections": {
+    "main": {
+      "type": "ecoms-product",
+      "blocks": {
+        "eyebrow": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Skincare coreano"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
+        "lead": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Piel más hidratada, firme y luminosa con solo 3 gotas.</strong> Sérum de ampolla coreano con colágeno y péptidos de seda.</p>"
+          }
+        },
+        "benefits": {
+          "type": "benefits",
+          "settings": {
+            "item_1": "Hidratación profunda que se siente desde la primera aplicación",
+            "item_2": "Aspecto más firme y elástico con uso constante",
+            "item_3": "Suaviza la apariencia de las líneas finas de expresión",
+            "item_4": "Piel más luminosa, con un aspecto saludable",
+            "item_5": "Textura ligera: se absorbe rápido y no deja la piel grasosa",
+            "item_6": "Para todo tipo de piel, de día y de noche"
+          }
+        },
+        "buy": {
+          "type": "buy",
+          "settings": {
+            "heading": "",
+            "show_quantity": false,
+            "add_label": "Comprar con tarjeta",
+            "show_total": false,
+            "show_buy_now": false,
+            "buy_now_icon": "bolt",
+            "buy_now_label": "Pedir ahora",
+            "add_label_cod": "Comprar con tarjeta",
+            "cod_only": true
+          }
+        },
+        "next": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Elige 1, 2 o 3 frascos en el siguiente paso.</p>"
+          }
+        },
+        "trust": {
+          "type": "trust",
+          "settings": {
+            "style": "grid",
+            "icon_1": "cash",
+            "title_1": "No pagas nada hoy",
+            "text_1": "Pagas al recibir",
+            "icon_2": "truck",
+            "title_2": "Envíos",
+            "text_2": "A todo Chile",
+            "icon_3": "shield",
+            "title_3": "Garantía legal",
+            "text_3": "6 meses",
+            "icon_4": "return",
+            "title_4": "Retracto",
+            "text_4": "10 días"
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow",
+        "title",
+        "rating",
+        "lead",
+        "benefits",
+        "buy",
+        "next",
+        "trust"
+      ],
+      "settings": {
+        "layout": "direct",
+        "columns": "two",
+        "gallery_mobile": "compact",
+        "thumbs": "auto",
+        "badge": "",
+        "hero_bg": "glow",
+        "media_ratio": "square",
+        "media_fit": "cover",
+        "video_first": false,
+        "video_autoplay": true,
+        "video_loop": true,
+        "sticky": false,
+        "sticky_desktop": false,
+        "sticky_label": "Pedir ahora",
+        "sticky_label_cod": "Pedir y pagar al recibir",
+        "palette": "store",
+        "padding_top": 16,
+        "padding_bottom": 28
+      }
+    },
+    "story": {
+      "type": "ecoms-image-text",
+      "blocks": {
+        "p1": {
+          "type": "point",
+          "settings": {
+            "title": "No reemplaza tu crema: la potencia",
+            "text": "se aplica antes, se absorbe en segundos y deja tu piel lista para el resto de tu rutina"
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "title": "Tres gotas, mañana y noche",
+            "text": "1 minuto al día"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2"
+      ],
+      "settings": {
+        "image_side": "left",
+        "image_full": false,
+        "product_image_index": 2,
+        "heading": "El secreto de la piel coreana no es el maquillaje: es la constancia",
+        "intro": "En Corea el cuidado de la piel es un ritual diario de capas ligeras que hidratan sin pesar. Deep Collagen sigue esa lógica: una ampolla concentrada con colágeno y péptidos de seda que en 1 minuto deja la piel más hidratada, suave y con luz.",
+        "button_label": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "timeline": {
+      "type": "ecoms-stats",
+      "blocks": {
+        "d1": {
+          "type": "stat",
+          "settings": {
+            "icon": "drop",
+            "value": "Día 1",
+            "label": "La piel se siente hidratada y suave apenas lo aplicas"
+          }
+        },
+        "d2": {
+          "type": "stat",
+          "settings": {
+            "icon": "sparkle",
+            "value": "Semana 2",
+            "label": "Una textura más uniforme y un aspecto más descansado"
+          }
+        },
+        "d3": {
+          "type": "stat",
+          "settings": {
+            "icon": "gem",
+            "value": "Semana 4+",
+            "label": "Aspecto más firme y luminoso, con líneas finas que se ven más suaves"
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "d3"
+      ],
+      "settings": {
+        "metafield": "",
+        "style": "dark",
+        "heading": "Lo que notarás con el uso diario",
+        "text": "Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "before_after": {
+      "type": "ecoms-before-after",
+      "disabled": true,
+      "settings": {
+        "heading": "Antes y después",
+        "text": "Fotos reales de clientas, con su permiso.",
+        "before_caption": "Antes",
+        "after_caption": "4 semanas",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "ingredients": {
+      "type": "ecoms-feature-grid",
+      "blocks": {
+        "i1": {
+          "type": "feature",
+          "settings": {
+            "icon": "gem",
+            "heading": "Colágeno",
+            "text": "Ayuda a mantener la piel con un aspecto más firme e hidratado."
+          }
+        },
+        "i2": {
+          "type": "feature",
+          "settings": {
+            "icon": "sparkle",
+            "heading": "Péptidos de seda",
+            "text": "Favorecen una piel de apariencia más suave y uniforme."
+          }
+        },
+        "i3": {
+          "type": "feature",
+          "settings": {
+            "icon": "drop",
+            "heading": "Humectantes",
+            "text": "Retienen la hidratación durante todo el día."
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ],
+      "settings": {
+        "heading": "¿Qué tiene Deep Collagen?",
+        "style": "center",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "comparison": {
+      "type": "ecoms-comparison",
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "feature": "Colágeno + péptidos de seda",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "feature": "Textura ligera, no grasa",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "feature": "Se absorbe en segundos",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "feature": "Apta para todo tipo de piel",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r5": {
+          "type": "row",
+          "settings": {
+            "feature": "Fórmula coreana K-Beauty",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "settings": {
+        "metafield": "",
+        "style": "table",
+        "heading": "¿Por qué Deep Collagen?",
+        "feature_label": "",
+        "col_1": "Deep Collagen",
+        "show_image": true,
+        "col_2": "Crema común",
+        "col_3": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "routine": {
+      "type": "ecoms-steps",
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "icon": "drop",
+            "heading": "Limpia",
+            "text": "Rostro limpio y seco."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "icon": "sparkle",
+            "heading": "3 gotas",
+            "text": "Con el gotero, sobre la piel."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "icon": "hand",
+            "heading": "Masajea",
+            "text": "Hasta que se absorba."
+          }
+        },
+        "s4": {
+          "type": "step",
+          "settings": {
+            "icon": "heart",
+            "heading": "Hidrata",
+            "text": "Sigue con tu crema."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "settings": {
+        "style": "icons",
+        "heading": "Tu rutina de 1 minuto",
+        "text": "Mañana y noche.",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "demo": {
+      "type": "ecoms-demo",
+      "disabled": true,
+      "settings": {
+        "heading": "Míralo en acción",
+        "text": "Videos reales del producto.",
+        "ratio": "portrait",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "lifestyle": {
+      "type": "ecoms-image-text",
+      "settings": {
+        "image_side": "right",
+        "image_full": false,
+        "product_image_index": 3,
+        "heading": "Te van a preguntar qué te hiciste",
+        "intro": "No es maquillaje ni un filtro: es tu piel, bien hidratada, más suave y con luz. Un cambio pequeño en tu rutina que se nota en el espejo.",
+        "button_label": "Pedir y pagar al recibir",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "cod_steps": {
+      "type": "ecoms-steps",
+      "blocks": {
+        "c1": {
+          "type": "step",
+          "settings": {
+            "icon": "bag",
+            "heading": "Pides en 1 minuto",
+            "text": "Solo nombre, teléfono y dirección. Sin tarjeta."
+          }
+        },
+        "c2": {
+          "type": "step",
+          "settings": {
+            "icon": "chat",
+            "heading": "Te confirmamos",
+            "text": "Te contactamos para confirmar y despachamos."
+          }
+        },
+        "c3": {
+          "type": "step",
+          "settings": {
+            "icon": "cash",
+            "heading": "Pagas cuando llega",
+            "text": "Recibes tu Deep Collagen en casa y pagas ahí."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ],
+      "settings": {
+        "style": "icons",
+        "heading": "¿Cómo funciona pagar al recibir?",
+        "text": "En todo Chile y sin costo adicional.",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "reviews": {
+      "type": "ecoms-reviews",
+      "settings": {
+        "metafield": "",
+        "style": "flex",
+        "heading": "Opiniones de clientas",
+        "link_label": "",
+        "source_note": "",
+        "per_page": 6,
+        "write_label": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "faq": {
+      "type": "ecoms-faq",
+      "blocks": {
+        "f1": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo pago?",
+            "answer": "<p>Pagas al recibir tu pedido, en todo Chile y sin costo adicional.</p>",
+            "draft": false
+          }
+        },
+        "f2": {
+          "type": "faq",
+          "settings": {
+            "question": "¿En cuánto tiempo noto resultados?",
+            "answer": "<p>La sensación de hidratación es inmediata. Los cambios de apariencia se notan con uso diario, en general desde las 4 semanas.</p>",
+            "draft": false
+          }
+        },
+        "f3": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuánto dura un frasco?",
+            "answer": "<p>Con 3 gotas mañana y noche, un frasco de 30 ml rinde cerca de 1 mes.</p>",
+            "draft": false
+          }
+        },
+        "f4": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Sirve para piel sensible?",
+            "answer": "<p>Está pensado para todo tipo de piel. Si tu piel es sensible, pruébalo primero en una zona pequeña.</p>",
+            "draft": false
+          }
+        },
+        "f5": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Lo puedo usar con otros productos?",
+            "answer": "<p>Sí. Va después de limpiar y antes de tu crema y protector solar.</p>",
+            "draft": false
+          }
+        },
+        "f6": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuánto demora en llegar?",
+            "answer": "<p>Entre 2 y 5 días hábiles según tu comuna. Te enviamos el seguimiento de tu pedido.</p>",
+            "draft": false
+          }
+        },
+        "f7": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Y si no me gusta?",
+            "answer": "<p>Tienes 10 días de retracto con el producto sin abrir y 6 meses de garantía legal si llega con una falla.</p>",
+            "draft": false
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6",
+        "f7"
+      ],
+      "settings": {
+        "style": "stack",
+        "heading": "Preguntas frecuentes",
+        "text": "",
+        "icon": "chev",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "cta": {
+      "type": "ecoms-cta-band",
+      "settings": {
+        "style": "dark",
+        "eyebrow": "",
+        "heading": "Tu piel, mejor cuidada desde esta noche",
+        "text": "Pídelo hoy y pagas cuando llegue a tu casa.",
+        "image_plain": false,
+        "show_price": false,
+        "button_label": "Pedir y pagar al recibir",
+        "trust_1": "Pagas al recibir",
+        "trust_2": "Envíos a todo Chile",
+        "trust_3": "10 días de retracto",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "story",
+    "timeline",
+    "before_after",
+    "ingredients",
+    "comparison",
+    "routine",
+    "demo",
+    "lifestyle",
+    "cod_steps",
+    "reviews",
+    "faq",
+    "cta"
+  ]
+}
