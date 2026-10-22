@@ -49,8 +49,9 @@
             "show_buy_now": false,
             "buy_now_icon": "bolt",
             "buy_now_label": "Pedir ahora",
+            "cod_only": true,
             "add_label_cod": "Comprar con tarjeta",
-            "cod_only": true
+            "buy_now_label_cod": ""
           }
         },
         "next": {
@@ -93,6 +94,9 @@
         "gallery_mobile": "full",
         "thumbs": "auto",
         "badge": "",
+        "media_tag": "Skincare coreano",
+        "media_title": "Piel más hidratada, firme y luminosa con solo 3 gotas",
+        "media_text": "Colágeno + péptidos de seda en una ampolla ligera",
         "hero_bg": "none",
         "media_ratio": "portrait",
         "media_fit": "cover",
@@ -101,14 +105,32 @@
         "video_loop": true,
         "sticky": false,
         "sticky_desktop": false,
+        "sticky_ship": false,
+        "sticky_save": false,
+        "sticky_early": false,
         "sticky_label": "Pedir ahora",
         "sticky_label_cod": "Pedir y pagar al recibir",
         "palette": "gold",
+        "pal_primary": "",
+        "pal_primary_ink": "",
+        "pal_dark": "",
+        "pal_accent": "",
+        "pal_accent_ink": "",
+        "pal_soft": "",
+        "pal_soft_ink": "",
+        "pal_tag": "",
+        "pal_tag_ink": "",
+        "pal_sale_bg": "",
+        "pal_sale_ink": "",
+        "pal_urgent": "",
+        "pal_urgent_bg": "",
+        "pal_bg": "",
+        "pal_ink": "",
+        "pal_muted": "",
+        "pal_line": "",
+        "pal_deep": "",
         "padding_top": 16,
-        "padding_bottom": 28,
-        "media_tag": "Skincare coreano",
-        "media_title": "Piel más hidratada, firme y luminosa con solo 3 gotas",
-        "media_text": "Colágeno + péptidos de seda en una ampolla ligera"
+        "padding_bottom": 28
       }
     },
     "story": {
@@ -140,6 +162,7 @@
         "heading": "El secreto de la piel coreana no es el maquillaje: es la constancia",
         "intro": "En Corea el cuidado de la piel es un ritual diario de capas ligeras que hidratan sin pesar. Deep Collagen sigue esa lógica: una ampolla concentrada con colágeno y péptidos de seda que en 1 minuto deja la piel más hidratada, suave y con luz.",
         "button_label": "",
+        "button_link": "",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
@@ -387,49 +410,7 @@
         "button_link": "",
         "width": "full",
         "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "cod_steps": {
-      "type": "ecoms-steps",
-      "blocks": {
-        "c1": {
-          "type": "step",
-          "settings": {
-            "icon": "bag",
-            "heading": "Pides en 1 minuto",
-            "text": "Solo nombre, teléfono y dirección. Sin tarjeta."
-          }
-        },
-        "c2": {
-          "type": "step",
-          "settings": {
-            "icon": "chat",
-            "heading": "Te confirmamos",
-            "text": "Te contactamos para confirmar y despachamos."
-          }
-        },
-        "c3": {
-          "type": "step",
-          "settings": {
-            "icon": "cash",
-            "heading": "Pagas cuando llega",
-            "text": "Recibes tu Deep Collagen en casa y pagas ahí."
-          }
-        }
-      },
-      "block_order": [
-        "c1",
-        "c2",
-        "c3"
-      ],
-      "settings": {
-        "style": "numbers",
-        "heading": "¿Cómo funciona pagar al recibir?",
-        "text": "",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 40
       }
     },
     "reviews": {
@@ -439,9 +420,11 @@
         "style": "flex",
         "heading": "Opiniones de clientas",
         "link_label": "",
+        "link": "",
         "source_note": "",
         "per_page": 6,
         "write_label": "",
+        "write_link": "",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
@@ -555,7 +538,6 @@
     "routine",
     "demo",
     "lifestyle",
-    "cod_steps",
     "reviews",
     "faq",
     "cta"
