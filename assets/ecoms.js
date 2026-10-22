@@ -489,16 +489,19 @@
   // Cash on delivery app (e.g. Releasit): after the pack is in the cart, click the app's cart button (found by
   // its text, preferring the one in the cart drawer) so its form opens with both products. The app renders the
   // button on its own, so wait for it a few seconds; if it never shows, the cart drawer stays open.
-  function openCodForm(text) {
+  function codButton(text, fromCart) {
     const wanted = text.trim().toLowerCase();
-    const ours = '[data-ec-add-variant], [data-ec-add], .ec-packoff, .ec-sticky, .ec-ann';
-    const find = () => {
-      const hits = $$('button, a, [role="button"]').filter((el) => {
-        if (el.closest(ours) || !el.offsetParent) return false;
-        return (el.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase() === wanted;
-      });
-      return hits.find((el) => el.closest('cart-drawer, #CartDrawer, .drawer')) || hits[0];
-    };
+    const ours = '[data-ec-add-variant], [data-ec-add], [data-ec-scroll-buy], .ec-packoff, .ec-sticky, .ec-ann';
+    const hits = $$('button, a, [role="button"]').filter((el) => {
+      if (el.closest(ours) || !el.offsetParent) return false;
+      return (el.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase() === wanted;
+    });
+    const inCart = (el) => !!el.closest('cart-drawer, #CartDrawer, .drawer');
+    return hits.find((el) => inCart(el) === !!fromCart) || hits[0];
+  }
+
+  function openCodForm(text) {
+    const find = () => codButton(text, true);
     let tries = 0;
     const timer = setInterval(() => {
       const btn = find();
@@ -588,6 +591,9 @@
 
     const toBuy = t.closest('[data-ec-scroll-buy]');
     if (toBuy) {
+      // With cash on delivery live, page CTAs open the app's form right away (its button sits in the buy box).
+      const cod = toBuy.dataset.ecOpenCod && codButton(toBuy.dataset.ecOpenCod);
+      if (cod) { event.preventDefault(); cod.click(); return; }
       const target = $('[data-ec-packs]') || ecForm();
       if (target) { event.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
       return;

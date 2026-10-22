@@ -93,7 +93,7 @@
                 {%- endfor -%}
               </ul>
               {%- if section.settings.button_label != blank -%}
-                <a href="#" class="ec-btn ec-btn--primary" data-ec-scroll-buy>{{ section.settings.button_label | escape }}</a>
+                <a href="#" class="ec-btn ec-btn--primary" data-ec-scroll-buy{% if settings.ecoms_cod_live %} data-ec-open-cod="{{ settings.ecoms_cod_app_button | escape }}"{% endif %}>{{ section.settings.button_label | escape }}</a>
               {%- endif -%}
             </div>
           </div>
