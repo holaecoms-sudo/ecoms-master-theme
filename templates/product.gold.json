@@ -490,7 +490,18 @@
     },
     "demo": {
       "type": "ecoms-demo",
-      "disabled": true,
+      "blocks": {
+        "media_ydYzrc": {
+          "type": "media",
+          "settings": {
+            "video": "shopify://files/videos/7d1c22e055c240c5a29632faaefe6938.HD-720p-1.6Mbps-75465914.mp4",
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "media_ydYzrc"
+      ],
       "settings": {
         "heading": "Míralo en acción",
         "text": "Videos reales del producto.",
@@ -635,7 +646,7 @@
     "cta": {
       "type": "ecoms-cta-band",
       "settings": {
-        "style": "dark",
+        "style": "soft",
         "eyebrow": "",
         "heading": "Tu piel, mejor cuidada desde esta noche",
         "text": "Pídelo hoy y pagas cuando llegue a tu casa.",
