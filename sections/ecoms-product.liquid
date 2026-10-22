@@ -255,7 +255,7 @@
                   <li>{% render 'ecoms-icon', name: 'check' %}<span>{{ item | escape }}</span></li>
                 {%- endfor -%}
               {%- else -%}
-                {%- for i in (1..4) -%}
+                {%- for i in (1..6) -%}
                   {%- assign key = 'item_' | append: i -%}
                   {%- if block.settings[key] != blank -%}
                     <li>{% render 'ecoms-icon', name: 'check' %}<span>{{ block.settings[key] | escape }}</span></li>
@@ -1260,6 +1260,16 @@
           "type": "text",
           "id": "item_4",
           "label": "Beneficio 4"
+        },
+        {
+          "type": "text",
+          "id": "item_5",
+          "label": "Beneficio 5"
+        },
+        {
+          "type": "text",
+          "id": "item_6",
+          "label": "Beneficio 6"
         }
       ]
     },
