@@ -14,13 +14,6 @@
     "ecoms-footer": {
       "type": "ecoms-footer",
       "blocks": {
-        "brand": {
-          "type": "brand",
-          "settings": {
-            "logo": "shopify://shop_images/ecoms_horizontal_color.png",
-            "text": "<p>Productos que te acompañan en tu día a día.</p>"
-          }
-        },
         "links": {
           "type": "menu",
           "settings": {
@@ -33,32 +26,15 @@
           "settings": {
             "heading": "Métodos de pago"
           }
-        },
-        "social": {
-          "type": "social",
-          "settings": {
-            "heading": "Síguenos"
-          }
-        },
-        "policies": {
-          "type": "policies",
-          "settings": {
-            "heading": "Políticas",
-            "link_label": "Contacto",
-            "link": "/pages/contact"
-          }
         }
       },
       "block_order": [
-        "brand",
         "links",
-        "policies",
-        "pay",
-        "social"
+        "pay"
       ],
       "settings": {
         "style": "light",
-        "legal": "Comercializadora SB SpA · RUT 78.529.134-4",
+        "legal": "",
         "product_focus": true
       }
     }
