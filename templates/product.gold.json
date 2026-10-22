@@ -110,6 +110,8 @@
         "sticky_early": true,
         "sticky_label": "Pedir ahora",
         "sticky_label_cod": "Pedir y pagar al recibir",
+        "sticky_cod": true,
+        "sticky_cod_sub": "Pagas cuando llega",
         "palette": "gold",
         "pal_primary": "",
         "pal_primary_ink": "",
@@ -130,9 +132,73 @@
         "pal_line": "",
         "pal_deep": "",
         "padding_top": 16,
-        "padding_bottom": 28,
-        "sticky_cod": true,
-        "sticky_cod_sub": "Pagas cuando llega"
+        "padding_bottom": 28
+      }
+    },
+    "band": {
+      "type": "ecoms-marquee",
+      "blocks": {
+        "b1": {
+          "type": "text",
+          "settings": {
+            "icon": "sparkle",
+            "text": "Fórmula coreana K-Beauty"
+          }
+        },
+        "b2": {
+          "type": "text",
+          "settings": {
+            "icon": "gem",
+            "text": "Colágeno + péptidos de seda"
+          }
+        },
+        "b3": {
+          "type": "text",
+          "settings": {
+            "icon": "cash",
+            "text": "Pagas al recibir"
+          }
+        },
+        "b4": {
+          "type": "text",
+          "settings": {
+            "icon": "truck",
+            "text": "Envío a todo Chile"
+          }
+        },
+        "b5": {
+          "type": "text",
+          "settings": {
+            "icon": "drop",
+            "text": "Textura ligera, sin grasa"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5"
+      ],
+      "settings": {
+        "style": "band",
+        "heading": "",
+        "speed": 30,
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "press": {
+      "type": "ecoms-marquee",
+      "settings": {
+        "style": "logos",
+        "heading": "Visto en",
+        "speed": 30,
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "story": {
@@ -415,6 +481,44 @@
         "padding_bottom": 40
       }
     },
+    "review_strip": {
+      "type": "ecoms-review-strip",
+      "blocks": {
+        "review_DJrU8T": {
+          "type": "review",
+          "settings": {
+            "author": "",
+            "place": "",
+            "stars": 5,
+            "text": "",
+            "verified": true
+          }
+        },
+        "review_ymKGEy": {
+          "type": "review",
+          "settings": {
+            "author": "Camila R.",
+            "place": "Maipu",
+            "stars": 5,
+            "text": "Muy bueno",
+            "verified": true
+          }
+        }
+      },
+      "block_order": [
+        "review_DJrU8T",
+        "review_ymKGEy"
+      ],
+      "settings": {
+        "count": "+10.050",
+        "count_label": "clientas ya lo usan en Chile",
+        "heading": "Lo que dicen nuestras clientas",
+        "speed": 40,
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "faq": {
       "type": "ecoms-faq",
       "blocks": {
@@ -510,84 +614,6 @@
         "width": "full",
         "padding_top": 0,
         "padding_bottom": 0
-      }
-    },
-    "band": {
-      "type": "ecoms-marquee",
-      "blocks": {
-        "b1": {
-          "type": "text",
-          "settings": {
-            "icon": "sparkle",
-            "text": "Fórmula coreana K-Beauty"
-          }
-        },
-        "b2": {
-          "type": "text",
-          "settings": {
-            "icon": "gem",
-            "text": "Colágeno + péptidos de seda"
-          }
-        },
-        "b3": {
-          "type": "text",
-          "settings": {
-            "icon": "cash",
-            "text": "Pagas al recibir"
-          }
-        },
-        "b4": {
-          "type": "text",
-          "settings": {
-            "icon": "truck",
-            "text": "Envío a todo Chile"
-          }
-        },
-        "b5": {
-          "type": "text",
-          "settings": {
-            "icon": "drop",
-            "text": "Textura ligera, sin grasa"
-          }
-        }
-      },
-      "block_order": [
-        "b1",
-        "b2",
-        "b3",
-        "b4",
-        "b5"
-      ],
-      "settings": {
-        "style": "band",
-        "heading": "",
-        "speed": 30,
-        "width": "full",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "press": {
-      "type": "ecoms-marquee",
-      "settings": {
-        "style": "logos",
-        "heading": "Visto en",
-        "speed": 30,
-        "width": "full",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "review_strip": {
-      "type": "ecoms-review-strip",
-      "settings": {
-        "count": "",
-        "count_label": "clientas ya lo usan en Chile",
-        "heading": "Lo que dicen nuestras clientas",
-        "speed": 40,
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
       }
     }
   },
