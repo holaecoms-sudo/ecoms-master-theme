@@ -14,43 +14,43 @@
     "ecoms-announcement": {
       "type": "ecoms-announcement",
       "blocks": {
-        "m1": {
-          "type": "message",
-          "settings": {
-            "text": "Envíos a todo Chile",
-            "link": "",
-            "icon": "flag_cl"
-          }
-        },
-        "m2": {
-          "type": "message",
-          "settings": {
-            "text": "Compra segura",
-            "link": "",
-            "icon": "lock"
-          }
-        },
-        "m3": {
-          "type": "message",
-          "settings": {
-            "text": "Seguimiento de tu pedido",
-            "link": "",
-            "icon": "box"
-          }
-        },
-        "fs": {
-          "type": "free_shipping",
-          "settings": {
-            "text": "Envío gratis en Santiago desde [local_amount]",
-            "link": "",
-            "icon": "truck"
-          }
-        },
         "cod": {
           "type": "cod",
           "settings": {
             "icon": "cash",
             "text": "Paga al recibir tu pedido",
+            "link": ""
+          }
+        },
+        "fs": {
+          "type": "free_shipping",
+          "settings": {
+            "icon": "truck",
+            "text": "Envío gratis en Santiago desde [local_amount]",
+            "link": ""
+          }
+        },
+        "m1": {
+          "type": "message",
+          "settings": {
+            "icon": "flag_cl",
+            "text": "Envíos a todo Chile",
+            "link": ""
+          }
+        },
+        "m2": {
+          "type": "message",
+          "settings": {
+            "icon": "lock",
+            "text": "Compra segura",
+            "link": ""
+          }
+        },
+        "m3": {
+          "type": "message",
+          "settings": {
+            "icon": "box",
+            "text": "Seguimiento de tu pedido",
             "link": ""
           }
         }
@@ -66,23 +66,24 @@
         "style": "auto",
         "icon": "none",
         "separator": "|",
-        "motion": "marquee_mobile",
-        "speed": 25,
+        "motion": "marquee",
+        "speed": 15,
         "end_at": "",
         "timer_label": "Oferta termina en:"
       }
     },
     "ecoms-header": {
       "type": "ecoms-header",
+      "disabled": true,
       "settings": {
         "menu": "main-menu",
-        "logo_icon": "bag",
-        "logo_height": 32,
-        "social_text": "",
         "menu_visibility": "not_product",
-        "logo_link": "not_product",
         "show_search": false,
-        "show_account": false
+        "show_account": false,
+        "logo_icon": "bag",
+        "logo_link": "not_product",
+        "logo_height": 32,
+        "social_text": ""
       }
     }
   },
