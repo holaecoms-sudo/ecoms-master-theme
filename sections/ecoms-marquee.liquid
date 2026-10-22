@@ -33,8 +33,9 @@
                   {%- endif -%}
                 {%- when 'logo' -%}
                   {%- if block.settings.logo != blank -%}
+                    {%- assign logo_alt = block.settings.name | default: block.settings.logo.alt -%}
                     <li {% if pass == 1 %}{{ block.shopify_attributes }}{% endif %}>
-                      {{ block.settings.logo | image_url: height: 80 | image_tag: loading: 'lazy', height: 40, alt: block.settings.name | default: block.settings.logo.alt, class: 'ec-mq__logo' }}
+                      {{ block.settings.logo | image_url: height: 80 | image_tag: loading: 'lazy', height: 40, alt: logo_alt, class: 'ec-mq__logo' }}
                     </li>
                   {%- elsif request.design_mode and pass == 1 -%}
                     <li {{ block.shopify_attributes }}><span class="ec-mq__ph">Sube el logo de {{ block.settings.name | default: 'un medio' | escape }}</span></li>
