@@ -1,0 +1,43 @@
+/*
+  ECOMS · Gold skin (palette «Gold» in the product section): navy + gold beauty landing.
+  Loaded only on pages whose product section uses that palette; colors come from the palette tokens.
+*/
+.ec-pdp, .ec-sec { --ec-gold-ink: #8A6A00; }
+.ec-sec h2, .ec-sec .ec-h3, .ec-pdp__title { color: var(--ec-dark); }
+.ec-eyebrow { color: var(--ec-gold-ink); }
+
+/* Benefits: navy disc with a gold tick, larger text */
+.ec-pdp .ec-checks { gap: 10px; font-size: 15px; }
+.ec-pdp .ec-checks .ec-i { width: 22px; height: 22px; margin-top: 0; padding: 4px; border-radius: 50%; background: var(--ec-dark); color: var(--ec-accent); stroke-width: 3; }
+
+/* Trust row */
+.ec-pdp .ec-trust4 .ec-i { color: var(--ec-gold-ink); }
+
+/* Cash on delivery button injected by the app (Releasit): match the page CTA */
+.ec-pdp [class*="_rsi-buy-now-button"]:not([class*="hook"]) { min-height: 60px !important; border: 0 !important; border-radius: 14px !important; background: var(--ec-dark) !important; color: #fff !important; box-shadow: 0 12px 24px -14px color-mix(in srgb, var(--ec-dark) 80%, transparent) !important; }
+
+/* Page CTAs */
+.ec-imgtxt__btn { display: flex; justify-content: center; width: 100%; min-height: 54px; border-radius: 14px; background: var(--ec-dark); box-shadow: none; font-size: 16px; }
+@media (min-width: 750px) { .ec-imgtxt__btn { width: auto; padding-inline: 32px; } }
+.ec-imgtxt__media { border-radius: 18px; background: #F3EEDF; }
+.ec-imgtxt__intro { color: var(--ec-muted); font-size: 15px; font-weight: 400; line-height: 1.55; }
+.ec-imgtxt__list { font-size: 14.5px; }
+
+/* Comparison: navy header, gold «us» column title, green ticks, grey dashes */
+.ec-cmp { border-radius: 16px; }
+.ec-cmp thead th, .ec-cmp thead th.us { background: var(--ec-dark); color: #fff; }
+.ec-cmp thead th.us { color: var(--ec-accent); }
+.ec-cmp td.us { background: transparent; }
+.ec-cmp tbody tr:nth-child(even) th, .ec-cmp tbody tr:nth-child(even) td:not(.us) { background: transparent; }
+.ec-cmp .y { color: #0F7A3D; }
+.ec-cmp .n { color: #8A93A3; }
+
+/* FAQ: simple divided list */
+.ec-faq details { margin: 0; border: 0; border-bottom: 1px solid var(--ec-line); border-radius: 0; background: none; }
+.ec-faq summary { padding: 14px 2px; font-size: 15px; font-weight: 700; }
+.ec-faq__a { padding: 0 2px 14px; }
+
+/* Final CTA: navy band with a gold button */
+.ec-ctab--dark { background: var(--ec-dark); }
+.ec-ctab .ec-btn--accent { min-height: 56px; border-radius: 14px; background: var(--ec-accent); color: var(--ec-accent-ink); font-weight: 800; }
+.ec-ctab .ec-btn--accent .ec-i { display: none; }

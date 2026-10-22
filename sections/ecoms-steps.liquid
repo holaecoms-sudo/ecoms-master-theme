@@ -1,6 +1,7 @@
 {%- comment -%} ECOMS · How it works: numbered steps with photos (style "photos") or icons (style "icons", compact). {%- endcomment -%}
 {%- assign style = section.settings.style | default: 'photos' -%}
-<section {% render 'ecoms-section-style', section: section, class: 'ec-steps-sec' %}>
+{%- assign steps_class = 'ec-steps-sec ec-steps-sec--' | append: style -%}
+<section {% render 'ecoms-section-style', section: section, class: steps_class %}>
   <div class="ec-w">
     {%- if section.settings.heading != blank or section.settings.text != blank -%}
       <div class="ec-sec-h">
@@ -11,7 +12,10 @@
     <div class="ec-steps ec-steps--{{ style }}">
       {%- for block in section.blocks -%}
         <figure {{ block.shopify_attributes }}>
-          {%- if style == 'icons' -%}
+          {%- if style == 'cards' or style == 'numbers' -%}
+            <span class="ec-num">{% if style == 'cards' and forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+            <figcaption><b>{{ block.settings.heading | escape }}</b>{% if block.settings.text != blank %}<span>{{ block.settings.text | escape }}</span>{% endif %}</figcaption>
+          {%- elsif style == 'icons' -%}
             <span class="ec-steps__ic">
               {%- if block.settings.image != blank -%}
                 {{ block.settings.image | image_url: width: 160 | image_tag: loading: 'lazy', width: 64, height: 64, alt: '' }}
@@ -51,6 +55,14 @@
         {
           "value": "icons",
           "label": "Íconos compactos"
+        },
+        {
+          "value": "cards",
+          "label": "Tarjetas numeradas (2 columnas)"
+        },
+        {
+          "value": "numbers",
+          "label": "Lista numerada con fondo suave"
         }
       ],
       "default": "photos"
