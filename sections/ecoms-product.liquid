@@ -261,13 +261,13 @@
             <ul class="ec-checks" role="list" {{ block.shopify_attributes }}>
               {%- if benefits_mf != blank -%}
                 {%- for item in benefits_mf -%}
-                  <li>{% render 'ecoms-icon', name: 'check' %}<span>{{ item | escape }}</span></li>
+                  <li>{% render 'ecoms-icon', name: 'check' %}<span>{{ item | escape | replace_first: '**', '<b>' | replace_first: '**', '</b>' }}</span></li>
                 {%- endfor -%}
               {%- else -%}
                 {%- for i in (1..6) -%}
                   {%- assign key = 'item_' | append: i -%}
                   {%- if block.settings[key] != blank -%}
-                    <li>{% render 'ecoms-icon', name: 'check' %}<span>{{ block.settings[key] | escape }}</span></li>
+                    <li>{% render 'ecoms-icon', name: 'check' %}<span>{{ block.settings[key] | escape | replace_first: '**', '<b>' | replace_first: '**', '</b>' }}</span></li>
                   {%- endif -%}
                 {%- endfor -%}
               {%- endif -%}
@@ -709,6 +709,13 @@
       aria-hidden="true"
       inert
     >
+      {%- if section.settings.sticky_cod and settings.ecoms_cod_live -%}
+        {%- comment -%} Pay-on-delivery mode: one full-width button that opens the app's form (no price). {%- endcomment -%}
+        <a href="#" class="ec-btn ec-btn--primary ec-sticky__cod" data-ec-scroll-buy data-ec-open-cod="{{ settings.ecoms_cod_app_button | escape }}">
+          {% render 'ecoms-icon', name: 'truck' %}
+          <span>{{ section.settings.sticky_label_cod | default: settings.ecoms_cod_app_button | escape }}{% if section.settings.sticky_cod_sub != blank %}<small>{{ section.settings.sticky_cod_sub | escape }}</small>{% endif %}</span>
+        </a>
+      {%- else -%}
       {%- if first_media != blank -%}
         {{ first_media.preview_image | image_url: width: 120 | image_tag: class: 'ec-sticky__img', loading: 'lazy', width: 48, height: 48, alt: '' }}
       {%- endif -%}
@@ -781,6 +788,7 @@
           {%- endif -%}
         </span>
       </button>
+      {%- endif -%}
     </div>
   {%- endif -%}
 
@@ -1025,6 +1033,19 @@
       "id": "sticky_label_cod",
       "label": "Texto del botón fijo con pago contra entrega",
       "info": "Ej.: Pedir ahora. Vacío = el texto normal."
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_cod",
+      "label": "Barra fija: solo botón de pagar al recibir",
+      "info": "Con pago al recibir activo: un botón a todo el ancho que abre el formulario, sin precio.",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "sticky_cod_sub",
+      "label": "Barra fija: texto bajo el botón",
+      "info": "Ej.: Pagas cuando llega"
     },
     {
       "type": "header",
