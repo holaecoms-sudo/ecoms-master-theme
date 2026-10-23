@@ -258,7 +258,7 @@
         "p2"
       ],
       "settings": {
-        "image_side": "left",
+        "image_side": "top",
         "image_full": false,
         "product_image_index": 2,
         "heading": "Las coreanas cuidan su piel distinto. Este es uno de sus secretos.",
@@ -361,7 +361,7 @@
       ],
       "settings": {
         "heading": "¿Qué tiene Deep Collagen?",
-        "style": "cards",
+        "style": "editorial",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
@@ -514,7 +514,7 @@
     "lifestyle": {
       "type": "ecoms-image-text",
       "settings": {
-        "image_side": "right",
+        "image_side": "top",
         "image": "shopify://shop_images/6.png",
         "image_full": false,
         "product_image_index": 3,
@@ -662,6 +662,41 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "texture": {
+      "type": "ecoms-image-text",
+      "blocks": {
+        "t1": {
+          "type": "point",
+          "settings": {
+            "title": "Se absorbe en segundos",
+            "text": "no deja la piel pegajosa ni brillante"
+          }
+        },
+        "t2": {
+          "type": "point",
+          "settings": {
+            "title": "Va bajo el maquillaje",
+            "text": "puedes usarlo de día sin problema"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2"
+      ],
+      "settings": {
+        "image_side": "top",
+        "image_full": false,
+        "product_image_index": 4,
+        "heading": "Una textura que tu piel absorbe al instante",
+        "intro": "Los hilos dorados de colágeno se funden al masajear: en segundos la piel queda suave, hidratada y lista para tu crema.",
+        "button_label": "",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -672,6 +707,7 @@
     "timeline",
     "before_after",
     "ingredients",
+    "texture",
     "comparison",
     "routine",
     "demo",
