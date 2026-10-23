@@ -12,12 +12,6 @@
     "main": {
       "type": "ecoms-product",
       "blocks": {
-        "eyebrow": {
-          "type": "eyebrow",
-          "settings": {
-            "text": "Ecoms Clean"
-          }
-        },
         "title": {
           "type": "title",
           "settings": {}
@@ -143,10 +137,43 @@
             "icon_4": "battery",
             "text_4": ""
           }
+        },
+        "badge_box": {
+          "type": "badge_box",
+          "settings": {
+            "text": "Sin cables · 2 en 1 | Paga al recibir"
+          }
+        },
+        "social": {
+          "type": "social",
+          "settings": {
+            "rating": "",
+            "text": ""
+          }
+        },
+        "review_slider": {
+          "type": "review_slider",
+          "settings": {
+            "style": "chat",
+            "heading": "Lo que nos escriben nuestros clientes",
+            "text_1": "",
+            "author_1": "",
+            "place_1": "",
+            "stars_1": 5,
+            "text_2": "",
+            "author_2": "",
+            "place_2": "",
+            "stars_2": 5,
+            "text_3": "",
+            "author_3": "",
+            "place_3": "",
+            "stars_3": 5
+          }
         }
       },
       "block_order": [
-        "eyebrow",
+        "badge_box",
+        "social",
         "title",
         "rating",
         "chips",
@@ -154,6 +181,7 @@
         "price",
         "buy",
         "pack_offer",
+        "review_slider",
         "payments",
         "delivery",
         "trust",
@@ -202,7 +230,8 @@
         "pal_line": "",
         "pal_deep": "",
         "padding_top": 24,
-        "padding_bottom": 32
+        "padding_bottom": 32,
+        "gal_controls": false
       }
     },
     "demo": {
@@ -463,10 +492,78 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "band": {
+      "type": "ecoms-marquee",
+      "blocks": {
+        "b1": {
+          "type": "text",
+          "settings": {
+            "icon": "bolt",
+            "text": "Sin cables"
+          }
+        },
+        "b2": {
+          "type": "text",
+          "settings": {
+            "icon": "hand",
+            "text": "2 en 1: piso y mano"
+          }
+        },
+        "b3": {
+          "type": "text",
+          "settings": {
+            "icon": "cash",
+            "text": "Pagas al recibir"
+          }
+        },
+        "b4": {
+          "type": "text",
+          "settings": {
+            "icon": "truck",
+            "text": "Envío a todo Chile"
+          }
+        },
+        "b5": {
+          "type": "text",
+          "settings": {
+            "icon": "shield",
+            "text": "6 meses de garantía legal"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5"
+      ],
+      "settings": {
+        "style": "band",
+        "heading": "",
+        "speed": 30,
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "review_strip": {
+      "type": "ecoms-review-strip",
+      "settings": {
+        "count": "",
+        "count_label": "clientes ya la usan en Chile",
+        "heading": "Lo que dicen nuestros clientes",
+        "speed": 40,
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "main",
+    "band",
     "demo",
     "keyspecs",
     "anatomy",
@@ -474,6 +571,7 @@
     "problem",
     "tabs",
     "comparison",
+    "review_strip",
     "reviews",
     "ugc",
     "specs",
