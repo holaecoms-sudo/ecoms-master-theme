@@ -145,7 +145,7 @@
         "sticky_desktop": true,
         "sticky_ship": false,
         "sticky_save": false,
-        "sticky_early": false,
+        "sticky_early": true,
         "sticky_label": "Pedir ahora",
         "sticky_label_cod": "Pedir y pagar al recibir",
         "sticky_cod": true,
