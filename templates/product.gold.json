@@ -58,7 +58,9 @@
             "buy_now_label": "Pedir ahora",
             "cod_only": true,
             "add_label_cod": "Comprar con tarjeta",
-            "buy_now_label_cod": ""
+            "buy_now_label_cod": "",
+            "card_label": "Pagar con tarjeta · 10% de descuento",
+            "card_code": "TARJETA10"
           }
         },
         "next": {
