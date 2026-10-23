@@ -1713,3 +1713,13 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 .ec-btn--card .ec-i { width: 18px; height: 18px; }
 .ec-buy .ec-buy__card .ec-btn--card { border-color: var(--ec-dark); background: var(--ec-soft); color: var(--ec-dark); box-shadow: 0 3px 0 var(--ec-dark); }
 .ec-buy .ec-buy__card .ec-btn--card:hover { background: var(--ec-accent); }
+
+/* Rotating reviews · «chat»: message bubble with avatar, like a customer's WhatsApp */
+.ec-rsl__h { margin: 0; color: var(--ec-muted); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.ec-rsl--chat { padding: 12px; border-radius: 16px; background: color-mix(in srgb, var(--ec-soft) 70%, var(--ec-bg)); }
+.ec-rsl--chat .ec-rsl__item { align-items: flex-end; gap: 8px; }
+.ec-rsl--chat .ec-rsl__img { width: 38px; height: 38px; }
+.ec-rsl--chat .ec-rsl__item > div { flex: 1; min-width: 0; }
+.ec-rsl--chat blockquote { position: relative; padding: 10px 12px; border-radius: 16px 16px 16px 4px; background: var(--ec-bg); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08); font-size: 14px; }
+.ec-rsl--chat figcaption { margin-top: 4px; padding: 0 4px; border: 0; font-size: 12px; }
+.ec-rsl--chat .ec-rsl__dots { margin-top: 2px; }
