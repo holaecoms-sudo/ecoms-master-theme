@@ -612,7 +612,7 @@
           "type": "faq",
           "settings": {
             "question": "¿Cómo pago?",
-            "answer": "<p>Pagas al recibir tu pedido, en todo Chile y sin costo adicional.</p>",
+            "answer": "<p>Puedes pagar al recibir tu pedido, en todo Chile y sin costo adicional. Si prefieres pagar ahora, en el formulario eliges <strong>pagar con tarjeta</strong> (Transbank, débito o crédito) y tienes un 10% de descuento extra.</p>",
             "draft": false
           }
         },
@@ -663,6 +663,14 @@
             "answer": "<p>Tienes 10 días de retracto con el producto sin abrir y 6 meses de garantía legal si llega con una falla.</p>",
             "draft": false
           }
+        },
+        "f8": {
+          "type": "faq",
+          "settings": {
+            "question": "¿El envío es gratis?",
+            "answer": "<p>Sí, desde 2 frascos el envío es gratis a todo Chile. Si pides 1 frasco, el envío cuesta $4.000.</p>",
+            "draft": false
+          }
         }
       },
       "block_order": [
@@ -672,6 +680,7 @@
         "f4",
         "f5",
         "f6",
+        "f8",
         "f7"
       ],
       "settings": {
