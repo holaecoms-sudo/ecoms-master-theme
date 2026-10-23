@@ -141,7 +141,7 @@
         "video_first": false,
         "video_autoplay": true,
         "video_loop": true,
-        "sticky": true,
+        "sticky": false,
         "sticky_desktop": true,
         "sticky_ship": false,
         "sticky_save": false,
