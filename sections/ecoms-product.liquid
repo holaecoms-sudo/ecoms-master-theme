@@ -488,6 +488,18 @@
                 </div>
                 <p class="ec-form__error" role="alert" data-ec-form-error hidden></p>
               {%- endform -%}
+              {%- comment -%}
+                Card alternative under the pay-on-delivery button: straight to Shopify checkout with a real
+                discount code (e.g. 10% for paying online). Only when cash on delivery is live.
+              {%- endcomment -%}
+              {%- if settings.ecoms_cod_live and block.settings.card_label != blank and variant.available -%}
+                <div class="ec-buy__card">
+                  <span class="ec-buy__or">o</span>
+                  <button type="button" class="ec-btn ec-btn--block ec-btn--card" data-ec-buy-now data-form="{{ form_id }}"{% if block.settings.card_code != blank %} data-discount="{{ block.settings.card_code | strip | escape }}"{% endif %}>
+                    {% render 'ecoms-icon', name: 'lock' %}<span>{{ block.settings.card_label | escape }}</span>
+                  </button>
+                </div>
+              {%- endif -%}
               <script type="application/json" data-ec-product-json>
                 {{ product | json }}
               </script>
@@ -2016,6 +2028,22 @@
           "id": "buy_now_label_cod",
           "label": "Texto «Comprar ahora»",
           "info": "Ej.: Pedir ahora y pagar al recibir"
+        },
+        {
+          "type": "header",
+          "content": "Pago con tarjeta (con pago al recibir activo)"
+        },
+        {
+          "type": "text",
+          "id": "card_label",
+          "label": "Botón de pago con tarjeta",
+          "info": "Ej.: Pagar con tarjeta · 10% de descuento. Vacío: no se muestra."
+        },
+        {
+          "type": "text",
+          "id": "card_code",
+          "label": "Código de descuento para tarjeta",
+          "info": "Código real creado en Descuentos (ej.: TARJETA10). Se aplica solo al ir al pago."
         }
       ]
     },

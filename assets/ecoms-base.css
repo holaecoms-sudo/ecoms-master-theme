@@ -1704,3 +1704,10 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
   .ec-feat--editorial > div, .ec-feat--editorial > div:last-child { grid-template-columns: 1fr; border-bottom: 0; }
   .ec-feat__n { margin-bottom: 8px; }
 }
+
+/* Card alternative under the pay-on-delivery button */
+.ec-buy__card { display: grid; gap: 8px; margin-top: 10px; }
+.ec-buy__or { display: flex; align-items: center; gap: 10px; color: var(--ec-muted); font-size: 12.5px; }
+.ec-buy__or::before, .ec-buy__or::after { content: ""; flex: 1; height: 1px; background: var(--ec-line); }
+.ec-buy .ec-buy__card .ec-btn--card { display: flex !important; min-height: 50px; border: 1.5px solid var(--ec-ink); border-radius: 14px; background: var(--ec-bg); color: var(--ec-ink); font-weight: 700; }
+.ec-btn--card .ec-i { width: 18px; height: 18px; }

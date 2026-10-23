@@ -636,7 +636,8 @@
       try {
         await postCart(body, false);
         track('ecoms_buy_now', { variant_id: Number(body.get('id')), quantity: Number(body.get('quantity')) });
-        window.location.href = `${window.Shopify?.routes?.root || '/'}checkout`;
+        const code = buyNow.dataset.discount;
+        window.location.href = `${window.Shopify?.routes?.root || '/'}checkout${code ? `?discount=${encodeURIComponent(code)}` : ''}`;
       } catch (e) {
         buyNow.removeAttribute('aria-busy');
         const error = form.querySelector('[data-ec-form-error]');
