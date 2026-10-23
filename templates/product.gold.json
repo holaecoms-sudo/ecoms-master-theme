@@ -71,13 +71,14 @@
           "type": "review_slider",
           "settings": {
             "image_1": "shopify://shop_images/before_after_volufiline_best_2.avif",
-            "text_1": "COOL",
-            "author_1": "fEERNANDA PERES",
+            "text_1": "Me deja la piel súper suave y se absorbe rapidito. Lo uso todas las noches y me gusta mucho cómo deja la piel.",
+            "author_1": "Fernanda M.",
             "place_1": "VIña del mar",
             "stars_1": 5,
-            "text_2": "",
-            "author_2": "",
-            "place_2": "",
+            "image_2": "shopify://shop_images/ampoule_for_page.avif",
+            "text_2": "Tenía mis dudas, pero me sorprendió. No deja la cara grasosa. La textura es exquisita y deja un brillo muy bonito.",
+            "author_2": "Valentina S.",
+            "place_2": "Santiago",
             "stars_2": 5,
             "text_3": "",
             "author_3": "",
@@ -258,9 +259,10 @@
         "p2"
       ],
       "settings": {
-        "image_side": "top",
+        "image_side": "right",
         "image_full": false,
         "product_image_index": 2,
+        "video": "shopify://files/videos/7d1c22e055c240c5a29632faaefe6938.HD-720p-1.6Mbps-75465914.mp4",
         "heading": "Las coreanas cuidan su piel distinto. Este es uno de sus secretos.",
         "intro": "En Corea el cuidado de la piel es un ritual diario de capas ligeras que hidratan sin pesar. Deep Collagen sigue esa lógica: una ampolla concentrada con colágeno y péptidos de seda que en 1 minuto deja tu piel más hidratada, suave y con luz.",
         "button_label": "",
@@ -361,7 +363,42 @@
       ],
       "settings": {
         "heading": "¿Qué tiene Deep Collagen?",
-        "style": "editorial",
+        "style": "cards",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "texture": {
+      "type": "ecoms-image-text",
+      "blocks": {
+        "t1": {
+          "type": "point",
+          "settings": {
+            "title": "Se absorbe en segundos",
+            "text": "no deja la piel pegajosa ni brillante"
+          }
+        },
+        "t2": {
+          "type": "point",
+          "settings": {
+            "title": "Va bajo el maquillaje",
+            "text": "puedes usarlo de día sin problema"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2"
+      ],
+      "settings": {
+        "image_side": "left",
+        "image_full": false,
+        "product_image_index": 4,
+        "heading": "Una textura que tu piel absorbe al instante",
+        "intro": "Los hilos dorados de colágeno se funden al masajear: en segundos la piel queda suave, hidratada y lista para tu crema.",
+        "button_label": "",
+        "button_link": "",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
@@ -514,7 +551,7 @@
     "lifestyle": {
       "type": "ecoms-image-text",
       "settings": {
-        "image_side": "top",
+        "image_side": "right",
         "image": "shopify://shop_images/6.png",
         "image_full": false,
         "product_image_index": 3,
@@ -661,41 +698,6 @@
         "width": "full",
         "padding_top": 0,
         "padding_bottom": 0
-      }
-    },
-    "texture": {
-      "type": "ecoms-image-text",
-      "blocks": {
-        "t1": {
-          "type": "point",
-          "settings": {
-            "title": "Se absorbe en segundos",
-            "text": "no deja la piel pegajosa ni brillante"
-          }
-        },
-        "t2": {
-          "type": "point",
-          "settings": {
-            "title": "Va bajo el maquillaje",
-            "text": "puedes usarlo de día sin problema"
-          }
-        }
-      },
-      "block_order": [
-        "t1",
-        "t2"
-      ],
-      "settings": {
-        "image_side": "top",
-        "image_full": false,
-        "product_image_index": 4,
-        "heading": "Una textura que tu piel absorbe al instante",
-        "intro": "Los hilos dorados de colágeno se funden al masajear: en segundos la piel queda suave, hidratada y lista para tu crema.",
-        "button_label": "",
-        "button_link": "",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
       }
     }
   },
