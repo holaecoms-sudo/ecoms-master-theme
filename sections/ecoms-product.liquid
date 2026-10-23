@@ -180,7 +180,7 @@
           {%- if section.settings.badge != blank -%}
             <span class="ec-gal__badge ec-tag">{{ section.settings.badge | escape }}</span>
           {%- endif -%}
-          {%- if media_count > 1 -%}
+          {%- if media_count > 1 and section.settings.gal_controls -%}
             <button type="button" class="ec-gal__arrow ec-gal__arrow--prev" data-ec-gal-step="-1" aria-label="Imagen anterior">
               {% render 'ecoms-icon', name: 'chev-l' %}
             </button>
@@ -988,6 +988,13 @@
         }
       ],
       "default": "auto"
+    },
+    {
+      "type": "checkbox",
+      "id": "gal_controls",
+      "label": "Flechas y contador de fotos (1/10)",
+      "info": "Desactívalo para una galería más limpia: se cambia de foto deslizando o con las miniaturas.",
+      "default": true
     },
     {
       "type": "text",
