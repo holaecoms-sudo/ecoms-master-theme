@@ -1711,3 +1711,5 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 .ec-buy__or::before, .ec-buy__or::after { content: ""; flex: 1; height: 1px; background: var(--ec-line); }
 .ec-buy .ec-buy__card .ec-btn--card { display: flex !important; min-height: 50px; border: 1.5px solid var(--ec-ink); border-radius: 14px; background: var(--ec-bg); color: var(--ec-ink); font-weight: 700; }
 .ec-btn--card .ec-i { width: 18px; height: 18px; }
+.ec-buy .ec-buy__card .ec-btn--card { border-color: var(--ec-dark); background: var(--ec-soft); color: var(--ec-dark); box-shadow: 0 3px 0 var(--ec-dark); }
+.ec-buy .ec-buy__card .ec-btn--card:hover { background: var(--ec-accent); }

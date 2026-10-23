@@ -493,7 +493,7 @@
                 discount code (e.g. 10% for paying online). Only when cash on delivery is live.
               {%- endcomment -%}
               {%- if settings.ecoms_cod_live and block.settings.card_label != blank and variant.available -%}
-                <div class="ec-buy__card">
+                <div class="ec-buy__card"{% if block.settings.card_code != blank %} data-ec-card-code="{{ block.settings.card_code | strip | escape }}" data-ec-card-match="pagar con tarjeta"{% endif %}>
                   <span class="ec-buy__or">o</span>
                   <button type="button" class="ec-btn ec-btn--block ec-btn--card" data-ec-buy-now data-form="{{ form_id }}"{% if block.settings.card_code != blank %} data-discount="{{ block.settings.card_code | strip | escape }}"{% endif %}>
                     {% render 'ecoms-icon', name: 'lock' %}<span>{{ block.settings.card_label | escape }}</span>

@@ -489,6 +489,19 @@
   // Cash on delivery app (e.g. Releasit): after the pack is in the cart, click the app's cart button (found by
   // its text, preferring the one in the cart drawer) so its form opens with both products. The app renders the
   // button on its own, so wait for it a few seconds; if it never shows, the cart drawer stays open.
+  // Card button inside the pay-on-delivery app (e.g. Releasit «Pagar con tarjeta»): the app sends the shopper to
+  // Shopify checkout without our discount, so store the page's card code for the checkout session first.
+  document.addEventListener('click', (event) => {
+    const holder = $('[data-ec-card-code]');
+    const el = event.target.closest('button, a, [role="button"]');
+    if (!holder || !el || el.closest('[data-ec-buy-now]')) return;
+    const text = (el.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase();
+    if (!text.startsWith(holder.dataset.ecCardMatch || 'pagar con tarjeta')) return;
+    const code = encodeURIComponent(holder.dataset.ecCardCode);
+    document.cookie = `discount_code=${code}; path=/; max-age=3600; SameSite=Lax`;
+    fetch(`${window.Shopify?.routes?.root || '/'}discount/${code}`, { credentials: 'same-origin', keepalive: true }).catch(() => {});
+  }, true);
+
   // Rotating reviews under the buy button: one at a time, every 5 s, dots to jump; stops on interaction.
   function initReviewSliders() {
     $$('[data-ec-rsl]').forEach((box) => {
