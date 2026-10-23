@@ -422,13 +422,18 @@
 
   /* ---------- Sticky add to cart ---------- */
   let stickyObserver;
+  let stickyUpdate = null;
+  let stickyScrollBound = false;
   function initSticky() {
     const sticky = $('[data-ec-sticky]');
     stickyObserver?.disconnect();
     if (!sticky) return;
     const ec = ecForm();
     const id = dawnInfo()?.dataset.section;
-    const target = ec ? ec.querySelector('[data-ec-add]') : id && document.getElementById(`ProductSubmitButton-${id}`);
+    // With «solo pago al recibir» our add button is hidden and the COD app's button sits in the buy block,
+    // so watch the whole buy block instead (a hidden element never counts as on screen).
+    const add = ec && ec.querySelector('[data-ec-add]');
+    const target = ec ? (add && add.offsetParent ? add : ec.closest('.ec-buy') || ec) : id && document.getElementById(`ProductSubmitButton-${id}`);
     if (!target) return;
     const setVisible = (on) => {
       sticky.classList.toggle('is-on', on);
@@ -438,10 +443,21 @@
     };
     // «Desde que carga» (mobile only): also show it while the buy button is still below the screen.
     const early = sticky.hasAttribute('data-ec-sticky-early') && window.matchMedia('(max-width: 989px)').matches;
+    // Never on first paint: only once the shopper has scrolled, and never while the buy button is on screen.
+    let inView = true;
+    let below = false;
+    const update = () => setVisible(!inView && (!below || (early && window.scrollY > 120)));
+    stickyUpdate = update;
     stickyObserver = new IntersectionObserver(([entry]) => {
-      setVisible(!entry.isIntersecting && (entry.boundingClientRect.top < 0 || early));
+      inView = entry.isIntersecting;
+      below = entry.boundingClientRect.top > 0;
+      update();
     });
     stickyObserver.observe(target);
+    if (!stickyScrollBound) {
+      stickyScrollBound = true;
+      window.addEventListener('scroll', () => stickyUpdate && stickyUpdate(), { passive: true });
+    }
   }
 
   /* ---------- Cart ---------- */
