@@ -56,18 +56,6 @@
             "cod_only": true
           }
         },
-        "pack_offer": {
-          "type": "pack_offer",
-          "settings": {
-            "heading": "[pack]: aspiradora + cepillo eléctrico",
-            "note": "Agrega los dos productos y pagas al recibir. El descuento del cepillo ya está incluido.",
-            "button_label": "Agregar [pack] · [total]",
-            "show_total": true,
-            "or_text": "o ahorra llevando el pack",
-            "button_label_cod": "Pedir [pack] · [total]",
-            "open_cod": true
-          }
-        },
         "payments": {
           "type": "payments",
           "settings": {
@@ -89,18 +77,18 @@
           "type": "trust",
           "settings": {
             "style": "grid",
-            "icon_1": "truck",
-            "title_1": "Envíos",
-            "text_1": "A todo Chile",
-            "icon_2": "lock",
-            "title_2": "Pago seguro",
-            "text_2": "Tarjeta o al recibir",
-            "icon_3": "box",
-            "title_3": "Seguimiento",
-            "text_3": "De tu pedido",
-            "icon_4": "return",
-            "title_4": "Cambios",
-            "text_4": "10 días de retracto"
+            "icon_1": "cash",
+            "title_1": "Pagas al recibir",
+            "text_1": "Sin tarjeta",
+            "icon_2": "chat",
+            "title_2": "Te confirmamos",
+            "text_2": "Antes del despacho",
+            "icon_3": "return",
+            "title_3": "10 días",
+            "text_3": "de retracto",
+            "icon_4": "shield",
+            "title_4": "6 meses",
+            "text_4": "de garantía legal"
           }
         },
         "sub": {
@@ -169,6 +157,12 @@
             "place_3": "",
             "stars_3": 5
           }
+        },
+        "next": {
+          "type": "text",
+          "settings": {
+            "text": "<p>En el formulario puedes sumar el <strong>cepillo eléctrico a $15.000</strong> (antes $18.990). No pagas nada hoy.</p>"
+          }
         }
       },
       "block_order": [
@@ -180,11 +174,11 @@
         "buybox",
         "price",
         "buy",
-        "pack_offer",
+        "next",
         "review_slider",
-        "payments",
         "delivery",
         "trust",
+        "payments",
         "sub",
         "benefits",
         "stock",
