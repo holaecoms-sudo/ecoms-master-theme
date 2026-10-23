@@ -1681,3 +1681,26 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 .ec-logos__h { margin: 0 0 8px; color: var(--ec-muted); font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; text-align: center; text-transform: uppercase; }
 .ec-logos ul { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-around; gap: 12px 20px; margin: 0; padding: 0; list-style: none; }
 .ec-logos img { display: block; width: auto; height: 26px; max-width: 110px; object-fit: contain; }
+
+/* Image + text · «top»: photo/video full width on top, centered copy below (long-form landing rhythm) */
+.ec-imgtxt--top { grid-template-columns: 1fr !important; max-width: 760px; gap: 18px; text-align: center; }
+.ec-imgtxt--top .ec-imgtxt__media { order: 0; border-radius: 18px; }
+.ec-imgtxt--top .ec-imgtxt__media img, .ec-imgtxt--top .ec-imgtxt__media video, .ec-imgtxt--top .ec-imgtxt__media svg { aspect-ratio: 1 / 1; max-height: 560px; }
+.ec-imgtxt--top .ec-imgtxt__list { justify-items: center; }
+.ec-imgtxt--top .ec-imgtxt__list li { text-align: left; max-width: 560px; }
+.ec-imgtxt--top .ec-imgtxt__btn { margin-inline: auto; }
+@media (min-width: 750px) { .ec-imgtxt--top .ec-imgtxt__media img, .ec-imgtxt--top .ec-imgtxt__media video, .ec-imgtxt--top .ec-imgtxt__media svg { aspect-ratio: 16 / 10; } }
+
+/* Feature grid · «editorial»: big thin numbers, optional photo, hairline dividers — no icon tiles */
+.ec-feat--editorial { grid-template-columns: 1fr; gap: 0; max-width: 980px; margin: 0 auto; }
+.ec-feat--editorial > div { display: grid; grid-template-columns: auto 1fr; column-gap: 16px; align-items: start; padding: 16px 0; border-top: 1px solid var(--ec-line); }
+.ec-feat--editorial > div:last-child { border-bottom: 1px solid var(--ec-line); }
+.ec-feat--editorial .ec-feat__img { grid-column: 1 / -1; width: 100%; aspect-ratio: 4 / 3; margin-bottom: 12px; border-radius: 14px; object-fit: cover; }
+.ec-feat__n { color: var(--ec-accent); font-family: var(--font-heading-family); font-size: 34px; font-weight: 300; line-height: 1; letter-spacing: -0.02em; }
+.ec-feat--editorial b { margin-bottom: 4px; font-size: 17px; }
+.ec-feat--editorial span:not(.ec-feat__n) { font-size: 14px; line-height: 1.5; }
+@media (min-width: 750px) {
+  .ec-feat--editorial { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 28px; }
+  .ec-feat--editorial > div, .ec-feat--editorial > div:last-child { grid-template-columns: 1fr; border-bottom: 0; }
+  .ec-feat__n { margin-bottom: 8px; }
+}

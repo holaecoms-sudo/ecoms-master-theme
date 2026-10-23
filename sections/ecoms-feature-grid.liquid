@@ -7,7 +7,14 @@
     <div class="ec-feat ec-feat--{{ section.settings.style }}">
       {%- for block in section.blocks -%}
         <div {{ block.shopify_attributes }}>
+          {%- if section.settings.style == 'editorial' -%}
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '300,500,700', sizes: '(min-width: 750px) 33vw, 100vw', class: 'ec-feat__img', alt: block.settings.heading }}
+            {%- endif -%}
+            <span class="ec-feat__n">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+          {%- else -%}
           <span class="ec-ic">{% render 'ecoms-icon', name: block.settings.icon %}</span>
+          {%- endif -%}
           <div>
             <b>{{ block.settings.heading | escape }}</b>
             {%- if block.settings.text != blank -%}
@@ -46,6 +53,10 @@
         {
           "value": "cards",
           "label": "Tarjetas"
+        },
+        {
+          "value": "editorial",
+          "label": "Editorial: números y fotos, sin íconos"
         }
       ],
       "default": "row"
@@ -251,6 +262,12 @@
           "id": "text",
           "label": "Detalle",
           "default": "Explica el beneficio en una línea."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Foto (estilo editorial)",
+          "info": "Ej.: textura del sérum, gotero, ingrediente. Opcional."
         }
       ]
     }
