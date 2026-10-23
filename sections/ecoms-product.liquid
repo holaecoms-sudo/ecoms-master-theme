@@ -492,13 +492,18 @@
                 Card alternative under the pay-on-delivery button: straight to Shopify checkout with a real
                 discount code (e.g. 10% for paying online). Only when cash on delivery is live.
               {%- endcomment -%}
-              {%- if settings.ecoms_cod_live and block.settings.card_label != blank and variant.available -%}
-                <div class="ec-buy__card"{% if block.settings.card_code != blank %} data-ec-card-code="{{ block.settings.card_code | strip | escape }}" data-ec-card-match="pagar con tarjeta"{% endif %}>
-                  <span class="ec-buy__or">o</span>
-                  <button type="button" class="ec-btn ec-btn--block ec-btn--card" data-ec-buy-now data-form="{{ form_id }}"{% if block.settings.card_code != blank %} data-discount="{{ block.settings.card_code | strip | escape }}"{% endif %}>
-                    {% render 'ecoms-icon', name: 'lock' %}<span>{{ block.settings.card_label | escape }}</span>
-                  </button>
-                </div>
+              {%- if settings.ecoms_cod_live and variant.available -%}
+                {%- if block.settings.card_code != blank -%}
+                  <span hidden data-ec-card-code="{{ block.settings.card_code | strip | escape }}" data-ec-card-match="pagar con tarjeta"></span>
+                {%- endif -%}
+                {%- if block.settings.card_label != blank -%}
+                  <div class="ec-buy__card">
+                    <span class="ec-buy__or">o</span>
+                    <button type="button" class="ec-btn ec-btn--block ec-btn--card" data-ec-buy-now data-form="{{ form_id }}"{% if block.settings.card_code != blank %} data-discount="{{ block.settings.card_code | strip | escape }}"{% endif %}>
+                      {% render 'ecoms-icon', name: 'lock' %}<span>{{ block.settings.card_label | escape }}</span>
+                    </button>
+                  </div>
+                {%- endif -%}
               {%- endif -%}
               <script type="application/json" data-ec-product-json>
                 {{ product | json }}
@@ -2053,7 +2058,7 @@
           "type": "text",
           "id": "card_code",
           "label": "Código de descuento para tarjeta",
-          "info": "Código real creado en Descuentos (ej.: TARJETA10). Se aplica solo al ir al pago."
+          "info": "Código real creado en Descuentos (ej.: TARJETA10). Se aplica al pagar con tarjeta, también desde el botón de tarjeta de la app de pago al recibir, aunque el botón de arriba esté vacío."
         }
       ]
     },
