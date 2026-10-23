@@ -15,7 +15,7 @@
         "badge_box": {
           "type": "badge_box",
           "settings": {
-            "text": "Sérum 🇰🇷 coreano | Pago al recibir"
+            "text": "Sérum 🇰🇷 coreano | Envío Gratis. «Stock limitado»"
           }
         },
         "social": {
@@ -515,6 +515,7 @@
       "type": "ecoms-image-text",
       "settings": {
         "image_side": "right",
+        "image": "shopify://shop_images/6.png",
         "image_full": false,
         "product_image_index": 3,
         "heading": "Te van a preguntar qué te hiciste. Tú decides si contarles.",
@@ -650,6 +651,7 @@
         "eyebrow": "",
         "heading": "Tu piel, mejor cuidada desde esta noche",
         "text": "Pídelo hoy y pagas cuando llegue a tu casa.",
+        "image": "shopify://shop_images/5.png",
         "image_plain": false,
         "show_price": false,
         "button_label": "Pedir y pagar al recibir",
