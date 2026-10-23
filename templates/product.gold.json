@@ -135,7 +135,7 @@
         "media_title": "Piel más firme, hidratada y luminosa con solo 3 gotas",
         "media_text": "Ampolla coreana con colágeno y péptidos de seda",
         "hero_bg": "none",
-        "media_ratio": "portrait",
+        "media_ratio": "square",
         "media_fit": "cover",
         "video_first": false,
         "video_autoplay": true,
