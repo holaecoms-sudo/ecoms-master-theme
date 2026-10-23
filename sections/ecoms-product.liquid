@@ -164,6 +164,14 @@
                         alt: img_alt
                     }}
                 {%- endcase -%}
+                {%- comment -%} Headline over the first photos only (later ones usually carry their own text). {%- endcomment -%}
+                {%- if section.settings.media_title != blank and forloop.index <= section.settings.media_over_count -%}
+                  <div class="ec-gal__over">
+                    {%- if section.settings.media_tag != blank -%}<span class="ec-gal__over-tag">{{ section.settings.media_tag | escape }}</span>{%- endif -%}
+                    <p class="ec-gal__over-h">{{ section.settings.media_title | escape }}</p>
+                    {%- if section.settings.media_text != blank -%}<p class="ec-gal__over-t">{{ section.settings.media_text | escape }}</p>{%- endif -%}
+                  </div>
+                {%- endif -%}
               </div>
             {%- else -%}
               <div class="ec-gal__slide">{{ 'product-1' | placeholder_svg_tag: 'ec-placeholder' }}</div>
@@ -171,14 +179,6 @@
           </div>
           {%- if section.settings.badge != blank -%}
             <span class="ec-gal__badge ec-tag">{{ section.settings.badge | escape }}</span>
-          {%- endif -%}
-          {%- comment -%} Headline over the photo (landing style), on a dark gradient at the bottom. {%- endcomment -%}
-          {%- if section.settings.media_title != blank -%}
-            <div class="ec-gal__over">
-              {%- if section.settings.media_tag != blank -%}<span class="ec-gal__over-tag">{{ section.settings.media_tag | escape }}</span>{%- endif -%}
-              <p class="ec-gal__over-h">{{ section.settings.media_title | escape }}</p>
-              {%- if section.settings.media_text != blank -%}<p class="ec-gal__over-t">{{ section.settings.media_text | escape }}</p>{%- endif -%}
-            </div>
           {%- endif -%}
           {%- if media_count > 1 -%}
             <button type="button" class="ec-gal__arrow ec-gal__arrow--prev" data-ec-gal-step="-1" aria-label="Imagen anterior">
@@ -1006,6 +1006,16 @@
       "type": "text",
       "id": "media_text",
       "label": "Titular sobre la foto: bajada"
+    },
+    {
+      "type": "range",
+      "id": "media_over_count",
+      "label": "Titular sobre la foto: en cuántas fotos",
+      "info": "Solo en las primeras fotos; las siguientes suelen traer su propio texto.",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 2
     },
     {
       "type": "select",
