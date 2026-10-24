@@ -180,10 +180,10 @@
     "demo": {
       "type": "ecoms-demo",
       "settings": {
-        "mode": "player",
         "heading": "",
         "text": "",
         "ratio": "story",
+        "mode": "player",
         "width": "full",
         "padding_top": 28,
         "padding_bottom": 24
