@@ -1675,6 +1675,8 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 .ec-rsl__who { display: inline-flex; align-items: center; gap: 4px; }
 .ec-rsl__who .ec-i { width: 15px; height: 15px; color: var(--ec-accent); }
 .ec-rsl figcaption .ec-stars { --ec-star: #F5B700; }
+.ec-rsl__vid { display: block; width: 100%; max-height: 260px; margin-bottom: 6px; border-radius: 14px; background: #000; object-fit: cover; }
+.ec-rs__vid { aspect-ratio: 3 / 4; background: #000; }
 .ec-rsl__dots { display: flex; justify-content: center; gap: 6px; }
 .ec-rsl__dots button { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%; background: var(--ec-line); cursor: pointer; }
 .ec-rsl__dots button[aria-current="true"] { background: var(--ec-ink); }

@@ -1,11 +1,11 @@
 {%- comment -%}
   ECOMS · Moving review cards (auto-scroll, pauses on touch/hover). Only real, authorised reviews: the
-  section stays hidden on the storefront until a review has text. Optional real customer count on top.
+  section stays hidden on the storefront until a review has text or a video. Optional real customer count on top.
 {%- endcomment -%}
 {%- liquid
   assign real = 0
   for block in section.blocks
-    if block.settings.text != blank
+    if block.settings.text != blank or block.settings.video != blank
       assign real = real | plus: 1
     endif
   endfor
@@ -27,16 +27,18 @@
       {%- for pass in (1..2) -%}
         <ul class="ec-mq__list ec-rs__list" role="list"{% if pass == 2 %} aria-hidden="true"{% endif %}>
           {%- for block in section.blocks -%}
-            {%- if block.settings.text == blank -%}
-              {%- if request.design_mode and pass == 1 -%}<li class="ec-rs__card ec-rs__card--ph" {{ block.shopify_attributes }}>Reseña vacía: escribe una reseña real.</li>{%- endif -%}
+            {%- if block.settings.text == blank and block.settings.video == blank -%}
+              {%- if request.design_mode and pass == 1 -%}<li class="ec-rs__card ec-rs__card--ph" {{ block.shopify_attributes }}>Reseña vacía: escribe una reseña real o sube un video.</li>{%- endif -%}
               {%- continue -%}
             {%- endif -%}
             <li class="ec-rs__card" {% if pass == 1 %}{{ block.shopify_attributes }}{% endif %}>
-              {%- if block.settings.image != blank -%}
+              {%- if block.settings.video != blank -%}
+                {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, preload: 'none', image_size: '480x', class: 'ec-rs__img ec-rs__vid' }}
+              {%- elsif block.settings.image != blank -%}
                 {{ block.settings.image | image_url: width: 480 | image_tag: loading: 'lazy', class: 'ec-rs__img', alt: '' }}
               {%- endif -%}
               <span class="ec-stars" style="--s: 15px; --r: {{ block.settings.stars | times: 20 }}%" role="img" aria-label="{{ block.settings.stars }} de 5 estrellas"></span>
-              <p class="ec-rs__t">{{ block.settings.text | escape }}</p>
+              {%- if block.settings.text != blank -%}<p class="ec-rs__t">{{ block.settings.text | escape }}</p>{%- endif -%}
               <p class="ec-rs__a">
                 <b>{{ block.settings.author | escape }}</b>{% if block.settings.place != blank %} · {{ block.settings.place | escape }}{% endif %}
                 {%- if block.settings.verified -%}<span class="ec-rs__v">{% render 'ecoms-icon', name: 'verified' %}Compra verificada</span>{%- endif -%}
@@ -127,6 +129,7 @@
         { "type": "range", "id": "stars", "label": "Estrellas", "min": 1, "max": 5, "step": 1, "default": 5 },
         { "type": "textarea", "id": "text", "label": "Reseña" },
         { "type": "image_picker", "id": "image", "label": "Foto de la clienta (con permiso)" },
+        { "type": "video", "id": "video", "label": "Video de la clienta (con permiso)", "info": "Corto y vertical. Se reproduce solo, sin sonido, en lugar de la foto." },
         { "type": "checkbox", "id": "verified", "label": "Compra verificada", "default": true }
       ]
     }

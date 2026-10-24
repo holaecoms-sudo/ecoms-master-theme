@@ -267,7 +267,8 @@
             {%- assign rsl_n = 0 -%}
             {%- for i in (1..3) -%}
               {%- assign k = 'text_' | append: i -%}
-              {%- if block.settings[k] != blank -%}{%- assign rsl_n = rsl_n | plus: 1 -%}{%- endif -%}
+              {%- assign kv = 'video_' | append: i -%}
+              {%- if block.settings[k] != blank or block.settings[kv] != blank -%}{%- assign rsl_n = rsl_n | plus: 1 -%}{%- endif -%}
             {%- endfor -%}
             {%- if rsl_n > 0 -%}
               <div class="ec-rsl ec-rsl--{{ block.settings.style | default: 'quote' }}" data-ec-rsl {{ block.shopify_attributes }}>
@@ -280,14 +281,18 @@
                     assign k_place = 'place_' | append: i
                     assign k_img = 'image_' | append: i
                     assign k_stars = 'stars_' | append: i
+                    assign k_video = 'video_' | append: i
                   -%}
-                  {%- if block.settings[k_text] == blank -%}{%- continue -%}{%- endif -%}
+                  {%- if block.settings[k_text] == blank and block.settings[k_video] == blank -%}{%- continue -%}{%- endif -%}
                   <figure class="ec-rsl__item"{% if rsl_i > 0 %} hidden{% endif %}>
                     {%- if block.settings[k_img] != blank -%}
                       {{ block.settings[k_img] | image_url: width: 120 | image_tag: loading: 'lazy', width: 52, height: 52, alt: '', class: 'ec-rsl__img' }}
                     {%- endif -%}
                     <div>
-                      <blockquote>{{ block.settings[k_text] | escape }}</blockquote>
+                      {%- if block.settings[k_video] != blank -%}
+                        {{ block.settings[k_video] | video_tag: autoplay: false, loop: true, muted: true, playsinline: true, controls: false, preload: 'none', image_size: '400x', class: 'ec-rsl__vid' }}
+                      {%- endif -%}
+                      {%- if block.settings[k_text] != blank -%}<blockquote>{{ block.settings[k_text] | escape }}</blockquote>{%- endif -%}
                       <figcaption>
                         <span class="ec-rsl__who">{% render 'ecoms-icon', name: 'verified' %}{{ block.settings[k_author] | escape }}{% if block.settings[k_place] != blank %}, {{ block.settings[k_place] | escape }}{% endif %}</span>
                         <span class="ec-stars" style="--s: 13px; --r: {{ block.settings[k_stars] | times: 20 }}%" role="img" aria-label="{{ block.settings[k_stars] }} de 5 estrellas"></span>
@@ -1385,7 +1390,7 @@
       "settings": [
         {
           "type": "paragraph",
-          "content": "Hasta 3 reseñas reales que rotan solas bajo el botón. Sin texto: no se muestra."
+          "content": "Hasta 3 reseñas reales que rotan solas bajo el botón, con texto, video o ambos. Vacías: no se muestran."
         },
         {
           "type": "select",
@@ -1417,6 +1422,12 @@
           "type": "image_picker",
           "id": "image_1",
           "label": "Foto de la clienta (con permiso)"
+        },
+        {
+          "type": "video",
+          "id": "video_1",
+          "label": "Video de la clienta (con permiso)",
+          "info": "Corto. Se reproduce solo, sin sonido."
         },
         {
           "type": "textarea",
@@ -1453,6 +1464,12 @@
           "label": "Foto de la clienta (con permiso)"
         },
         {
+          "type": "video",
+          "id": "video_2",
+          "label": "Video de la clienta (con permiso)",
+          "info": "Corto. Se reproduce solo, sin sonido."
+        },
+        {
           "type": "textarea",
           "id": "text_2",
           "label": "Reseña"
@@ -1485,6 +1502,12 @@
           "type": "image_picker",
           "id": "image_3",
           "label": "Foto de la clienta (con permiso)"
+        },
+        {
+          "type": "video",
+          "id": "video_3",
+          "label": "Video de la clienta (con permiso)",
+          "info": "Corto. Se reproduce solo, sin sonido."
         },
         {
           "type": "textarea",

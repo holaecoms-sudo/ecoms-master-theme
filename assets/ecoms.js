@@ -525,11 +525,17 @@
       box.dataset.ecRslOn = '1';
       const items = $$('.ec-rsl__item', box);
       const dots = $$('[data-ec-rsl-to]', box);
+      const first = items[0] && $('video', items[0]);
+      if (first) first.play().catch(() => {});
       if (items.length < 2) return;
       let at = 0;
       const show = (i) => {
         at = (i + items.length) % items.length;
-        items.forEach((el, n) => { el.hidden = n !== at; });
+        items.forEach((el, n) => {
+          el.hidden = n !== at;
+          const v = $('video', el);
+          if (v) n === at ? v.play().catch(() => {}) : v.pause();
+        });
         dots.forEach((d, n) => d.setAttribute('aria-current', n === at ? 'true' : 'false'));
       };
       let timer = setInterval(() => show(at + 1), 5000);
