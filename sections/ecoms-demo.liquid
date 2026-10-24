@@ -2,7 +2,8 @@
   ECOMS · Míralo en acción: short product videos (muted loop, like a GIF but lighter), GIFs or photos of the
   product in use. Per product from metafields ecoms.demo_media (list of files: video or image) and
   ecoms.demo_captions (one caption per file, same order); otherwise from the section blocks. Hidden when empty.
-  Videos only load and play while on screen, so the page stays fast for ad traffic.
+  Videos only load and play while on screen, so the page stays fast for ad traffic. Player mode instead shows
+  smaller cards with a play button: a tap plays that video with sound and controls and pauses the others.
 {%- endcomment -%}
 {%- liquid
   assign dm_files = product.metafields.ecoms.demo_media.value
@@ -20,6 +21,10 @@
     endfor
   endif
   assign dm_ratio = section.settings.ratio | default: 'portrait'
+  assign dm_player = false
+  if section.settings.mode == 'player'
+    assign dm_player = true
+  endif
 -%}
 {%- if dm_count > 0 or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-demo-sec' %}>
@@ -30,22 +35,28 @@
         {%- if section.settings.text != blank -%}<p>{{ section.settings.text | escape }}</p>{%- endif -%}
       </div>
     {%- endif -%}
-    <div class="ec-demo ec-demo--{{ dm_ratio }}" style="--dm-n: {{ dm_count | at_most: 4 | at_least: 1 }};" data-ec-demo>
+    <div class="ec-demo-wrap">
+    <div class="ec-demo ec-demo--{{ dm_ratio }}{% if dm_player %} ec-demo--player{% endif %}" style="--dm-n: {{ dm_count | at_most: 4 | at_least: 1 }};" data-ec-demo>
       {%- if dm_from_mf -%}
         {%- for file in dm_files -%}
           {%- assign dm_cap = dm_caps[forloop.index0] -%}
-          {%- render 'ecoms-demo-item', file: file, caption: dm_cap -%}
+          {%- render 'ecoms-demo-item', file: file, caption: dm_cap, player: dm_player -%}
         {%- endfor -%}
       {%- else -%}
         {%- for block in section.blocks -%}
           {%- assign dm_file = block.settings.video | default: block.settings.image -%}
           {%- if dm_file == blank and request.design_mode != true -%}{%- continue -%}{%- endif -%}
-          {%- render 'ecoms-demo-item', file: dm_file, caption: block.settings.caption, attrs: block.shopify_attributes -%}
+          {%- render 'ecoms-demo-item', file: dm_file, caption: block.settings.caption, attrs: block.shopify_attributes, player: dm_player -%}
         {%- endfor -%}
         {%- if section.blocks.size == 0 and request.design_mode -%}
           <p class="ec-editor-note">Agrega videos, GIF o fotos en el metacampo «Videos de uso» del producto (ecoms.demo_media) o como bloques de esta sección.</p>
         {%- endif -%}
       {%- endif -%}
+    </div>
+    {%- if dm_player and dm_count > 2 -%}
+      <button type="button" class="ec-demo__arrow ec-demo__arrow--prev" data-ec-demo-step="-1" aria-label="Videos anteriores">{% render 'ecoms-icon', name: 'chev-l' %}</button>
+      <button type="button" class="ec-demo__arrow ec-demo__arrow--next" data-ec-demo-step="1" aria-label="Más videos">{% render 'ecoms-icon', name: 'chev-r' %}</button>
+    {%- endif -%}
     </div>
   </div>
 </section>
@@ -55,6 +66,29 @@
     if (!root) return;
     var vids = root.querySelectorAll('video');
     if (!vids.length) return;
+    if (root.classList.contains('ec-demo--player')) {
+      root.parentNode.querySelectorAll('[data-ec-demo-step]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var card = root.querySelector('.ec-demo__item');
+          root.scrollBy({ left: Number(b.dataset.ecDemoStep) * (card ? card.offsetWidth + 10 : 120), behavior: 'smooth' });
+        });
+      });
+      root.querySelectorAll('[data-ec-demo-play]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var v = btn.parentNode.querySelector('video');
+          if (!v) return;
+          vids.forEach(function (o) { if (o !== v) o.pause(); });
+          btn.hidden = true;
+          v.preload = 'auto'; v.muted = false; v.setAttribute('controls', '');
+          var p = v.play(); if (p && p.catch) p.catch(function () { v.muted = true; v.play(); });
+        });
+      });
+      vids.forEach(function (v) {
+        v.addEventListener('play', function () { vids.forEach(function (o) { if (o !== v) o.pause(); }); });
+        v.addEventListener('ended', function () { v.removeAttribute('controls'); var b = v.parentNode.querySelector('[data-ec-demo-play]'); if (b) b.hidden = false; });
+      });
+      return;
+    }
     var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
     vids.forEach(function (v) {
       v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.removeAttribute('controls');
@@ -87,6 +121,16 @@
     },
     { "type": "text", "id": "heading", "label": "Título", "default": "Míralo en acción" },
     { "type": "text", "id": "text", "label": "Texto" },
+    {
+      "type": "select",
+      "id": "mode",
+      "label": "Reproducción",
+      "options": [
+        { "value": "loop", "label": "Automática sin sonido (tipo GIF)" },
+        { "value": "player", "label": "Con botón de play y sonido (3 por fila)" }
+      ],
+      "default": "loop"
+    },
     {
       "type": "select",
       "id": "ratio",

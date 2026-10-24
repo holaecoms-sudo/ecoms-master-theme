@@ -6,11 +6,17 @@
   - file: {Object} video or image (media / file reference)
   - caption: {String} optional
   - attrs: {String} optional block attributes
+  - player: {Boolean} optional. Video with a play button that plays with sound and controls on tap
 {%- endcomment -%}
 <figure class="ec-demo__item" {{ attrs }}>
   <div class="ec-demo__media">
     {%- if file.media_type == 'video' or file.sources -%}
-      {{ file | video_tag: autoplay: false, loop: true, muted: true, playsinline: true, controls: false, preload: 'none', image_size: '720x' }}
+      {%- if player -%}
+        {{ file | video_tag: autoplay: false, loop: false, muted: false, playsinline: true, controls: false, preload: 'none', image_size: '540x' }}
+        <button type="button" class="ec-demo__play" data-ec-demo-play aria-label="Reproducir video">{% render 'ecoms-icon', name: 'play' %}</button>
+      {%- else -%}
+        {{ file | video_tag: autoplay: false, loop: true, muted: true, playsinline: true, controls: false, preload: 'none', image_size: '720x' }}
+      {%- endif -%}
     {%- elsif file != blank -%}
       {%- assign dm_src = file.src | default: file.preview_image.src | append: '' | downcase -%}
       {%- assign dm_alt = caption | default: file.alt -%}
