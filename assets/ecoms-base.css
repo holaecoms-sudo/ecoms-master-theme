@@ -1696,7 +1696,10 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 .ec-rb__h { margin: 0 0 12px; font-size: 20px; text-align: center; }
 .ec-rsl--bubble { gap: 10px; }
 .ec-rsl--bubble .ec-rsl__item { padding: 14px 16px; border-radius: 22px; background: color-mix(in srgb, var(--ec-ink) 6%, var(--ec-bg)); }
-.ec-rsl--bubble .ec-rsl__item[hidden] { display: none; }
+.ec-rsl__view { overflow: hidden; border-radius: 22px; }
+.ec-rsl__track { display: flex; transition: transform 0.55s ease; touch-action: pan-y; }
+.ec-rsl__track > .ec-rsl__item { flex: 0 0 100%; box-sizing: border-box; }
+@media (prefers-reduced-motion: reduce) { .ec-rsl__track { transition: none; } }
 .ec-rsl--bubble .ec-rsl__item > div { flex: 1; min-width: 0; }
 .ec-rsl--bubble .ec-rsl__img { width: 52px; height: 52px; }
 .ec-rsl--bubble blockquote { font-size: 15px; }

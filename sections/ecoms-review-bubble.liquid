@@ -1,5 +1,5 @@
 {%- comment -%}
-  ECOMS · Written reviews in a rotating bubble (avatar, text, name, stars) with arrows. Takes the same real
+  ECOMS · Written reviews in a sliding bubble carousel (auto, arrows, swipe) (avatar, text, name, stars) with arrows. Takes the same real
   reviews as «ECOMS · Reseñas» from the product metafield (list of «ecoms_review» metaobjects), or the
   section blocks. Only reviews with text are shown; hidden when there are none.
 {%- endcomment -%}
@@ -32,6 +32,7 @@
       <p class="ec-editor-note">Sin reseñas con texto: agrégalas en el metacampo de reseñas del producto o como bloques.</p>
     {%- else -%}
       <div class="ec-rsl ec-rsl--bubble" data-ec-rsl>
+        <div class="ec-rsl__view"><div class="ec-rsl__track" data-ec-rsl-track>
         {%- assign rb_i = 0 -%}
         {%- for r in rb_src -%}
           {%- liquid
@@ -44,7 +45,7 @@
             assign rb_img = r.settings.image | default: r.image.value
             assign rb_initials = rb_author | split: ' '
           -%}
-          <figure class="ec-rsl__item"{% if rb_i > 0 %} hidden{% endif %} {% if r.shopify_attributes %}{{ r.shopify_attributes }}{% endif %}>
+          <figure class="ec-rsl__item" {% if r.shopify_attributes %}{{ r.shopify_attributes }}{% endif %}>
             {%- if rb_img != blank -%}
               {{ rb_img | image_url: width: 120 | image_tag: loading: 'lazy', width: 52, height: 52, alt: '', class: 'ec-rsl__img' }}
             {%- else -%}
@@ -60,6 +61,7 @@
           </figure>
           {%- assign rb_i = rb_i | plus: 1 -%}
         {%- endfor -%}
+        </div></div>
         {%- if rb_n > 1 -%}
           <div class="ec-rsl__nav">
             <button type="button" data-ec-rsl-step="-1" aria-label="Reseña anterior">{% render 'ecoms-icon', name: 'chev-l' %}</button>

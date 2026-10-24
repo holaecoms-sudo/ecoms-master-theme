@@ -529,8 +529,14 @@
       if (first) first.play().catch(() => {});
       if (items.length < 2) return;
       let at = 0;
+      const track = $('[data-ec-rsl-track]', box);
       const show = (i) => {
         at = (i + items.length) % items.length;
+        if (track) {
+          track.style.transform = `translateX(-${at * 100}%)`;
+          dots.forEach((d, n) => d.setAttribute('aria-current', n === at ? 'true' : 'false'));
+          return;
+        }
         items.forEach((el, n) => {
           el.hidden = n !== at;
           const v = $('video', el);
@@ -538,9 +544,26 @@
         });
         dots.forEach((d, n) => d.setAttribute('aria-current', n === at ? 'true' : 'false'));
       };
-      let timer = setInterval(() => show(at + 1), 5000);
+      let timer = setInterval(() => show(at + 1), track ? 4000 : 5000);
+      if (track) {
+        let x0 = null;
+        track.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+        track.addEventListener('touchend', (e) => {
+          if (x0 === null) return;
+          const dx = e.changedTouches[0].clientX - x0;
+          x0 = null;
+          if (Math.abs(dx) < 40) return;
+          clearInterval(timer);
+          show(at + (dx < 0 ? 1 : -1));
+          timer = setInterval(() => show(at + 1), 4000);
+        }, { passive: true });
+      }
       dots.forEach((d) => d.addEventListener('click', () => { clearInterval(timer); show(Number(d.dataset.ecRslTo)); }));
-      $$('[data-ec-rsl-step]', box).forEach((b) => b.addEventListener('click', () => { clearInterval(timer); show(at + Number(b.dataset.ecRslStep)); }));
+      $$('[data-ec-rsl-step]', box).forEach((b) => b.addEventListener('click', () => {
+        clearInterval(timer);
+        show(at + Number(b.dataset.ecRslStep));
+        timer = setInterval(() => show(at + 1), 4000);
+      }));
     });
   }
 
