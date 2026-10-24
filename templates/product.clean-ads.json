@@ -180,6 +180,7 @@
     "demo": {
       "type": "ecoms-demo",
       "settings": {
+        "mode": "player",
         "heading": "",
         "text": "",
         "ratio": "story",
