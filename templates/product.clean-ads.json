@@ -36,8 +36,14 @@
         "price": {
           "type": "price",
           "settings": {
-            "style": "direct",
+            "style": "badge",
             "shipping_cost": 4000
+          }
+        },
+        "next": {
+          "type": "text",
+          "settings": {
+            "text": "<p>En el formulario puedes sumar el <strong>cepillo eléctrico a $15.000</strong> (antes $18.990). No pagas nada hoy.</p>"
           }
         },
         "benefits": {
@@ -79,16 +85,6 @@
             "step_3": "Entregado"
           }
         },
-        "buybox": {
-          "type": "buybox",
-          "settings": {}
-        },
-        "next": {
-          "type": "text",
-          "settings": {
-            "text": "<p>En el formulario puedes sumar el <strong>cepillo eléctrico a $15.000</strong> (antes $18.990). No pagas nada hoy.</p>"
-          }
-        },
         "review_slider": {
           "type": "review_slider",
           "settings": {
@@ -108,36 +104,6 @@
             "stars_3": 5
           }
         },
-        "trust": {
-          "type": "trust",
-          "settings": {
-            "style": "grid",
-            "icon_1": "cash",
-            "title_1": "Pagas al recibir",
-            "text_1": "Sin tarjeta",
-            "icon_2": "chat",
-            "title_2": "Te confirmamos",
-            "text_2": "Antes del despacho",
-            "icon_3": "return",
-            "title_3": "10 días",
-            "text_3": "de retracto",
-            "icon_4": "shield",
-            "title_4": "6 meses",
-            "text_4": "de garantía legal"
-          }
-        },
-        "payments": {
-          "type": "payments",
-          "settings": {
-            "text": ""
-          }
-        },
-        "sub": {
-          "type": "text",
-          "settings": {
-            "text": ""
-          }
-        },
         "stock": {
           "type": "stock",
           "settings": {
@@ -152,15 +118,11 @@
         "social",
         "rating",
         "price",
+        "next",
         "benefits",
         "buy",
         "delivery",
-        "buybox",
-        "next",
         "review_slider",
-        "trust",
-        "payments",
-        "sub",
         "stock"
       ],
       "custom_css": [],
@@ -211,6 +173,17 @@
         "pal_deep": "",
         "padding_top": 24,
         "padding_bottom": 32
+      }
+    },
+    "demo": {
+      "type": "ecoms-demo",
+      "settings": {
+        "heading": "",
+        "text": "",
+        "ratio": "story",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 24
       }
     },
     "band": {
@@ -266,17 +239,6 @@
         "width": "full",
         "padding_top": 0,
         "padding_bottom": 0
-      }
-    },
-    "demo": {
-      "type": "ecoms-demo",
-      "settings": {
-        "heading": "Míralo en acción",
-        "text": "",
-        "ratio": "story",
-        "width": "full",
-        "padding_top": 28,
-        "padding_bottom": 24
       }
     },
     "keyspecs": {
@@ -543,8 +505,8 @@
   },
   "order": [
     "main",
-    "band",
     "demo",
+    "band",
     "keyspecs",
     "anatomy",
     "includes",
