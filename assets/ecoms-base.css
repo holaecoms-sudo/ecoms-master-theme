@@ -337,6 +337,7 @@ body.overflow-hidden .ec-sticky { visibility: hidden; }
 .ec-rev__ph { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: auto; }
 .ec-rev__ph img { width: 100%; aspect-ratio: 1.25 / 1; border-radius: 6px; object-fit: cover; }
 .ec-rev__ph img:only-child { grid-column: 1 / -1; aspect-ratio: 2.3 / 1; border-radius: 8px; }
+.ec-rev__vid { grid-column: 1 / -1; display: block; width: 100%; aspect-ratio: 4 / 5; border-radius: 8px; background: #000; object-fit: cover; }
 .ec-avatar--1 { background: #d9e8df; color: #2a2f36; }
 .ec-avatar--2 { background: #dce3f2; color: #2a2f36; }
 .ec-avatar--3 { background: #f2e6cf; color: #2a2f36; }
@@ -522,6 +523,8 @@ body.overflow-hidden .ec-sticky { visibility: hidden; }
 .ec-revs--masonry .ec-rev__ph { order: -1; display: block; margin: 0; }
 .ec-revs--masonry .ec-rev__ph img { width: 100%; height: auto; aspect-ratio: auto; border-radius: 0; }
 .ec-revs--masonry .ec-rev__ph img:not(:first-child) { display: none; }
+.ec-revs--masonry .ec-rev__vid { border-radius: 0; }
+.ec-revs--masonry .ec-rev__vid ~ img { display: none; }
 .ec-revs--masonry .ec-rev > :not(.ec-rev__ph) { margin-inline: 10px; }
 .ec-revs--masonry .ec-avatar { display: none; }
 .ec-revs--masonry .ec-revs__app { column-span: all; }
