@@ -33,19 +33,6 @@
           "type": "rating",
           "settings": {}
         },
-        "media_features": {
-          "type": "media_features",
-          "settings": {
-            "icon_1": "bolt",
-            "text_1": "",
-            "icon_2": "hand",
-            "text_2": "",
-            "icon_3": "grid",
-            "text_3": "",
-            "icon_4": "battery",
-            "text_4": ""
-          }
-        },
         "price": {
           "type": "price",
           "settings": {
@@ -164,7 +151,6 @@
         "title",
         "social",
         "rating",
-        "media_features",
         "price",
         "benefits",
         "buy",
