@@ -1520,13 +1520,13 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 .ec-demo__media { position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 4 / 5; background: var(--ec-soft); }
 .ec-demo--square .ec-demo__media { aspect-ratio: 1; }
 .ec-demo--story .ec-demo__media { aspect-ratio: 9 / 16; }
-.ec-demo__media video, .ec-demo__media img, .ec-demo__media svg { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+.ec-demo__media > video, .ec-demo__media > img, .ec-demo__media > svg { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
 .ec-demo-wrap { position: relative; }
 .ec-demo--player { grid-auto-columns: 31%; gap: 10px; }
 .ec-demo--player .ec-demo__media { border-radius: 12px; background: #111; }
 .ec-demo__play { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 46px; height: 46px; padding: 0; border: 0; border-radius: 50%; background: color-mix(in srgb, var(--ec-ink) 88%, transparent); color: #fff; transform: translate(-50%, -50%); cursor: pointer; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25); }
 .ec-demo__play[hidden] { display: none; }
-.ec-demo__play .ec-i { width: 20px; height: 20px; margin-left: 3px; }
+.ec-demo__play .ec-i { position: static; width: 20px; height: 20px; margin-left: 3px; }
 .ec-demo__arrow { position: absolute; top: 50%; z-index: 2; display: grid; place-items: center; width: 30px; height: 30px; padding: 0; border: 0; border-radius: 50%; background: rgba(0, 0, 0, 0.55); color: #fff; transform: translateY(-50%); cursor: pointer; }
 .ec-demo__arrow .ec-i { width: 16px; height: 16px; }
 .ec-demo__arrow--prev { left: 4px; }
