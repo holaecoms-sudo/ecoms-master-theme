@@ -68,6 +68,17 @@
             "card_code": ""
           }
         },
+        "delivery": {
+          "type": "delivery",
+          "settings": {
+            "step_1": "Pedido realizado",
+            "ready_days": 1,
+            "step_2": "Pedido listo",
+            "min_days": 3,
+            "max_days": 6,
+            "step_3": "Entregado"
+          }
+        },
         "buybox": {
           "type": "buybox",
           "settings": {}
@@ -95,17 +106,6 @@
             "author_3": "",
             "place_3": "",
             "stars_3": 5
-          }
-        },
-        "delivery": {
-          "type": "delivery",
-          "settings": {
-            "step_1": "Pedido realizado",
-            "ready_days": 1,
-            "step_2": "Pedido listo",
-            "min_days": 3,
-            "max_days": 6,
-            "step_3": "Entregado"
           }
         },
         "trust": {
@@ -154,10 +154,10 @@
         "price",
         "benefits",
         "buy",
+        "delivery",
         "buybox",
         "next",
         "review_slider",
-        "delivery",
         "trust",
         "payments",
         "sub",
