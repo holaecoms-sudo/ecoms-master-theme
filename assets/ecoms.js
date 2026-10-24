@@ -540,6 +540,7 @@
       };
       let timer = setInterval(() => show(at + 1), 5000);
       dots.forEach((d) => d.addEventListener('click', () => { clearInterval(timer); show(Number(d.dataset.ecRslTo)); }));
+      $$('[data-ec-rsl-step]', box).forEach((b) => b.addEventListener('click', () => { clearInterval(timer); show(at + Number(b.dataset.ecRslStep)); }));
     });
   }
 

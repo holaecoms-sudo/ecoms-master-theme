@@ -1,0 +1,116 @@
+{%- comment -%}
+  ECOMS · Written reviews in a rotating bubble (avatar, text, name, stars) with arrows. Takes the same real
+  reviews as «ECOMS · Reseñas» from the product metafield (list of «ecoms_review» metaobjects), or the
+  section blocks. Only reviews with text are shown; hidden when there are none.
+{%- endcomment -%}
+{%- liquid
+  assign rb_src = section.blocks
+  if section.settings.metafield != blank and product
+    assign rb_mfp = section.settings.metafield | strip | split: '.'
+    if rb_mfp.size == 2
+      assign rb_mfl = product.metafields[rb_mfp[0]][rb_mfp[1]].value
+      if rb_mfl != blank
+        assign rb_src = rb_mfl
+      endif
+    endif
+  endif
+  assign rb_max = section.settings.limit | default: 8
+  assign rb_n = 0
+  for r in rb_src
+    assign rb_text = r.settings.text | default: r.text.value
+    if rb_text != blank
+      assign rb_n = rb_n | plus: 1
+    endif
+  endfor
+  assign rb_n = rb_n | at_most: rb_max
+-%}
+{%- if rb_n > 0 or request.design_mode -%}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-rb-sec' %}>
+  <div class="ec-w">
+    {%- if section.settings.heading != blank -%}<h2 class="ec-rb__h">{{ section.settings.heading | escape }}</h2>{%- endif -%}
+    {%- if rb_n == 0 -%}
+      <p class="ec-editor-note">Sin reseñas con texto: agrégalas en el metacampo de reseñas del producto o como bloques.</p>
+    {%- else -%}
+      <div class="ec-rsl ec-rsl--bubble" data-ec-rsl>
+        {%- assign rb_i = 0 -%}
+        {%- for r in rb_src -%}
+          {%- liquid
+            assign rb_text = r.settings.text | default: r.text.value
+            if rb_text == blank or rb_i >= rb_max
+              continue
+            endif
+            assign rb_author = r.settings.author | default: r.author.value
+            assign rb_stars = r.settings.stars | default: r.stars.value | default: 5
+            assign rb_img = r.settings.image | default: r.image.value
+            assign rb_initials = rb_author | split: ' '
+          -%}
+          <figure class="ec-rsl__item"{% if rb_i > 0 %} hidden{% endif %} {% if r.shopify_attributes %}{{ r.shopify_attributes }}{% endif %}>
+            {%- if rb_img != blank -%}
+              {{ rb_img | image_url: width: 120 | image_tag: loading: 'lazy', width: 52, height: 52, alt: '', class: 'ec-rsl__img' }}
+            {%- else -%}
+              <span class="ec-avatar ec-avatar--{{ rb_i | modulo: 5 }} ec-rsl__img" aria-hidden="true">{%- for w in rb_initials limit: 2 -%}{{ w | slice: 0 | upcase }}{%- endfor -%}</span>
+            {%- endif -%}
+            <div>
+              <blockquote>{{ rb_text | escape }}</blockquote>
+              <figcaption>
+                <span class="ec-rsl__who">{{ rb_author | escape }}</span>
+                <span class="ec-stars" style="--s: 13px; --r: {{ rb_stars | times: 20 }}%" role="img" aria-label="{{ rb_stars }} de 5 estrellas"></span>
+              </figcaption>
+            </div>
+          </figure>
+          {%- assign rb_i = rb_i | plus: 1 -%}
+        {%- endfor -%}
+        {%- if rb_n > 1 -%}
+          <div class="ec-rsl__nav">
+            <button type="button" data-ec-rsl-step="-1" aria-label="Reseña anterior">{% render 'ecoms-icon', name: 'chev-l' %}</button>
+            <button type="button" data-ec-rsl-step="1" aria-label="Reseña siguiente">{% render 'ecoms-icon', name: 'chev-r' %}</button>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ECOMS · Reseñas burbuja",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Reseñas escritas que rotan solas, con flechas. Usa las mismas reseñas reales del producto (metacampo) o los bloques. Sin reseñas con texto, no se muestra."
+    },
+    { "type": "text", "id": "metafield", "label": "Contenido desde metacampo", "default": "ecoms.reviews", "info": "Lista de entradas «Reseña» del producto. Vacío = usa los bloques." },
+    { "type": "text", "id": "heading", "label": "Título", "info": "Opcional." },
+    { "type": "range", "id": "limit", "label": "Máximo de reseñas", "min": 2, "max": 12, "step": 1, "default": 8 },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Ancho en escritorio",
+      "options": [
+        { "value": "full", "label": "Completo" },
+        { "value": "left", "label": "Mitad izquierda" },
+        { "value": "right", "label": "Mitad derecha" }
+      ],
+      "default": "full"
+    },
+    { "type": "range", "id": "padding_top", "label": "Espacio arriba", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 12 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio abajo", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24 }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Reseña",
+      "settings": [
+        { "type": "text", "id": "author", "label": "Nombre" },
+        { "type": "range", "id": "stars", "label": "Estrellas", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "text", "label": "Reseña" },
+        { "type": "image_picker", "id": "image", "label": "Foto de la clienta (con permiso)" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [{ "name": "ECOMS · Reseñas burbuja" }]
+}
+{% endschema %}
