@@ -414,7 +414,13 @@
                   {%- endif -%}
                 </span>
                 {%- if ship_local_at > 0 -%}
-                  <span data-ec-shipline-local {% unless ship_is_local %}hidden{% endunless %}><b>Envío gratis en {{ ship_zone }}</b><small>Regiones: envío {{ ship_cost | money }} · gratis desde {{ ship_free_at | money }}</small></span>
+                  {%- assign ship_cost_label = ship_cost | money -%}
+                  {%- assign ship_free_label = ship_free_at | money -%}
+                  {%- liquid
+                    assign sl_title = block.settings.ship_local_title | default: 'Envío gratis en [zona]' | escape | replace: '[zona]', ship_zone
+                    assign sl_text = block.settings.ship_local_text | default: 'Regiones: envío [envio] · gratis desde [gratis_desde]' | escape | replace: '[zona]', ship_zone | replace: '[envio]', ship_cost_label | replace: '[gratis_desde]', ship_free_label
+                  -%}
+                  <span data-ec-shipline-local {% unless ship_is_local %}hidden{% endunless %}><b>{{ sl_title }}</b>{% if sl_text != blank %}<small>{{ sl_text }}</small>{% endif %}</span>
                 {%- endif -%}
                 <span data-ec-shipline-free {% unless ship_is_free %}hidden{% endunless %}><b>Envío gratis</b> a todo Chile</span>
               </p>
@@ -1716,6 +1722,18 @@
           "id": "shipping_cost",
           "label": "Costo del envío estándar (CLP)",
           "info": "Muestra bajo el precio el envío y el total a pagar, o «Envío gratis» cuando se alcanza el monto del ajuste «Envío gratis desde». Vacío = no se muestra."
+        },
+        {
+          "type": "text",
+          "id": "ship_local_title",
+          "label": "Envío gratis local: título",
+          "info": "Vacío = «Envío gratis en [zona]». Puedes usar [zona]."
+        },
+        {
+          "type": "text",
+          "id": "ship_local_text",
+          "label": "Envío gratis local: detalle",
+          "info": "Vacío = «Regiones: envío [envio] · gratis desde [gratis_desde]». Puedes usar [zona], [envio] y [gratis_desde]. Se reemplazan con los montos de los ajustes del tema."
         }
       ]
     },
