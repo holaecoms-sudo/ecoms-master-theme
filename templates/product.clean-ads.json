@@ -29,14 +29,10 @@
             "text": ""
           }
         },
-        "rating": {
-          "type": "rating",
-          "settings": {}
-        },
         "custom_liquid_dWPxJf": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<p class=\"ec-social\">\n  <span class=\"ec-stars\" style=\"--s:17px;--r:96%\" role=\"img\" aria-label=\"4,8 de 5 estrellas\"></span>\n  <b>4,8/5</b> <span>(+1.567 clientes en Chile 🇨🇱)</span>\n</p>"
+            "custom_liquid": "<p class=\"ec-social\">\n  <span class=\"ec-stars\" style=\"--s:17px;--r:96%\" role=\"img\" aria-label=\"4,7 de 5 estrellas\"></span>\n  <b>4,8/5</b> <span>(+1.567 clientes en Chile 🇨🇱)</span>\n</p>"
           }
         },
         "price": {
@@ -122,7 +118,6 @@
         "badge_box",
         "title",
         "social",
-        "rating",
         "custom_liquid_dWPxJf",
         "price",
         "next",
