@@ -189,6 +189,17 @@
         "padding_bottom": 24
       }
     },
+    "bubble": {
+      "type": "ecoms-review-bubble",
+      "settings": {
+        "metafield": "ecoms.reviews",
+        "heading": "",
+        "limit": 8,
+        "width": "full",
+        "padding_top": 4,
+        "padding_bottom": 24
+      }
+    },
     "band": {
       "type": "ecoms-marquee",
       "blocks": {
@@ -510,6 +521,7 @@
   "order": [
     "main",
     "demo",
+    "bubble",
     "band",
     "keyspecs",
     "anatomy",
