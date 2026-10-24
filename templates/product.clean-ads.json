@@ -347,7 +347,7 @@
       "type": "ecoms-reviews",
       "settings": {
         "metafield": "ecoms.reviews",
-        "style": "widget",
+        "style": "masonry",
         "heading": "Opiniones de clientes",
         "link_label": "",
         "link": "",
