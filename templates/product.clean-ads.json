@@ -46,6 +46,13 @@
             "text_4": ""
           }
         },
+        "price": {
+          "type": "price",
+          "settings": {
+            "style": "direct",
+            "shipping_cost": 4000
+          }
+        },
         "benefits": {
           "type": "benefits",
           "settings": {
@@ -56,17 +63,6 @@
             "item_5": "",
             "item_6": ""
           }
-        },
-        "price": {
-          "type": "price",
-          "settings": {
-            "style": "direct",
-            "shipping_cost": 4000
-          }
-        },
-        "buybox": {
-          "type": "buybox",
-          "settings": {}
         },
         "buy": {
           "type": "buy",
@@ -84,6 +80,10 @@
             "card_label": "",
             "card_code": ""
           }
+        },
+        "buybox": {
+          "type": "buybox",
+          "settings": {}
         },
         "next": {
           "type": "text",
@@ -165,10 +165,10 @@
         "social",
         "rating",
         "media_features",
-        "benefits",
         "price",
-        "buybox",
+        "benefits",
         "buy",
+        "buybox",
         "next",
         "review_slider",
         "delivery",
