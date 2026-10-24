@@ -46,6 +46,17 @@
             "text_4": ""
           }
         },
+        "benefits": {
+          "type": "benefits",
+          "settings": {
+            "item_1": "",
+            "item_2": "",
+            "item_3": "",
+            "item_4": "",
+            "item_5": "",
+            "item_6": ""
+          }
+        },
         "price": {
           "type": "price",
           "settings": {
@@ -140,17 +151,6 @@
             "text": ""
           }
         },
-        "benefits": {
-          "type": "benefits",
-          "settings": {
-            "item_1": "",
-            "item_2": "",
-            "item_3": "",
-            "item_4": "",
-            "item_5": "",
-            "item_6": ""
-          }
-        },
         "stock": {
           "type": "stock",
           "settings": {
@@ -165,6 +165,7 @@
         "social",
         "rating",
         "media_features",
+        "benefits",
         "price",
         "buybox",
         "buy",
@@ -174,7 +175,6 @@
         "trust",
         "payments",
         "sub",
-        "benefits",
         "stock"
       ],
       "custom_css": [],
