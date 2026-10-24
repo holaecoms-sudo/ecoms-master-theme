@@ -39,7 +39,9 @@
           "type": "price",
           "settings": {
             "style": "badge",
-            "shipping_cost": 4000
+            "shipping_cost": 4000,
+            "ship_local_title": "Envío gratis",
+            "ship_local_text": "gratis desde $39.990"
           }
         },
         "next": {
@@ -194,7 +196,7 @@
       "settings": {
         "metafield": "ecoms.reviews",
         "heading": "",
-        "limit": 8,
+        "limit": 4,
         "width": "full",
         "padding_top": 4,
         "padding_bottom": 24
