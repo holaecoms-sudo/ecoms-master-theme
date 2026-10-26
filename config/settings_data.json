@@ -159,12 +159,12 @@
     "ecoms_v1_tiktok": "https://www.tiktok.com/@ecoms.clean",
     "ecoms_v1_facebook": "https://www.facebook.com/profile.php?id=61595370719462",
     "ecoms_free_shipping_live": true,
-    "ecoms_cod_live": true,
-    "ecoms_cart_checkout_label_cod": "Pagar con tarjeta",
     "ecoms_free_shipping_threshold": 39990,
     "ecoms_free_shipping_local_threshold": 29990,
     "ecoms_free_shipping_local_zone": "Santiago (RM)",
     "ecoms_free_shipping_local_short": "RM",
+    "ecoms_cod_live": true,
+    "ecoms_cart_checkout_label_cod": "Pagar con tarjeta",
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
@@ -188,6 +188,11 @@
       },
       "13669795325273674392": {
         "type": "shopify://apps/releasit-cod-form/blocks/app-embed/72faf214-4174-4fec-886b-0d0e8d3af9a2",
+        "disabled": false,
+        "settings": {}
+      },
+      "2567389343055140935": {
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
         "disabled": false,
         "settings": {}
       }
