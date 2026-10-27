@@ -723,6 +723,9 @@
 
     const toBuy = t.closest('[data-ec-scroll-buy]');
     if (toBuy) {
+      // Quantity tiers with gifts: page CTAs take the shopper back to the tiers so they choose a pack first.
+      const tiers = $('[data-ec-gt]');
+      if (tiers) { event.preventDefault(); tiers.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
       // With cash on delivery live, page CTAs open the app's form right away (its button sits in the buy box).
       const cod = toBuy.dataset.ecOpenCod && codButton(toBuy.dataset.ecOpenCod);
       if (cod) { event.preventDefault(); cod.click(); return; }
