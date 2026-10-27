@@ -72,8 +72,8 @@
           "settings": {
             "heading": "Elige tu pack",
             "layout": "rows",
-            "tier2_tag": "Más vendido",
-            "tier3_tag": "Mejor precio",
+            "tier2_tag": "",
+            "tier3_tag": "",
             "item_name": "frascos"
           }
         },
