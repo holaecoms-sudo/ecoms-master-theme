@@ -189,3 +189,7 @@ body.ec-skin { background: #FFFDF9; }
   .ec-steps--photos img { width: 100%; height: auto; }
 }
 @media (prefers-reduced-motion: reduce) { .ec-pdp .ec-gal__main::before, .ec-pdp .ec-gal__main::after { animation: none; } }
+
+/* Price block with gift tiers: what's included (units + gifts + free shipping) as a highlighted line */
+.ec-pdp .ec-pp__qty { display: inline-block; margin-top: 8px; padding: 7px 12px; border: 1px dashed var(--ec-xmas-red); border-radius: 10px; background: #FDE8E8; color: var(--ec-xmas-red); font-size: 13.5px; font-weight: 700; line-height: 1.35; }
+.ec-pdp .ec-pill-save { background: var(--ec-xmas-green); color: #fff; font-weight: 800; }

@@ -173,11 +173,12 @@
     });
   }
 
-  // Price block: total for the chosen quantity, compare-at for that quantity and savings.
-  function paintPrice(qty, total) {
+  // Price block: total for the chosen quantity, compare-at for that quantity and savings. Gift tiers pass their own
+  // crossed-out price (units + gifts) and a summary of what's included («2 proyectores + 🎁 cortina de regalo»).
+  function paintPrice(qty, total, wasOverride, summary) {
     $$('[data-ec-price-live]').forEach((box) => {
       const unitCmp = Number(box.dataset.unitCompare) || 0;
-      const was = unitCmp * qty;
+      const was = wasOverride || unitCmp * qty;
       const save = was - total;
       const set = (sel, text) => box.querySelectorAll(sel).forEach((el) => { el.textContent = text; });
       set('[data-ec-pp-now]', money(total));
@@ -187,7 +188,10 @@
       set('[data-ec-pp-n]', String(qty));
       set('[data-ec-pp-each]', money(Math.round(total / qty)));
       box.querySelectorAll('[data-ec-pp-was], [data-ec-pp-savebox]').forEach((el) => { el.hidden = save <= 0; });
-      box.querySelectorAll('[data-ec-pp-qty]').forEach((el) => { el.hidden = qty <= 1; });
+      box.querySelectorAll('[data-ec-pp-qty]').forEach((el) => {
+        if (summary) { el.textContent = summary; el.hidden = false; return; }
+        el.hidden = qty <= 1;
+      });
     });
   }
 
@@ -595,7 +599,7 @@
           if (st) st.textContent = open ? st.dataset.open : st.dataset.locked;
         });
         if (total) total.textContent = r.dataset.total;
-        paintPrice(Number(r.dataset.qty) || 1, Number(r.dataset.cents) || 0);
+        paintPrice(Number(r.dataset.qty) || 1, Number(r.dataset.cents) || 0, Number(r.dataset.was) || 0, r.dataset.summary || '');
       };
       radios.forEach((r) => r.addEventListener('change', paint));
       paint();

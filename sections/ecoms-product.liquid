@@ -698,6 +698,25 @@
                         assign t_gift_value = t_gift_value | plus: block.settings[k_gp].selected_or_first_available_variant.price
                       endif
                     endfor
+                    # Plain summary for the price block: «2 proyectores + cortina luz cálida de regalo + envío gratis».
+                    assign t_unit_word = block.settings.unit_plural | default: 'unidades'
+                    if t_qty == 1
+                      assign t_unit_word = block.settings.unit_singular | default: 'unidad'
+                    endif
+                    assign t_summary = t_qty | append: ' ' | append: t_unit_word
+                    for g in (1..2)
+                      assign k_gp = 'gift_' | append: g
+                      assign k_gt = 'gift_' | append: g | append: '_tier'
+                      assign k_gl = 'gift_' | append: g | append: '_label'
+                      assign g_tier = block.settings[k_gt] | default: 99 | plus: 0
+                      if block.settings[k_gp] != blank and block.settings[k_gp].available and n >= g_tier
+                        assign g_name = block.settings[k_gl] | default: block.settings[k_gp].title
+                        assign t_summary = t_summary | append: ' + 🎁 ' | append: g_name | append: ' de regalo'
+                      endif
+                    endfor
+                    if block.settings.ship_tier > 0 and n >= block.settings.ship_tier
+                      assign t_summary = t_summary | append: ' + envío gratis'
+                    endif
                     # What the shopper gets: the units at their normal price plus the gifts' normal price.
                     assign t_was = t_was | plus: t_gift_value
                     assign t_save = t_was | minus: t_total
@@ -708,7 +727,7 @@
                     endif
                   -%}
                   <label class="ec-gt__tier{% if block.settings[k_badge] != blank %} has-badge{% endif %}">
-                    <input type="radio" name="ec-gt-{{ block.id }}" value="{{ n }}" data-qty="{{ t_qty }}" data-total="{{ t_total | money }}" data-cents="{{ t_total }}"{% if n == gt_default %} checked{% endif %}>
+                    <input type="radio" name="ec-gt-{{ block.id }}" value="{{ n }}" data-qty="{{ t_qty }}" data-total="{{ t_total | money }}" data-cents="{{ t_total }}" data-was="{{ t_was }}" data-summary="{{ t_summary | escape }}"{% if n == gt_default %} checked{% endif %}>
                     {%- if block.settings[k_badge] != blank -%}<span class="ec-gt__badge">{{ block.settings[k_badge] | escape }}</span>{%- endif -%}
                     <span class="ec-gt__dot" aria-hidden="true"></span>
                     <span class="ec-gt__main">
@@ -4668,11 +4687,15 @@
         { "type": "number", "id": "t3_total", "label": "Precio total (CLP)", "info": "Debe coincidir con el descuento automático real. Vacío = precio normal x cantidad." },
         { "type": "text", "id": "t3_badge", "label": "Etiqueta", "default": "Mejor oferta" },
         { "type": "text", "id": "t3_note", "label": "Nota" },
+        { "type": "text", "id": "unit_singular", "label": "Nombre de 1 unidad", "default": "unidad", "info": "Ej.: proyector. Se usa en el resumen bajo el precio." },
+        { "type": "text", "id": "unit_plural", "label": "Nombre de varias unidades", "default": "unidades", "info": "Ej.: proyectores." },
         { "type": "header", "content": "Regalos" },
         { "type": "text", "id": "gifts_heading", "label": "Título de regalos", "default": "¡Regalos gratis mientras más te lleves!" },
         { "type": "product", "id": "gift_1", "label": "Regalo 1" },
+        { "type": "text", "id": "gift_1_label", "label": "Regalo 1: nombre corto", "info": "Ej.: cortina de luz cálida. Vacío = nombre del producto." },
         { "type": "number", "id": "gift_1_tier", "label": "Regalo 1: se desbloquea desde el nivel", "default": 2 },
         { "type": "product", "id": "gift_2", "label": "Regalo 2" },
+        { "type": "text", "id": "gift_2_label", "label": "Regalo 2: nombre corto" },
         { "type": "number", "id": "gift_2_tier", "label": "Regalo 2: se desbloquea desde el nivel", "default": 3 },
         { "type": "number", "id": "ship_tier", "label": "Envío gratis desde el nivel", "info": "0 = no se muestra. Configura la tarifa gratis real en la app de pago al recibir.", "default": 2 },
         { "type": "text", "id": "ship_label", "label": "Texto del envío gratis", "default": "Envío gratis a todo Chile" },
