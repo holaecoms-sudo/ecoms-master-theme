@@ -703,7 +703,7 @@
                     endif
                   -%}
                   <label class="ec-gt__tier{% if block.settings[k_badge] != blank %} has-badge{% endif %}">
-                    <input type="radio" name="ec-gt-{{ block.id }}" value="{{ n }}" data-qty="{{ t_qty }}" data-total="{{ t_total | money }}"{% if n == gt_default %} checked{% endif %}>
+                    <input type="radio" name="ec-gt-{{ block.id }}" value="{{ n }}" data-qty="{{ t_qty }}" data-total="{{ t_total | money }}" data-cents="{{ t_total }}"{% if n == gt_default %} checked{% endif %}>
                     {%- if block.settings[k_badge] != blank -%}<span class="ec-gt__badge">{{ block.settings[k_badge] | escape }}</span>{%- endif -%}
                     <span class="ec-gt__dot" aria-hidden="true"></span>
                     <span class="ec-gt__main">
