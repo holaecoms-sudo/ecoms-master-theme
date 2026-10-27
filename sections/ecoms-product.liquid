@@ -717,7 +717,7 @@
                         {%- if t_save > 0 -%}<em>Ahorras {{ t_save | money }}</em>{%- endif -%}
                       </span>
                       <span class="ec-gt__sub">
-                        {%- if t_qty > 1 and t_each < gt_unit -%}{{ t_each | money }} c/u{%- else -%}{{ t_qty }} unidades{%- endif -%}
+                        {%- if t_qty > 1 and t_each < gt_unit -%}{{ t_each | money }} c/u{%- else -%}{{ t_qty }} {% if t_qty == 1 %}unidad{% else %}unidades{% endif %}{%- endif -%}
                         {%- if t_gifts > 0 -%} · <span class="ec-gt__plus">+ {{ t_gifts }} {% if t_gifts == 1 %}regalo{% else %}regalos{% endif %}</span>{%- endif -%}
                         {%- if t_ship -%} · envío gratis{%- endif -%}
                         {%- if block.settings[k_note] != blank -%}<span class="ec-gt__note">{{ block.settings[k_note] | escape }}</span>{%- endif -%}
