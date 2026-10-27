@@ -481,10 +481,10 @@
         "q3"
       ],
       "settings": {
-        "style": "split",
+        "style": "stack",
         "heading": "Preguntas frecuentes",
         "text": "¿Tienes otra duda? Escríbenos desde la página de contacto.",
-        "icon": "plus",
+        "icon": "chev",
         "width": "full",
         "padding_top": 32,
         "padding_bottom": 36
@@ -511,7 +511,7 @@
     "cta": {
       "type": "ecoms-cta-band",
       "settings": {
-        "style": "dark",
+        "style": "soft",
         "eyebrow": "",
         "heading": "Este año tu casa brilla, sin subirte a una escalera",
         "text": "Pídelo hoy y pagas cuando llegue a tu casa.",
