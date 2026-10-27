@@ -344,6 +344,7 @@
           {%- when 'text' -%}
             {%- comment -%} Per-product copy: metafield ecoms.subtitle wins over the template text. {%- endcomment -%}
             {%- assign sub_mf = product.metafields.ecoms.subtitle.value -%}
+            {%- if block.settings.fixed -%}{%- assign sub_mf = blank -%}{%- endif -%}
             {%- if sub_mf != blank -%}
               <div class="ec-pdp__sub" {{ block.shopify_attributes }}>{{ product.metafields.ecoms.subtitle | metafield_tag }}</div>
             {%- elsif block.settings.text != blank -%}
@@ -1660,6 +1661,13 @@
           "id": "text",
           "label": "Texto",
           "default": "<p>Beneficio principal del producto en una o dos frases.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "fixed",
+          "label": "Mostrar siempre este texto",
+          "info": "Activado: no lo reemplaza el subtítulo del producto (ecoms.subtitle). Úsalo para avisos como «Elige tu oferta en el siguiente paso».",
+          "default": false
         }
       ]
     },
