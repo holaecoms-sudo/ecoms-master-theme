@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
@@ -341,7 +332,7 @@
       "settings": {
         "metafield": "ecoms.compare_rows",
         "style": "table",
-        "heading": "Proyector vs. luces tradicionales",
+        "heading": "Proyector vs. luces de toda la vida",
         "feature_label": "",
         "col_1": "",
         "show_image": true,
@@ -506,7 +497,8 @@
         "width": "full",
         "padding_top": 24,
         "padding_bottom": 24
-      }
+      },
+      "disabled": true
     },
     "cta": {
       "type": "ecoms-cta-band",
@@ -525,6 +517,226 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "magic": {
+      "type": "ecoms-image-text",
+      "blocks": {
+        "b1": {
+          "type": "point",
+          "settings": {
+            "title": "Momentos en familia",
+            "text": "decoran juntos en un minuto, sin escaleras"
+          }
+        },
+        "b2": {
+          "type": "point",
+          "settings": {
+            "title": "Los niños lo esperan cada noche",
+            "text": "Pascuero, renos y copos en la pared de su pieza o del living"
+          }
+        },
+        "b3": {
+          "type": "point",
+          "settings": {
+            "title": "Dentro o fuera",
+            "text": "fachada, jardín, terraza o junto al árbol"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ],
+      "settings": {
+        "image_side": "left",
+        "image_full": false,
+        "product_image_index": 1,
+        "heading": "Que la Navidad se vea desde la calle",
+        "intro": "Lo enciendes al atardecer y tu casa se llena de Viejitos Pascueros, renos y copos de nieve. Una tradición nueva para disfrutar en familia todas las noches de diciembre.",
+        "button_label": "",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 40,
+        "padding_bottom": 32
+      }
+    },
+    "ideal": {
+      "type": "ecoms-ideal-for",
+      "blocks": {
+        "b1": {
+          "type": "item",
+          "settings": {
+            "icon": "users",
+            "title": "Familias con niños",
+            "text": "Decoren juntos y que ellos elijan dónde proyectar."
+          }
+        },
+        "b2": {
+          "type": "item",
+          "settings": {
+            "icon": "home",
+            "title": "Casas y departamentos",
+            "text": "En la fachada, el balcón o una pared del living."
+          }
+        },
+        "b3": {
+          "type": "item",
+          "settings": {
+            "icon": "gift",
+            "title": "Para regalar",
+            "text": "Un regalo distinto para los abuelos, tíos o vecinos."
+          }
+        },
+        "b4": {
+          "type": "item",
+          "settings": {
+            "icon": "star",
+            "title": "Fiestas y celebraciones",
+            "text": "La cena del 24, el Año Nuevo o la fiesta de la oficina."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ],
+      "settings": {
+        "heading": "Perfecto para…",
+        "text": "",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "why": {
+      "type": "ecoms-feature-grid",
+      "blocks": {
+        "b1": {
+          "type": "feature",
+          "settings": {
+            "icon": "shield",
+            "heading": "Nadie sube a una escalera",
+            "text": "Decoras la fachada desde el suelo, en minutos."
+          }
+        },
+        "b2": {
+          "type": "feature",
+          "settings": {
+            "icon": "hand",
+            "heading": "Sin enredos ni clavos",
+            "text": "Nada de desenredar cables ni perforar muros."
+          }
+        },
+        "b3": {
+          "type": "feature",
+          "settings": {
+            "icon": "bolt",
+            "heading": "Luz LED de bajo consumo",
+            "text": "Brilla toda la noche gastando poca energía."
+          }
+        },
+        "b4": {
+          "type": "feature",
+          "settings": {
+            "icon": "box",
+            "heading": "Se guarda en un cajón",
+            "text": "Al terminar diciembre lo guardas y listo para el próximo año."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ],
+      "settings": {
+        "heading": "Por qué las familias lo prefieren",
+        "style": "cards",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "howto": {
+      "type": "ecoms-steps",
+      "blocks": {
+        "b1": {
+          "type": "step",
+          "settings": {
+            "icon": "bolt",
+            "heading": "Enchúfalo",
+            "text": "A cualquier enchufe, dentro o fuera de la casa."
+          }
+        },
+        "b2": {
+          "type": "step",
+          "settings": {
+            "icon": "hand",
+            "heading": "Apúntalo",
+            "text": "Hacia la pared, la fachada o el jardín y ajusta el ángulo."
+          }
+        },
+        "b3": {
+          "type": "step",
+          "settings": {
+            "icon": "sparkle",
+            "heading": "Disfruta",
+            "text": "Apaga las luces y mira cómo se llena de Navidad."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ],
+      "settings": {
+        "style": "numbers",
+        "heading": "Listo en 3 pasos",
+        "text": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "gift": {
+      "type": "ecoms-image-text",
+      "blocks": {
+        "b1": {
+          "type": "point",
+          "settings": {
+            "title": "Lleva 2",
+            "text": "te regalamos la cortina de luz cálida y el envío"
+          }
+        },
+        "b2": {
+          "type": "point",
+          "settings": {
+            "title": "Lleva 3",
+            "text": "te regalamos las 2 cortinas y el envío"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2"
+      ],
+      "settings": {
+        "image_side": "right",
+        "image_full": false,
+        "product_image_index": 1,
+        "heading": "El regalo que ilumina toda la casa",
+        "intro": "Uno para tu casa y otro para quien más quieres. Todo llega en un solo envío y pagas al recibir.",
+        "button_label": "Quiero mi pack navideño",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
@@ -532,15 +744,20 @@
     "demo",
     "bubble",
     "band",
+    "magic",
     "keyspecs",
+    "ideal",
+    "why",
+    "howto",
+    "comparison",
+    "gift",
     "anatomy",
     "includes",
     "problem",
     "tabs",
-    "comparison",
-    "review_strip",
     "reviews",
     "ugc",
+    "review_strip",
     "specs",
     "faq",
     "cross",
