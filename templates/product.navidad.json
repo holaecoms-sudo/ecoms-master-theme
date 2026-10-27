@@ -231,7 +231,7 @@
           "type": "text",
           "settings": {
             "icon": "home",
-            "text": "Sin escaleras ni clavos"
+            "text": "Decora tu casa completa"
           }
         },
         "b3": {
@@ -358,7 +358,8 @@
         "width": "full",
         "padding_top": 28,
         "padding_bottom": 28
-      }
+      },
+      "disabled": true
     },
     "review_strip": {
       "type": "ecoms-review-strip",
@@ -522,7 +523,7 @@
       "settings": {
         "style": "dark",
         "eyebrow": "",
-        "heading": "Este año tu casa brilla, sin subirte a una escalera",
+        "heading": "Este año tu casa brilla como nunca",
         "text": "Pídelo hoy y pagas cuando llegue a tu casa.",
         "image_plain": false,
         "show_price": true,
@@ -543,7 +544,7 @@
           "type": "point",
           "settings": {
             "title": "Momentos en familia",
-            "text": "decoran juntos en un minuto, sin escaleras"
+            "text": "decoran juntos la casa en una tarde"
           }
         },
         "b2": {
@@ -640,17 +641,17 @@
         "b1": {
           "type": "feature",
           "settings": {
-            "icon": "shield",
-            "heading": "Nadie sube a una escalera",
-            "text": "Decoras la fachada desde el suelo, en minutos."
+            "icon": "bolt",
+            "heading": "Listo en segundos",
+            "text": "Lo enchufas, lo apuntas y tu casa se llena de figuras."
           }
         },
         "b2": {
           "type": "feature",
           "settings": {
-            "icon": "hand",
-            "heading": "Sin enredos ni clavos",
-            "text": "Nada de desenredar cables ni perforar muros."
+            "icon": "gift",
+            "heading": "Combina con tus luces",
+            "text": "Súmale las cortinas de luces del pack y decora la casa completa."
           }
         },
         "b3": {
