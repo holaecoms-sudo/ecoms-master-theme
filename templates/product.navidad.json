@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -54,20 +63,20 @@
             "t3_total": 59970,
             "t3_badge": "Mejor oferta",
             "t3_note": "",
+            "unit_singular": "proyector",
+            "unit_plural": "proyectores",
             "gifts_heading": "¡Regalos gratis mientras más te lleves!",
             "gift_1": "luces-de-cortina-luz-amarillo-de-3x2-m",
+            "gift_1_label": "cortina de luz cálida",
             "gift_1_tier": 2,
             "gift_2": "luces-de-cortina-luz-de-3x2-m-multicolor",
+            "gift_2_label": "cortina multicolor",
             "gift_2_tier": 3,
             "ship_tier": 2,
             "ship_label": "Envío gratis a todo Chile",
             "ship_was": "$4.000",
             "button_label": "Pedir y pagar al recibir",
-            "note": "No pagas nada hoy. Todo llega en un solo envío.",
-            "unit_singular": "proyector",
-            "unit_plural": "proyectores",
-            "gift_1_label": "cortina de luz cálida",
-            "gift_2_label": "cortina multicolor"
+            "note": "No pagas nada hoy. Todo llega en un solo envío."
           }
         },
         "benefits": {
@@ -90,6 +99,17 @@
             "min_days": 3,
             "max_days": 6,
             "step_3": "Entregado"
+          }
+        },
+        "xmas": {
+          "type": "urgency",
+          "settings": {
+            "end_at": "2026-12-24 23:59",
+            "icon": "gift",
+            "heading": "¡Se viene la Navidad! 🎄",
+            "text": "Faltan para Nochebuena:",
+            "style": "boxes",
+            "show_days": true
           }
         },
         "review_slider": {
@@ -117,17 +137,6 @@
             "max_show": 5,
             "text": "¡Solo quedan [qty] unidades en stock!"
           }
-        },
-        "xmas": {
-          "type": "urgency",
-          "settings": {
-            "end_at": "2026-12-24 23:59",
-            "icon": "gift",
-            "heading": "¡Se viene la Navidad! 🎄",
-            "text": "Faltan para Nochebuena:",
-            "style": "boxes",
-            "show_days": true
-          }
         }
       },
       "block_order": [
@@ -136,10 +145,10 @@
         "title",
         "lead",
         "price",
-        "xmas",
         "tiers",
         "benefits",
         "delivery",
+        "xmas",
         "review_slider",
         "stock"
       ],
@@ -272,271 +281,6 @@
         "padding_bottom": 0
       }
     },
-    "keyspecs": {
-      "type": "ecoms-stats",
-      "settings": {
-        "metafield": "ecoms.stats",
-        "style": "timeline",
-        "heading": "La forma más fácil de decorar esta Navidad",
-        "text": "",
-        "width": "full",
-        "padding_top": 0,
-        "padding_bottom": 0
-      },
-      "disabled": true
-    },
-    "anatomy": {
-      "type": "ecoms-anatomy",
-      "settings": {
-        "metafield": "ecoms.features",
-        "style": "dark",
-        "eyebrow": "",
-        "heading": "Así funciona",
-        "text": "",
-        "show_numbers": false,
-        "width": "full",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "includes": {
-      "type": "ecoms-includes",
-      "settings": {
-        "metafield": "ecoms.includes",
-        "eyebrow": "Todo en una caja",
-        "heading": "Esto incluye tu compra",
-        "text": "",
-        "show_price": true,
-        "total_label": "Todo esto por",
-        "button_label": "Lo quiero",
-        "note": "",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 28
-      }
-    },
-    "problem": {
-      "type": "ecoms-problem",
-      "settings": {
-        "metafield": "ecoms.highlights",
-        "heading": "",
-        "text": "",
-        "before_label": "Antes",
-        "before_caption": "Imagen referencial",
-        "after_label": "Después",
-        "after_caption": "Imagen referencial",
-        "quote": "",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 20
-      }
-    },
-    "tabs": {
-      "type": "ecoms-tabs",
-      "settings": {
-        "metafield": "ecoms.uses",
-        "eyebrow": "",
-        "heading": "Úsalo donde quieras",
-        "text": "",
-        "button_label": "Lo quiero",
-        "width": "full",
-        "padding_top": 40,
-        "padding_bottom": 32
-      }
-    },
-    "comparison": {
-      "type": "ecoms-comparison",
-      "settings": {
-        "metafield": "ecoms.compare_rows",
-        "style": "table",
-        "heading": "Proyector vs. luces de toda la vida",
-        "feature_label": "",
-        "col_1": "",
-        "show_image": true,
-        "col_2": "",
-        "col_3": "",
-        "width": "full",
-        "padding_top": 28,
-        "padding_bottom": 28
-      },
-      "disabled": true
-    },
-    "review_strip": {
-      "type": "ecoms-review-strip",
-      "disabled": true,
-      "settings": {
-        "count": "",
-        "count_label": "clientes ya la usan en Chile",
-        "heading": "Lo que dicen nuestros clientes",
-        "speed": 40,
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "reviews": {
-      "type": "ecoms-reviews",
-      "settings": {
-        "metafield": "ecoms.reviews",
-        "style": "masonry",
-        "heading": "Opiniones de clientes",
-        "link_label": "",
-        "link": "",
-        "source_note": "",
-        "per_page": 6,
-        "write_label": "Escribe una reseña",
-        "write_link": "/pages/contact",
-        "width": "full",
-        "padding_top": 32,
-        "padding_bottom": 32
-      }
-    },
-    "ugc": {
-      "type": "ecoms-ugc",
-      "settings": {
-        "metafield": "ecoms.ugc",
-        "style": "grid",
-        "heading": "Así se ve en casa",
-        "text": "Imágenes referenciales de uso.",
-        "width": "full",
-        "padding_top": 28,
-        "padding_bottom": 28
-      }
-    },
-    "specs": {
-      "type": "ecoms-specs",
-      "blocks": {
-        "r1": {
-          "type": "row",
-          "settings": {
-            "icon": "box",
-            "label": "Contenido del paquete",
-            "value": "",
-            "metafield": "ecoms.package_contents"
-          }
-        },
-        "r2": {
-          "type": "row",
-          "settings": {
-            "icon": "grid",
-            "label": "Medidas",
-            "value": "",
-            "metafield": "ecoms.dimensions"
-          }
-        },
-        "r3": {
-          "type": "row",
-          "settings": {
-            "icon": "gem",
-            "label": "Material",
-            "value": "",
-            "metafield": "ecoms.material"
-          }
-        },
-        "r4": {
-          "type": "row",
-          "settings": {
-            "icon": "hand",
-            "label": "Cómo se usa",
-            "value": "",
-            "metafield": "ecoms.usage"
-          }
-        }
-      },
-      "block_order": [
-        "r1",
-        "r2",
-        "r3",
-        "r4"
-      ],
-      "settings": {
-        "heading": "Especificaciones",
-        "width": "full",
-        "padding_top": 28,
-        "padding_bottom": 20
-      }
-    },
-    "faq": {
-      "type": "ecoms-faq",
-      "blocks": {
-        "q1": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Cuánto demora y cuánto cuesta el envío?",
-            "answer": "<p>Despachamos a todo Chile. El costo y el plazo para tu comuna aparecen en el formulario antes de confirmar, y te enviamos el seguimiento cuando tu pedido sale.</p>",
-            "draft": false
-          }
-        },
-        "q2": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Cómo puedo pagar?",
-            "answer": "<p>Puedes <strong>pagar al recibir tu pedido</strong>, en todo Chile y sin costo adicional, o pagar ahora con tarjeta desde el formulario. Si eliges pagar al recibir, te contactamos para confirmar tu pedido antes de despacharlo.</p>",
-            "draft": false
-          }
-        },
-        "q3": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Puedo cambiar o devolver mi compra?",
-            "answer": "<p>Sí. Tienes 10 días desde que recibes tu pedido para arrepentirte, con el producto sin uso y en su embalaje, y 6 meses de garantía legal si presenta una falla.</p>",
-            "draft": false
-          }
-        }
-      },
-      "block_order": [
-        "q1",
-        "q2",
-        "q3"
-      ],
-      "settings": {
-        "style": "stack",
-        "heading": "Preguntas frecuentes",
-        "text": "¿Tienes otra duda? Escríbenos desde la página de contacto.",
-        "icon": "chev",
-        "width": "full",
-        "padding_top": 32,
-        "padding_bottom": 36
-      }
-    },
-    "cross": {
-      "type": "ecoms-cross-sell",
-      "settings": {
-        "style": "rail",
-        "heading": "Completa tu decoración",
-        "products": [],
-        "collection": "",
-        "use_suggestions": true,
-        "hide_with_pack_offer": true,
-        "limit": 4,
-        "button_label": "Agregar",
-        "heading_2": "",
-        "split": 1,
-        "width": "full",
-        "padding_top": 24,
-        "padding_bottom": 24
-      },
-      "disabled": true
-    },
-    "cta": {
-      "type": "ecoms-cta-band",
-      "settings": {
-        "style": "dark",
-        "eyebrow": "",
-        "heading": "Este año tu casa brilla como nunca",
-        "text": "Pídelo hoy y pagas cuando llegue a tu casa.",
-        "image_plain": false,
-        "show_price": true,
-        "button_label": "Pedir y pagar al recibir",
-        "trust_1": "Pagas al recibir",
-        "trust_2": "Envío a todo Chile",
-        "trust_3": "10 días de retracto",
-        "width": "full",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "image": "shopify://shop_images/11_475b2ed4-b889-4f59-a4b3-f722ab992b67.jpg"
-      }
-    },
     "magic": {
       "type": "ecoms-image-text",
       "blocks": {
@@ -569,6 +313,7 @@
       ],
       "settings": {
         "image_side": "left",
+        "image": "shopify://shop_images/6_9b6570cb-67f2-4332-ba93-136ea0440902.jpg",
         "image_full": false,
         "product_image_index": 3,
         "heading": "Que la Navidad se vea desde la calle",
@@ -577,8 +322,94 @@
         "button_link": "",
         "width": "full",
         "padding_top": 40,
-        "padding_bottom": 32,
-        "image": "shopify://shop_images/6_9b6570cb-67f2-4332-ba93-136ea0440902.jpg"
+        "padding_bottom": 32
+      }
+    },
+    "designs": {
+      "type": "ecoms-ideal-for",
+      "blocks": {
+        "d1": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/diseno-pascuero.jpg",
+            "title": "Viejito Pascuero",
+            "text": ""
+          }
+        },
+        "d2": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/diseno-mono-de-nieve.jpg",
+            "title": "Mono de nieve",
+            "text": ""
+          }
+        },
+        "d3": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/diseno-arbol.jpg",
+            "title": "Árbol de Navidad",
+            "text": ""
+          }
+        },
+        "d4": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/diseno-reno.jpg",
+            "title": "Reno",
+            "text": ""
+          }
+        },
+        "d5": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/diseno-regalo.jpg",
+            "title": "Regalo",
+            "text": ""
+          }
+        },
+        "d6": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/diseno-campanas.jpg",
+            "title": "Campanas",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "d3",
+        "d4",
+        "d5",
+        "d6"
+      ],
+      "settings": {
+        "heading": "Los 6 diseños que vas a proyectar",
+        "text": "Cada uno rodeado de copos de nieve de colores.",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "keyspecs": {
+      "type": "ecoms-stats",
+      "disabled": true,
+      "settings": {
+        "metafield": "ecoms.stats",
+        "style": "timeline",
+        "heading": "La forma más fácil de decorar esta Navidad",
+        "text": "",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "ideal": {
@@ -588,36 +419,36 @@
           "type": "item",
           "settings": {
             "icon": "users",
+            "image": "shopify://shop_images/7_eb324015-910d-447f-a98e-72dc8f1d8bc6.jpg",
             "title": "Familias con niños",
-            "text": "Decoren juntos y que ellos elijan dónde proyectar.",
-            "image": "shopify://shop_images/7_eb324015-910d-447f-a98e-72dc8f1d8bc6.jpg"
+            "text": "Decoren juntos y que ellos elijan dónde proyectar."
           }
         },
         "b2": {
           "type": "item",
           "settings": {
             "icon": "home",
+            "image": "shopify://shop_images/8_f148cd9c-165c-4e8d-ab76-3955c57141b0.jpg",
             "title": "Casas y departamentos",
-            "text": "En la fachada, el balcón o una pared del living.",
-            "image": "shopify://shop_images/8_f148cd9c-165c-4e8d-ab76-3955c57141b0.jpg"
+            "text": "En la fachada, el balcón o una pared del living."
           }
         },
         "b3": {
           "type": "item",
           "settings": {
             "icon": "gift",
+            "image": "shopify://shop_images/10_f05d211c-608c-40d8-aaa0-625c19e3912a.jpg",
             "title": "Para regalar",
-            "text": "Un regalo distinto para los abuelos, tíos o vecinos.",
-            "image": "shopify://shop_images/10_f05d211c-608c-40d8-aaa0-625c19e3912a.jpg"
+            "text": "Un regalo distinto para los abuelos, tíos o vecinos."
           }
         },
         "b4": {
           "type": "item",
           "settings": {
             "icon": "star",
+            "image": "shopify://shop_images/9_238b33dc-829f-4de4-b060-0f8adb688077.jpg",
             "title": "Fiestas y celebraciones",
-            "text": "La cena del 24, el Año Nuevo o la fiesta de la oficina.",
-            "image": "shopify://shop_images/9_238b33dc-829f-4de4-b060-0f8adb688077.jpg"
+            "text": "La cena del 24, el Año Nuevo o la fiesta de la oficina."
           }
         }
       },
@@ -730,6 +561,23 @@
         "padding_bottom": 36
       }
     },
+    "comparison": {
+      "type": "ecoms-comparison",
+      "disabled": true,
+      "settings": {
+        "metafield": "ecoms.compare_rows",
+        "style": "table",
+        "heading": "Proyector vs. luces de toda la vida",
+        "feature_label": "",
+        "col_1": "",
+        "show_image": true,
+        "col_2": "",
+        "col_3": "",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
     "gift": {
       "type": "ecoms-image-text",
       "blocks": {
@@ -754,6 +602,7 @@
       ],
       "settings": {
         "image_side": "right",
+        "image": "shopify://shop_images/12_ea3964c9-89ae-4118-b0d6-c12ed26e45db.jpg",
         "image_full": false,
         "product_image_index": 5,
         "heading": "El regalo que ilumina toda la casa",
@@ -762,82 +611,242 @@
         "button_link": "",
         "width": "full",
         "padding_top": 36,
-        "padding_bottom": 40,
-        "image": "shopify://shop_images/12_ea3964c9-89ae-4118-b0d6-c12ed26e45db.jpg"
+        "padding_bottom": 40
       }
     },
-    "designs": {
-      "type": "ecoms-ideal-for",
+    "anatomy": {
+      "type": "ecoms-anatomy",
+      "settings": {
+        "metafield": "ecoms.features",
+        "style": "dark",
+        "eyebrow": "",
+        "heading": "Así funciona",
+        "text": "",
+        "show_numbers": false,
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "includes": {
+      "type": "ecoms-includes",
+      "settings": {
+        "metafield": "ecoms.includes",
+        "eyebrow": "Todo en una caja",
+        "heading": "Esto incluye tu compra",
+        "text": "",
+        "show_price": true,
+        "total_label": "Todo esto por",
+        "button_label": "Lo quiero",
+        "note": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "problem": {
+      "type": "ecoms-problem",
+      "settings": {
+        "metafield": "ecoms.highlights",
+        "heading": "",
+        "text": "",
+        "before_label": "Antes",
+        "before_caption": "Imagen referencial",
+        "after_label": "Después",
+        "after_caption": "Imagen referencial",
+        "quote": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 20
+      }
+    },
+    "tabs": {
+      "type": "ecoms-tabs",
+      "settings": {
+        "metafield": "ecoms.uses",
+        "eyebrow": "",
+        "heading": "Úsalo donde quieras",
+        "text": "",
+        "button_label": "Lo quiero",
+        "width": "full",
+        "padding_top": 40,
+        "padding_bottom": 32
+      }
+    },
+    "reviews": {
+      "type": "ecoms-reviews",
+      "settings": {
+        "metafield": "ecoms.reviews",
+        "style": "masonry",
+        "heading": "Opiniones de clientes",
+        "link_label": "",
+        "link": "",
+        "source_note": "",
+        "per_page": 6,
+        "write_label": "Escribe una reseña",
+        "write_link": "/pages/contact",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "ugc": {
+      "type": "ecoms-ugc",
+      "settings": {
+        "metafield": "ecoms.ugc",
+        "style": "grid",
+        "heading": "Así se ve en casa",
+        "text": "Imágenes referenciales de uso.",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "review_strip": {
+      "type": "ecoms-review-strip",
+      "disabled": true,
+      "settings": {
+        "count": "",
+        "count_label": "clientes ya la usan en Chile",
+        "heading": "Lo que dicen nuestros clientes",
+        "speed": 40,
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "specs": {
+      "type": "ecoms-specs",
       "blocks": {
-        "d1": {
-          "type": "item",
+        "r1": {
+          "type": "row",
           "settings": {
-            "icon": "none",
-            "image": "shopify://shop_images/diseno-pascuero.jpg",
-            "title": "Viejito Pascuero",
-            "text": ""
+            "icon": "box",
+            "label": "Contenido del paquete",
+            "value": "",
+            "metafield": "ecoms.package_contents"
           }
         },
-        "d2": {
-          "type": "item",
+        "r2": {
+          "type": "row",
           "settings": {
-            "icon": "none",
-            "image": "shopify://shop_images/diseno-mono-de-nieve.jpg",
-            "title": "Mono de nieve",
-            "text": ""
+            "icon": "grid",
+            "label": "Medidas",
+            "value": "",
+            "metafield": "ecoms.dimensions"
           }
         },
-        "d3": {
-          "type": "item",
+        "r3": {
+          "type": "row",
           "settings": {
-            "icon": "none",
-            "image": "shopify://shop_images/diseno-arbol.jpg",
-            "title": "Árbol de Navidad",
-            "text": ""
+            "icon": "gem",
+            "label": "Material",
+            "value": "",
+            "metafield": "ecoms.material"
           }
         },
-        "d4": {
-          "type": "item",
+        "r4": {
+          "type": "row",
           "settings": {
-            "icon": "none",
-            "image": "shopify://shop_images/diseno-reno.jpg",
-            "title": "Reno",
-            "text": ""
-          }
-        },
-        "d5": {
-          "type": "item",
-          "settings": {
-            "icon": "none",
-            "image": "shopify://shop_images/diseno-regalo.jpg",
-            "title": "Regalo",
-            "text": ""
-          }
-        },
-        "d6": {
-          "type": "item",
-          "settings": {
-            "icon": "none",
-            "image": "shopify://shop_images/diseno-campanas.jpg",
-            "title": "Campanas",
-            "text": ""
+            "icon": "hand",
+            "label": "Cómo se usa",
+            "value": "",
+            "metafield": "ecoms.usage"
           }
         }
       },
       "block_order": [
-        "d1",
-        "d2",
-        "d3",
-        "d4",
-        "d5",
-        "d6"
+        "r1",
+        "r2",
+        "r3",
+        "r4"
       ],
       "settings": {
-        "heading": "Los 6 diseños que vas a proyectar",
-        "text": "Cada uno rodeado de copos de nieve de colores.",
+        "heading": "Especificaciones",
         "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 28
+        "padding_top": 28,
+        "padding_bottom": 20
+      }
+    },
+    "faq": {
+      "type": "ecoms-faq",
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuánto demora y cuánto cuesta el envío?",
+            "answer": "<p>Despachamos a todo Chile. El costo y el plazo para tu comuna aparecen en el formulario antes de confirmar, y te enviamos el seguimiento cuando tu pedido sale.</p>",
+            "draft": false
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo puedo pagar?",
+            "answer": "<p>Puedes <strong>pagar al recibir tu pedido</strong>, en todo Chile y sin costo adicional, o pagar ahora con tarjeta desde el formulario. Si eliges pagar al recibir, te contactamos para confirmar tu pedido antes de despacharlo.</p>",
+            "draft": false
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Puedo cambiar o devolver mi compra?",
+            "answer": "<p>Sí. Tienes 10 días desde que recibes tu pedido para arrepentirte, con el producto sin uso y en su embalaje, y 6 meses de garantía legal si presenta una falla.</p>",
+            "draft": false
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ],
+      "settings": {
+        "style": "stack",
+        "heading": "Preguntas frecuentes",
+        "text": "¿Tienes otra duda? Escríbenos desde la página de contacto.",
+        "icon": "chev",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 36
+      }
+    },
+    "cross": {
+      "type": "ecoms-cross-sell",
+      "disabled": true,
+      "settings": {
+        "style": "rail",
+        "heading": "Completa tu decoración",
+        "products": [],
+        "collection": "",
+        "use_suggestions": true,
+        "hide_with_pack_offer": true,
+        "limit": 4,
+        "button_label": "Agregar",
+        "heading_2": "",
+        "split": 1,
+        "width": "full",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "cta": {
+      "type": "ecoms-cta-band",
+      "settings": {
+        "style": "dark",
+        "eyebrow": "",
+        "heading": "Este año tu casa brilla como nunca",
+        "text": "Pídelo hoy y pagas cuando llegue a tu casa.",
+        "image": "shopify://shop_images/11_475b2ed4-b889-4f59-a4b3-f722ab992b67.jpg",
+        "image_plain": false,
+        "show_price": true,
+        "button_label": "Pedir y pagar al recibir",
+        "trust_1": "Pagas al recibir",
+        "trust_2": "Envío a todo Chile",
+        "trust_3": "10 días de retracto",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
