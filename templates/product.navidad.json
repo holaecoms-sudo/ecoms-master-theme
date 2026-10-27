@@ -1,0 +1,524 @@
+{
+  "sections": {
+    "main": {
+      "type": "ecoms-product",
+      "blocks": {
+        "badge_box": {
+          "type": "badge_box",
+          "settings": {
+            "text": "Navidad sin escalera | Paga al recibir"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "social": {
+          "type": "social",
+          "settings": {
+            "rating": "",
+            "text": ""
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "style": "badge",
+            "shipping_cost": 4000,
+            "ship_local_title": "Envío gratis",
+            "ship_local_text": "gratis desde $29.990"
+          }
+        },
+        "next": {
+          "type": "text",
+          "settings": {
+            "text": "<p>En el formulario puedes sumar las <strong>cortinas de luces a precio de pack</strong>. No pagas nada hoy.</p>"
+          }
+        },
+        "benefits": {
+          "type": "benefits",
+          "settings": {
+            "item_1": "",
+            "item_2": "",
+            "item_3": "",
+            "item_4": "",
+            "item_5": "",
+            "item_6": ""
+          }
+        },
+        "buy": {
+          "type": "buy",
+          "settings": {
+            "heading": "",
+            "show_quantity": false,
+            "add_label": "Agregar al carrito",
+            "show_total": false,
+            "show_buy_now": false,
+            "buy_now_icon": "bolt",
+            "buy_now_label": "Comprar ahora",
+            "cod_only": true,
+            "add_label_cod": "Comprar con tarjeta",
+            "buy_now_label_cod": "Pedir ahora y pagar al recibir",
+            "card_label": "",
+            "card_code": ""
+          }
+        },
+        "delivery": {
+          "type": "delivery",
+          "settings": {
+            "step_1": "Pedido realizado",
+            "ready_days": 1,
+            "step_2": "Pedido listo",
+            "min_days": 3,
+            "max_days": 6,
+            "step_3": "Entregado"
+          }
+        },
+        "review_slider": {
+          "type": "review_slider",
+          "settings": {
+            "style": "chat",
+            "heading": "Lo que nos escriben nuestros clientes",
+            "text_1": "",
+            "author_1": "",
+            "place_1": "",
+            "stars_1": 5,
+            "text_2": "",
+            "author_2": "",
+            "place_2": "",
+            "stars_2": 5,
+            "text_3": "",
+            "author_3": "",
+            "place_3": "",
+            "stars_3": 5
+          }
+        },
+        "stock": {
+          "type": "stock",
+          "settings": {
+            "max_show": 5,
+            "text": "¡Solo quedan [qty] unidades en stock!"
+          }
+        }
+      },
+      "block_order": [
+        "badge_box",
+        "title",
+        "social",
+        "price",
+        "next",
+        "benefits",
+        "buy",
+        "delivery",
+        "review_slider",
+        "stock"
+      ],
+      "custom_css": [],
+      "settings": {
+        "layout": "direct",
+        "columns": "two",
+        "gallery_mobile": "inset",
+        "thumbs": "auto",
+        "gal_controls": false,
+        "badge": "",
+        "media_tag": "",
+        "media_title": "",
+        "media_text": "",
+        "media_over_count": 2,
+        "hero_bg": "none",
+        "media_ratio": "square",
+        "media_fit": "cover",
+        "video_first": false,
+        "video_autoplay": true,
+        "video_loop": true,
+        "sticky": false,
+        "sticky_desktop": true,
+        "sticky_ship": true,
+        "sticky_save": true,
+        "sticky_early": true,
+        "sticky_label": "Comprar",
+        "sticky_label_cod": "Pedir ahora",
+        "sticky_cod": false,
+        "sticky_cod_sub": "",
+        "palette": "custom",
+        "pal_primary": "#B3161B",
+        "pal_primary_ink": "#FFFFFF",
+        "pal_dark": "#0F3D2E",
+        "pal_accent": "#B3161B",
+        "pal_accent_ink": "#FFFFFF",
+        "pal_soft": "#FBF1EC",
+        "pal_soft_ink": "#0F3D2E",
+        "pal_tag": "#0F3D2E",
+        "pal_tag_ink": "#FFFFFF",
+        "pal_sale_bg": "#FDECEC",
+        "pal_sale_ink": "#B3161B",
+        "pal_urgent": "#B3161B",
+        "pal_urgent_bg": "#FDECEC",
+        "pal_bg": "#FFFFFF",
+        "pal_ink": "#1B1B1B",
+        "pal_muted": "#5F5F5F",
+        "pal_line": "#EADFD8",
+        "pal_deep": "#0F3D2E",
+        "padding_top": 24,
+        "padding_bottom": 32
+      }
+    },
+    "demo": {
+      "type": "ecoms-demo",
+      "settings": {
+        "heading": "",
+        "text": "",
+        "mode": "player",
+        "ratio": "story",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 24
+      }
+    },
+    "bubble": {
+      "type": "ecoms-review-bubble",
+      "settings": {
+        "metafield": "ecoms.reviews",
+        "heading": "",
+        "limit": 4,
+        "width": "full",
+        "padding_top": 4,
+        "padding_bottom": 24
+      }
+    },
+    "band": {
+      "type": "ecoms-marquee",
+      "blocks": {
+        "b1": {
+          "type": "text",
+          "settings": {
+            "icon": "bolt",
+            "text": "Lista en 1 minuto"
+          }
+        },
+        "b2": {
+          "type": "text",
+          "settings": {
+            "icon": "home",
+            "text": "Sin escaleras ni clavos"
+          }
+        },
+        "b3": {
+          "type": "text",
+          "settings": {
+            "icon": "cash",
+            "text": "Pagas al recibir"
+          }
+        },
+        "b4": {
+          "type": "text",
+          "settings": {
+            "icon": "truck",
+            "text": "Envío a todo Chile"
+          }
+        },
+        "b5": {
+          "type": "text",
+          "settings": {
+            "icon": "shield",
+            "text": "6 meses de garantía legal"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5"
+      ],
+      "settings": {
+        "style": "band",
+        "heading": "",
+        "speed": 30,
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "keyspecs": {
+      "type": "ecoms-stats",
+      "settings": {
+        "metafield": "ecoms.stats",
+        "style": "dark",
+        "heading": "Lo que lo hace distinto",
+        "text": "",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "anatomy": {
+      "type": "ecoms-anatomy",
+      "settings": {
+        "metafield": "ecoms.features",
+        "style": "dark",
+        "eyebrow": "",
+        "heading": "Así funciona",
+        "text": "",
+        "show_numbers": false,
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "includes": {
+      "type": "ecoms-includes",
+      "settings": {
+        "metafield": "ecoms.includes",
+        "eyebrow": "Todo en una caja",
+        "heading": "Esto incluye tu compra",
+        "text": "",
+        "show_price": true,
+        "total_label": "Todo esto por",
+        "button_label": "Lo quiero",
+        "note": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "problem": {
+      "type": "ecoms-problem",
+      "settings": {
+        "metafield": "ecoms.highlights",
+        "heading": "",
+        "text": "",
+        "before_label": "Antes",
+        "before_caption": "Imagen referencial",
+        "after_label": "Después",
+        "after_caption": "Imagen referencial",
+        "quote": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 20
+      }
+    },
+    "tabs": {
+      "type": "ecoms-tabs",
+      "settings": {
+        "metafield": "ecoms.uses",
+        "eyebrow": "",
+        "heading": "Úsalo donde quieras",
+        "text": "",
+        "button_label": "Lo quiero",
+        "width": "full",
+        "padding_top": 40,
+        "padding_bottom": 32
+      }
+    },
+    "comparison": {
+      "type": "ecoms-comparison",
+      "settings": {
+        "metafield": "ecoms.compare_rows",
+        "style": "vs",
+        "heading": "Proyector vs. luces tradicionales",
+        "feature_label": "",
+        "col_1": "",
+        "show_image": true,
+        "col_2": "",
+        "col_3": "",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "review_strip": {
+      "type": "ecoms-review-strip",
+      "settings": {
+        "count": "",
+        "count_label": "clientes ya la usan en Chile",
+        "heading": "Lo que dicen nuestros clientes",
+        "speed": 40,
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "reviews": {
+      "type": "ecoms-reviews",
+      "settings": {
+        "metafield": "ecoms.reviews",
+        "style": "masonry",
+        "heading": "Opiniones de clientes",
+        "link_label": "",
+        "link": "",
+        "source_note": "",
+        "per_page": 6,
+        "write_label": "Escribe una reseña",
+        "write_link": "/pages/contact",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "ugc": {
+      "type": "ecoms-ugc",
+      "settings": {
+        "metafield": "ecoms.ugc",
+        "style": "grid",
+        "heading": "Así se ve en casa",
+        "text": "Imágenes referenciales de uso.",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "specs": {
+      "type": "ecoms-specs",
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "icon": "box",
+            "label": "Contenido del paquete",
+            "value": "",
+            "metafield": "ecoms.package_contents"
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "icon": "grid",
+            "label": "Medidas",
+            "value": "",
+            "metafield": "ecoms.dimensions"
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "icon": "gem",
+            "label": "Material",
+            "value": "",
+            "metafield": "ecoms.material"
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "icon": "hand",
+            "label": "Cómo se usa",
+            "value": "",
+            "metafield": "ecoms.usage"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ],
+      "settings": {
+        "heading": "Especificaciones",
+        "width": "full",
+        "padding_top": 28,
+        "padding_bottom": 20
+      }
+    },
+    "faq": {
+      "type": "ecoms-faq",
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuánto demora y cuánto cuesta el envío?",
+            "answer": "<p>Despachamos a todo Chile. El costo y el plazo para tu comuna aparecen en el formulario antes de confirmar, y te enviamos el seguimiento cuando tu pedido sale.</p>",
+            "draft": false
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo puedo pagar?",
+            "answer": "<p>Puedes <strong>pagar al recibir tu pedido</strong>, en todo Chile y sin costo adicional, o pagar ahora con tarjeta desde el formulario. Si eliges pagar al recibir, te contactamos para confirmar tu pedido antes de despacharlo.</p>",
+            "draft": false
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Puedo cambiar o devolver mi compra?",
+            "answer": "<p>Sí. Tienes 10 días desde que recibes tu pedido para arrepentirte, con el producto sin uso y en su embalaje, y 6 meses de garantía legal si presenta una falla.</p>",
+            "draft": false
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ],
+      "settings": {
+        "style": "split",
+        "heading": "Preguntas frecuentes",
+        "text": "¿Tienes otra duda? Escríbenos desde la página de contacto.",
+        "icon": "plus",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 36
+      }
+    },
+    "cross": {
+      "type": "ecoms-cross-sell",
+      "settings": {
+        "style": "rail",
+        "heading": "Completa tu decoración",
+        "products": [],
+        "collection": "",
+        "use_suggestions": true,
+        "hide_with_pack_offer": true,
+        "limit": 4,
+        "button_label": "Agregar",
+        "heading_2": "",
+        "split": 1,
+        "width": "full",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "cta": {
+      "type": "ecoms-cta-band",
+      "settings": {
+        "style": "dark",
+        "eyebrow": "",
+        "heading": "Tu casa lista para Navidad, sin subirte a una escalera",
+        "text": "Pídelo hoy y pagas cuando llegue a tu casa.",
+        "image_plain": false,
+        "show_price": true,
+        "button_label": "Pedir y pagar al recibir",
+        "trust_1": "Pagas al recibir",
+        "trust_2": "Envío a todo Chile",
+        "trust_3": "10 días de retracto",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "demo",
+    "bubble",
+    "band",
+    "keyspecs",
+    "anatomy",
+    "includes",
+    "problem",
+    "tabs",
+    "comparison",
+    "review_strip",
+    "reviews",
+    "ugc",
+    "specs",
+    "faq",
+    "cross",
+    "cta"
+  ]
+}
