@@ -655,7 +655,8 @@
               Quantity tiers with gifts that unlock (e.g. take 2 and the warm light curtain is free). Choosing a
               tier and tapping the button puts that quantity plus the unlocked gifts in the cart and opens the cash
               on delivery app's form with the cart. Prices are a preview: the REAL automatic discounts in Shopify
-              (tier price and «Compra X y llévate Y» at 100% for each gift) must give the same totals.
+              must give the same totals. Shopify applies one automatic discount per order here, so each tier should
+              be a single «Compra X y llévate Y» at 100% on its gifts; the crossed-out price adds the gifts' value.
             {%- endcomment -%}
             {%- liquid
               assign gt_unit = variant.price
@@ -685,17 +686,21 @@
                     if t_total == 0
                       assign t_total = t_was
                     endif
-                    assign t_save = t_was | minus: t_total
                     assign t_each = t_total | divided_by: t_qty
                     assign t_gifts = 0
+                    assign t_gift_value = 0
                     for g in (1..2)
                       assign k_gp = 'gift_' | append: g
                       assign k_gt = 'gift_' | append: g | append: '_tier'
                       assign g_tier = block.settings[k_gt] | default: 99 | plus: 0
                       if block.settings[k_gp] != blank and block.settings[k_gp].available and n >= g_tier
                         assign t_gifts = t_gifts | plus: 1
+                        assign t_gift_value = t_gift_value | plus: block.settings[k_gp].selected_or_first_available_variant.price
                       endif
                     endfor
+                    # What the shopper gets: the units at their normal price plus the gifts' normal price.
+                    assign t_was = t_was | plus: t_gift_value
+                    assign t_save = t_was | minus: t_total
                     assign t_ship = false
                     assign ship_tier = block.settings.ship_tier | default: 0 | plus: 0
                     if ship_tier > 0 and n >= ship_tier
@@ -712,8 +717,8 @@
                         {%- if t_save > 0 -%}<em>Ahorras {{ t_save | money }}</em>{%- endif -%}
                       </span>
                       <span class="ec-gt__sub">
-                        {%- if t_qty > 1 -%}{{ t_each | money }} c/u{%- endif -%}
-                        {%- if t_gifts > 0 -%}{% if t_qty > 1 %} · {% endif %}<span class="ec-gt__plus">+ {{ t_gifts }} {% if t_gifts == 1 %}regalo{% else %}regalos{% endif %}</span>{%- endif -%}
+                        {%- if t_qty > 1 and t_each < gt_unit -%}{{ t_each | money }} c/u{%- else -%}{{ t_qty }} unidades{%- endif -%}
+                        {%- if t_gifts > 0 -%} · <span class="ec-gt__plus">+ {{ t_gifts }} {% if t_gifts == 1 %}regalo{% else %}regalos{% endif %}</span>{%- endif -%}
                         {%- if t_ship -%} · envío gratis{%- endif -%}
                         {%- if block.settings[k_note] != blank -%}<span class="ec-gt__note">{{ block.settings[k_note] | escape }}</span>{%- endif -%}
                       </span>
