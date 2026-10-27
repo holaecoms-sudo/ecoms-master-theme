@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -9,28 +18,61 @@
             "text": "Navidad sin escalera | Paga al recibir"
           }
         },
+        "social": {
+          "type": "social",
+          "settings": {
+            "rating": "4,9",
+            "text": "+120 clientas en Chile"
+          }
+        },
         "title": {
           "type": "title",
           "settings": {}
         },
-        "social": {
-          "type": "social",
+        "lead": {
+          "type": "text",
           "settings": {
-            "rating": "",
-            "text": ""
+            "text": "",
+            "fixed": false
+          }
+        },
+        "tiers": {
+          "type": "gift_tiers",
+          "settings": {
+            "heading": "Elige tu pack navideño 🎄",
+            "default_tier": "2",
+            "t1_qty": 1,
+            "t1_label": "Lleva 1",
+            "t1_badge": "",
+            "t1_note": "",
+            "t2_qty": 2,
+            "t2_label": "Lleva 2",
+            "t2_total": 39980,
+            "t2_badge": "Más elegido",
+            "t2_note": "Uno para tu casa y otro para regalar",
+            "t3_qty": 3,
+            "t3_label": "Lleva 3",
+            "t3_total": 59970,
+            "t3_badge": "Mejor oferta",
+            "t3_note": "",
+            "gifts_heading": "¡Regalos gratis mientras más te lleves!",
+            "gift_1": "luces-de-cortina-luz-amarillo-de-3x2-m",
+            "gift_1_tier": 2,
+            "gift_2": "luces-de-cortina-luz-de-3x2-m-multicolor",
+            "gift_2_tier": 3,
+            "ship_tier": 2,
+            "ship_label": "Envío gratis a todo Chile",
+            "ship_was": "$4.000",
+            "button_label": "Pedir y pagar al recibir",
+            "note": "No pagas nada hoy. Todo llega en un solo envío."
           }
         },
         "price": {
           "type": "price",
           "settings": {
-            "style": "badge"
-          }
-        },
-        "next": {
-          "type": "text",
-          "settings": {
-            "text": "<p>En el formulario puedes sumar las <strong>cortinas de luces a precio de pack</strong>. No pagas nada hoy.</p>",
-            "fixed": true
+            "style": "badge",
+            "ship_local_title": "",
+            "ship_local_text": ""
           }
         },
         "benefits": {
@@ -42,23 +84,6 @@
             "item_4": "",
             "item_5": "",
             "item_6": ""
-          }
-        },
-        "buy": {
-          "type": "buy",
-          "settings": {
-            "heading": "",
-            "show_quantity": false,
-            "add_label": "Agregar al carrito",
-            "show_total": false,
-            "show_buy_now": false,
-            "buy_now_icon": "bolt",
-            "buy_now_label": "Comprar ahora",
-            "cod_only": true,
-            "add_label_cod": "Comprar con tarjeta",
-            "buy_now_label_cod": "Pedir ahora y pagar al recibir",
-            "card_label": "",
-            "card_code": ""
           }
         },
         "delivery": {
@@ -97,53 +122,16 @@
             "max_show": 5,
             "text": "¡Solo quedan [qty] unidades en stock!"
           }
-        },
-        "lead": {
-          "type": "text",
-          "settings": {
-            "text": ""
-          }
-        },
-        "tiers": {
-          "type": "gift_tiers",
-          "settings": {
-            "heading": "Elige tu pack navideño 🎄",
-            "default_tier": "2",
-            "t1_qty": 1,
-            "t1_label": "Lleva 1",
-            "t1_badge": "",
-            "t1_note": "",
-            "t2_qty": 2,
-            "t2_label": "Lleva 2",
-            "t2_total": 39980,
-            "t2_badge": "Más elegido",
-            "t2_note": "Uno para tu casa y otro para regalar",
-            "t3_qty": 3,
-            "t3_label": "Lleva 3",
-            "t3_total": 59970,
-            "t3_badge": "Mejor oferta",
-            "t3_note": "",
-            "gifts_heading": "¡Regalos gratis mientras más te lleves!",
-            "gift_1": "luces-de-cortina-luz-amarillo-de-3x2-m",
-            "gift_1_tier": 2,
-            "gift_2": "luces-de-cortina-luz-de-3x2-m-multicolor",
-            "gift_2_tier": 3,
-            "ship_tier": 2,
-            "ship_label": "Envío gratis a todo Chile",
-            "ship_was": "$4.000",
-            "button_label": "Pedir y pagar al recibir",
-            "note": "No pagas nada hoy. Todo llega en un solo envío."
-          }
         }
       },
       "block_order": [
         "badge_box",
-        "title",
         "social",
-        "price",
+        "title",
         "lead",
-        "benefits",
         "tiers",
+        "price",
+        "benefits",
         "delivery",
         "review_slider",
         "stock"
@@ -176,6 +164,7 @@
         "sticky_cod": false,
         "sticky_cod_sub": "",
         "palette": "navidad",
+        "snow": true,
         "pal_primary": "",
         "pal_primary_ink": "",
         "pal_dark": "",
@@ -195,8 +184,7 @@
         "pal_line": "",
         "pal_deep": "",
         "padding_top": 24,
-        "padding_bottom": 32,
-        "snow": true
+        "padding_bottom": 32
       }
     },
     "demo": {
@@ -366,6 +354,7 @@
     },
     "review_strip": {
       "type": "ecoms-review-strip",
+      "disabled": true,
       "settings": {
         "count": "",
         "count_label": "clientes ya la usan en Chile",
@@ -374,8 +363,7 @@
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
-      },
-      "disabled": true
+      }
     },
     "reviews": {
       "type": "ecoms-reviews",

@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -123,6 +132,7 @@
         "columns": "two",
         "gallery_mobile": "inset",
         "thumbs": "auto",
+        "gal_controls": false,
         "badge": "",
         "media_tag": "",
         "media_title": "",
@@ -163,8 +173,7 @@
         "pal_line": "",
         "pal_deep": "",
         "padding_top": 16,
-        "padding_bottom": 28,
-        "gal_controls": false
+        "padding_bottom": 28
       }
     },
     "demo": {
@@ -172,8 +181,8 @@
       "settings": {
         "heading": "Míralo en acción",
         "text": "",
-        "ratio": "story",
         "mode": "player",
+        "ratio": "story",
         "width": "full",
         "padding_top": 24,
         "padding_bottom": 12
@@ -247,8 +256,6 @@
     },
     "story": {
       "type": "ecoms-image-text",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "image_side": "right",
         "image_full": false,
@@ -264,8 +271,6 @@
     },
     "timeline": {
       "type": "ecoms-stats",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "metafield": "ecoms.stats",
         "style": "timeline",
@@ -322,19 +327,17 @@
         "i2",
         "i3"
       ],
+      "disabled": true,
       "settings": {
         "heading": "¿Qué tiene?",
         "style": "cards",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
-      },
-      "disabled": true
+      }
     },
     "comparison": {
       "type": "ecoms-comparison",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "metafield": "ecoms.compare_rows",
         "style": "table",
