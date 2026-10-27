@@ -113,6 +113,17 @@
             "max_show": 5,
             "text": "¡Solo quedan [qty] unidades en stock!"
           }
+        },
+        "xmas": {
+          "type": "urgency",
+          "settings": {
+            "end_at": "2026-12-24 23:59",
+            "icon": "gift",
+            "heading": "¡Se viene la Navidad!",
+            "text": "Faltan para Nochebuena:",
+            "style": "boxes",
+            "show_days": true
+          }
         }
       },
       "block_order": [
@@ -121,6 +132,7 @@
         "title",
         "lead",
         "price",
+        "xmas",
         "tiers",
         "benefits",
         "delivery",
