@@ -101,3 +101,60 @@ body.ec-skin { background: #FFFDF9; }
 /* Photo steps: rounded photos with a red step badge */
 .ec-steps--photos img { border-radius: 14px; }
 .ec-steps--photos .ec-num { background: var(--ec-xmas-red); color: #fff; }
+
+/* Snowy night sections: «Los 6 diseños» and the closing band get a pine-green night sky with white snow falling */
+[id$="__designs"] { position: relative; overflow: hidden; background: radial-gradient(120% 80% at 50% 0%, #17543F, var(--ec-deep)); color: #fff; }
+[id$="__designs"] h2, [id$="__designs"] .ec-ideal__card b { color: #fff; }
+[id$="__designs"] .ec-sec-h p { color: #F3E2B5; }
+[id$="__designs"]::before, .ec-ctab-sec .ec-ctab::after {
+  content: ""; position: absolute; inset: -100% 0 0; z-index: 0; pointer-events: none;
+  background-image:
+    radial-gradient(3px 3px at 20px 30px, #fff 50%, transparent 51%),
+    radial-gradient(2px 2px at 80px 110px, rgba(255, 255, 255, 0.9) 50%, transparent 51%),
+    radial-gradient(4px 4px at 150px 60px, rgba(255, 255, 255, 0.85) 50%, transparent 51%),
+    radial-gradient(2px 2px at 210px 160px, #fff 50%, transparent 51%),
+    radial-gradient(3px 3px at 260px 20px, rgba(255, 255, 255, 0.8) 50%, transparent 51%);
+  background-size: 280px 200px;
+  animation: ec-snow 14s linear infinite;
+}
+[id$="__designs"] > .ec-w, .ec-ctab-sec .ec-ctab > * { position: relative; z-index: 1; }
+.ec-ctab-sec .ec-ctab { position: relative; overflow: hidden; }
+
+/* Snow over the family photo too */
+[id$="__magic"] .ec-imgtxt__media { position: relative; overflow: hidden; }
+[id$="__magic"] .ec-imgtxt__media::after {
+  content: ""; position: absolute; inset: -100% 0 0; pointer-events: none;
+  background-image: radial-gradient(3px 3px at 30px 40px, #fff 50%, transparent 51%), radial-gradient(2px 2px at 120px 90px, #fff 50%, transparent 51%), radial-gradient(4px 4px at 200px 20px, rgba(255, 255, 255, 0.9) 50%, transparent 51%);
+  background-size: 240px 160px;
+  animation: ec-snow 12s linear infinite;
+}
+
+/* Santa peeking and floating: by the «6 diseños» title, by the gift section and flying with his sleigh over the closing band */
+[id$="__designs"] h2::after, [id$="__gift"] .ec-imgtxt__media::before {
+  content: "🎅"; position: absolute; font-size: 44px; line-height: 1; pointer-events: none;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35));
+  animation: ec-santa-float 3.6s ease-in-out infinite;
+}
+[id$="__designs"] h2 { position: relative; display: inline-block; }
+[id$="__designs"] h2::after { top: -6px; right: -52px; }
+[id$="__gift"] .ec-imgtxt__media { position: relative; overflow: visible; }
+[id$="__gift"] .ec-imgtxt__media::before { z-index: 2; top: -22px; left: -10px; font-size: 52px; animation-name: ec-santa-peek; }
+@keyframes ec-santa-float { 0%, 100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-10px) rotate(6deg); } }
+@keyframes ec-santa-peek { 0%, 100% { transform: translateY(8px) rotate(-12deg); } 50% { transform: translateY(-6px) rotate(4deg); } }
+.ec-ctab-sec { position: relative; overflow: hidden; }
+.ec-ctab-sec::after {
+  content: "🦌🦌🛷🎅"; position: absolute; top: 34px; left: 0; z-index: 3; font-size: 28px; letter-spacing: -4px; white-space: nowrap; pointer-events: none;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.35));
+  animation: ec-sleigh 16s linear infinite;
+}
+@keyframes ec-sleigh {
+  0% { transform: translate(-30vw, 20px) scaleX(-1); }
+  50% { transform: translate(50vw, -6px) scaleX(-1); }
+  100% { transform: translate(110vw, 18px) scaleX(-1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [id$="__designs"]::before, .ec-ctab-sec .ec-ctab::after, [id$="__magic"] .ec-imgtxt__media::after { animation: none; }
+  [id$="__designs"] h2::after, [id$="__gift"] .ec-imgtxt__media::before, .ec-ctab-sec::after { animation: none; }
+  .ec-ctab-sec::after { display: none; }
+}

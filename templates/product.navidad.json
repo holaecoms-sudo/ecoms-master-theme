@@ -504,7 +504,7 @@
     "cta": {
       "type": "ecoms-cta-band",
       "settings": {
-        "style": "soft",
+        "style": "dark",
         "eyebrow": "",
         "heading": "Este año tu casa brilla, sin subirte a una escalera",
         "text": "Pídelo hoy y pagas cuando llegue a tu casa.",
@@ -516,7 +516,8 @@
         "trust_3": "10 días de retracto",
         "width": "full",
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "image": "shopify://shop_images/11_475b2ed4-b889-4f59-a4b3-f722ab992b67.jpg"
       }
     },
     "magic": {
@@ -571,7 +572,8 @@
           "settings": {
             "icon": "users",
             "title": "Familias con niños",
-            "text": "Decoren juntos y que ellos elijan dónde proyectar."
+            "text": "Decoren juntos y que ellos elijan dónde proyectar.",
+            "image": "shopify://shop_images/7_eb324015-910d-447f-a98e-72dc8f1d8bc6.jpg"
           }
         },
         "b2": {
@@ -579,7 +581,8 @@
           "settings": {
             "icon": "home",
             "title": "Casas y departamentos",
-            "text": "En la fachada, el balcón o una pared del living."
+            "text": "En la fachada, el balcón o una pared del living.",
+            "image": "shopify://shop_images/8_f148cd9c-165c-4e8d-ab76-3955c57141b0.jpg"
           }
         },
         "b3": {
@@ -587,7 +590,8 @@
           "settings": {
             "icon": "gift",
             "title": "Para regalar",
-            "text": "Un regalo distinto para los abuelos, tíos o vecinos."
+            "text": "Un regalo distinto para los abuelos, tíos o vecinos.",
+            "image": "shopify://shop_images/10_f05d211c-608c-40d8-aaa0-625c19e3912a.jpg"
           }
         },
         "b4": {
@@ -595,7 +599,8 @@
           "settings": {
             "icon": "star",
             "title": "Fiestas y celebraciones",
-            "text": "La cena del 24, el Año Nuevo o la fiesta de la oficina."
+            "text": "La cena del 24, el Año Nuevo o la fiesta de la oficina.",
+            "image": "shopify://shop_images/9_238b33dc-829f-4de4-b060-0f8adb688077.jpg"
           }
         }
       },
@@ -741,7 +746,7 @@
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 40,
-        "image": "shopify://shop_images/7_eb324015-910d-447f-a98e-72dc8f1d8bc6.jpg"
+        "image": "shopify://shop_images/12_ea3964c9-89ae-4118-b0d6-c12ed26e45db.jpg"
       }
     },
     "designs": {
