@@ -266,7 +266,8 @@
         "width": "full",
         "padding_top": 0,
         "padding_bottom": 0
-      }
+      },
+      "disabled": true
     },
     "anatomy": {
       "type": "ecoms-anatomy",
@@ -558,7 +559,8 @@
         "button_link": "",
         "width": "full",
         "padding_top": 40,
-        "padding_bottom": 32
+        "padding_bottom": 32,
+        "image": "shopify://shop_images/6_9b6570cb-67f2-4332-ba93-136ea0440902.jpg"
       }
     },
     "ideal": {
@@ -664,39 +666,42 @@
     "howto": {
       "type": "ecoms-steps",
       "blocks": {
-        "b1": {
+        "s1": {
           "type": "step",
           "settings": {
-            "icon": "bolt",
+            "image": "shopify://shop_images/5_3a21cb8a-b507-41c9-8527-423a7006bea6.jpg",
+            "icon": "none",
             "heading": "Enchúfalo",
-            "text": "A cualquier enchufe, dentro o fuera de la casa."
+            "text": "a cualquier enchufe, dentro o fuera de la casa."
           }
         },
-        "b2": {
+        "s2": {
           "type": "step",
           "settings": {
-            "icon": "hand",
+            "image": "shopify://shop_images/4_e241c40a-233a-4d96-ac53-40fe234ab1f3.jpg",
+            "icon": "none",
             "heading": "Apúntalo",
-            "text": "Hacia la pared, la fachada o el jardín y ajusta el ángulo."
+            "text": "hacia la fachada, una pared o el jardín y ajusta el ángulo."
           }
         },
-        "b3": {
+        "s3": {
           "type": "step",
           "settings": {
-            "icon": "sparkle",
+            "image": "shopify://shop_images/1_2677f066-6a7a-4bfb-b744-959893c019ab.jpg",
+            "icon": "none",
             "heading": "Disfruta",
-            "text": "Apaga las luces y mira cómo se llena de Navidad."
+            "text": "apaga las luces y mira cómo tu casa se llena de Navidad."
           }
         }
       },
       "block_order": [
-        "b1",
-        "b2",
-        "b3"
+        "s1",
+        "s2",
+        "s3"
       ],
       "settings": {
-        "style": "numbers",
-        "heading": "Listo en 3 pasos",
+        "style": "photos",
+        "heading": "Así de fácil: listo en 1 minuto",
         "text": "",
         "width": "full",
         "padding_top": 36,
@@ -735,7 +740,82 @@
         "button_link": "",
         "width": "full",
         "padding_top": 36,
-        "padding_bottom": 40
+        "padding_bottom": 40,
+        "image": "shopify://shop_images/7_eb324015-910d-447f-a98e-72dc8f1d8bc6.jpg"
+      }
+    },
+    "designs": {
+      "type": "ecoms-ideal-for",
+      "blocks": {
+        "d1": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/diseno-pascuero.jpg",
+            "title": "Viejito Pascuero",
+            "text": ""
+          }
+        },
+        "d2": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/diseno-mono-de-nieve.jpg",
+            "title": "Mono de nieve",
+            "text": ""
+          }
+        },
+        "d3": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/diseno-arbol.jpg",
+            "title": "Árbol de Navidad",
+            "text": ""
+          }
+        },
+        "d4": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/diseno-reno.jpg",
+            "title": "Reno",
+            "text": ""
+          }
+        },
+        "d5": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/diseno-regalo.jpg",
+            "title": "Regalo",
+            "text": ""
+          }
+        },
+        "d6": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/diseno-campanas.jpg",
+            "title": "Campanas",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "d3",
+        "d4",
+        "d5",
+        "d6"
+      ],
+      "settings": {
+        "heading": "Los 6 diseños que vas a proyectar",
+        "text": "Cada uno rodeado de copos de nieve de colores.",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 28
       }
     }
   },
@@ -745,6 +825,7 @@
     "bubble",
     "band",
     "magic",
+    "designs",
     "keyspecs",
     "ideal",
     "why",

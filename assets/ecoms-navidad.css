@@ -90,3 +90,14 @@ body.ec-skin { background: #FFFDF9; }
 .ec-feat__n { color: var(--ec-xmas-red); }
 .ec-imgtxt__media { border-radius: 18px; box-shadow: 0 0 0 4px #FFF6EC, 0 0 0 6px var(--ec-xmas-gold); }
 .ec-imgtxt__btn { background: var(--ec-xmas-red); }
+
+/* «Los 6 diseños»: round ornaments, 3 per row on mobile and 6 on desktop */
+[id$="__designs"] .ec-ideal { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 10px; }
+@media screen and (min-width: 750px) { [id$="__designs"] .ec-ideal { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+[id$="__designs"] .ec-ideal__card { padding: 0; border: 0; background: none; }
+[id$="__designs"] .ec-ideal__img { aspect-ratio: 1; border-radius: 50%; box-shadow: 0 0 0 3px var(--ec-xmas-gold), 0 8px 18px -8px rgba(0, 0, 0, 0.45); }
+[id$="__designs"] .ec-ideal__card b { margin-top: 6px; color: var(--ec-xmas-green); font-size: 13px; }
+
+/* Photo steps: rounded photos with a red step badge */
+.ec-steps--photos img { border-radius: 14px; }
+.ec-steps--photos .ec-num { background: var(--ec-xmas-red); color: #fff; }
