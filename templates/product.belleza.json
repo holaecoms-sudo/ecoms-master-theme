@@ -58,7 +58,8 @@
         "next": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>Elige tu oferta en el siguiente paso.</strong> No pagas nada hoy.</p>"
+            "text": "<p><strong>Elige tu oferta en el siguiente paso.</strong> No pagas nada hoy.</p>",
+            "fixed": true
           }
         },
         "review_slider": {
