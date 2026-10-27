@@ -1797,3 +1797,6 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 .ec-gt__go { min-height: 58px; gap: 8px; font-size: 16px; }
 .ec-gt__go .ec-i { width: 20px; height: 20px; }
 .ec-gt__foot { margin: 0; color: var(--ec-muted); font-size: 12.5px; text-align: center; }
+
+/* Opening the pay-on-delivery form straight from the page: the cart drawer works in the background, unseen */
+.ec-silent-cart cart-drawer, .ec-silent-cart .cart-drawer, .ec-silent-cart #CartDrawer { opacity: 0 !important; pointer-events: none !important; transition: none !important; }

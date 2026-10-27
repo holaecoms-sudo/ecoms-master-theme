@@ -174,6 +174,8 @@
   }
 
   function sync() {
+    // Pages without the product form (e.g. quantity tiers with gifts) have no live price to follow.
+    if (!unitPrice()) return;
     const qty = currentQty();
     const packs = $('[data-ec-packs]');
     $$('[data-ec-packs] input[type="radio"]').forEach((r) => { r.checked = Number(r.value) === qty; });
@@ -608,8 +610,11 @@
             body: JSON.stringify({ updates }),
           });
           const extra = gifts.filter((g) => tier >= Number(g.dataset.tier)).map((g) => ({ id: Number(g.dataset.gift), quantity: 1 }));
+          // Straight to the pay-on-delivery form: the cart drawer opens invisibly (the app's cart button lives
+          // there), its button is clicked, then the drawer closes behind the form.
+          if (box.dataset.openCod) document.documentElement.classList.add('ec-silent-cart');
           await addVariant(box.dataset.variant, Number(r.dataset.qty), 'gift_tiers', extra);
-          if (box.dataset.openCod) openCodForm(box.dataset.openCod);
+          if (box.dataset.openCod) openCodForm(box.dataset.openCod, true);
         } catch (e) {
           const note = $('[data-ec-add-error]', box);
           if (note) { note.textContent = e.message; note.hidden = false; }
@@ -632,7 +637,7 @@
     return hits.find((el) => inCart(el) === !!fromCart) || hits[0];
   }
 
-  function openCodForm(text) {
+  function openCodForm(text, silent) {
     const find = () => codButton(text, true);
     let tries = 0;
     const timer = setInterval(() => {
@@ -640,6 +645,13 @@
       if (btn || ++tries > 20) {
         clearInterval(timer);
         if (btn) btn.click();
+        if (!silent) return;
+        // Silent mode: close the invisible drawer once the form is open; if the app's button never showed,
+        // reveal the drawer so the shopper still sees their cart.
+        setTimeout(() => {
+          if (btn) $('cart-drawer')?.close?.();
+          document.documentElement.classList.remove('ec-silent-cart');
+        }, btn ? 700 : 0);
       }
     }, 200);
   }
