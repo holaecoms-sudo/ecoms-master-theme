@@ -3,7 +3,7 @@
   of lights under the hero, gentle falling snow and festive accents. Loaded only on pages whose product
   section uses that palette; colors come from the palette tokens. No motion with prefers-reduced-motion.
 */
-.ec-pdp, .ec-sec { --ec-xmas-red: var(--ec-primary); --ec-xmas-green: var(--ec-dark); --ec-xmas-gold: var(--ec-accent); }
+.ec-pdp, .ec-sec { --ec-santa: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 130'%3E %3Cpath d='M22 52 C30 18 66 4 96 16 C104 20 108 30 104 40 L92 34 C80 28 62 30 50 44 Z' fill='%23D4202E'/%3E %3Cpath d='M96 16 C102 18 106 24 104 32' stroke='%23A3121F' stroke-width='3' fill='none'/%3E %3Ccircle cx='104' cy='42' r='10' fill='%23fff' stroke='%23E2E2E2' stroke-width='2'/%3E %3Cellipse cx='60' cy='76' rx='30' ry='30' fill='%23F7CFAE'/%3E %3Cpath d='M24 82 C24 112 40 126 60 126 C80 126 96 112 96 82 C88 92 78 96 70 92 C66 98 54 98 50 92 C42 96 32 92 24 82 Z' fill='%23fff' stroke='%23E2E2E2' stroke-width='2'/%3E %3Cpath d='M40 88 C46 80 56 82 60 88 C64 82 74 80 80 88 C72 92 64 92 60 89 C56 92 48 92 40 88 Z' fill='%23F1F1F1' stroke='%23E3E3E3' stroke-width='1'/%3E %3Crect x='18' y='46' width='84' height='18' rx='9' fill='%23fff' stroke='%23E2E2E2' stroke-width='2'/%3E %3Ccircle cx='48' cy='74' r='4' fill='%232B2B2B'/%3E%3Ccircle cx='72' cy='74' r='4' fill='%232B2B2B'/%3E %3Ccircle cx='49.5' cy='72.5' r='1.3' fill='%23fff'/%3E%3Ccircle cx='73.5' cy='72.5' r='1.3' fill='%23fff'/%3E %3Ccircle cx='40' cy='83' r='5' fill='%23F4A3A0' opacity='.7'/%3E%3Ccircle cx='80' cy='83' r='5' fill='%23F4A3A0' opacity='.7'/%3E %3Ccircle cx='60' cy='83' r='5.5' fill='%23E8857A'/%3E %3Cpath d='M54 102 Q60 106 66 102' stroke='%23C77066' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E %3C/svg%3E"); --ec-xmas-red: var(--ec-primary); --ec-xmas-green: var(--ec-dark); --ec-xmas-gold: var(--ec-accent); }
 body.ec-skin { background: #FFFDF9; }
 
 /* Falling snow over the whole page (two layers of soft dots) */
@@ -130,15 +130,15 @@ body.ec-skin { background: #FFFDF9; }
 }
 
 /* Santa peeking and floating: by the «6 diseños» title, by the gift section and flying with his sleigh over the closing band */
-[id$="__designs"] h2::after, [id$="__gift"] .ec-imgtxt__media::before {
-  content: "🎅"; position: absolute; font-size: 44px; line-height: 1; pointer-events: none;
+[id$="__designs"] h2::after, [id$="__gift"] .ec-imgtxt__media::before, .ec-pdp .ec-gal__main::after {
+  content: ""; position: absolute; width: 50px; height: 54px; background: var(--ec-santa) center / contain no-repeat; pointer-events: none;
   filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35));
   animation: ec-santa-float 3.6s ease-in-out infinite;
 }
 [id$="__designs"] h2 { position: relative; display: inline-block; }
-[id$="__designs"] h2::after { top: -6px; right: -52px; }
+[id$="__designs"] h2::after { top: -14px; right: -58px; }
 [id$="__gift"] .ec-imgtxt__media { position: relative; overflow: visible; }
-[id$="__gift"] .ec-imgtxt__media::before { z-index: 2; top: -22px; left: -10px; font-size: 52px; animation-name: ec-santa-peek; }
+[id$="__gift"] .ec-imgtxt__media::before { z-index: 2; top: -26px; left: -8px; width: 64px; height: 70px; animation-name: ec-santa-peek; }
 @keyframes ec-santa-float { 0%, 100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-10px) rotate(6deg); } }
 @keyframes ec-santa-peek { 0%, 100% { transform: translateY(8px) rotate(-12deg); } 50% { transform: translateY(-6px) rotate(4deg); } }
 .ec-ctab-sec { position: relative; overflow: hidden; }
@@ -158,3 +158,34 @@ body.ec-skin { background: #FFFDF9; }
   [id$="__designs"] h2::after, [id$="__gift"] .ec-imgtxt__media::before, .ec-ctab-sec::after { animation: none; }
   .ec-ctab-sec::after { display: none; }
 }
+
+/* Hero: Santa peeking over the main photo, with snow falling on it */
+.ec-pdp .ec-gal__main { position: relative; }
+.ec-pdp .ec-gal__main::after { z-index: 3; top: 10px; right: 10px; width: 70px; height: 76px; animation: ec-santa-peek 3.4s ease-in-out infinite; }
+.ec-pdp .ec-gal__main::before {
+  content: ""; position: absolute; inset: 0; z-index: 2; overflow: hidden; pointer-events: none; border-radius: inherit;
+  background-image: radial-gradient(3px 3px at 30px 40px, #fff 50%, transparent 51%), radial-gradient(2px 2px at 140px 100px, #fff 50%, transparent 51%), radial-gradient(4px 4px at 230px 30px, rgba(255, 255, 255, 0.9) 50%, transparent 51%), radial-gradient(2px 2px at 90px 170px, #fff 50%, transparent 51%);
+  background-size: 260px 200px;
+  animation: ec-snow-bg 10s linear infinite;
+}
+@keyframes ec-snow-bg { from { background-position: 0 0, 0 0, 0 0, 0 0; } to { background-position: 0 200px, 0 200px, 0 200px, 0 200px; } }
+
+/* Countdown to Christmas Eve: red ribbon with gold numbers */
+.ec-pdp .ec-urg { position: relative; overflow: hidden; border: 2px solid var(--ec-xmas-gold); background: linear-gradient(135deg, #D4202E, #9E0F1C); }
+.ec-pdp .ec-urg__t, .ec-pdp .ec-urg__s { color: #fff; }
+.ec-pdp .ec-urg__t .ec-i { fill: var(--ec-xmas-gold); }
+.ec-pdp .ec-cd div { background: #fff; box-shadow: 0 3px 0 var(--ec-xmas-gold); }
+.ec-pdp .ec-cd b { color: var(--ec-xmas-red); }
+
+/* «Así de fácil»: compact rows, square photo on the left and the step on the right (3 columns on desktop) */
+.ec-steps--photos { grid-template-columns: 1fr; gap: 12px; max-width: 760px; margin: 0 auto; }
+.ec-steps--photos figure { display: grid; grid-template-columns: 112px 1fr; align-items: center; gap: 14px; padding: 10px; border-radius: 16px; background: #FFFDF9; box-shadow: 0 0 0 1px var(--ec-line), 0 8px 18px -12px rgba(0, 0, 0, 0.25); }
+.ec-steps--photos img { width: 112px; height: 112px; aspect-ratio: 1; border-radius: 12px; object-fit: cover; }
+.ec-steps--photos figcaption { margin: 0; font-size: 14.5px; }
+.ec-steps--photos figcaption b { display: block; color: var(--ec-xmas-green); font-size: 16px; }
+@media screen and (min-width: 750px) {
+  .ec-steps--photos { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 1000px; }
+  .ec-steps--photos figure { grid-template-columns: 1fr; }
+  .ec-steps--photos img { width: 100%; height: auto; }
+}
+@media (prefers-reduced-motion: reduce) { .ec-pdp .ec-gal__main::before, .ec-pdp .ec-gal__main::after { animation: none; } }
