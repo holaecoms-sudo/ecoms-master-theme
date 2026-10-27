@@ -269,7 +269,7 @@
       "type": "ecoms-stats",
       "settings": {
         "metafield": "ecoms.stats",
-        "style": "dark",
+        "style": "timeline",
         "heading": "La forma más fácil de decorar esta Navidad",
         "text": "",
         "width": "full",
@@ -340,7 +340,7 @@
       "type": "ecoms-comparison",
       "settings": {
         "metafield": "ecoms.compare_rows",
-        "style": "vs",
+        "style": "table",
         "heading": "Proyector vs. luces tradicionales",
         "feature_label": "",
         "col_1": "",
