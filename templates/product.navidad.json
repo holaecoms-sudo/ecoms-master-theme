@@ -106,6 +106,37 @@
           "settings": {
             "text": ""
           }
+        },
+        "tiers": {
+          "type": "gift_tiers",
+          "settings": {
+            "heading": "Elige tu pack navideño",
+            "default_tier": "2",
+            "t1_qty": 1,
+            "t1_label": "Lleva 1",
+            "t1_badge": "",
+            "t1_note": "",
+            "t2_qty": 2,
+            "t2_label": "Lleva 2",
+            "t2_total": 34990,
+            "t2_badge": "Más elegido",
+            "t2_note": "Uno para tu casa y otro para regalar",
+            "t3_qty": 3,
+            "t3_label": "Lleva 3",
+            "t3_total": 47990,
+            "t3_badge": "Mejor oferta",
+            "t3_note": "",
+            "gifts_heading": "¡Regalos gratis mientras más te lleves!",
+            "gift_1": "luces-de-cortina-luz-amarillo-de-3x2-m",
+            "gift_1_tier": 2,
+            "gift_2": "luces-de-cortina-luz-de-3x2-m-multicolor",
+            "gift_2_tier": 3,
+            "ship_tier": 2,
+            "ship_label": "Envío gratis a todo Chile",
+            "ship_was": "$4.000",
+            "button_label": "Pedir y pagar al recibir",
+            "note": "No pagas nada hoy. Todo llega en un solo envío."
+          }
         }
       },
       "block_order": [
@@ -115,8 +146,7 @@
         "price",
         "lead",
         "benefits",
-        "buy",
-        "next",
+        "tiers",
         "delivery",
         "review_slider",
         "stock"
