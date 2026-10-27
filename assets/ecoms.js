@@ -574,8 +574,8 @@
     });
   }
 
-  // «Niveles con regalos»: the chosen tier unlocks gift cards; the button sets the cart to that quantity plus the
-  // unlocked gifts (locked ones removed) and opens the cash on delivery app's form with the cart.
+  // «Niveles con regalos»: the chosen tier unlocks gift cards; the button empties the cart, adds that quantity plus
+  // the unlocked gifts and opens the cash on delivery app's form with the cart.
   function initGiftTiers() {
     $$('[data-ec-gt]').forEach((box) => {
       if (box.dataset.ecGtOn) return;
@@ -605,16 +605,13 @@
         if (!r) return;
         const tier = Number(r.value);
         const gifts = $$('.ec-gt__gift[data-gift]', box);
-        const updates = { [box.dataset.variant]: 0 };
-        gifts.forEach((g) => { updates[g.dataset.gift] = 0; });
         go.disabled = true;
         go.setAttribute('aria-busy', 'true');
         try {
-          await fetch(`${window.Shopify?.routes?.root || '/'}cart/update.js`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-            body: JSON.stringify({ updates }),
-          });
+          // Start from an empty cart so the form shows exactly this pack (earlier tries or other items don't
+          // pile up and change the total).
+          const cleared = await fetch(`${window.Shopify?.routes?.root || '/'}cart/clear.js`, { method: 'POST', headers: { Accept: 'application/json' } });
+          if (!cleared.ok) throw new Error('No se pudo preparar tu pedido. Intenta de nuevo.');
           const extra = gifts.filter((g) => tier >= Number(g.dataset.tier)).map((g) => ({ id: Number(g.dataset.gift), quantity: 1 }));
           // Straight to the pay-on-delivery form: the cart drawer opens invisibly (the app's cart button lives
           // there), its button is clicked, then the drawer closes behind the form.
@@ -622,6 +619,7 @@
           await addVariant(box.dataset.variant, Number(r.dataset.qty), 'gift_tiers', extra);
           if (box.dataset.openCod) openCodForm(box.dataset.openCod, true);
         } catch (e) {
+          document.documentElement.classList.remove('ec-silent-cart');
           const note = $('[data-ec-add-error]', box);
           if (note) { note.textContent = e.message; note.hidden = false; }
         } finally {
