@@ -736,9 +736,15 @@
                         {%- if t_save > 0 -%}<em>Ahorras {{ t_save | money }}</em>{%- endif -%}
                       </span>
                       <span class="ec-gt__sub">
+                        {%- assign k_sub = 't' | append: n | append: '_sub' -%}
+                        {%- if block.settings[k_sub] != blank -%}
+                          {%- capture t_gift_html -%}<span class="ec-gt__plus">+ {{ t_gifts }} {% if t_gifts == 1 %}regalo{% else %}regalos{% endif %}</span>{%- endcapture -%}
+                          {{- block.settings[k_sub] | escape | replace: '[regalos]', t_gift_html -}}
+                        {%- else -%}
                         {%- if t_qty > 1 and t_each < gt_unit -%}{{ t_each | money }} c/u{%- else -%}{{ t_qty }} {% if t_qty == 1 %}unidad{% else %}unidades{% endif %}{%- endif -%}
                         {%- if t_gifts > 0 -%} · <span class="ec-gt__plus">+ {{ t_gifts }} {% if t_gifts == 1 %}regalo{% else %}regalos{% endif %}</span>{%- endif -%}
                         {%- if t_ship -%} · envío gratis{%- endif -%}
+                        {%- endif -%}
                         {%- if block.settings[k_note] != blank -%}<span class="ec-gt__note">{{ block.settings[k_note] | escape }}</span>{%- endif -%}
                       </span>
                     </span>
@@ -4674,18 +4680,21 @@
         { "type": "text", "id": "t1_label", "label": "Nombre", "default": "Lleva 1" },
         { "type": "number", "id": "t1_total", "label": "Precio total (CLP)", "info": "Debe coincidir con el descuento automático real. Vacío = precio normal x cantidad." },
         { "type": "text", "id": "t1_badge", "label": "Etiqueta" },
+        { "type": "text", "id": "t1_sub", "label": "Texto bajo el nombre", "info": "Vacío = automático (ej.: 2 unidades · + 1 regalo · envío gratis). Usa [regalos] para mostrar «+ 1 regalo» destacado." },
         { "type": "text", "id": "t1_note", "label": "Nota" },
         { "type": "header", "content": "Nivel 2" },
         { "type": "number", "id": "t2_qty", "label": "Cantidad", "default": 2 },
         { "type": "text", "id": "t2_label", "label": "Nombre", "default": "Lleva 2" },
         { "type": "number", "id": "t2_total", "label": "Precio total (CLP)", "info": "Debe coincidir con el descuento automático real. Vacío = precio normal x cantidad." },
         { "type": "text", "id": "t2_badge", "label": "Etiqueta", "default": "Más elegido" },
+        { "type": "text", "id": "t2_sub", "label": "Texto bajo el nombre", "info": "Vacío = automático (ej.: 2 unidades · + 1 regalo · envío gratis). Usa [regalos] para mostrar «+ 1 regalo» destacado." },
         { "type": "text", "id": "t2_note", "label": "Nota" },
         { "type": "header", "content": "Nivel 3" },
         { "type": "number", "id": "t3_qty", "label": "Cantidad", "default": 3 },
         { "type": "text", "id": "t3_label", "label": "Nombre", "default": "Lleva 3" },
         { "type": "number", "id": "t3_total", "label": "Precio total (CLP)", "info": "Debe coincidir con el descuento automático real. Vacío = precio normal x cantidad." },
         { "type": "text", "id": "t3_badge", "label": "Etiqueta", "default": "Mejor oferta" },
+        { "type": "text", "id": "t3_sub", "label": "Texto bajo el nombre", "info": "Vacío = automático (ej.: 2 unidades · + 1 regalo · envío gratis). Usa [regalos] para mostrar «+ 1 regalo» destacado." },
         { "type": "text", "id": "t3_note", "label": "Nota" },
         { "type": "text", "id": "unit_singular", "label": "Nombre de 1 unidad", "default": "unidad", "info": "Ej.: proyector. Se usa en el resumen bajo el precio." },
         { "type": "text", "id": "unit_plural", "label": "Nombre de varias unidades", "default": "unidades", "info": "Ej.: proyectores." },
