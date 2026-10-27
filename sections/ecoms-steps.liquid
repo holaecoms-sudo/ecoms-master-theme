@@ -1,6 +1,21 @@
 {%- comment -%} ECOMS · How it works: numbered steps with photos (style "photos") or icons (style "icons", compact). {%- endcomment -%}
+{%- liquid
+  # Items come from the section blocks, or from a product metafield (list of metaobjects «ecoms_item»)
+  # when «Contenido desde metacampo» is set and the product has it. One template then serves every product.
+  assign ec_src = section.blocks
+  if section.settings.metafield != blank and product
+    assign ec_mfp = section.settings.metafield | strip | split: '.'
+    if ec_mfp.size == 2
+      assign ec_mfl = product.metafields[ec_mfp[0]][ec_mfp[1]].value
+      if ec_mfl != blank
+        assign ec_src = ec_mfl
+      endif
+    endif
+  endif
+-%}
 {%- assign style = section.settings.style | default: 'photos' -%}
 {%- assign steps_class = 'ec-steps-sec ec-steps-sec--' | append: style -%}
+{%- if ec_src.size > 0 or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: steps_class %}>
   <div class="ec-w">
     {%- if section.settings.heading != blank or section.settings.text != blank -%}
@@ -10,39 +25,51 @@
       </div>
     {%- endif -%}
     <div class="ec-steps ec-steps--{{ style }}">
-      {%- for block in section.blocks -%}
+      {%- for block in ec_src -%}
+        {%- liquid
+          assign bk_icon = block.settings.icon | default: block.icon.value
+          assign bk_heading = block.settings.heading | default: block.title.value | default: block.label.value
+          assign bk_text = block.settings.text | default: block.text.value
+        -%}
         <figure {{ block.shopify_attributes }}>
           {%- if style == 'cards' or style == 'numbers' -%}
             <span class="ec-num">{% if style == 'cards' and forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
-            <figcaption><b>{{ block.settings.heading | escape }}</b>{% if block.settings.text != blank %}<span>{{ block.settings.text | escape }}</span>{% endif %}</figcaption>
+            <figcaption><b>{{ bk_heading | escape }}</b>{% if bk_text != blank %}<span>{{ bk_text | escape }}</span>{% endif %}</figcaption>
           {%- elsif style == 'icons' -%}
             <span class="ec-steps__ic">
               {%- if block.settings.image != blank -%}
                 {{ block.settings.image | image_url: width: 160 | image_tag: loading: 'lazy', width: 64, height: 64, alt: '' }}
               {%- else -%}
-                {% render 'ecoms-icon', name: block.settings.icon %}
+                {% render 'ecoms-icon', name: bk_icon %}
               {%- endif -%}
               <span class="ec-num">{{ forloop.index }}</span>
             </span>
-            <figcaption><b>{{ block.settings.heading | escape }}</b>{% if block.settings.text != blank %}<span>{{ block.settings.text | escape }}</span>{% endif %}</figcaption>
+            <figcaption><b>{{ bk_heading | escape }}</b>{% if bk_text != blank %}<span>{{ bk_text | escape }}</span>{% endif %}</figcaption>
           {%- else -%}
             {%- if block.settings.image != blank -%}
               {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '250,400,600', sizes: '(min-width: 990px) 25vw, 50vw' }}
             {%- else -%}
               {{ 'image' | placeholder_svg_tag: 'ec-placeholder' }}
             {%- endif -%}
-            <figcaption><span class="ec-num">{{ forloop.index }}</span><span><b>{{ block.settings.heading | escape }}</b>{% if block.settings.text != blank %} {{ block.settings.text | escape }}{% endif %}</span></figcaption>
+            <figcaption><span class="ec-num">{{ forloop.index }}</span><span><b>{{ bk_heading | escape }}</b>{% if bk_text != blank %} {{ bk_text | escape }}{% endif %}</span></figcaption>
           {%- endif -%}
         </figure>
       {%- endfor -%}
     </div>
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {
   "name": "ECOMS · Cómo funciona",
   "settings": [
+    {
+      "type": "text",
+      "id": "metafield",
+      "label": "Contenido desde metacampo del producto",
+      "info": "Opcional. Ej.: ecoms.ingredients. Si el producto tiene ese metacampo (lista de «Ítem de contenido»: ícono, título y texto), reemplaza los bloques. Así una plantilla sirve para todos los productos."
+    },
     {
       "type": "select",
       "id": "style",

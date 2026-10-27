@@ -4,8 +4,10 @@ Rama `ecoms-beauty`: tema de la tienda Shopify de belleza. Comparte el código b
 (rama `claude/gifted-maxwell-sxrubg`); aquí solo cambia la configuración de la tienda.
 
 ## Qué tiene esta rama
-- Plantilla de producto por defecto (`templates/product.json`) = plantilla «belleza»: hero estilo Gold,
-  compra solo con pago al recibir, videos con play, reseñas en burbuja y contenido desde metacampos.
+- Una sola plantilla de producto (`templates/product.json`): hero estilo Gold, compra solo con pago al recibir,
+  videos con play, reseñas en burbuja y todo el contenido desde metacampos (`ecoms.*`: subtitle, benefits, chips,
+  stats, ingredients, steps, faqs, demo_media, reviews). Las plantillas de otras verticales (clean, hogar, navidad,
+  flex, brand, direct, gold) se eliminaron de esta rama.
 - Portada de belleza (sin las secciones de limpieza ni «Próximamente»).
 - Colores de la tienda: azul marino + dorado.
 - Anuncio superior genérico: «Envío gratis desde [amount]».

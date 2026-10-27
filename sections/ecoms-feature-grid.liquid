@@ -1,24 +1,44 @@
 {%- comment -%} ECOMS · Benefit icons (4 columns on desktop, 2 on mobile). {%- endcomment -%}
+{%- liquid
+  # Items come from the section blocks, or from a product metafield (list of metaobjects «ecoms_item»)
+  # when «Contenido desde metacampo» is set and the product has it. One template then serves every product.
+  assign ec_src = section.blocks
+  if section.settings.metafield != blank and product
+    assign ec_mfp = section.settings.metafield | strip | split: '.'
+    if ec_mfp.size == 2
+      assign ec_mfl = product.metafields[ec_mfp[0]][ec_mfp[1]].value
+      if ec_mfl != blank
+        assign ec_src = ec_mfl
+      endif
+    endif
+  endif
+-%}
+{%- if ec_src.size > 0 or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-features' %}>
   <div class="ec-w">
     {%- if section.settings.heading != blank -%}
       <div class="ec-sec-h"><h2>{{ section.settings.heading | escape }}</h2></div>
     {%- endif -%}
     <div class="ec-feat ec-feat--{{ section.settings.style }}">
-      {%- for block in section.blocks -%}
+      {%- for block in ec_src -%}
+        {%- liquid
+          assign bk_icon = block.settings.icon | default: block.icon.value
+          assign bk_heading = block.settings.heading | default: block.title.value | default: block.label.value
+          assign bk_text = block.settings.text | default: block.text.value
+        -%}
         <div {{ block.shopify_attributes }}>
           {%- if section.settings.style == 'editorial' -%}
             {%- if block.settings.image != blank -%}
-              {{ block.settings.image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '300,500,700', sizes: '(min-width: 750px) 33vw, 100vw', class: 'ec-feat__img', alt: block.settings.heading }}
+              {{ block.settings.image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '300,500,700', sizes: '(min-width: 750px) 33vw, 100vw', class: 'ec-feat__img', alt: bk_heading }}
             {%- endif -%}
             <span class="ec-feat__n">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
           {%- else -%}
-          <span class="ec-ic">{% render 'ecoms-icon', name: block.settings.icon %}</span>
+          <span class="ec-ic">{% render 'ecoms-icon', name: bk_icon %}</span>
           {%- endif -%}
           <div>
-            <b>{{ block.settings.heading | escape }}</b>
-            {%- if block.settings.text != blank -%}
-              <span>{{ block.settings.text | escape }}</span>
+            <b>{{ bk_heading | escape }}</b>
+            {%- if bk_text != blank -%}
+              <span>{{ bk_text | escape }}</span>
             {%- endif -%}
           </div>
         </div>
@@ -26,12 +46,19 @@
     </div>
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {
   "name": "ECOMS · Íconos",
   "tag": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "metafield",
+      "label": "Contenido desde metacampo del producto",
+      "info": "Opcional. Ej.: ecoms.ingredients. Si el producto tiene ese metacampo (lista de «Ítem de contenido»: ícono, título y texto), reemplaza los bloques. Así una plantilla sirve para todos los productos."
+    },
     {
       "type": "text",
       "id": "heading",

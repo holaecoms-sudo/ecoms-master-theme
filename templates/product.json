@@ -287,44 +287,16 @@
     },
     "ingredients": {
       "type": "ecoms-feature-grid",
-      "blocks": {
-        "i1": {
-          "type": "feature",
-          "settings": {
-            "icon": "gem",
-            "heading": "",
-            "text": ""
-          }
-        },
-        "i2": {
-          "type": "feature",
-          "settings": {
-            "icon": "sparkle",
-            "heading": "",
-            "text": ""
-          }
-        },
-        "i3": {
-          "type": "feature",
-          "settings": {
-            "icon": "drop",
-            "heading": "",
-            "text": ""
-          }
-        }
-      },
-      "block_order": [
-        "i1",
-        "i2",
-        "i3"
-      ],
+      "blocks": {},
+      "block_order": [],
       "disabled": true,
       "settings": {
-        "heading": "¿Qué tiene?",
+        "heading": "Qué tiene y para qué sirve",
         "style": "cards",
         "width": "full",
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "metafield": "ecoms.ingredients"
       }
     },
     "comparison": {
@@ -345,53 +317,16 @@
     },
     "routine": {
       "type": "ecoms-steps",
-      "blocks": {
-        "s1": {
-          "type": "step",
-          "settings": {
-            "icon": "drop",
-            "heading": "Limpia",
-            "text": "Rostro limpio y seco."
-          }
-        },
-        "s2": {
-          "type": "step",
-          "settings": {
-            "icon": "sparkle",
-            "heading": "Aplica",
-            "text": "Una pequeña cantidad."
-          }
-        },
-        "s3": {
-          "type": "step",
-          "settings": {
-            "icon": "hand",
-            "heading": "Masajea",
-            "text": "Hasta que se absorba."
-          }
-        },
-        "s4": {
-          "type": "step",
-          "settings": {
-            "icon": "sun",
-            "heading": "Protege",
-            "text": "De día, sigue con protector solar."
-          }
-        }
-      },
-      "block_order": [
-        "s1",
-        "s2",
-        "s3",
-        "s4"
-      ],
+      "blocks": {},
+      "block_order": [],
       "settings": {
         "style": "cards",
-        "heading": "Tu rutina en 1 minuto",
+        "heading": "Cómo usarlo",
         "text": "",
         "width": "full",
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "metafield": "ecoms.steps"
       }
     },
     "lifestyle": {
@@ -508,16 +443,16 @@
   },
   "order": [
     "main",
-    "demo",
-    "bubble",
     "band",
-    "story",
     "timeline",
-    "before_after",
     "ingredients",
-    "comparison",
+    "story",
+    "before_after",
     "routine",
+    "demo",
+    "comparison",
     "lifestyle",
+    "bubble",
     "reviews",
     "faq",
     "cta"
