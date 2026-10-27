@@ -81,3 +81,11 @@ body.ec-skin { background: #FFFDF9; }
   .ec-snow { display: none; }
   .ec-pdp::before, .ec-ctab-sec::before, .ec-pdp [class*="_rsi-buy-now-button"]::after { animation: none; }
 }
+
+/* Content sections: warm cards with a red and green ribbon, red icons and numbers */
+.ec-ideal__card, .ec-feat--cards > * { border-top: 4px solid var(--ec-xmas-red); background: #FFFDF9; }
+.ec-ideal__card:nth-child(even), .ec-feat--cards > *:nth-child(even) { border-top-color: var(--ec-xmas-green); }
+.ec-ideal .ec-ic, .ec-feat .ec-ic, .ec-steps .ec-ic, .ec-steps__ic { background: #FDE8E8; color: var(--ec-xmas-red); }
+.ec-steps--numbers .ec-steps__n, .ec-feat__n { color: var(--ec-xmas-red); }
+.ec-imgtxt__media { border-radius: 18px; box-shadow: 0 0 0 4px #FFF6EC, 0 0 0 6px var(--ec-xmas-gold); }
+.ec-imgtxt__btn { background: var(--ec-xmas-red); }
