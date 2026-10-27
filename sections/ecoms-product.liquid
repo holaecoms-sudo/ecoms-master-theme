@@ -650,6 +650,122 @@
               <p class="ec-shipbar ec-shipbar--free" {{ block.shopify_attributes }}><b>{{ block.settings.free_text | escape }}</b></p>
             {%- endif -%}
 
+          {%- when 'gift_tiers' -%}
+            {%- comment -%}
+              Quantity tiers with gifts that unlock (e.g. take 2 and the warm light curtain is free). Choosing a
+              tier and tapping the button puts that quantity plus the unlocked gifts in the cart and opens the cash
+              on delivery app's form with the cart. Prices are a preview: the REAL automatic discounts in Shopify
+              (tier price and «Compra X y llévate Y» at 100% for each gift) must give the same totals.
+            {%- endcomment -%}
+            {%- liquid
+              assign gt_unit = variant.price
+              assign gt_default = block.settings.default_tier | default: '2' | plus: 0
+              assign gt_cod = ''
+              if settings.ecoms_cod_live
+                assign gt_cod = settings.ecoms_cod_app_button
+              endif
+            -%}
+            {%- if variant.available -%}
+            <div class="ec-gt" data-ec-gt data-variant="{{ variant.id }}" data-open-cod="{{ gt_cod | escape }}" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}<p class="ec-gt__h">{{ block.settings.heading | escape }}</p>{%- endif -%}
+              <div class="ec-gt__tiers" role="radiogroup" aria-label="{{ block.settings.heading | default: 'Elige tu pack' | escape }}">
+                {%- for n in (1..3) -%}
+                  {%- liquid
+                    assign k_qty = 't' | append: n | append: '_qty'
+                    assign k_total = 't' | append: n | append: '_total'
+                    assign k_label = 't' | append: n | append: '_label'
+                    assign k_badge = 't' | append: n | append: '_badge'
+                    assign k_note = 't' | append: n | append: '_note'
+                    assign t_qty = block.settings[k_qty] | default: n | plus: 0
+                    if t_qty < 1
+                      continue
+                    endif
+                    assign t_was = gt_unit | times: t_qty
+                    assign t_total = block.settings[k_total] | default: 0 | plus: 0 | times: 100
+                    if t_total == 0
+                      assign t_total = t_was
+                    endif
+                    assign t_save = t_was | minus: t_total
+                    assign t_each = t_total | divided_by: t_qty
+                    assign t_gifts = 0
+                    for g in (1..2)
+                      assign k_gp = 'gift_' | append: g
+                      assign k_gt = 'gift_' | append: g | append: '_tier'
+                      assign g_tier = block.settings[k_gt] | default: 99 | plus: 0
+                      if block.settings[k_gp] != blank and block.settings[k_gp].available and n >= g_tier
+                        assign t_gifts = t_gifts | plus: 1
+                      endif
+                    endfor
+                    assign t_ship = false
+                    assign ship_tier = block.settings.ship_tier | default: 0 | plus: 0
+                    if ship_tier > 0 and n >= ship_tier
+                      assign t_ship = true
+                    endif
+                  -%}
+                  <label class="ec-gt__tier{% if block.settings[k_badge] != blank %} has-badge{% endif %}">
+                    <input type="radio" name="ec-gt-{{ block.id }}" value="{{ n }}" data-qty="{{ t_qty }}" data-total="{{ t_total | money }}"{% if n == gt_default %} checked{% endif %}>
+                    {%- if block.settings[k_badge] != blank -%}<span class="ec-gt__badge">{{ block.settings[k_badge] | escape }}</span>{%- endif -%}
+                    <span class="ec-gt__dot" aria-hidden="true"></span>
+                    <span class="ec-gt__main">
+                      <span class="ec-gt__name">
+                        <b>{{ block.settings[k_label] | default: 'Lleva ' | append: '' }}{% if block.settings[k_label] == blank %}{{ t_qty }}{% endif %}</b>
+                        {%- if t_save > 0 -%}<em>Ahorras {{ t_save | money }}</em>{%- endif -%}
+                      </span>
+                      <span class="ec-gt__sub">
+                        {%- if t_qty > 1 -%}{{ t_each | money }} c/u{%- endif -%}
+                        {%- if t_gifts > 0 -%}{% if t_qty > 1 %} · {% endif %}<span class="ec-gt__plus">+ {{ t_gifts }} {% if t_gifts == 1 %}regalo{% else %}regalos{% endif %}</span>{%- endif -%}
+                        {%- if t_ship -%} · envío gratis{%- endif -%}
+                        {%- if block.settings[k_note] != blank -%}<span class="ec-gt__note">{{ block.settings[k_note] | escape }}</span>{%- endif -%}
+                      </span>
+                    </span>
+                    <span class="ec-gt__price">
+                      <b>{{ t_total | money }}</b>
+                      {%- if t_save > 0 -%}<s>{{ t_was | money }}</s>{%- endif -%}
+                    </span>
+                  </label>
+                {%- endfor -%}
+              </div>
+
+              {%- if block.settings.gifts_heading != blank -%}<p class="ec-gt__gh">{% render 'ecoms-icon', name: 'gift' %}{{ block.settings.gifts_heading | escape }}</p>{%- endif -%}
+              <ul class="ec-gt__gifts" role="list">
+                {%- for g in (1..2) -%}
+                  {%- liquid
+                    assign k_gp = 'gift_' | append: g
+                    assign k_gt = 'gift_' | append: g | append: '_tier'
+                    assign gp = block.settings[k_gp]
+                    assign g_tier = block.settings[k_gt] | default: 2 | plus: 0
+                  -%}
+                  {%- if gp != blank and gp.available -%}
+                    {%- assign gv = gp.selected_or_first_available_variant -%}
+                    <li class="ec-gt__gift" data-tier="{{ g_tier }}" data-gift="{{ gv.id }}">
+                      <span class="ec-gt__was"><s>{{ gv.price | money }}</s> Gratis</span>
+                      <span class="ec-gt__img">
+                        {%- if gp.featured_image != blank -%}{{ gp.featured_image | image_url: width: 240 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}
+                        <span class="ec-gt__lock">{% render 'ecoms-icon', name: 'lock' %}</span>
+                      </span>
+                      <span class="ec-gt__gname">{{ gp.title | escape }}</span>
+                      <span class="ec-gt__state" data-locked="Lleva {{ g_tier }} para desbloquear" data-open="¡Desbloqueado!"></span>
+                    </li>
+                  {%- endif -%}
+                {%- endfor -%}
+                {%- if block.settings.ship_tier > 0 -%}
+                  <li class="ec-gt__gift ec-gt__gift--ship" data-tier="{{ block.settings.ship_tier }}">
+                    <span class="ec-gt__was">{% if block.settings.ship_was != blank %}<s>{{ block.settings.ship_was | escape }}</s> {% endif %}Gratis</span>
+                    <span class="ec-gt__img">{% render 'ecoms-icon', name: 'truck' %}<span class="ec-gt__lock">{% render 'ecoms-icon', name: 'lock' %}</span></span>
+                    <span class="ec-gt__gname">{{ block.settings.ship_label | default: 'Envío gratis' | escape }}</span>
+                    <span class="ec-gt__state" data-locked="Lleva {{ block.settings.ship_tier }} para desbloquear" data-open="¡Desbloqueado!"></span>
+                  </li>
+                {%- endif -%}
+              </ul>
+
+              <button type="button" class="ec-btn ec-btn--primary ec-btn--block ec-gt__go" data-ec-gt-go>
+                {% render 'ecoms-icon', name: 'cash' %}<span>{{ block.settings.button_label | default: 'Pedir y pagar al recibir' | escape }}</span> · <b data-ec-gt-total></b>
+              </button>
+              <p class="ec-add-error" role="alert" data-ec-add-error hidden></p>
+              {%- if block.settings.note != blank -%}<p class="ec-gt__foot">{{ block.settings.note | escape }}</p>{%- endif -%}
+            </div>
+            {%- endif -%}
+
           {%- when 'pack_offer' -%}
             {%- comment -%}
               «Llévalo en pack»: the product in metafield ecoms.pack_product with the % of the REAL automatic
@@ -4519,6 +4635,45 @@
           "id": "free_text",
           "label": "Texto si todo envío es gratis"
         }
+      ]
+    },
+    {
+      "type": "gift_tiers",
+      "name": "Niveles con regalos",
+      "limit": 1,
+      "settings": [
+        { "type": "paragraph", "content": "Niveles de cantidad con regalos que se desbloquean. El botón agrega la cantidad y los regalos al carrito y abre el formulario de pago al recibir. Crea en Shopify los descuentos automáticos reales (precio por nivel y «Compra X y llévate Y» al 100% por cada regalo)." },
+        { "type": "text", "id": "heading", "label": "Título", "default": "Elige tu pack" },
+        { "type": "select", "id": "default_tier", "label": "Nivel marcado al cargar", "options": [{ "value": "1", "label": "Nivel 1" }, { "value": "2", "label": "Nivel 2" }, { "value": "3", "label": "Nivel 3" }], "default": "2" },
+        { "type": "header", "content": "Nivel 1" },
+        { "type": "number", "id": "t1_qty", "label": "Cantidad", "default": 1 },
+        { "type": "text", "id": "t1_label", "label": "Nombre", "default": "Lleva 1" },
+        { "type": "number", "id": "t1_total", "label": "Precio total (CLP)", "info": "Debe coincidir con el descuento automático real. Vacío = precio normal x cantidad." },
+        { "type": "text", "id": "t1_badge", "label": "Etiqueta" },
+        { "type": "text", "id": "t1_note", "label": "Nota" },
+        { "type": "header", "content": "Nivel 2" },
+        { "type": "number", "id": "t2_qty", "label": "Cantidad", "default": 2 },
+        { "type": "text", "id": "t2_label", "label": "Nombre", "default": "Lleva 2" },
+        { "type": "number", "id": "t2_total", "label": "Precio total (CLP)", "info": "Debe coincidir con el descuento automático real. Vacío = precio normal x cantidad." },
+        { "type": "text", "id": "t2_badge", "label": "Etiqueta", "default": "Más elegido" },
+        { "type": "text", "id": "t2_note", "label": "Nota" },
+        { "type": "header", "content": "Nivel 3" },
+        { "type": "number", "id": "t3_qty", "label": "Cantidad", "default": 3 },
+        { "type": "text", "id": "t3_label", "label": "Nombre", "default": "Lleva 3" },
+        { "type": "number", "id": "t3_total", "label": "Precio total (CLP)", "info": "Debe coincidir con el descuento automático real. Vacío = precio normal x cantidad." },
+        { "type": "text", "id": "t3_badge", "label": "Etiqueta", "default": "Mejor oferta" },
+        { "type": "text", "id": "t3_note", "label": "Nota" },
+        { "type": "header", "content": "Regalos" },
+        { "type": "text", "id": "gifts_heading", "label": "Título de regalos", "default": "¡Regalos gratis mientras más te lleves!" },
+        { "type": "product", "id": "gift_1", "label": "Regalo 1" },
+        { "type": "number", "id": "gift_1_tier", "label": "Regalo 1: se desbloquea desde el nivel", "default": 2 },
+        { "type": "product", "id": "gift_2", "label": "Regalo 2" },
+        { "type": "number", "id": "gift_2_tier", "label": "Regalo 2: se desbloquea desde el nivel", "default": 3 },
+        { "type": "number", "id": "ship_tier", "label": "Envío gratis desde el nivel", "info": "0 = no se muestra. Configura la tarifa gratis real en la app de pago al recibir.", "default": 2 },
+        { "type": "text", "id": "ship_label", "label": "Texto del envío gratis", "default": "Envío gratis a todo Chile" },
+        { "type": "text", "id": "ship_was", "label": "Costo normal del envío", "info": "Ej.: $4.000. Opcional." },
+        { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Pedir y pagar al recibir" },
+        { "type": "text", "id": "note", "label": "Nota bajo el botón", "default": "No pagas nada hoy. Todo llega en un solo envío." }
       ]
     },
     {

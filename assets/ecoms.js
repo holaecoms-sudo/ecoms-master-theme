@@ -567,6 +567,60 @@
     });
   }
 
+  // «Niveles con regalos»: the chosen tier unlocks gift cards; the button sets the cart to that quantity plus the
+  // unlocked gifts (locked ones removed) and opens the cash on delivery app's form with the cart.
+  function initGiftTiers() {
+    $$('[data-ec-gt]').forEach((box) => {
+      if (box.dataset.ecGtOn) return;
+      box.dataset.ecGtOn = '1';
+      const radios = $$('input[type="radio"]', box);
+      const total = $('[data-ec-gt-total]', box);
+      const current = () => radios.find((r) => r.checked) || radios[0];
+      const paint = () => {
+        const r = current();
+        if (!r) return;
+        const tier = Number(r.value);
+        $$('.ec-gt__tier', box).forEach((l) => l.classList.toggle('is-on', l.contains(r)));
+        $$('.ec-gt__gift', box).forEach((g) => {
+          const open = tier >= Number(g.dataset.tier);
+          g.classList.toggle('is-open', open);
+          const st = $('.ec-gt__state', g);
+          if (st) st.textContent = open ? st.dataset.open : st.dataset.locked;
+        });
+        if (total) total.textContent = r.dataset.total;
+      };
+      radios.forEach((r) => r.addEventListener('change', paint));
+      paint();
+      const go = $('[data-ec-gt-go]', box);
+      go?.addEventListener('click', async () => {
+        const r = current();
+        if (!r) return;
+        const tier = Number(r.value);
+        const gifts = $$('.ec-gt__gift[data-gift]', box);
+        const updates = { [box.dataset.variant]: 0 };
+        gifts.forEach((g) => { updates[g.dataset.gift] = 0; });
+        go.disabled = true;
+        go.setAttribute('aria-busy', 'true');
+        try {
+          await fetch(`${window.Shopify?.routes?.root || '/'}cart/update.js`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({ updates }),
+          });
+          const extra = gifts.filter((g) => tier >= Number(g.dataset.tier)).map((g) => ({ id: Number(g.dataset.gift), quantity: 1 }));
+          await addVariant(box.dataset.variant, Number(r.dataset.qty), 'gift_tiers', extra);
+          if (box.dataset.openCod) openCodForm(box.dataset.openCod);
+        } catch (e) {
+          const note = $('[data-ec-add-error]', box);
+          if (note) { note.textContent = e.message; note.hidden = false; }
+        } finally {
+          go.disabled = false;
+          go.removeAttribute('aria-busy');
+        }
+      });
+    });
+  }
+
   function codButton(text, fromCart) {
     const wanted = text.trim().toLowerCase();
     const ours = '[data-ec-add-variant], [data-ec-add], [data-ec-scroll-buy], .ec-packoff, .ec-sticky, .ec-ann';
@@ -746,6 +800,7 @@
     initCountdowns();
     initSticky();
     initReviewSliders();
+    initGiftTiers();
     sync();
   }
 

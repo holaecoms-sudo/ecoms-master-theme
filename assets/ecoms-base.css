@@ -1755,3 +1755,45 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 .ec-rsl--chat blockquote { position: relative; padding: 10px 12px; border-radius: 16px 16px 16px 4px; background: var(--ec-bg); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08); font-size: 14px; }
 .ec-rsl--chat figcaption { margin-top: 4px; padding: 0 4px; border: 0; font-size: 12px; }
 .ec-rsl--chat .ec-rsl__dots { margin-top: 2px; }
+
+/* ECOMS · Quantity tiers with gifts («Niveles con regalos») */
+.ec-gt { display: grid; gap: 10px; }
+.ec-gt__h { margin: 0; font-size: 15px; font-weight: 800; text-align: center; }
+.ec-gt__tiers { display: grid; gap: 12px; }
+.ec-gt__tier { position: relative; display: flex; align-items: center; gap: 12px; padding: 14px; border: 2px solid var(--ec-line); border-radius: 14px; background: var(--ec-bg); cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+.ec-gt__tier.has-badge { margin-top: 6px; }
+.ec-gt__tier input { position: absolute; opacity: 0; pointer-events: none; }
+.ec-gt__tier.is-on { border-color: var(--ec-primary); background: color-mix(in srgb, var(--ec-primary) 7%, var(--ec-bg)); }
+.ec-gt__tier:has(input:focus-visible) { outline: 2px solid var(--ec-primary); outline-offset: 2px; }
+.ec-gt__dot { flex-shrink: 0; width: 20px; height: 20px; border: 2px solid var(--ec-line); border-radius: 50%; }
+.ec-gt__tier.is-on .ec-gt__dot { border: 6px solid var(--ec-primary); }
+.ec-gt__main { display: grid; flex: 1; gap: 2px; min-width: 0; }
+.ec-gt__name { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.ec-gt__name b { font-size: 17px; font-weight: 900; text-transform: uppercase; }
+.ec-gt__name em { padding: 2px 8px; border-radius: 999px; background: var(--ec-sale-bg); color: var(--ec-sale-ink); font-size: 12px; font-style: normal; font-weight: 800; }
+.ec-gt__sub { color: var(--ec-muted); font-size: 13px; }
+.ec-gt__plus { color: var(--ec-primary); font-weight: 800; }
+.ec-gt__note { display: block; }
+.ec-gt__price { display: grid; justify-items: end; text-align: right; }
+.ec-gt__price b { font-size: 19px; font-weight: 900; }
+.ec-gt__price s { color: var(--ec-muted); font-size: 13px; }
+.ec-gt__badge { position: absolute; top: -11px; right: 12px; padding: 3px 10px; border-radius: 6px; background: var(--ec-primary); color: var(--ec-primary-ink); font-size: 11px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+.ec-gt__gh { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 6px 0 0; font-size: 16px; font-weight: 900; text-align: center; }
+.ec-gt__gh .ec-i { width: 20px; height: 20px; color: var(--ec-primary); }
+.ec-gt__gifts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
+.ec-gt__gift { position: relative; display: grid; gap: 6px; align-content: start; padding: 18px 8px 10px; border: 2px dashed var(--ec-line); border-radius: 12px; background: var(--ec-bg); text-align: center; }
+.ec-gt__gift.is-open { border-style: solid; border-color: var(--ec-primary); background: color-mix(in srgb, var(--ec-primary) 5%, var(--ec-bg)); }
+.ec-gt__was { position: absolute; top: -10px; left: 50%; padding: 2px 8px; border-radius: 999px; background: var(--ec-bg); border: 1px solid var(--ec-line); font-size: 11px; font-weight: 800; white-space: nowrap; transform: translateX(-50%); }
+.ec-gt__was s { color: var(--ec-muted); font-weight: 600; }
+.ec-gt__img { position: relative; display: grid; place-items: center; aspect-ratio: 1; overflow: hidden; border-radius: 8px; background: var(--ec-soft); }
+.ec-gt__img img { width: 100%; height: 100%; object-fit: cover; }
+.ec-gt__img > .ec-i { width: 40%; height: 40%; color: var(--ec-primary); }
+.ec-gt__lock { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(255, 255, 255, 0.72); backdrop-filter: grayscale(1); transition: opacity 0.2s; }
+.ec-gt__lock .ec-i { width: 34px; height: 34px; color: var(--ec-ink); }
+.ec-gt__gift.is-open .ec-gt__lock { opacity: 0; }
+.ec-gt__gname { font-size: 12.5px; font-weight: 700; line-height: 1.25; }
+.ec-gt__state { color: var(--ec-muted); font-size: 11.5px; }
+.ec-gt__gift.is-open .ec-gt__state { color: var(--ec-primary); font-weight: 800; }
+.ec-gt__go { min-height: 58px; gap: 8px; font-size: 16px; }
+.ec-gt__go .ec-i { width: 20px; height: 20px; }
+.ec-gt__foot { margin: 0; color: var(--ec-muted); font-size: 12.5px; text-align: center; }
