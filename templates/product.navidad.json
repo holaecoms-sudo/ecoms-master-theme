@@ -36,6 +36,14 @@
             "fixed": false
           }
         },
+        "price": {
+          "type": "price",
+          "settings": {
+            "style": "badge",
+            "ship_local_title": "",
+            "ship_local_text": ""
+          }
+        },
         "tiers": {
           "type": "gift_tiers",
           "settings": {
@@ -65,14 +73,6 @@
             "ship_was": "$4.000",
             "button_label": "Pedir y pagar al recibir",
             "note": "No pagas nada hoy. Todo llega en un solo envío."
-          }
-        },
-        "price": {
-          "type": "price",
-          "settings": {
-            "style": "badge",
-            "ship_local_title": "",
-            "ship_local_text": ""
           }
         },
         "benefits": {
@@ -129,8 +129,8 @@
         "social",
         "title",
         "lead",
-        "tiers",
         "price",
+        "tiers",
         "benefits",
         "delivery",
         "review_slider",
