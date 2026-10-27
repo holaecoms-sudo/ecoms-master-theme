@@ -606,7 +606,7 @@
       "settings": {
         "image_side": "right",
         "image": "shopify://shop_images/12_ea3964c9-89ae-4118-b0d6-c12ed26e45db.jpg",
-        "image_full": false,
+        "image_full": true,
         "product_image_index": 5,
         "heading": "El regalo que ilumina toda la casa",
         "intro": "Uno para tu casa y otro para quien más quieres. Todo llega en un solo envío y pagas cuando lo recibes.",
