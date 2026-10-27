@@ -207,8 +207,8 @@
         "b1": {
           "type": "text",
           "settings": {
-            "icon": "bolt",
-            "text": "Lista en 1 minuto"
+            "icon": "sparkle",
+            "text": "6 diseños navideños"
           }
         },
         "b2": {
@@ -551,7 +551,7 @@
       "settings": {
         "image_side": "left",
         "image_full": false,
-        "product_image_index": 1,
+        "product_image_index": 3,
         "heading": "Que la Navidad se vea desde la calle",
         "intro": "Lo enciendes al atardecer y tu casa se llena de Viejitos Pascueros, renos y copos de nieve. Una tradición nueva para disfrutar en familia todas las noches de diciembre.",
         "button_label": "",
@@ -728,7 +728,7 @@
       "settings": {
         "image_side": "right",
         "image_full": false,
-        "product_image_index": 1,
+        "product_image_index": 5,
         "heading": "El regalo que ilumina toda la casa",
         "intro": "Uno para tu casa y otro para quien más quieres. Todo llega en un solo envío y pagas cuando lo recibes.",
         "button_label": "Quiero mi pack navideño",
