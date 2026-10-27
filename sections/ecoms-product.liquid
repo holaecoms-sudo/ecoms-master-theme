@@ -92,30 +92,31 @@
 {%- if pal != 'store' -%}
   <style>
     :root {
-      --ec-primary:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- when 'gold' -%}#011F49{%- when 'navidad' -%}#C8102E{%- else -%}{{ section.settings.pal_primary | default: settings.ecoms_primary }}{%- endcase -%};
-      --ec-primary-ink:       {%- case pal -%}{%- when 'agua' -%}#FFFFFF{%- when 'grafito' -%}#FFFFFF{%- when 'gold' -%}#FFFFFF{%- when 'navidad' -%}#FFFFFF{%- else -%}{{ section.settings.pal_primary_ink | default: settings.ecoms_primary_ink }}{%- endcase -%};
-      --ec-dark:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- when 'gold' -%}#011F49{%- when 'navidad' -%}#0E3B2E{%- else -%}{{ section.settings.pal_dark | default: settings.ecoms_dark }}{%- endcase -%};
-      --ec-accent:       {%- case pal -%}{%- when 'agua' -%}#14B8C9{%- when 'grafito' -%}#F2643D{%- when 'gold' -%}#E8C15A{%- when 'navidad' -%}#E8B04B{%- else -%}{{ section.settings.pal_accent | default: settings.ecoms_accent }}{%- endcase -%};
-      --ec-accent-ink:       {%- case pal -%}{%- when 'agua' -%}#06283A{%- when 'grafito' -%}#FFFFFF{%- when 'gold' -%}#011F49{%- when 'navidad' -%}#0E3B2E{%- else -%}{{ section.settings.pal_accent_ink | default: settings.ecoms_accent_ink }}{%- endcase -%};
-      --ec-soft:       {%- case pal -%}{%- when 'agua' -%}#E9F7FA{%- when 'grafito' -%}#F5F3F0{%- when 'gold' -%}#FFF4D6{%- when 'navidad' -%}#FFF6EC{%- else -%}{{ section.settings.pal_soft | default: settings.ecoms_soft }}{%- endcase -%};
-      --ec-soft-ink:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- when 'gold' -%}#011F49{%- when 'navidad' -%}#0E3B2E{%- else -%}{{ section.settings.pal_soft_ink | default: settings.ecoms_soft_ink }}{%- endcase -%};
-      --ec-tag:       {%- case pal -%}{%- when 'agua' -%}#14B8C9{%- when 'grafito' -%}#F2643D{%- when 'gold' -%}#E8C15A{%- when 'navidad' -%}#C8102E{%- else -%}{{ section.settings.pal_tag | default: settings.ecoms_tag }}{%- endcase -%};
-      --ec-tag-ink:       {%- case pal -%}{%- when 'agua' -%}#06283A{%- when 'grafito' -%}#FFFFFF{%- when 'gold' -%}#011F49{%- when 'navidad' -%}#FFFFFF{%- else -%}{{ section.settings.pal_tag_ink | default: settings.ecoms_tag_ink }}{%- endcase -%};
-      --ec-sale-bg:       {%- case pal -%}{%- when 'agua' -%}#E0F5F8{%- when 'grafito' -%}#FDEBE5{%- when 'gold' -%}#FFF4D6{%- when 'navidad' -%}#FDE8E8{%- else -%}{{ section.settings.pal_sale_bg | default: settings.ecoms_sale_bg }}{%- endcase -%};
-      --ec-sale-ink:       {%- case pal -%}{%- when 'agua' -%}#0B4F63{%- when 'grafito' -%}#9A3412{%- when 'gold' -%}#8A6A00{%- when 'navidad' -%}#A30D25{%- else -%}{{ section.settings.pal_sale_ink | default: settings.ecoms_sale_ink }}{%- endcase -%};
-      --ec-urgent:       {%- case pal -%}{%- when 'agua' -%}#B54708{%- when 'grafito' -%}#B54708{%- when 'gold' -%}#B54708{%- when 'navidad' -%}#C8102E{%- else -%}{{ section.settings.pal_urgent | default: settings.ecoms_urgent }}{%- endcase -%};
-      --ec-urgent-bg:       {%- case pal -%}{%- when 'agua' -%}#FFF4E5{%- when 'grafito' -%}#FFF4E5{%- when 'gold' -%}#FFF4E5{%- when 'navidad' -%}#FDE8E8{%- else -%}{{ section.settings.pal_urgent_bg | default: settings.ecoms_urgent_bg }}{%- endcase -%};
-      --ec-bg:       {%- case pal -%}{%- when 'agua' -%}#FFFFFF{%- when 'grafito' -%}#FFFFFF{%- when 'gold' -%}#FFFFFF{%- when 'navidad' -%}#FFFFFF{%- else -%}{{ section.settings.pal_bg | default: settings.ecoms_bg }}{%- endcase -%};
-      --ec-ink:       {%- case pal -%}{%- when 'agua' -%}#0F1B2A{%- when 'grafito' -%}#141414{%- when 'gold' -%}#0B1B33{%- when 'navidad' -%}#1E1A17{%- else -%}{{ section.settings.pal_ink | default: settings.ecoms_ink }}{%- endcase -%};
-      --ec-muted:       {%- case pal -%}{%- when 'agua' -%}#5B6B7B{%- when 'grafito' -%}#6B6B6B{%- when 'gold' -%}#46506A{%- when 'navidad' -%}#6A5F57{%- else -%}{{ section.settings.pal_muted | default: settings.ecoms_muted }}{%- endcase -%};
-      --ec-line:       {%- case pal -%}{%- when 'agua' -%}#E2E8EF{%- when 'grafito' -%}#E8E5E1{%- when 'gold' -%}#E3E8EF{%- when 'navidad' -%}#EFE3D6{%- else -%}{{ section.settings.pal_line | default: settings.ecoms_line }}{%- endcase -%};
-      --ec-deep:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- when 'gold' -%}#011F49{%- when 'navidad' -%}#0B2F24{%- else -%}{{ section.settings.pal_deep | default: settings.ecoms_deep }}{%- endcase -%};
+      --ec-primary:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- when 'gold' -%}#011F49{%- when 'rose' -%}#5B2142{%- when 'navidad' -%}#C8102E{%- else -%}{{ section.settings.pal_primary | default: settings.ecoms_primary }}{%- endcase -%};
+      --ec-primary-ink:       {%- case pal -%}{%- when 'agua' -%}#FFFFFF{%- when 'grafito' -%}#FFFFFF{%- when 'gold' -%}#FFFFFF{%- when 'rose' -%}#FFFFFF{%- when 'navidad' -%}#FFFFFF{%- else -%}{{ section.settings.pal_primary_ink | default: settings.ecoms_primary_ink }}{%- endcase -%};
+      --ec-dark:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- when 'gold' -%}#011F49{%- when 'rose' -%}#3A1428{%- when 'navidad' -%}#0E3B2E{%- else -%}{{ section.settings.pal_dark | default: settings.ecoms_dark }}{%- endcase -%};
+      --ec-accent:       {%- case pal -%}{%- when 'agua' -%}#14B8C9{%- when 'grafito' -%}#F2643D{%- when 'gold' -%}#E8C15A{%- when 'rose' -%}#D9A58F{%- when 'navidad' -%}#E8B04B{%- else -%}{{ section.settings.pal_accent | default: settings.ecoms_accent }}{%- endcase -%};
+      --ec-accent-ink:       {%- case pal -%}{%- when 'agua' -%}#06283A{%- when 'grafito' -%}#FFFFFF{%- when 'gold' -%}#011F49{%- when 'rose' -%}#3A1428{%- when 'navidad' -%}#0E3B2E{%- else -%}{{ section.settings.pal_accent_ink | default: settings.ecoms_accent_ink }}{%- endcase -%};
+      --ec-soft:       {%- case pal -%}{%- when 'agua' -%}#E9F7FA{%- when 'grafito' -%}#F5F3F0{%- when 'gold' -%}#FFF4D6{%- when 'rose' -%}#FBEDEA{%- when 'navidad' -%}#FFF6EC{%- else -%}{{ section.settings.pal_soft | default: settings.ecoms_soft }}{%- endcase -%};
+      --ec-soft-ink:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- when 'gold' -%}#011F49{%- when 'rose' -%}#4A1D33{%- when 'navidad' -%}#0E3B2E{%- else -%}{{ section.settings.pal_soft_ink | default: settings.ecoms_soft_ink }}{%- endcase -%};
+      --ec-tag:       {%- case pal -%}{%- when 'agua' -%}#14B8C9{%- when 'grafito' -%}#F2643D{%- when 'gold' -%}#E8C15A{%- when 'rose' -%}#D9A58F{%- when 'navidad' -%}#C8102E{%- else -%}{{ section.settings.pal_tag | default: settings.ecoms_tag }}{%- endcase -%};
+      --ec-tag-ink:       {%- case pal -%}{%- when 'agua' -%}#06283A{%- when 'grafito' -%}#FFFFFF{%- when 'gold' -%}#011F49{%- when 'rose' -%}#3A1428{%- when 'navidad' -%}#FFFFFF{%- else -%}{{ section.settings.pal_tag_ink | default: settings.ecoms_tag_ink }}{%- endcase -%};
+      --ec-sale-bg:       {%- case pal -%}{%- when 'agua' -%}#E0F5F8{%- when 'grafito' -%}#FDEBE5{%- when 'gold' -%}#FFF4D6{%- when 'rose' -%}#FBEDEA{%- when 'navidad' -%}#FDE8E8{%- else -%}{{ section.settings.pal_sale_bg | default: settings.ecoms_sale_bg }}{%- endcase -%};
+      --ec-sale-ink:       {%- case pal -%}{%- when 'agua' -%}#0B4F63{%- when 'grafito' -%}#9A3412{%- when 'gold' -%}#8A6A00{%- when 'rose' -%}#9A3F5B{%- when 'navidad' -%}#A30D25{%- else -%}{{ section.settings.pal_sale_ink | default: settings.ecoms_sale_ink }}{%- endcase -%};
+      --ec-urgent:       {%- case pal -%}{%- when 'agua' -%}#B54708{%- when 'grafito' -%}#B54708{%- when 'gold' -%}#B54708{%- when 'rose' -%}#A8324F{%- when 'navidad' -%}#C8102E{%- else -%}{{ section.settings.pal_urgent | default: settings.ecoms_urgent }}{%- endcase -%};
+      --ec-urgent-bg:       {%- case pal -%}{%- when 'agua' -%}#FFF4E5{%- when 'grafito' -%}#FFF4E5{%- when 'gold' -%}#FFF4E5{%- when 'rose' -%}#FDECEF{%- when 'navidad' -%}#FDE8E8{%- else -%}{{ section.settings.pal_urgent_bg | default: settings.ecoms_urgent_bg }}{%- endcase -%};
+      --ec-bg:       {%- case pal -%}{%- when 'agua' -%}#FFFFFF{%- when 'grafito' -%}#FFFFFF{%- when 'gold' -%}#FFFFFF{%- when 'rose' -%}#FFFCFA{%- when 'navidad' -%}#FFFFFF{%- else -%}{{ section.settings.pal_bg | default: settings.ecoms_bg }}{%- endcase -%};
+      --ec-ink:       {%- case pal -%}{%- when 'agua' -%}#0F1B2A{%- when 'grafito' -%}#141414{%- when 'gold' -%}#0B1B33{%- when 'rose' -%}#2B1A22{%- when 'navidad' -%}#1E1A17{%- else -%}{{ section.settings.pal_ink | default: settings.ecoms_ink }}{%- endcase -%};
+      --ec-muted:       {%- case pal -%}{%- when 'agua' -%}#5B6B7B{%- when 'grafito' -%}#6B6B6B{%- when 'gold' -%}#46506A{%- when 'rose' -%}#7A6670{%- when 'navidad' -%}#6A5F57{%- else -%}{{ section.settings.pal_muted | default: settings.ecoms_muted }}{%- endcase -%};
+      --ec-line:       {%- case pal -%}{%- when 'agua' -%}#E2E8EF{%- when 'grafito' -%}#E8E5E1{%- when 'gold' -%}#E3E8EF{%- when 'rose' -%}#EFE1DC{%- when 'navidad' -%}#EFE3D6{%- else -%}{{ section.settings.pal_line | default: settings.ecoms_line }}{%- endcase -%};
+      --ec-deep:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- when 'gold' -%}#011F49{%- when 'rose' -%}#3A1428{%- when 'navidad' -%}#0B2F24{%- else -%}{{ section.settings.pal_deep | default: settings.ecoms_deep }}{%- endcase -%};
       --ec-primary-hover: color-mix(in srgb, var(--ec-primary) 86%, #000);
     }
     body.ec-skin { background: var(--ec-bg); }
   </style>
 {%- endif -%}
-{%- if pal == 'gold' -%}{{ 'ecoms-gold.css' | asset_url | stylesheet_tag }}{%- endif -%}
+{%- if pal == 'gold' or pal == 'rose' -%}{{ 'ecoms-gold.css' | asset_url | stylesheet_tag }}{%- endif -%}
+{%- if pal == 'rose' -%}{{ 'ecoms-rose.css' | asset_url | stylesheet_tag }}{%- endif -%}
 {%- if pal == 'navidad' -%}
   {{ 'ecoms-navidad.css' | asset_url | stylesheet_tag }}
   {%- if section.settings.snow -%}<div class="ec-snow" aria-hidden="true"></div>{%- endif -%}
@@ -355,6 +356,35 @@
             {%- if product.description != blank -%}
               <div class="ec-pdp__desc rte" {{ block.shopify_attributes }}>{{ product.description }}</div>
             {%- endif -%}
+
+          {%- when 'accordion' -%}
+            {%- comment -%} Collapsible rows under the buy box: description, key ingredients (ecoms.ingredients) and how to use (ecoms.steps). Empty rows are skipped. {%- endcomment -%}
+            {%- assign acc_ing = product.metafields.ecoms.ingredients.value -%}
+            {%- assign acc_steps = product.metafields.ecoms.steps.value -%}
+            <div class="ec-faq ec-pdp__acc" {{ block.shopify_attributes }}>
+              {%- if product.description != blank -%}
+                <details{% if block.settings.open_first %} open{% endif %}>
+                  <summary><span>{{ block.settings.label_1 | default: 'Descripción' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
+                  <div class="ec-faq__a rte">{{ product.description }}</div>
+                </details>
+              {%- endif -%}
+              {%- if acc_ing != blank -%}
+                <details>
+                  <summary><span>{{ block.settings.label_2 | default: 'Ingredientes clave' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
+                  <div class="ec-faq__a rte"><ul>
+                    {%- for it in acc_ing -%}<li><strong>{{ it.title.value | escape }}:</strong> {{ it.text.value | escape }}</li>{%- endfor -%}
+                  </ul></div>
+                </details>
+              {%- endif -%}
+              {%- if acc_steps != blank -%}
+                <details>
+                  <summary><span>{{ block.settings.label_3 | default: 'Modo de uso' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
+                  <div class="ec-faq__a rte"><ol>
+                    {%- for it in acc_steps -%}<li><strong>{{ it.title.value | escape }}.</strong> {{ it.text.value | escape }}</li>{%- endfor -%}
+                  </ol></div>
+                </details>
+              {%- endif -%}
+            </div>
 
           {%- when 'benefits' -%}
             {%- comment -%} Per-product list: metafield ecoms.benefits (list of single-line text) wins. {%- endcomment -%}
@@ -1333,6 +1363,10 @@
         {
           "value": "gold",
           "label": "Gold: azul marino + dorado (belleza)"
+        },
+        {
+          "value": "rose",
+          "label": "Rosé: ciruela + rosa champagne (belleza)"
         },
         {
           "value": "navidad",
@@ -4647,38 +4681,197 @@
       "name": "Niveles con regalos",
       "limit": 1,
       "settings": [
-        { "type": "paragraph", "content": "Niveles de cantidad con regalos que se desbloquean. El botón agrega la cantidad y los regalos al carrito y abre el formulario de pago al recibir. Crea en Shopify los descuentos automáticos reales (precio por nivel y «Compra X y llévate Y» al 100% por cada regalo)." },
-        { "type": "text", "id": "heading", "label": "Título", "default": "Elige tu pack" },
-        { "type": "select", "id": "default_tier", "label": "Nivel marcado al cargar", "options": [{ "value": "1", "label": "Nivel 1" }, { "value": "2", "label": "Nivel 2" }, { "value": "3", "label": "Nivel 3" }], "default": "2" },
-        { "type": "header", "content": "Nivel 1" },
-        { "type": "number", "id": "t1_qty", "label": "Cantidad", "default": 1 },
-        { "type": "text", "id": "t1_label", "label": "Nombre", "default": "Lleva 1" },
-        { "type": "number", "id": "t1_total", "label": "Precio total (CLP)", "info": "Debe coincidir con el descuento automático real. Vacío = precio normal x cantidad." },
-        { "type": "text", "id": "t1_badge", "label": "Etiqueta" },
-        { "type": "text", "id": "t1_note", "label": "Nota" },
-        { "type": "header", "content": "Nivel 2" },
-        { "type": "number", "id": "t2_qty", "label": "Cantidad", "default": 2 },
-        { "type": "text", "id": "t2_label", "label": "Nombre", "default": "Lleva 2" },
-        { "type": "number", "id": "t2_total", "label": "Precio total (CLP)", "info": "Debe coincidir con el descuento automático real. Vacío = precio normal x cantidad." },
-        { "type": "text", "id": "t2_badge", "label": "Etiqueta", "default": "Más elegido" },
-        { "type": "text", "id": "t2_note", "label": "Nota" },
-        { "type": "header", "content": "Nivel 3" },
-        { "type": "number", "id": "t3_qty", "label": "Cantidad", "default": 3 },
-        { "type": "text", "id": "t3_label", "label": "Nombre", "default": "Lleva 3" },
-        { "type": "number", "id": "t3_total", "label": "Precio total (CLP)", "info": "Debe coincidir con el descuento automático real. Vacío = precio normal x cantidad." },
-        { "type": "text", "id": "t3_badge", "label": "Etiqueta", "default": "Mejor oferta" },
-        { "type": "text", "id": "t3_note", "label": "Nota" },
-        { "type": "header", "content": "Regalos" },
-        { "type": "text", "id": "gifts_heading", "label": "Título de regalos", "default": "¡Regalos gratis mientras más te lleves!" },
-        { "type": "product", "id": "gift_1", "label": "Regalo 1" },
-        { "type": "number", "id": "gift_1_tier", "label": "Regalo 1: se desbloquea desde el nivel", "default": 2 },
-        { "type": "product", "id": "gift_2", "label": "Regalo 2" },
-        { "type": "number", "id": "gift_2_tier", "label": "Regalo 2: se desbloquea desde el nivel", "default": 3 },
-        { "type": "number", "id": "ship_tier", "label": "Envío gratis desde el nivel", "info": "0 = no se muestra. Configura la tarifa gratis real en la app de pago al recibir.", "default": 2 },
-        { "type": "text", "id": "ship_label", "label": "Texto del envío gratis", "default": "Envío gratis a todo Chile" },
-        { "type": "text", "id": "ship_was", "label": "Costo normal del envío", "info": "Ej.: $4.000. Opcional." },
-        { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Pedir y pagar al recibir" },
-        { "type": "text", "id": "note", "label": "Nota bajo el botón", "default": "No pagas nada hoy. Todo llega en un solo envío." }
+        {
+          "type": "paragraph",
+          "content": "Niveles de cantidad con regalos que se desbloquean. El botón agrega la cantidad y los regalos al carrito y abre el formulario de pago al recibir. Crea en Shopify los descuentos automáticos reales (precio por nivel y «Compra X y llévate Y» al 100% por cada regalo)."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Título",
+          "default": "Elige tu pack"
+        },
+        {
+          "type": "select",
+          "id": "default_tier",
+          "label": "Nivel marcado al cargar",
+          "options": [
+            {
+              "value": "1",
+              "label": "Nivel 1"
+            },
+            {
+              "value": "2",
+              "label": "Nivel 2"
+            },
+            {
+              "value": "3",
+              "label": "Nivel 3"
+            }
+          ],
+          "default": "2"
+        },
+        {
+          "type": "header",
+          "content": "Nivel 1"
+        },
+        {
+          "type": "number",
+          "id": "t1_qty",
+          "label": "Cantidad",
+          "default": 1
+        },
+        {
+          "type": "text",
+          "id": "t1_label",
+          "label": "Nombre",
+          "default": "Lleva 1"
+        },
+        {
+          "type": "number",
+          "id": "t1_total",
+          "label": "Precio total (CLP)",
+          "info": "Debe coincidir con el descuento automático real. Vacío = precio normal x cantidad."
+        },
+        {
+          "type": "text",
+          "id": "t1_badge",
+          "label": "Etiqueta"
+        },
+        {
+          "type": "text",
+          "id": "t1_note",
+          "label": "Nota"
+        },
+        {
+          "type": "header",
+          "content": "Nivel 2"
+        },
+        {
+          "type": "number",
+          "id": "t2_qty",
+          "label": "Cantidad",
+          "default": 2
+        },
+        {
+          "type": "text",
+          "id": "t2_label",
+          "label": "Nombre",
+          "default": "Lleva 2"
+        },
+        {
+          "type": "number",
+          "id": "t2_total",
+          "label": "Precio total (CLP)",
+          "info": "Debe coincidir con el descuento automático real. Vacío = precio normal x cantidad."
+        },
+        {
+          "type": "text",
+          "id": "t2_badge",
+          "label": "Etiqueta",
+          "default": "Más elegido"
+        },
+        {
+          "type": "text",
+          "id": "t2_note",
+          "label": "Nota"
+        },
+        {
+          "type": "header",
+          "content": "Nivel 3"
+        },
+        {
+          "type": "number",
+          "id": "t3_qty",
+          "label": "Cantidad",
+          "default": 3
+        },
+        {
+          "type": "text",
+          "id": "t3_label",
+          "label": "Nombre",
+          "default": "Lleva 3"
+        },
+        {
+          "type": "number",
+          "id": "t3_total",
+          "label": "Precio total (CLP)",
+          "info": "Debe coincidir con el descuento automático real. Vacío = precio normal x cantidad."
+        },
+        {
+          "type": "text",
+          "id": "t3_badge",
+          "label": "Etiqueta",
+          "default": "Mejor oferta"
+        },
+        {
+          "type": "text",
+          "id": "t3_note",
+          "label": "Nota"
+        },
+        {
+          "type": "header",
+          "content": "Regalos"
+        },
+        {
+          "type": "text",
+          "id": "gifts_heading",
+          "label": "Título de regalos",
+          "default": "¡Regalos gratis mientras más te lleves!"
+        },
+        {
+          "type": "product",
+          "id": "gift_1",
+          "label": "Regalo 1"
+        },
+        {
+          "type": "number",
+          "id": "gift_1_tier",
+          "label": "Regalo 1: se desbloquea desde el nivel",
+          "default": 2
+        },
+        {
+          "type": "product",
+          "id": "gift_2",
+          "label": "Regalo 2"
+        },
+        {
+          "type": "number",
+          "id": "gift_2_tier",
+          "label": "Regalo 2: se desbloquea desde el nivel",
+          "default": 3
+        },
+        {
+          "type": "number",
+          "id": "ship_tier",
+          "label": "Envío gratis desde el nivel",
+          "info": "0 = no se muestra. Configura la tarifa gratis real en la app de pago al recibir.",
+          "default": 2
+        },
+        {
+          "type": "text",
+          "id": "ship_label",
+          "label": "Texto del envío gratis",
+          "default": "Envío gratis a todo Chile"
+        },
+        {
+          "type": "text",
+          "id": "ship_was",
+          "label": "Costo normal del envío",
+          "info": "Ej.: $4.000. Opcional."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Texto del botón",
+          "default": "Pedir y pagar al recibir"
+        },
+        {
+          "type": "text",
+          "id": "note",
+          "label": "Nota bajo el botón",
+          "default": "No pagas nada hoy. Todo llega en un solo envío."
+        }
       ]
     },
     {
@@ -4889,6 +5082,37 @@
           "type": "liquid",
           "id": "custom_liquid",
           "label": "Código"
+        }
+      ]
+    },
+    {
+      "type": "accordion",
+      "name": "Acordeones",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label_1",
+          "label": "Título 1",
+          "default": "Descripción"
+        },
+        {
+          "type": "text",
+          "id": "label_2",
+          "label": "Título 2",
+          "default": "Ingredientes clave"
+        },
+        {
+          "type": "text",
+          "id": "label_3",
+          "label": "Título 3",
+          "default": "Modo de uso"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_first",
+          "label": "Primer acordeón abierto",
+          "default": false
         }
       ]
     }

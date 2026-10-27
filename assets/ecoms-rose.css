@@ -1,0 +1,12 @@
+/*
+  ECOMS · Rosé palette (belleza): plum + champagne rose on a warm ivory base. Loaded after ecoms-gold.css,
+  which gives the structure (round ticks, divided FAQ, plum header on the comparison); this only retints it.
+*/
+.ec-pdp, .ec-sec { --ec-gold-ink: #9A5A48; }
+.ec-imgtxt__media { background: #F7E6E1; }
+.ec-pdp__title, .ec-sec h2 { letter-spacing: -0.01em; }
+.ec-pdp .ec-checks .ec-i { background: var(--ec-primary); color: #fff; }
+.ec-pdp [class*="_rsi-buy-now-button"]:not([class*="hook"]) { background: var(--ec-primary) !important; box-shadow: 0 14px 26px -14px color-mix(in srgb, var(--ec-primary) 85%, transparent) !important; }
+.ec-imgtxt__btn { background: var(--ec-primary); }
+.ec-cmp thead th, .ec-cmp thead th.us { background: var(--ec-primary); }
+.ec-cmp .n { color: #B7A3A9; }

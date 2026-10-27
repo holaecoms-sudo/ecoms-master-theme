@@ -55,68 +55,51 @@
             "card_code": ""
           }
         },
-        "next": {
-          "type": "text",
-          "settings": {
-            "text": "<p><strong>Elige tu oferta en el siguiente paso.</strong> No pagas nada hoy.</p>",
-            "fixed": true
-          }
-        },
-        "review_slider": {
-          "type": "review_slider",
-          "settings": {
-            "style": "chat",
-            "heading": "Lo que nos escriben nuestras clientas",
-            "text_1": "",
-            "author_1": "",
-            "place_1": "",
-            "stars_1": 5,
-            "text_2": "",
-            "author_2": "",
-            "place_2": "",
-            "stars_2": 5,
-            "text_3": "",
-            "author_3": "",
-            "place_3": "",
-            "stars_3": 5
-          }
-        },
-        "trust": {
-          "type": "trust",
-          "settings": {
-            "style": "grid",
-            "icon_1": "cash",
-            "title_1": "No pagas nada hoy",
-            "text_1": "Pagas al recibir",
-            "icon_2": "truck",
-            "title_2": "Envíos",
-            "text_2": "A todo Chile",
-            "icon_3": "shield",
-            "title_3": "Garantía legal",
-            "text_3": "6 meses",
-            "icon_4": "return",
-            "title_4": "Retracto",
-            "text_4": "10 días"
-          }
-        },
         "lead": {
           "type": "text",
           "settings": {
             "text": ""
           }
+        },
+        "acc": {
+          "type": "accordion",
+          "settings": {
+            "open_first": false
+          }
+        },
+        "pk": {
+          "type": "packs",
+          "settings": {
+            "heading": "Elige tu pack",
+            "layout": "rows",
+            "tier2_tag": "Más vendido",
+            "tier3_tag": "Mejor precio",
+            "item_name": "frascos"
+          }
+        },
+        "dlv": {
+          "type": "delivery",
+          "settings": {
+            "step_1": "Pedido realizado",
+            "step_2": "Pedido listo",
+            "step_3": "Entregado",
+            "ready_days": 1,
+            "min_days": 3,
+            "max_days": 6
+          }
         }
       },
       "block_order": [
         "badge_box",
-        "social",
         "title",
-        "lead",
+        "social",
         "price",
+        "lead",
         "benefits",
+        "pk",
         "buy",
-        "next",
-        "review_slider",
-        "trust"
+        "dlv",
+        "acc"
       ],
       "settings": {
         "layout": "direct",
@@ -135,16 +118,16 @@
         "video_first": false,
         "video_autoplay": true,
         "video_loop": true,
-        "sticky": false,
+        "sticky": true,
         "sticky_desktop": true,
         "sticky_ship": false,
         "sticky_save": false,
         "sticky_early": true,
         "sticky_label": "Pedir ahora",
         "sticky_label_cod": "Pedir y pagar al recibir",
-        "sticky_cod": false,
+        "sticky_cod": true,
         "sticky_cod_sub": "Pagas cuando llega",
-        "palette": "gold",
+        "palette": "rose",
         "pal_primary": "",
         "pal_primary_ink": "",
         "pal_dark": "",
@@ -264,9 +247,9 @@
       "type": "ecoms-stats",
       "settings": {
         "metafield": "ecoms.stats",
-        "style": "timeline",
-        "heading": "Esto es lo que notarás",
-        "text": "Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
+        "style": "box",
+        "heading": "Lo esencial",
+        "text": "",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
@@ -327,21 +310,6 @@
         "padding_top": 36,
         "padding_bottom": 36,
         "metafield": "ecoms.steps"
-      }
-    },
-    "lifestyle": {
-      "type": "ecoms-image-text",
-      "settings": {
-        "image_side": "right",
-        "image_full": false,
-        "product_image_index": 3,
-        "heading": "Te van a preguntar qué te hiciste. Tú decides si contarles.",
-        "intro": "No es maquillaje ni un filtro: es tu piel, cuidada todos los días. Un cambio pequeño en tu rutina que se nota en el espejo.",
-        "button_label": "Pedir y pagar al recibir",
-        "button_link": "",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 40
       }
     },
     "reviews": {
@@ -439,19 +407,32 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "reasons": {
+      "type": "ecoms-feature-grid",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "metafield": "ecoms.reasons",
+        "heading": "Por qué es distinto",
+        "style": "editorial",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "main",
     "band",
-    "timeline",
-    "ingredients",
     "story",
+    "ingredients",
+    "reasons",
+    "timeline",
     "before_after",
     "routine",
     "demo",
     "comparison",
-    "lifestyle",
     "bubble",
     "reviews",
     "faq",
