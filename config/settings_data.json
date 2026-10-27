@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "current": {
     "logo": "shopify://shop_images/ecoms_horizontal_color.png",
@@ -129,35 +120,35 @@
     "cart_drawer_collection": "",
     "cart_color_scheme": "scheme-1",
     "customer_account_menu": "customer-account-main-menu",
-    "ecoms_store_name": "Ecoms",
+    "ecoms_store_name": "Ecoms Beauty",
     "ecoms_payment_icons": "visa, master",
     "ecoms_pay_logo_1": "shopify://shop_images/mercadopago-isotipo.png",
     "ecoms_pay_logo_2": "shopify://shop_images/webpay.png",
     "ecoms_protect_images": true,
-    "ecoms_primary": "#0F5132",
+    "ecoms_primary": "#011F49",
     "ecoms_primary_ink": "#FFFFFF",
-    "ecoms_dark": "#0F5132",
-    "ecoms_accent": "#2E7D5A",
-    "ecoms_accent_ink": "#FFFFFF",
-    "ecoms_soft": "#E8F3ED",
-    "ecoms_soft_ink": "#0F5132",
-    "ecoms_tag": "#2E7D5A",
-    "ecoms_tag_ink": "#FFFFFF",
-    "ecoms_sale_bg": "#E8F3ED",
-    "ecoms_sale_ink": "#0F5132",
+    "ecoms_dark": "#011F49",
+    "ecoms_accent": "#E8C15A",
+    "ecoms_accent_ink": "#011F49",
+    "ecoms_soft": "#FFF4D6",
+    "ecoms_soft_ink": "#011F49",
+    "ecoms_tag": "#E8C15A",
+    "ecoms_tag_ink": "#011F49",
+    "ecoms_sale_bg": "#FFF4D6",
+    "ecoms_sale_ink": "#8A6A00",
     "ecoms_urgent": "#B42318",
     "ecoms_urgent_bg": "#FEF3F2",
     "ecoms_star": "#F4A62A",
-    "ecoms_deep": "#2E7D5A",
-    "ecoms_bg": "#FAFAF7",
-    "ecoms_ink": "#1F2937",
-    "ecoms_muted": "#6B7280",
-    "ecoms_line": "#E3E8E5",
+    "ecoms_deep": "#011F49",
+    "ecoms_bg": "#FFFFFF",
+    "ecoms_ink": "#0B1B33",
+    "ecoms_muted": "#46506A",
+    "ecoms_line": "#E3E8EF",
     "ecoms_v1_scheme": "scheme-6",
-    "ecoms_v1_menu": "ecoms-clean",
-    "ecoms_v1_instagram": "https://www.instagram.com/ecoms.clean/",
-    "ecoms_v1_tiktok": "https://www.tiktok.com/@ecoms.clean",
-    "ecoms_v1_facebook": "https://www.facebook.com/profile.php?id=61595370719462",
+    "ecoms_v1_menu": "",
+    "ecoms_v1_instagram": "",
+    "ecoms_v1_tiktok": "",
+    "ecoms_v1_facebook": "",
     "ecoms_free_shipping_live": true,
     "ecoms_free_shipping_threshold": 39990,
     "ecoms_free_shipping_local_threshold": 29990,

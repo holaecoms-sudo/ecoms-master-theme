@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "hero": {
@@ -52,19 +43,19 @@
         "t4"
       ],
       "settings": {
-        "eyebrow": "Ecoms Clean · Limpieza y aseo",
-        "heading": "Tu casa limpia, con",
-        "heading_em": "menos esfuerzo",
+        "eyebrow": "Ecoms Beauty · Skincare",
+        "heading": "Tu piel, mejor cuidada",
+        "heading_em": "cada día",
         "text": "Herramientas para baño, cocina, pisos y lavado. Te explicamos cómo funciona cada una y te las enviamos a todo Chile.",
         "button_1_label": "Ver productos",
-        "button_2_label": "Comprar por categoría",
-        "product": "cepillo-electrico-de-limpieza-9-en-1",
-        "tag": "Ecoms Clean",
-        "card_text": "Limpia sin fregar ni agacharte",
-        "accent": "#14B8A6",
+        "button_2_label": "",
+        "product": "",
+        "tag": "Ecoms Beauty",
+        "card_text": "Skincare que pagas al recibir",
+        "accent": "#E8C15A",
         "padding_top": 84,
         "padding_bottom": 96,
-        "button_1_link": "shopify://collections/clean"
+        "button_1_link": "shopify://collections/all"
       }
     },
     "lineas": {
@@ -137,13 +128,14 @@
         "notify_placeholder": "Tu email",
         "notify_button": "Avísame",
         "notify_success": "¡Listo! Te avisaremos cuando llegue."
-      }
+      },
+      "disabled": true
     },
     "clean_row": {
       "type": "ecoms-product-row",
       "settings": {
-        "heading": "Productos Ecoms Clean",
-        "collection": "clean",
+        "heading": "Productos Ecoms Beauty",
+        "collection": "",
         "limit": 8,
         "min_products": 3,
         "columns": 4,
@@ -151,7 +143,7 @@
         "hover_image": true,
         "button_label": "Ver producto",
         "link_label": "Ver todo",
-        "link": "shopify://collections/clean",
+        "link": "shopify://collections/all",
         "padding_top": 40,
         "padding_bottom": 32
       }
@@ -164,23 +156,23 @@
           "settings": {
             "icon": "check",
             "heading": "Elegimos pocos productos",
-            "text": "Solo los que resuelven un problema real de la casa."
+            "text": "Solo los que realmente cuidan tu piel."
           }
         },
         "s2": {
           "type": "step",
           "settings": {
             "icon": "chat",
-            "heading": "Te explicamos cómo funcionan",
-            "text": "Qué incluye, cómo se usa y para qué sirve cada uno."
+            "heading": "Te explicamos cómo usarlos",
+            "text": "Qué hace cada producto, cómo se aplica y cuándo notarlo."
           }
         },
         "s3": {
           "type": "step",
           "settings": {
             "icon": "truck",
-            "heading": "Te llega a todo Chile",
-            "text": "Pagas seguro con Webpay o Mercado Pago y sigues tu pedido."
+            "heading": "Pagas al recibir",
+            "text": "Envíos a todo Chile y pago al recibir o con tarjeta."
           }
         }
       },
@@ -252,7 +244,8 @@
         "all_label": "Ver todo Ecoms Clean",
         "padding_top": 28,
         "padding_bottom": 20
-      }
+      },
+      "disabled": true
     }
   },
   "order": [
