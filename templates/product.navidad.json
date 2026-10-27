@@ -23,10 +23,7 @@
         "price": {
           "type": "price",
           "settings": {
-            "style": "badge",
-            "shipping_cost": 4000,
-            "ship_local_title": "Envío gratis",
-            "ship_local_text": "gratis desde $29.990"
+            "style": "badge"
           }
         },
         "next": {
