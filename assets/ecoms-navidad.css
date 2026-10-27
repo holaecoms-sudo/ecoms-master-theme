@@ -82,7 +82,7 @@ body.ec-skin { background: #FFFDF9; }
   .ec-pdp::before, .ec-ctab-sec::before, .ec-pdp [class*="_rsi-buy-now-button"]::after { animation: none; }
 }
 
-/* Content sections: warm cards with a red and green ribbon, red icons and numbers */
+/* Content sections: warm cards with a red and green ribbon, red icons and step numbers */
 .ec-ideal__card, .ec-feat--cards > div { border-top: 4px solid var(--ec-xmas-red); background: #FFFDF9; }
 .ec-ideal__card:nth-child(even), .ec-feat--cards > div:nth-child(even) { border-top-color: var(--ec-xmas-green); }
 .ec-ideal .ec-ic, .ec-feat .ec-ic, .ec-steps .ec-ic, .ec-steps__ic { background: #FDE8E8; color: var(--ec-xmas-red); }
