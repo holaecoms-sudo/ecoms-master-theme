@@ -6,7 +6,7 @@
         "badge_box": {
           "type": "badge_box",
           "settings": {
-            "text": "Navidad sin escalera | Paga al recibir"
+            "text": "Oferta Navidad | Regalos + envío gratis desde 2"
           }
         },
         "social": {
@@ -30,7 +30,7 @@
         "price": {
           "type": "price",
           "settings": {
-            "style": "badge",
+            "style": "pill",
             "ship_local_title": "",
             "ship_local_text": ""
           }
@@ -63,7 +63,11 @@
             "ship_label": "Envío gratis a todo Chile",
             "ship_was": "$4.000",
             "button_label": "Pedir y pagar al recibir",
-            "note": "No pagas nada hoy. Todo llega en un solo envío."
+            "note": "No pagas nada hoy. Todo llega en un solo envío.",
+            "unit_singular": "proyector",
+            "unit_plural": "proyectores",
+            "gift_1_label": "cortina de luz cálida",
+            "gift_2_label": "cortina multicolor"
           }
         },
         "benefits": {
@@ -147,10 +151,10 @@
         "thumbs": "auto",
         "gal_controls": false,
         "badge": "",
-        "media_tag": "",
-        "media_title": "",
-        "media_text": "",
-        "media_over_count": 2,
+        "media_tag": "Oferta Navidad 🎁",
+        "media_title": "Lleva 2 y te regalamos una cortina de luces + envío gratis",
+        "media_text": "Lleva 3 y te llevas las 2 cortinas de regalo",
+        "media_over_count": 1,
         "hero_bg": "none",
         "media_ratio": "square",
         "media_fit": "cover",
