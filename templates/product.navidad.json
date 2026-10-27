@@ -107,7 +107,7 @@
         "tiers": {
           "type": "gift_tiers",
           "settings": {
-            "heading": "Elige tu pack navideño",
+            "heading": "Elige tu pack navideño 🎄",
             "default_tier": "2",
             "t1_qty": 1,
             "t1_label": "Lleva 1",
