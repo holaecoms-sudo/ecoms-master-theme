@@ -1,0 +1,83 @@
+/*
+  ECOMS · Christmas skin (palette «Navidad» in the product section): red, pine green and gold, a string
+  of lights under the hero, gentle falling snow and festive accents. Loaded only on pages whose product
+  section uses that palette; colors come from the palette tokens. No motion with prefers-reduced-motion.
+*/
+.ec-pdp, .ec-sec { --ec-xmas-red: var(--ec-primary); --ec-xmas-green: var(--ec-dark); --ec-xmas-gold: var(--ec-accent); }
+body.ec-skin { background: #FFFDF9; }
+
+/* Falling snow over the whole page (two layers of soft dots) */
+.ec-snow { position: fixed; inset: 0; z-index: 2; overflow: hidden; pointer-events: none; }
+.ec-snow::before, .ec-snow::after { content: ""; position: absolute; inset: -100vh 0 0; background-repeat: repeat; animation: ec-snow 18s linear infinite; }
+.ec-snow::before {
+  background-image:
+    radial-gradient(3px 3px at 20px 30px, rgba(200, 214, 230, 0.9) 50%, transparent 51%),
+    radial-gradient(2px 2px at 90px 120px, rgba(200, 214, 230, 0.8) 50%, transparent 51%),
+    radial-gradient(3px 3px at 160px 60px, rgba(200, 214, 230, 0.85) 50%, transparent 51%),
+    radial-gradient(2px 2px at 230px 170px, rgba(200, 214, 230, 0.8) 50%, transparent 51%);
+  background-size: 260px 220px;
+}
+.ec-snow::after {
+  background-image:
+    radial-gradient(4px 4px at 50px 80px, rgba(210, 222, 236, 0.75) 50%, transparent 51%),
+    radial-gradient(3px 3px at 190px 20px, rgba(210, 222, 236, 0.7) 50%, transparent 51%),
+    radial-gradient(4px 4px at 300px 150px, rgba(210, 222, 236, 0.7) 50%, transparent 51%);
+  background-size: 340px 260px;
+  animation-duration: 26s;
+}
+@keyframes ec-snow { to { transform: translateY(100vh); } }
+
+/* String of lights under the hero and above the closing band */
+.ec-pdp { position: relative; }
+.ec-pdp::before, .ec-ctab-sec::before {
+  content: ""; display: block; height: 22px; margin: -6px 0 10px;
+  background:
+    radial-gradient(circle at 12px 13px, var(--ec-xmas-red) 4.5px, transparent 5.5px) 0 0 / 96px 22px repeat-x,
+    radial-gradient(circle at 36px 15px, var(--ec-xmas-gold) 4.5px, transparent 5.5px) 0 0 / 96px 22px repeat-x,
+    radial-gradient(circle at 60px 13px, #1F8A4C 4.5px, transparent 5.5px) 0 0 / 96px 22px repeat-x,
+    radial-gradient(circle at 84px 15px, #2E6FD6 4.5px, transparent 5.5px) 0 0 / 96px 22px repeat-x,
+    radial-gradient(120% 14px at 50% 0, transparent 9px, #3B3B3B 9.5px, #3B3B3B 10.5px, transparent 11px) 0 0 / 48px 22px repeat-x;
+  animation: ec-twinkle 2.4s ease-in-out infinite alternate;
+}
+@keyframes ec-twinkle { from { filter: saturate(0.85) brightness(0.95); } to { filter: saturate(1.25) brightness(1.15) drop-shadow(0 0 3px rgba(255, 210, 120, 0.7)); } }
+
+/* Headings: a small gold star above section titles */
+.ec-sec h2, .ec-sec .ec-h3 { color: var(--ec-xmas-green); }
+.ec-sec h2::before, .ec-sec .ec-h3::before { content: "★"; display: block; margin-bottom: 4px; color: var(--ec-xmas-gold); font-size: 15px; line-height: 1; text-align: inherit; }
+.ec-pdp__title { color: var(--ec-xmas-green); }
+
+/* Hero accents */
+.ec-badgebox { border: 0; border-radius: 999px; background: var(--ec-xmas-red); color: #fff; box-shadow: 0 6px 14px -8px var(--ec-xmas-red); }
+.ec-badgebox::before { content: "🎄 "; }
+.ec-pdp .ec-checks .ec-i { width: 22px; height: 22px; margin-top: 0; padding: 4px; border-radius: 50%; background: var(--ec-xmas-red); color: #fff; stroke-width: 3; }
+.ec-price__big { color: var(--ec-xmas-red); }
+.ec-pdp .ec-trust4 .ec-i { color: var(--ec-xmas-red); }
+
+/* Cash on delivery button injected by Releasit: festive red with a soft shine */
+.ec-pdp [class*="_rsi-buy-now-button"]:not([class*="hook"]) { position: relative; overflow: hidden; min-height: 60px !important; border: 0 !important; border-radius: 14px !important; background: linear-gradient(180deg, #E0263F, var(--ec-xmas-red)) !important; color: #fff !important; box-shadow: 0 12px 24px -12px var(--ec-xmas-red) !important; }
+.ec-pdp [class*="_rsi-buy-now-button"]:not([class*="hook"])::after { content: ""; position: absolute; top: 0; bottom: 0; left: -40%; width: 30%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.35), transparent); transform: skewX(-20deg); animation: ec-shine 3.2s ease-in-out infinite; }
+@keyframes ec-shine { 0%, 60% { left: -40%; } 100% { left: 130%; } }
+
+/* Moving band: pine green with gold text, like a ribbon */
+.ec-mq--band { background: var(--ec-xmas-green); color: #FBE7B5; border-block: 3px solid var(--ec-xmas-gold); }
+
+/* Soft festive background on alternating content sections */
+.ec-incl-sec, .ec-tabs-sec, .ec-reviews, .ec-faq-sec { background: linear-gradient(180deg, #FFF6EC, #FFFDF9); }
+
+/* Comparison and includes */
+.ec-cmp thead th, .ec-cmp thead th.us { background: var(--ec-xmas-green); color: #fff; }
+.ec-cmp thead th.us { color: var(--ec-xmas-gold); }
+.ec-incl__item--hl { border-color: var(--ec-xmas-red); box-shadow: 0 0 0 1px var(--ec-xmas-red); }
+.ec-incl__total b { color: var(--ec-xmas-red); }
+
+/* Closing band: deep green night sky with snow dots */
+.ec-ctab--dark { background: radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.8) 50%, transparent 51%) 0 0 / 120px 90px, radial-gradient(2px 2px at 70% 60%, rgba(255, 255, 255, 0.6) 50%, transparent 51%) 0 0 / 150px 110px, linear-gradient(160deg, var(--ec-xmas-green), var(--ec-deep)); }
+.ec-ctab--dark .ec-eyebrow { color: var(--ec-xmas-gold); }
+
+/* Review bubble and chat reviews get a warm tint */
+.ec-rsl--bubble .ec-rsl__item, .ec-rsl--chat { background: #FFF1E6; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ec-snow { display: none; }
+  .ec-pdp::before, .ec-ctab-sec::before, .ec-pdp [class*="_rsi-buy-now-button"]::after { animation: none; }
+}
