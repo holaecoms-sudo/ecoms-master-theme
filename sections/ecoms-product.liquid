@@ -983,7 +983,7 @@
         {%- comment -%} Pay-on-delivery mode: one full-width button that opens the app's form (no price). {%- endcomment -%}
         <a href="#" class="ec-btn ec-btn--primary ec-sticky__cod" data-ec-scroll-buy data-ec-open-cod="{{ settings.ecoms_cod_app_button | escape }}">
           {% render 'ecoms-icon', name: 'truck' %}
-          <span>{{ section.settings.sticky_label_cod | default: settings.ecoms_cod_app_button | escape }}{% if section.settings.sticky_cod_sub != blank %}<small>{{ section.settings.sticky_cod_sub | escape }}</small>{% endif %}</span>
+          <span>{{ section.settings.sticky_label_cod | default: settings.ecoms_cod_app_button | escape }}<b class="ec-sticky__gt-total" data-ec-sticky-gt-total hidden></b>{% if section.settings.sticky_cod_sub != blank %}<small>{{ section.settings.sticky_cod_sub | escape }}</small>{% endif %}</span>
         </a>
       {%- else -%}
       {%- if first_media != blank -%}

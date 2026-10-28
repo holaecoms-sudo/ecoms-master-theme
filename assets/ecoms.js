@@ -444,7 +444,9 @@
     // With «solo pago al recibir» our add button is hidden and the COD app's button sits in the buy block,
     // so watch the whole buy block instead (a hidden element never counts as on screen).
     const add = ec && ec.querySelector('[data-ec-add]');
-    const target = ec ? (add && add.offsetParent ? add : ec.closest('.ec-buy') || ec) : id && document.getElementById(`ProductSubmitButton-${id}`);
+    // Quantity tiers with gifts: their button is the page's main CTA.
+    const gtGo = $('[data-ec-gt-go]');
+    const target = gtGo ? gtGo : ec ? (add && add.offsetParent ? add : ec.closest('.ec-buy') || ec) : id && document.getElementById(`ProductSubmitButton-${id}`);
     if (!target) return;
     const setVisible = (on) => {
       sticky.classList.toggle('is-on', on);
@@ -599,6 +601,7 @@
           if (st) st.textContent = open ? st.dataset.open : st.dataset.locked;
         });
         if (total) total.textContent = r.dataset.total;
+        $$('[data-ec-sticky-gt-total]').forEach((el) => { el.textContent = r.dataset.total; el.hidden = false; });
         paintPrice(Number(r.dataset.qty) || 1, Number(r.dataset.cents) || 0, Number(r.dataset.was) || 0, r.dataset.summary || '');
       };
       radios.forEach((r) => r.addEventListener('change', paint));
@@ -745,6 +748,9 @@
     if (toBuy) {
       // Quantity tiers with gifts: page CTAs take the shopper back to the tiers so they choose a pack first.
       const tiers = $('[data-ec-gt]');
+      // The floating button orders the selected pack straight away (the shopper already scrolled past the tiers).
+      const gtGo = tiers && toBuy.closest('[data-ec-sticky]') && $('[data-ec-gt-go]', tiers);
+      if (gtGo) { event.preventDefault(); if (!gtGo.disabled) gtGo.click(); return; }
       if (tiers) { event.preventDefault(); tiers.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
       // With cash on delivery live, page CTAs open the app's form right away (its button sits in the buy box).
       const cod = toBuy.dataset.ecOpenCod && codButton(toBuy.dataset.ecOpenCod);
