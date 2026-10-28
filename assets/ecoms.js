@@ -657,7 +657,7 @@
         // Silent mode: close the invisible drawer once the form is open; if the app's button never showed,
         // reveal the drawer so the shopper still sees their cart.
         setTimeout(() => {
-          if (btn) { /* Closing the drawer while the COD form is open makes the app empty its own cart: wait until the form closes. */ const wait = setInterval(() => { const formOpen = $$('[data-rsi-cod-button]').some((b) => b.offsetParent && !b.closest('cart-drawer, #CartDrawer, .drawer')); if (formOpen) return; clearInterval(wait); $('cart-drawer')?.close?.(); document.documentElement.classList.remove('ec-silent-cart'); }, 400); return; }
+          if (btn) { /* Closing the drawer while the COD form is open makes the app empty its own cart: wait until the form closes. */ const wait = { seen: false, start: Date.now() }; wait.id = setInterval(() => { const formOpen = $$('[data-rsi-cod-button]').some((b) => b.offsetParent && !b.closest('cart-drawer, #CartDrawer, .drawer')); if (formOpen) { wait.seen = true; return; } if (!wait.seen && Date.now() - wait.start < 15000) return; clearInterval(wait.id); $('cart-drawer')?.close?.(); document.documentElement.classList.remove('ec-silent-cart'); }, 400); return; }
           document.documentElement.classList.remove('ec-silent-cart');
         }, btn ? 700 : 0);
       }
