@@ -30,7 +30,7 @@
     }
   };
 
-  const cartAddUrl = () => `${window.routes?.cart_add_url || '/cart/add'}.js`;
+  window.EcomsHoldCod = () => { try { const ov = document.createElement('div'); ov.setAttribute('style', 'position:fixed;inset:0;z-index:2147483647;background:rgba(255,255,255,.65);display:flex;align-items:center;justify-content:center;font:600 16px/1.4 sans-serif;color:#222;text-align:center;padding:24px'); ov.textContent = 'Preparando tu pedido…'; document.body.appendChild(ov); const start = Date.now(); let last = start; let po = null; try { po = new PerformanceObserver((list) => { list.getEntries().forEach((e) => { if (e.name.includes('/api/') && e.name.includes('graphql')) last = Date.now(); }); }); po.observe({ type: 'resource' }); } catch (e) { po = null; } const iv = setInterval(() => { const now = Date.now(); if ((now - start > 2500 && now - last > 1200) || now - start > 8000) { clearInterval(iv); if (po) po.disconnect(); ov.remove(); } }, 150); } catch (e) { /* never block the purchase */ } }; const cartAddUrl = () => `${window.routes?.cart_add_url || '/cart/add'}.js`;
 
   /* ---------- Which product form drives the page ---------- */
   const ecForm = () => $('[data-ec-form]');
@@ -652,7 +652,7 @@
       const btn = find();
       if (btn || ++tries > 20) {
         clearInterval(timer);
-        if (btn) btn.click();
+        if (btn) { btn.click(); if (window.EcomsHoldCod) window.EcomsHoldCod(); }
         if (!silent) return;
         // Silent mode: close the invisible drawer once the form is open; if the app's button never showed,
         // reveal the drawer so the shopper still sees their cart.
