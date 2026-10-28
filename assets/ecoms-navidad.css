@@ -197,3 +197,6 @@ body.ec-skin { background: #FFFDF9; }
 /* Dark sections keep white titles (the festive green title color is for light backgrounds) */
 .ec-sec .ec-ctab--dark h2, .ec-sec .ec-ctab--dark .ec-h3, .ec-sec .ec-ctab--dark .ec-ctab__price b { color: #fff; }
 .ec-sec .ec-ctab--dark .ec-ctab__t { color: rgba(255, 255, 255, 0.85); }
+
+/* Floating pay-on-delivery button: white text on the red button */
+.ec-sticky .ec-sticky__cod, .ec-sticky .ec-sticky__cod span, .ec-sticky .ec-sticky__cod b, .ec-sticky .ec-sticky__cod .ec-i { color: #fff; }
