@@ -179,7 +179,7 @@
         "sticky_ship": true,
         "sticky_save": true,
         "sticky_early": false,
-        "sticky_label": "Comprar",
+        "sticky_label": "Pedir ahora",
         "sticky_label_cod": "Pedir y pagar al recibir",
         "sticky_cod": true,
         "sticky_cod_sub": "",
