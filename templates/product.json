@@ -3,12 +3,6 @@
     "main": {
       "type": "ecoms-product",
       "blocks": {
-        "badge_box": {
-          "type": "badge_box",
-          "settings": {
-            "text": "Skincare | Paga al recibir"
-          }
-        },
         "social": {
           "type": "social",
           "settings": {
@@ -70,10 +64,10 @@
         "pk": {
           "type": "packs",
           "settings": {
-            "heading": "",
+            "heading": "Compra más · ahorra más",
             "layout": "offer",
             "tier2_tag": "",
-            "tier3_tag": "",
+            "tier3_tag": "Mejor precio",
             "item_name": "frascos",
             "from_metafield": true,
             "discounts_live": true,
@@ -102,34 +96,30 @@
             "text": "Pago seguro y cifrado"
           }
         },
-        "stock": {
-          "type": "stock",
-          "settings": {
-            "max_show": 30,
-            "text": "STOCK EN VIVO: quedan [qty] unidades"
-          }
-        },
         "rs": {
           "type": "review_slider",
           "settings": {
             "style": "quote",
             "heading": ""
           }
+        },
+        "chips": {
+          "type": "chips",
+          "settings": {}
         }
       },
       "block_order": [
-        "badge_box",
-        "title",
         "social",
+        "title",
         "price",
         "lead",
+        "chips",
         "benefits",
         "pk",
         "buy",
-        "stock",
+        "dlv",
         "pay",
         "rs",
-        "dlv",
         "acc"
       ],
       "settings": {
@@ -189,7 +179,7 @@
         "mode": "player",
         "ratio": "portrait",
         "width": "full",
-        "padding_top": 24,
+        "padding_top": 44,
         "padding_bottom": 12
       },
       "blocks": {}
@@ -203,53 +193,6 @@
         "width": "full",
         "padding_top": 4,
         "padding_bottom": 24
-      }
-    },
-    "story": {
-      "type": "ecoms-image-text",
-      "settings": {
-        "image_side": "right",
-        "image_full": false,
-        "product_image_index": 2,
-        "heading": "Hidratación en un solo gesto",
-        "intro": "Una barra que se desliza como seda sobre el rostro, el contorno de ojos y el cuello, y deja la piel suave y fresca, sin sensación pegajosa.",
-        "button_label": "",
-        "button_link": "",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
-      },
-      "blocks": {
-        "p1": {
-          "type": "point",
-          "settings": {
-            "title": "Higiénica y portátil",
-            "text": "10 g, sin ensuciarte las manos"
-          }
-        },
-        "p2": {
-          "type": "point",
-          "settings": {
-            "title": "Para todo tipo de piel",
-            "text": "Rostro, contorno de ojos y cuello"
-          }
-        }
-      },
-      "block_order": [
-        "p1",
-        "p2"
-      ]
-    },
-    "timeline": {
-      "type": "ecoms-stats",
-      "settings": {
-        "metafield": "ecoms.stats",
-        "style": "box",
-        "heading": "Lo esencial",
-        "text": "",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
       }
     },
     "before_after": {
@@ -390,26 +333,13 @@
         "padding_bottom": 0
       }
     },
-    "reasons": {
-      "type": "ecoms-feature-grid",
-      "blocks": {},
-      "block_order": [],
-      "settings": {
-        "metafield": "ecoms.reasons",
-        "heading": "Por qué es distinto",
-        "style": "editorial",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "star": {
       "type": "ecoms-callout",
       "blocks": {},
       "block_order": [],
       "settings": {
-        "eyebrow": "5% Volufiline para cuidar el volumen",
-        "heading": "El ingrediente del que todos hablan.",
+        "eyebrow": "El activo estrella",
+        "heading": "Un activo que se nota.",
         "value": "5%",
         "label": "Volufiline.",
         "text": "Una fórmula con Volufiline y colágeno pensada para hidratar y dar a tu piel un aspecto más lleno y firme. Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
@@ -445,36 +375,36 @@
         "b1": {
           "type": "text",
           "settings": {
-            "icon": "sparkle",
-            "text": "Hidratación al instante"
+            "icon": "cash",
+            "text": "Pagas al recibir"
           }
         },
         "b2": {
           "type": "text",
           "settings": {
-            "icon": "drop",
-            "text": "Textura sedosa, no pegajosa"
+            "icon": "truck",
+            "text": "Envío a todo Chile"
           }
         },
         "b3": {
           "type": "text",
           "settings": {
-            "icon": "heart",
-            "text": "Para todo tipo de piel"
+            "icon": "box",
+            "text": "Seguimiento de tu pedido"
           }
         },
         "b4": {
           "type": "text",
           "settings": {
-            "icon": "cash",
-            "text": "Pagas al recibir"
+            "icon": "return",
+            "text": "10 días de retracto"
           }
         },
         "b5": {
           "type": "text",
           "settings": {
             "icon": "truck",
-            "text": "Envío a todo Chile"
+            "text": "Textura sedosa, no pegajosa"
           }
         }
       },
@@ -493,19 +423,31 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "zones": {
+      "type": "ecoms-zone-tabs",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "metafield": "ecoms.zones",
+        "eyebrow": "Una barra, tres zonas",
+        "heading": "¿Dónde la vas a usar?",
+        "tip_label": "Cómo usarla en",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 20
+      }
     }
   },
   "order": [
-    "top",
     "main",
+    "top",
     "demo",
-    "before_after",
-    "story",
+    "zones",
     "star",
-    "reasons",
-    "ingredients",
-    "timeline",
     "routine",
+    "ingredients",
+    "before_after",
     "assure",
     "bubble",
     "reviews",
