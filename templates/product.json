@@ -228,13 +228,14 @@
       "blocks": {},
       "block_order": [],
       "settings": {
-        "style": "cards",
-        "heading": "Tu rutina de 10 segundos",
+        "style": "photos",
+        "heading": "Cómo usar tu barra",
         "text": "",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36,
-        "metafield": "ecoms.steps"
+        "metafield": "ecoms.steps",
+        "button_label": "Pedir mi barra"
       }
     },
     "reviews": {
@@ -423,16 +424,233 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "ribbon": {
+      "type": "ecoms-ribbon",
+      "settings": {
+        "tag": "OFERTA DE PACKS",
+        "text": "AHORRA HASTA 33% · ENVÍO GRATIS",
+        "end_at": "",
+        "heading": "Termina en:",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "strip": {
+      "type": "ecoms-marquee",
+      "blocks": {
+        "s1": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "text": "Hidratación al instante"
+          }
+        },
+        "s2": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "text": "Textura sedosa, no pegajosa"
+          }
+        },
+        "s3": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "text": "Rostro, ojos y cuello"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "settings": {
+        "style": "strip",
+        "heading": "",
+        "speed": 34,
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "photocards": {
+      "type": "ecoms-photo-cards",
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "title": "Zonas que se sienten secas",
+            "text": "La piel seca se ve más opaca y las líneas se notan más."
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "title": "Contorno de ojos",
+            "text": "Una zona delicada que pide hidratación frecuente."
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "title": "Cuello",
+            "text": "Se nota con el tiempo y también necesita cuidado."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ],
+      "settings": {
+        "heading": "No se trata solo de arrugas.",
+        "text": "",
+        "padding_top": 44,
+        "padding_bottom": 24
+      }
+    },
+    "ideal": {
+      "type": "ecoms-ideal-for",
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "icon": "drop",
+            "title": "Zonas secas",
+            "text": "Donde la piel se siente tirante."
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Piel opaca",
+            "text": "Para un aspecto más luminoso."
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "icon": "heart",
+            "title": "Contorno de ojos",
+            "text": "Con aplicación suave."
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "icon": "hand",
+            "title": "Cuello",
+            "text": "Una pasada y listo."
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4"
+      ],
+      "settings": {
+        "heading": "Ideal para el aspecto de:",
+        "text": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "compare": {
+      "type": "ecoms-comparison",
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "feature": "Se aplica directo, sin tocar el producto",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "feature": "Formato de bolso: 10 g",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "feature": "Una barra para rostro, ojos y cuello",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "feature": "5% de Volufiline + colágeno",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ],
+      "settings": {
+        "style": "table",
+        "heading": "Barra vs. crema en pote",
+        "feature_label": "",
+        "col_1": "Esta barra",
+        "col_2": "Crema en pote",
+        "col_3": "",
+        "show_image": false,
+        "metafield": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "ugc": {
+      "type": "ecoms-ugc",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "style": "grid",
+        "heading": "Clientas reales",
+        "text": "",
+        "metafield": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
     }
   },
   "order": [
+    "ribbon",
+    "strip",
     "main",
     "top",
-    "demo",
-    "star",
+    "photocards",
     "routine",
+    "star",
+    "ideal",
     "ingredients",
+    "compare",
     "before_after",
+    "demo",
+    "ugc",
     "bubble",
     "reviews",
     "assure",

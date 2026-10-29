@@ -117,3 +117,44 @@ body { font-family: 'Hanken Grotesk', var(--font-body-family), system-ui, sans-s
 .ec-mq--giant .ec-mq__list { gap: 34px; padding: 14px 0 12px 34px; font-family: var(--font-heading-family); font-size: clamp(44px, 13vw, 76px); font-weight: 800; letter-spacing: -0.04em; line-height: 1; text-transform: uppercase; white-space: nowrap; }
 .ec-mq--giant .ec-mq__list li { display: flex; align-items: center; gap: 34px; }
 .ec-mq--giant .ec-i { display: none; }
+
+/* ---- Well layout pieces ---- */
+/* Offer ribbon */
+.ec-ribbon-sec { padding: 0; }
+.ec-ribbon { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 14px; padding: 13px 18px; background: #C23B73; color: #fff; }
+.ec-ribbon__txt { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; }
+.ec-ribbon__tag { padding: 4px 10px; border-radius: 6px; background: var(--ec-tag); color: var(--ec-tag-ink); font-size: 11px; font-weight: 800; letter-spacing: 0.06em; }
+.ec-ribbon__line { font-size: 12.5px; font-weight: 700; letter-spacing: 0.08em; }
+/* Light benefit strip with dashes */
+.ec-mq--strip { background: #F6F0F0; color: var(--ec-dark); }
+.ec-mq--strip .ec-mq__list { gap: 30px; padding: 11px 18px; font-size: 13.5px; font-weight: 700; white-space: nowrap; }
+.ec-mq--strip .ec-mq__list li { display: flex; align-items: center; gap: 6px; }
+.ec-mq--strip .ec-mq__list li::before { content: "–"; }
+.ec-mq--strip .ec-i { display: none; }
+/* Benefits: two-column grid like the reference */
+.ec-pdp .ec-checks { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 12px; }
+.ec-pdp .ec-checks li { align-items: center; font-size: 14px; line-height: 1.3; }
+/* Photo cards */
+.ec-pc__h { text-align: center; }
+.ec-pc__bar { display: block; width: 84px; height: 7px; margin: 12px auto 20px; border-radius: 5px; background: #F0B6CA; }
+.ec-pc__sub { margin: -8px 0 18px; text-align: center; color: var(--ec-muted); font-size: 15px; }
+.ec-pc { display: grid; gap: 14px; max-width: 560px; margin: 0 auto; }
+.ec-pc__card { margin: 0; overflow: hidden; border-radius: 24px; background: #fff; box-shadow: 0 16px 34px -28px var(--ec-dark); }
+.ec-pc__card img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.ec-pc__card figcaption { display: grid; gap: 5px; padding: 16px 18px 18px; text-align: left; }
+.ec-pc__card figcaption b { color: var(--ec-dark); font-size: 17px; }
+.ec-pc__card figcaption span { color: var(--ec-muted); font-size: 14px; line-height: 1.5; }
+@media (min-width: 750px) { .ec-pc { max-width: 980px; grid-template-columns: repeat(3, 1fr); } }
+/* How-to steps with big photos */
+.ec-steps--photos { display: grid; gap: 22px; max-width: 520px; margin: 0 auto; }
+.ec-steps--photos figure { margin: 0; text-align: center; }
+.ec-steps--photos img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 24px; }
+.ec-steps--photos figcaption { display: grid; gap: 3px; margin-top: 12px; }
+.ec-steps--photos figcaption .ec-num { display: none; }
+.ec-steps--photos figcaption b { font-size: 18px; color: var(--ec-dark); }
+.ec-steps--photos figcaption span { color: var(--ec-muted); font-size: 14.5px; }
+.ec-steps__cta { margin: 24px 0 0; text-align: center; }
+@media (min-width: 750px) { .ec-steps--photos { max-width: 980px; grid-template-columns: repeat(3, 1fr); } }
+/* Ideal for / comparison / UGC */
+.ec-ideal__card { border: 1.5px solid var(--ec-line); border-radius: 18px; background: #fff; }
+.ec-cmp { border-radius: 16px; overflow: hidden; }

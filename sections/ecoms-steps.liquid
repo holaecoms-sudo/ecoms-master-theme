@@ -13,7 +13,19 @@
     endif
   endif
 -%}
-{%- assign style = section.settings.style | default: 'photos' -%}
+{%- liquid
+  assign style = section.settings.style | default: 'photos'
+  # «photos» needs real photos: with none it falls back to cards, so the section never shows grey placeholders.
+  assign st_has_img = false
+  for block in ec_src
+    if block.settings.image != blank or block.image.value != blank
+      assign st_has_img = true
+    endif
+  endfor
+  if style == 'photos' and st_has_img == false
+    assign style = 'cards'
+  endif
+-%}
 {%- assign steps_class = 'ec-steps-sec ec-steps-sec--' | append: style -%}
 {%- if ec_src.size > 0 or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: steps_class %}>
@@ -46,16 +58,18 @@
             </span>
             <figcaption><b>{{ bk_heading | escape }}</b>{% if bk_text != blank %}<span>{{ bk_text | escape }}</span>{% endif %}</figcaption>
           {%- else -%}
-            {%- if block.settings.image != blank -%}
-              {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '250,400,600', sizes: '(min-width: 990px) 25vw, 50vw' }}
-            {%- else -%}
-              {{ 'image' | placeholder_svg_tag: 'ec-placeholder' }}
+            {%- assign st_img = block.settings.image | default: block.image.value -%}
+            {%- if st_img != blank -%}
+              {{ st_img | image_url: width: 900 | image_tag: loading: 'lazy', widths: '300,500,700,900', sizes: '(min-width: 990px) 33vw, 92vw', alt: bk_heading }}
             {%- endif -%}
             <figcaption><span class="ec-num">{{ forloop.index }}</span><span><b>{{ bk_heading | escape }}</b>{% if bk_text != blank %} {{ bk_text | escape }}{% endif %}</span></figcaption>
           {%- endif -%}
         </figure>
       {%- endfor -%}
     </div>
+    {%- if section.settings.button_label != blank -%}
+      <p class="ec-steps__cta"><a class="ec-btn ec-btn--primary" href="{{ section.settings.button_link | default: '#MainContent' }}">{{ section.settings.button_label | escape }} {% render 'ecoms-icon', name: 'arrow' %}</a></p>
+    {%- endif -%}
   </div>
 </section>
 {%- endif -%}
@@ -69,6 +83,17 @@
       "id": "metafield",
       "label": "Contenido desde metacampo del producto",
       "info": "Opcional. Ej.: ecoms.ingredients. Si el producto tiene ese metacampo (lista de «Ítem de contenido»: ícono, título y texto), reemplaza los bloques. Así una plantilla sirve para todos los productos."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto del botón",
+      "info": "Opcional: botón bajo los pasos."
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Enlace del botón"
     },
     {
       "type": "select",

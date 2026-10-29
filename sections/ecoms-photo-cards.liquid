@@ -1,0 +1,46 @@
+{%- comment -%}
+  ECOMS · Photo cards: a centered heading with a soft underline, then big rounded cards (photo + title + short text).
+  Cards without a photo are skipped; the section stays hidden on the storefront until at least one card has a photo.
+{%- endcomment -%}
+{%- assign pc_n = 0 -%}
+{%- for block in section.blocks -%}{%- if block.settings.image != blank -%}{%- assign pc_n = pc_n | plus: 1 -%}{%- endif -%}{%- endfor -%}
+{%- if pc_n > 0 or request.design_mode -%}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-pc-sec' %}>
+  <div class="ec-w">
+    {%- if section.settings.heading != blank -%}<h2 class="ec-pc__h">{{ section.settings.heading | escape }}</h2><i class="ec-pc__bar" aria-hidden="true"></i>{%- endif -%}
+    {%- if section.settings.text != blank -%}<p class="ec-pc__sub">{{ section.settings.text | escape }}</p>{%- endif -%}
+    <div class="ec-pc">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.image == blank and request.design_mode != true -%}{%- continue -%}{%- endif -%}
+        <figure class="ec-pc__card" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '350,600,900', sizes: '(min-width: 990px) 33vw, 92vw', alt: block.settings.title }}
+          {%- endif -%}
+          <figcaption><b>{{ block.settings.title | escape }}</b>{% if block.settings.text != blank %}<span>{{ block.settings.text | escape }}</span>{% endif %}</figcaption>
+        </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ECOMS · Tarjetas con foto",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "No se trata solo de arrugas." },
+    { "type": "text", "id": "text", "label": "Bajada" },
+    { "type": "header", "content": "Diseño" },
+    { "type": "range", "id": "padding_top", "label": "Margen superior", "min": 0, "max": 80, "step": 4, "default": 44, "unit": "px" },
+    { "type": "range", "id": "padding_bottom", "label": "Margen inferior", "min": 0, "max": 80, "step": 4, "default": 24, "unit": "px" }
+  ],
+  "blocks": [
+    { "type": "card", "name": "Tarjeta", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Foto" },
+      { "type": "text", "id": "title", "label": "Título", "default": "Zonas que se sienten secas" },
+      { "type": "text", "id": "text", "label": "Texto", "default": "La piel seca se ve más opaca y las líneas se notan más." } ] }
+  ],
+  "max_blocks": 6,
+  "presets": [{ "name": "ECOMS · Tarjetas con foto", "blocks": [{ "type": "card" }, { "type": "card" }, { "type": "card" }] }]
+}
+{% endschema %}

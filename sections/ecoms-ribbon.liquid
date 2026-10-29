@@ -1,0 +1,30 @@
+{%- comment -%}
+  ECOMS · Offer ribbon: a colored strip with a yellow tag and one line («OFERTA DE PACKS · AHORRA HASTA 33%»).
+  Add a real end date to show the countdown; without a valid future date nothing counts down. Hidden when empty.
+{%- endcomment -%}
+{%- if section.settings.text != blank or request.design_mode -%}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-ribbon-sec' %}>
+  <div class="ec-ribbon">
+    <div class="ec-ribbon__txt">
+      {%- if section.settings.tag != blank -%}<span class="ec-ribbon__tag">{{ section.settings.tag | escape }}</span>{%- endif -%}
+      <span class="ec-ribbon__line">{{ section.settings.text | escape }}</span>
+    </div>
+    {%- if section.settings.end_at != blank -%}{%- render 'ecoms-countdown', source: section -%}{%- endif -%}
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ECOMS · Cinta de oferta",
+  "settings": [
+    { "type": "text", "id": "tag", "label": "Etiqueta amarilla", "default": "OFERTA DE PACKS" },
+    { "type": "text", "id": "text", "label": "Texto", "default": "AHORRA HASTA 33% · ENVÍO GRATIS" },
+    { "type": "text", "id": "end_at", "label": "Fecha de término real (opcional)", "info": "Ej.: 2026-12-31 23:59. Sin fecha válida no hay cuenta regresiva." },
+    { "type": "text", "id": "heading", "label": "Texto de la cuenta regresiva", "default": "Termina en:" },
+    { "type": "range", "id": "padding_top", "label": "Margen superior", "min": 0, "max": 80, "step": 4, "default": 0, "unit": "px" },
+    { "type": "range", "id": "padding_bottom", "label": "Margen inferior", "min": 0, "max": 80, "step": 4, "default": 0, "unit": "px" }
+  ],
+  "presets": [{ "name": "ECOMS · Cinta de oferta" }]
+}
+{% endschema %}
