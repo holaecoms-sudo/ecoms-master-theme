@@ -157,16 +157,20 @@
                       endif
                       assign img_alt = media.alt | default: product.title
                     -%}
-                    {{
-                      media.preview_image
-                      | image_url: width: 1400
-                      | image_tag:
-                        widths: '400,550,700,800,1000,1200,1400',
-                        sizes: '(min-width: 990px) 560px, calc(100vw - 32px)',
-                        loading: img_loading,
-                        fetchpriority: img_priority,
-                        alt: img_alt
-                    }}
+                    {%- capture gal_img -%}
+                      {{
+                        media.preview_image
+                        | image_url: width: 1400
+                        | image_tag:
+                          widths: '400,550,700,800,1000,1200,1400',
+                          sizes: '(min-width: 990px) 560px, calc(100vw - 32px)',
+                          loading: img_loading,
+                          fetchpriority: img_priority,
+                          alt: img_alt
+                      }}
+                    {%- endcapture -%}
+                    {%- comment -%} Later slides load after the page (see revealGal in ecoms.js). {%- endcomment -%}
+                    {%- if forloop.first -%}{{ gal_img }}{%- else -%}{{ gal_img | replace: '<img src="', '<img data-ec-src="' | replace: ' srcset="', ' data-ec-srcset="' }}{%- endif -%}
                 {%- endcase -%}
                 {%- comment -%} Headline over the first photos only (later ones usually carry their own text). {%- endcomment -%}
                 {%- if section.settings.media_title != blank and forloop.index <= section.settings.media_over_count -%}

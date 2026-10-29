@@ -355,7 +355,17 @@
     const count = $('[data-ec-gal-count]', gal);
     if (count) count.textContent = `${i + 1} / ${n}`;
   }
+  // Slides after the first wait for the page to finish loading (or the first swipe/tap) so they don't
+  // compete with the main photo on mobile.
+  function revealGal(gal) {
+    $$('img[data-ec-src]', gal).forEach((img) => {
+      if (img.dataset.ecSrcset) img.srcset = img.dataset.ecSrcset;
+      img.src = img.dataset.ecSrc;
+      img.removeAttribute('data-ec-src');
+    });
+  }
   function goGal(gal, i) {
+    revealGal(gal);
     const track = $('[data-ec-gal-track]', gal);
     const n = track.children.length;
     i = ((i % n) + n) % n;
@@ -373,6 +383,11 @@
     $$('[data-ec-gal]:not([data-ready])', root).forEach((gal) => {
       gal.dataset.ready = 'true';
       const track = $('[data-ec-gal-track]', gal);
+      const reveal = () => revealGal(gal);
+      track.addEventListener('scroll', reveal, { once: true, passive: true });
+      gal.addEventListener('pointerdown', reveal, { once: true, passive: true });
+      if (document.readyState === 'complete') setTimeout(reveal, 300);
+      else window.addEventListener('load', () => setTimeout(reveal, 300), { once: true });
       let raf = 0;
       track.addEventListener('scroll', () => {
         cancelAnimationFrame(raf);
