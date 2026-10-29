@@ -320,8 +320,8 @@
       "settings": {
         "style": "soft",
         "eyebrow": "",
-        "heading": "Tu rutina de 10 segundos",
-        "text": "Un solo gesto.",
+        "heading": "Tu rutina de 10 segundos. Un solo gesto.",
+        "text": "Una barra. Tres zonas.",
         "image_plain": false,
         "show_price": true,
         "button_label": "Pedir y pagar al recibir",
@@ -354,15 +354,15 @@
       "blocks": {},
       "block_order": [],
       "settings": {
-        "style": "dark",
-        "eyebrow": "Compra tranquila",
-        "heading": "Pagas cuando lo recibes",
-        "text": "Pides hoy y pagas al recibir en tu casa, en todo Chile, con seguimiento de tu pedido.",
+        "style": "soft",
+        "eyebrow": "",
+        "heading": "¿Todavía no estás segura? Empieza aquí.",
+        "text": "Pide una barra, paga cuando llegue y tienes 10 días de retracto con el producto sin abrir.",
         "image_plain": false,
         "show_price": false,
-        "button_label": "Pedir y pagar al recibir",
+        "button_label": "Pedir desde $19.990",
         "trust_1": "Pagas al recibir",
-        "trust_2": "Envíos a todo Chile",
+        "trust_2": "Seguimiento de tu pedido",
         "trust_3": "10 días de retracto",
         "width": "full",
         "padding_top": 0,
@@ -423,83 +423,19 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
-    },
-    "zones": {
-      "type": "ecoms-zone-tabs",
-      "blocks": {},
-      "block_order": [],
-      "settings": {
-        "metafield": "ecoms.zones",
-        "eyebrow": "Una barra, tres zonas",
-        "heading": "¿Dónde la vas a usar?",
-        "tip_label": "Cómo usarla en",
-        "width": "full",
-        "padding_top": 44,
-        "padding_bottom": 20,
-        "show_face": true
-      }
-    },
-    "giant": {
-      "type": "ecoms-marquee",
-      "blocks": {
-        "g1": {
-          "type": "text",
-          "settings": {
-            "icon": "none",
-            "text": "Desliza"
-          }
-        },
-        "g2": {
-          "type": "text",
-          "settings": {
-            "icon": "none",
-            "text": "Extiende"
-          }
-        },
-        "g3": {
-          "type": "text",
-          "settings": {
-            "icon": "none",
-            "text": "Repite"
-          }
-        },
-        "g4": {
-          "type": "text",
-          "settings": {
-            "icon": "none",
-            "text": "10 segundos"
-          }
-        }
-      },
-      "block_order": [
-        "g1",
-        "g2",
-        "g3",
-        "g4"
-      ],
-      "settings": {
-        "style": "giant",
-        "heading": "",
-        "speed": 26,
-        "width": "full",
-        "padding_top": 44,
-        "padding_bottom": 0
-      }
     }
   },
   "order": [
     "main",
     "top",
     "demo",
-    "zones",
-    "giant",
     "star",
     "routine",
     "ingredients",
     "before_after",
-    "assure",
     "bubble",
     "reviews",
+    "assure",
     "faq",
     "cta"
   ]
