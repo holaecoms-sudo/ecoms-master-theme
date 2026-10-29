@@ -183,7 +183,7 @@
       set('[data-ec-pp-now]', money(total));
       set('[data-ec-pp-was]', money(was));
       set('[data-ec-pp-save]', money(Math.max(0, save)));
-      set('[data-ec-pp-pct]', String(was > 0 ? Math.floor((Math.max(0, save) * 100) / was) : 0));
+      set('[data-ec-pp-pct]', String(was > 0 ? Math.round((Math.max(0, save) * 100) / was) : 0));
       set('[data-ec-pp-n]', String(qty));
       set('[data-ec-pp-each]', money(Math.round(total / qty)));
       box.querySelectorAll('[data-ec-pp-was], [data-ec-pp-savebox]').forEach((el) => { el.hidden = save <= 0; });

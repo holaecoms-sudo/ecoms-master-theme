@@ -20,7 +20,7 @@
   assign ec_save = pp_was | minus: pp_total
   assign ec_save_pct = 0
   if ec_save > 0
-    assign ec_save_pct = ec_save | times: 100 | divided_by: pp_was | floor
+    assign ec_save_pct = ec_save | times: 100 | divided_by: pp_was | round
   endif
 -%}
 <div class="ec-pp" data-ec-price-live data-unit="{{ variant.price }}" data-unit-compare="{{ pp_unit_cmp }}">

@@ -180,16 +180,16 @@
           assign strike = unit_compare | times: q
           assign save_pct = 0
           if strike > total
-            assign save_pct = strike | minus: total | times: 100 | divided_by: strike | floor
+            assign save_pct = strike | minus: total | times: 100 | divided_by: strike | round
           endif
           assign pack_save_pct = 0
           if discount > 0
-            assign pack_save_pct = discount | times: 100 | divided_by: subtotal | floor
+            assign pack_save_pct = discount | times: 100 | divided_by: subtotal | round
           endif
           assign offer_save = strike | minus: total
           assign offer_pct = 0
           if offer_save > 0
-            assign offer_pct = offer_save | times: 100 | divided_by: strike | floor
+            assign offer_pct = offer_save | times: 100 | divided_by: strike | round
           endif
           assign ships_free = false
           if ship_threshold > 0 and total >= ship_threshold
