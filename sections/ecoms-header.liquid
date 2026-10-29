@@ -57,7 +57,7 @@
         {{ settings.logo | image_url: height: 120 | image_tag: height: logo_h, alt: store_name, loading: 'eager' }}
       {%- else -%}
         {%- comment -%} No logo uploaded in the theme settings: the built-in ecoms beauty logo (SVG). {%- endcomment -%}
-        <img src="{{ 'ecoms-beauty-logo.svg' | asset_url }}" alt="{{ store_name | escape }}" height="{{ section.settings.logo_height | default: 32 }}" style="height: {{ section.settings.logo_height | default: 32 }}px; width: auto;">
+        <img src="{{ 'ecoms-beauty-logo.png' | asset_url }}" alt="{{ store_name | escape }}" height="{{ section.settings.logo_height | default: 32 }}" style="height: {{ section.settings.logo_height | default: 32 }}px; width: auto;">
       {%- endif -%}
     {%- if logo_link -%}</a>{%- else -%}</span>{%- endif -%}
     <nav class="ec-nav" aria-label="Principal">

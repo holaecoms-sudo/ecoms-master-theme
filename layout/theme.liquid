@@ -11,7 +11,6 @@
     {%- if settings.favicon != blank and ec_vslot == blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- elsif ec_vslot == blank -%}
-      <link rel="icon" type="image/svg+xml" href="{{ 'ecoms-beauty-favicon.svg' | asset_url }}">
       <link rel="icon" type="image/png" sizes="32x32" href="{{ 'ecoms-beauty-favicon-32.png' | asset_url }}">
       <link rel="apple-touch-icon" sizes="180x180" href="{{ 'ecoms-beauty-apple-touch.png' | asset_url }}">
     {%- endif -%}

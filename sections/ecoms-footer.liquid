@@ -71,9 +71,9 @@
                 {{ block.settings.logo | image_url: height: 80 | image_tag: height: 32, alt: store_name, loading: 'lazy' }}
               {%- else -%}
                 {%- if logo_variant == 'dark' -%}
-                  <img src="{{ 'ecoms-beauty-logo-white.svg' | asset_url }}" alt="{{ store_name | escape }}" height="32" style="height: 32px; width: auto;">
+                  <img src="{{ 'ecoms-beauty-logo-white.png' | asset_url }}" alt="{{ store_name | escape }}" height="32" style="height: 32px; width: auto;">
                 {%- else -%}
-                  <img src="{{ 'ecoms-beauty-logo.svg' | asset_url }}" alt="{{ store_name | escape }}" height="32" style="height: 32px; width: auto;">
+                  <img src="{{ 'ecoms-beauty-logo.png' | asset_url }}" alt="{{ store_name | escape }}" height="32" style="height: 32px; width: auto;">
                 {%- endif -%}
               {%- endif -%}
             {%- if ft_focus -%}</span>{%- else -%}</a>{%- endif -%}
