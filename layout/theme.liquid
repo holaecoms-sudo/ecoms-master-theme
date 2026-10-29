@@ -286,11 +286,13 @@
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}
-      {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
-      {{ 'component-cart.css' | asset_url | stylesheet_tag }}
-      {{ 'component-totals.css' | asset_url | stylesheet_tag }}
-      {{ 'component-price.css' | asset_url | stylesheet_tag }}
-      {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+      {%- comment -%} The cart drawer starts closed: its styles load without blocking the first paint, and this
+      rule keeps it hidden until they arrive. {%- endcomment -%}
+      <style>cart-drawer.drawer{position:fixed;top:0;left:0;width:100vw;height:100%;z-index:1000;visibility:hidden}cart-drawer.drawer.active{visibility:visible}</style>
+      {%- for css in 'component-cart-drawer.css,component-cart.css,component-totals.css,component-price.css,component-discounts.css' | split: ',' -%}
+        <link rel="stylesheet" href="{{ css | asset_url }}" media="print" onload="this.media='all'">
+        <noscript>{{ css | asset_url | stylesheet_tag }}</noscript>
+      {%- endfor -%}
     {%- endif -%}
 
     {%- unless settings.type_body_font.system? -%}
