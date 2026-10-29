@@ -349,7 +349,16 @@
             {%- render 'ecoms-rating', product: product, block: block -%}
 
           {%- when 'title' -%}
-            <h1 class="ec-pdp__title" {{ block.shopify_attributes }}>{{ product.title | escape }}</h1>
+            {%- comment -%} Product metafield ecoms.title_accent: that part of the title is set in italic serif (e.g. «en barra»). {%- endcomment -%}
+            {%- assign t_acc = product.metafields.ecoms.title_accent.value -%}
+            {%- assign t_esc = product.title | escape -%}
+            {%- if t_acc != blank and product.title contains t_acc -%}
+              {%- assign t_acc_esc = t_acc | escape -%}
+              {%- assign t_wrapped = '<em>' | append: t_acc_esc | append: '</em>' -%}
+              <h1 class="ec-pdp__title" {{ block.shopify_attributes }}>{{ t_esc | replace: t_acc_esc, t_wrapped }}</h1>
+            {%- else -%}
+              <h1 class="ec-pdp__title" {{ block.shopify_attributes }}>{{ t_esc }}</h1>
+            {%- endif -%}
 
           {%- when 'text' -%}
             {%- comment -%} Per-product copy: metafield ecoms.subtitle wins over the template text. {%- endcomment -%}

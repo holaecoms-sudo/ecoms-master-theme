@@ -13,7 +13,7 @@
     <div class="ec-w ec-ctab__in">
       <div class="ec-ctab__copy">
         {%- if section.settings.eyebrow != blank -%}<p class="ec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
-        {%- if cta_heading != blank -%}<h2>{{ cta_heading | escape }}</h2>{%- endif -%}
+        {%- if cta_heading != blank -%}{% render 'ecoms-heading', text: cta_heading, tag: 'h2' %}{%- endif -%}
         {%- if section.settings.text != blank -%}<p class="ec-ctab__t">{{ section.settings.text | escape }}</p>{%- endif -%}
         {%- if variant and section.settings.show_price -%}
           <p class="ec-ctab__price">

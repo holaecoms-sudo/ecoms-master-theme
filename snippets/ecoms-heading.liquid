@@ -1,0 +1,20 @@
+{%- comment -%}
+  ECOMS · Section heading with optional eyebrow and serif-italic accents.
+  text: "Eyebrow | Heading with *accent* words". The part before | becomes the small pink eyebrow; text between *asterisks*
+  is set in italic serif (up to 2 accents). Without | or * it prints the plain heading.
+  Params: text (String), tag (h1/h2, default h2), class (optional).
+{%- endcomment -%}
+{%- liquid
+  assign hd_raw = text | strip
+  assign hd_parts = hd_raw | split: '|'
+  assign hd_eb = ''
+  assign hd_h = hd_raw
+  if hd_parts.size > 1
+    assign hd_eb = hd_parts[0] | strip
+    assign hd_h = hd_parts[1] | strip
+  endif
+  assign hd_html = hd_h | escape | replace_first: '*', '<em>' | replace_first: '*', '</em>' | replace_first: '*', '<em>' | replace_first: '*', '</em>'
+  assign hd_tag = tag | default: 'h2'
+-%}
+{%- if hd_eb != blank -%}<p class="ec-eyebrow">{{ hd_eb | escape }}</p>{%- endif -%}
+<{{ hd_tag }}{% if class != blank %} class="{{ class }}"{% endif %}>{{ hd_html }}</{{ hd_tag }}>

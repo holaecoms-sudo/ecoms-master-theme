@@ -7,7 +7,7 @@
 {%- if pc_n > 0 or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-pc-sec' %}>
   <div class="ec-w">
-    {%- if section.settings.heading != blank -%}<h2 class="ec-pc__h">{{ section.settings.heading | escape }}</h2><i class="ec-pc__bar" aria-hidden="true"></i>{%- endif -%}
+    {%- if section.settings.heading != blank -%}{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2', class: 'ec-pc__h' %}<i class="ec-pc__bar" aria-hidden="true"></i>{%- endif -%}
     {%- if section.settings.text != blank -%}<p class="ec-pc__sub">{{ section.settings.text | escape }}</p>{%- endif -%}
     <div class="ec-pc">
       {%- for block in section.blocks -%}

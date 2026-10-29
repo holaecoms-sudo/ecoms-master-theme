@@ -147,3 +147,45 @@ body { font-family: 'Instrument Sans', var(--font-body-family), system-ui, sans-
 .ec-mq--giant .ec-mq__list { gap: 34px; padding: 14px 0 12px 34px; font-family: var(--font-heading-family); font-size: clamp(44px, 13vw, 76px); font-weight: 700; letter-spacing: -0.04em; line-height: 1; text-transform: uppercase; white-space: nowrap; }
 .ec-mq--giant .ec-mq__list li { display: flex; align-items: center; gap: 34px; }
 .ec-mq--giant .ec-i { display: none; }
+
+/* ---- Exact-match pass (design A) ---- */
+/* Italic serif accents in headings («en barra», «arrugas.») */
+.ec-sec h2 em, .ec-pdp__title em, .ec-ctab h2 em { font-family: var(--ec-serif); font-style: italic; font-weight: 400; font-size: 1.12em; letter-spacing: -0.01em; }
+.ec-sec h2, .ec-sec .ec-h3, .ec-sec-h { text-align: left; }
+.ec-sec .ec-eyebrow { margin: 0 0 8px; }
+.ec-sec h2 { margin-bottom: 16px; }
+.ec-pdp__title { font-size: clamp(30px, 8.4vw, 40px); }
+.ec-pdp__sub { color: var(--ec-muted); font-size: 16px; line-height: 1.45; }
+/* Packs: -25% chip next to the name, small grey line under it */
+.ec-pack__q { display: flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 700; }
+.ec-pack__pct { padding: 2px 8px; border-radius: 6px; background: var(--ec-accent); color: var(--ec-dark); font-size: 11px; font-weight: 700; }
+.ec-pack__unit { color: var(--ec-muted); font-size: 12.5px; font-weight: 500; line-height: 1.35; }
+.ec-pack__r b { font-size: 19px; font-weight: 700; }
+.ec-pack__r s { color: var(--ec-muted); font-size: 12px; }
+/* Star ingredient: eyebrow inside the black card */
+.ec-callout__eb { margin: 0 0 6px; color: var(--ec-accent) !important; }
+/* How-to photos: three small columns even on mobile */
+.ec-steps--photos { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; max-width: 980px; }
+.ec-steps--photos img { aspect-ratio: 1 / 1.1; border-radius: 18px; }
+.ec-steps--photos figcaption { text-align: left; }
+.ec-steps--photos figcaption b { font-size: 14.5px; }
+.ec-steps--photos figcaption span { font-size: 12.5px; }
+.ec-steps--photos figcaption .ec-num { display: inline; margin-right: 4px; color: var(--ec-dark); font-weight: 700; }
+.ec-steps--photos figcaption { display: block; }
+/* Comparison: neutral dash instead of a cross */
+.ec-cmp .n svg, .ec-cmp .n .ec-i { display: none; }
+.ec-cmp .n::after { content: "–"; color: #B7A3A9; font-weight: 700; }
+/* FAQ: left aligned, plus signs */
+.ec-faq-sec .ec-w { max-width: 760px; }
+.ec-faq summary { justify-content: space-between; }
+/* Closing card: centered, no image, full-width black button */
+.ec-ctab--soft .ec-ctab__in { display: block; padding-block: 34px; text-align: center; }
+.ec-ctab--soft .ec-ctab__img { display: none; }
+.ec-ctab--soft .ec-ctab__copy h2 { font-size: clamp(28px, 8vw, 36px); font-weight: 700; letter-spacing: -0.025em; }
+.ec-ctab--soft .ec-ctab__t { margin: 10px 0 18px; font-size: 15px; opacity: 1; }
+.ec-ctab--soft .ec-btn--lg { width: 100%; min-width: 0; justify-content: center; border-radius: 99px; }
+.ec-ctab--soft .ec-ctab__trust { justify-content: center; }
+.ec-ctab--soft { margin: 44px 14px 0; border-radius: 28px; }
+.ec-steps--cards { grid-template-columns: 1fr; }
+@media (min-width: 750px) { .ec-steps--cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.ec-pack__tag { text-transform: uppercase; font-size: 10.5px; padding: 3px 11px; }

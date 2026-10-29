@@ -4,11 +4,11 @@
   <div class="ec-w{% if section.settings.style == 'split' %} ec-faq-split{% endif %}">
     {%- if section.settings.style == 'split' -%}
       <div class="ec-faq-split__h">
-        {%- if section.settings.heading != blank -%}<h2 class="ec-h3">{{ section.settings.heading | escape }}</h2>{%- endif -%}
+        {%- if section.settings.heading != blank -%}{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2', class: 'ec-h3' %}{%- endif -%}
         {%- if section.settings.text != blank -%}<p>{{ section.settings.text | escape }}</p>{%- endif -%}
       </div>
     {%- elsif section.settings.heading != blank -%}
-      <h2 class="ec-h3{% if section.settings.width == 'full' %} ec-h3--center{% endif %}">{{ section.settings.heading | escape }}</h2>
+      {% render 'ecoms-heading', text: section.settings.heading, tag: 'h2', class: 'ec-h3' %}
     {%- endif -%}
     {%- comment -%}
       Per-product FAQ: product metafield ecoms.faqs (list of metaobjects "ecoms_faq" with fields

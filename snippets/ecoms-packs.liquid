@@ -180,16 +180,16 @@
           assign strike = unit_compare | times: q
           assign save_pct = 0
           if strike > total
-            assign save_pct = strike | minus: total | times: 100 | divided_by: strike | round
+            assign save_pct = strike | minus: total | times: 100.0 | divided_by: strike | round
           endif
           assign pack_save_pct = 0
           if discount > 0
-            assign pack_save_pct = discount | times: 100 | divided_by: subtotal | round
+            assign pack_save_pct = discount | times: 100.0 | divided_by: subtotal | round
           endif
           assign offer_save = strike | minus: total
           assign offer_pct = 0
           if offer_save > 0
-            assign offer_pct = offer_save | times: 100 | divided_by: strike | round
+            assign offer_pct = offer_save | times: 100.0 | divided_by: strike | round
           endif
           assign ships_free = false
           if ship_threshold > 0 and total >= ship_threshold
@@ -259,26 +259,23 @@
               }}
             {%- endif -%}
             <span class="ec-pack__body">
-              <span class="ec-pack__q">{{ q_label }}</span>
+              <span class="ec-pack__q">{{ q_label }}{% if layout == 'offer' and offer_pct > 0 %} <span class="ec-pack__pct">-{{ offer_pct }}%</span>{% endif %}</span>
               {%- if layout == 'offer' -%}
+                {%- liquid
+                  # Singular unit name for the per-unit price («barras» → «barra»)
+                  assign unit_sing = item_name | remove_last: 's'
+                  if unit_sing == blank
+                    assign unit_sing = 'unidad'
+                  endif
+                -%}
                 <span class="ec-pack__meta">
                   <span class="ec-pack__unit">
-                    {%- if inc != blank %}{{ inc }} · {% endif -%}
-                    {{- per_unit | money }} c/u
+                    {%- if note != blank and q == 1 -%}
+                      {{ note | escape }}
+                    {%- else -%}
+                      {{ per_unit | money }} por {{ unit_sing | escape }}{% if ships_free %} · {{ settings.ecoms_free_shipping_label | default: 'envío gratis' | downcase | escape }}{% endif %}{% if note != blank and q != 1 %} · {{ note | escape }}{% endif %}
+                    {%- endif -%}
                   </span>
-                  {%- if note != blank -%}
-                    <span class="ec-pack__note">{{ note | escape }}</span>
-                  {%- endif -%}
-                  {%- if offer_save > 0 or ships_free -%}
-                    <span class="ec-pack__chips">
-                      {%- if offer_save > 0 -%}
-                        <span class="ec-pack__save">Ahorras {{ offer_save | money }}{% if offer_pct > 0 %} ({{ offer_pct }}%){% endif %}</span>
-                      {%- endif -%}
-                      {%- if ships_free -%}
-                        <span class="ec-pack__ship">{% render 'ecoms-icon', name: 'truck' %}{{ settings.ecoms_free_shipping_label | default: 'Envío gratis' | escape }}</span>
-                      {%- endif -%}
-                    </span>
-                  {%- endif -%}
                 </span>
                 <span class="ec-pack__r">
                   <b>{{ total | money }}</b>

@@ -33,7 +33,7 @@
 <section {% render 'ecoms-section-style', section: section, class: 'ec-compare' %}>
   <div class="ec-w">
     {%- if section.settings.heading != blank -%}
-      <h2 class="ec-h3{% if section.settings.width == 'full' %} ec-h3--center{% endif %}">{{ section.settings.heading | escape }}</h2>
+      {% render 'ecoms-heading', text: section.settings.heading, tag: 'h2', class: 'ec-h3' %}
     {%- endif -%}
     {%- if section.settings.style == 'vs' -%}
       {%- comment -%} VS cards: the alternative (col 2) vs this product (col 1), same verifiable rows. {%- endcomment -%}

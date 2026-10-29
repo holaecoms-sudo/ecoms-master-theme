@@ -51,9 +51,9 @@
         "pk": {
           "type": "packs",
           "settings": {
-            "heading": "Compra más · ahorra más",
+            "heading": "",
             "layout": "offer",
-            "tier2_tag": "",
+            "tier2_tag": "Recomendado",
             "tier3_tag": "Mejor precio",
             "item_name": "frascos",
             "from_metafield": true,
@@ -63,7 +63,10 @@
             "tier2_label": "Pack 2 barras",
             "tier3_label": "Pack 3 barras",
             "show_summary": false,
-            "help": ""
+            "help": "",
+            "tier1_note": "Para probar",
+            "tier2_note": "en Santiago",
+            "tier3_note": ""
           }
         },
         "dlv": {
@@ -76,12 +79,6 @@
             "min_days": 3,
             "max_days": 6
           }
-        },
-        "pay": {
-          "type": "payments",
-          "settings": {
-            "text": "Pago seguro y cifrado"
-          }
         }
       },
       "block_order": [
@@ -91,8 +88,7 @@
         "benefits",
         "pk",
         "buy",
-        "dlv",
-        "pay"
+        "dlv"
       ],
       "settings": {
         "layout": "direct",
@@ -146,8 +142,8 @@
     "demo": {
       "type": "ecoms-demo",
       "settings": {
-        "heading": "Míralo en acción",
-        "text": "Videos de clientas usándolo.",
+        "heading": "Clientas reales | Míralo en *acción.*",
+        "text": "",
         "mode": "player",
         "ratio": "portrait",
         "width": "full",
@@ -169,10 +165,9 @@
     },
     "before_after": {
       "type": "ecoms-before-after",
-      "disabled": true,
       "settings": {
-        "heading": "Resultados visibles",
-        "text": "Resultados con uso constante del bálsamo.",
+        "heading": "Prueba real | Resultados *visibles.*",
+        "text": "Con uso constante. Fotos reales, con permiso. Arrastra.",
         "before_caption": "Antes",
         "after_caption": "Después",
         "width": "full",
@@ -185,9 +180,8 @@
       "type": "ecoms-feature-grid",
       "blocks": {},
       "block_order": [],
-      "disabled": true,
       "settings": {
-        "heading": "Qué contiene",
+        "heading": "Fórmula | Qué *contiene.*",
         "style": "band",
         "width": "full",
         "padding_top": 44,
@@ -201,13 +195,13 @@
       "block_order": [],
       "settings": {
         "style": "photos",
-        "heading": "Cómo usar tu barra",
+        "heading": "Cómo se usa | Tres pasos, *diez segundos.*",
         "text": "",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36,
         "metafield": "ecoms.steps",
-        "button_label": "Pedir mi barra"
+        "button_label": ""
       }
     },
     "reviews": {
@@ -280,9 +274,9 @@
       ],
       "settings": {
         "style": "stack",
-        "heading": "Preguntas frecuentes",
+        "heading": "Preguntas *frecuentes.*",
         "text": "",
-        "icon": "chev",
+        "icon": "plus",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
@@ -293,8 +287,8 @@
       "settings": {
         "style": "soft",
         "eyebrow": "",
-        "heading": "Tu rutina de 10 segundos. Un solo gesto.",
-        "text": "Pagas cuando lo recibes.",
+        "heading": "Tu rutina de *10 segundos.*",
+        "text": "Un solo gesto. Pagas cuando lo recibes.",
         "image_plain": false,
         "show_price": false,
         "button_label": "Pedir desde $19.990",
@@ -312,11 +306,11 @@
       "block_order": [],
       "settings": {
         "eyebrow": "El ingrediente estrella",
-        "heading": "5% Volufiline",
+        "heading": "",
         "value": "5%",
-        "label": "Volufiline.",
+        "label": "Volufiline",
         "text": "Una fórmula con Volufiline y colágeno pensada para hidratar y dar a tu piel un aspecto más lleno y firme. Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
-        "pills": "Zonas secas · Piel opaca · Contorno de ojos · Cuello",
+        "pills": "",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
@@ -419,7 +413,7 @@
         "c3"
       ],
       "settings": {
-        "heading": "No se trata solo de arrugas.",
+        "heading": "El problema | No se trata solo de *arrugas.*",
         "text": "",
         "padding_top": 44,
         "padding_bottom": 24
@@ -473,7 +467,7 @@
       ],
       "settings": {
         "style": "table",
-        "heading": "Barra vs. crema en pote",
+        "heading": "Barra *vs.* crema en pote",
         "feature_label": "",
         "col_1": "Esta barra",
         "col_2": "Crema en pote",

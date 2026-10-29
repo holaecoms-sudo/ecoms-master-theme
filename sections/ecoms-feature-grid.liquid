@@ -18,7 +18,7 @@
 <section {% render 'ecoms-section-style', section: section, class: ft_class %}>
   <div class="ec-w">
     {%- if section.settings.heading != blank -%}
-      <div class="ec-sec-h"><h2>{{ section.settings.heading | escape }}</h2></div>
+      <div class="ec-sec-h">{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2' %}</div>
     {%- endif -%}
     <div class="ec-feat ec-feat--{{ section.settings.style }}">
       {%- for block in ec_src -%}

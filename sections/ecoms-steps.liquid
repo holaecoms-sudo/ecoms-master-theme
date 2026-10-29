@@ -32,7 +32,7 @@
   <div class="ec-w">
     {%- if section.settings.heading != blank or section.settings.text != blank -%}
       <div class="ec-sec-h">
-        {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
+        {%- if section.settings.heading != blank -%}{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2' %}{%- endif -%}
         {%- if section.settings.text != blank -%}<p>{{ section.settings.text | escape }}</p>{%- endif -%}
       </div>
     {%- endif -%}

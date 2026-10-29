@@ -65,7 +65,7 @@
     },
     "ecoms-header": {
       "type": "ecoms-header",
-      "disabled": true,
+      "disabled": false,
       "settings": {
         "menu": "main-menu",
         "menu_visibility": "not_product",

@@ -5,9 +5,9 @@
 {%- if section.settings.value != blank or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-callout-sec' %}>
   <div class="ec-w">
-    {%- if section.settings.eyebrow != blank -%}<p class="ec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
     {%- if section.settings.heading != blank -%}<h2 class="ec-callout__h">{{ section.settings.heading | escape }}</h2>{%- endif -%}
     <div class="ec-callout">
+      {%- if section.settings.eyebrow != blank -%}<p class="ec-eyebrow ec-callout__eb">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
       <div class="ec-callout__big">{{ section.settings.value | escape }}<span>{{ section.settings.label | escape }}</span></div>
       {%- if section.settings.text != blank -%}<p class="ec-callout__t">{{ section.settings.text | escape }}</p>{%- endif -%}
       {%- assign pills = section.settings.pills | split: '·' -%}

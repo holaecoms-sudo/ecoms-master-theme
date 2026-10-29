@@ -35,11 +35,11 @@
   <div class="ec-w">
     {%- if style == 'quotes' -%}
       <div class="ec-sec-h">
-        {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
+        {%- if section.settings.heading != blank -%}{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2' %}{%- endif -%}
         {%- if section.settings.text != blank -%}<p>{{ section.settings.text | escape }}</p>{%- endif -%}
       </div>
     {%- else -%}
-      {%- if section.settings.heading != blank -%}<h2 class="ec-h3 ec-h3--tight">{{ section.settings.heading | escape }}</h2>{%- endif -%}
+      {%- if section.settings.heading != blank -%}{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2', class: 'ec-h3 ec-h3--tight' %}{%- endif -%}
       {%- if section.settings.text != blank -%}<p class="ec-sub ec-ugc__sub">{{ section.settings.text | escape }}</p>{%- endif -%}
     {%- endif -%}
     <div class="ec-ugc ec-ugc--{{ style }}">
