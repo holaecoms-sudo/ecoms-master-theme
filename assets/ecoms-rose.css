@@ -137,3 +137,9 @@ body { font-family: 'DM Sans', var(--font-body-family), system-ui, sans-serif; }
 .ec-mq--giant .ec-mq__list li { display: flex; align-items: center; gap: 34px; }
 .ec-mq--giant .ec-mq__list li::after { content: ""; width: 0.32em; height: 0.32em; border: 2px solid var(--ec-dark); border-radius: 50%; background: var(--ec-tag); }
 .ec-mq--giant .ec-i { display: none; }
+
+/* Product photos on white: sit on a soft peach-to-pink gradient (white disappears with multiply) */
+.ec-gal__main { background: linear-gradient(160deg, #FFE3D6 0%, #FFC4D8 100%); }
+.ec-gal__slide img, .ec-gal__slide video { mix-blend-mode: multiply; }
+.ec-gal__thumb { background: linear-gradient(160deg, #FFE3D6, #FFC4D8); }
+.ec-gal__thumb img { mix-blend-mode: multiply; }
