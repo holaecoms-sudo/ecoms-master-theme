@@ -14,7 +14,8 @@
   endif
 -%}
 {%- if ec_src.size > 0 or request.design_mode -%}
-<section {% render 'ecoms-section-style', section: section, class: 'ec-features' %}>
+{%- assign ft_class = 'ec-features ec-features--' | append: section.settings.style -%}
+<section {% render 'ecoms-section-style', section: section, class: ft_class %}>
   <div class="ec-w">
     {%- if section.settings.heading != blank -%}
       <div class="ec-sec-h"><h2>{{ section.settings.heading | escape }}</h2></div>
@@ -25,6 +26,7 @@
           assign bk_icon = block.settings.icon | default: block.icon.value
           assign bk_heading = block.settings.heading | default: block.title.value | default: block.label.value
           assign bk_text = block.settings.text | default: block.text.value
+          assign bk_tag = block.tag.value
         -%}
         <div {{ block.shopify_attributes }}>
           {%- if section.settings.style == 'editorial' -%}
@@ -37,6 +39,7 @@
           {%- endif -%}
           <div>
             <b>{{ bk_heading | escape }}</b>
+            {%- if bk_tag != blank -%}<em class="ec-feat__tag">{{ bk_tag | escape }}</em>{%- endif -%}
             {%- if bk_text != blank -%}
               <span>{{ bk_text | escape }}</span>
             {%- endif -%}
@@ -80,6 +83,10 @@
         {
           "value": "cards",
           "label": "Tarjetas"
+        },
+        {
+          "value": "band",
+          "label": "Banda de color con tarjetas blancas"
         },
         {
           "value": "editorial",

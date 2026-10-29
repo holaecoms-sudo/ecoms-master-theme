@@ -1,17 +1,69 @@
 /*
-  ECOMS · Rosé palette (belleza): plum + champagne rose on a warm ivory base. Loaded after ecoms-gold.css,
-  which gives the structure (round ticks, divided FAQ, plum header on the comparison); this only retints it.
+  ECOMS · Rosé palette (belleza): plum + dusty rose on a warm blush base, modelled on the Well Measured
+  and Zephyra product pages. Loaded after ecoms-gold.css (structure); this retints it and adds the
+  rose bands, outlined pills, big callout and round photo cards.
 */
-.ec-pdp, .ec-sec { --ec-gold-ink: #9A5A48; }
-.ec-imgtxt__media { background: #F7E6E1; }
-.ec-pdp__title, .ec-sec h2 { letter-spacing: -0.01em; }
+:root { --ec-band: #C8707E; --ec-band-ink: #fff; }
+.ec-pdp, .ec-sec { --ec-gold-ink: #B23A62; }
+body { background: var(--ec-bg); }
+
+/* Titles: heavier, plum */
+.ec-pdp__title, .ec-sec h2, .ec-h3 { color: var(--ec-dark); letter-spacing: -0.015em; }
+.ec-sec h2 { font-size: clamp(26px, 6vw, 40px); line-height: 1.12; font-weight: 800; }
+.ec-eyebrow { color: var(--ec-sale-ink); letter-spacing: 0.14em; font-size: 12px; font-weight: 800; text-transform: uppercase; }
+
+/* Gallery: big rounded card */
+.ec-pdp [class*="gallery"] img, .ec-pdp [class*="media"] img { border-radius: 22px; }
+
+/* Datos destacados: outlined pills like the reference */
+.ec-chips li { border: 1.5px solid var(--ec-sale-ink); background: transparent; color: var(--ec-sale-ink); letter-spacing: 0.08em; font-size: 11.5px; text-transform: uppercase; }
 .ec-pdp .ec-checks .ec-i { background: var(--ec-primary); color: #fff; }
-.ec-pdp [class*="_rsi-buy-now-button"]:not([class*="hook"]) { background: var(--ec-primary) !important; box-shadow: 0 14px 26px -14px color-mix(in srgb, var(--ec-primary) 85%, transparent) !important; }
-.ec-imgtxt__btn { background: var(--ec-primary); }
+
+/* Buy button: big plum pill (Releasit button and our own) */
+.ec-pdp [class*="_rsi-buy-now-button"]:not([class*="hook"]) { min-height: 62px !important; border: 0 !important; border-radius: 999px !important; background: var(--ec-primary) !important; color: #fff !important; font-weight: 800 !important; letter-spacing: 0.05em !important; box-shadow: 0 16px 28px -16px color-mix(in srgb, var(--ec-primary) 85%, transparent) !important; }
+.ec-btn--primary, .ec-imgtxt__btn { border-radius: 999px; background: var(--ec-primary); color: #fff; letter-spacing: 0.05em; font-weight: 800; }
+
+/* Packs: yellow tags, round white cards */
+.ec-pack__card { border-radius: 16px; background: #fff; }
+.ec-pack__tag, [class*="ec-pack__badge"] { background: var(--ec-tag); color: var(--ec-tag-ink); font-weight: 800; }
+
+/* Marquee band */
+.ec-marq--band, .ec-marquee--band { background: var(--ec-band); color: #fff; }
+
+/* Photo cards and image blocks */
+.ec-imgtxt__media, .ec-life__card img, .ec-steps img { border-radius: 22px; background: #F7E7E8; }
+
+/* Cifras: franja blush */
+.ec-stats { background: var(--ec-soft); border-radius: 18px; }
+@media (min-width: 750px) { .ec-steps--cards:has(figure:nth-child(3):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.ec-steps--cards figure { background: var(--ec-soft); border-radius: 18px; }
+
+/* Big-number callout (5 % Volufiline) */
+.ec-callout__h { margin: 4px 0 18px; }
+.ec-callout { padding: 34px 20px 28px; border-radius: 26px; background: #fff; text-align: center; box-shadow: 0 18px 40px -28px color-mix(in srgb, var(--ec-dark) 60%, transparent); }
+.ec-callout__big { color: var(--ec-dark); font-family: var(--font-heading-family); font-size: clamp(64px, 20vw, 120px); font-weight: 800; line-height: 0.92; letter-spacing: -0.03em; }
+.ec-callout__big span { display: block; font-size: 0.62em; }
+.ec-callout__t { max-width: 560px; margin: 18px auto 0; color: var(--ec-muted); font-size: 15.5px; line-height: 1.55; }
+.ec-callout__pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 18px 0 0; }
+.ec-callout__pills span { padding: 7px 14px; border-radius: 999px; background: var(--ec-soft); color: var(--ec-dark); font-size: 13px; font-weight: 700; }
+
+/* "Qué contiene": rose band with white cards */
+.ec-features--band { background: var(--ec-band); }
+.ec-features--band .ec-sec-h h2 { color: #fff; text-align: left; }
+.ec-feat--band { display: grid; grid-template-columns: 1fr; gap: 12px; max-width: 980px; margin: 0 auto; }
+.ec-feat--band > div { display: flex; gap: 14px; align-items: center; padding: 16px; border-radius: 18px; background: #fff; }
+.ec-feat--band .ec-ic { flex: none; width: 56px; height: 56px; border-radius: 50%; background: var(--ec-soft); color: var(--ec-sale-ink); }
+.ec-feat--band b { display: block; color: var(--ec-dark); font-size: 17px; }
+.ec-feat--band span:not(.ec-ic) { color: var(--ec-muted); font-size: 14px; }
+.ec-feat__tag { display: inline-block; margin: 6px 0; padding: 4px 12px; border-radius: 999px; background: var(--ec-soft); color: var(--ec-sale-ink); font-size: 12px; font-style: normal; font-weight: 800; }
+@media (min-width: 750px) { .ec-feat--band { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* Preguntas frecuentes: rose band, white text */
+.ec-faq-sec--band { background: var(--ec-band); }
+.ec-faq-sec--band h2, .ec-faq-sec--band .ec-h3 { color: #fff; }
+.ec-faq-sec--band .ec-faq details { border-bottom: 1px solid rgba(255, 255, 255, 0.35); }
+.ec-faq-sec--band .ec-faq summary { color: #fff; font-weight: 600; }
+.ec-faq-sec--band .ec-faq .ec-i { color: #fff; }
+.ec-faq-sec--band .ec-faq__a { color: rgba(255, 255, 255, 0.92); }
 .ec-cmp thead th, .ec-cmp thead th.us { background: var(--ec-primary); }
 .ec-cmp .n { color: #B7A3A9; }
-
-/* Cifras: franja blush en vez del gris del tema base */
-.ec-stats { background: var(--ec-soft); }
-/* Pasos: con 3 tarjetas ocupan todo el ancho en vez de media fila */
-@media (min-width: 750px) { .ec-steps--cards:has(figure:nth-child(3):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)); } }

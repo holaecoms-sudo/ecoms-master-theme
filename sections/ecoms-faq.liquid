@@ -1,5 +1,6 @@
 {%- comment -%} ECOMS · FAQ with FAQPage structured data. {%- endcomment -%}
-<section {% render 'ecoms-section-style', section: section, class: 'ec-faq-sec' %}>
+{%- assign fq_class = 'ec-faq-sec ec-faq-sec--' | append: section.settings.style -%}
+<section {% render 'ecoms-section-style', section: section, class: fq_class %}>
   <div class="ec-w{% if section.settings.style == 'split' %} ec-faq-split{% endif %}">
     {%- if section.settings.style == 'split' -%}
       <div class="ec-faq-split__h">
@@ -90,6 +91,10 @@
         {
           "value": "split",
           "label": "Título a la izquierda, preguntas a la derecha"
+        },
+        {
+          "value": "band",
+          "label": "Banda de color (texto blanco)"
         }
       ],
       "default": "stack"
