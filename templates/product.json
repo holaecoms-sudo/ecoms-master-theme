@@ -70,10 +70,10 @@
         "pk": {
           "type": "packs",
           "settings": {
-            "heading": "Compra más, ahorra más",
-            "layout": "rows",
+            "heading": "",
+            "layout": "offer",
             "tier2_tag": "",
-            "tier3_tag": "Máximo ahorro",
+            "tier3_tag": "",
             "item_name": "frascos",
             "from_metafield": true,
             "discounts_live": true,
@@ -81,7 +81,8 @@
             "tier1_label": "1 barra",
             "tier2_label": "Pack 2 barras",
             "tier3_label": "Pack 3 barras",
-            "show_summary": false
+            "show_summary": false,
+            "help": ""
           }
         },
         "dlv": {
@@ -101,35 +102,24 @@
             "text": "Pago seguro y cifrado"
           }
         },
-        "chips": {
-          "type": "chips",
-          "settings": {}
-        },
-        "mf": {
-          "type": "media_features",
+        "stock": {
+          "type": "stock",
           "settings": {
-            "icon_1": "drop",
-            "text_1": "Hidratación al instante",
-            "icon_2": "sparkle",
-            "text_2": "Líneas secas menos visibles",
-            "icon_3": "hand",
-            "text_3": "Rostro, ojos y cuello",
-            "icon_4": "check",
-            "text_4": "Sin agujas: solo desliza"
+            "max_show": 30,
+            "text": "STOCK EN VIVO: quedan [qty] unidades"
           }
         }
       },
       "block_order": [
         "badge_box",
         "title",
-        "chips",
         "social",
         "price",
         "lead",
         "benefits",
-        "mf",
         "pk",
         "buy",
+        "stock",
         "pay",
         "dlv",
         "acc"
@@ -138,7 +128,7 @@
         "layout": "direct",
         "columns": "two",
         "gallery_mobile": "inset",
-        "thumbs": "auto",
+        "thumbs": "below",
         "gal_controls": false,
         "badge": "",
         "media_tag": "",

@@ -3,9 +3,8 @@
   and Zephyra product pages. Loaded after ecoms-gold.css (structure); this retints it and adds the
   rose bands, outlined pills, big callout and round photo cards.
 */
-:root { --ec-band: #C8707E; --ec-band-ink: #fff; }
+:root { --ec-band: #A4689D; --ec-band-ink: #fff; }
 .ec-pdp, .ec-sec { --ec-gold-ink: #B23A62; }
-body { background: var(--ec-bg); }
 
 /* Titles: heavier, plum */
 .ec-pdp__title, .ec-sec h2, .ec-h3 { color: var(--ec-dark); letter-spacing: -0.015em; }
@@ -67,3 +66,13 @@ body { background: var(--ec-bg); }
 .ec-faq-sec--band .ec-faq__a { color: rgba(255, 255, 255, 0.92); }
 .ec-cmp thead th, .ec-cmp thead th.us { background: var(--ec-primary); }
 .ec-cmp .n { color: #B7A3A9; }
+
+/* Hero como la referencia: miniaturas redondeadas, ✔ simples, packs con fondo lila */
+.ec-gal__thumb { border-radius: 18px; overflow: hidden; }
+.ec-gal__thumb img { border-radius: 18px; }
+.ec-pdp .ec-checks { gap: 7px; font-size: 14.5px; }
+.ec-pdp .ec-checks .ec-i { width: 15px; height: 15px; margin-top: 2px; padding: 0; background: none; color: var(--ec-dark); stroke-width: 3; }
+.ec-pack input:checked + .ec-pack__card { border-color: var(--ec-primary); background: var(--ec-soft); }
+.ec-pack__save { background: var(--ec-soft); color: var(--ec-sale-ink); }
+.ec-stock { color: var(--ec-primary); font-size: 12.5px; font-weight: 700; text-align: center; letter-spacing: 0.02em; }
+.ec-stock .ec-bar { display: none; }
