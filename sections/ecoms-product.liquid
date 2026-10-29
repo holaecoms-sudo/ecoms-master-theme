@@ -364,13 +364,13 @@
             <div class="ec-faq ec-pdp__acc" {{ block.shopify_attributes }}>
               {%- if product.description != blank -%}
                 <details{% if block.settings.open_first %} open{% endif %}>
-                  <summary><span>{{ block.settings.label_1 | default: 'Descripción' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
+                  <summary><span class="ec-acc__l">{% render 'ecoms-icon', name: 'heart' %}{{ block.settings.label_1 | default: 'Descripción' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
                   <div class="ec-faq__a rte">{{ product.description }}</div>
                 </details>
               {%- endif -%}
               {%- if acc_ing != blank -%}
                 <details>
-                  <summary><span>{{ block.settings.label_2 | default: 'Ingredientes clave' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
+                  <summary><span class="ec-acc__l">{% render 'ecoms-icon', name: 'leaf' %}{{ block.settings.label_2 | default: 'Ingredientes clave' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
                   <div class="ec-faq__a rte"><ul>
                     {%- for it in acc_ing -%}<li><strong>{{ it.title.value | escape }}:</strong> {{ it.text.value | escape }}</li>{%- endfor -%}
                   </ul></div>
@@ -378,7 +378,7 @@
               {%- endif -%}
               {%- if acc_steps != blank -%}
                 <details>
-                  <summary><span>{{ block.settings.label_3 | default: 'Modo de uso' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
+                  <summary><span class="ec-acc__l">{% render 'ecoms-icon', name: 'clock' %}{{ block.settings.label_3 | default: 'Modo de uso' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
                   <div class="ec-faq__a rte"><ol>
                     {%- for it in acc_steps -%}<li><strong>{{ it.title.value | escape }}.</strong> {{ it.text.value | escape }}</li>{%- endfor -%}
                   </ol></div>

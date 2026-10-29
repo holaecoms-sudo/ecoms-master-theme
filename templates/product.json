@@ -108,6 +108,13 @@
             "max_show": 30,
             "text": "STOCK EN VIVO: quedan [qty] unidades"
           }
+        },
+        "rs": {
+          "type": "review_slider",
+          "settings": {
+            "style": "quote",
+            "heading": ""
+          }
         }
       },
       "block_order": [
@@ -121,6 +128,7 @@
         "buy",
         "stock",
         "pay",
+        "rs",
         "dlv",
         "acc"
       ],
@@ -177,13 +185,14 @@
       "type": "ecoms-demo",
       "settings": {
         "heading": "Míralo en acción",
-        "text": "",
+        "text": "Videos de clientas usándolo.",
         "mode": "player",
-        "ratio": "story",
+        "ratio": "portrait",
         "width": "full",
         "padding_top": 24,
         "padding_bottom": 12
-      }
+      },
+      "blocks": {}
     },
     "bubble": {
       "type": "ecoms-review-bubble",
@@ -488,6 +497,7 @@
   "order": [
     "top",
     "main",
+    "demo",
     "story",
     "star",
     "reasons",
@@ -496,7 +506,6 @@
     "routine",
     "before_after",
     "assure",
-    "demo",
     "bubble",
     "reviews",
     "faq",

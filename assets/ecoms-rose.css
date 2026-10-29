@@ -76,3 +76,8 @@
 .ec-pack__save { background: var(--ec-soft); color: var(--ec-sale-ink); }
 .ec-stock { color: var(--ec-primary); font-size: 12.5px; font-weight: 700; text-align: center; letter-spacing: 0.02em; }
 .ec-stock .ec-bar { display: none; }
+
+/* Acordeones del hero: ícono malva delante del título */
+.ec-acc__l { display: flex; align-items: center; gap: 10px; }
+.ec-acc__l .ec-i { flex: none; width: 18px; height: 18px; color: var(--ec-primary); transform: none !important; }
+.ec-pdp__acc summary { font-size: 14.5px; font-weight: 600; }
