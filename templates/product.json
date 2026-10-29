@@ -435,7 +435,55 @@
         "tip_label": "Cómo usarla en",
         "width": "full",
         "padding_top": 44,
-        "padding_bottom": 20
+        "padding_bottom": 20,
+        "show_face": true
+      }
+    },
+    "giant": {
+      "type": "ecoms-marquee",
+      "blocks": {
+        "g1": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "text": "Desliza"
+          }
+        },
+        "g2": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "text": "Extiende"
+          }
+        },
+        "g3": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "text": "Repite"
+          }
+        },
+        "g4": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "text": "10 segundos"
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ],
+      "settings": {
+        "style": "giant",
+        "heading": "",
+        "speed": 26,
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 0
       }
     }
   },
@@ -444,6 +492,7 @@
     "top",
     "demo",
     "zones",
+    "giant",
     "star",
     "routine",
     "ingredients",

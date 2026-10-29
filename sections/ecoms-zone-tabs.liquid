@@ -20,15 +20,27 @@
   <div class="ec-w">
     {%- if section.settings.eyebrow != blank -%}<p class="ec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
     {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
-    <div class="ec-zt">
+    <div class="ec-zt{% if section.settings.show_face %} ec-zt--face{% endif %}">
       {%- for block in ec_src limit: 4 -%}
         <input class="ec-zt__r" type="radio" name="zt-{{ section.id }}" id="zt-{{ section.id }}-{{ forloop.index }}"{% if forloop.first %} checked{% endif %}>
       {%- endfor -%}
+      <div class="ec-zt__main">
+      {%- if section.settings.show_face -%}
+        <svg class="ec-zt__face" width="132" height="160" viewBox="0 0 104 128" fill="none" role="img" aria-label="Rostro con las zonas de aplicación">
+          <path d="M52 6C26 6 16 30 16 54c0 32 16 50 36 54 20-4 36-22 36-54C88 30 78 6 52 6Z" class="ec-zt__head"/>
+          <path d="M40 104v24M64 104v24" class="ec-zt__line"/>
+          <rect class="ec-zt__z ec-zt__z3" x="38" y="108" width="28" height="18" rx="6"/>
+          <ellipse class="ec-zt__z ec-zt__z1" cx="33" cy="70" rx="12" ry="13"/><ellipse class="ec-zt__z ec-zt__z1" cx="71" cy="70" rx="12" ry="13"/>
+          <ellipse class="ec-zt__z ec-zt__z2" cx="36" cy="52" rx="13" ry="7"/><ellipse class="ec-zt__z ec-zt__z2" cx="68" cy="52" rx="13" ry="7"/>
+          <path d="M28 50q8-6 16 0M60 50q8-6 16 0M44 90q8 6 16 0" class="ec-zt__line"/>
+        </svg>
+      {%- endif -%}
       <div class="ec-zt__tabs" role="presentation">
         {%- for block in ec_src limit: 4 -%}
           {%- assign zt_name = block.settings.name | default: block.title.value | default: block.label.value -%}
           <label for="zt-{{ section.id }}-{{ forloop.index }}" {{ block.shopify_attributes }}>{{ zt_name | escape }}</label>
         {%- endfor -%}
+      </div>
       </div>
       <div class="ec-zt__panels">
         {%- for block in ec_src limit: 4 -%}
@@ -51,6 +63,7 @@
     { "type": "text", "id": "metafield", "label": "Contenido desde metacampo del producto", "default": "ecoms.zones", "info": "Lista de «Ítem de contenido» (título = zona, texto = cómo usarla). Vacío o sin metacampo = usa los bloques." },
     { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Una barra, tres zonas" },
     { "type": "text", "id": "heading", "label": "Título", "default": "¿Dónde la vas a usar?" },
+    { "type": "checkbox", "id": "show_face", "label": "Mostrar rostro ilustrado", "default": false, "info": "Resalta la zona elegida. Orden de los ítems: 1 mejillas, 2 contorno de ojos, 3 cuello." },
     { "type": "text", "id": "tip_label", "label": "Texto sobre la indicación", "default": "Cómo usarla en" },
     { "type": "header", "content": "Diseño" },
     { "type": "select", "id": "width", "label": "Ancho en escritorio", "options": [

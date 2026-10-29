@@ -186,6 +186,11 @@
               <div class="ec-gal__slide">{{ 'product-1' | placeholder_svg_tag: 'ec-placeholder' }}</div>
             {%- endfor -%}
           </div>
+          {%- comment -%} Round stickers over the gallery, from product metafields ecoms.sticker_1 / ecoms.sticker_2 («-25%|PACK 2»: lines split by |). {%- endcomment -%}
+          {%- assign st_a = product.metafields.ecoms.sticker_1.value | split: '|' -%}
+          {%- assign st_b = product.metafields.ecoms.sticker_2.value | split: '|' -%}
+          {%- if st_a.size > 0 -%}<span class="ec-sticker ec-sticker--a" aria-hidden="true"><b>{{ st_a[0] | strip | escape }}</b>{% if st_a.size > 1 %}<small>{{ st_a[1] | strip | escape }}</small>{% endif %}</span>{%- endif -%}
+          {%- if st_b.size > 0 -%}<span class="ec-sticker ec-sticker--b" aria-hidden="true"><b>{{ st_b[0] | strip | escape }}</b>{% if st_b.size > 1 %}<small>{{ st_b[1] | strip | escape }}</small>{% endif %}</span>{%- endif -%}
           {%- if section.settings.badge != blank -%}
             <span class="ec-gal__badge ec-tag">{{ section.settings.badge | escape }}</span>
           {%- endif -%}
