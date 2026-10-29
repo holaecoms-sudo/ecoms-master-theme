@@ -92,24 +92,24 @@
 {%- if pal != 'store' -%}
   <style>
     :root {
-      --ec-primary:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- when 'gold' -%}#011F49{%- when 'rose' -%}#4A2540{%- when 'navidad' -%}#C8102E{%- else -%}{{ section.settings.pal_primary | default: settings.ecoms_primary }}{%- endcase -%};
+      --ec-primary:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- when 'gold' -%}#011F49{%- when 'rose' -%}#1E1B24{%- when 'navidad' -%}#C8102E{%- else -%}{{ section.settings.pal_primary | default: settings.ecoms_primary }}{%- endcase -%};
       --ec-primary-ink:       {%- case pal -%}{%- when 'agua' -%}#FFFFFF{%- when 'grafito' -%}#FFFFFF{%- when 'gold' -%}#FFFFFF{%- when 'rose' -%}#FFFFFF{%- when 'navidad' -%}#FFFFFF{%- else -%}{{ section.settings.pal_primary_ink | default: settings.ecoms_primary_ink }}{%- endcase -%};
-      --ec-dark:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- when 'gold' -%}#011F49{%- when 'rose' -%}#4A2540{%- when 'navidad' -%}#0E3B2E{%- else -%}{{ section.settings.pal_dark | default: settings.ecoms_dark }}{%- endcase -%};
-      --ec-accent:       {%- case pal -%}{%- when 'agua' -%}#14B8C9{%- when 'grafito' -%}#F2643D{%- when 'gold' -%}#E8C15A{%- when 'rose' -%}#C8707E{%- when 'navidad' -%}#E8B04B{%- else -%}{{ section.settings.pal_accent | default: settings.ecoms_accent }}{%- endcase -%};
-      --ec-accent-ink:       {%- case pal -%}{%- when 'agua' -%}#06283A{%- when 'grafito' -%}#FFFFFF{%- when 'gold' -%}#011F49{%- when 'rose' -%}#FFFFFF{%- when 'navidad' -%}#0E3B2E{%- else -%}{{ section.settings.pal_accent_ink | default: settings.ecoms_accent_ink }}{%- endcase -%};
-      --ec-soft:       {%- case pal -%}{%- when 'agua' -%}#E9F7FA{%- when 'grafito' -%}#F5F3F0{%- when 'gold' -%}#FFF4D6{%- when 'rose' -%}#F7E7E8{%- when 'navidad' -%}#FFF6EC{%- else -%}{{ section.settings.pal_soft | default: settings.ecoms_soft }}{%- endcase -%};
-      --ec-soft-ink:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- when 'gold' -%}#011F49{%- when 'rose' -%}#4A2540{%- when 'navidad' -%}#0E3B2E{%- else -%}{{ section.settings.pal_soft_ink | default: settings.ecoms_soft_ink }}{%- endcase -%};
-      --ec-tag:       {%- case pal -%}{%- when 'agua' -%}#14B8C9{%- when 'grafito' -%}#F2643D{%- when 'gold' -%}#E8C15A{%- when 'rose' -%}#F6C945{%- when 'navidad' -%}#C8102E{%- else -%}{{ section.settings.pal_tag | default: settings.ecoms_tag }}{%- endcase -%};
-      --ec-tag-ink:       {%- case pal -%}{%- when 'agua' -%}#06283A{%- when 'grafito' -%}#FFFFFF{%- when 'gold' -%}#011F49{%- when 'rose' -%}#4A2540{%- when 'navidad' -%}#FFFFFF{%- else -%}{{ section.settings.pal_tag_ink | default: settings.ecoms_tag_ink }}{%- endcase -%};
-      --ec-sale-bg:       {%- case pal -%}{%- when 'agua' -%}#E0F5F8{%- when 'grafito' -%}#FDEBE5{%- when 'gold' -%}#FFF4D6{%- when 'rose' -%}#FBE9EA{%- when 'navidad' -%}#FDE8E8{%- else -%}{{ section.settings.pal_sale_bg | default: settings.ecoms_sale_bg }}{%- endcase -%};
-      --ec-sale-ink:       {%- case pal -%}{%- when 'agua' -%}#0B4F63{%- when 'grafito' -%}#9A3412{%- when 'gold' -%}#8A6A00{%- when 'rose' -%}#B23A62{%- when 'navidad' -%}#A30D25{%- else -%}{{ section.settings.pal_sale_ink | default: settings.ecoms_sale_ink }}{%- endcase -%};
-      --ec-urgent:       {%- case pal -%}{%- when 'agua' -%}#B54708{%- when 'grafito' -%}#B54708{%- when 'gold' -%}#B54708{%- when 'rose' -%}#B23A62{%- when 'navidad' -%}#C8102E{%- else -%}{{ section.settings.pal_urgent | default: settings.ecoms_urgent }}{%- endcase -%};
+      --ec-dark:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- when 'gold' -%}#011F49{%- when 'rose' -%}#1E1B24{%- when 'navidad' -%}#0E3B2E{%- else -%}{{ section.settings.pal_dark | default: settings.ecoms_dark }}{%- endcase -%};
+      --ec-accent:       {%- case pal -%}{%- when 'agua' -%}#14B8C9{%- when 'grafito' -%}#F2643D{%- when 'gold' -%}#E8C15A{%- when 'rose' -%}#F5B5C5{%- when 'navidad' -%}#E8B04B{%- else -%}{{ section.settings.pal_accent | default: settings.ecoms_accent }}{%- endcase -%};
+      --ec-accent-ink:       {%- case pal -%}{%- when 'agua' -%}#06283A{%- when 'grafito' -%}#FFFFFF{%- when 'gold' -%}#011F49{%- when 'rose' -%}#1E1B24{%- when 'navidad' -%}#0E3B2E{%- else -%}{{ section.settings.pal_accent_ink | default: settings.ecoms_accent_ink }}{%- endcase -%};
+      --ec-soft:       {%- case pal -%}{%- when 'agua' -%}#E9F7FA{%- when 'grafito' -%}#F5F3F0{%- when 'gold' -%}#FFF4D6{%- when 'rose' -%}#FFF1F4{%- when 'navidad' -%}#FFF6EC{%- else -%}{{ section.settings.pal_soft | default: settings.ecoms_soft }}{%- endcase -%};
+      --ec-soft-ink:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- when 'gold' -%}#011F49{%- when 'rose' -%}#1E1B24{%- when 'navidad' -%}#0E3B2E{%- else -%}{{ section.settings.pal_soft_ink | default: settings.ecoms_soft_ink }}{%- endcase -%};
+      --ec-tag:       {%- case pal -%}{%- when 'agua' -%}#14B8C9{%- when 'grafito' -%}#F2643D{%- when 'gold' -%}#E8C15A{%- when 'rose' -%}#F5B5C5{%- when 'navidad' -%}#C8102E{%- else -%}{{ section.settings.pal_tag | default: settings.ecoms_tag }}{%- endcase -%};
+      --ec-tag-ink:       {%- case pal -%}{%- when 'agua' -%}#06283A{%- when 'grafito' -%}#FFFFFF{%- when 'gold' -%}#011F49{%- when 'rose' -%}#1E1B24{%- when 'navidad' -%}#FFFFFF{%- else -%}{{ section.settings.pal_tag_ink | default: settings.ecoms_tag_ink }}{%- endcase -%};
+      --ec-sale-bg:       {%- case pal -%}{%- when 'agua' -%}#E0F5F8{%- when 'grafito' -%}#FDEBE5{%- when 'gold' -%}#FFF4D6{%- when 'rose' -%}#FBE3E8{%- when 'navidad' -%}#FDE8E8{%- else -%}{{ section.settings.pal_sale_bg | default: settings.ecoms_sale_bg }}{%- endcase -%};
+      --ec-sale-ink:       {%- case pal -%}{%- when 'agua' -%}#0B4F63{%- when 'grafito' -%}#9A3412{%- when 'gold' -%}#8A6A00{%- when 'rose' -%}#B5536A{%- when 'navidad' -%}#A30D25{%- else -%}{{ section.settings.pal_sale_ink | default: settings.ecoms_sale_ink }}{%- endcase -%};
+      --ec-urgent:       {%- case pal -%}{%- when 'agua' -%}#B54708{%- when 'grafito' -%}#B54708{%- when 'gold' -%}#B54708{%- when 'rose' -%}#B5536A{%- when 'navidad' -%}#C8102E{%- else -%}{{ section.settings.pal_urgent | default: settings.ecoms_urgent }}{%- endcase -%};
       --ec-urgent-bg:       {%- case pal -%}{%- when 'agua' -%}#FFF4E5{%- when 'grafito' -%}#FFF4E5{%- when 'gold' -%}#FFF4E5{%- when 'rose' -%}#FDECEF{%- when 'navidad' -%}#FDE8E8{%- else -%}{{ section.settings.pal_urgent_bg | default: settings.ecoms_urgent_bg }}{%- endcase -%};
-      --ec-bg:       {%- case pal -%}{%- when 'agua' -%}#FFFFFF{%- when 'grafito' -%}#FFFFFF{%- when 'gold' -%}#FFFFFF{%- when 'rose' -%}#FAF3F3{%- when 'navidad' -%}#FFFFFF{%- else -%}{{ section.settings.pal_bg | default: settings.ecoms_bg }}{%- endcase -%};
-      --ec-ink:       {%- case pal -%}{%- when 'agua' -%}#0F1B2A{%- when 'grafito' -%}#141414{%- when 'gold' -%}#0B1B33{%- when 'rose' -%}#3A1D33{%- when 'navidad' -%}#1E1A17{%- else -%}{{ section.settings.pal_ink | default: settings.ecoms_ink }}{%- endcase -%};
-      --ec-muted:       {%- case pal -%}{%- when 'agua' -%}#5B6B7B{%- when 'grafito' -%}#6B6B6B{%- when 'gold' -%}#46506A{%- when 'rose' -%}#8A6E80{%- when 'navidad' -%}#6A5F57{%- else -%}{{ section.settings.pal_muted | default: settings.ecoms_muted }}{%- endcase -%};
-      --ec-line:       {%- case pal -%}{%- when 'agua' -%}#E2E8EF{%- when 'grafito' -%}#E8E5E1{%- when 'gold' -%}#E3E8EF{%- when 'rose' -%}#EBDADD{%- when 'navidad' -%}#EFE3D6{%- else -%}{{ section.settings.pal_line | default: settings.ecoms_line }}{%- endcase -%};
-      --ec-deep:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- when 'gold' -%}#011F49{%- when 'rose' -%}#4A2540{%- when 'navidad' -%}#0B2F24{%- else -%}{{ section.settings.pal_deep | default: settings.ecoms_deep }}{%- endcase -%};
+      --ec-bg:       {%- case pal -%}{%- when 'agua' -%}#FFFFFF{%- when 'grafito' -%}#FFFFFF{%- when 'gold' -%}#FFFFFF{%- when 'rose' -%}#FBF7F4{%- when 'navidad' -%}#FFFFFF{%- else -%}{{ section.settings.pal_bg | default: settings.ecoms_bg }}{%- endcase -%};
+      --ec-ink:       {%- case pal -%}{%- when 'agua' -%}#0F1B2A{%- when 'grafito' -%}#141414{%- when 'gold' -%}#0B1B33{%- when 'rose' -%}#1E1B24{%- when 'navidad' -%}#1E1A17{%- else -%}{{ section.settings.pal_ink | default: settings.ecoms_ink }}{%- endcase -%};
+      --ec-muted:       {%- case pal -%}{%- when 'agua' -%}#5B6B7B{%- when 'grafito' -%}#6B6B6B{%- when 'gold' -%}#46506A{%- when 'rose' -%}#6A5C62{%- when 'navidad' -%}#6A5F57{%- else -%}{{ section.settings.pal_muted | default: settings.ecoms_muted }}{%- endcase -%};
+      --ec-line:       {%- case pal -%}{%- when 'agua' -%}#E2E8EF{%- when 'grafito' -%}#E8E5E1{%- when 'gold' -%}#E3E8EF{%- when 'rose' -%}#E7DAD6{%- when 'navidad' -%}#EFE3D6{%- else -%}{{ section.settings.pal_line | default: settings.ecoms_line }}{%- endcase -%};
+      --ec-deep:       {%- case pal -%}{%- when 'agua' -%}#0B2E4F{%- when 'grafito' -%}#141414{%- when 'gold' -%}#011F49{%- when 'rose' -%}#1E1B24{%- when 'navidad' -%}#0B2F24{%- else -%}{{ section.settings.pal_deep | default: settings.ecoms_deep }}{%- endcase -%};
       --ec-primary-hover: color-mix(in srgb, var(--ec-primary) 86%, #000);
     }
     body.ec-skin { background: var(--ec-bg); }
@@ -118,7 +118,7 @@
 {%- if pal == 'gold' or pal == 'rose' -%}{{ 'ecoms-gold.css' | asset_url | stylesheet_tag }}{%- endif -%}
 {%- if pal == 'rose' -%}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
 {{ 'ecoms-rose.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 {%- if pal == 'navidad' -%}
@@ -1375,7 +1375,7 @@
         },
         {
           "value": "rose",
-          "label": "Well: rosa empolvado y ciruela (belleza)"
+          "label": "A · Oferta directa: marfil, negro y rosa (belleza)"
         },
         {
           "value": "navidad",

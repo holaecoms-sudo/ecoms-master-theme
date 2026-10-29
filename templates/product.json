@@ -14,13 +14,6 @@
           "type": "title",
           "settings": {}
         },
-        "price": {
-          "type": "price",
-          "settings": {
-            "style": "badge",
-            "shipping_cost": 4000
-          }
-        },
         "benefits": {
           "type": "benefits",
           "settings": {
@@ -53,12 +46,6 @@
           "type": "text",
           "settings": {
             "text": ""
-          }
-        },
-        "acc": {
-          "type": "accordion",
-          "settings": {
-            "open_first": false
           }
         },
         "pk": {
@@ -95,32 +82,17 @@
           "settings": {
             "text": "Pago seguro y cifrado"
           }
-        },
-        "rs": {
-          "type": "review_slider",
-          "settings": {
-            "style": "quote",
-            "heading": ""
-          }
-        },
-        "chips": {
-          "type": "chips",
-          "settings": {}
         }
       },
       "block_order": [
         "social",
         "title",
-        "price",
         "lead",
-        "chips",
         "benefits",
         "pk",
         "buy",
         "dlv",
-        "pay",
-        "rs",
-        "acc"
+        "pay"
       ],
       "settings": {
         "layout": "direct",
@@ -218,7 +190,7 @@
         "heading": "Qué contiene",
         "style": "band",
         "width": "full",
-        "padding_top": 36,
+        "padding_top": 44,
         "padding_bottom": 40,
         "metafield": "ecoms.ingredients"
       }
@@ -307,8 +279,8 @@
         "f7"
       ],
       "settings": {
-        "style": "band",
-        "heading": "Preguntas respondidas",
+        "style": "stack",
+        "heading": "Preguntas frecuentes",
         "text": "",
         "icon": "chev",
         "width": "full",
@@ -322,10 +294,10 @@
         "style": "soft",
         "eyebrow": "",
         "heading": "Tu rutina de 10 segundos. Un solo gesto.",
-        "text": "Una barra. Tres zonas.",
+        "text": "Pagas cuando lo recibes.",
         "image_plain": false,
-        "show_price": true,
-        "button_label": "Pedir y pagar al recibir",
+        "show_price": false,
+        "button_label": "Pedir desde $19.990",
         "trust_1": "Pagas al recibir",
         "trust_2": "Envíos a todo Chile",
         "trust_3": "10 días de retracto",
@@ -339,8 +311,8 @@
       "blocks": {},
       "block_order": [],
       "settings": {
-        "eyebrow": "El activo estrella",
-        "heading": "Un activo que se nota.",
+        "eyebrow": "El ingrediente estrella",
+        "heading": "5% Volufiline",
         "value": "5%",
         "label": "Volufiline.",
         "text": "Una fórmula con Volufiline y colágeno pensada para hidratar y dar a tu piel un aspecto más lleno y firme. Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
@@ -348,26 +320,6 @@
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
-      }
-    },
-    "assure": {
-      "type": "ecoms-cta-band",
-      "blocks": {},
-      "block_order": [],
-      "settings": {
-        "style": "soft",
-        "eyebrow": "",
-        "heading": "¿Todavía no estás segura? Empieza aquí.",
-        "text": "Pide una barra, paga cuando llegue y tienes 10 días de retracto con el producto sin abrir.",
-        "image_plain": false,
-        "show_price": false,
-        "button_label": "Pedir desde $19.990",
-        "trust_1": "Pagas al recibir",
-        "trust_2": "Seguimiento de tu pedido",
-        "trust_3": "10 días de retracto",
-        "width": "full",
-        "padding_top": 0,
-        "padding_bottom": 0
       }
     },
     "top": {
@@ -428,49 +380,10 @@
     "ribbon": {
       "type": "ecoms-ribbon",
       "settings": {
-        "tag": "OFERTA DE PACKS",
-        "text": "AHORRA HASTA 33% · ENVÍO GRATIS",
+        "tag": "PACKS",
+        "text": "Ahorra hasta 33% · Envío gratis",
         "end_at": "",
         "heading": "Termina en:",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "strip": {
-      "type": "ecoms-marquee",
-      "blocks": {
-        "s1": {
-          "type": "text",
-          "settings": {
-            "icon": "none",
-            "text": "Hidratación al instante"
-          }
-        },
-        "s2": {
-          "type": "text",
-          "settings": {
-            "icon": "none",
-            "text": "Textura sedosa, no pegajosa"
-          }
-        },
-        "s3": {
-          "type": "text",
-          "settings": {
-            "icon": "none",
-            "text": "Rostro, ojos y cuello"
-          }
-        }
-      },
-      "block_order": [
-        "s1",
-        "s2",
-        "s3"
-      ],
-      "settings": {
-        "style": "strip",
-        "heading": "",
-        "speed": 34,
-        "width": "full",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -510,56 +423,6 @@
         "text": "",
         "padding_top": 44,
         "padding_bottom": 24
-      }
-    },
-    "ideal": {
-      "type": "ecoms-ideal-for",
-      "blocks": {
-        "i1": {
-          "type": "item",
-          "settings": {
-            "icon": "drop",
-            "title": "Zonas secas",
-            "text": "Donde la piel se siente tirante."
-          }
-        },
-        "i2": {
-          "type": "item",
-          "settings": {
-            "icon": "sparkle",
-            "title": "Piel opaca",
-            "text": "Para un aspecto más luminoso."
-          }
-        },
-        "i3": {
-          "type": "item",
-          "settings": {
-            "icon": "heart",
-            "title": "Contorno de ojos",
-            "text": "Con aplicación suave."
-          }
-        },
-        "i4": {
-          "type": "item",
-          "settings": {
-            "icon": "hand",
-            "title": "Cuello",
-            "text": "Una pasada y listo."
-          }
-        }
-      },
-      "block_order": [
-        "i1",
-        "i2",
-        "i3",
-        "i4"
-      ],
-      "settings": {
-        "heading": "Ideal para el aspecto de:",
-        "text": "",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
       }
     },
     "compare": {
@@ -639,13 +502,11 @@
   },
   "order": [
     "ribbon",
-    "strip",
     "main",
     "top",
     "photocards",
     "routine",
     "star",
-    "ideal",
     "ingredients",
     "compare",
     "before_after",
@@ -653,7 +514,6 @@
     "ugc",
     "bubble",
     "reviews",
-    "assure",
     "faq",
     "cta"
   ]

@@ -1,104 +1,140 @@
 /*
-  ECOMS · «Well» palette (belleza): dusty rose, plum and warm blush, with Hanken Grotesk. Modelled on the Well Measured
-  product page. Loaded after ecoms-gold.css (structure) on pages whose product section uses the «rose» palette.
-  Gives: rounded gallery on a peach-pink gradient, outlined pills, soft offer cards, dusty-rose bands with white
-  cards (ingredients) and white text (FAQ), a light big-number callout, and the zone tabs / giant words / stickers.
+  ECOMS · «A · Oferta directa» palette (belleza): warm ivory, ink black and soft pink, with Instrument Sans and a touch of
+  Instrument Serif italic. Chosen from the research doc (direct-offer direction): everything that matters in the first screen,
+  clear packs, one black button. Loaded after ecoms-gold.css (structure) on pages whose product section uses the «rose» palette.
 */
 :root {
-  --font-heading-family: 'Hanken Grotesk', system-ui, sans-serif;
-  --font-heading-weight: 800;
-  --ec-band: #C8707E;
-  --ec-band2: #C8707E;
+  --font-heading-family: 'Instrument Sans', system-ui, sans-serif;
+  --font-heading-weight: 700;
+  --ec-serif: 'Instrument Serif', Georgia, serif;
 }
-body { font-family: 'Hanken Grotesk', var(--font-body-family), system-ui, sans-serif; }
+body { font-family: 'Instrument Sans', var(--font-body-family), system-ui, sans-serif; }
 .ec-pdp, .ec-sec { --ec-gold-ink: var(--ec-sale-ink); }
 
 /* Titles */
-.ec-pdp__title { color: var(--ec-dark); font-family: var(--font-heading-family); font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-.ec-sec h2, .ec-sec .ec-h3 { color: var(--ec-dark); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; font-size: clamp(28px, 7.4vw, 40px); }
-.ec-eyebrow { color: var(--ec-sale-ink); letter-spacing: 0.14em; font-size: 12px; font-weight: 800; text-transform: uppercase; }
+.ec-pdp__title { color: var(--ec-dark); font-family: var(--font-heading-family); font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; }
+.ec-sec h2, .ec-sec .ec-h3 { color: var(--ec-dark); font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; font-size: clamp(28px, 7.4vw, 38px); }
+.ec-eyebrow { color: var(--ec-sale-ink); letter-spacing: 0.16em; font-size: 11.5px; font-weight: 600; text-transform: uppercase; }
 
 /* Gallery: rounded card on a peach-pink gradient; white product photos melt into it */
-.ec-gal__main { border-radius: 28px; background: linear-gradient(160deg, #FFE3D6 0%, #FFC4D8 100%); }
-.ec-gal__main img { border-radius: 28px; }
+.ec-gal__main { position: relative; border-radius: 30px; background: linear-gradient(165deg, #FFE7DC 0%, #FFCADB 100%); }
+.ec-gal__main img { border-radius: 30px; }
 .ec-gal__slide img, .ec-gal__slide video { mix-blend-mode: multiply; }
-.ec-gal__thumb { border-radius: 16px; overflow: hidden; background: linear-gradient(160deg, #FFE3D6, #FFC4D8); }
-.ec-gal__thumb img { border-radius: 16px; mix-blend-mode: multiply; }
+.ec-gal__thumb { border-radius: 14px; overflow: hidden; background: linear-gradient(165deg, #FFE7DC, #FFCADB); }
+.ec-gal__thumb img { border-radius: 14px; mix-blend-mode: multiply; }
+/* Small white pill on the photo (product metafield ecoms.sticker_1, e.g. «5% Volufiline»); sticker_2 is not used here */
+.ec-sticker { position: absolute; z-index: 3; pointer-events: none; }
+.ec-sticker--a { left: 14px; top: 14px; padding: 6px 13px; border-radius: 99px; background: #fff; color: var(--ec-dark); }
+.ec-sticker--a b { font-family: var(--font-heading-family); font-size: 12px; font-weight: 700; }
+.ec-sticker small, .ec-sticker--b { display: none; }
 
-/* Pills and ticks */
-.ec-chips li { border: 1.5px solid var(--ec-sale-ink); background: transparent; color: var(--ec-sale-ink); letter-spacing: 0.08em; font-size: 11.5px; font-weight: 800; text-transform: uppercase; }
-.ec-pdp .ec-checks { gap: 11px; font-size: 15px; font-weight: 600; }
-.ec-pdp .ec-checks .ec-i { width: 22px; height: 22px; margin-top: 0; padding: 4px; border-radius: 50%; background: var(--ec-sale-ink); color: #fff; stroke-width: 3; }
+/* Benefits: 2-column grid with black ticks */
+.ec-pdp .ec-checks { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 10px; font-size: 14.5px; font-weight: 500; }
+.ec-pdp .ec-checks li { align-items: flex-start; line-height: 1.3; }
+.ec-pdp .ec-checks .ec-i { width: 20px; height: 20px; margin-top: 0; padding: 4px; border-radius: 50%; background: var(--ec-dark); color: #fff; stroke-width: 3; }
+.ec-chips li { border: 1.5px solid var(--ec-dark); background: transparent; color: var(--ec-dark); font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
 
-/* Offer packs: soft white cards, selected = blush with rose border; yellow savings */
-.ec-pack__card { border: 1.5px solid #E9D3D8; border-radius: 16px; background: #fff; }
-.ec-pack input:checked + .ec-pack__card { border: 2.5px solid var(--ec-sale-ink); background: #F4D3DA; }
-.ec-pack__tag, [class*="ec-pack__badge"] { border-radius: 6px; background: #2A1220; color: #fff; font-weight: 800; letter-spacing: 0.06em; }
-.ec-pack__save, .ec-badge-sale { background: var(--ec-tag); color: var(--ec-tag-ink); font-weight: 800; border-radius: 6px; }
+/* Offer packs: white cards, selected = soft pink with ink border; black tag, pink savings chip */
+.ec-pack__card { border: 1.5px solid var(--ec-line); border-radius: 18px; background: #fff; }
+.ec-pack input:checked + .ec-pack__card { border: 2px solid var(--ec-dark); background: var(--ec-soft); }
+.ec-pack__tag, [class*="ec-pack__badge"] { left: 14px; right: auto; border-radius: 99px; background: var(--ec-dark); color: #fff; font-weight: 700; letter-spacing: 0.07em; }
+.ec-pack__save, .ec-badge-sale { background: var(--ec-accent); color: var(--ec-dark); font-weight: 700; border-radius: 6px; }
 .ec-pack__ship { color: #2E7D57; }
 
-/* Buy buttons: plum pills (Releasit and our own) */
-.ec-pdp [class*="_rsi-buy-now-button"]:not([class*="hook"]) { min-height: 66px !important; border: 0 !important; border-radius: 99px !important; background: var(--ec-primary) !important; color: #fff !important; font-weight: 800 !important; letter-spacing: 0.05em !important; }
-.ec-btn--primary, .ec-imgtxt__btn { border-radius: 99px; background: var(--ec-primary); color: #fff; font-weight: 800; letter-spacing: 0.05em; }
+/* Buy button: black pill (Releasit and our own) */
+.ec-pdp [class*="_rsi-buy-now-button"]:not([class*="hook"]) { min-height: 66px !important; border: 0 !important; border-radius: 99px !important; background: var(--ec-dark) !important; color: #fff !important; font-weight: 700 !important; letter-spacing: 0.02em !important; }
+.ec-btn--primary, .ec-imgtxt__btn { border-radius: 99px; background: var(--ec-dark); color: #fff; font-weight: 700; letter-spacing: 0.02em; }
 
-/* Promise band: dusty rose, white text */
-.ec-mq--band, .ec-marq--band, .ec-marquee--band { background: var(--ec-accent); color: #fff; }
-.ec-mq--band .ec-mq__list { letter-spacing: 0.2em; }
+/* Offer ribbon (black, pink tag) and trust band (pink) */
+.ec-ribbon-sec { padding: 0; }
+.ec-ribbon { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 12px; padding: 10px 14px; background: var(--ec-dark); color: #fff; }
+.ec-ribbon__txt { display: flex; flex-direction: row; align-items: center; gap: 10px; }
+.ec-ribbon__tag { padding: 2px 8px; border-radius: 6px; background: var(--ec-accent); color: var(--ec-dark); font-size: 11px; font-weight: 700; letter-spacing: 0.05em; }
+.ec-ribbon__line { font-size: 12.5px; font-weight: 600; }
+.ec-mq--band, .ec-marq--band, .ec-marquee--band { background: var(--ec-accent); color: var(--ec-dark); }
+.ec-mq--band .ec-mq__list { letter-spacing: 0.06em; font-weight: 700; }
+.ec-mq--strip { background: #F6F0F0; color: var(--ec-dark); }
 
-/* Cifras, steps, photos */
-.ec-stats { background: var(--ec-soft); border-radius: 18px; }
+/* Steps, photo cards, cifras */
 .ec-steps--cards figure { background: #fff; border: 1.5px solid var(--ec-line); border-radius: 18px; }
+.ec-steps--cards .ec-num { color: var(--ec-sale-ink); }
 @media (min-width: 750px) { .ec-steps--cards:has(figure:nth-child(3):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-.ec-imgtxt__media, .ec-life__card img, .ec-steps img { border-radius: 22px; background: var(--ec-soft); }
+.ec-steps--photos { display: grid; gap: 14px; max-width: 520px; margin: 0 auto; }
+.ec-steps--photos figure { margin: 0; }
+.ec-steps--photos img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 18px; }
+.ec-steps--photos figcaption { display: grid; gap: 2px; margin-top: 8px; }
+.ec-steps--photos figcaption .ec-num { display: none; }
+.ec-steps--photos figcaption b { font-size: 16px; color: var(--ec-dark); }
+.ec-steps--photos figcaption span { color: var(--ec-muted); font-size: 13px; }
+.ec-steps__cta { margin: 22px 0 0; text-align: center; }
+@media (min-width: 750px) { .ec-steps--photos { max-width: 980px; grid-template-columns: repeat(3, 1fr); } }
+.ec-pc__h { text-align: left; }
+.ec-pc__bar { display: none; }
+.ec-pc__sub { margin: 4px 0 16px; color: var(--ec-muted); font-size: 15px; }
+.ec-pc { display: grid; gap: 14px; max-width: 560px; margin: 16px auto 0; }
+.ec-pc__card { margin: 0; overflow: hidden; border-radius: 22px; background: #fff; }
+.ec-pc__card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
+.ec-pc__card figcaption { display: grid; gap: 4px; padding: 15px 17px 17px; }
+.ec-pc__card figcaption b { color: var(--ec-dark); font-size: 16.5px; }
+.ec-pc__card figcaption span { color: var(--ec-muted); font-size: 14px; line-height: 1.5; }
+@media (min-width: 750px) { .ec-pc { max-width: 980px; grid-template-columns: repeat(3, 1fr); } }
+.ec-stats { background: var(--ec-soft); border-radius: 18px; }
+.ec-imgtxt__media, .ec-life__card img { border-radius: 22px; background: var(--ec-soft); }
 
-/* Star ingredient: warm cream card, huge dark number */
-.ec-callout__h { margin: 4px 0 18px; }
-.ec-callout { padding: 28px 18px; border-radius: 24px; background: #FFF3EA; text-align: center; }
-.ec-callout__big { color: #2A1220; font-family: var(--font-heading-family); font-size: clamp(72px, 22vw, 116px); font-weight: 800; line-height: 0.9; letter-spacing: -0.04em; }
-.ec-callout__big span { display: block; font-size: 0.55em; letter-spacing: -0.03em; }
-.ec-callout__t { max-width: 560px; margin: 14px auto 0; color: #5b4558; font-size: 14.5px; line-height: 1.5; }
-.ec-callout__pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 14px 0 0; }
-.ec-callout__pills span { padding: 5px 12px; border: 1.5px solid var(--ec-sale-ink); border-radius: 999px; color: var(--ec-sale-ink); font-size: 11.5px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+/* Star ingredient: black card, huge pink number, serif italic name */
+.ec-callout__h { margin: 4px 0 16px; }
+.ec-callout { padding: 32px 22px; border-radius: 28px; background: var(--ec-dark); text-align: center; }
+.ec-callout__big { color: var(--ec-accent); font-family: var(--font-heading-family); font-size: clamp(80px, 26vw, 116px); font-weight: 700; line-height: 0.85; letter-spacing: -0.04em; }
+.ec-callout__big span { display: block; margin-top: 4px; color: #fff; font-family: var(--ec-serif); font-style: italic; font-weight: 400; font-size: 0.4em; letter-spacing: -0.01em; line-height: 1; }
+.ec-callout__t { max-width: 560px; margin: 16px auto 0; color: rgba(255, 255, 255, 0.9); font-size: 14.5px; line-height: 1.55; }
+.ec-callout__pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 16px 0 0; }
+.ec-callout__pills span { padding: 5px 12px; border: 1.5px solid var(--ec-accent); border-radius: 999px; color: var(--ec-accent); font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
 
-/* "Qué contiene": dusty-rose band with white cards */
-.ec-features--band { background: var(--ec-band2); }
-.ec-features--band .ec-sec-h h2 { color: #fff; text-align: left; }
-.ec-feat--band { display: grid; grid-template-columns: 1fr; gap: 12px; max-width: 980px; margin: 0 auto; }
-.ec-feat--band > div { display: flex; gap: 14px; align-items: center; padding: 16px; border-radius: 18px; background: #fff; }
-.ec-feat--band .ec-ic { flex: none; width: 60px; height: 60px; border-radius: 50%; background: #F7DCE1; color: var(--ec-sale-ink); }
+/* "Qué contiene": white cards on ivory, soft pink tag */
+.ec-features--band .ec-sec-h h2 { text-align: left; }
+.ec-feat--band { display: grid; grid-template-columns: 1fr; gap: 10px; max-width: 980px; margin: 0 auto; }
+.ec-feat--band > div { display: flex; gap: 14px; align-items: center; padding: 16px 18px; border-radius: 20px; background: #fff; }
+.ec-feat--band .ec-ic { flex: none; width: 48px; height: 48px; border-radius: 50%; background: #FBE3E8; color: var(--ec-sale-ink); }
 .ec-feat--band b { display: block; color: var(--ec-dark); font-size: 17px; }
-.ec-feat--band span:not(.ec-ic) { color: #6b4a5c; font-size: 13.5px; }
-.ec-feat__tag { display: inline-block; margin: 6px 0; padding: 3px 11px; border-radius: 999px; background: #F7DCE1; color: var(--ec-sale-ink); font-size: 11.5px; font-style: normal; font-weight: 800; }
+.ec-feat--band span:not(.ec-ic) { color: var(--ec-muted); font-size: 13.5px; }
+.ec-feat__tag { display: inline-block; margin: 5px 0; padding: 3px 11px; border-radius: 999px; background: #FBE3E8; color: var(--ec-sale-ink); font-size: 11.5px; font-style: normal; font-weight: 700; }
 @media (min-width: 750px) { .ec-feat--band { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
-/* FAQ: dusty-rose band, white text */
-.ec-faq-sec--band { background: var(--ec-band); }
-.ec-faq-sec--band h2, .ec-faq-sec--band .ec-h3 { color: #fff; }
-.ec-faq-sec--band .ec-faq details { border-bottom: 1px solid rgba(255, 255, 255, 0.4); }
-.ec-faq-sec--band .ec-faq summary { color: #fff; font-weight: 600; }
-.ec-faq-sec--band .ec-faq .ec-i { color: #fff; }
-.ec-faq-sec--band .ec-faq__a { color: rgba(255, 255, 255, 0.95); }
-
-/* Comparison, accordions, stock */
-.ec-cmp thead th, .ec-cmp thead th.us { background: var(--ec-primary); }
+/* Comparison */
+.ec-cmp { border-radius: 18px; overflow: hidden; }
+.ec-cmp thead th, .ec-cmp thead th.us { background: var(--ec-dark); color: #fff; }
+.ec-cmp thead th.us { color: var(--ec-accent); }
 .ec-cmp .n { color: #B7A3A9; }
+
+/* FAQ: hairlines, pink plus */
+.ec-faq details { border: 0; border-top: 1px solid var(--ec-line); border-radius: 0; background: none; margin: 0; }
+.ec-faq summary { padding: 17px 2px; font-size: 15.5px; font-weight: 600; }
+.ec-faq .ec-i { color: var(--ec-sale-ink); }
+.ec-faq__a { padding: 0 2px 16px; color: var(--ec-muted); font-size: 14.5px; }
+
+/* Closing card: soft pink, black button */
+.ec-ctab--soft { background: var(--ec-accent); }
+.ec-ctab--soft .ec-ctab__t { opacity: 1; }
+.ec-ctab--soft .ec-btn { background: var(--ec-dark); color: #fff; }
+
+/* Delivery timeline, accordions, stock */
 .ec-acc__l { display: flex; align-items: center; gap: 10px; }
 .ec-acc__l .ec-i { flex: none; width: 18px; height: 18px; color: var(--ec-sale-ink); transform: none !important; }
-.ec-pdp__acc summary { font-size: 15.5px; font-weight: 700; }
-.ec-stock { color: var(--ec-sale-ink); font-size: 12.5px; font-weight: 700; text-align: center; letter-spacing: 0.02em; }
+.ec-pdp__acc summary { font-size: 15.5px; font-weight: 600; }
+.ec-stock { color: var(--ec-sale-ink); font-size: 12.5px; font-weight: 600; text-align: center; }
 .ec-stock .ec-bar { display: none; }
 
-/* Optional pieces (not used on the Well layout): zone tabs, gallery stickers, giant moving words */
+/* Optional pieces kept for other layouts: zone tabs and giant moving words */
 .ec-zt { margin-top: 16px; }
 .ec-zt__r { position: absolute; opacity: 0; pointer-events: none; }
 .ec-zt__tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 8px; }
-.ec-zt__tabs label { display: flex; align-items: center; justify-content: center; min-height: 56px; padding: 8px 6px; border: 1.5px solid var(--ec-sale-ink); border-radius: 14px; background: #fff; color: var(--ec-dark); font-size: 13.5px; font-weight: 700; line-height: 1.15; text-align: center; cursor: pointer; }
+.ec-zt__tabs label { display: flex; align-items: center; justify-content: center; min-height: 56px; padding: 8px 6px; border: 1.5px solid var(--ec-dark); border-radius: 14px; background: #fff; color: var(--ec-dark); font-size: 13.5px; font-weight: 600; line-height: 1.15; text-align: center; cursor: pointer; }
 .ec-zt__panels { margin-top: 12px; }
 .ec-zt__p { display: none; padding: 18px; border: 1.5px solid var(--ec-line); border-radius: 20px; background: #fff; }
 .ec-zt__tip { margin: 6px 0 0; color: var(--ec-ink); font-size: 16px; font-weight: 500; line-height: 1.45; }
 .ec-zt__r:nth-of-type(1):checked ~ .ec-zt__main .ec-zt__tabs label:nth-child(1), .ec-zt__r:nth-of-type(2):checked ~ .ec-zt__main .ec-zt__tabs label:nth-child(2),
-.ec-zt__r:nth-of-type(3):checked ~ .ec-zt__main .ec-zt__tabs label:nth-child(3), .ec-zt__r:nth-of-type(4):checked ~ .ec-zt__main .ec-zt__tabs label:nth-child(4) { background: var(--ec-primary); color: #fff; }
-.ec-zt__r:nth-of-type(1):checked ~ .ec-zt__main .ec-zt__z1, .ec-zt__r:nth-of-type(2):checked ~ .ec-zt__main .ec-zt__z2, .ec-zt__r:nth-of-type(3):checked ~ .ec-zt__main .ec-zt__z3 { fill: var(--ec-tag); }
+.ec-zt__r:nth-of-type(3):checked ~ .ec-zt__main .ec-zt__tabs label:nth-child(3), .ec-zt__r:nth-of-type(4):checked ~ .ec-zt__main .ec-zt__tabs label:nth-child(4) { background: var(--ec-dark); color: #fff; }
+.ec-zt__r:nth-of-type(1):checked ~ .ec-zt__main .ec-zt__z1, .ec-zt__r:nth-of-type(2):checked ~ .ec-zt__main .ec-zt__z2, .ec-zt__r:nth-of-type(3):checked ~ .ec-zt__main .ec-zt__z3 { fill: var(--ec-accent); }
 .ec-zt__r:nth-of-type(1):checked ~ .ec-zt__panels .ec-zt__p:nth-child(1), .ec-zt__r:nth-of-type(2):checked ~ .ec-zt__panels .ec-zt__p:nth-child(2),
 .ec-zt__r:nth-of-type(3):checked ~ .ec-zt__panels .ec-zt__p:nth-child(3), .ec-zt__r:nth-of-type(4):checked ~ .ec-zt__panels .ec-zt__p:nth-child(4) { display: block; }
 .ec-zt--face .ec-zt__main { display: flex; gap: 14px; align-items: center; }
@@ -107,54 +143,7 @@ body { font-family: 'Hanken Grotesk', var(--font-body-family), system-ui, sans-s
 .ec-zt__head { fill: #fff; stroke: var(--ec-dark); stroke-width: 2.5; }
 .ec-zt__line { stroke: var(--ec-dark); stroke-width: 2.2; stroke-linecap: round; fill: none; }
 .ec-zt__z { fill: transparent; stroke: var(--ec-dark); stroke-width: 2; transition: fill 0.15s ease; }
-.ec-gal__main { position: relative; }
-.ec-sticker { position: absolute; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px solid var(--ec-dark); color: var(--ec-dark); text-align: center; pointer-events: none; }
-.ec-sticker b { font-family: var(--font-heading-family); font-size: 26px; font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; }
-.ec-sticker small { margin-top: 2px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.1; }
-.ec-sticker--a { left: 14px; top: 14px; width: 92px; height: 92px; border-radius: 50%; background: var(--ec-tag); transform: rotate(-9deg); }
-.ec-sticker--b { right: 14px; bottom: 54px; min-width: 96px; padding: 10px 14px; border-radius: 16px; background: #fff; transform: rotate(7deg); }
-.ec-mq--giant { background: var(--ec-accent); color: #fff; }
-.ec-mq--giant .ec-mq__list { gap: 34px; padding: 14px 0 12px 34px; font-family: var(--font-heading-family); font-size: clamp(44px, 13vw, 76px); font-weight: 800; letter-spacing: -0.04em; line-height: 1; text-transform: uppercase; white-space: nowrap; }
+.ec-mq--giant { background: var(--ec-accent); color: var(--ec-dark); }
+.ec-mq--giant .ec-mq__list { gap: 34px; padding: 14px 0 12px 34px; font-family: var(--font-heading-family); font-size: clamp(44px, 13vw, 76px); font-weight: 700; letter-spacing: -0.04em; line-height: 1; text-transform: uppercase; white-space: nowrap; }
 .ec-mq--giant .ec-mq__list li { display: flex; align-items: center; gap: 34px; }
 .ec-mq--giant .ec-i { display: none; }
-
-/* ---- Well layout pieces ---- */
-/* Offer ribbon */
-.ec-ribbon-sec { padding: 0; }
-.ec-ribbon { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 14px; padding: 13px 18px; background: #C23B73; color: #fff; }
-.ec-ribbon__txt { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; }
-.ec-ribbon__tag { padding: 4px 10px; border-radius: 6px; background: var(--ec-tag); color: var(--ec-tag-ink); font-size: 11px; font-weight: 800; letter-spacing: 0.06em; }
-.ec-ribbon__line { font-size: 12.5px; font-weight: 700; letter-spacing: 0.08em; }
-/* Light benefit strip with dashes */
-.ec-mq--strip { background: #F6F0F0; color: var(--ec-dark); }
-.ec-mq--strip .ec-mq__list { gap: 30px; padding: 11px 18px; font-size: 13.5px; font-weight: 700; white-space: nowrap; }
-.ec-mq--strip .ec-mq__list li { display: flex; align-items: center; gap: 6px; }
-.ec-mq--strip .ec-mq__list li::before { content: "–"; }
-.ec-mq--strip .ec-i { display: none; }
-/* Benefits: two-column grid like the reference */
-.ec-pdp .ec-checks { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 12px; }
-.ec-pdp .ec-checks li { align-items: center; font-size: 14px; line-height: 1.3; }
-/* Photo cards */
-.ec-pc__h { text-align: center; }
-.ec-pc__bar { display: block; width: 84px; height: 7px; margin: 12px auto 20px; border-radius: 5px; background: #F0B6CA; }
-.ec-pc__sub { margin: -8px 0 18px; text-align: center; color: var(--ec-muted); font-size: 15px; }
-.ec-pc { display: grid; gap: 14px; max-width: 560px; margin: 0 auto; }
-.ec-pc__card { margin: 0; overflow: hidden; border-radius: 24px; background: #fff; box-shadow: 0 16px 34px -28px var(--ec-dark); }
-.ec-pc__card img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
-.ec-pc__card figcaption { display: grid; gap: 5px; padding: 16px 18px 18px; text-align: left; }
-.ec-pc__card figcaption b { color: var(--ec-dark); font-size: 17px; }
-.ec-pc__card figcaption span { color: var(--ec-muted); font-size: 14px; line-height: 1.5; }
-@media (min-width: 750px) { .ec-pc { max-width: 980px; grid-template-columns: repeat(3, 1fr); } }
-/* How-to steps with big photos */
-.ec-steps--photos { display: grid; gap: 22px; max-width: 520px; margin: 0 auto; }
-.ec-steps--photos figure { margin: 0; text-align: center; }
-.ec-steps--photos img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 24px; }
-.ec-steps--photos figcaption { display: grid; gap: 3px; margin-top: 12px; }
-.ec-steps--photos figcaption .ec-num { display: none; }
-.ec-steps--photos figcaption b { font-size: 18px; color: var(--ec-dark); }
-.ec-steps--photos figcaption span { color: var(--ec-muted); font-size: 14.5px; }
-.ec-steps__cta { margin: 24px 0 0; text-align: center; }
-@media (min-width: 750px) { .ec-steps--photos { max-width: 980px; grid-template-columns: repeat(3, 1fr); } }
-/* Ideal for / comparison / UGC */
-.ec-ideal__card { border: 1.5px solid var(--ec-line); border-radius: 18px; background: #fff; }
-.ec-cmp { border-radius: 16px; overflow: hidden; }
