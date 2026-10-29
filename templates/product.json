@@ -256,13 +256,14 @@
       "type": "ecoms-before-after",
       "disabled": true,
       "settings": {
-        "heading": "Antes y después",
-        "text": "Fotos reales de clientas, con su permiso.",
+        "heading": "Resultados visibles",
+        "text": "Resultados con uso constante del bálsamo.",
         "before_caption": "Antes",
-        "after_caption": "4 semanas",
+        "after_caption": "Después",
         "width": "full",
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "style": "slider"
       }
     },
     "ingredients": {
@@ -498,13 +499,13 @@
     "top",
     "main",
     "demo",
+    "before_after",
     "story",
     "star",
     "reasons",
     "ingredients",
     "timeline",
     "routine",
-    "before_after",
     "assure",
     "bubble",
     "reviews",

@@ -1800,3 +1800,14 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 
 /* Opening the pay-on-delivery form straight from the page: the cart drawer works in the background, unseen */
 .ec-silent-cart cart-drawer, .ec-silent-cart .cart-drawer, .ec-silent-cart #CartDrawer { opacity: 0 !important; pointer-events: none !important; transition: none !important; }
+
+/* Antes y después deslizable */
+.ec-cmpr { position: relative; max-width: 560px; aspect-ratio: 1 / 1; margin: 18px auto 0; overflow: hidden; border-radius: 18px; background: var(--ec-soft); user-select: none; touch-action: pan-y; }
+.ec-cmpr__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ec-cmpr__before { position: absolute; inset: 0; clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+.ec-cmpr__tag { position: absolute; top: 14px; z-index: 2; padding: 6px 16px; border-radius: 999px; background: #fff; color: var(--ec-primary); font-size: 13px; font-weight: 700; }
+.ec-cmpr__tag--l { left: 14px; }
+.ec-cmpr__tag--r { right: 14px; }
+.ec-cmpr__line { position: absolute; top: 0; bottom: 0; left: var(--pos); z-index: 2; width: 3px; margin-left: -1.5px; background: #fff; pointer-events: none; }
+.ec-cmpr__knob { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: #fff; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22); color: var(--ec-primary); font-size: 15px; font-weight: 800; transform: translate(-50%, -50%); white-space: nowrap; }
+.ec-cmpr__range { position: absolute; inset: 0; z-index: 3; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }

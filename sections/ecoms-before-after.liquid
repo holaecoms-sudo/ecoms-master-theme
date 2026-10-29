@@ -1,8 +1,40 @@
-{%- comment -%} ECOMS · Before / after with real photos of the product's effect. {%- endcomment -%}
+{%- comment -%}
+  ECOMS · Before / after with real photos. «slider» = one photo with a draggable divider (before left, after right);
+  «side» = two photos side by side. Hidden on the storefront until both photos exist.
+{%- endcomment -%}
+{%- assign ba_ready = false -%}
+{%- if section.settings.before != blank and section.settings.after != blank -%}{%- assign ba_ready = true -%}{%- endif -%}
+{%- if ba_ready or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-ba-sec' %}>
   <div class="ec-w">
-    {%- if section.settings.heading != blank -%}<h2 class="ec-h3">{{ section.settings.heading | escape }}</h2>{%- endif -%}
+    {%- if section.settings.heading != blank -%}<h2 class="ec-h3 ec-h3--center">{{ section.settings.heading | escape }}</h2>{%- endif -%}
     {%- if section.settings.text != blank -%}<p class="ec-sub">{{ section.settings.text | escape }}</p>{%- endif -%}
+    {%- if section.settings.style != 'side' -%}
+      <div class="ec-cmpr" style="--pos: 50%" data-ec-cmpr>
+        {%- if section.settings.after != blank -%}
+          {{ section.settings.after | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '400,600,900,1200', sizes: '(min-width: 990px) 560px, 100vw', class: 'ec-cmpr__img', alt: section.settings.after_caption }}
+        {%- else -%}{{ 'image' | placeholder_svg_tag: 'ec-placeholder' }}{%- endif -%}
+        <div class="ec-cmpr__before">
+          {%- if section.settings.before != blank -%}
+            {{ section.settings.before | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '400,600,900,1200', sizes: '(min-width: 990px) 560px, 100vw', class: 'ec-cmpr__img', alt: section.settings.before_caption }}
+          {%- else -%}{{ 'image' | placeholder_svg_tag: 'ec-placeholder' }}{%- endif -%}
+        </div>
+        <span class="ec-cmpr__tag ec-cmpr__tag--l">{{ section.settings.before_caption | escape }}</span>
+        <span class="ec-cmpr__tag ec-cmpr__tag--r">{{ section.settings.after_caption | escape }}</span>
+        <span class="ec-cmpr__line" aria-hidden="true"><span class="ec-cmpr__knob">&lsaquo; &rsaquo;</span></span>
+        <input class="ec-cmpr__range" type="range" min="0" max="100" value="50" aria-label="Comparar antes y después" data-ec-cmpr-range>
+      </div>
+      <script>
+        (function () {
+          if (window.__ecCmpr) return;
+          window.__ecCmpr = true;
+          document.addEventListener('input', function (e) {
+            var r = e.target;
+            if (r && r.hasAttribute && r.hasAttribute('data-ec-cmpr-range')) r.parentNode.style.setProperty('--pos', r.value + '%');
+          });
+        })();
+      </script>
+    {%- else -%}
     <div class="ec-ba">
       <figure>
         {%- if section.settings.before != blank -%}
@@ -22,13 +54,31 @@
         <figcaption><b>{{ section.settings.after_caption | escape }}</b></figcaption>
       </figure>
     </div>
+    {%- endif -%}
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {
   "name": "ECOMS · Antes y después",
   "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Estilo",
+      "options": [
+        {
+          "value": "slider",
+          "label": "Deslizable: una foto con divisor"
+        },
+        {
+          "value": "side",
+          "label": "Dos fotos lado a lado"
+        }
+      ],
+      "default": "slider"
+    },
     {
       "type": "text",
       "id": "heading",
