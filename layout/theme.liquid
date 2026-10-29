@@ -290,7 +290,8 @@
       {%- comment -%} The cart drawer starts closed: its styles load without blocking the first paint, and this
       rule keeps it hidden until they arrive. {%- endcomment -%}
       <style>cart-drawer.drawer{position:fixed;top:0;left:0;width:100vw;height:100%;z-index:1000;visibility:hidden}cart-drawer.drawer.active{visibility:visible}</style>
-      {%- for css in 'component-cart-drawer.css,component-cart.css,component-totals.css,component-price.css,component-discounts.css' | split: ',' -%}
+      {%- assign ec_cart_css = 'component-cart-drawer.css,component-cart.css,component-totals.css,component-price.css,component-discounts.css' | split: ',' -%}
+      {%- for css in ec_cart_css -%}
         <link rel="stylesheet" href="{{ css | asset_url }}" media="print" onload="this.media='all'">
         <noscript>{{ css | asset_url | stylesheet_tag }}</noscript>
       {%- endfor -%}
