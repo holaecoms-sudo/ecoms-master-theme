@@ -10,3 +10,8 @@
 .ec-imgtxt__btn { background: var(--ec-primary); }
 .ec-cmp thead th, .ec-cmp thead th.us { background: var(--ec-primary); }
 .ec-cmp .n { color: #B7A3A9; }
+
+/* Cifras: franja blush en vez del gris del tema base */
+.ec-stats { background: var(--ec-soft); }
+/* Pasos: con 3 tarjetas ocupan todo el ancho en vez de media fila */
+@media (min-width: 750px) { .ec-steps--cards:has(figure:nth-child(3):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)); } }

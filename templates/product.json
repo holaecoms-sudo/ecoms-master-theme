@@ -87,6 +87,12 @@
             "min_days": 3,
             "max_days": 6
           }
+        },
+        "pay": {
+          "type": "payments",
+          "settings": {
+            "text": "Pago seguro y cifrado"
+          }
         }
       },
       "block_order": [
@@ -98,6 +104,7 @@
         "benefits",
         "pk",
         "buy",
+        "pay",
         "dlv",
         "acc"
       ],
@@ -234,14 +241,34 @@
         "image_side": "right",
         "image_full": false,
         "product_image_index": 2,
-        "heading": "Un paso simple que tu piel agradece",
-        "intro": "Se aplica en segundos, se absorbe rápido y se suma a tu rutina de mañana y noche sin complicarte.",
+        "heading": "Hidratación en un solo gesto",
+        "intro": "Una barra que se desliza como seda sobre el rostro, el contorno de ojos y el cuello, y deja la piel suave y fresca, sin sensación pegajosa.",
         "button_label": "",
         "button_link": "",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
-      }
+      },
+      "blocks": {
+        "p1": {
+          "type": "point",
+          "settings": {
+            "title": "Higiénica y portátil",
+            "text": "10 g, sin ensuciarte las manos"
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "title": "Para todo tipo de piel",
+            "text": "Rostro, contorno de ojos y cuello"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2"
+      ]
     },
     "timeline": {
       "type": "ecoms-stats",
@@ -282,29 +309,13 @@
         "metafield": "ecoms.ingredients"
       }
     },
-    "comparison": {
-      "type": "ecoms-comparison",
-      "settings": {
-        "metafield": "ecoms.compare_rows",
-        "style": "table",
-        "heading": "¿Por qué esta y no una crema común?",
-        "feature_label": "",
-        "col_1": "Esta fórmula",
-        "show_image": true,
-        "col_2": "Crema común",
-        "col_3": "",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "routine": {
       "type": "ecoms-steps",
       "blocks": {},
       "block_order": [],
       "settings": {
         "style": "cards",
-        "heading": "Cómo usarlo",
+        "heading": "Tu rutina de 10 segundos",
         "text": "",
         "width": "full",
         "padding_top": 36,
@@ -395,7 +406,7 @@
       "settings": {
         "style": "soft",
         "eyebrow": "",
-        "heading": "Tu piel, mejor cuidada desde esta noche",
+        "heading": "Hidratación que cabe en tu bolso",
         "text": "Pídelo hoy y pagas cuando llegue a tu casa.",
         "image_plain": false,
         "show_price": true,
@@ -420,19 +431,75 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "star": {
+      "type": "ecoms-image-text",
+      "blocks": {
+        "p1": {
+          "type": "point",
+          "settings": {
+            "title": "5 % de Volufiline",
+            "text": "Indicado en el envase"
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "title": "Colágeno",
+            "text": "Para una piel más hidratada y de aspecto firme"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2"
+      ],
+      "settings": {
+        "image_side": "left",
+        "image_full": false,
+        "product_image_index": 1,
+        "heading": "Volufiline + colágeno",
+        "intro": "Una fórmula con 5 % de Volufiline y colágeno, pensada para hidratar y dar a tu piel un aspecto más lleno y firme. Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
+        "button_label": "",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "assure": {
+      "type": "ecoms-cta-band",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "style": "dark",
+        "eyebrow": "Compra tranquila",
+        "heading": "Pagas cuando lo recibes",
+        "text": "Pides hoy y pagas al recibir en tu casa, en todo Chile, con seguimiento de tu pedido.",
+        "image_plain": false,
+        "show_price": false,
+        "button_label": "Pedir y pagar al recibir",
+        "trust_1": "Pagas al recibir",
+        "trust_2": "Envíos a todo Chile",
+        "trust_3": "10 días de retracto",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
     "main",
     "band",
     "story",
-    "ingredients",
+    "star",
     "reasons",
+    "ingredients",
     "timeline",
-    "before_after",
     "routine",
+    "before_after",
+    "assure",
     "demo",
-    "comparison",
     "bubble",
     "reviews",
     "faq",
