@@ -70,11 +70,18 @@
         "pk": {
           "type": "packs",
           "settings": {
-            "heading": "Elige tu pack",
+            "heading": "Compra más, ahorra más",
             "layout": "rows",
             "tier2_tag": "",
-            "tier3_tag": "",
-            "item_name": "frascos"
+            "tier3_tag": "Máximo ahorro",
+            "item_name": "frascos",
+            "from_metafield": true,
+            "discounts_live": true,
+            "default_tier": "2",
+            "tier1_label": "1 barra",
+            "tier2_label": "Pack 2 barras",
+            "tier3_label": "Pack 3 barras",
+            "show_summary": false
           }
         },
         "dlv": {
