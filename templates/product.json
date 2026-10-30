@@ -126,18 +126,22 @@
         "ul": {
           "type": "unlock",
           "settings": {
-            "heading": "Regalos que se desbloquean con tu pack",
-            "c1_label": "Ebook: rutina de 10 segundos",
-            "c1_icon": "gift",
+            "heading": "Desbloquea beneficios con tu pack",
+            "c1_label": "Envío gratis",
+            "c1_icon": "truck",
             "c1_qty": 2,
             "c1_locked": "Lleva 2 y es tuyo",
-            "c1_open": "¡Es tuyo gratis!",
-            "c2_label": "Calendario Glow 30 días",
-            "c2_icon": "sparkle",
-            "c2_qty": 3,
-            "c2_locked": "Lleva 3 y es tuyo",
+            "c1_open": "¡Desbloqueado!",
+            "c2_label": "Ebook: rutina de 10 segundos",
+            "c2_icon": "gift",
+            "c2_qty": 2,
+            "c2_locked": "Lleva 2 y es tuyo",
             "c2_open": "¡Es tuyo gratis!",
-            "c3_label": ""
+            "c3_label": "Calendario Glow 30 días",
+            "c3_icon": "sparkle",
+            "c3_qty": 3,
+            "c3_locked": "Lleva 3 y es tuyo",
+            "c3_open": "¡Es tuyo gratis!"
           }
         }
       },
