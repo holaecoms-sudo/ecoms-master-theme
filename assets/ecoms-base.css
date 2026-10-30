@@ -1832,3 +1832,6 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 .ec-sticky:not(.is-on) { visibility: hidden; opacity: 0; pointer-events: none; }
 .ec-sticky { transition: transform 0.25s ease, opacity 0.2s ease, visibility 0s linear 0.25s; }
 .ec-sticky.is-on { transition: transform 0.25s ease, opacity 0.2s ease; }
+
+/* Pack discount badge: never wrap «-25 %» onto two lines when the pack name is long */
+.ec-pack__pct, .ec-pack__save { flex: none; white-space: nowrap; }
