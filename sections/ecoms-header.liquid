@@ -81,17 +81,20 @@
     {%- if section.settings.social_text != blank -%}
       <div class="ec-hdr__social">{% render 'ecoms-icon', name: 'star' %}{{ section.settings.social_text | escape }}</div>
     {%- endif -%}
-    <div class="ec-hdr__icons">
+    {%- capture hdr_icons -%}
       {%- if section.settings.show_search -%}
         <a href="{{ routes.search_url }}" class="ec-icon-btn" aria-label="Buscar">{% render 'ecoms-icon', name: 'search' %}</a>
       {%- endif -%}
       {%- if section.settings.show_account and shop.customer_accounts_enabled -%}
         <a href="{{ routes.account_url }}" class="ec-icon-btn" aria-label="Mi cuenta">{% render 'ecoms-icon', name: 'user' %}</a>
       {%- endif -%}
-      <a href="{{ routes.cart_url }}" class="ec-icon-btn ec-hdr__cart" id="cart-icon-bubble">
-        {%- render 'ecoms-cart-icon' -%}
-      </a>
-    </div>
+      {%- if section.settings.show_cart != false -%}
+        <a href="{{ routes.cart_url }}" class="ec-icon-btn ec-hdr__cart" id="cart-icon-bubble">
+          {%- render 'ecoms-cart-icon' -%}
+        </a>
+      {%- endif -%}
+    {%- endcapture -%}
+    {%- if hdr_icons contains '<a' -%}<div class="ec-hdr__icons">{{ hdr_icons }}</div>{%- endif -%}
   </div>
 </header>
 
@@ -138,6 +141,13 @@
       "id": "show_search",
       "label": "Mostrar buscador",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart",
+      "label": "Mostrar carrito",
+      "default": true,
+      "info": "Apágalo en tiendas de pago al recibir, donde la compra no pasa por el carrito."
     },
     {
       "type": "checkbox",

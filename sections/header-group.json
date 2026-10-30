@@ -79,9 +79,10 @@
         "menu_visibility": "not_product",
         "show_search": false,
         "show_account": false,
+        "show_cart": false,
         "logo_icon": "bag",
         "logo_link": "not_product",
-        "logo_height": 32,
+        "logo_height": 30,
         "social_text": ""
       }
     }

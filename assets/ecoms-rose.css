@@ -189,3 +189,13 @@ body { font-family: 'Instrument Sans', var(--font-body-family), system-ui, sans-
 .ec-steps--cards { grid-template-columns: 1fr; }
 @media (min-width: 750px) { .ec-steps--cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .ec-pack__tag { text-transform: uppercase; font-size: 10.5px; padding: 3px 11px; }
+
+/* Header: logo centered, no clutter */
+.ec-hdr { border-bottom: 1px solid var(--ec-line); }
+.ec-hdr__bar { justify-content: center; min-height: 58px; }
+.ec-hdr .ec-logo img { max-height: 30px; width: auto; }
+/* Gallery: square photos that fill the frame (no side margins) */
+.ec-gal__slide img, .ec-gal__slide video { object-fit: cover; }
+/* Live stock line under the button */
+.ec-stock { position: relative; margin: 12px 0 0; padding-left: 0; }
+.ec-stock::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 7px; border-radius: 50%; background: var(--ec-sale-ink); vertical-align: 1px; }

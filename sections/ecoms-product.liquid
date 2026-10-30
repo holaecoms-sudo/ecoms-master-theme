@@ -376,30 +376,55 @@
             {%- endif -%}
 
           {%- when 'accordion' -%}
-            {%- comment -%} Collapsible rows under the buy box: description, key ingredients (ecoms.ingredients) and how to use (ecoms.steps). Empty rows are skipped. {%- endcomment -%}
-            {%- assign acc_ing = product.metafields.ecoms.ingredients.value -%}
-            {%- assign acc_steps = product.metafields.ecoms.steps.value -%}
+            {%- comment -%}
+              Collapsible rows under the buy box, each filled from the product: Beneficios (ecoms.benefits), Cómo utilizar (ecoms.steps),
+              Ingredientes (ecoms.ingredients + ecoms.inci), Tecnología (ecoms.technology), ¿Por qué este precio? (ecoms.price_reason).
+              Rows without content are skipped; with none at all it falls back to the product description.
+            {%- endcomment -%}
+            {%- assign ac_ben = product.metafields.ecoms.benefits.value -%}
+            {%- assign ac_steps = product.metafields.ecoms.steps.value -%}
+            {%- assign ac_ing = product.metafields.ecoms.ingredients.value -%}
+            {%- assign ac_inci = product.metafields.ecoms.inci.value -%}
+            {%- assign ac_tech = product.metafields.ecoms.technology.value -%}
+            {%- assign ac_price = product.metafields.ecoms.price_reason.value -%}
             <div class="ec-faq ec-pdp__acc" {{ block.shopify_attributes }}>
-              {%- if product.description != blank -%}
+              {%- if ac_ben != blank -%}
                 <details{% if block.settings.open_first %} open{% endif %}>
-                  <summary><span class="ec-acc__l">{% render 'ecoms-icon', name: 'heart' %}{{ block.settings.label_1 | default: 'Descripción' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
+                  <summary><span class="ec-acc__l"><svg class="ec-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>{{ block.settings.label_1 | default: 'Beneficios' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
+                  <div class="ec-faq__a rte"><ul>{%- for it in ac_ben -%}<li>{{ it | escape }}</li>{%- endfor -%}</ul></div>
+                </details>
+              {%- endif -%}
+              {%- if ac_steps != blank -%}
+                <details>
+                  <summary><span class="ec-acc__l"><svg class="ec-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 3h6"/></svg>{{ block.settings.label_2 | default: 'Cómo utilizar' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
+                  <div class="ec-faq__a rte"><ol>{%- for it in ac_steps -%}<li><strong>{{ it.title.value | escape }}.</strong> {{ it.text.value | escape }}</li>{%- endfor -%}</ol></div>
+                </details>
+              {%- endif -%}
+              {%- if ac_ing != blank or ac_inci != blank -%}
+                <details>
+                  <summary><span class="ec-acc__l"><svg class="ec-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg>{{ block.settings.label_3 | default: 'Ingredientes' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
+                  <div class="ec-faq__a rte">
+                    {%- if ac_ing != blank -%}<ul>{%- for it in ac_ing -%}<li><strong>{{ it.title.value | escape }}:</strong> {{ it.text.value | escape }}</li>{%- endfor -%}</ul>{%- endif -%}
+                    {%- if ac_inci != blank -%}<p><small>{{ ac_inci | escape }}</small></p>{%- endif -%}
+                  </div>
+                </details>
+              {%- endif -%}
+              {%- if ac_tech != blank -%}
+                <details>
+                  <summary><span class="ec-acc__l"><svg class="ec-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/></svg>{{ block.settings.label_4 | default: 'Tecnología' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
+                  <div class="ec-faq__a rte"><p>{{ ac_tech | escape | newline_to_br }}</p></div>
+                </details>
+              {%- endif -%}
+              {%- if ac_price != blank -%}
+                <details>
+                  <summary><span class="ec-acc__l"><svg class="ec-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v18M16 7H10a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6H8"/></svg>{{ block.settings.label_5 | default: '¿Por qué este precio?' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
+                  <div class="ec-faq__a rte"><p>{{ ac_price | escape | newline_to_br }}</p></div>
+                </details>
+              {%- endif -%}
+              {%- if ac_ben == blank and ac_steps == blank and ac_ing == blank and ac_tech == blank and ac_price == blank and product.description != blank -%}
+                <details open>
+                  <summary><span class="ec-acc__l">{{ block.settings.label_1 | default: 'Descripción' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
                   <div class="ec-faq__a rte">{{ product.description }}</div>
-                </details>
-              {%- endif -%}
-              {%- if acc_ing != blank -%}
-                <details>
-                  <summary><span class="ec-acc__l">{% render 'ecoms-icon', name: 'leaf' %}{{ block.settings.label_2 | default: 'Ingredientes clave' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
-                  <div class="ec-faq__a rte"><ul>
-                    {%- for it in acc_ing -%}<li><strong>{{ it.title.value | escape }}:</strong> {{ it.text.value | escape }}</li>{%- endfor -%}
-                  </ul></div>
-                </details>
-              {%- endif -%}
-              {%- if acc_steps != blank -%}
-                <details>
-                  <summary><span class="ec-acc__l">{% render 'ecoms-icon', name: 'clock' %}{{ block.settings.label_3 | default: 'Modo de uso' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
-                  <div class="ec-faq__a rte"><ol>
-                    {%- for it in acc_steps -%}<li><strong>{{ it.title.value | escape }}.</strong> {{ it.text.value | escape }}</li>{%- endfor -%}
-                  </ol></div>
                 </details>
               {%- endif -%}
             </div>
@@ -4964,10 +4989,10 @@
           "type": "range",
           "id": "max_show",
           "label": "Mostrar cuando queden como máximo",
-          "min": 1,
-          "max": 50,
-          "step": 1,
-          "default": 15
+          "min": 5,
+          "max": 500,
+          "step": 5,
+          "default": 300
         },
         {
           "type": "text",
@@ -5112,19 +5137,31 @@
           "type": "text",
           "id": "label_1",
           "label": "Título 1",
-          "default": "Descripción"
+          "default": "Beneficios"
         },
         {
           "type": "text",
           "id": "label_2",
           "label": "Título 2",
-          "default": "Ingredientes clave"
+          "default": "Cómo utilizar"
         },
         {
           "type": "text",
           "id": "label_3",
           "label": "Título 3",
-          "default": "Modo de uso"
+          "default": "Ingredientes"
+        },
+        {
+          "type": "text",
+          "id": "label_4",
+          "label": "Título 4",
+          "default": "Tecnología"
+        },
+        {
+          "type": "text",
+          "id": "label_5",
+          "label": "Título 5",
+          "default": "¿Por qué este precio?"
         },
         {
           "type": "checkbox",
