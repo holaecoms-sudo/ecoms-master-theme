@@ -289,6 +289,18 @@
         "padding_bottom": 0
       }
     },
+    "demo": {
+      "type": "ecoms-demo",
+      "settings": {
+        "heading": "Clientas reales | Míralo en *acción.*",
+        "text": "",
+        "mode": "player",
+        "ratio": "story",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 12
+      }
+    },
     "benefits": {
       "type": "ecoms-feature-grid",
       "blocks": {
@@ -338,18 +350,6 @@
         "width": "full",
         "padding_top": 44,
         "padding_bottom": 20
-      }
-    },
-    "demo": {
-      "type": "ecoms-demo",
-      "settings": {
-        "heading": "Clientas reales | Míralo en *acción.*",
-        "text": "",
-        "mode": "player",
-        "ratio": "portrait",
-        "width": "full",
-        "padding_top": 44,
-        "padding_bottom": 12
       }
     },
     "daily": {
@@ -678,8 +678,8 @@
     "ribbon",
     "main",
     "top",
-    "benefits",
     "demo",
+    "benefits",
     "daily",
     "routine",
     "howto_img",
