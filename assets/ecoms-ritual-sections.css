@@ -58,16 +58,15 @@
 
 /* Zone photos: white cards with a wide photo, a problem title and a short description */
 .ec-fz__intro { margin: 0 0 18px; color: var(--ec-muted); font-size: 15.5px; line-height: 1.5; max-width: 620px; }
-.ec-fz { display: flex; gap: 14px; overflow-x: auto; padding: 4px 16px 22px; scroll-snap-type: x proximity; scrollbar-width: none; }
-.ec-fz::-webkit-scrollbar { display: none; }
-.ec-fz__card { flex: none; width: 78vw; max-width: 320px; overflow: hidden; border-radius: 22px; background: #fff; box-shadow: 0 16px 32px -20px rgba(30, 27, 36, 0.28); scroll-snap-align: start; }
-.ec-fz__ph { aspect-ratio: 16 / 10; background: var(--ec-soft); }
+.ec-fz { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 4px 16px 20px; }
+.ec-fz__card { overflow: hidden; border-radius: 20px; background: #fff; box-shadow: 0 16px 32px -20px rgba(30, 27, 36, 0.28); }
+.ec-fz__ph { aspect-ratio: 4 / 3; background: var(--ec-soft); }
 .ec-fz__ph img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.ec-fz__body { display: grid; gap: 6px; padding: 16px 18px 20px; }
-.ec-fz__name { font-family: var(--font-heading-family); font-size: 20px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; color: var(--ec-dark); }
+.ec-fz__body { display: grid; gap: 5px; padding: 12px 13px 16px; }
+.ec-fz__name { font-family: var(--font-heading-family); font-size: 16px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; color: var(--ec-dark); }
 .ec-fz__chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .ec-fz__chips span { padding: 4px 10px; border-radius: 99px; background: var(--ec-accent); color: var(--ec-accent-ink); font-size: 12px; font-weight: 700; }
-.ec-fz__t { margin: 0; color: var(--ec-muted); font-size: 14px; line-height: 1.5; }
+.ec-fz__t { margin: 0; color: var(--ec-muted); font-size: 13px; line-height: 1.45; }
 .ec-fz__note { margin: 4px 0 0; color: var(--ec-muted); font-size: 11.5px; }
 .ec-fz__cta { margin-top: 14px; border-radius: 99px; }
-@media (min-width: 990px) { .ec-fz { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; overflow: visible; padding: 4px max(32px, calc((100vw - 1200px) / 2 + 32px)) 28px; } .ec-fz__card { width: auto; max-width: none; } }
+@media (min-width: 750px) { .ec-fz { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; padding: 4px max(32px, calc((100vw - 1200px) / 2 + 32px)) 28px; } .ec-fz__ph { aspect-ratio: 16 / 10; } .ec-fz__body { padding: 16px 18px 20px; gap: 6px; } .ec-fz__name { font-size: 20px; } .ec-fz__t { font-size: 14px; line-height: 1.5; } }
