@@ -315,7 +315,8 @@
           "settings": {
             "label": "El contorno de ojos se ve apagado",
             "concerns": "",
-            "text": "La piel es delicada y la falta de hidratación se nota. La barra se desliza suave, sin tirar, y ayuda a que se vea más hidratada."
+            "image": "shopify://shop_images/Frame_85_2.webp",
+            "text": "La piel es delicada y la falta de hidratación se nota."
           }
         },
         "z2": {
@@ -323,7 +324,8 @@
           "settings": {
             "label": "Las mejillas pierden aspecto lleno",
             "concerns": "",
-            "text": "Con 5% de Volufiline y colágeno, para dar a la piel un aspecto más lleno y firme, con una textura sedosa."
+            "image": "shopify://shop_images/Frame_85.webp",
+            "text": "Para dar a la piel un aspecto más lleno y firme."
           }
         },
         "z3": {
@@ -331,7 +333,8 @@
           "settings": {
             "label": "Las líneas se notan más donde hay sequedad",
             "concerns": "",
-            "text": "Hidrata y ayuda a que las líneas secas de la frente y la expresión se vean menos marcadas."
+            "image": "shopify://shop_images/Screenshot_2026-10-30_at_11.26.12_AM.png",
+            "text": "Ayuda a que las líneas secas se vean menos marcadas."
           }
         },
         "z4": {
@@ -339,7 +342,8 @@
           "settings": {
             "label": "El cuello también se resiente",
             "concerns": "",
-            "text": "Con la misma barra cuidas rostro, ojos y cuello en un solo gesto de 10 segundos."
+            "image": "shopify://shop_images/Screenshot_2026-10-30_at_11.25.41_AM.png",
+            "text": "Con la misma barra cuidas rostro, ojos y cuello en un solo gesto."
           }
         }
       },
@@ -405,6 +409,7 @@
       "settings": {
         "metafield": "",
         "heading": "Beneficios | Lo que hace por *tu piel.*",
+        "button_label": "",
         "style": "cards",
         "width": "full",
         "padding_top": 44,
@@ -517,11 +522,11 @@
       "settings": {
         "metafield": "ecoms.ingredients",
         "heading": "Fórmula | Qué *contiene.*",
+        "button_label": "Ver lista completa de ingredientes",
         "style": "band",
         "width": "full",
         "padding_top": 44,
-        "padding_bottom": 40,
-        "button_label": "Ver lista completa de ingredientes"
+        "padding_bottom": 40
       }
     },
     "compare": {
