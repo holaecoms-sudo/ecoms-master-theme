@@ -293,6 +293,7 @@
     },
     "pain": {
       "type": "ecoms-pain-gain",
+      "disabled": true,
       "settings": {
         "heading": "Te pasa que… | Cuando la piel se siente *tirante,* se nota.",
         "intro": "Hidratar la piel no debería ser una tarea más. Si algo de esto te suena, esta barra está hecha para ti.",
