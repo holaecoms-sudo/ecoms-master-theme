@@ -1,16 +1,14 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "ribbon": {
-      "type": "ecoms-ribbon",
-      "settings": {
-        "tag": "PACKS",
-        "text": "Ahorra hasta 33% · Envío gratis",
-        "end_at": "",
-        "heading": "Termina en:",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
     "main": {
       "type": "ecoms-product",
       "blocks": {
@@ -75,54 +73,6 @@
             "tier3_note": ""
           }
         },
-        "buy": {
-          "type": "buy",
-          "settings": {
-            "heading": "",
-            "show_quantity": false,
-            "add_label": "Comprar con tarjeta",
-            "show_total": false,
-            "show_buy_now": false,
-            "buy_now_icon": "bolt",
-            "buy_now_label": "Pedir ahora",
-            "cod_only": true,
-            "add_label_cod": "Comprar con tarjeta",
-            "buy_now_label_cod": "",
-            "card_label": "",
-            "card_code": ""
-          }
-        },
-        "dlv": {
-          "type": "delivery",
-          "settings": {
-            "step_1": "Pedido realizado",
-            "ready_days": 1,
-            "step_2": "Pedido listo",
-            "min_days": 3,
-            "max_days": 6,
-            "step_3": "Entregado"
-          }
-        },
-        "stock": {
-          "type": "stock",
-          "settings": {
-            "max_show": 300,
-            "text": "STOCK EN VIVO: quedan [qty] unidades"
-          }
-        },
-        "rs": {
-          "type": "review_slider",
-          "settings": {
-            "style": "quote",
-            "heading": ""
-          }
-        },
-        "acc": {
-          "type": "accordion",
-          "settings": {
-            "open_first": false
-          }
-        },
         "ul": {
           "type": "unlock",
           "settings": {
@@ -142,6 +92,71 @@
             "c3_qty": 3,
             "c3_locked": "Lleva 3 y es tuyo",
             "c3_open": "¡Es tuyo gratis!"
+          }
+        },
+        "buy": {
+          "type": "buy",
+          "settings": {
+            "heading": "",
+            "show_quantity": false,
+            "add_label": "Comprar con tarjeta",
+            "show_total": false,
+            "show_buy_now": false,
+            "buy_now_icon": "bolt",
+            "buy_now_label": "Pedir ahora",
+            "cod_only": true,
+            "add_label_cod": "Comprar con tarjeta",
+            "buy_now_label_cod": "",
+            "card_label": "",
+            "card_code": ""
+          }
+        },
+        "stock": {
+          "type": "stock",
+          "settings": {
+            "max_show": 300,
+            "text": "STOCK EN VIVO: quedan [qty] unidades"
+          }
+        },
+        "dlv": {
+          "type": "delivery",
+          "settings": {
+            "step_1": "Pedido realizado",
+            "ready_days": 1,
+            "step_2": "Pedido listo",
+            "min_days": 3,
+            "max_days": 6,
+            "step_3": "Entregado"
+          }
+        },
+        "rs": {
+          "type": "review_slider",
+          "settings": {
+            "style": "quote",
+            "heading": "",
+            "text_1": "",
+            "author_1": "",
+            "place_1": "",
+            "stars_1": 5,
+            "text_2": "",
+            "author_2": "",
+            "place_2": "",
+            "stars_2": 5,
+            "text_3": "",
+            "author_3": "",
+            "place_3": "",
+            "stars_3": 5
+          }
+        },
+        "acc": {
+          "type": "accordion",
+          "settings": {
+            "label_1": "Beneficios",
+            "label_2": "Cómo utilizar",
+            "label_3": "Ingredientes",
+            "label_4": "Tecnología",
+            "label_5": "¿Por qué este precio?",
+            "open_first": false
           }
         }
       },
@@ -263,6 +278,112 @@
         "padding_bottom": 0
       }
     },
+    "demo": {
+      "type": "ecoms-demo",
+      "settings": {
+        "heading": "Clientas reales | Míralo en *acción.*",
+        "text": "",
+        "mode": "player",
+        "ratio": "story",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 12
+      }
+    },
+    "benefits": {
+      "type": "ecoms-feature-grid",
+      "blocks": {
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "icon": "drop",
+            "heading": "Hidrata al instante",
+            "text": "Piel suave y cómoda desde la primera pasada, sin sensación pegajosa."
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "icon": "sparkle",
+            "heading": "Aspecto más lleno",
+            "text": "Con 5% de Volufiline, para que las zonas secas se vean más llenas."
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "icon": "heart",
+            "heading": "Textura de seda",
+            "text": "Se desliza fácil y se siente fresca, también bajo el maquillaje."
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "icon": "hand",
+            "heading": "Todo en una barra",
+            "text": "Rostro, contorno de ojos y cuello, en un solo gesto de 10 segundos."
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
+      "settings": {
+        "metafield": "",
+        "heading": "Beneficios | Lo que hace por *tu piel.*",
+        "style": "cards",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 20
+      }
+    },
+    "daily": {
+      "type": "ecoms-photo-cards",
+      "blocks": {
+        "d1": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Balsamo_rosa_abierto_sobre_marmol.jpg",
+            "product_image_index": 8,
+            "title": "Textura sedosa",
+            "text": "Se desliza fácil y se siente fresca, sin dejar la piel pegajosa."
+          }
+        },
+        "d2": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Retrato_con_balsamo_PDRN_rosa.jpg",
+            "product_image_index": 9,
+            "title": "Aplicación directa",
+            "text": "Sin tocar el producto: deslizas y extiendes con los dedos."
+          }
+        },
+        "d3": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Balsamo_rosa_PDRN_sobre_bolso_beige.jpg",
+            "product_image_index": 3,
+            "title": "Va contigo",
+            "text": "10 g en barra: cabe en el bolso, el neceser o de viaje."
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "d3"
+      ],
+      "settings": {
+        "heading": "Día a día | Tu rutina, *donde estés.*",
+        "text": "",
+        "padding_top": 44,
+        "padding_bottom": 24
+      }
+    },
     "routine": {
       "type": "ecoms-steps",
       "settings": {
@@ -277,6 +398,21 @@
         "padding_bottom": 36
       }
     },
+    "howto_img": {
+      "type": "ecoms-image-text",
+      "settings": {
+        "image_side": "top",
+        "image_full": false,
+        "product_image_index": 4,
+        "heading": "",
+        "intro": "",
+        "button_label": "",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 24
+      }
+    },
     "star": {
       "type": "ecoms-callout",
       "settings": {
@@ -289,6 +425,21 @@
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "formula_img": {
+      "type": "ecoms-image-text",
+      "settings": {
+        "image_side": "top",
+        "image_full": false,
+        "product_image_index": 7,
+        "heading": "",
+        "intro": "",
+        "button_label": "",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 0
       }
     },
     "ingredients": {
@@ -377,18 +528,6 @@
         "padding_bottom": 36
       }
     },
-    "demo": {
-      "type": "ecoms-demo",
-      "settings": {
-        "heading": "Clientas reales | Míralo en *acción.*",
-        "text": "",
-        "mode": "player",
-        "ratio": "portrait",
-        "width": "full",
-        "padding_top": 44,
-        "padding_bottom": 12
-      }
-    },
     "ugc": {
       "type": "ecoms-ugc",
       "settings": {
@@ -427,6 +566,21 @@
         "width": "full",
         "padding_top": 32,
         "padding_bottom": 32
+      }
+    },
+    "pack_img": {
+      "type": "ecoms-image-text",
+      "settings": {
+        "image_side": "top",
+        "image_full": false,
+        "product_image_index": 5,
+        "heading": "Pack de 2 | Uno en casa. *Otro contigo.*",
+        "intro": "2 barras por $29.990, con envío gratis en Santiago.",
+        "button_label": "Pedir el pack de 2",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 24
       }
     },
     "faq": {
@@ -508,148 +662,6 @@
         "padding_bottom": 0
       }
     },
-    "daily": {
-      "type": "ecoms-photo-cards",
-      "blocks": {
-        "d1": {
-          "type": "card",
-          "settings": {
-            "title": "Textura sedosa",
-            "text": "Se desliza fácil y se siente fresca, sin dejar la piel pegajosa.",
-            "product_image_index": 8
-          }
-        },
-        "d2": {
-          "type": "card",
-          "settings": {
-            "title": "Aplicación directa",
-            "text": "Sin tocar el producto: deslizas y extiendes con los dedos.",
-            "product_image_index": 9
-          }
-        },
-        "d3": {
-          "type": "card",
-          "settings": {
-            "title": "Va contigo",
-            "text": "10 g en barra: cabe en el bolso, el neceser o de viaje.",
-            "product_image_index": 3
-          }
-        }
-      },
-      "block_order": [
-        "d1",
-        "d2",
-        "d3"
-      ],
-      "settings": {
-        "heading": "Día a día | Tu rutina, *donde estés.*",
-        "text": "",
-        "padding_top": 44,
-        "padding_bottom": 24
-      }
-    },
-    "howto_img": {
-      "type": "ecoms-image-text",
-      "blocks": {},
-      "block_order": [],
-      "settings": {
-        "image_side": "top",
-        "image_full": false,
-        "product_image_index": 4,
-        "heading": "",
-        "intro": "",
-        "button_label": "",
-        "button_link": "",
-        "width": "full",
-        "padding_top": 0,
-        "padding_bottom": 24
-      }
-    },
-    "formula_img": {
-      "type": "ecoms-image-text",
-      "blocks": {},
-      "block_order": [],
-      "settings": {
-        "image_side": "top",
-        "image_full": false,
-        "product_image_index": 7,
-        "heading": "",
-        "intro": "",
-        "button_label": "",
-        "button_link": "",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 0
-      }
-    },
-    "pack_img": {
-      "type": "ecoms-image-text",
-      "blocks": {},
-      "block_order": [],
-      "settings": {
-        "image_side": "top",
-        "image_full": false,
-        "product_image_index": 5,
-        "heading": "Pack de 2 | Uno en casa. *Otro contigo.*",
-        "intro": "2 barras por $29.990, con envío gratis en Santiago.",
-        "button_label": "Pedir el pack de 2",
-        "button_link": "",
-        "width": "full",
-        "padding_top": 44,
-        "padding_bottom": 24
-      }
-    },
-    "benefits": {
-      "type": "ecoms-feature-grid",
-      "blocks": {
-        "f1": {
-          "type": "feature",
-          "settings": {
-            "icon": "drop",
-            "heading": "Hidrata al instante",
-            "text": "Piel suave y cómoda desde la primera pasada, sin sensación pegajosa."
-          }
-        },
-        "f2": {
-          "type": "feature",
-          "settings": {
-            "icon": "sparkle",
-            "heading": "Aspecto más lleno",
-            "text": "Con 5% de Volufiline, para que las zonas secas se vean más llenas."
-          }
-        },
-        "f3": {
-          "type": "feature",
-          "settings": {
-            "icon": "heart",
-            "heading": "Textura de seda",
-            "text": "Se desliza fácil y se siente fresca, también bajo el maquillaje."
-          }
-        },
-        "f4": {
-          "type": "feature",
-          "settings": {
-            "icon": "hand",
-            "heading": "Todo en una barra",
-            "text": "Rostro, contorno de ojos y cuello, en un solo gesto de 10 segundos."
-          }
-        }
-      },
-      "block_order": [
-        "f1",
-        "f2",
-        "f3",
-        "f4"
-      ],
-      "settings": {
-        "heading": "Beneficios | Lo que hace por *tu piel.*",
-        "style": "cards",
-        "metafield": "",
-        "width": "full",
-        "padding_top": 44,
-        "padding_bottom": 20
-      }
-    },
     "pain": {
       "type": "ecoms-pain-gain",
       "settings": {
@@ -668,12 +680,11 @@
     }
   },
   "order": [
-    "ribbon",
     "main",
     "top",
+    "demo",
     "pain",
     "benefits",
-    "demo",
     "daily",
     "routine",
     "howto_img",
