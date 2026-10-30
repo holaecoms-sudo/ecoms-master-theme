@@ -495,7 +495,7 @@
       "type": "ecoms-image-text",
       "settings": {
         "image_side": "top",
-        "image_full": false,
+        "image_full": true,
         "product_image_index": 4,
         "heading": "",
         "intro": "",
