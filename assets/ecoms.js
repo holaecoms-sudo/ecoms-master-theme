@@ -200,6 +200,8 @@
     const plural = (packs && packs.dataset.unitName) || 'unidades';
     const unit = qty === 1 ? plural.replace(/s$/i, '') : plural;
     const pct = radio ? Math.round(Number(radio.dataset.pct) || 0) : 0;
+    const gift = radio && (radio.dataset.label || '').match(/regalamos\s+(\d+)/i);
+    if (gift) return `${qty} ${unit} · ${gift[1]} de regalo`;
     return `${qty} ${unit} · ${pct > 0 ? `${pct}% de dto` : 'precio normal'}`;
   }
   function paintOrderButtons(qty, total) {

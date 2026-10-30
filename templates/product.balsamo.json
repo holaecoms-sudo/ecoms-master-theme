@@ -85,7 +85,7 @@
             "tier3_enabled": true,
             "tier3_qty": 4,
             "tier3_pct": 0,
-            "tier3_label": "Pack 4 barras",
+            "tier3_label": "Compra 3 y te regalamos 1",
             "tier3_tag": "Mejor oferta",
             "tier3_note": "",
             "tier3_gallery": 6
@@ -105,11 +105,11 @@
             "c2_qty": 2,
             "c2_locked": "Lleva 2 y es tuyo",
             "c2_open": "¡Es tuyo gratis!",
-            "c3_label": "Mejor precio por barra",
+            "c3_label": "1 barra de regalo",
             "c3_icon": "gift",
             "c3_qty": 4,
-            "c3_locked": "Lleva 4 a $13.330 c/u",
-            "c3_open": "¡$13.330 por barra!"
+            "c3_locked": "Compra 3 y te regalamos 1",
+            "c3_open": "¡1 barra gratis!"
           }
         },
         "buy": {
