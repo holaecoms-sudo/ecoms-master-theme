@@ -158,10 +158,18 @@
           "settings": {
             "style": "pill"
           }
+        },
+        "hook": {
+          "type": "text",
+          "settings": {
+            "text": "Tres activos para una piel más suave y de tono más uniforme",
+            "fixed": true
+          }
         }
       },
       "block_order": [
         "social",
+        "hook",
         "title",
         "lead",
         "benefits",
