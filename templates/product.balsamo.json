@@ -1,0 +1,783 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "ecoms-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "social": {
+          "type": "social",
+          "settings": {
+            "rating": "4,8",
+            "text": "Amado por más de +2.000 clientes satisfechos"
+          }
+        },
+        "hook": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Inspirado en el K-beauty 🇰🇷 para una piel más rellena, firme y luminosa</p>",
+            "fixed": true
+          }
+        },
+        "lead": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "fixed": false
+          }
+        },
+        "benefits": {
+          "type": "benefits",
+          "settings": {
+            "item_1": "",
+            "item_2": "",
+            "item_3": "",
+            "item_4": "",
+            "item_5": "",
+            "item_6": ""
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "style": "pill",
+            "ship_local_title": "",
+            "ship_local_text": ""
+          }
+        },
+        "pk": {
+          "type": "packs",
+          "settings": {
+            "from_metafield": true,
+            "heading": "",
+            "layout": "offer",
+            "show_cta_total": true,
+            "help": "",
+            "default_tier": "3",
+            "item_name": "frascos",
+            "show_summary": true,
+            "summary_label": "Tu pack incluye",
+            "show_free_shipping": true,
+            "discounts_live": true,
+            "tier1_qty": 1,
+            "tier1_label": "1 barra",
+            "tier1_tag": "",
+            "tier1_note": "Para probar",
+            "tier2_enabled": true,
+            "tier2_qty": 2,
+            "tier2_pct": 0,
+            "tier2_label": "Pack 2 barras",
+            "tier2_tag": "",
+            "tier2_note": "envío gratis en Santiago",
+            "tier3_enabled": true,
+            "tier3_qty": 4,
+            "tier3_pct": 0,
+            "tier3_label": "Pack 4 barras",
+            "tier3_tag": "Recomendado",
+            "tier3_note": "1 de regalo · envío gratis"
+          }
+        },
+        "ul": {
+          "type": "unlock",
+          "settings": {
+            "heading": "Desbloquea beneficios con tu pack",
+            "c1_label": "Envío gratis",
+            "c1_icon": "truck",
+            "c1_qty": 2,
+            "c1_locked": "Santiago con 2 · todo Chile con 4",
+            "c1_open": "¡Desbloqueado!",
+            "c2_label": "Ebook: rutina de 10 segundos",
+            "c2_icon": "sparkle",
+            "c2_qty": 2,
+            "c2_locked": "Lleva 2 y es tuyo",
+            "c2_open": "¡Es tuyo gratis!",
+            "c3_label": "1 barra de regalo",
+            "c3_icon": "gift",
+            "c3_qty": 4,
+            "c3_locked": "Lleva 4 y te regalamos 1",
+            "c3_open": "¡Una barra gratis!"
+          }
+        },
+        "buy": {
+          "type": "buy",
+          "settings": {
+            "heading": "",
+            "show_quantity": false,
+            "add_label": "Comprar con tarjeta",
+            "show_total": true,
+            "show_buy_now": false,
+            "buy_now_icon": "bolt",
+            "buy_now_label": "Pedir ahora",
+            "cod_only": true,
+            "add_label_cod": "Comprar con tarjeta",
+            "buy_now_label_cod": "",
+            "card_label": "",
+            "card_code": ""
+          }
+        },
+        "stock": {
+          "type": "stock",
+          "disabled": true,
+          "settings": {
+            "max_show": 300,
+            "text": "STOCK EN VIVO: quedan [qty] unidades"
+          }
+        },
+        "dlv": {
+          "type": "delivery",
+          "settings": {
+            "step_1": "Pedido realizado",
+            "ready_days": 1,
+            "step_2": "Pedido listo",
+            "min_days": 3,
+            "max_days": 6,
+            "step_3": "Entregado"
+          }
+        },
+        "rs": {
+          "type": "review_slider",
+          "settings": {
+            "style": "quote",
+            "heading": "",
+            "text_1": "",
+            "author_1": "",
+            "place_1": "",
+            "stars_1": 5,
+            "text_2": "",
+            "author_2": "",
+            "place_2": "",
+            "stars_2": 5,
+            "text_3": "",
+            "author_3": "",
+            "place_3": "",
+            "stars_3": 5
+          }
+        },
+        "acc": {
+          "type": "accordion",
+          "settings": {
+            "label_1": "Beneficios",
+            "label_2": "Cómo utilizar",
+            "label_3": "Ingredientes",
+            "label_4": "Tecnología",
+            "label_5": "¿Por qué este precio?",
+            "open_first": false
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "social",
+        "hook",
+        "lead",
+        "benefits",
+        "price",
+        "pk",
+        "ul",
+        "buy",
+        "stock",
+        "dlv",
+        "rs",
+        "acc"
+      ],
+      "settings": {
+        "layout": "direct",
+        "columns": "two",
+        "gallery_mobile": "inset",
+        "thumbs": "below",
+        "gal_controls": false,
+        "badge": "",
+        "media_tag": "",
+        "media_title": "",
+        "media_text": "",
+        "media_over_count": 2,
+        "hero_bg": "none",
+        "media_ratio": "square",
+        "media_fit": "cover",
+        "video_first": false,
+        "video_autoplay": true,
+        "video_loop": true,
+        "sticky": false,
+        "sticky_desktop": true,
+        "sticky_ship": false,
+        "sticky_save": false,
+        "sticky_early": true,
+        "sticky_label": "Pedir ahora",
+        "sticky_label_cod": "Pedir y pagar al recibir",
+        "sticky_cod": true,
+        "sticky_cod_sub": "Pagas cuando llega",
+        "palette": "rose",
+        "snow": true,
+        "pal_primary": "",
+        "pal_primary_ink": "",
+        "pal_dark": "",
+        "pal_accent": "",
+        "pal_accent_ink": "",
+        "pal_soft": "",
+        "pal_soft_ink": "",
+        "pal_tag": "",
+        "pal_tag_ink": "",
+        "pal_sale_bg": "",
+        "pal_sale_ink": "",
+        "pal_urgent": "",
+        "pal_urgent_bg": "",
+        "pal_bg": "",
+        "pal_ink": "",
+        "pal_muted": "",
+        "pal_line": "",
+        "pal_deep": "",
+        "padding_top": 16,
+        "padding_bottom": 28
+      }
+    },
+    "top": {
+      "type": "ecoms-marquee",
+      "blocks": {
+        "b1": {
+          "type": "text",
+          "settings": {
+            "icon": "cash",
+            "text": "Pagas al recibir"
+          }
+        },
+        "b2": {
+          "type": "text",
+          "settings": {
+            "icon": "truck",
+            "text": "Envío a todo Chile"
+          }
+        },
+        "b3": {
+          "type": "text",
+          "settings": {
+            "icon": "box",
+            "text": "Seguimiento de tu pedido"
+          }
+        },
+        "b4": {
+          "type": "text",
+          "settings": {
+            "icon": "return",
+            "text": "10 días de retracto"
+          }
+        },
+        "b5": {
+          "type": "text",
+          "settings": {
+            "icon": "truck",
+            "text": "Textura sedosa, no pegajosa"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5"
+      ],
+      "settings": {
+        "style": "band",
+        "heading": "",
+        "speed": 30,
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "demo": {
+      "type": "ecoms-demo",
+      "settings": {
+        "heading": "Clientas reales | Míralo en *acción.*",
+        "text": "",
+        "mode": "player",
+        "ratio": "story",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 12
+      }
+    },
+    "pain": {
+      "type": "ecoms-pain-gain",
+      "disabled": true,
+      "settings": {
+        "heading": "Te pasa que… | Cuando la piel se siente *tirante,* se nota.",
+        "intro": "Hidratar la piel no debería ser una tarea más. Si algo de esto te suena, esta barra está hecha para ti.",
+        "pain_title": "Te pasa que…",
+        "pain_items": "Tu piel se siente tirante y seca a media tarde.\nTu crema en pote ensucia las manos y nunca la llevas contigo.\nEl contorno de ojos y el cuello se ven apagados y sin volumen.\nProbaste de todo y terminas con productos que no usas.",
+        "gain_title": "Con tu bálsamo…",
+        "gain_items": "Hidrata al instante: lo deslizas y la piel se siente cómoda.\nTextura sedosa, nada pegajosa.\nUna sola barra para rostro, ojos y cuello.\n10 g que caben en el bolso: lo usas donde y cuando lo necesites.\n5% de Volufiline y colágeno para un aspecto más lleno y firme.",
+        "closing": "Un gesto de 10 segundos. Piel que se siente cuidada todo el día.",
+        "note": "Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
+        "button_label": "Quiero mi bálsamo",
+        "padding_top": 44,
+        "padding_bottom": 8
+      }
+    },
+    "face": {
+      "type": "ecoms-face-zones",
+      "blocks": {
+        "z1": {
+          "type": "zone",
+          "settings": {
+            "label": "El contorno de ojos se ve apagado",
+            "concerns": "",
+            "image": "shopify://shop_images/Frame_85_2.webp",
+            "text": "La piel es delicada y la falta de hidratación se nota."
+          }
+        },
+        "z2": {
+          "type": "zone",
+          "settings": {
+            "label": "Las mejillas pierden aspecto lleno",
+            "concerns": "",
+            "image": "shopify://shop_images/Frame_85.webp",
+            "text": "Para dar a la piel un aspecto más lleno y firme."
+          }
+        },
+        "z3": {
+          "type": "zone",
+          "settings": {
+            "label": "Las líneas se notan más donde hay sequedad",
+            "concerns": "",
+            "image": "shopify://shop_images/Screenshot_2026-10-30_at_11.26.12_AM.png",
+            "text": "Ayuda a que las líneas secas se vean menos marcadas."
+          }
+        },
+        "z4": {
+          "type": "zone",
+          "settings": {
+            "label": "El cuello también se resiente",
+            "concerns": "",
+            "image": "shopify://shop_images/Screenshot_2026-10-30_at_11.25.41_AM.png",
+            "text": "Con la misma barra cuidas rostro, ojos y cuello en un solo gesto."
+          }
+        }
+      },
+      "block_order": [
+        "z1",
+        "z2",
+        "z3",
+        "z4"
+      ],
+      "settings": {
+        "heading": "Tu rostro | No se trata solo de *arrugas.*",
+        "text": "Estas son las zonas donde más se nota. Mira qué pasa en cada una y cómo te ayuda tu bálsamo.",
+        "chips_label": "Lo que notas aquí",
+        "image_note": "Imágenes ilustrativas.",
+        "note": "Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
+        "button_label": "Quiero mi bálsamo",
+        "padding_top": 44,
+        "padding_bottom": 8
+      }
+    },
+    "benefits": {
+      "type": "ecoms-feature-grid",
+      "blocks": {
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "icon": "drop",
+            "heading": "Hidrata al instante",
+            "text": "Piel suave y cómoda desde la primera pasada, sin sensación pegajosa."
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "icon": "sparkle",
+            "heading": "Aspecto más lleno",
+            "text": "Con 5% de Volufiline, para que las zonas secas se vean más llenas."
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "icon": "heart",
+            "heading": "Textura de seda",
+            "text": "Se desliza fácil y se siente fresca, también bajo el maquillaje."
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "icon": "hand",
+            "heading": "Todo en una barra",
+            "text": "Rostro, contorno de ojos y cuello, en un solo gesto de 10 segundos."
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
+      "settings": {
+        "metafield": "",
+        "heading": "Beneficios | Lo que hace por *tu piel.*",
+        "button_label": "",
+        "style": "cards",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 20
+      }
+    },
+    "daily": {
+      "type": "ecoms-photo-cards",
+      "blocks": {
+        "d1": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Balsamo_rosa_abierto_sobre_marmol.jpg",
+            "product_image_index": 8,
+            "title": "Textura sedosa",
+            "text": "Se desliza fácil y se siente fresca, sin dejar la piel pegajosa."
+          }
+        },
+        "d2": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Retrato_con_balsamo_PDRN_rosa.jpg",
+            "product_image_index": 9,
+            "title": "Aplicación directa",
+            "text": "Sin tocar el producto: deslizas y extiendes con los dedos."
+          }
+        },
+        "d3": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Balsamo_rosa_PDRN_sobre_bolso_beige.jpg",
+            "product_image_index": 3,
+            "title": "Va contigo",
+            "text": "10 g en barra: cabe en el bolso, el neceser o de viaje."
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "d3"
+      ],
+      "settings": {
+        "heading": "Día a día | Tu rutina, *donde estés.*",
+        "text": "",
+        "padding_top": 44,
+        "padding_bottom": 24
+      }
+    },
+    "routine": {
+      "type": "ecoms-steps",
+      "settings": {
+        "metafield": "ecoms.steps",
+        "button_label": "",
+        "button_link": "",
+        "style": "photos",
+        "heading": "Cómo se usa | Tres pasos, *diez segundos.*",
+        "text": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "howto_img": {
+      "type": "ecoms-image-text",
+      "settings": {
+        "image_side": "top",
+        "image_full": false,
+        "product_image_index": 4,
+        "heading": "",
+        "intro": "",
+        "button_label": "",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 24
+      }
+    },
+    "star": {
+      "type": "ecoms-callout",
+      "settings": {
+        "eyebrow": "El ingrediente estrella",
+        "heading": "",
+        "value": "5%",
+        "label": "Volufiline",
+        "text": "Una fórmula con Volufiline y colágeno pensada para hidratar y dar a tu piel un aspecto más lleno y firme. Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
+        "pills": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "formula_img": {
+      "type": "ecoms-image-text",
+      "disabled": true,
+      "settings": {
+        "image_side": "top",
+        "image_full": false,
+        "product_image_index": 7,
+        "heading": "",
+        "intro": "",
+        "button_label": "",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "ingredients": {
+      "type": "ecoms-feature-grid",
+      "settings": {
+        "metafield": "ecoms.ingredients",
+        "heading": "Fórmula | Qué *contiene.*",
+        "button_label": "Ver lista completa de ingredientes",
+        "style": "band",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 40
+      }
+    },
+    "compare": {
+      "type": "ecoms-comparison",
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "feature": "Se aplica directo, sin tocar el producto",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "feature": "Formato de bolso: 10 g",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "feature": "Una barra para rostro, ojos y cuello",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "feature": "5% de Volufiline + colágeno",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ],
+      "settings": {
+        "metafield": "",
+        "style": "table",
+        "heading": "Barra *vs.* crema en pote",
+        "feature_label": "",
+        "col_1": "Esta barra",
+        "show_image": true,
+        "col_2": "Crema en pote",
+        "col_3": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "before_after": {
+      "type": "ecoms-before-after",
+      "settings": {
+        "style": "slider",
+        "heading": "Prueba real | Resultados *visibles.*",
+        "text": "Con uso constante. Fotos reales, con permiso. Arrastra.",
+        "before": "shopify://shop_images/Slider_antes.webp",
+        "before_caption": "Antes",
+        "after": "shopify://shop_images/Slider_ecoms_despues.webp",
+        "after_caption": "Después",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "ugc": {
+      "type": "ecoms-ugc",
+      "settings": {
+        "metafield": "",
+        "style": "grid",
+        "heading": "Clientas reales",
+        "text": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "bubble": {
+      "type": "ecoms-review-bubble",
+      "settings": {
+        "metafield": "ecoms.reviews",
+        "heading": "",
+        "limit": 8,
+        "width": "full",
+        "padding_top": 4,
+        "padding_bottom": 24
+      }
+    },
+    "reviews": {
+      "type": "ecoms-reviews",
+      "settings": {
+        "metafield": "ecoms.reviews",
+        "style": "masonry",
+        "heading": "Opiniones de clientas",
+        "link_label": "",
+        "link": "",
+        "source_note": "",
+        "per_page": 6,
+        "write_label": "Escribe una reseña",
+        "write_link": "/pages/contact",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "pack_img": {
+      "type": "ecoms-image-text",
+      "settings": {
+        "image_side": "top",
+        "image_full": false,
+        "product_image_index": 5,
+        "heading": "Pack de 2 | Uno en casa. *Otro contigo.*",
+        "intro": "2 barras por $29.990, con envío gratis en Santiago.",
+        "button_label": "Pedir el pack de 2",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 24
+      }
+    },
+    "faq": {
+      "type": "ecoms-faq",
+      "blocks": {
+        "f1": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo pago?",
+            "answer": "<p>Puedes pagar al recibir tu pedido, en todo Chile y sin costo adicional, o pagar ahora con tarjeta (débito o crédito) desde el formulario.</p>",
+            "draft": false
+          }
+        },
+        "f6": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuánto demora en llegar?",
+            "answer": "<p>Entre 2 y 5 días hábiles según tu comuna. Te enviamos el seguimiento de tu pedido.</p>",
+            "draft": false
+          }
+        },
+        "f4": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Sirve para piel sensible?",
+            "answer": "<p>Si tu piel es sensible, pruébalo primero en una zona pequeña antes de usarlo en todo el rostro.</p>",
+            "draft": false
+          }
+        },
+        "f5": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Lo puedo usar con otros productos?",
+            "answer": "<p>Sí. Úsalo después de limpiar tu rostro y antes de tu crema y protector solar.</p>",
+            "draft": false
+          }
+        },
+        "f7": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Y si no me gusta?",
+            "answer": "<p>Tienes 10 días de retracto con el producto sin abrir y 6 meses de garantía legal si llega con una falla.</p>",
+            "draft": false
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f6",
+        "f4",
+        "f5",
+        "f7"
+      ],
+      "settings": {
+        "style": "stack",
+        "heading": "Preguntas *frecuentes.*",
+        "text": "",
+        "icon": "plus",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "cta": {
+      "type": "ecoms-cta-band",
+      "settings": {
+        "style": "soft",
+        "eyebrow": "",
+        "heading": "Tu rutina de *10 segundos.*",
+        "text": "Un solo gesto. Pagas cuando lo recibes.",
+        "image_plain": false,
+        "show_price": false,
+        "button_label": "Pedir desde $19.990",
+        "trust_1": "Pagas al recibir",
+        "trust_2": "Envíos a todo Chile",
+        "trust_3": "10 días de retracto",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "top",
+    "demo",
+    "pain",
+    "face",
+    "benefits",
+    "daily",
+    "routine",
+    "howto_img",
+    "star",
+    "formula_img",
+    "ingredients",
+    "compare",
+    "before_after",
+    "ugc",
+    "bubble",
+    "reviews",
+    "pack_img",
+    "faq",
+    "cta"
+  ]
+}
