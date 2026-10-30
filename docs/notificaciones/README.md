@@ -16,4 +16,4 @@ En cada notificación: abrir → «Editar código» → borrar todo → pegar el
 1. En `confirmacion-pedido.liquid` reemplazar los tres enlaces de regalos: `REEMPLAZAR_LINK_EBOOK`, `REEMPLAZAR_LINK_GUIA_MELAXIN`, `REEMPLAZAR_LINK_CALENDARIO_MELAXIN`. Subir antes los PDF a Contenido → Archivos y copiar su enlace.
 2. Subir el logo en Configuración → Marca (el correo lo toma solo).
 3. Pedidos nuevos para el equipo: Configuración → Notificaciones → «Destinatarios de las notificaciones del personal» → agregar los correos de quienes despachan.
-4. Enviar un pedido de prueba con 2 y con 4 barras del bálsamo, y con 2 y 3 de Melaxin, y revisar que cada correo muestre los regalos correctos.
+4. Enviar un pedido de prueba con 1, 2 y 4 barras del bálsamo, y con 2 y 3 de Melaxin, y revisar que cada correo muestre los regalos correctos.

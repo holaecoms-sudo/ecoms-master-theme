@@ -16,6 +16,6 @@
 {%- for line in subtotal_line_items -%}<tr><td style="padding:8px 0;border-bottom:1px solid #E7DAD6;font-size:15px"><b>{{ line.quantity }} ×</b> {{ line.product.title | default: line.title }}{% if line.sku != blank %} <span style="color:#6A5C62;font-size:12px">({{ line.sku }})</span>{% endif %}</td><td align="right" style="padding:8px 0;border-bottom:1px solid #E7DAD6;font-size:15px;white-space:nowrap">{{ line.final_line_price | money }}</td></tr>{%- endfor -%}
 </table>
 {%- assign bal_qty = 0 -%}{%- for line in subtotal_line_items -%}{%- if line.product.handle == 'balsamo-pdrn-hidratante-colageno' -%}{%- assign bal_qty = bal_qty | plus: line.quantity -%}{%- endif -%}{%- endfor -%}
-{%- if bal_qty >= 4 -%}<div style="margin-top:12px;padding:10px 14px;background:#fff7d6;border-radius:8px;font-size:14px"><b>Ojo bodega:</b> este pedido incluye 2 barras de regalo. Verificar que el paquete lleve 4 barras en total.</div>{%- endif -%}
+{%- if bal_qty >= 4 -%}<div style="margin-top:12px;padding:10px 14px;background:#fff7d6;border-radius:8px;font-size:14px"><b>Ojo bodega:</b> pack de 4 barras. Verificar que el paquete lleve las 4 barras.</div>{%- endif -%}
 <div style="padding-top:14px"><a href="{{ order_status_url }}" style="color:#B5536A;font-size:14px">Ver pedido</a></div>
 </td></tr></table></body></html>
