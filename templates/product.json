@@ -122,6 +122,10 @@
           "settings": {
             "open_first": false
           }
+        },
+        "ul": {
+          "type": "unlock",
+          "settings": {}
         }
       },
       "block_order": [
@@ -130,6 +134,7 @@
         "lead",
         "benefits",
         "pk",
+        "ul",
         "buy",
         "stock",
         "dlv",
@@ -332,7 +337,7 @@
         "heading": "Barra *vs.* crema en pote",
         "feature_label": "",
         "col_1": "Esta barra",
-        "show_image": false,
+        "show_image": true,
         "col_2": "Crema en pote",
         "col_3": "",
         "width": "full",
@@ -576,12 +581,64 @@
         "padding_top": 44,
         "padding_bottom": 24
       }
+    },
+    "benefits": {
+      "type": "ecoms-feature-grid",
+      "blocks": {
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "icon": "drop",
+            "heading": "Hidrata al instante",
+            "text": "Piel suave y cómoda desde la primera pasada, sin sensación pegajosa."
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "icon": "sparkle",
+            "heading": "Aspecto más lleno",
+            "text": "Con 5% de Volufiline, para que las zonas secas se vean más llenas."
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "icon": "heart",
+            "heading": "Textura de seda",
+            "text": "Se desliza fácil y se siente fresca, también bajo el maquillaje."
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "icon": "hand",
+            "heading": "Todo en una barra",
+            "text": "Rostro, contorno de ojos y cuello, en un solo gesto de 10 segundos."
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
+      "settings": {
+        "heading": "Beneficios | Lo que hace por *tu piel.*",
+        "style": "cards",
+        "metafield": "",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 20
+      }
     }
   },
   "order": [
     "ribbon",
     "main",
     "top",
+    "benefits",
     "demo",
     "daily",
     "routine",

@@ -1,19 +1,32 @@
-# Bálsamo PDRN · qué falta cargar para que la ficha quede igual al mockup A
+# Bálsamo PDRN · qué falta para dejar la ficha completa
 
-Todo esto es contenido real tuyo; el tema ya trae el diseño y cada sección aparece sola cuando tiene contenido.
+Actualizado el 30 de octubre de 2026. El diseño ya está en el tema; esto es lo que depende de ti o de configuraciones fuera del tema.
 
+## A. Configurar (no es contenido)
+| # | Tarea | Dónde |
+|---|---|---|
+| 1 | Botón de Releasit en **negro `#1E1B24`**, texto blanco, esquinas redondas, y su botón fijo activado | Releasit → Botón de Compra |
+| 2 | Formulario de Releasit en español: campos, textos y botón «Confirmar pedido · {order_total}» | Releasit → Diseño del Formulario |
+| 3 | Idioma general de Releasit en español | Releasit → Configuraciones |
+| 4 | Ofertas por cantidad de Releasit **apagadas** (los packs ya los maneja la ficha) | Releasit → Impulsor de Ventas |
+| 5 | **Tarifas de envío gratis reales:** Santiago desde $29.990 y todo Chile desde $39.990 | Configuración → Envío y entrega |
+| 6 | **Descuentos de packs** existen en Shopify (ya creados: 2 barras $29.990, 3 barras $39.990) | Descuentos |
+| 7 | **Pedido de prueba** con pago al recibir: que se vea el formulario en español, que llegue a Shopify y a Dropi | Pedidos / Dropi |
+| 8 | **Entrega del ebook:** definir cómo llega (enlace en el correo de confirmación o por WhatsApp). El PDF ya está en `assets/guia-rutina-10-segundos.pdf` | Configuración → Notificaciones |
+| 9 | Textos de la tienda en español (hoy salen algunos en inglés, como «Sold out») | Idiomas de la tienda |
+| 10 | Sacar de la galería las 2 fotos «Before / After» si no son de clientas reales (posiciones 2 y 6) | Productos → Medios |
+
+## B. Contenido real que falta
 | # | Qué falta | Dónde se carga | Medidas / reglas |
 |---|---|---|---|
-| 1 | **Galería del producto:** 5 a 6 fotos más (textura, rostro, contorno de ojos, cuello, pasos, video) | Admin → Productos → Bálsamo → Medios | Foto principal de 1500 px de alto o más; el resto 1:1 de 2048 px. Alt text en cada una |
-| 2 | **No se trata solo de arrugas:** 3 fotos (mejilla, contorno de ojos, cuello) | Editor del tema → Producto → «Tarjetas con foto» → cada tarjeta | 16:10, mínimo 1600 px de ancho |
-| 3 | **Cómo se usa:** 3 fotos, una por paso | Admin → Contenido → Metaobjetos → «ECOMS · Ítem de contenido» → los 3 pasos → campo Imagen | 1:1.1, mínimo 1200 px |
-| 4 | **Antes y después:** una foto «antes» y una «después» de una clienta real | Editor del tema → «Antes y después» | Mismo ángulo y luz; con permiso escrito; sin retoque |
-| 5 | **Videos de clientas:** 3 videos verticales | Admin → Productos → Bálsamo → Metacampos → «Videos de uso» y «Textos de los videos» | 9:16, corto, con permiso |
-| 6 | **Reseñas reales** y calificación con estrellas | App de reseñas (Judge.me, Shopify Product Reviews u otra) | Solo reseñas de clientas reales |
-| 7 | **Lista completa de ingredientes (INCI)** | Admin → Contenido → Metaobjetos (ingredientes) y descripción | Copiar del envase |
-| 8 | **Plazos y tarifas de envío reales** para las preguntas frecuentes | Admin → Contenido → Metaobjetos → «ECOMS · Pregunta frecuente» | Con tus números |
-| 9 | **Botón de compra con pago al recibir** | Instalar y activar Releasit (o apagar el ajuste «Pago al recibir activo») | Sin la app no aparece botón de compra |
-| 10 | **Fórmula confirmada** (¿lleva PDRN?) | Descripción, título y subtítulo del producto | Confirmar con la etiqueta del envase |
-| 11 | **Regalo de los packs** (si lo hay) | Se agrega al pack con un descuento o producto regalo | Solo si lo puedes entregar |
+| 11 | Fotos de **antes y después reales**, de clientas, con permiso por escrito | Editor del tema → «Antes y después» | Mismo ángulo y luz; sin retoque |
+| 12 | **Reseñas reales** y calificación con estrellas | App de reseñas | Solo reseñas de clientas |
+| 13 | **Fotos de clientas** (UGC) | Editor del tema → «Clientas reales» | Con permiso |
+| 14 | **Lista completa de ingredientes (INCI)**, copiada del envase | Metacampo «Lista completa de ingredientes» | — |
+| 15 | Texto de «¿Por qué este precio?» | Metacampo del producto | Con tus datos reales |
+| 16 | **Plazos y tarifas de envío reales** en las preguntas frecuentes | Metaobjetos «Pregunta frecuente» | Con tus números |
+| 17 | Confirmar si la fórmula lleva **PDRN** | Título y descripción | Con la etiqueta del envase |
+| 18 | Foto del hero en alta resolución (si quieres reemplazar la actual) | Productos → Medios, primera posición | 1080 px o más, 1:1 |
 
-Lo que ya está cargado: textos, 6 beneficios, ingredientes, pasos, preguntas, comparativa, packs de $19.990, $29.990 y $39.990, logo y favicon.
+## C. Para Dr. Melaxin
+Hoy usa la misma plantilla que el Bálsamo, así que muestra textos del Bálsamo (comparativa, beneficios, fotos por posición). Necesita su propia plantilla o su propio contenido antes de publicarse.

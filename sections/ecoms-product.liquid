@@ -429,6 +429,52 @@
               {%- endif -%}
             </div>
 
+          {%- when 'unlock' -%}
+            {%- comment -%}
+              Unlock cards under the packs («Envío gratis», «Ebook de rutina»): each card opens when the selected pack has
+              at least its quantity. Purely visual: the real free shipping and gifts must exist (shipping rates, automatic discounts).
+            {%- endcomment -%}
+            <div class="ec-unlock" data-ec-unlock {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}<p class="ec-unlock__h">{% render 'ecoms-icon', name: 'gift' %}{{ block.settings.heading | escape }}</p>{%- endif -%}
+              <ul class="ec-unlock__list" role="list">
+                {%- for n in (1..3) -%}
+                  {%- liquid
+                    assign k_l = 'c' | append: n | append: '_label'
+                    assign k_i = 'c' | append: n | append: '_icon'
+                    assign k_q = 'c' | append: n | append: '_qty'
+                    assign k_lk = 'c' | append: n | append: '_locked'
+                    assign k_op = 'c' | append: n | append: '_open'
+                  -%}
+                  {%- if block.settings[k_l] != blank -%}
+                    <li class="ec-unlock__card" data-qty="{{ block.settings[k_q] | default: 2 }}">
+                      <span class="ec-unlock__ic">{% render 'ecoms-icon', name: block.settings[k_i] %}<span class="ec-unlock__lock">{% render 'ecoms-icon', name: 'lock' %}</span></span>
+                      <b class="ec-unlock__t">{{ block.settings[k_l] | escape }}</b>
+                      <span class="ec-unlock__state" data-locked="{{ block.settings[k_lk] | escape }}" data-open="{{ block.settings[k_op] | default: '¡Desbloqueado!' | escape }}">{{ block.settings[k_lk] | escape }}</span>
+                    </li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+              <script>
+                (function () {
+                  if (window.__ecUnlock) return;
+                  window.__ecUnlock = true;
+                  function qty() { var r = document.querySelector('.ec-pack input:checked'); return r ? parseInt(r.value, 10) || 1 : 1; }
+                  function paint() {
+                    var q = qty();
+                    document.querySelectorAll('[data-ec-unlock] .ec-unlock__card').forEach(function (c) {
+                      var open = q >= (parseInt(c.getAttribute('data-qty'), 10) || 1);
+                      c.classList.toggle('is-open', open);
+                      var s = c.querySelector('.ec-unlock__state');
+                      if (s) s.textContent = open ? s.getAttribute('data-open') : s.getAttribute('data-locked');
+                    });
+                  }
+                  document.addEventListener('change', function (e) { if (e.target && e.target.closest && e.target.closest('.ec-pack')) paint(); });
+                  document.addEventListener('DOMContentLoaded', paint);
+                  window.addEventListener('load', paint);
+                })();
+              </script>
+            </div>
+
           {%- when 'benefits' -%}
             {%- comment -%} Per-product list: metafield ecoms.benefits (list of single-line text) wins. {%- endcomment -%}
             {%- assign benefits_mf = product.metafields.ecoms.benefits.value -%}
@@ -5168,6 +5214,247 @@
           "id": "open_first",
           "label": "Primer acordeón abierto",
           "default": false
+        }
+      ]
+    },
+    {
+      "type": "unlock",
+      "name": "Tarjetas de desbloqueo",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Título",
+          "default": "Desbloquea beneficios con tu pack"
+        },
+        {
+          "type": "header",
+          "content": "Tarjeta 1"
+        },
+        {
+          "type": "text",
+          "id": "c1_label",
+          "label": "Nombre",
+          "default": "Envío gratis en Santiago"
+        },
+        {
+          "type": "select",
+          "id": "c1_icon",
+          "label": "Ícono",
+          "options": [
+            {
+              "value": "truck",
+              "label": "truck"
+            },
+            {
+              "value": "gift",
+              "label": "gift"
+            },
+            {
+              "value": "box",
+              "label": "box"
+            },
+            {
+              "value": "cash",
+              "label": "cash"
+            },
+            {
+              "value": "sparkle",
+              "label": "sparkle"
+            },
+            {
+              "value": "heart",
+              "label": "heart"
+            },
+            {
+              "value": "shield",
+              "label": "shield"
+            },
+            {
+              "value": "star",
+              "label": "star"
+            },
+            {
+              "value": "drop",
+              "label": "drop"
+            },
+            {
+              "value": "leaf",
+              "label": "leaf"
+            }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "number",
+          "id": "c1_qty",
+          "label": "Se desbloquea desde (unidades)",
+          "default": 2
+        },
+        {
+          "type": "text",
+          "id": "c1_locked",
+          "label": "Texto bloqueada",
+          "default": "Lleva 2 para desbloquear"
+        },
+        {
+          "type": "text",
+          "id": "c1_open",
+          "label": "Texto desbloqueada",
+          "default": "¡Desbloqueado!"
+        },
+        {
+          "type": "header",
+          "content": "Tarjeta 2"
+        },
+        {
+          "type": "text",
+          "id": "c2_label",
+          "label": "Nombre",
+          "default": "Envío gratis a todo Chile"
+        },
+        {
+          "type": "select",
+          "id": "c2_icon",
+          "label": "Ícono",
+          "options": [
+            {
+              "value": "truck",
+              "label": "truck"
+            },
+            {
+              "value": "gift",
+              "label": "gift"
+            },
+            {
+              "value": "box",
+              "label": "box"
+            },
+            {
+              "value": "cash",
+              "label": "cash"
+            },
+            {
+              "value": "sparkle",
+              "label": "sparkle"
+            },
+            {
+              "value": "heart",
+              "label": "heart"
+            },
+            {
+              "value": "shield",
+              "label": "shield"
+            },
+            {
+              "value": "star",
+              "label": "star"
+            },
+            {
+              "value": "drop",
+              "label": "drop"
+            },
+            {
+              "value": "leaf",
+              "label": "leaf"
+            }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "number",
+          "id": "c2_qty",
+          "label": "Se desbloquea desde (unidades)",
+          "default": 3
+        },
+        {
+          "type": "text",
+          "id": "c2_locked",
+          "label": "Texto bloqueada",
+          "default": "Lleva 3 para desbloquear"
+        },
+        {
+          "type": "text",
+          "id": "c2_open",
+          "label": "Texto desbloqueada",
+          "default": "¡Desbloqueado!"
+        },
+        {
+          "type": "header",
+          "content": "Tarjeta 3"
+        },
+        {
+          "type": "text",
+          "id": "c3_label",
+          "label": "Nombre",
+          "default": "Ebook: rutina de 10 segundos"
+        },
+        {
+          "type": "select",
+          "id": "c3_icon",
+          "label": "Ícono",
+          "options": [
+            {
+              "value": "truck",
+              "label": "truck"
+            },
+            {
+              "value": "gift",
+              "label": "gift"
+            },
+            {
+              "value": "box",
+              "label": "box"
+            },
+            {
+              "value": "cash",
+              "label": "cash"
+            },
+            {
+              "value": "sparkle",
+              "label": "sparkle"
+            },
+            {
+              "value": "heart",
+              "label": "heart"
+            },
+            {
+              "value": "shield",
+              "label": "shield"
+            },
+            {
+              "value": "star",
+              "label": "star"
+            },
+            {
+              "value": "drop",
+              "label": "drop"
+            },
+            {
+              "value": "leaf",
+              "label": "leaf"
+            }
+          ],
+          "default": "gift"
+        },
+        {
+          "type": "number",
+          "id": "c3_qty",
+          "label": "Se desbloquea desde (unidades)",
+          "default": 2
+        },
+        {
+          "type": "text",
+          "id": "c3_locked",
+          "label": "Texto bloqueada",
+          "default": "Lleva 2 para desbloquear"
+        },
+        {
+          "type": "text",
+          "id": "c3_open",
+          "label": "Texto desbloqueada",
+          "default": "¡Desbloqueado!"
         }
       ]
     }
