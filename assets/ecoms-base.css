@@ -1820,3 +1820,9 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 @keyframes ec-cta-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.025); } }
 @keyframes ec-cta-shine { 0%, 55% { left: -60%; } 100% { left: 130%; } }
 @media (prefers-reduced-motion: reduce) { .ec-cta-anim, .ec-cta-anim::after { animation: none; } }
+
+/* Sticky bar · pay-on-delivery mode on mobile: a floating pill instead of a full-width bar */
+@media screen and (max-width: 989px) {
+  .ec-sticky:has(.ec-sticky__cod) { padding: 0 16px calc(14px + env(safe-area-inset-bottom, 0px)); border: 0; background: transparent; box-shadow: none; pointer-events: none; }
+  .ec-sticky .ec-sticky__cod { pointer-events: auto; min-height: 56px; border-radius: 999px; box-shadow: 0 16px 32px -12px rgba(30, 27, 36, 0.6); }
+}

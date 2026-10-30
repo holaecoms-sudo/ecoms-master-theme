@@ -448,12 +448,12 @@
       sticky.setAttribute('aria-hidden', String(!on));
       document.body.classList.toggle('ec-sticky-on', on);
     };
-    // «Desde que carga» (mobile only): also show it while the buy button is still below the screen.
+    // «Desde que carga» (mobile only): also show it while the buy button is still below the screen, but only after the shopper has scrolled about a screen down.
     const early = sticky.hasAttribute('data-ec-sticky-early') && window.matchMedia('(max-width: 989px)').matches;
     // Never on first paint: only once the shopper has scrolled, and never while the buy button is on screen.
     let inView = true;
     let below = false;
-    const update = () => setVisible(!inView && (!below || (early && window.scrollY > 120)));
+    const update = () => setVisible(!inView && (!below || (early && window.scrollY > Math.max(480, window.innerHeight * 0.75))));
     stickyUpdate = update;
     stickyObserver = new IntersectionObserver(([entry]) => {
       inView = entry.isIntersecting;
