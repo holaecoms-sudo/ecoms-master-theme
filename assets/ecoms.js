@@ -191,6 +191,48 @@
     });
   }
 
+  // Order buttons (floating bar and the app's button in the buy box): amount to pay on the label and, underneath,
+  // what the shopper is taking home and the offer, both following the selected pack.
+  let orderState = null;
+  function orderSub(qty) {
+    const packs = $('[data-ec-packs]');
+    const radio = packs && packs.querySelector('input[type="radio"]:checked');
+    const plural = (packs && packs.dataset.unitName) || 'unidades';
+    const unit = qty === 1 ? plural.replace(/s$/i, '') : plural;
+    const pct = radio ? Math.round(Number(radio.dataset.pct) || 0) : 0;
+    return `${qty} ${unit} · ${pct > 0 ? `${pct}% de dto` : 'precio normal'}`;
+  }
+  function paintOrderButtons(qty, total) {
+    if (qty != null) orderState = { qty, total };
+    if (!orderState) return;
+    const sub = orderSub(orderState.qty);
+    $$('[data-ec-sticky-sub]').forEach((el) => { if (el.textContent !== sub) el.textContent = sub; });
+    // The app's button: rewrite its text nodes in place (keeps its icon and styles); re-applied if the app redraws it.
+    const base = ($('[data-ec-open-cod]') || {}).dataset?.ecOpenCod || '';
+    if (!base) return;
+    const wanted = base.trim().toLowerCase();
+    $$('.ec-buy button, .ec-buy a').forEach((btn) => {
+      if (btn.closest('.ec-sticky, [data-ec-form]') || btn.hasAttribute('data-ec-buy-now')) return;
+      if (!(btn.textContent || '').trim().toLowerCase().startsWith(wanted)) return;
+      const walker = document.createTreeWalker(btn, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      for (let n = walker.nextNode(); n; n = walker.nextNode()) if (n.data.trim()) nodes.push(n);
+      if (!nodes.length) return;
+      const main = `${base.trim()} · ${money(orderState.total)}`;
+      if (nodes[0].data.trim() !== main) nodes[0].data = main;
+      if (nodes[1]) { if (nodes[1].data.trim() !== sub) nodes[1].data = sub; return; }
+      let small = btn.querySelector('[data-ec-order-sub]');
+      if (!small) {
+        small = document.createElement('small');
+        small.setAttribute('data-ec-order-sub', '');
+        small.style.cssText = 'display:block;margin-top:2px;font-size:12px;font-weight:600;opacity:.85';
+        btn.appendChild(small);
+      }
+      if (small.textContent !== sub) small.textContent = sub;
+    });
+  }
+  new MutationObserver(() => paintOrderButtons()).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+
   function sync() {
     // Pages without the product form (e.g. quantity tiers with gifts) have no live price to follow.
     if (!unitPrice()) return;
@@ -211,6 +253,7 @@
     });
     syncPackInfo(qty, total);
     syncIncludes(qty, total);
+    paintOrderButtons(qty, total);
     // Shipping line under the price: delivered total, or «Envío gratis» once the threshold is reached.
     $$('[data-ec-shipline]').forEach((line) => {
       const cost = Number(line.dataset.cost) || 0;

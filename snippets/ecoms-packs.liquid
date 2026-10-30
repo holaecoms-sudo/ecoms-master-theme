@@ -105,6 +105,7 @@
   data-tiers="{{ tiers_json | strip_newlines | replace: ' ', '' | escape }}"
   data-unit="{{ unit }}"
   data-title="{{ product.title | escape }}"
+  data-unit-name="{{ product.metafields.ecoms.unit_name.value | default: s.item_name | default: 'unidades' | escape }}"
   {% if ship_threshold > 0 %}
     data-ship-threshold="{{ ship_threshold }}"
   {% endif %}
