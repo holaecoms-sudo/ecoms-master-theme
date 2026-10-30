@@ -64,7 +64,7 @@
             "layout": "offer",
             "show_cta_total": true,
             "help": "",
-            "default_tier": "3",
+            "default_tier": "2",
             "item_name": "frascos",
             "show_summary": true,
             "summary_label": "Tu pack incluye",
@@ -78,14 +78,14 @@
             "tier2_qty": 2,
             "tier2_pct": 0,
             "tier2_label": "Pack 2 barras",
-            "tier2_tag": "",
-            "tier2_note": "envío gratis en Santiago",
+            "tier2_tag": "Recomendado",
+            "tier2_note": "en Santiago",
             "tier3_enabled": true,
-            "tier3_qty": 4,
+            "tier3_qty": 3,
             "tier3_pct": 0,
-            "tier3_label": "Pack 4 barras",
-            "tier3_tag": "Recomendado",
-            "tier3_note": "1 de regalo · envío gratis"
+            "tier3_label": "Pack 3 barras",
+            "tier3_tag": "Mejor precio",
+            "tier3_note": ""
           }
         },
         "ul": {
