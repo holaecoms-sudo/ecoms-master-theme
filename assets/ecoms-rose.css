@@ -91,15 +91,22 @@ body { font-family: 'Instrument Sans', var(--font-body-family), system-ui, sans-
 .ec-callout__pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 16px 0 0; }
 .ec-callout__pills span { padding: 5px 12px; border: 1.5px solid var(--ec-accent); border-radius: 999px; color: var(--ec-accent); font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
 
-/* "Qué contiene": white cards on ivory, soft pink tag */
-.ec-features--band .ec-sec-h h2 { text-align: left; }
-.ec-feat--band { display: grid; grid-template-columns: 1fr; gap: 10px; }
-.ec-feat--band > div { display: flex; gap: 14px; align-items: center; padding: 16px 18px; border-radius: 20px; background: #fff; }
-.ec-feat--band .ec-ic { flex: none; width: 48px; height: 48px; border-radius: 50%; background: var(--ec-sale-bg); color: var(--ec-sale-ink); }
-.ec-feat--band b { display: block; color: var(--ec-dark); font-size: 17px; }
-.ec-feat--band span:not(.ec-ic) { color: var(--ec-muted); font-size: 13.5px; }
-.ec-feat__tag { display: inline-block; margin: 5px 0; padding: 3px 11px; border-radius: 999px; background: var(--ec-sale-bg); color: var(--ec-sale-ink); font-size: 11.5px; font-style: normal; font-weight: 700; }
-@media (min-width: 750px) { .ec-feat--band { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); } }
+/* "Qué contiene": colored band with white ingredient cards (round photo, name, tag, short text) */
+.ec-features--band { background: var(--ec-sale-ink); }
+.ec-features--band .ec-sec-h { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; }
+.ec-features--band .ec-sec-h h2 { margin: 0; color: #fff; text-align: left; }
+.ec-features--band .ec-sec-h h2 em, .ec-features--band .ec-eyebrow { color: #fff; }
+.ec-feat__more { display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border: 1.5px solid #fff; border-radius: 99px; color: #fff; font-size: 14px; font-weight: 700; text-decoration: none; }
+.ec-feat__more:hover { background: #fff; color: var(--ec-sale-ink); }
+.ec-feat--band { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+.ec-feat--band > div { display: flex; gap: 16px; align-items: flex-start; padding: 18px; border-radius: 16px; background: #fff; }
+.ec-feat--band .ec-ic { flex: none; width: 56px; height: 56px; border-radius: 50%; background: var(--ec-sale-bg); color: var(--ec-sale-ink); }
+.ec-feat--band .ec-ic--img { overflow: hidden; width: 74px; height: 74px; background: var(--ec-soft); }
+.ec-feat--band .ec-ic--img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ec-feat--band b { display: block; color: var(--ec-dark); font-size: 18px; }
+.ec-feat--band span:not(.ec-ic) { color: var(--ec-muted); font-size: 14px; line-height: 1.5; }
+.ec-feat__tag { display: inline-block; margin: 6px 0; padding: 4px 12px; border-radius: 999px; background: var(--ec-sale-bg); color: var(--ec-sale-ink); font-size: 12px; font-style: normal; font-weight: 700; }
+@media (min-width: 750px) { .ec-feat--band { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); } }
 
 /* Comparison */
 .ec-cmp { border-radius: 18px; overflow: hidden; }
