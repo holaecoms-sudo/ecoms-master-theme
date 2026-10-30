@@ -626,18 +626,6 @@
         "padding_bottom": 36
       }
     },
-    "ugc": {
-      "type": "ecoms-ugc",
-      "settings": {
-        "metafield": "",
-        "style": "grid",
-        "heading": "Clientas reales",
-        "text": "",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 12
-      }
-    },
     "bubble": {
       "type": "ecoms-review-bubble",
       "settings": {
@@ -763,6 +751,7 @@
   },
   "order": [
     "main",
+    "bubble",
     "top",
     "demo",
     "pain",
@@ -776,8 +765,6 @@
     "ingredients",
     "compare",
     "before_after",
-    "ugc",
-    "bubble",
     "reviews",
     "pack_img",
     "faq",
