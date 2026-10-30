@@ -930,3 +930,22 @@
   window.addEventListener('load', () => { queue(); setTimeout(queue, 1500); setTimeout(queue, 4000); });
   queue();
 })();
+
+/* Diagnostic: open the product page with ?ecdebug=1 and tap anywhere; a panel lists the elements under the finger
+   (tag, id, classes, size, margins). For finding invisible elements without browser devtools. */
+(() => {
+  if (!/[?&]ecdebug=1/.test(location.search)) return;
+  const box = document.createElement('div');
+  box.style.cssText = 'position:fixed;left:6px;right:6px;top:6px;z-index:2147483647;max-height:55vh;overflow:auto;padding:8px;background:#000c;color:#9f9;font:11px/1.35 monospace;border-radius:8px;white-space:pre-wrap;pointer-events:none';
+  box.textContent = 'ecdebug: toca el espacio en blanco';
+  document.body.appendChild(box);
+  document.addEventListener('click', (e) => {
+    e.preventDefault(); e.stopPropagation();
+    const rows = document.elementsFromPoint(e.clientX, e.clientY).slice(0, 14).map((el) => {
+      const cs = getComputedStyle(el), r = el.getBoundingClientRect();
+      const cls = String(el.className && el.className.baseVal !== undefined ? el.className.baseVal : el.className).trim().replace(/\s+/g, '.').slice(0, 70);
+      return `${el.tagName.toLowerCase()}${el.id ? '#' + el.id : ''}${cls ? '.' + cls : ''} | ${Math.round(r.width)}x${Math.round(r.height)} | m:${cs.margin} p:${cs.padding} pos:${cs.position} op:${cs.opacity} vis:${cs.visibility}`;
+    });
+    box.textContent = `y=${Math.round(e.clientY)}\n` + rows.join('\n');
+  }, true);
+})();
