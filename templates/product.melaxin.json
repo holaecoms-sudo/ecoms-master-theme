@@ -4,7 +4,7 @@
       "type": "ecoms-ribbon",
       "settings": {
         "tag": "PACKS",
-        "text": "Ahorra hasta 22% · Envío gratis",
+        "text": "2º al 50% · 3x2 · Envío gratis",
         "end_at": "",
         "heading": "Termina en:",
         "padding_top": 0,
@@ -64,13 +64,13 @@
             "tier2_enabled": true,
             "tier2_qty": 2,
             "tier2_pct": 0,
-            "tier2_label": "Pack 2 frascos",
+            "tier2_label": "2º frasco al 50%",
             "tier2_tag": "Recomendado",
             "tier2_note": "en Santiago",
             "tier3_enabled": true,
             "tier3_qty": 3,
             "tier3_pct": 0,
-            "tier3_label": "Pack 3 frascos",
+            "tier3_label": "Lleva 3, paga 2",
             "tier3_tag": "Mejor precio",
             "tier3_note": ""
           }
