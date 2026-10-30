@@ -83,9 +83,9 @@
             "tier3_enabled": true,
             "tier3_qty": 4,
             "tier3_pct": 0,
-            "tier3_label": "Compra 2 y llévate 4",
+            "tier3_label": "Pack 4 barras · 2 gratis",
             "tier3_tag": "Mejor oferta",
-            "tier3_note": "2 de regalo · envío gratis",
+            "tier3_note": "",
             "tier1_gallery": 2,
             "tier2_gallery": 1
           }
