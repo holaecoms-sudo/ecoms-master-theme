@@ -1838,3 +1838,9 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 
 /* Empty wrappers collapsed by the script in ecoms.js */
 .ec-void { display: none !important; }
+
+/* Pay-on-delivery only: no spacing left over above the app's button (empty option row, gaps and margins the app adds) */
+.ec-buy--cod-only .ec-form { gap: 0; }
+.ec-buy--cod-only .ec-optrow:not(:has(select, fieldset, input:not([type="hidden"]))) { display: none; }
+.ec-buy--cod-only .ec-form > *, .ec-buy--cod-only .ec-buy__buttons > * { margin-top: 0 !important; margin-bottom: 0 !important; }
+.ec-buy--cod-only .ec-buy__buttons { gap: 0; }
