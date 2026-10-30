@@ -12,16 +12,16 @@
     "main": {
       "type": "ecoms-product",
       "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
         "social": {
           "type": "social",
           "settings": {
             "rating": "4,8",
             "text": "Amado por más de +2.000 clientes satisfechos"
           }
-        },
-        "title": {
-          "type": "title",
-          "settings": {}
         },
         "lead": {
           "type": "text",
@@ -162,8 +162,8 @@
         }
       },
       "block_order": [
-        "social",
         "title",
+        "social",
         "lead",
         "benefits",
         "pk",
