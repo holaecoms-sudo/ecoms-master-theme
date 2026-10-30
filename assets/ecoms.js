@@ -740,6 +740,10 @@
     const toBuy = t.closest('[data-ec-scroll-buy]');
     if (toBuy) {
       // Quantity tiers with gifts: page CTAs take the shopper back to the tiers so they choose a pack first.
+      // The floating bar is the exception: it opens the order form with the pack already chosen.
+      const fromBar = !!toBuy.closest('.ec-sticky');
+      const barCod = fromBar && toBuy.dataset.ecOpenCod && codButton(toBuy.dataset.ecOpenCod);
+      if (barCod) { event.preventDefault(); barCod.click(); return; }
       const tiers = $('[data-ec-gt]');
       if (tiers) { event.preventDefault(); tiers.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
       // Pack tiers on the page: every page CTA takes the shopper back up to choose a pack, so they know what they are buying.

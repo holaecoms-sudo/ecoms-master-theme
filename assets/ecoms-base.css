@@ -1826,3 +1826,9 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
   .ec-sticky:has(.ec-sticky__cod) { padding: 0 16px calc(14px + env(safe-area-inset-bottom, 0px)); border: 0; background: transparent; box-shadow: none; pointer-events: none; }
   .ec-sticky .ec-sticky__cod { pointer-events: auto; min-height: 56px; border-radius: 999px; box-shadow: 0 16px 32px -12px rgba(30, 27, 36, 0.6); }
 }
+
+/* Floating bar: readable label, and fully hidden (not just pushed down) until it is shown, so it never peeks through the browser bar */
+.ec-sticky .ec-sticky__cod, .ec-sticky .ec-sticky__cod > span { color: #fff; }
+.ec-sticky:not(.is-on) { visibility: hidden; opacity: 0; pointer-events: none; }
+.ec-sticky { transition: transform 0.25s ease, opacity 0.2s ease, visibility 0s linear 0.25s; }
+.ec-sticky.is-on { transition: transform 0.25s ease, opacity 0.2s ease; }
