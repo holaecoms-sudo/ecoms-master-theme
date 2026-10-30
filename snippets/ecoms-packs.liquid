@@ -203,6 +203,12 @@
         {%- unless show_tier -%}{%- continue -%}{%- endunless -%}
         {%- assign mf_label = '' -%}
         {%- if mf_mode and mf_labels != blank -%}{%- assign mf_label = mf_labels[forloop.index0] -%}{%- endif -%}
+        {%- comment -%} ecoms.pack_includes: what each pack includes (only for the «Tu pack incluye» summary; the card title stays short). {%- endcomment -%}
+        {%- assign sum_txt = mf_label -%}
+        {%- if mf_mode and product.metafields.ecoms.pack_includes.value != blank -%}
+          {%- assign sum_inc = product.metafields.ecoms.pack_includes.value[forloop.index0] -%}
+          {%- if sum_inc != blank -%}{%- assign sum_txt = sum_inc -%}{%- endif -%}
+        {%- endif -%}
         {%- capture q_label -%}
           {%- if mf_label != blank -%}
             {{ mf_label | escape }}
@@ -235,7 +241,7 @@
             data-pct="{{ pct }}"
             data-label="{{ q_label | strip_html | replace: '&nbsp;', ' ' | strip }}"
             data-inc="{{ inc | strip }}"
-            {% if mf_label != blank %}data-sum="{{ mf_label | escape }}"{% endif %}
+            {% if sum_txt != blank %}data-sum="{{ sum_txt | escape }}"{% endif %}
             data-total="{{ total }}"
             {% if pack_image != blank %}data-img="{{ pack_image | image_url: width: 120 }}"{% endif %}
             data-save="{% if offer_save > 0 %}{{ offer_save }}{% else %}0{% endif %}"
@@ -315,7 +321,7 @@
         {%- if is_default -%}
           {%- liquid
             assign sum_qty = q
-            assign sum_label = mf_label
+            assign sum_label = sum_txt
             assign sum_save = offer_save
             assign sum_ship = ships_free
           -%}

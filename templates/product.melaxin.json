@@ -62,7 +62,7 @@
             "help": "",
             "default_tier": "2",
             "item_name": "frascos",
-            "show_summary": false,
+            "show_summary": true,
             "summary_label": "Tu pack incluye",
             "show_free_shipping": true,
             "discounts_live": true,
@@ -152,6 +152,12 @@
             "c3_locked": "Lleva 3 y es tuyo",
             "c3_open": "¡Es tuyo gratis!"
           }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "style": "pill"
+          }
         }
       },
       "block_order": [
@@ -159,6 +165,7 @@
         "title",
         "lead",
         "benefits",
+        "price",
         "pk",
         "ul",
         "buy",

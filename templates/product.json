@@ -51,7 +51,7 @@
             "help": "",
             "default_tier": "2",
             "item_name": "frascos",
-            "show_summary": false,
+            "show_summary": true,
             "summary_label": "Tu pack incluye",
             "show_free_shipping": true,
             "discounts_live": true,
@@ -159,6 +159,12 @@
             "label_5": "¿Por qué este precio?",
             "open_first": false
           }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "style": "pill"
+          }
         }
       },
       "block_order": [
@@ -166,6 +172,7 @@
         "social",
         "lead",
         "benefits",
+        "price",
         "pk",
         "ul",
         "buy",
