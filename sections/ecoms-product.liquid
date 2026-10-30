@@ -400,7 +400,7 @@
               {%- if ac_ben != blank -%}
                 <details{% if block.settings.open_first %} open{% endif %}>
                   <summary><span class="ec-acc__l"><svg class="ec-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>{{ block.settings.label_1 | default: 'Beneficios' | escape }}</span>{% render 'ecoms-icon', name: 'plus' %}</summary>
-                  <div class="ec-faq__a rte"><ul>{%- for it in ac_ben -%}<li>{{ it | escape }}</li>{%- endfor -%}</ul></div>
+                  <div class="ec-faq__a rte">{%- if product.metafields.ecoms.subtitle != blank -%}<p>{{ product.metafields.ecoms.subtitle | escape }}</p>{%- endif -%}<ul>{%- for it in ac_ben -%}<li>{{ it | escape }}</li>{%- endfor -%}</ul></div>
                 </details>
               {%- endif -%}
               {%- if ac_steps != blank -%}

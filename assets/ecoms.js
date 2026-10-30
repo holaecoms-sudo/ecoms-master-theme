@@ -833,3 +833,16 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 })();
+
+/* Accordions (product buy box and FAQ): opening one closes the others in the same group. */
+(() => {
+  if (window.__ecAccordion) return;
+  window.__ecAccordion = true;
+  document.addEventListener('toggle', (e) => {
+    const d = e.target;
+    if (!d || d.tagName !== 'DETAILS' || !d.open) return;
+    const group = d.closest('.ec-faq');
+    if (!group) return;
+    group.querySelectorAll(':scope > details[open]').forEach((o) => { if (o !== d) o.open = false; });
+  }, true);
+})();

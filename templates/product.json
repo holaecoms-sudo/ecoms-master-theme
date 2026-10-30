@@ -649,12 +649,29 @@
         "padding_top": 44,
         "padding_bottom": 20
       }
+    },
+    "pain": {
+      "type": "ecoms-pain-gain",
+      "settings": {
+        "heading": "Te pasa que… | Cuando la piel se siente *tirante,* se nota.",
+        "intro": "Hidratar la piel no debería ser una tarea más. Si algo de esto te suena, esta barra está hecha para ti.",
+        "pain_title": "Te pasa que…",
+        "pain_items": "Tu piel se siente tirante y seca a media tarde.\nTu crema en pote ensucia las manos y nunca la llevas contigo.\nEl contorno de ojos y el cuello se ven apagados y sin volumen.\nProbaste de todo y terminas con productos que no usas.",
+        "gain_title": "Con tu bálsamo…",
+        "gain_items": "Hidrata al instante: lo deslizas y la piel se siente cómoda.\nTextura sedosa, nada pegajosa.\nUna sola barra para rostro, ojos y cuello.\n10 g que caben en el bolso: lo usas donde y cuando lo necesites.\n5% de Volufiline y colágeno para un aspecto más lleno y firme.",
+        "closing": "Un gesto de 10 segundos. Piel que se siente cuidada todo el día.",
+        "note": "Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
+        "button_label": "Quiero mi bálsamo",
+        "padding_top": 44,
+        "padding_bottom": 8
+      }
     }
   },
   "order": [
     "ribbon",
     "main",
     "top",
+    "pain",
     "benefits",
     "demo",
     "daily",
