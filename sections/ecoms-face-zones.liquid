@@ -25,11 +25,13 @@
         {%- assign fz_chips = block.settings.concerns | split: ',' -%}
         <article class="ec-fz__card" role="listitem" {{ block.shopify_attributes }}>
           <div class="ec-fz__ph">
-            {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', widths: '400,600,800', sizes: '(min-width: 990px) 25vw, 70vw', alt: block.settings.label }}
+            {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', widths: '400,600,800', sizes: '(min-width: 990px) 25vw, 80vw', alt: block.settings.label }}
           </div>
-          <b class="ec-fz__name">{{ block.settings.label | escape }}</b>
-          <div class="ec-fz__chips">{%- for c in fz_chips -%}{%- assign c_t = c | strip -%}{%- if c_t != blank -%}<span>{{ c_t | escape }}</span>{%- endif -%}{%- endfor -%}</div>
-          <p class="ec-fz__t">{{ block.settings.text | escape }}</p>
+          <div class="ec-fz__body">
+            <b class="ec-fz__name">{{ block.settings.label | escape }}</b>
+            {%- if block.settings.concerns != blank -%}<div class="ec-fz__chips">{%- for c in fz_chips -%}{%- assign c_t = c | strip -%}{%- if c_t != blank -%}<span>{{ c_t | escape }}</span>{%- endif -%}{%- endfor -%}</div>{%- endif -%}
+            <p class="ec-fz__t">{{ block.settings.text | escape }}</p>
+          </div>
         </article>
       {%- endif -%}
     {%- endfor -%}
@@ -64,9 +66,9 @@
       "type": "zone",
       "name": "Zona",
       "settings": [
-        { "type": "text", "id": "label", "label": "Nombre de la zona", "default": "Contorno de ojos" },
+        { "type": "text", "id": "label", "label": "Título (el problema que se nota)", "default": "Contorno de ojos" },
         { "type": "text", "id": "concerns", "label": "Lo que se nota (separado por comas)", "default": "Sequedad, Aspecto apagado" },
-        { "type": "image_picker", "id": "image", "label": "Foto de la zona (vertical 4:5, 1000 x 1250 px)" },
+        { "type": "image_picker", "id": "image", "label": "Foto de la zona (horizontal 16:10, 1200 x 750 px)" },
         { "type": "textarea", "id": "text", "label": "Cómo ayuda el producto" }
       ]
     }

@@ -684,33 +684,33 @@
         "z1": {
           "type": "zone",
           "settings": {
-            "label": "Contorno de ojos",
-            "concerns": "Sequedad, Aspecto apagado, Líneas secas",
-            "text": "La piel del contorno de ojos es delicada y se nota cuando le falta hidratación. La barra se desliza suave, sin tirar y sin sensación pegajosa, y ayuda a que se vea más hidratada."
+            "label": "El contorno de ojos se ve apagado",
+            "concerns": "",
+            "text": "La piel es delicada y la falta de hidratación se nota. La barra se desliza suave, sin tirar, y ayuda a que se vea más hidratada."
           }
         },
         "z2": {
           "type": "zone",
           "settings": {
-            "label": "Mejillas",
-            "concerns": "Sequedad, Aspecto apagado, Falta de volumen",
-            "text": "Con 5% de Volufiline y colágeno, ayuda a dar a las mejillas un aspecto más lleno y firme, con una textura sedosa que se extiende fácil."
+            "label": "Las mejillas pierden aspecto lleno",
+            "concerns": "",
+            "text": "Con 5% de Volufiline y colágeno, para dar a la piel un aspecto más lleno y firme, con una textura sedosa."
           }
         },
         "z3": {
           "type": "zone",
           "settings": {
-            "label": "Frente y líneas de expresión",
-            "concerns": "Líneas de expresión, Sequedad",
-            "text": "Desliza sobre la zona y extiende con los dedos: hidrata y ayuda a que las líneas secas se vean menos marcadas."
+            "label": "Las líneas se notan más donde hay sequedad",
+            "concerns": "",
+            "text": "Hidrata y ayuda a que las líneas secas de la frente y la expresión se vean menos marcadas."
           }
         },
         "z4": {
           "type": "zone",
           "settings": {
-            "label": "Cuello",
-            "concerns": "Sequedad, Aspecto menos firme",
-            "text": "El cuello también cuenta. Con la misma barra cuidas rostro, ojos y cuello en un solo gesto de 10 segundos."
+            "label": "El cuello también se resiente",
+            "concerns": "",
+            "text": "Con la misma barra cuidas rostro, ojos y cuello en un solo gesto de 10 segundos."
           }
         }
       },
@@ -721,8 +721,8 @@
         "z4"
       ],
       "settings": {
-        "heading": "Tu rostro | ¿Qué *parte* te preocupa?",
-        "text": "Estas son las zonas donde más se nota. Mira qué se ve en cada una y cómo te ayuda tu bálsamo.",
+        "heading": "Tu rostro | No se trata solo de *arrugas.*",
+        "text": "Estas son las zonas donde más se nota. Mira qué pasa en cada una y cómo te ayuda tu bálsamo.",
         "chips_label": "Lo que notas aquí",
         "note": "Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
         "button_label": "Quiero mi bálsamo",
