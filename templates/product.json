@@ -9,17 +9,6 @@
  */
 {
   "sections": {
-    "ribbon": {
-      "type": "ecoms-ribbon",
-      "settings": {
-        "tag": "PACKS",
-        "text": "Ahorra hasta 33% · Envío gratis",
-        "end_at": "",
-        "heading": "Termina en:",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
     "main": {
       "type": "ecoms-product",
       "blocks": {
@@ -675,7 +664,6 @@
     }
   },
   "order": [
-    "ribbon",
     "main",
     "top",
     "demo",
