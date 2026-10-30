@@ -938,7 +938,24 @@
   const box = document.createElement('div');
   box.style.cssText = 'position:fixed;left:6px;right:6px;top:6px;z-index:2147483647;max-height:55vh;overflow:auto;padding:8px;background:#000c;color:#9f9;font:11px/1.35 monospace;border-radius:8px;white-space:pre-wrap;pointer-events:none';
   box.textContent = 'ecdebug: toca el espacio en blanco';
+  box.style.pointerEvents = 'auto';
   document.body.appendChild(box);
+  // Tree of the buy block (form and everything inside it), refreshed 3 s and 6 s after load.
+  const dump = () => {
+    const buy = document.querySelector('.ec-buy');
+    if (!buy) return;
+    const out = [];
+    const walk = (el, d) => {
+      if (d > 5 || /^(SCRIPT|STYLE|PATH|SVG|USE)$/i.test(el.tagName)) return;
+      const cs = getComputedStyle(el), r = el.getBoundingClientRect();
+      const cls = String(typeof el.className === 'string' ? el.className : '').trim().replace(/\s+/g, '.').slice(0, 40);
+      out.push(`${'  '.repeat(d)}${el.tagName.toLowerCase()}${el.id ? '#' + el.id.slice(0, 24) : ''}${cls ? '.' + cls : ''} ${Math.round(r.height)}h d:${cs.display} m:${cs.margin === '0px' ? '-' : cs.margin} p:${cs.padding === '0px' ? '-' : cs.padding} op:${cs.opacity}${cs.visibility !== 'visible' ? ' vis:' + cs.visibility : ''}`);
+      [...el.children].forEach((c) => walk(c, d + 1));
+    };
+    walk(buy, 0);
+    box.textContent = out.join('\n');
+  };
+  setTimeout(dump, 3000); setTimeout(dump, 6000);
   document.addEventListener('click', (e) => {
     e.preventDefault(); e.stopPropagation();
     const rows = document.elementsFromPoint(e.clientX, e.clientY).slice(0, 14).map((el) => {
