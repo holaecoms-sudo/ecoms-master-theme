@@ -100,7 +100,7 @@
             "heading": "",
             "show_quantity": false,
             "add_label": "Comprar con tarjeta",
-            "show_total": false,
+            "show_total": true,
             "show_buy_now": false,
             "buy_now_icon": "bolt",
             "buy_now_label": "Pedir ahora",
