@@ -1850,3 +1850,4 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 .ec-sticky__cod > span { white-space: nowrap; font-size: 15.5px; }
 .ec-sticky__cod small { white-space: nowrap; }
 @media (max-width: 360px) { .ec-sticky__cod > span { font-size: 14px; } }
+.ec-sticky__main { display: block; white-space: nowrap; }
