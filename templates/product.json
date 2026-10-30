@@ -125,7 +125,20 @@
         },
         "ul": {
           "type": "unlock",
-          "settings": {}
+          "settings": {
+            "heading": "Regalos que se desbloquean con tu pack",
+            "c1_label": "Ebook: rutina de 10 segundos",
+            "c1_icon": "gift",
+            "c1_qty": 2,
+            "c1_locked": "Lleva 2 y es tuyo",
+            "c1_open": "¡Es tuyo gratis!",
+            "c2_label": "Calendario Glow 30 días",
+            "c2_icon": "sparkle",
+            "c2_qty": 3,
+            "c2_locked": "Lleva 3 y es tuyo",
+            "c2_open": "¡Es tuyo gratis!",
+            "c3_label": ""
+          }
         }
       },
       "block_order": [
