@@ -126,14 +126,22 @@
         "ul": {
           "type": "unlock",
           "settings": {
-            "heading": "Desbloquea con tu pack",
+            "heading": "Desbloquea beneficios con tu pack",
             "c1_label": "Envío gratis",
             "c1_icon": "truck",
             "c1_qty": 2,
             "c1_locked": "Lleva 2 y es tuyo",
             "c1_open": "¡Desbloqueado!",
-            "c2_label": "",
-            "c3_label": ""
+            "c2_label": "Guía: piel suave en 14 días",
+            "c2_icon": "gift",
+            "c2_qty": 2,
+            "c2_locked": "Lleva 2 y es tuya",
+            "c2_open": "¡Es tuya gratis!",
+            "c3_label": "Calendario de 14 días",
+            "c3_icon": "sparkle",
+            "c3_qty": 3,
+            "c3_locked": "Lleva 3 y es tuyo",
+            "c3_open": "¡Es tuyo gratis!"
           }
         }
       },
@@ -262,7 +270,7 @@
         "button_label": "",
         "button_link": "",
         "style": "cards",
-        "heading": "Cómo se usa | Cuatro pasos, *simples.*",
+        "heading": "El ritual | Cuatro pasos, *sin apuro.*",
         "text": "",
         "width": "full",
         "padding_top": 36,
@@ -427,7 +435,7 @@
     "cta": {
       "type": "ecoms-cta-band",
       "settings": {
-        "style": "soft",
+        "style": "photo",
         "eyebrow": "",
         "heading": "Tu piel, más *luminosa.*",
         "text": "Un spray, tres activos. Pagas cuando lo recibes.",
@@ -492,6 +500,185 @@
         "padding_top": 44,
         "padding_bottom": 20
       }
+    },
+    "demo": {
+      "type": "ecoms-demo",
+      "settings": {
+        "heading": "Clientas reales | Míralo en *acción.*",
+        "text": "",
+        "mode": "player",
+        "ratio": "portrait",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 12
+      }
+    },
+    "ugc": {
+      "type": "ecoms-ugc",
+      "settings": {
+        "metafield": "",
+        "style": "grid",
+        "heading": "Clientas reales | Así lo *usan.*",
+        "text": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "bubble": {
+      "type": "ecoms-review-bubble",
+      "settings": {
+        "metafield": "ecoms.reviews",
+        "heading": "",
+        "limit": 8,
+        "width": "full",
+        "padding_top": 4,
+        "padding_bottom": 24
+      }
+    },
+    "reviews": {
+      "type": "ecoms-reviews",
+      "settings": {
+        "metafield": "ecoms.reviews",
+        "style": "masonry",
+        "heading": "Opiniones de *clientas.*",
+        "link_label": "",
+        "link": "",
+        "source_note": "",
+        "per_page": 6,
+        "write_label": "Escribe una reseña",
+        "write_link": "/pages/contact",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "before_after": {
+      "type": "ecoms-before-after",
+      "settings": {
+        "style": "slider",
+        "heading": "Prueba real | Resultados *visibles.*",
+        "text": "Con uso constante. Fotos reales, con permiso. Arrastra.",
+        "before": "",
+        "before_caption": "Antes",
+        "after": "",
+        "after_caption": "Después",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "zones": {
+      "type": "ecoms-zone-picker",
+      "blocks": {
+        "z1": {
+          "type": "zone",
+          "settings": {
+            "label": "Codos"
+          }
+        },
+        "z2": {
+          "type": "zone",
+          "settings": {
+            "label": "Rodillas"
+          }
+        },
+        "z3": {
+          "type": "zone",
+          "settings": {
+            "label": "Pies"
+          }
+        },
+        "z4": {
+          "type": "zone",
+          "settings": {
+            "label": "Piernas y brazos"
+          }
+        }
+      },
+      "block_order": [
+        "z1",
+        "z2",
+        "z3",
+        "z4"
+      ],
+      "settings": {
+        "heading": "Hecho a tu medida | ¿Dónde lo vas a *usar*?",
+        "text": "Elige tus zonas y te decimos cuántos frascos te conviene.",
+        "rec_label": "Te recomendamos",
+        "name_1": "1 frasco",
+        "text_1": "Para empezar por una zona, un frasco es suficiente para probar.",
+        "name_2": "2º frasco al 50%",
+        "text_2": "Con dos zonas te conviene el pack: el segundo frasco sale a mitad de precio.",
+        "name_3": "Lleva 3, paga 2",
+        "text_3": "Para varias zonas, el 3x2 es la forma más conveniente. Incluye envío gratis.",
+        "button_label": "Elegir este pack",
+        "padding_top": 44,
+        "padding_bottom": 10
+      }
+    },
+    "crops": {
+      "type": "ecoms-photo-crops",
+      "blocks": {
+        "c1": {
+          "type": "crop",
+          "settings": {
+            "product_image_index": 1,
+            "shape": "arch_top",
+            "zoom": 200,
+            "focus_x": 50,
+            "focus_y": 15,
+            "title": "El gatillo",
+            "text": "Aplicación pareja en spray."
+          }
+        },
+        "c2": {
+          "type": "crop",
+          "settings": {
+            "product_image_index": 1,
+            "shape": "rect",
+            "zoom": 200,
+            "focus_x": 50,
+            "focus_y": 70,
+            "title": "La fórmula",
+            "text": "Kójico, cúrcuma y niacinamida."
+          }
+        },
+        "c3": {
+          "type": "crop",
+          "settings": {
+            "product_image_index": 1,
+            "shape": "arch_bottom",
+            "zoom": 200,
+            "focus_x": 76,
+            "focus_y": 76,
+            "title": "La cúrcuma",
+            "text": "Antioxidante y calmante."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ],
+      "settings": {
+        "heading": "De cerca | Mira los *detalles.*",
+        "padding_top": 44,
+        "padding_bottom": 6
+      }
+    },
+    "yesno": {
+      "type": "ecoms-yes-no",
+      "settings": {
+        "heading": "Claro y sin letra chica | Lo que *sí* y lo que *no* es.",
+        "yes_title": "Sí es",
+        "yes_items": "Un exfoliante corporal en spray\nPara todo tipo de piel\nDe uso diario, según tu rutina",
+        "no_title": "No es",
+        "no_items": "Para el rostro\nUn tratamiento médico\nUna promesa igual para todas las pieles",
+        "padding_top": 44,
+        "padding_bottom": 6
+      }
     }
   },
   "order": [
@@ -499,10 +686,18 @@
     "main",
     "top",
     "benefits",
+    "demo",
+    "zones",
+    "crops",
     "routine",
     "star",
     "ingredients",
     "compare",
+    "before_after",
+    "ugc",
+    "bubble",
+    "reviews",
+    "yesno",
     "faq",
     "cta"
   ]

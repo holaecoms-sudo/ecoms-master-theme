@@ -1,0 +1,42 @@
+{%- comment -%}
+  ECOMS · «Sí es / No es»: two cards that say plainly what the product is and what it is not. One item per line.
+{%- endcomment -%}
+{%- assign yn_yes = section.settings.yes_items | newline_to_br | split: '<br />' -%}
+{%- assign yn_no = section.settings.no_items | newline_to_br | split: '<br />' -%}
+{%- if section.settings.yes_items != blank or section.settings.no_items != blank -%}
+{{ 'ecoms-ritual-sections.css' | asset_url | stylesheet_tag }}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-yn-sec' %}>
+  <div class="ec-w">
+    {%- if section.settings.heading != blank -%}
+      <div class="ec-sec-h">{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2' %}</div>
+    {%- endif -%}
+    <div class="ec-yn">
+      <div class="ec-yn__c ec-yn__c--yes">
+        <b>{{ section.settings.yes_title | default: 'Sí es' | escape }}</b>
+        <ul role="list">{%- for it in yn_yes -%}{%- assign it_t = it | strip -%}{%- if it_t != blank -%}<li>{{ it_t | escape }}</li>{%- endif -%}{%- endfor -%}</ul>
+      </div>
+      <div class="ec-yn__c ec-yn__c--no">
+        <b>{{ section.settings.no_title | default: 'No es' | escape }}</b>
+        <ul role="list">{%- for it in yn_no -%}{%- assign it_t = it | strip -%}{%- if it_t != blank -%}<li>{{ it_t | escape }}</li>{%- endif -%}{%- endfor -%}</ul>
+      </div>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ECOMS · Sí es / No es",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "Claro y sin letra chica | Lo que *sí* y lo que *no* es." },
+    { "type": "text", "id": "yes_title", "label": "Título «Sí es»", "default": "Sí es" },
+    { "type": "textarea", "id": "yes_items", "label": "Sí es (una línea por punto)" },
+    { "type": "text", "id": "no_title", "label": "Título «No es»", "default": "No es" },
+    { "type": "textarea", "id": "no_items", "label": "No es (una línea por punto)" },
+    { "type": "range", "id": "padding_top", "label": "Espacio arriba", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 44 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio abajo", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 6 }
+  ],
+  "presets": [ { "name": "ECOMS · Sí es / No es" } ]
+}
+{% endschema %}

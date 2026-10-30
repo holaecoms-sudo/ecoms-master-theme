@@ -1,0 +1,98 @@
+{%- comment -%}
+  ECOMS · Photo crops: one product photo cut into several framed details (a swipeable row). Every block picks a product image
+  (position in the gallery), a zoom and a focal point, so one good photo can show the nozzle, the label and the ingredients.
+  Blocks whose image position doesn't exist for the product are skipped.
+{%- endcomment -%}
+{%- liquid
+  assign pc_count = 0
+  for block in section.blocks
+    assign pc_i = block.settings.product_image_index | default: 1 | minus: 1
+    if product.images[pc_i] != blank
+      assign pc_count = pc_count | plus: 1
+    endif
+  endfor
+-%}
+{%- if pc_count > 0 -%}
+{{ 'ecoms-ritual-sections.css' | asset_url | stylesheet_tag }}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-pcr-sec' %}>
+  <div class="ec-w">
+    {%- if section.settings.heading != blank -%}
+      <div class="ec-sec-h">{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2' %}</div>
+    {%- endif -%}
+  </div>
+  <div class="ec-pcr" role="list">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign pc_i = block.settings.product_image_index | default: 1 | minus: 1
+        assign pc_img = product.images[pc_i]
+        assign pc_z = block.settings.zoom | default: 200
+        assign pc_half = 5000.0 | divided_by: pc_z
+        assign pc_hi = 100.0 | minus: pc_half
+        assign pc_x = block.settings.focus_x | default: 50 | at_least: pc_half | at_most: pc_hi
+        assign pc_y = block.settings.focus_y | default: 50 | at_least: pc_half | at_most: pc_hi
+        assign pc_tx = 50.0 | minus: pc_x
+        assign pc_ty = 50.0 | minus: pc_y
+        assign pc_scale = pc_z | divided_by: 100.0
+      -%}
+      {%- if pc_img != blank -%}
+        <figure class="ec-pcr__it" role="listitem" {{ block.shopify_attributes }}>
+          <div class="ec-pcr__f ec-pcr__f--{{ block.settings.shape | default: 'arch_top' }}">
+            <img
+              src="{{ pc_img | image_url: width: 900 }}"
+              srcset="{{ pc_img | image_url: width: 600 }} 600w, {{ pc_img | image_url: width: 900 }} 900w"
+              sizes="420px"
+              width="420" height="560" loading="lazy"
+              alt="{{ block.settings.title | default: pc_img.alt | escape }}"
+              style="transform-origin: {{ pc_x }}% {{ pc_y }}%; transform: translate({{ pc_tx }}%, {{ pc_ty }}%) scale({{ pc_scale }});">
+          </div>
+          <figcaption>
+            {%- if block.settings.title != blank -%}<b>{{ block.settings.title | escape }}</b>{%- endif -%}
+            {%- if block.settings.text != blank -%}<span>{{ block.settings.text | escape }}</span>{%- endif -%}
+          </figcaption>
+        </figure>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ECOMS · Recortes de foto",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "De cerca | Mira los *detalles.*" },
+    { "type": "range", "id": "padding_top", "label": "Espacio arriba", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 44 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio abajo", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 6 }
+  ],
+  "blocks": [
+    {
+      "type": "crop",
+      "name": "Recorte",
+      "settings": [
+        { "type": "number", "id": "product_image_index", "label": "Foto del producto (posición en la galería)", "default": 1 },
+        { "type": "select", "id": "shape", "label": "Forma", "options": [
+          { "value": "arch_top", "label": "Arco arriba" },
+          { "value": "rect", "label": "Rectángulo" },
+          { "value": "arch_bottom", "label": "Arco abajo" }
+        ], "default": "arch_top" },
+        { "type": "range", "id": "zoom", "label": "Zoom", "min": 100, "max": 400, "step": 10, "unit": "%", "default": 200 },
+        { "type": "range", "id": "focus_x", "label": "Punto de foco horizontal", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 50 },
+        { "type": "range", "id": "focus_y", "label": "Punto de foco vertical", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 50 },
+        { "type": "text", "id": "title", "label": "Título" },
+        { "type": "text", "id": "text", "label": "Texto" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ECOMS · Recortes de foto",
+      "blocks": [
+        { "type": "crop", "settings": { "shape": "arch_top", "focus_y": 15, "title": "El detalle 1" } },
+        { "type": "crop", "settings": { "shape": "rect", "focus_y": 70, "title": "El detalle 2" } },
+        { "type": "crop", "settings": { "shape": "arch_bottom", "focus_x": 75, "focus_y": 75, "title": "El detalle 3" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

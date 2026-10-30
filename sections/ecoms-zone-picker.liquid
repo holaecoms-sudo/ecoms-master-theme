@@ -1,0 +1,138 @@
+{%- comment -%}
+  ECOMS · Zone picker: the shopper taps the zones where they'll use the product and gets a recommended pack. The button
+  selects that pack in the buy box and scrolls up to it. Prices come from the product and the real pack discounts
+  (ecoms.pack2_pct / ecoms.pack3_pct); with none, only the single unit is recommended.
+{%- endcomment -%}
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign unit = variant.price
+  assign pct2 = product.metafields.ecoms.pack2_pct.value | default: 0 | plus: 0
+  assign pct3 = product.metafields.ecoms.pack3_pct.value | default: 0 | plus: 0
+  assign tot1 = unit
+  assign keep2 = 100 | minus: pct2
+  assign keep3 = 100 | minus: pct3
+  assign tot2 = unit | times: 2 | times: keep2 | divided_by: 100.0 | round
+  assign tot3 = unit | times: 3 | times: keep3 | divided_by: 100.0 | round
+  assign was2 = unit | times: 2
+  assign was3 = unit | times: 3
+  assign has_packs = false
+  if pct2 > 0
+    assign has_packs = true
+  endif
+-%}
+{%- if section.blocks.size > 0 -%}
+{{ 'ecoms-ritual-sections.css' | asset_url | stylesheet_tag }}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-zp-sec' %}>
+  <div class="ec-w ec-zp" data-ec-zonepicker data-has-packs="{{ has_packs }}">
+    {%- if section.settings.heading != blank -%}
+      <div class="ec-sec-h">{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2' %}</div>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}<p class="ec-zp__t">{{ section.settings.text | escape }}</p>{%- endif -%}
+    <div class="ec-zp__chips" role="group" aria-label="{{ section.settings.heading | strip_html | escape }}">
+      {%- for block in section.blocks -%}
+        <button type="button" class="ec-zp__chip{% if forloop.first %} is-on{% endif %}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}" {{ block.shopify_attributes }}>{{ block.settings.label | escape }}</button>
+      {%- endfor -%}
+    </div>
+    <div class="ec-zp__card">
+      <p class="ec-eyebrow">{{ section.settings.rec_label | default: 'Te recomendamos' | escape }}</p>
+      <div class="ec-zp__rec" data-q="1">
+        <b class="ec-zp__name">{{ section.settings.name_1 | default: '1 frasco' | escape }}</b>
+        <p>{{ section.settings.text_1 | escape }}</p>
+        <p class="ec-zp__price"><b>{{ tot1 | money }}</b></p>
+      </div>
+      {%- if has_packs -%}
+        <div class="ec-zp__rec" data-q="2" hidden>
+          <b class="ec-zp__name">{{ section.settings.name_2 | default: 'Pack de 2' | escape }}</b>
+          <p>{{ section.settings.text_2 | escape }}</p>
+          <p class="ec-zp__price"><b>{{ tot2 | money }}</b> <s>{{ was2 | money }}</s></p>
+        </div>
+        {%- if pct3 > 0 -%}
+          <div class="ec-zp__rec" data-q="3" hidden>
+            <b class="ec-zp__name">{{ section.settings.name_3 | default: 'Pack de 3' | escape }}</b>
+            <p>{{ section.settings.text_3 | escape }}</p>
+            <p class="ec-zp__price"><b>{{ tot3 | money }}</b> <s>{{ was3 | money }}</s></p>
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <button type="button" class="ec-btn ec-btn--accent ec-btn--lg ec-zp__btn" data-ec-zp-pick>{{ section.settings.button_label | escape }}</button>
+      {%- endif -%}
+    </div>
+  </div>
+  <script>
+    (function () {
+      var root = document.currentScript.parentNode.querySelector('[data-ec-zonepicker]');
+      if (!root || root.__ecZp) return;
+      root.__ecZp = true;
+      var chips = root.querySelectorAll('.ec-zp__chip');
+      var recs = root.querySelectorAll('.ec-zp__rec');
+      var maxQ = recs.length;
+      var current = 1;
+      function paint() {
+        var n = 0;
+        chips.forEach(function (c) { if (c.classList.contains('is-on')) n++; });
+        current = Math.min(Math.max(n, 1), maxQ);
+        recs.forEach(function (r) { r.hidden = parseInt(r.getAttribute('data-q'), 10) !== current; });
+      }
+      chips.forEach(function (c) {
+        c.addEventListener('click', function () {
+          var on = c.classList.toggle('is-on');
+          c.setAttribute('aria-pressed', on ? 'true' : 'false');
+          paint();
+        });
+      });
+      var btn = root.querySelector('[data-ec-zp-pick]');
+      if (btn) {
+        btn.addEventListener('click', function () {
+          var input = document.querySelector('.ec-pack input[value="' + current + '"]');
+          if (input && !input.checked) { input.checked = true; input.dispatchEvent(new Event('change', { bubbles: true })); }
+          var target = document.querySelector('[data-ec-product]');
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+      paint();
+    })();
+  </script>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ECOMS · Selector de zonas",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "Hecho a tu medida | ¿Dónde lo vas a *usar*?" },
+    { "type": "text", "id": "text", "label": "Texto", "default": "Elige tus zonas y te decimos cuántos frascos te conviene." },
+    { "type": "text", "id": "rec_label", "label": "Etiqueta de la recomendación", "default": "Te recomendamos" },
+    { "type": "header", "content": "Recomendación según zonas elegidas" },
+    { "type": "text", "id": "name_1", "label": "1 zona: nombre", "default": "1 frasco" },
+    { "type": "textarea", "id": "text_1", "label": "1 zona: texto", "default": "Para empezar por una zona, un frasco es suficiente para probar." },
+    { "type": "text", "id": "name_2", "label": "2 zonas: nombre", "default": "Pack de 2" },
+    { "type": "textarea", "id": "text_2", "label": "2 zonas: texto", "default": "Con dos zonas te conviene el pack: sale más barato por frasco." },
+    { "type": "text", "id": "name_3", "label": "3 o más zonas: nombre", "default": "Pack de 3" },
+    { "type": "textarea", "id": "text_3", "label": "3 o más zonas: texto", "default": "Para varias zonas, el pack de 3 es la forma más conveniente." },
+    { "type": "text", "id": "button_label", "label": "Botón", "default": "Elegir este pack" },
+    { "type": "range", "id": "padding_top", "label": "Espacio arriba", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 44 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio abajo", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 10 }
+  ],
+  "blocks": [
+    {
+      "type": "zone",
+      "name": "Zona",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Nombre", "default": "Codos" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ECOMS · Selector de zonas",
+      "blocks": [
+        { "type": "zone", "settings": { "label": "Codos" } },
+        { "type": "zone", "settings": { "label": "Rodillas" } },
+        { "type": "zone", "settings": { "label": "Pies" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

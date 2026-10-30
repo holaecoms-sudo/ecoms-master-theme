@@ -1,0 +1,39 @@
+/* ECOMS · Styles of the «Ritual» sections: zone picker, photo crops and yes/no cards. Colors come from the palette variables. */
+
+/* Zone picker */
+.ec-zp__t { margin: 0 0 16px; color: var(--ec-muted); font-size: 15px; }
+.ec-zp__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.ec-zp__chip { min-height: 46px; padding: 0 18px; border: 1.5px solid var(--ec-dark); border-radius: 99px; background: transparent; color: var(--ec-dark); font: inherit; font-size: 14.5px; font-weight: 700; cursor: pointer; transition: background 0.15s, color 0.15s; }
+.ec-zp__chip.is-on { background: var(--ec-dark); color: var(--ec-accent); }
+.ec-zp__card { margin-top: 18px; padding: 22px 20px; border-radius: 26px; background: var(--ec-dark); color: var(--ec-bg); }
+.ec-zp__card .ec-eyebrow { margin: 0 0 8px; color: var(--ec-accent); }
+.ec-zp__name { display: block; font-family: var(--font-heading-family); font-size: 34px; font-weight: 500; letter-spacing: -0.03em; line-height: 1; }
+.ec-zp__rec p { margin: 8px 0 12px; font-size: 14.5px; line-height: 1.5; opacity: 0.88; }
+.ec-zp__rec .ec-zp__price { display: flex; align-items: baseline; gap: 10px; margin: 0; opacity: 1; }
+.ec-zp__price b { color: var(--ec-accent); font-family: var(--font-heading-family); font-size: 36px; font-weight: 500; letter-spacing: -0.03em; }
+.ec-zp__price s { font-size: 14px; opacity: 0.7; }
+.ec-zp__btn { width: 100%; margin-top: 16px; justify-content: center; border-radius: 99px; }
+.ec-zp__rec[hidden] { display: none; }
+
+/* Photo crops */
+.ec-pcr { display: flex; gap: 10px; overflow-x: auto; padding: 0 20px 6px; scroll-snap-type: x proximity; scrollbar-width: none; }
+.ec-pcr::-webkit-scrollbar { display: none; }
+.ec-pcr__it { flex: none; width: 210px; margin: 0; scroll-snap-align: start; }
+.ec-pcr__f { position: relative; width: 210px; height: 290px; overflow: hidden; background: var(--ec-soft); }
+.ec-pcr__f--arch_top { border-radius: 110px 110px 18px 18px; }
+.ec-pcr__f--rect { border-radius: 18px; }
+.ec-pcr__f--arch_bottom { border-radius: 18px 18px 110px 110px; }
+.ec-pcr__f img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ec-pcr figcaption { display: grid; gap: 2px; margin-top: 10px; }
+.ec-pcr figcaption b { font-size: 16px; color: var(--ec-dark); }
+.ec-pcr figcaption span { font-size: 13px; color: var(--ec-muted); }
+@media (min-width: 750px) { .ec-pcr { justify-content: center; } }
+
+/* Yes / no */
+.ec-yn { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 760px; }
+.ec-yn__c { padding: 18px 16px; border-radius: 22px; }
+.ec-yn__c--yes { background: #fff; border: 1.5px solid var(--ec-line); }
+.ec-yn__c--no { background: var(--ec-soft); }
+.ec-yn__c b { font-family: var(--font-heading-family); font-size: 24px; font-weight: 500; letter-spacing: -0.03em; }
+.ec-yn__c--yes b { color: var(--ec-sale-ink); }
+.ec-yn__c ul { display: flex; flex-direction: column; gap: 9px; margin: 10px 0 0; padding: 0; list-style: none; font-size: 14px; line-height: 1.35; }

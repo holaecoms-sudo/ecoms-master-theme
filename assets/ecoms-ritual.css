@@ -1,0 +1,42 @@
+/*
+  ECOMS · «Ritual de sol» skin (belleza, producto cúrcuma): Fraunces serif headings with italic accents over DM Sans, warm cream
+  ground, terracotta accents, list-style steps and a full-bleed photo closing card. Loaded after ecoms-rose.css on pages whose
+  product section uses the «amber» palette; it only changes type and a few shapes, colors come from the palette variables.
+*/
+:root {
+  --font-heading-family: 'Fraunces', Georgia, serif;
+  --font-heading-weight: 500;
+  --ec-serif: 'Fraunces', Georgia, serif;
+}
+body { font-family: 'DM Sans', var(--font-body-family), system-ui, sans-serif; }
+.ec-pdp__title, .ec-sec h2, .ec-sec .ec-h3, .ec-ctab h2 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; letter-spacing: -0.03em; line-height: 0.98; }
+.ec-pdp__title em, .ec-sec h2 em, .ec-sec .ec-h3 em, .ec-ctab h2 em { color: var(--ec-sale-ink); font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.04em; }
+.ec-eyebrow { letter-spacing: 0.18em; font-weight: 700; }
+
+/* Offer ribbon in terracotta */
+.ec-ribbon { background: var(--ec-sale-ink); }
+
+/* Steps as a numbered list with big italic numerals */
+.ec-steps--cards { grid-template-columns: 1fr !important; gap: 0; max-width: 640px; }
+.ec-steps--cards figure { display: grid; grid-template-columns: 60px 1fr; align-items: start; gap: 12px; padding: 16px 0; border: 0; border-top: 1px solid var(--ec-line); border-radius: 0; background: none; }
+.ec-steps--cards figure:last-child { border-bottom: 1px solid var(--ec-line); }
+.ec-steps--cards .ec-num { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 52px; font-weight: 400; line-height: 0.9; color: var(--ec-sale-ink); }
+.ec-steps--cards figcaption { display: grid; gap: 3px; }
+.ec-steps--cards figcaption b { font-size: 19px; color: var(--ec-dark); }
+.ec-steps--cards figcaption span { color: var(--ec-muted); font-size: 14.5px; line-height: 1.45; }
+
+/* Star number: serif */
+.ec-callout__big { font-family: 'Fraunces', Georgia, serif; font-weight: 500; }
+.ec-callout__big span { font-weight: 400; }
+
+/* Closing card: full-bleed photo with the copy over a dark gradient */
+.ec-ctab--photo { position: relative; min-height: 520px; margin: 30px 0 0; border-radius: 0; background: var(--ec-dark); overflow: hidden; }
+.ec-ctab--photo .ec-ctab__img { position: absolute; inset: 0; margin: 0; }
+.ec-ctab--photo .ec-ctab__img img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 70%; }
+.ec-ctab--photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(46, 27, 11, 0.1), rgba(46, 27, 11, 0.9)); }
+.ec-ctab--photo .ec-ctab__in { position: absolute; inset: auto 0 0 0; z-index: 2; display: block; padding-block: 0 30px; text-align: center; }
+.ec-ctab--photo .ec-ctab__copy h2 { color: var(--ec-bg); font-size: clamp(40px, 13vw, 56px); }
+.ec-ctab--photo .ec-ctab__copy h2 em { color: var(--ec-accent); }
+.ec-ctab--photo .ec-ctab__t { margin: 12px 0 18px; color: var(--ec-bg); font-size: 15px; opacity: 0.92; }
+.ec-ctab--photo .ec-btn--lg { width: 100%; min-width: 0; justify-content: center; border-radius: 99px; background: var(--ec-accent); color: var(--ec-dark); font-weight: 700; }
+.ec-ctab--photo .ec-ctab__trust { justify-content: center; color: var(--ec-bg); }

@@ -22,3 +22,17 @@ Configuración → Notificaciones → Confirmación del pedido → Editar códig
 - El formulario de Releasit debe pedir el correo, si no el cliente no recibe la confirmación.
 - Hacer un pedido de prueba con 2 y con 3 unidades y revisar que lleguen los enlaces correctos.
 - Opcional: repetir los enlaces por WhatsApp.
+
+## Dr. Melaxin: guía y calendario de 14 días
+Archivos: `assets/guia-piel-suave-14-dias.pdf` (desde 2 frascos) y `assets/calendario-14-dias.pdf` (desde 3 frascos). Súbelos a Archivos como los otros dos y agrega este bloque al correo de confirmación, junto al del bálsamo:
+
+```liquid
+{% assign ec_mx = 0 %}
+{% for line in subtotal_line_items %}{% if line.product.handle == 'dr-melaxin' %}{% assign ec_mx = ec_mx | plus: line.quantity %}{% endif %}{% endfor %}
+{% if ec_mx >= 2 %}
+<h3>Tus regalos de Dr. Melaxin</h3>
+<p><a href="LINK_GUIA_MELAXIN">Descarga tu guía: piel suave en 14 días</a></p>
+{% if ec_mx >= 3 %}<p><a href="LINK_CALENDARIO_MELAXIN">Descarga tu calendario de 14 días</a></p>{% endif %}
+{% endif %}
+```
+Nota: en el bloque del bálsamo, filtra igual por `line.product.handle == 'balsamo-pdrn-hidratante-colageno'` para que no se mezclen los productos.
