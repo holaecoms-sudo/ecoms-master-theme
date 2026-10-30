@@ -240,6 +240,8 @@
             value="{{ q }}"
             data-pct="{{ pct }}"
             data-label="{{ q_label | strip_html | replace: '&nbsp;', ' ' | strip }}"
+            {%- assign gal_key = 'tier' | append: i | append: '_gallery' -%}
+            {%- if s[gal_key] > 0 %} data-gal-pos="{{ s[gal_key] }}"{% endif %}
             data-inc="{{ inc | strip }}"
             {% if sum_txt != blank %}data-sum="{{ sum_txt | escape }}"{% endif %}
             data-total="{{ total }}"

@@ -866,3 +866,25 @@
   new MutationObserver(queue).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
   queue();
 })();
+
+/* Pack → gallery: choosing a pack can show a given gallery photo (pack setting «Foto de la galería al elegir este pack»). */
+(() => {
+  if (window.__ecPackGallery) return;
+  window.__ecPackGallery = true;
+  document.addEventListener('change', (e) => {
+    const input = e.target;
+    if (!input || !input.matches || !input.matches('.ec-pack input[type="radio"]')) return;
+    const pos = parseInt(input.dataset.galPos, 10);
+    if (!pos || pos < 1) return;
+    const root = input.closest('[data-ec-product]') || document;
+    const gal = root.querySelector('[data-ec-gal]') || document.querySelector('[data-ec-gal]');
+    const track = gal && gal.querySelector('[data-ec-gal-track]');
+    if (!track || !track.children.length) return;
+    const i = Math.min(pos, track.children.length) - 1;
+    track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+    gal.querySelectorAll('[data-ec-gal-to]').forEach((t, j) => t.setAttribute('aria-current', String(i === j)));
+    const count = gal.querySelector('[data-ec-gal-count]');
+    if (count) count.textContent = `${i + 1} / ${track.children.length}`;
+    track.querySelectorAll('video').forEach((v) => v.pause());
+  });
+})();
