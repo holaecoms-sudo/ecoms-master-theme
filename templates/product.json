@@ -64,7 +64,7 @@
             "layout": "offer",
             "show_cta_total": true,
             "help": "",
-            "default_tier": "2",
+            "default_tier": "3",
             "item_name": "frascos",
             "show_summary": true,
             "summary_label": "Tu pack incluye",
@@ -78,14 +78,14 @@
             "tier2_qty": 2,
             "tier2_pct": 0,
             "tier2_label": "Pack 2 barras",
-            "tier2_tag": "Recomendado",
-            "tier2_note": "en Santiago",
+            "tier2_tag": "",
+            "tier2_note": "envío gratis en Santiago",
             "tier3_enabled": true,
-            "tier3_qty": 3,
+            "tier3_qty": 4,
             "tier3_pct": 0,
-            "tier3_label": "Pack 3 barras",
-            "tier3_tag": "Mejor precio",
-            "tier3_note": ""
+            "tier3_label": "Pack 4 barras",
+            "tier3_tag": "Recomendado",
+            "tier3_note": "1 de regalo · envío gratis"
           }
         },
         "ul": {
@@ -95,18 +95,18 @@
             "c1_label": "Envío gratis",
             "c1_icon": "truck",
             "c1_qty": 2,
-            "c1_locked": "Santiago con 2 · todo Chile con 3",
+            "c1_locked": "Santiago con 2 · todo Chile con 4",
             "c1_open": "¡Desbloqueado!",
             "c2_label": "Ebook: rutina de 10 segundos",
-            "c2_icon": "gift",
+            "c2_icon": "sparkle",
             "c2_qty": 2,
             "c2_locked": "Lleva 2 y es tuyo",
             "c2_open": "¡Es tuyo gratis!",
-            "c3_label": "Calendario Glow 30 días",
-            "c3_icon": "sparkle",
-            "c3_qty": 3,
-            "c3_locked": "Lleva 3 y es tuyo",
-            "c3_open": "¡Es tuyo gratis!"
+            "c3_label": "1 barra de regalo",
+            "c3_icon": "gift",
+            "c3_qty": 4,
+            "c3_locked": "Lleva 4 y te regalamos 1",
+            "c3_open": "¡Una barra gratis!"
           }
         },
         "buy": {
