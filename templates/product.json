@@ -23,6 +23,13 @@
             "text": "Amado por más de +2.000 clientes satisfechos"
           }
         },
+        "hook": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Inspirado en el K-beauty 🇰🇷 para una piel más rellena, firme y luminosa</p>",
+            "fixed": true
+          }
+        },
         "lead": {
           "type": "text",
           "settings": {
@@ -39,6 +46,14 @@
             "item_4": "",
             "item_5": "",
             "item_6": ""
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "style": "pill",
+            "ship_local_title": "",
+            "ship_local_text": ""
           }
         },
         "pk": {
@@ -158,19 +173,6 @@
             "label_4": "Tecnología",
             "label_5": "¿Por qué este precio?",
             "open_first": false
-          }
-        },
-        "price": {
-          "type": "price",
-          "settings": {
-            "style": "pill"
-          }
-        },
-        "hook": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Inspirado en el K-beauty &#127472;&#127479; para una piel más rellena, firme y luminosa</p>",
-            "fixed": true
           }
         }
       },
