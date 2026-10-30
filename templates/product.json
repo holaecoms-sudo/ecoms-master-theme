@@ -113,6 +113,7 @@
         },
         "stock": {
           "type": "stock",
+          "disabled": true,
           "settings": {
             "max_show": 300,
             "text": "STOCK EN VIVO: quedan [qty] unidades"
@@ -290,6 +291,75 @@
         "padding_bottom": 12
       }
     },
+    "pain": {
+      "type": "ecoms-pain-gain",
+      "settings": {
+        "heading": "Te pasa que… | Cuando la piel se siente *tirante,* se nota.",
+        "intro": "Hidratar la piel no debería ser una tarea más. Si algo de esto te suena, esta barra está hecha para ti.",
+        "pain_title": "Te pasa que…",
+        "pain_items": "Tu piel se siente tirante y seca a media tarde.\nTu crema en pote ensucia las manos y nunca la llevas contigo.\nEl contorno de ojos y el cuello se ven apagados y sin volumen.\nProbaste de todo y terminas con productos que no usas.",
+        "gain_title": "Con tu bálsamo…",
+        "gain_items": "Hidrata al instante: lo deslizas y la piel se siente cómoda.\nTextura sedosa, nada pegajosa.\nUna sola barra para rostro, ojos y cuello.\n10 g que caben en el bolso: lo usas donde y cuando lo necesites.\n5% de Volufiline y colágeno para un aspecto más lleno y firme.",
+        "closing": "Un gesto de 10 segundos. Piel que se siente cuidada todo el día.",
+        "note": "Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
+        "button_label": "Quiero mi bálsamo",
+        "padding_top": 44,
+        "padding_bottom": 8
+      }
+    },
+    "face": {
+      "type": "ecoms-face-zones",
+      "blocks": {
+        "z1": {
+          "type": "zone",
+          "settings": {
+            "label": "El contorno de ojos se ve apagado",
+            "concerns": "",
+            "text": "La piel es delicada y la falta de hidratación se nota. La barra se desliza suave, sin tirar, y ayuda a que se vea más hidratada."
+          }
+        },
+        "z2": {
+          "type": "zone",
+          "settings": {
+            "label": "Las mejillas pierden aspecto lleno",
+            "concerns": "",
+            "text": "Con 5% de Volufiline y colágeno, para dar a la piel un aspecto más lleno y firme, con una textura sedosa."
+          }
+        },
+        "z3": {
+          "type": "zone",
+          "settings": {
+            "label": "Las líneas se notan más donde hay sequedad",
+            "concerns": "",
+            "text": "Hidrata y ayuda a que las líneas secas de la frente y la expresión se vean menos marcadas."
+          }
+        },
+        "z4": {
+          "type": "zone",
+          "settings": {
+            "label": "El cuello también se resiente",
+            "concerns": "",
+            "text": "Con la misma barra cuidas rostro, ojos y cuello en un solo gesto de 10 segundos."
+          }
+        }
+      },
+      "block_order": [
+        "z1",
+        "z2",
+        "z3",
+        "z4"
+      ],
+      "settings": {
+        "heading": "Tu rostro | No se trata solo de *arrugas.*",
+        "text": "Estas son las zonas donde más se nota. Mira qué pasa en cada una y cómo te ayuda tu bálsamo.",
+        "chips_label": "Lo que notas aquí",
+        "image_note": "Imágenes ilustrativas.",
+        "note": "Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
+        "button_label": "Quiero mi bálsamo",
+        "padding_top": 44,
+        "padding_bottom": 8
+      }
+    },
     "benefits": {
       "type": "ecoms-feature-grid",
       "blocks": {
@@ -450,8 +520,7 @@
         "style": "band",
         "width": "full",
         "padding_top": 44,
-        "padding_bottom": 40,
-        "button_label": "Ver lista completa de ingredientes"
+        "padding_bottom": 40
       }
     },
     "compare": {
@@ -661,75 +730,6 @@
         "width": "full",
         "padding_top": 0,
         "padding_bottom": 0
-      }
-    },
-    "pain": {
-      "type": "ecoms-pain-gain",
-      "settings": {
-        "heading": "Te pasa que… | Cuando la piel se siente *tirante,* se nota.",
-        "intro": "Hidratar la piel no debería ser una tarea más. Si algo de esto te suena, esta barra está hecha para ti.",
-        "pain_title": "Te pasa que…",
-        "pain_items": "Tu piel se siente tirante y seca a media tarde.\nTu crema en pote ensucia las manos y nunca la llevas contigo.\nEl contorno de ojos y el cuello se ven apagados y sin volumen.\nProbaste de todo y terminas con productos que no usas.",
-        "gain_title": "Con tu bálsamo…",
-        "gain_items": "Hidrata al instante: lo deslizas y la piel se siente cómoda.\nTextura sedosa, nada pegajosa.\nUna sola barra para rostro, ojos y cuello.\n10 g que caben en el bolso: lo usas donde y cuando lo necesites.\n5% de Volufiline y colágeno para un aspecto más lleno y firme.",
-        "closing": "Un gesto de 10 segundos. Piel que se siente cuidada todo el día.",
-        "note": "Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
-        "button_label": "Quiero mi bálsamo",
-        "padding_top": 44,
-        "padding_bottom": 8
-      }
-    },
-    "face": {
-      "type": "ecoms-face-zones",
-      "blocks": {
-        "z1": {
-          "type": "zone",
-          "settings": {
-            "label": "El contorno de ojos se ve apagado",
-            "concerns": "",
-            "text": "La piel es delicada y la falta de hidratación se nota. La barra se desliza suave, sin tirar, y ayuda a que se vea más hidratada."
-          }
-        },
-        "z2": {
-          "type": "zone",
-          "settings": {
-            "label": "Las mejillas pierden aspecto lleno",
-            "concerns": "",
-            "text": "Con 5% de Volufiline y colágeno, para dar a la piel un aspecto más lleno y firme, con una textura sedosa."
-          }
-        },
-        "z3": {
-          "type": "zone",
-          "settings": {
-            "label": "Las líneas se notan más donde hay sequedad",
-            "concerns": "",
-            "text": "Hidrata y ayuda a que las líneas secas de la frente y la expresión se vean menos marcadas."
-          }
-        },
-        "z4": {
-          "type": "zone",
-          "settings": {
-            "label": "El cuello también se resiente",
-            "concerns": "",
-            "text": "Con la misma barra cuidas rostro, ojos y cuello en un solo gesto de 10 segundos."
-          }
-        }
-      },
-      "block_order": [
-        "z1",
-        "z2",
-        "z3",
-        "z4"
-      ],
-      "settings": {
-        "heading": "Tu rostro | No se trata solo de *arrugas.*",
-        "text": "Estas son las zonas donde más se nota. Mira qué pasa en cada una y cómo te ayuda tu bálsamo.",
-        "chips_label": "Lo que notas aquí",
-        "note": "Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
-        "button_label": "Quiero mi bálsamo",
-        "padding_top": 44,
-        "padding_bottom": 8,
-        "image_note": "Imágenes ilustrativas."
       }
     }
   },

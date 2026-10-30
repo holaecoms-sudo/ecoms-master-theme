@@ -308,8 +308,7 @@
         "style": "band",
         "width": "full",
         "padding_top": 44,
-        "padding_bottom": 40,
-        "button_label": "Ver lista completa de ingredientes"
+        "padding_bottom": 40
       }
     },
     "compare": {
