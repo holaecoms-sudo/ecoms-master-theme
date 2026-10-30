@@ -505,6 +505,7 @@
     },
     "formula_img": {
       "type": "ecoms-image-text",
+      "disabled": true,
       "settings": {
         "image_side": "top",
         "image_full": false,
