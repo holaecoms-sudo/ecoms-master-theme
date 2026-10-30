@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{ email_title }}</title><style>
+@media only screen and (max-width:520px){.wrap{width:100%!important;border-radius:0!important}.col{display:block!important;width:100%!important;box-sizing:border-box}.h1{font-size:26px!important;line-height:31px!important}}
+</style></head>
+<body style="margin:0;padding:0;background:#FBF7F4">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0">Tu pedido te está esperando. Termínalo en un minuto.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#FBF7F4"><tr><td align="center" style="padding:20px 10px">
+<table role="presentation" class="wrap" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#ffffff;border-radius:22px;overflow:hidden">
+<tr><td style="background:#1E1B24;padding:10px 20px;text-align:center;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.4px;color:#f3e6ea">Envío a todo Chile &nbsp;·&nbsp; Pagas al recibir o con tarjeta</td></tr>
+<tr><td align="center" style="padding:26px 24px 4px"><a href="{{ shop.url }}">{%- if shop.email_logo_url -%}<img src="{{ shop.email_logo_url }}" alt="{{ shop.name }}" width="{{ shop.email_logo_width | default: 180 }}" style="display:block;width:{{ shop.email_logo_width | default: 180 }}px;max-width:100%;height:auto;border:0">{%- else -%}<span style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:26px;font-weight:800;color:#1E1B24;letter-spacing:-1px">ecoms <span style="color:#B5536A">beauty</span></span>{%- endif -%}</a></td></tr>
+<tr><td style="padding:24px 32px 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:1.6px;text-transform:uppercase;font-weight:700;color:#B5536A">Te esperamos</td></tr><tr><td class="h1" style="padding:0 32px 10px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:30px;line-height:35px;font-weight:800;color:#1E1B24;letter-spacing:-.5px">Dejaste tu pedido a medias{% if customer.first_name %}, {{ customer.first_name }}{% endif %}</td></tr><tr><td style="padding:0 32px 18px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:25px;color:#4a3f45">Guardamos tu carrito para que lo termines cuando quieras. Pagas al recibir o con tarjeta, y el envío es gratis desde $22.500 en Santiago y desde $30.000 en todo Chile.</td></tr><tr><td style="padding:10px 32px 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;color:#6A5C62">Tu pedido</td></tr><tr><td style="padding:0 32px 6px">
+{%- for line in line_items -%}
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #E7DAD6"><tr>
+<td width="76" valign="middle" style="padding:12px 0">{%- if line.image -%}<img src="{{ line | img_url: 'compact_cropped' }}" width="64" height="64" alt="" style="display:block;width:64px;height:64px;border-radius:12px;border:1px solid #E7DAD6;object-fit:cover">{%- endif -%}</td>
+<td valign="middle" style="padding:12px 10px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+<div style="font-size:15px;line-height:20px;font-weight:700;color:#1E1B24">{{ line.product.title | default: line.title }}</div>
+{%- if line.variant.title != 'Default Title' and line.variant.title != blank -%}<div style="font-size:13px;color:#6A5C62;padding-top:2px">{{ line.variant.title }}</div>{%- endif -%}
+<div style="font-size:13px;color:#6A5C62;padding-top:2px">Cantidad: {{ line.quantity }}</div>
+{%- for allocation in line.discount_allocations -%}{%- if allocation.amount > 0 -%}<div style="font-size:12px;color:#B5536A;padding-top:2px">{{ allocation.discount_application.title }} (−{{ allocation.amount | money }})</div>{%- endif -%}{%- endfor -%}
+</td>
+<td align="right" valign="middle" style="padding:12px 0;white-space:nowrap;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+{%- if line.original_line_price != line.final_line_price -%}<div style="font-size:12px;color:#a8979d;text-decoration:line-through">{{ line.original_line_price | money }}</div>{%- endif -%}
+<div style="font-size:15px;font-weight:700;color:#1E1B24">{{ line.final_line_price | money }}</div></td>
+</tr></table>
+{%- endfor -%}
+</td></tr><tr><td align="center" style="padding:8px 32px 26px"><a href="{{ url }}" style="display:inline-block;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#1E1B24;color:#ffffff;text-decoration:none;font-weight:700;font-size:16px;line-height:20px;padding:16px 34px;border-radius:999px">Terminar mi pedido&nbsp;&rarr;</a></td></tr><tr><td style="padding:0 32px 24px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;line-height:20px;color:#6A5C62">Pagando con tarjeta tienes 10% de descuento extra. Si ya compraste, ignora este correo.</td></tr>
+<tr><td style="background:#1E1B24;padding:24px 28px;text-align:center;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;"><div style="font-size:14px;color:#ffffff;font-weight:700;padding-bottom:8px">¿Dudas? Responde este correo y te ayudamos.</div>
+<div style="font-size:13px;line-height:20px;color:#f3e6ea;padding-bottom:12px">10 días de retracto &nbsp;·&nbsp; 6 meses de garantía legal</div>
+<div style="font-size:13px;padding-bottom:12px"><a href="{{ shop.url }}/policies/shipping-policy" style="color:#F5B5C5;text-decoration:none">Envíos</a> &nbsp;·&nbsp; <a href="{{ shop.url }}/policies/refund-policy" style="color:#F5B5C5;text-decoration:none">Cambios y devoluciones</a> &nbsp;·&nbsp; <a href="{{ shop.url }}" style="color:#F5B5C5;text-decoration:none">{{ shop.domain | default: shop.url }}</a></div>
+<div style="font-size:12px;line-height:18px;color:#b9a6ac">{{ shop.name }} · Santiago, Chile</div></td></tr>
+</table></td></tr></table></body></html>
