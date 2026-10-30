@@ -846,3 +846,23 @@
     group.querySelectorAll(':scope > details[open]').forEach((o) => { if (o !== d) o.open = false; });
   }, true);
 })();
+
+/* Moving call-to-action: the pay-on-delivery app's buttons («Pedir y pagar al recibir» on the page, «Confirmar pedido» in its popup)
+   are found by their text and get a soft pulse and shine. The app renders them itself, so watch the page for them. */
+(() => {
+  if (window.__ecCtaAnim) return;
+  window.__ecCtaAnim = true;
+  const MATCH = /^(pedir y pagar al recibir|confirmar pedido)/i;
+  let queued = false;
+  const mark = () => {
+    queued = false;
+    document.querySelectorAll('button, [role="button"], a.button').forEach((el) => {
+      if (el.classList.contains('ec-cta-anim')) return;
+      const text = (el.textContent || '').replace(/\s+/g, ' ').trim();
+      if (text && text.length < 60 && MATCH.test(text)) el.classList.add('ec-cta-anim');
+    });
+  };
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(mark); } };
+  new MutationObserver(queue).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+  queue();
+})();
