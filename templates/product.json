@@ -165,11 +165,19 @@
           "settings": {
             "style": "pill"
           }
+        },
+        "hook": {
+          "type": "text",
+          "settings": {
+            "text": "Inspirado en el K-beauty 🇰🇷 para una piel más rellena, firme y luminosa",
+            "fixed": true
+          }
         }
       },
       "block_order": [
         "title",
         "social",
+        "hook",
         "lead",
         "benefits",
         "price",

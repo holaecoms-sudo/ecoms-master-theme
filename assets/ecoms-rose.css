@@ -231,3 +231,7 @@ body { font-family: 'Instrument Sans', var(--font-body-family), system-ui, sans-
 .ec-unlock__card.is-open .ec-unlock__t { color: var(--ec-dark); }
 .ec-unlock__state { color: #8A8388; font-size: 11px; line-height: 1.25; }
 .ec-unlock__card.is-open .ec-unlock__state { color: var(--ec-dark); font-weight: 700; }
+
+/* Hero hook line (text block with «Texto fijo»): check badge + one strong line, like «Inspirado en el K-beauty para una piel más rellena» */
+.ec-pdp__sub--hook { display: flex; align-items: flex-start; gap: 10px; color: var(--ec-ink); font-size: 16px; font-weight: 600; line-height: 1.35; }
+.ec-pdp__sub--hook::before { content: "\2713"; flex: none; display: grid; place-items: center; width: 24px; height: 24px; margin-top: 1px; border-radius: 50%; background: var(--ec-accent); color: var(--ec-accent-ink); font-size: 13px; font-weight: 800; }

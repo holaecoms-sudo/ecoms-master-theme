@@ -376,7 +376,7 @@
             {%- if sub_mf != blank -%}
               <div class="ec-pdp__sub" {{ block.shopify_attributes }}>{{ product.metafields.ecoms.subtitle | metafield_tag }}</div>
             {%- elsif block.settings.text != blank -%}
-              <div class="ec-pdp__sub" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+              <div class="ec-pdp__sub{% if block.settings.fixed %} ec-pdp__sub--hook{% endif %}" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
             {%- endif -%}
 
           {%- when 'description' -%}
