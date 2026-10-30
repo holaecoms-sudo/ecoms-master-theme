@@ -19,8 +19,9 @@
           {{ 'image' | placeholder_svg_tag: 'ec-placeholder' }}
         {%- endif -%}
       </div>
+      {%- if section.settings.heading != blank or section.settings.intro != blank or section.settings.button_label != blank or section.blocks.size > 0 -%}
       <div class="ec-imgtxt__copy">
-        {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
+        {%- if section.settings.heading != blank -%}{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2' %}{%- endif -%}
         {%- if section.settings.intro != blank -%}<p class="ec-imgtxt__intro">{{ section.settings.intro | escape }}</p>{%- endif -%}
         {%- if section.blocks.size > 0 -%}
           <ul class="ec-imgtxt__list" role="list">
@@ -36,6 +37,7 @@
           <a class="ec-btn ec-btn--primary ec-btn--sm ec-imgtxt__btn" href="{{ section.settings.button_link | default: '#MainContent' }}"{% if section.settings.button_link == blank %} data-ec-scroll-buy{% if settings.ecoms_cod_live %} data-ec-open-cod="{{ settings.ecoms_cod_app_button | escape }}"{% endif %}{% endif %}>{{ section.settings.button_label | escape }}</a>
         {%- endif -%}
       </div>
+      {%- endif -%}
     </div>
   </div>
 </section>

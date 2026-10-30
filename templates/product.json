@@ -153,7 +153,7 @@
         "video_first": false,
         "video_autoplay": true,
         "video_loop": true,
-        "sticky": true,
+        "sticky": false,
         "sticky_desktop": true,
         "sticky_ship": false,
         "sticky_save": false,
@@ -239,43 +239,6 @@
         "width": "full",
         "padding_top": 0,
         "padding_bottom": 0
-      }
-    },
-    "photocards": {
-      "type": "ecoms-photo-cards",
-      "blocks": {
-        "c1": {
-          "type": "card",
-          "settings": {
-            "title": "Zonas que se sienten secas",
-            "text": "La piel seca se ve más opaca y las líneas se notan más."
-          }
-        },
-        "c2": {
-          "type": "card",
-          "settings": {
-            "title": "Contorno de ojos",
-            "text": "Una zona delicada que pide hidratación frecuente."
-          }
-        },
-        "c3": {
-          "type": "card",
-          "settings": {
-            "title": "Cuello",
-            "text": "Se nota con el tiempo y también necesita cuidado."
-          }
-        }
-      },
-      "block_order": [
-        "c1",
-        "c2",
-        "c3"
-      ],
-      "settings": {
-        "heading": "El problema | No se trata solo de *arrugas.*",
-        "text": "",
-        "padding_top": 44,
-        "padding_bottom": 24
       }
     },
     "routine": {
@@ -522,6 +485,97 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "daily": {
+      "type": "ecoms-photo-cards",
+      "blocks": {
+        "d1": {
+          "type": "card",
+          "settings": {
+            "title": "Textura sedosa",
+            "text": "Se desliza fácil y se siente fresca, sin dejar la piel pegajosa.",
+            "product_image_index": 8
+          }
+        },
+        "d2": {
+          "type": "card",
+          "settings": {
+            "title": "Aplicación directa",
+            "text": "Sin tocar el producto: deslizas y extiendes con los dedos.",
+            "product_image_index": 9
+          }
+        },
+        "d3": {
+          "type": "card",
+          "settings": {
+            "title": "Va contigo",
+            "text": "10 g en barra: cabe en el bolso, el neceser o de viaje.",
+            "product_image_index": 3
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "d3"
+      ],
+      "settings": {
+        "heading": "Día a día | Tu rutina, *donde estés.*",
+        "text": "",
+        "padding_top": 44,
+        "padding_bottom": 24
+      }
+    },
+    "howto_img": {
+      "type": "ecoms-image-text",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "image_side": "top",
+        "image_full": false,
+        "product_image_index": 4,
+        "heading": "",
+        "intro": "",
+        "button_label": "",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 24
+      }
+    },
+    "formula_img": {
+      "type": "ecoms-image-text",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "image_side": "top",
+        "image_full": false,
+        "product_image_index": 7,
+        "heading": "",
+        "intro": "",
+        "button_label": "",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "pack_img": {
+      "type": "ecoms-image-text",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "image_side": "top",
+        "image_full": false,
+        "product_image_index": 5,
+        "heading": "Pack de 2 | Uno en casa. *Otro contigo.*",
+        "intro": "2 barras por $29.990, con envío gratis en Santiago.",
+        "button_label": "Pedir el pack de 2",
+        "button_link": "",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 24
+      }
     }
   },
   "order": [
@@ -529,15 +583,18 @@
     "main",
     "top",
     "demo",
-    "photocards",
+    "daily",
     "routine",
+    "howto_img",
     "star",
+    "formula_img",
     "ingredients",
     "compare",
     "before_after",
     "ugc",
     "bubble",
     "reviews",
+    "pack_img",
     "faq",
     "cta"
   ]

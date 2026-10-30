@@ -2,8 +2,17 @@
   ECOMS · Photo cards: a centered heading with a soft underline, then big rounded cards (photo + title + short text).
   Cards without a photo are skipped; the section stays hidden on the storefront until at least one card has a photo.
 {%- endcomment -%}
-{%- assign pc_n = 0 -%}
-{%- for block in section.blocks -%}{%- if block.settings.image != blank -%}{%- assign pc_n = pc_n | plus: 1 -%}{%- endif -%}{%- endfor -%}
+{%- liquid
+  assign pc_n = 0
+  for block in section.blocks
+    assign pc_pos = block.settings.product_image_index | plus: 0
+    if block.settings.image != blank
+      assign pc_n = pc_n | plus: 1
+    elsif pc_pos > 0 and product.images[pc_pos] != blank or pc_pos == 1 and product.images.size > 0
+      assign pc_n = pc_n | plus: 1
+    endif
+  endfor
+-%}
 {%- if pc_n > 0 or request.design_mode -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-pc-sec' %}>
   <div class="ec-w">
@@ -11,10 +20,18 @@
     {%- if section.settings.text != blank -%}<p class="ec-pc__sub">{{ section.settings.text | escape }}</p>{%- endif -%}
     <div class="ec-pc">
       {%- for block in section.blocks -%}
-        {%- if block.settings.image == blank and request.design_mode != true -%}{%- continue -%}{%- endif -%}
+        {%- liquid
+          assign pc_pos = block.settings.product_image_index | plus: 0
+          assign pc_img = block.settings.image
+          if pc_img == blank and pc_pos > 0
+            assign pc_i0 = pc_pos | minus: 1
+            assign pc_img = product.images[pc_i0]
+          endif
+        -%}
+        {%- if pc_img == blank and request.design_mode != true -%}{%- continue -%}{%- endif -%}
         <figure class="ec-pc__card" {{ block.shopify_attributes }}>
-          {%- if block.settings.image != blank -%}
-            {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '350,600,900', sizes: '(min-width: 990px) 33vw, 92vw', alt: block.settings.title }}
+          {%- if pc_img != blank -%}
+            {{ pc_img | image_url: width: 900 | image_tag: loading: 'lazy', widths: '350,600,900', sizes: '(min-width: 990px) 33vw, 92vw', alt: block.settings.title }}
           {%- endif -%}
           <figcaption><b>{{ block.settings.title | escape }}</b>{% if block.settings.text != blank %}<span>{{ block.settings.text | escape }}</span>{% endif %}</figcaption>
         </figure>
@@ -37,6 +54,7 @@
   "blocks": [
     { "type": "card", "name": "Tarjeta", "settings": [
       { "type": "image_picker", "id": "image", "label": "Foto" },
+      { "type": "range", "id": "product_image_index", "label": "O usar la foto N° del producto", "min": 0, "max": 20, "step": 1, "default": 0, "info": "0 = no usar. Si no subes foto, toma la foto de esa posición en la galería del producto." },
       { "type": "text", "id": "title", "label": "Título", "default": "Zonas que se sienten secas" },
       { "type": "text", "id": "text", "label": "Texto", "default": "La piel seca se ve más opaca y las líneas se notan más." } ] }
   ],
