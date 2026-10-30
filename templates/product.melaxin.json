@@ -1,0 +1,509 @@
+{
+  "sections": {
+    "ribbon": {
+      "type": "ecoms-ribbon",
+      "settings": {
+        "tag": "PACKS",
+        "text": "Ahorra hasta 22% · Envío gratis",
+        "end_at": "",
+        "heading": "Termina en:",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "main": {
+      "type": "ecoms-product",
+      "blocks": {
+        "social": {
+          "type": "social",
+          "settings": {
+            "rating": "",
+            "text": ""
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "lead": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "fixed": false
+          }
+        },
+        "benefits": {
+          "type": "benefits",
+          "settings": {
+            "item_1": "",
+            "item_2": "",
+            "item_3": "",
+            "item_4": "",
+            "item_5": "",
+            "item_6": ""
+          }
+        },
+        "pk": {
+          "type": "packs",
+          "settings": {
+            "from_metafield": true,
+            "heading": "",
+            "layout": "offer",
+            "show_cta_total": true,
+            "help": "",
+            "default_tier": "2",
+            "item_name": "frascos",
+            "show_summary": false,
+            "summary_label": "Tu pack incluye",
+            "show_free_shipping": true,
+            "discounts_live": true,
+            "tier1_qty": 1,
+            "tier1_label": "1 frasco",
+            "tier1_tag": "",
+            "tier1_note": "Para probar",
+            "tier2_enabled": true,
+            "tier2_qty": 2,
+            "tier2_pct": 0,
+            "tier2_label": "Pack 2 frascos",
+            "tier2_tag": "Recomendado",
+            "tier2_note": "en Santiago",
+            "tier3_enabled": true,
+            "tier3_qty": 3,
+            "tier3_pct": 0,
+            "tier3_label": "Pack 3 frascos",
+            "tier3_tag": "Mejor precio",
+            "tier3_note": ""
+          }
+        },
+        "buy": {
+          "type": "buy",
+          "settings": {
+            "heading": "",
+            "show_quantity": false,
+            "add_label": "Comprar con tarjeta",
+            "show_total": false,
+            "show_buy_now": false,
+            "buy_now_icon": "bolt",
+            "buy_now_label": "Pedir ahora",
+            "cod_only": true,
+            "add_label_cod": "Comprar con tarjeta",
+            "buy_now_label_cod": "",
+            "card_label": "",
+            "card_code": ""
+          }
+        },
+        "dlv": {
+          "type": "delivery",
+          "settings": {
+            "step_1": "Pedido realizado",
+            "ready_days": 1,
+            "step_2": "Pedido listo",
+            "min_days": 3,
+            "max_days": 6,
+            "step_3": "Entregado"
+          }
+        },
+        "stock": {
+          "type": "stock",
+          "settings": {
+            "max_show": 300,
+            "text": "STOCK EN VIVO: quedan [qty] unidades"
+          }
+        },
+        "rs": {
+          "type": "review_slider",
+          "settings": {
+            "style": "quote",
+            "heading": ""
+          }
+        },
+        "acc": {
+          "type": "accordion",
+          "settings": {
+            "open_first": false
+          }
+        },
+        "ul": {
+          "type": "unlock",
+          "settings": {
+            "heading": "Desbloquea con tu pack",
+            "c1_label": "Envío gratis",
+            "c1_icon": "truck",
+            "c1_qty": 2,
+            "c1_locked": "Lleva 2 y es tuyo",
+            "c1_open": "¡Desbloqueado!",
+            "c2_label": "",
+            "c3_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "social",
+        "title",
+        "lead",
+        "benefits",
+        "pk",
+        "ul",
+        "buy",
+        "stock",
+        "dlv",
+        "rs",
+        "acc"
+      ],
+      "settings": {
+        "layout": "direct",
+        "columns": "two",
+        "gallery_mobile": "inset",
+        "thumbs": "below",
+        "gal_controls": false,
+        "badge": "",
+        "media_tag": "",
+        "media_title": "",
+        "media_text": "",
+        "media_over_count": 2,
+        "hero_bg": "none",
+        "media_ratio": "square",
+        "media_fit": "cover",
+        "video_first": false,
+        "video_autoplay": true,
+        "video_loop": true,
+        "sticky": false,
+        "sticky_desktop": true,
+        "sticky_ship": false,
+        "sticky_save": false,
+        "sticky_early": true,
+        "sticky_label": "Pedir ahora",
+        "sticky_label_cod": "Pedir y pagar al recibir",
+        "sticky_cod": true,
+        "sticky_cod_sub": "Pagas cuando llega",
+        "palette": "amber",
+        "snow": true,
+        "pal_primary": "",
+        "pal_primary_ink": "",
+        "pal_dark": "",
+        "pal_accent": "",
+        "pal_accent_ink": "",
+        "pal_soft": "",
+        "pal_soft_ink": "",
+        "pal_tag": "",
+        "pal_tag_ink": "",
+        "pal_sale_bg": "",
+        "pal_sale_ink": "",
+        "pal_urgent": "",
+        "pal_urgent_bg": "",
+        "pal_bg": "",
+        "pal_ink": "",
+        "pal_muted": "",
+        "pal_line": "",
+        "pal_deep": "",
+        "padding_top": 16,
+        "padding_bottom": 28
+      }
+    },
+    "top": {
+      "type": "ecoms-marquee",
+      "blocks": {
+        "b1": {
+          "type": "text",
+          "settings": {
+            "icon": "cash",
+            "text": "Pagas al recibir"
+          }
+        },
+        "b2": {
+          "type": "text",
+          "settings": {
+            "icon": "truck",
+            "text": "Envío a todo Chile"
+          }
+        },
+        "b3": {
+          "type": "text",
+          "settings": {
+            "icon": "box",
+            "text": "Seguimiento de tu pedido"
+          }
+        },
+        "b4": {
+          "type": "text",
+          "settings": {
+            "icon": "return",
+            "text": "10 días de retracto"
+          }
+        },
+        "b5": {
+          "type": "text",
+          "settings": {
+            "icon": "drop",
+            "text": "Spray de 200 ml"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5"
+      ],
+      "settings": {
+        "style": "band",
+        "heading": "",
+        "speed": 30,
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "routine": {
+      "type": "ecoms-steps",
+      "settings": {
+        "metafield": "ecoms.steps",
+        "button_label": "",
+        "button_link": "",
+        "style": "cards",
+        "heading": "Cómo se usa | Cuatro pasos, *simples.*",
+        "text": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "star": {
+      "type": "ecoms-callout",
+      "settings": {
+        "eyebrow": "Los ingredientes estrella",
+        "heading": "",
+        "value": "3",
+        "label": "activos clave",
+        "text": "Ácido kójico, cúrcuma y niacinamida: tres ingredientes conocidos por mejorar la apariencia de la piel opaca, áspera y con tono desigual. Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
+        "pills": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "ingredients": {
+      "type": "ecoms-feature-grid",
+      "settings": {
+        "metafield": "ecoms.ingredients",
+        "heading": "Fórmula | Qué *contiene.*",
+        "style": "band",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 40
+      }
+    },
+    "compare": {
+      "type": "ecoms-comparison",
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "feature": "Se aplica en spray, rápido y parejo",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "feature": "Con ácido kójico para el tono desigual",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "feature": "Con niacinamida y cúrcuma",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "feature": "200 ml para todo el cuerpo",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ],
+      "settings": {
+        "metafield": "",
+        "style": "table",
+        "heading": "Spray *vs.* scrub de grano",
+        "feature_label": "",
+        "col_1": "Peel Shot",
+        "show_image": true,
+        "col_2": "Scrub de grano",
+        "col_3": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "faq": {
+      "type": "ecoms-faq",
+      "blocks": {
+        "f1": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo pago?",
+            "answer": "<p>Puedes pagar al recibir tu pedido, en todo Chile y sin costo adicional, o pagar ahora con tarjeta (débito o crédito) desde el formulario.</p>",
+            "draft": false
+          }
+        },
+        "f6": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuánto demora en llegar?",
+            "answer": "<p>Entre 2 y 5 días hábiles según tu comuna. Te enviamos el seguimiento de tu pedido.</p>",
+            "draft": false
+          }
+        },
+        "f2": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo lo uso?",
+            "answer": "<p>Agita el envase, rocía a 15–20 cm sobre la zona, masajea suavemente hasta que se absorba y usa protector solar si esa zona se expondrá al sol.</p>",
+            "draft": false
+          }
+        },
+        "f4": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Sirve para piel sensible?",
+            "answer": "<p>Es de uso corporal y para todo tipo de piel. Si tu piel es sensible, pruébalo primero en una zona pequeña.</p>",
+            "draft": false
+          }
+        },
+        "f5": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Dónde lo puedo usar?",
+            "answer": "<p>En el cuerpo: codos, rodillas, pies y otras zonas donde la piel se vea opaca o áspera. No es para el rostro.</p>",
+            "draft": false
+          }
+        },
+        "f7": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Y si no me gusta?",
+            "answer": "<p>Tienes 10 días de retracto con el producto sin abrir y 6 meses de garantía legal si llega con una falla.</p>",
+            "draft": false
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f6",
+        "f2",
+        "f4",
+        "f5",
+        "f7"
+      ],
+      "settings": {
+        "style": "stack",
+        "heading": "Preguntas *frecuentes.*",
+        "text": "",
+        "icon": "plus",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "cta": {
+      "type": "ecoms-cta-band",
+      "settings": {
+        "style": "soft",
+        "eyebrow": "",
+        "heading": "Tu piel, más *luminosa.*",
+        "text": "Un spray, tres activos. Pagas cuando lo recibes.",
+        "image_plain": false,
+        "show_price": false,
+        "button_label": "Pedir desde $15.000",
+        "trust_1": "Pagas al recibir",
+        "trust_2": "Envíos a todo Chile",
+        "trust_3": "10 días de retracto",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "benefits": {
+      "type": "ecoms-feature-grid",
+      "blocks": {
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "icon": "sparkle",
+            "heading": "Exfolia suavemente",
+            "text": "Ayuda a retirar las células muertas para una piel más suave al tacto."
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "icon": "drop",
+            "heading": "Tono más uniforme",
+            "text": "Con ácido kójico, ayuda a mejorar la apariencia del tono desigual."
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "icon": "heart",
+            "heading": "Piel luminosa",
+            "text": "Cúrcuma y niacinamida: antioxidante, calmante y con aporte de luminosidad."
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "icon": "hand",
+            "heading": "Codos, rodillas y pies",
+            "text": "Ayuda a reducir la apariencia de asperezas en las zonas más ásperas."
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
+      "settings": {
+        "heading": "Beneficios | Lo que hace por *tu piel.*",
+        "style": "cards",
+        "metafield": "",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "ribbon",
+    "main",
+    "top",
+    "benefits",
+    "routine",
+    "star",
+    "ingredients",
+    "compare",
+    "faq",
+    "cta"
+  ]
+}

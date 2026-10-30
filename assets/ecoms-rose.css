@@ -17,10 +17,10 @@ body { font-family: 'Instrument Sans', var(--font-body-family), system-ui, sans-
 .ec-eyebrow { color: var(--ec-sale-ink); letter-spacing: 0.16em; font-size: 11.5px; font-weight: 600; text-transform: uppercase; }
 
 /* Gallery: rounded card on a peach-pink gradient; white product photos melt into it */
-.ec-gal__main { position: relative; border-radius: 30px; background: linear-gradient(165deg, #FFE7DC 0%, #FFCADB 100%); }
+.ec-gal__main { position: relative; border-radius: 30px; background: linear-gradient(165deg, var(--ec-grad-a, #FFE7DC) 0%, var(--ec-grad-b, #FFCADB) 100%); }
 .ec-gal__main img { border-radius: 30px; }
 .ec-gal__slide img, .ec-gal__slide video { mix-blend-mode: multiply; }
-.ec-gal__thumb { border-radius: 14px; overflow: hidden; background: linear-gradient(165deg, #FFE7DC, #FFCADB); }
+.ec-gal__thumb { border-radius: 14px; overflow: hidden; background: linear-gradient(165deg, var(--ec-grad-a, #FFE7DC), var(--ec-grad-b, #FFCADB)); }
 .ec-gal__thumb img { border-radius: 14px; mix-blend-mode: multiply; }
 /* Small white pill on the photo (product metafield ecoms.sticker_1, e.g. «5% Volufiline»); sticker_2 is not used here */
 .ec-sticker { position: absolute; z-index: 3; pointer-events: none; }
@@ -95,10 +95,10 @@ body { font-family: 'Instrument Sans', var(--font-body-family), system-ui, sans-
 .ec-features--band .ec-sec-h h2 { text-align: left; }
 .ec-feat--band { display: grid; grid-template-columns: 1fr; gap: 10px; max-width: 980px; margin: 0 auto; }
 .ec-feat--band > div { display: flex; gap: 14px; align-items: center; padding: 16px 18px; border-radius: 20px; background: #fff; }
-.ec-feat--band .ec-ic { flex: none; width: 48px; height: 48px; border-radius: 50%; background: #FBE3E8; color: var(--ec-sale-ink); }
+.ec-feat--band .ec-ic { flex: none; width: 48px; height: 48px; border-radius: 50%; background: var(--ec-sale-bg); color: var(--ec-sale-ink); }
 .ec-feat--band b { display: block; color: var(--ec-dark); font-size: 17px; }
 .ec-feat--band span:not(.ec-ic) { color: var(--ec-muted); font-size: 13.5px; }
-.ec-feat__tag { display: inline-block; margin: 5px 0; padding: 3px 11px; border-radius: 999px; background: #FBE3E8; color: var(--ec-sale-ink); font-size: 11.5px; font-style: normal; font-weight: 700; }
+.ec-feat__tag { display: inline-block; margin: 5px 0; padding: 3px 11px; border-radius: 999px; background: var(--ec-sale-bg); color: var(--ec-sale-ink); font-size: 11.5px; font-style: normal; font-weight: 700; }
 @media (min-width: 750px) { .ec-feat--band { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
 /* Comparison */
