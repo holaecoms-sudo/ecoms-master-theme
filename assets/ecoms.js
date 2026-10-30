@@ -895,3 +895,38 @@
     track.querySelectorAll('video').forEach((v) => v.pause());
   });
 })();
+
+/* Empty wrappers: apps (e.g. the pay-on-delivery form) inject invisible containers that keep their height and open a gap
+   in the buy box. Collapse any empty in-flow wrapper next to the buy block; if the app fills it later it comes back. */
+(() => {
+  if (window.__ecVoid) return;
+  window.__ecVoid = true;
+  const SOLID = 'img, svg, picture, video, iframe, canvas, button, select, textarea, a, input:not([type="hidden"]), script[type="application/json"]';
+  let queued = false;
+  const isEmpty = (el) => !(el.textContent || '').trim() && !el.querySelector(SOLID);
+  const scan = () => {
+    queued = false;
+    const buy = document.querySelector('.ec-buy');
+    const info = buy && buy.closest('.ec-pdp__info');
+    if (!info) return;
+    const seen = new Set();
+    // Direct children of the info column and of the buy block, plus one level below the buy block's form.
+    const pool = [...info.children, ...buy.children, ...buy.querySelectorAll('form > *, .ec-buy__buttons > *')];
+    pool.forEach((el) => {
+      if (seen.has(el)) return;
+      seen.add(el);
+      if (/^(SCRIPT|STYLE|INPUT|FORM)$/.test(el.tagName) || el.hasAttribute('hidden')) return;
+      const cs = getComputedStyle(el);
+      if (cs.position === 'fixed' || cs.position === 'absolute' || cs.display === 'none') {
+        if (el.classList.contains('ec-void')) el.classList.remove('ec-void');
+        return;
+      }
+      const empty = isEmpty(el) && el.getBoundingClientRect().height > 6;
+      el.classList.toggle('ec-void', empty);
+    });
+  };
+  const queue = () => { if (!queued) { queued = true; setTimeout(scan, 150); } };
+  new MutationObserver(queue).observe(document.documentElement, { childList: true, subtree: true });
+  window.addEventListener('load', () => { queue(); setTimeout(queue, 1500); setTimeout(queue, 4000); });
+  queue();
+})();
