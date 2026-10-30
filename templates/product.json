@@ -169,7 +169,7 @@
         "hook": {
           "type": "text",
           "settings": {
-            "text": "Inspirado en el K-beauty &#127472;&#127479; para una piel más rellena, firme y luminosa",
+            "text": "<p>Inspirado en el K-beauty &#127472;&#127479; para una piel más rellena, firme y luminosa</p>",
             "fixed": true
           }
         }

@@ -162,7 +162,7 @@
         "hook": {
           "type": "text",
           "settings": {
-            "text": "Tres activos para una piel más suave y de tono más uniforme",
+            "text": "<p>Tres activos para una piel más suave y de tono más uniforme</p>",
             "fixed": true
           }
         }
