@@ -614,7 +614,7 @@
         "text_3": "Para varias zonas, el 3x2 es la forma más conveniente. Incluye envío gratis.",
         "button_label": "Elegir este pack",
         "padding_top": 44,
-        "padding_bottom": 10
+        "padding_bottom": 12
       }
     },
     "crops": {
@@ -665,7 +665,7 @@
       "settings": {
         "heading": "De cerca | Mira los *detalles.*",
         "padding_top": 44,
-        "padding_bottom": 6
+        "padding_bottom": 8
       }
     },
     "yesno": {
@@ -677,7 +677,7 @@
         "no_title": "No es",
         "no_items": "Para el rostro\nUn tratamiento médico\nUna promesa igual para todas las pieles",
         "padding_top": 44,
-        "padding_bottom": 6
+        "padding_bottom": 8
       }
     }
   },
