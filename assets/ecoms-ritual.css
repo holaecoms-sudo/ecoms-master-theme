@@ -17,7 +17,8 @@ body { font-family: 'DM Sans', var(--font-body-family), system-ui, sans-serif; }
 .ec-ribbon { background: var(--ec-sale-ink); }
 
 /* Steps as a numbered list with big italic numerals */
-.ec-steps--cards { grid-template-columns: 1fr !important; gap: 0; max-width: 640px; }
+.ec-steps--cards { grid-template-columns: 1fr !important; gap: 0; }
+@media (min-width: 990px) { .ec-steps--cards { grid-template-columns: 1fr 1fr !important; column-gap: 56px; } .ec-steps--cards figure:nth-last-child(2) { border-bottom: 1px solid var(--ec-line); } }
 .ec-steps--cards figure { display: grid; grid-template-columns: 60px 1fr; align-items: start; gap: 12px; padding: 16px 0; border: 0; border-top: 1px solid var(--ec-line); border-radius: 0; background: none; }
 .ec-steps--cards figure:last-child { border-bottom: 1px solid var(--ec-line); }
 .ec-steps--cards .ec-num { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 52px; font-weight: 400; line-height: 0.9; color: var(--ec-sale-ink); }

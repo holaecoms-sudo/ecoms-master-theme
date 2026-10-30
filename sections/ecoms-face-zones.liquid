@@ -1,0 +1,99 @@
+{%- comment -%}
+  ECOMS · Zone map: a line drawing (face or body) with tappable hotspots. Each zone says what the shopper sees in that area
+  (chips) and how the product helps. Only appearance language; no medical claims.
+{%- endcomment -%}
+{%- if section.blocks.size > 0 -%}
+{{ 'ecoms-ritual-sections.css' | asset_url | stylesheet_tag }}
+<section {% render 'ecoms-section-style', section: section, class: 'ec-fz-sec' %}>
+  <div class="ec-w">
+    {%- if section.settings.heading != blank -%}
+      <div class="ec-sec-h">{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2' %}</div>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}<p class="ec-fz__intro">{{ section.settings.text | escape }}</p>{%- endif -%}
+    <div class="ec-fz" data-ec-facezones>
+      <div class="ec-fz__fig ec-fz__fig--{{ section.settings.figure }}">
+        {%- if section.settings.figure == 'body' -%}
+          <svg viewBox="0 0 120 260" aria-hidden="true"><circle cx="60" cy="22" r="15"/><path d="M38 52 Q60 44 82 52 L88 130 L76 132 L72 96 L68 132 L68 232 L54 232 L52 132 L48 96 L44 132 L32 130 Z"/></svg>
+        {%- else -%}
+          <svg viewBox="0 0 200 260" aria-hidden="true"><ellipse cx="100" cy="108" rx="62" ry="80"/><path d="M80 186 L76 252 M120 186 L124 252"/><path d="M64 96 Q76 88 88 96 Q76 104 64 96Z M112 96 Q124 88 136 96 Q124 104 112 96Z"/><path d="M62 82 Q76 76 90 82 M110 82 Q124 76 138 82"/><path d="M100 104 L96 134 Q100 138 104 134"/><path d="M82 156 Q100 168 118 156 Q100 160 82 156Z"/></svg>
+        {%- endif -%}
+        {%- for block in section.blocks -%}
+          <button type="button" class="ec-fz__dot{% if forloop.first %} is-on{% endif %}" data-i="{{ forloop.index0 }}" style="left: {{ block.settings.x }}%; top: {{ block.settings.y }}%;" aria-label="{{ block.settings.label | escape }}"><span></span></button>
+        {%- endfor -%}
+      </div>
+      <div class="ec-fz__info">
+        <div class="ec-fz__tabs" role="tablist">
+          {%- for block in section.blocks -%}
+            <button type="button" role="tab" class="ec-fz__tab{% if forloop.first %} is-on{% endif %}" data-i="{{ forloop.index0 }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" {{ block.shopify_attributes }}>{{ block.settings.label | escape }}</button>
+          {%- endfor -%}
+        </div>
+        {%- for block in section.blocks -%}
+          {%- assign fz_chips = block.settings.concerns | split: ',' -%}
+          <div class="ec-fz__panel{% if forloop.first %} is-on{% endif %}" data-i="{{ forloop.index0 }}">
+            <b class="ec-fz__name">{{ block.settings.label | escape }}</b>
+            <p class="ec-fz__q">{{ section.settings.chips_label | default: 'Lo que notas aquí' | escape }}</p>
+            <div class="ec-fz__chips">{%- for c in fz_chips -%}{%- assign c_t = c | strip -%}{%- if c_t != blank -%}<span>{{ c_t | escape }}</span>{%- endif -%}{%- endfor -%}</div>
+            <p class="ec-fz__t">{{ block.settings.text | escape }}</p>
+          </div>
+        {%- endfor -%}
+        {%- if section.settings.note != blank -%}<p class="ec-fz__note">{{ section.settings.note | escape }}</p>{%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <a href="#" class="ec-btn ec-btn--accent ec-btn--lg ec-fz__cta" data-ec-scroll-buy>{{ section.settings.button_label | escape }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var root = document.currentScript.parentNode.querySelector('[data-ec-facezones]');
+      if (!root || root.__ecFz) return;
+      root.__ecFz = true;
+      function show(i) {
+        root.querySelectorAll('[data-i]').forEach(function (el) {
+          var on = el.getAttribute('data-i') === String(i);
+          el.classList.toggle('is-on', on);
+          if (el.getAttribute('role') === 'tab') el.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+      }
+      root.addEventListener('click', function (e) {
+        var t = e.target.closest('.ec-fz__dot, .ec-fz__tab');
+        if (t) show(t.getAttribute('data-i'));
+      });
+    })();
+  </script>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ECOMS · Mapa de zonas",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "Tu rostro | ¿Qué *parte* te preocupa?" },
+    { "type": "textarea", "id": "text", "label": "Texto de apertura" },
+    { "type": "select", "id": "figure", "label": "Dibujo", "options": [
+      { "value": "face", "label": "Rostro" },
+      { "value": "body", "label": "Cuerpo" }
+    ], "default": "face" },
+    { "type": "text", "id": "chips_label", "label": "Etiqueta de las preocupaciones", "default": "Lo que notas aquí" },
+    { "type": "text", "id": "note", "label": "Nota pequeña", "default": "Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso." },
+    { "type": "text", "id": "button_label", "label": "Botón", "default": "Quiero probarlo" },
+    { "type": "range", "id": "padding_top", "label": "Espacio arriba", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 44 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio abajo", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 8 }
+  ],
+  "blocks": [
+    {
+      "type": "zone",
+      "name": "Zona",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Nombre de la zona", "default": "Contorno de ojos" },
+        { "type": "text", "id": "concerns", "label": "Lo que se nota (separado por comas)", "default": "Sequedad, Aspecto apagado" },
+        { "type": "textarea", "id": "text", "label": "Cómo ayuda el producto" },
+        { "type": "range", "id": "x", "label": "Posición horizontal del punto", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 50 },
+        { "type": "range", "id": "y", "label": "Posición vertical del punto", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 40 }
+      ]
+    }
+  ],
+  "presets": [ { "name": "ECOMS · Mapa de zonas" } ]
+}
+{% endschema %}
