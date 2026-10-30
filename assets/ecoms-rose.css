@@ -42,7 +42,8 @@ body { font-family: 'Instrument Sans', var(--font-body-family), system-ui, sans-
 .ec-pack__ship { color: #2E7D57; }
 
 /* Buy button: black pill (Releasit and our own) */
-.ec-pdp [class*="_rsi-buy-now-button"]:not([class*="hook"]) { min-height: 66px !important; border: 0 !important; border-radius: 99px !important; background: var(--ec-dark) !important; color: #fff !important; font-weight: 700 !important; letter-spacing: 0.02em !important; }
+[class*="rsi-buy-now-button"]:not([class*="hook"]) { min-height: 66px !important; border: 0 !important; border-radius: 99px !important; background: var(--ec-dark) !important; background-color: var(--ec-dark) !important; color: #fff !important; font-family: inherit !important; font-weight: 700 !important; letter-spacing: 0.02em !important; box-shadow: none !important; }
+[class*="rsi-buy-now-button"]:not([class*="hook"]) * { color: #fff !important; fill: #fff !important; }
 .ec-btn--primary, .ec-imgtxt__btn { border-radius: 99px; background: var(--ec-dark); color: #fff; font-weight: 700; letter-spacing: 0.02em; }
 
 /* Offer ribbon (black, pink tag) and trust band (pink) */
