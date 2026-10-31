@@ -680,7 +680,9 @@
     const ours = '[data-ec-add-variant], [data-ec-add], [data-ec-scroll-buy], .ec-packoff, .ec-sticky, .ec-ann';
     const hits = $$('button, a, [role="button"]').filter((el) => {
       if (el.closest(ours) || !el.offsetParent) return false;
-      return (el.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase() === wanted;
+      // The label may carry the amount we add («Pedir y pagar al recibir · $29.990»), so match by prefix.
+      const txt = (el.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase();
+      return txt === wanted || (txt.startsWith(wanted) && txt.length < wanted.length + 80);
     });
     const inCart = (el) => !!el.closest('cart-drawer, #CartDrawer, .drawer');
     return hits.find((el) => inCart(el) === !!fromCart) || hits[0];
@@ -789,6 +791,11 @@
       const fromBar = !!toBuy.closest('.ec-sticky');
       const barCod = fromBar && toBuy.dataset.ecOpenCod && codButton(toBuy.dataset.ecOpenCod);
       if (barCod) { event.preventDefault(); barCod.click(); return; }
+      if (fromBar) {
+        // The app's button is not ready yet: take the shopper to the buy block, never to the pack list.
+        const buyBox = $('.ec-buy');
+        if (buyBox) { event.preventDefault(); buyBox.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+      }
       const tiers = $('[data-ec-gt]');
       if (tiers) { event.preventDefault(); tiers.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
       // Pack tiers on the page: every page CTA takes the shopper back up to choose a pack, so they know what they are buying.
