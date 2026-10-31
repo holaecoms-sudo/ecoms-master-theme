@@ -430,11 +430,11 @@
         "c1": {
           "type": "crop",
           "settings": {
-            "product_image_index": 1,
+            "product_image_index": 6,
             "shape": "arch_top",
-            "zoom": 200,
-            "focus_x": 50,
-            "focus_y": 15,
+            "zoom": 220,
+            "focus_x": 77,
+            "focus_y": 23,
             "title": "El gatillo",
             "text": "Aplicación pareja en spray."
           }
@@ -442,11 +442,11 @@
         "c2": {
           "type": "crop",
           "settings": {
-            "product_image_index": 1,
+            "product_image_index": 2,
             "shape": "rect",
             "zoom": 200,
-            "focus_x": 50,
-            "focus_y": 70,
+            "focus_x": 52,
+            "focus_y": 62,
             "title": "La fórmula",
             "text": "Kójico, cúrcuma y niacinamida."
           }
@@ -456,9 +456,9 @@
           "settings": {
             "product_image_index": 1,
             "shape": "arch_bottom",
-            "zoom": 200,
-            "focus_x": 76,
-            "focus_y": 76,
+            "zoom": 300,
+            "focus_x": 30,
+            "focus_y": 83,
             "title": "La cúrcuma",
             "text": "Antioxidante y calmante."
           }
@@ -725,7 +725,8 @@
         "trust_3": "10 días de retracto",
         "width": "full",
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "image": "shopify://shop_images/7.png"
       }
     }
   },
