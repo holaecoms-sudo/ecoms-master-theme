@@ -16,18 +16,18 @@
           "type": "title",
           "settings": {}
         },
-        "social": {
-          "type": "social",
-          "settings": {
-            "rating": "4,8",
-            "text": "+620 clientas en Chile"
-          }
-        },
         "hook": {
           "type": "text",
           "settings": {
             "text": "<p>Tres activos para una piel más suave y de tono más uniforme</p>",
             "fixed": true
+          }
+        },
+        "social": {
+          "type": "social",
+          "settings": {
+            "rating": "4,8",
+            "text": "+620 clientas en Chile"
           }
         },
         "lead": {
@@ -177,8 +177,8 @@
       },
       "block_order": [
         "title",
-        "social",
         "hook",
+        "social",
         "lead",
         "benefits",
         "price",
