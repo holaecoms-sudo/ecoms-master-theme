@@ -9,30 +9,26 @@
  */
 {
   "sections": {
-    "ribbon": {
-      "type": "ecoms-ribbon",
-      "settings": {
-        "tag": "PACKS",
-        "text": "2º al 50% · 3x2 · Envío gratis",
-        "end_at": "",
-        "heading": "Termina en:",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
     "main": {
       "type": "ecoms-product",
       "blocks": {
-        "social": {
-          "type": "social",
-          "settings": {
-            "rating": "",
-            "text": ""
-          }
-        },
         "title": {
           "type": "title",
           "settings": {}
+        },
+        "social": {
+          "type": "social",
+          "settings": {
+            "rating": "4,8",
+            "text": "+620 clientas en Chile"
+          }
+        },
+        "hook": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Tres activos para una piel más suave y de tono más uniforme</p>",
+            "fixed": true
+          }
         },
         "lead": {
           "type": "text",
@@ -50,6 +46,14 @@
             "item_4": "",
             "item_5": "",
             "item_6": ""
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "style": "pill",
+            "ship_local_title": "",
+            "ship_local_text": ""
           }
         },
         "pk": {
@@ -84,54 +88,6 @@
             "tier3_note": ""
           }
         },
-        "buy": {
-          "type": "buy",
-          "settings": {
-            "heading": "",
-            "show_quantity": false,
-            "add_label": "Comprar con tarjeta",
-            "show_total": false,
-            "show_buy_now": false,
-            "buy_now_icon": "bolt",
-            "buy_now_label": "Pedir ahora",
-            "cod_only": true,
-            "add_label_cod": "Comprar con tarjeta",
-            "buy_now_label_cod": "",
-            "card_label": "Pagar ahora con tarjeta · 10% de dto",
-            "card_code": "PAGAYA10"
-          }
-        },
-        "dlv": {
-          "type": "delivery",
-          "settings": {
-            "step_1": "Pedido realizado",
-            "ready_days": 1,
-            "step_2": "Pedido listo",
-            "min_days": 3,
-            "max_days": 6,
-            "step_3": "Entregado"
-          }
-        },
-        "stock": {
-          "type": "stock",
-          "settings": {
-            "max_show": 300,
-            "text": "STOCK EN VIVO: quedan [qty] unidades"
-          }
-        },
-        "rs": {
-          "type": "review_slider",
-          "settings": {
-            "style": "quote",
-            "heading": ""
-          }
-        },
-        "acc": {
-          "type": "accordion",
-          "settings": {
-            "open_first": false
-          }
-        },
         "ul": {
           "type": "unlock",
           "settings": {
@@ -153,24 +109,76 @@
             "c3_open": "¡Es tuyo gratis!"
           }
         },
-        "price": {
-          "type": "price",
+        "buy": {
+          "type": "buy",
           "settings": {
-            "style": "pill"
+            "heading": "",
+            "show_quantity": false,
+            "add_label": "Comprar con tarjeta",
+            "show_total": false,
+            "show_buy_now": false,
+            "buy_now_icon": "bolt",
+            "buy_now_label": "Pedir ahora",
+            "cod_only": true,
+            "add_label_cod": "Comprar con tarjeta",
+            "buy_now_label_cod": "",
+            "card_label": "Pagar ahora con tarjeta · 10% de dto",
+            "card_code": "PAGAYA10"
           }
         },
-        "hook": {
-          "type": "text",
+        "stock": {
+          "type": "stock",
           "settings": {
-            "text": "<p>Tres activos para una piel más suave y de tono más uniforme</p>",
-            "fixed": true
+            "max_show": 300,
+            "text": "STOCK EN VIVO: quedan [qty] unidades"
+          }
+        },
+        "dlv": {
+          "type": "delivery",
+          "settings": {
+            "step_1": "Pedido realizado",
+            "ready_days": 1,
+            "step_2": "Pedido listo",
+            "min_days": 3,
+            "max_days": 6,
+            "step_3": "Entregado"
+          }
+        },
+        "rs": {
+          "type": "review_slider",
+          "settings": {
+            "style": "quote",
+            "heading": "",
+            "text_1": "",
+            "author_1": "",
+            "place_1": "",
+            "stars_1": 5,
+            "text_2": "",
+            "author_2": "",
+            "place_2": "",
+            "stars_2": 5,
+            "text_3": "",
+            "author_3": "",
+            "place_3": "",
+            "stars_3": 5
+          }
+        },
+        "acc": {
+          "type": "accordion",
+          "settings": {
+            "label_1": "Beneficios",
+            "label_2": "Cómo utilizar",
+            "label_3": "Ingredientes",
+            "label_4": "Tecnología",
+            "label_5": "¿Por qué este precio?",
+            "open_first": false
           }
         }
       },
       "block_order": [
+        "title",
         "social",
         "hook",
-        "title",
         "lead",
         "benefits",
         "price",
@@ -287,192 +295,20 @@
         "padding_bottom": 0
       }
     },
-    "routine": {
-      "type": "ecoms-steps",
+    "pain": {
+      "type": "ecoms-pain-gain",
       "settings": {
-        "metafield": "ecoms.steps",
-        "button_label": "",
-        "button_link": "",
-        "style": "cards",
-        "heading": "El ritual | Cuatro pasos, *sin apuro.*",
-        "text": "",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "star": {
-      "type": "ecoms-callout",
-      "settings": {
-        "eyebrow": "Los ingredientes estrella",
-        "heading": "",
-        "value": "3",
-        "label": "activos clave",
-        "text": "Ácido kójico, cúrcuma y niacinamida: tres ingredientes conocidos por mejorar la apariencia de la piel opaca, áspera y con tono desigual. Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
-        "pills": "",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "ingredients": {
-      "type": "ecoms-feature-grid",
-      "settings": {
-        "metafield": "ecoms.ingredients",
-        "heading": "Fórmula | Qué *contiene.*",
-        "style": "band",
-        "width": "full",
+        "heading": "Te pasa que… | Cuando la piel se ve *opaca,* se nota.",
+        "intro": "Codos, rodillas y pies suelen ser las zonas que más se descuidan. Si te suena, este spray es para ti.",
+        "pain_title": "Te pasa que…",
+        "pain_items": "Codos, rodillas o pies que se ven opacos y ásperos.\nUn tono que se ve desigual en algunas zonas.\nExfoliantes de grano que se frotan a mano y no llegan bien a todas las zonas.\nProbaste varios productos y no sabes cuál usar.",
+        "gain_title": "Con Peel Shot…",
+        "gain_items": "Exfolia suavemente las células muertas.\nAyuda a mejorar la apariencia del tono desigual.\nSpray rápido y parejo: rocías a 15–20 cm, masajeas y enjuagas.\nPiel más suave y luminosa, con ácido kójico, cúrcuma y niacinamida.\n200 ml para todo el cuerpo.",
+        "closing": "Un spray, tres activos. Una rutina simple que sí vas a mantener.",
+        "note": "Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
+        "button_label": "Quiero probarlo",
         "padding_top": 44,
-        "padding_bottom": 40,
-        "button_label": "Ver lista completa de ingredientes"
-      }
-    },
-    "compare": {
-      "type": "ecoms-comparison",
-      "blocks": {
-        "r1": {
-          "type": "row",
-          "settings": {
-            "feature": "Se aplica en spray, rápido y parejo",
-            "value_1": true,
-            "value_2": false,
-            "value_3": false
-          }
-        },
-        "r2": {
-          "type": "row",
-          "settings": {
-            "feature": "Con ácido kójico para el tono desigual",
-            "value_1": true,
-            "value_2": false,
-            "value_3": false
-          }
-        },
-        "r3": {
-          "type": "row",
-          "settings": {
-            "feature": "Con niacinamida y cúrcuma",
-            "value_1": true,
-            "value_2": false,
-            "value_3": false
-          }
-        },
-        "r4": {
-          "type": "row",
-          "settings": {
-            "feature": "200 ml para todo el cuerpo",
-            "value_1": true,
-            "value_2": false,
-            "value_3": false
-          }
-        }
-      },
-      "block_order": [
-        "r1",
-        "r2",
-        "r3",
-        "r4"
-      ],
-      "settings": {
-        "metafield": "",
-        "style": "table",
-        "heading": "Spray *vs.* scrub de grano",
-        "feature_label": "",
-        "col_1": "Peel Shot",
-        "show_image": true,
-        "col_2": "Scrub de grano",
-        "col_3": "",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "faq": {
-      "type": "ecoms-faq",
-      "blocks": {
-        "f1": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Cómo pago?",
-            "answer": "<p>Puedes pagar al recibir tu pedido, en todo Chile y sin costo adicional, o pagar ahora con tarjeta (débito o crédito) desde el formulario.</p>",
-            "draft": false
-          }
-        },
-        "f6": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Cuánto demora en llegar?",
-            "answer": "<p>Entre 2 y 5 días hábiles según tu comuna. Te enviamos el seguimiento de tu pedido.</p>",
-            "draft": false
-          }
-        },
-        "f2": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Cómo lo uso?",
-            "answer": "<p>Agita el envase, rocía sobre la piel seca a 15–20 cm de la zona (antes de la ducha), masajea con movimientos circulares y enjuaga con agua tibia. Úsalo 2 a 3 veces por semana y usa protector solar si esa zona se expondrá al sol.</p>",
-            "draft": false
-          }
-        },
-        "f4": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Sirve para piel sensible?",
-            "answer": "<p>Es de uso corporal y para todo tipo de piel. Si tu piel es sensible, pruébalo primero en una zona pequeña.</p>",
-            "draft": false
-          }
-        },
-        "f5": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Dónde lo puedo usar?",
-            "answer": "<p>En el cuerpo: codos, rodillas, pies y otras zonas donde la piel se vea opaca o áspera. No es para el rostro.</p>",
-            "draft": false
-          }
-        },
-        "f7": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Y si no me gusta?",
-            "answer": "<p>Tienes 10 días de retracto con el producto sin abrir y 6 meses de garantía legal si llega con una falla.</p>",
-            "draft": false
-          }
-        }
-      },
-      "block_order": [
-        "f1",
-        "f6",
-        "f2",
-        "f4",
-        "f5",
-        "f7"
-      ],
-      "settings": {
-        "style": "stack",
-        "heading": "Preguntas *frecuentes.*",
-        "text": "",
-        "icon": "plus",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "cta": {
-      "type": "ecoms-cta-band",
-      "settings": {
-        "style": "photo",
-        "eyebrow": "",
-        "heading": "Tu piel, más *luminosa.*",
-        "text": "Un spray, tres activos. Pagas cuando lo recibes.",
-        "image_plain": false,
-        "show_price": false,
-        "button_label": "Pedir desde $15.000",
-        "trust_1": "Pagas al recibir",
-        "trust_2": "Envíos a todo Chile",
-        "trust_3": "10 días de retracto",
-        "width": "full",
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 8
       }
     },
     "benefits": {
@@ -518,9 +354,10 @@
         "f4"
       ],
       "settings": {
-        "heading": "Beneficios | Lo que hace por *tu piel.*",
-        "style": "cards",
         "metafield": "",
+        "heading": "Beneficios | Lo que hace por *tu piel.*",
+        "button_label": "",
+        "style": "cards",
         "width": "full",
         "padding_top": 44,
         "padding_bottom": 20
@@ -536,61 +373,6 @@
         "width": "full",
         "padding_top": 44,
         "padding_bottom": 12
-      }
-    },
-    "ugc": {
-      "type": "ecoms-ugc",
-      "settings": {
-        "metafield": "",
-        "style": "grid",
-        "heading": "Clientas reales | Así lo *usan.*",
-        "text": "",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 12
-      }
-    },
-    "bubble": {
-      "type": "ecoms-review-bubble",
-      "settings": {
-        "metafield": "ecoms.reviews",
-        "heading": "",
-        "limit": 8,
-        "width": "full",
-        "padding_top": 4,
-        "padding_bottom": 24
-      }
-    },
-    "reviews": {
-      "type": "ecoms-reviews",
-      "settings": {
-        "metafield": "ecoms.reviews",
-        "style": "masonry",
-        "heading": "Opiniones de *clientas.*",
-        "link_label": "",
-        "link": "",
-        "source_note": "",
-        "per_page": 6,
-        "write_label": "Escribe una reseña",
-        "write_link": "/pages/contact",
-        "width": "full",
-        "padding_top": 32,
-        "padding_bottom": 32
-      }
-    },
-    "before_after": {
-      "type": "ecoms-before-after",
-      "settings": {
-        "style": "slider",
-        "heading": "Prueba real | Resultados *visibles.*",
-        "text": "Con uso constante. Fotos reales, con permiso. Arrastra.",
-        "before": "",
-        "before_caption": "Antes",
-        "after": "",
-        "after_caption": "Después",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
       }
     },
     "zones": {
@@ -693,6 +475,159 @@
         "padding_bottom": 8
       }
     },
+    "routine": {
+      "type": "ecoms-steps",
+      "settings": {
+        "metafield": "ecoms.steps",
+        "button_label": "",
+        "button_link": "",
+        "style": "cards",
+        "heading": "El ritual | Cuatro pasos, *sin apuro.*",
+        "text": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "star": {
+      "type": "ecoms-callout",
+      "settings": {
+        "eyebrow": "Los ingredientes estrella",
+        "heading": "",
+        "value": "3",
+        "label": "activos clave",
+        "text": "Ácido kójico, cúrcuma y niacinamida: tres ingredientes conocidos por mejorar la apariencia de la piel opaca, áspera y con tono desigual. Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
+        "pills": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "ingredients": {
+      "type": "ecoms-feature-grid",
+      "settings": {
+        "metafield": "ecoms.ingredients",
+        "heading": "Fórmula | Qué *contiene.*",
+        "button_label": "Ver lista completa de ingredientes",
+        "style": "band",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 40
+      }
+    },
+    "compare": {
+      "type": "ecoms-comparison",
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "feature": "Se aplica en spray, rápido y parejo",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "feature": "Con ácido kójico para el tono desigual",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "feature": "Con niacinamida y cúrcuma",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "feature": "200 ml para todo el cuerpo",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ],
+      "settings": {
+        "metafield": "",
+        "style": "table",
+        "heading": "Spray *vs.* scrub de grano",
+        "feature_label": "",
+        "col_1": "Peel Shot",
+        "show_image": true,
+        "col_2": "Scrub de grano",
+        "col_3": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "before_after": {
+      "type": "ecoms-before-after",
+      "settings": {
+        "style": "slider",
+        "heading": "Prueba real | Resultados *visibles.*",
+        "text": "Con uso constante. Fotos reales, con permiso. Arrastra.",
+        "before_caption": "Antes",
+        "after_caption": "Después",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "ugc": {
+      "type": "ecoms-ugc",
+      "settings": {
+        "metafield": "",
+        "style": "grid",
+        "heading": "Clientas reales | Así lo *usan.*",
+        "text": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "bubble": {
+      "type": "ecoms-review-bubble",
+      "settings": {
+        "metafield": "ecoms.reviews",
+        "heading": "",
+        "limit": 8,
+        "width": "full",
+        "padding_top": 4,
+        "padding_bottom": 24
+      }
+    },
+    "reviews": {
+      "type": "ecoms-reviews",
+      "settings": {
+        "metafield": "ecoms.reviews",
+        "style": "masonry",
+        "heading": "Opiniones de *clientas.*",
+        "link_label": "",
+        "link": "",
+        "source_note": "",
+        "per_page": 6,
+        "write_label": "Escribe una reseña",
+        "write_link": "/pages/contact",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
     "yesno": {
       "type": "ecoms-yes-no",
       "settings": {
@@ -705,25 +640,96 @@
         "padding_bottom": 8
       }
     },
-    "pain": {
-      "type": "ecoms-pain-gain",
+    "faq": {
+      "type": "ecoms-faq",
+      "blocks": {
+        "f1": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo pago?",
+            "answer": "<p>Puedes pagar al recibir tu pedido, en todo Chile y sin costo adicional, o pagar ahora con tarjeta (débito o crédito) desde el formulario.</p>",
+            "draft": false
+          }
+        },
+        "f6": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuánto demora en llegar?",
+            "answer": "<p>Entre 2 y 5 días hábiles según tu comuna. Te enviamos el seguimiento de tu pedido.</p>",
+            "draft": false
+          }
+        },
+        "f2": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo lo uso?",
+            "answer": "<p>Agita el envase, rocía sobre la piel seca a 15–20 cm de la zona (antes de la ducha), masajea con movimientos circulares y enjuaga con agua tibia. Úsalo 2 a 3 veces por semana y usa protector solar si esa zona se expondrá al sol.</p>",
+            "draft": false
+          }
+        },
+        "f4": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Sirve para piel sensible?",
+            "answer": "<p>Es de uso corporal y para todo tipo de piel. Si tu piel es sensible, pruébalo primero en una zona pequeña.</p>",
+            "draft": false
+          }
+        },
+        "f5": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Dónde lo puedo usar?",
+            "answer": "<p>En el cuerpo: codos, rodillas, pies y otras zonas donde la piel se vea opaca o áspera. No es para el rostro.</p>",
+            "draft": false
+          }
+        },
+        "f7": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Y si no me gusta?",
+            "answer": "<p>Tienes 10 días de retracto con el producto sin abrir y 6 meses de garantía legal si llega con una falla.</p>",
+            "draft": false
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f6",
+        "f2",
+        "f4",
+        "f5",
+        "f7"
+      ],
       "settings": {
-        "heading": "Te pasa que… | Cuando la piel se ve *opaca,* se nota.",
-        "intro": "Codos, rodillas y pies suelen ser las zonas que más se descuidan. Si te suena, este spray es para ti.",
-        "pain_title": "Te pasa que…",
-        "pain_items": "Codos, rodillas o pies que se ven opacos y ásperos.\nUn tono que se ve desigual en algunas zonas.\nExfoliantes de grano que se frotan a mano y no llegan bien a todas las zonas.\nProbaste varios productos y no sabes cuál usar.",
-        "gain_title": "Con Peel Shot…",
-        "gain_items": "Exfolia suavemente las células muertas.\nAyuda a mejorar la apariencia del tono desigual.\nSpray rápido y parejo: rocías a 15–20 cm, masajeas y enjuagas.\nPiel más suave y luminosa, con ácido kójico, cúrcuma y niacinamida.\n200 ml para todo el cuerpo.",
-        "closing": "Un spray, tres activos. Una rutina simple que sí vas a mantener.",
-        "note": "Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
-        "button_label": "Quiero probarlo",
-        "padding_top": 44,
-        "padding_bottom": 8
+        "style": "stack",
+        "heading": "Preguntas *frecuentes.*",
+        "text": "",
+        "icon": "plus",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "cta": {
+      "type": "ecoms-cta-band",
+      "settings": {
+        "style": "photo",
+        "eyebrow": "",
+        "heading": "Tu piel, más *luminosa.*",
+        "text": "Un spray, tres activos. Pagas cuando lo recibes.",
+        "image_plain": false,
+        "show_price": false,
+        "button_label": "Pedir desde $15.000",
+        "trust_1": "Pagas al recibir",
+        "trust_2": "Envíos a todo Chile",
+        "trust_3": "10 días de retracto",
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
   "order": [
-    "ribbon",
     "main",
     "top",
     "pain",
