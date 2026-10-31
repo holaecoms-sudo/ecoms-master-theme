@@ -14,20 +14,12 @@
         "t2": {
           "type": "trust",
           "settings": {
-            "icon": "lock",
-            "title": "Pago seguro",
-            "text": "Checkout protegido"
+            "icon": "cash",
+            "title": "Pagas al recibir",
+            "text": "O con tarjeta"
           }
         },
         "t3": {
-          "type": "trust",
-          "settings": {
-            "icon": "box",
-            "title": "Seguimiento del pedido",
-            "text": "Te avisamos del envío"
-          }
-        },
-        "t4": {
           "type": "trust",
           "settings": {
             "icon": "return",
@@ -39,106 +31,32 @@
       "block_order": [
         "t1",
         "t2",
-        "t3",
-        "t4"
+        "t3"
       ],
       "settings": {
-        "eyebrow": "Ecoms Beauty · Skincare",
-        "heading": "Tu piel, mejor cuidada",
-        "heading_em": "cada día",
-        "text": "Cuidado de la piel inspirado en el K-beauty. Te explicamos cómo usar cada producto y te lo enviamos a todo Chile.",
+        "eyebrow": "Ecoms Beauty",
+        "heading": "Cuidado de la piel,",
+        "heading_em": "simple",
+        "text": "Cuidado de la piel inspirado en el K-beauty, enviado a todo Chile. Pagas al recibir.",
         "button_1_label": "Ver productos",
         "button_2_label": "",
-        "product": "",
-        "tag": "Ecoms Beauty",
-        "card_text": "Skincare que pagas al recibir",
-        "accent": "#E8C15A",
-        "padding_top": 84,
-        "padding_bottom": 96,
+        "product": "balsamo-pdrn-hidratante-colageno",
+        "tag": "Nuevo",
+        "card_text": "Pagas al recibir",
+        "accent": "#C23B73",
+        "padding_top": 64,
+        "padding_bottom": 72,
         "button_1_link": "shopify://collections/all"
       }
-    },
-    "lineas": {
-      "type": "ecoms-verticals",
-      "blocks": {
-        "v1": {
-          "type": "line",
-          "settings": {
-            "name": "Ecoms Clean · Limpieza y aseo",
-            "text": "Baño, cocina, pisos y lavado: herramientas que te ahorran esfuerzo.",
-            "status": "live",
-            "collection": "clean",
-            "icon": "sparkle",
-            "accent": "#2F7BEA",
-            "button_label": "Ver productos"
-          }
-        },
-        "v2": {
-          "type": "line",
-          "settings": {
-            "name": "Hogar y mascotas",
-            "text": "Orden, cocina y cuidado de tus mascotas.",
-            "status": "soon",
-            "icon": "paw",
-            "accent": "#F59E0B",
-            "notify_tag": "hogar"
-          }
-        },
-        "v3": {
-          "type": "line",
-          "settings": {
-            "name": "Belleza",
-            "text": "Cuidado personal y de la piel.",
-            "status": "soon",
-            "icon": "gem",
-            "accent": "#EC4899",
-            "notify_tag": "belleza"
-          }
-        },
-        "v4": {
-          "type": "line",
-          "settings": {
-            "name": "Bienestar",
-            "text": "Descanso, relajación y vida sana.",
-            "status": "soon",
-            "icon": "leaf",
-            "accent": "#14B8A6",
-            "notify_tag": "bienestar"
-          }
-        }
-      },
-      "block_order": [
-        "v1",
-        "v2",
-        "v3",
-        "v4"
-      ],
-      "settings": {
-        "eyebrow": "Próximamente",
-        "heading": "Nuevas líneas en camino",
-        "text": "Déjanos tu email y te avisamos cuando lleguen.",
-        "button_label": "Ver productos",
-        "live_label": "Disponible",
-        "soon_label": "Próximamente",
-        "padding_top": 40,
-        "padding_bottom": 56,
-        "layout": "soon",
-        "anchor": "proximamente",
-        "show_notify": true,
-        "notify_placeholder": "Tu email",
-        "notify_button": "Avísame",
-        "notify_success": "¡Listo! Te avisaremos cuando llegue."
-      },
-      "disabled": true
     },
     "clean_row": {
       "type": "ecoms-product-row",
       "settings": {
-        "heading": "Productos Ecoms Beauty",
+        "heading": "Nuestros productos",
         "collection": "",
         "limit": 8,
-        "min_products": 3,
-        "columns": 4,
+        "min_products": 1,
+        "columns": 2,
         "show_badge": true,
         "hover_image": true,
         "button_label": "Ver producto",
@@ -189,70 +107,11 @@
         "padding_top": 36,
         "padding_bottom": 24
       }
-    },
-    "zonas": {
-      "type": "ecoms-zones",
-      "blocks": {
-        "z1": {
-          "type": "zone",
-          "settings": {
-            "label": "Baño",
-            "text": "Ducha, inodoro y juntas",
-            "tag": "zona-bano",
-            "icon": "drop"
-          }
-        },
-        "z2": {
-          "type": "zone",
-          "settings": {
-            "label": "Cocina",
-            "text": "Grasa, lavaplatos y cañerías",
-            "tag": "zona-cocina",
-            "icon": "home"
-          }
-        },
-        "z3": {
-          "type": "zone",
-          "settings": {
-            "label": "Pisos y aspirado",
-            "text": "Aspiradoras y mopa",
-            "tag": "zona-pisos",
-            "icon": "sparkle"
-          }
-        },
-        "z4": {
-          "type": "zone",
-          "settings": {
-            "label": "Lavado y ropa",
-            "text": "Lavadora, zapatillas y clóset",
-            "tag": "zona-ropa",
-            "icon": "washer"
-          }
-        }
-      },
-      "block_order": [
-        "z1",
-        "z2",
-        "z3",
-        "z4"
-      ],
-      "settings": {
-        "heading": "Compra por categoría",
-        "text": "",
-        "collection": "clean",
-        "show_all": true,
-        "all_label": "Ver todo Ecoms Clean",
-        "padding_top": 28,
-        "padding_bottom": 20
-      },
-      "disabled": true
     }
   },
   "order": [
     "hero",
     "clean_row",
-    "zonas",
-    "como",
-    "lineas"
+    "como"
   ]
 }
