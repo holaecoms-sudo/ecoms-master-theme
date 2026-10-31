@@ -1795,6 +1795,11 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 .ec-gt__gname { font-size: 12.5px; font-weight: 700; line-height: 1.25; }
 .ec-gt__state { color: var(--ec-muted); font-size: 11.5px; }
 .ec-gt__gift.is-open .ec-gt__state { color: var(--ec-primary); font-weight: 800; }
+.ec-gt__priority { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 2px solid var(--ec-line); border-radius: 12px; background: var(--ec-bg); cursor: pointer; }
+.ec-gt__priority:has(input:checked) { border-color: var(--ec-primary); background: color-mix(in srgb, var(--ec-primary) 7%, var(--ec-bg)); }
+.ec-gt__priority input { flex-shrink: 0; width: 18px; height: 18px; accent-color: var(--ec-primary); }
+.ec-gt__priority-name { flex: 1; font-size: 13.5px; font-weight: 700; }
+.ec-gt__priority-price { font-size: 14px; font-weight: 900; color: var(--ec-primary); }
 .ec-gt__go { min-height: 58px; gap: 8px; font-size: 16px; }
 .ec-gt__go .ec-i { width: 20px; height: 20px; }
 .ec-gt__foot { margin: 0; color: var(--ec-muted); font-size: 12.5px; text-align: center; }

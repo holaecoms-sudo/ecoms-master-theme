@@ -792,6 +792,18 @@
                 {%- endif -%}
               </ul>
 
+              {%- liquid
+                assign pr_product = block.settings.priority_product
+                assign pr_variant = pr_product.selected_or_first_available_variant
+              -%}
+              {%- if pr_product != blank and pr_product.available -%}
+                <label class="ec-gt__priority">
+                  <input type="checkbox" data-ec-gt-priority value="{{ pr_variant.id }}" data-cents="{{ pr_variant.price }}">
+                  <span class="ec-gt__priority-name">{{ block.settings.priority_label | default: 'Envío prioritario' | escape }}</span>
+                  <b class="ec-gt__priority-price">+{{ pr_variant.price | money }}</b>
+                </label>
+              {%- endif -%}
+
               <button type="button" class="ec-btn ec-btn--primary ec-btn--block ec-gt__go" data-ec-gt-go>
                 {% render 'ecoms-icon', name: 'cash' %}<span>{{ block.settings.button_label | default: 'Pedir y pagar al recibir' | escape }}</span> · <b data-ec-gt-total></b>
               </button>
@@ -4713,6 +4725,9 @@
         { "type": "number", "id": "ship_tier", "label": "Envío gratis desde el nivel", "info": "0 = no se muestra. Configura la tarifa gratis real en la app de pago al recibir.", "default": 2 },
         { "type": "text", "id": "ship_label", "label": "Texto del envío gratis", "default": "Envío gratis a todo Chile" },
         { "type": "text", "id": "ship_was", "label": "Costo normal del envío", "info": "Ej.: $4.000. Opcional." },
+        { "type": "header", "content": "Envío prioritario (opcional)" },
+        { "type": "product", "id": "priority_product", "label": "Producto de envío prioritario", "info": "Crea en Shopify un producto liviano con el precio del envío prioritario (ej. $990) y selecciónalo aquí. Si lo dejas vacío, la opción no se muestra. Se agrega al carrito con precio real solo si el cliente la marca." },
+        { "type": "text", "id": "priority_label", "label": "Texto de la opción", "default": "Quiero envío prioritario" },
         { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Pedir y pagar al recibir" },
         { "type": "text", "id": "note", "label": "Nota bajo el botón", "default": "No pagas nada hoy. Todo llega en un solo envío." }
       ]

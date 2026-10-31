@@ -603,6 +603,7 @@
       box.dataset.ecGtOn = '1';
       const radios = $$('input[type="radio"]', box);
       const total = $('[data-ec-gt-total]', box);
+      const priority = $('[data-ec-gt-priority]', box);
       const current = () => radios.find((r) => r.checked) || radios[0];
       const paint = () => {
         const r = current();
@@ -615,11 +616,16 @@
           const st = $('.ec-gt__state', g);
           if (st) st.textContent = open ? st.dataset.open : st.dataset.locked;
         });
-        if (total) total.textContent = r.dataset.total;
-        $$('[data-ec-sticky-gt-total]').forEach((el) => { el.textContent = r.dataset.total; el.hidden = false; });
-        paintPrice(Number(r.dataset.qty) || 1, Number(r.dataset.cents) || 0, Number(r.dataset.was) || 0, r.dataset.summary || '');
+        // Priority shipping is a real product added on top, so its price must show in every running total.
+        const priorityCents = priority?.checked ? Number(priority.dataset.cents) || 0 : 0;
+        const cents = (Number(r.dataset.cents) || 0) + priorityCents;
+        const totalText = priorityCents > 0 ? money(cents) : r.dataset.total;
+        if (total) total.textContent = totalText;
+        $$('[data-ec-sticky-gt-total]').forEach((el) => { el.textContent = totalText; el.hidden = false; });
+        paintPrice(Number(r.dataset.qty) || 1, cents, (Number(r.dataset.was) || 0) + priorityCents, r.dataset.summary || '');
       };
       radios.forEach((r) => r.addEventListener('change', paint));
+      priority?.addEventListener('change', paint);
       paint();
       const go = $('[data-ec-gt-go]', box);
       go?.addEventListener('click', async () => {
@@ -635,6 +641,7 @@
           const cleared = await fetch(`${window.Shopify?.routes?.root || '/'}cart/clear.js`, { method: 'POST', headers: { Accept: 'application/json' } });
           if (!cleared.ok) throw new Error('No se pudo preparar tu pedido. Intenta de nuevo.');
           const extra = gifts.filter((g) => tier >= Number(g.dataset.tier)).map((g) => ({ id: Number(g.dataset.gift), quantity: 1 }));
+          if (priority?.checked) extra.push({ id: Number(priority.value), quantity: 1 });
           // Straight to the pay-on-delivery form: the cart drawer opens invisibly (the app's cart button lives
           // there), its button is clicked, then the drawer closes behind the form.
           if (box.dataset.openCod) document.documentElement.classList.add('ec-silent-cart');
