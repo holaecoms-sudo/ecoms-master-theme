@@ -48,7 +48,7 @@
           "type": "trust",
           "settings": {
             "icon": "truck",
-            "text": "Envío gratis desde $39.990"
+            "text": "Envío gratis desde $20.000"
           }
         },
         "t2": {
@@ -100,7 +100,7 @@
           "type": "faq",
           "settings": {
             "question": "¿Cuánto demora y cuánto cuesta el envío?",
-            "answer": "<p>Despachamos a todo Chile. El envío es <strong>gratis en compras desde $39.990</strong>; en compras menores, el costo para tu comuna aparece en el checkout antes de pagar. Preparamos tu pedido en 1 día hábil y te enviamos el número de seguimiento por email cuando sale.</p>",
+            "answer": "<p>Despachamos a todo Chile. El envío es <strong>gratis en compras desde $20.000</strong>; en compras menores, el costo para tu comuna aparece en el checkout antes de pagar. Preparamos tu pedido en 1 día hábil y te enviamos el número de seguimiento por email cuando sale.</p>",
             "draft": false
           }
         },
