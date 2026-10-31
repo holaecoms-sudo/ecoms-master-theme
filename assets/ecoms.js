@@ -604,12 +604,14 @@
       const radios = $$('input[type="radio"]', box);
       const total = $('[data-ec-gt-total]', box);
       const priority = $('[data-ec-gt-priority]', box);
+      const upsell1 = $('[data-ec-gt-upsell-1]', box);
       const current = () => radios.find((r) => r.checked) || radios[0];
       const paint = () => {
         const r = current();
         if (!r) return;
         const tier = Number(r.value);
         $$('.ec-gt__tier', box).forEach((l) => l.classList.toggle('is-on', l.contains(r)));
+        if (upsell1) upsell1.hidden = tier !== 1;
         $$('.ec-gt__gift', box).forEach((g) => {
           const open = tier >= Number(g.dataset.tier);
           g.classList.toggle('is-open', open);
@@ -622,7 +624,12 @@
         const totalText = priorityCents > 0 ? money(cents) : r.dataset.total;
         if (total) total.textContent = totalText;
         $$('[data-ec-sticky-gt-total]').forEach((el) => { el.textContent = totalText; el.hidden = false; });
-        paintPrice(Number(r.dataset.qty) || 1, cents, (Number(r.dataset.was) || 0) + priorityCents, r.dataset.summary || '');
+        const was = (Number(r.dataset.was) || 0) + priorityCents;
+        paintPrice(Number(r.dataset.qty) || 1, cents, was, r.dataset.summary || '');
+        // «Esto incluye tu compra» etc. follow sync()'s [data-ec-incl-*], but sync() skips gift-tier pages
+        // (no single product form/qty to read), so the pack total is pushed here instead.
+        $$('[data-ec-incl-total]').forEach((el) => { el.textContent = money(cents); });
+        $$('[data-ec-incl-was]').forEach((el) => { el.textContent = money(was); el.hidden = was <= cents; });
       };
       radios.forEach((r) => r.addEventListener('change', paint));
       priority?.addEventListener('change', paint);

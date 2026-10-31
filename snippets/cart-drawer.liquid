@@ -594,6 +594,23 @@
               {{ 'sections.cart.checkout' | t }}
             {%- endif -%}
           </button>
+          {%- if cart != empty and settings.ecoms_cod_live and settings.ecoms_cart_card_discount != blank and settings.ecoms_cart_card_label != blank -%}
+            {%- comment -%}
+              Card alternative to the pay-on-delivery checkout button: straight to Shopify's normal checkout
+              with a real discount code (ecoms.js matches this button's text and applies it via
+              /discount/CODE before the form submits).
+            {%- endcomment -%}
+            <span hidden data-ec-card-code="{{ settings.ecoms_cart_card_discount | strip | escape }}" data-ec-card-match="{{ settings.ecoms_cart_card_label | strip | downcase | escape }}"></span>
+            <button
+              type="submit"
+              id="CartDrawer-Checkout-Card"
+              class="cart__checkout-button button button--secondary"
+              name="checkout"
+              form="CartDrawer-Form"
+            >
+              {% render 'ecoms-icon', name: 'lock' %}{{ settings.ecoms_cart_card_label | escape }}
+            </button>
+          {%- endif -%}
           {%- render 'ecoms-cart-extras', part: 'trust' -%}
         </div>
       </div>

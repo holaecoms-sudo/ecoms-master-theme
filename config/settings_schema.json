@@ -2377,6 +2377,19 @@
       },
       {
         "type": "text",
+        "id": "ecoms_cart_card_label",
+        "label": "Carrito: botón «Pagar con tarjeta»",
+        "default": "Pagar con tarjeta",
+        "info": "Solo aparece si además completas el código de descuento abajo. Lleva directo al pago normal de Shopify (no al pago contra entrega)."
+      },
+      {
+        "type": "text",
+        "id": "ecoms_cart_card_discount",
+        "label": "Carrito: código de descuento al pagar con tarjeta",
+        "info": "Ej.: TARJETA10. Créalo en Shopify → Descuentos (10%, combinable con los descuentos de producto y de envío). Se aplica solo al usar el botón de arriba."
+      },
+      {
+        "type": "text",
         "id": "ecoms_cod_app_button",
         "label": "Texto del botón de la app de pago contra entrega",
         "default": "Pedir y pagar al recibir",

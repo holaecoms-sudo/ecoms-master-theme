@@ -81,6 +81,17 @@
             "ship_was": "$4.000",
             "priority_product": "",
             "priority_label": "Quiero envío prioritario",
+            "show_stock": true,
+            "stock_threshold": 50,
+            "stock_text": "¡Quedan solo [qty] proyectores!",
+            "show_deadline": true,
+            "deadline_date": "",
+            "deadline_text": "Pide antes del [fecha] y recíbelo antes de Navidad",
+            "show_orders_24h": false,
+            "orders_24h_min": 5,
+            "orders_24h_text": "🔥 [n] pedidos de este producto en las últimas 24 h",
+            "show_upsell_1": true,
+            "upsell_1_text": "Agrega 1 más y llévate la cortina de regalo + envío gratis",
             "button_label": "Pedir y pagar al recibir",
             "note": "No pagas nada hoy. Todo llega en un solo envío."
           }
@@ -781,7 +792,7 @@
           "type": "faq",
           "settings": {
             "question": "¿Cuánto demora y cuánto cuesta el envío?",
-            "answer": "<p>Despachamos a todo Chile. El costo y el plazo para tu comuna aparecen en el formulario antes de confirmar, y te enviamos el seguimiento cuando tu pedido sale.</p>",
+            "answer": "<p>Envío gratis a todo Chile desde el Pack Familiar. Con 1 proyector el envío cuesta $4.000. Despachamos en 3 a 6 días hábiles y te enviamos el seguimiento.</p>",
             "draft": false
           }
         },

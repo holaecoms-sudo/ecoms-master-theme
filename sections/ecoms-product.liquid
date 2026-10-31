@@ -669,10 +669,76 @@
               if settings.ecoms_cod_live
                 assign gt_cod = settings.ecoms_cod_app_button
               endif
+
+              # Urgency: real stock, a real Christmas order-by date and a real 24h order count (metafield, set
+              # by a Shopify Flow, never computed here). Nothing below is invented.
+              assign gt_stock_show = false
+              if block.settings.show_stock and variant.inventory_management == 'shopify'
+                assign gt_stock_qty = variant.inventory_quantity
+                assign gt_stock_threshold = block.settings.stock_threshold | default: 50 | plus: 0
+                if gt_stock_qty > 0 and gt_stock_qty < gt_stock_threshold
+                  assign gt_stock_show = true
+                endif
+              endif
+
+              assign gt_deadline_show = false
+              if block.settings.show_deadline
+                assign gt_max_days = 6
+                for b in section.blocks
+                  if b.type == 'delivery'
+                    assign gt_max_days = b.settings.max_days | default: 6 | plus: 0
+                  endif
+                endfor
+                assign gt_deadline_str = block.settings.deadline_date
+                if gt_deadline_str == blank
+                  assign gt_deadline_str = 'now' | date: '%Y' | append: '-12-24'
+                endif
+                assign gt_cutoff_ts = gt_deadline_str | append: ' 00:00:00' | date: '%s' | plus: 0
+                assign gt_days_left = gt_max_days
+                for i in (1..20)
+                  if gt_days_left <= 0
+                    break
+                  endif
+                  assign gt_cutoff_ts = gt_cutoff_ts | minus: 86400
+                  assign gt_dow = gt_cutoff_ts | date: '%w'
+                  unless gt_dow == '0'
+                    assign gt_days_left = gt_days_left | minus: 1
+                  endunless
+                endfor
+                assign gt_today_ts = 'now' | date: '%s' | plus: 0
+                if gt_today_ts <= gt_cutoff_ts
+                  assign gt_deadline_show = true
+                  assign gt_month_names = 'enero,febrero,marzo,abril,mayo,junio,julio,agosto,septiembre,octubre,noviembre,diciembre' | split: ','
+                  assign gt_cutoff_month_idx = gt_cutoff_ts | date: '%-m' | plus: 0 | minus: 1
+                  assign gt_cutoff_display = gt_cutoff_ts | date: '%-d' | append: ' de ' | append: gt_month_names[gt_cutoff_month_idx]
+                endif
+              endif
+
+              assign gt_orders_show = false
+              if block.settings.show_orders_24h
+                assign gt_orders_n = product.metafields.ecoms.orders_24h.value | default: 0 | plus: 0
+                assign gt_orders_min = block.settings.orders_24h_min | default: 5 | plus: 0
+                if gt_orders_n >= gt_orders_min
+                  assign gt_orders_show = true
+                endif
+              endif
             -%}
             {%- if variant.available -%}
             <div class="ec-gt" data-ec-gt data-variant="{{ variant.id }}" data-open-cod="{{ gt_cod | escape }}" {{ block.shopify_attributes }}>
               {%- if block.settings.heading != blank -%}<p class="ec-gt__h">{{ block.settings.heading | escape }}</p>{%- endif -%}
+              {%- if gt_stock_show or gt_deadline_show or gt_orders_show -%}
+                <div class="ec-gt__urgency">
+                  {%- if gt_stock_show -%}
+                    <p class="ec-gt__urg ec-gt__urg--stock">{% render 'ecoms-icon', name: 'fire' %}<span>{{ block.settings.stock_text | default: '¡Quedan solo [qty] unidades!' | replace: '[qty]', gt_stock_qty | escape }}</span></p>
+                  {%- endif -%}
+                  {%- if gt_deadline_show -%}
+                    <p class="ec-gt__urg ec-gt__urg--deadline">{% render 'ecoms-icon', name: 'stopwatch' %}<span>{{ block.settings.deadline_text | default: 'Pide antes del [fecha] y recíbelo antes de Navidad' | replace: '[fecha]', gt_cutoff_display | escape }}</span></p>
+                  {%- endif -%}
+                  {%- if gt_orders_show -%}
+                    <p class="ec-gt__urg ec-gt__urg--orders">{{ block.settings.orders_24h_text | default: '🔥 [n] pedidos de este producto en las últimas 24 h' | replace: '[n]', gt_orders_n | escape }}</p>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
               <div class="ec-gt__tiers" role="radiogroup" aria-label="{{ block.settings.heading | default: 'Elige tu pack' | escape }}">
                 {%- for n in (1..3) -%}
                   {%- liquid
@@ -759,6 +825,10 @@
                   </label>
                 {%- endfor -%}
               </div>
+
+              {%- if block.settings.show_upsell_1 and block.settings.upsell_1_text != blank -%}
+                <p class="ec-gt__upsell" data-ec-gt-upsell-1 hidden>{% render 'ecoms-icon', name: 'bolt' %}<span>{{ block.settings.upsell_1_text | escape }}</span></p>
+              {%- endif -%}
 
               {%- if block.settings.gifts_heading != blank -%}<p class="ec-gt__gh">{% render 'ecoms-icon', name: 'gift' %}{{ block.settings.gifts_heading | escape }}</p>{%- endif -%}
               <ul class="ec-gt__gifts" role="list">
@@ -4728,6 +4798,19 @@
         { "type": "header", "content": "Envío prioritario (opcional)" },
         { "type": "product", "id": "priority_product", "label": "Producto de envío prioritario", "info": "Crea en Shopify un producto liviano con el precio del envío prioritario (ej. $990) y selecciónalo aquí. Si lo dejas vacío, la opción no se muestra. Se agrega al carrito con precio real solo si el cliente la marca." },
         { "type": "text", "id": "priority_label", "label": "Texto de la opción", "default": "Quiero envío prioritario" },
+        { "type": "header", "content": "Urgencia con datos reales (opcional)" },
+        { "type": "paragraph", "content": "Todo esto usa datos reales de Shopify (inventario, metacampos, fecha). Nada se inventa ni se calcula en el navegador." },
+        { "type": "checkbox", "id": "show_stock", "label": "Mostrar stock real", "default": false },
+        { "type": "number", "id": "stock_threshold", "label": "Mostrarlo cuando el stock sea menor a", "default": 50 },
+        { "type": "text", "id": "stock_text", "label": "Texto de stock", "info": "Usa [qty] para el número real de inventario.", "default": "¡Quedan solo [qty] proyectores!" },
+        { "type": "checkbox", "id": "show_deadline", "label": "Mostrar fecha límite para Navidad", "default": false },
+        { "type": "text", "id": "deadline_date", "label": "Fecha tope (AAAA-MM-DD)", "info": "Vacío = 24 de diciembre de este año. Se le resta el máximo de días de despacho del bloque «Entrega» (sin contar domingos)." },
+        { "type": "text", "id": "deadline_text", "label": "Texto", "info": "Usa [fecha].", "default": "Pide antes del [fecha] y recíbelo antes de Navidad" },
+        { "type": "checkbox", "id": "show_orders_24h", "label": "Mostrar pedidos de las últimas 24 h", "default": false },
+        { "type": "number", "id": "orders_24h_min", "label": "Mostrarlo solo si hay al menos", "default": 5 },
+        { "type": "text", "id": "orders_24h_text", "label": "Texto", "info": "Usa [n]. El número sale del metacampo del producto ecoms.orders_24h (debe venir de un Shopify Flow con pedidos reales, nunca se inventa).", "default": "🔥 [n] pedidos de este producto en las últimas 24 h" },
+        { "type": "checkbox", "id": "show_upsell_1", "label": "Mostrar sugerencia bajo «Lleva 1» (solo si está seleccionado)", "default": false },
+        { "type": "text", "id": "upsell_1_text", "label": "Texto", "default": "Agrega 1 más y llévate la cortina de regalo + envío gratis" },
         { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Pedir y pagar al recibir" },
         { "type": "text", "id": "note", "label": "Nota bajo el botón", "default": "No pagas nada hoy. Todo llega en un solo envío." }
       ]
