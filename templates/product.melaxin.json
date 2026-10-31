@@ -410,7 +410,7 @@
           "type": "faq",
           "settings": {
             "question": "¿Cómo lo uso?",
-            "answer": "<p>Agita el envase, rocía a 15–20 cm sobre la zona, masajea suavemente hasta que se absorba y usa protector solar si esa zona se expondrá al sol.</p>",
+            "answer": "<p>Agita el envase, rocía sobre la piel seca a 15–20 cm de la zona (antes de la ducha), masajea con movimientos circulares y enjuaga con agua tibia. Úsalo 2 a 3 veces por semana y usa protector solar si esa zona se expondrá al sol.</p>",
             "draft": false
           }
         },
@@ -698,7 +698,7 @@
       "settings": {
         "heading": "Claro y sin letra chica | Lo que *sí* y lo que *no* es.",
         "yes_title": "Sí es",
-        "yes_items": "Un exfoliante corporal en spray\nPara todo tipo de piel\nDe uso diario, según tu rutina",
+        "yes_items": "Un exfoliante corporal en spray\nPara todo tipo de piel\nDe uso 2 a 3 veces por semana",
         "no_title": "No es",
         "no_items": "Para el rostro\nUn tratamiento médico\nUna promesa igual para todas las pieles",
         "padding_top": 44,
@@ -713,7 +713,7 @@
         "pain_title": "Te pasa que…",
         "pain_items": "Codos, rodillas o pies que se ven opacos y ásperos.\nUn tono que se ve desigual en algunas zonas.\nExfoliantes de grano que se frotan a mano y no llegan bien a todas las zonas.\nProbaste varios productos y no sabes cuál usar.",
         "gain_title": "Con Peel Shot…",
-        "gain_items": "Exfolia suavemente las células muertas.\nAyuda a mejorar la apariencia del tono desigual.\nSpray rápido y parejo: rocías a 15–20 cm y masajeas.\nPiel más suave y luminosa, con ácido kójico, cúrcuma y niacinamida.\n200 ml para todo el cuerpo.",
+        "gain_items": "Exfolia suavemente las células muertas.\nAyuda a mejorar la apariencia del tono desigual.\nSpray rápido y parejo: rocías a 15–20 cm, masajeas y enjuagas.\nPiel más suave y luminosa, con ácido kójico, cúrcuma y niacinamida.\n200 ml para todo el cuerpo.",
         "closing": "Un spray, tres activos. Una rutina simple que sí vas a mantener.",
         "note": "Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso.",
         "button_label": "Quiero probarlo",
