@@ -735,7 +735,7 @@
                     <p class="ec-gt__urg ec-gt__urg--deadline">{% render 'ecoms-icon', name: 'stopwatch' %}<span>{{ block.settings.deadline_text | default: 'Pide antes del [fecha] y recíbelo antes de Navidad' | replace: '[fecha]', gt_cutoff_display | escape }}</span></p>
                   {%- endif -%}
                   {%- if gt_orders_show -%}
-                    <p class="ec-gt__urg ec-gt__urg--orders">{{ block.settings.orders_24h_text | default: '🔥 [n] pedidos de este producto en las últimas 24 h' | replace: '[n]', gt_orders_n | escape }}</p>
+                    <p class="ec-gt__urg ec-gt__urg--orders">{{ block.settings.orders_24h_text | default: '🔥 [n] pedidos hoy' | replace: '[n]', gt_orders_n | escape }}</p>
                   {%- endif -%}
                 </div>
               {%- endif -%}
@@ -4808,7 +4808,7 @@
         { "type": "text", "id": "deadline_text", "label": "Texto", "info": "Usa [fecha].", "default": "Pide antes del [fecha] y recíbelo antes de Navidad" },
         { "type": "checkbox", "id": "show_orders_24h", "label": "Mostrar pedidos de las últimas 24 h", "default": false },
         { "type": "number", "id": "orders_24h_min", "label": "Mostrarlo solo si hay al menos", "default": 5 },
-        { "type": "text", "id": "orders_24h_text", "label": "Texto", "info": "Usa [n]. El número sale del metacampo del producto ecoms.orders_24h (debe venir de un Shopify Flow con pedidos reales, nunca se inventa).", "default": "🔥 [n] pedidos de este producto en las últimas 24 h" },
+        { "type": "text", "id": "orders_24h_text", "label": "Texto", "info": "Usa [n]. El número sale del metacampo del producto ecoms.orders_24h (debe venir de un Shopify Flow con pedidos reales, nunca se inventa).", "default": "🔥 [n] pedidos hoy" },
         { "type": "checkbox", "id": "show_upsell_1", "label": "Mostrar sugerencia bajo «Lleva 1» (solo si está seleccionado)", "default": false },
         { "type": "text", "id": "upsell_1_text", "label": "Texto", "default": "Agrega 1 más y llévate la cortina de regalo + envío gratis" },
         { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Pedir y pagar al recibir" },

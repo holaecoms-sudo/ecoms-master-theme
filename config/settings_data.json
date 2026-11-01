@@ -165,6 +165,7 @@
     "ecoms_free_shipping_local_short": "RM",
     "ecoms_cod_live": true,
     "ecoms_cart_checkout_label_cod": "Pagar con tarjeta",
+    "ecoms_cart_card_discount": "PAGOTARJETA10",
     "sections": {
       "main-password-header": {
         "type": "main-password-header",

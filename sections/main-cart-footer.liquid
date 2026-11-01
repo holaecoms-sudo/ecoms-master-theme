@@ -106,6 +106,16 @@
               </div>
             {%- else -%}
               <div class="cart__ctas" {{ block.shopify_attributes }}>
+                {%- comment -%}
+                  On this store, cash on delivery happens through the product page's pack flow (the Releasit
+                  form), not here: with COD live, this single cart button already goes straight to Shopify's
+                  normal checkout and reads "Pagar con tarjeta" (ecoms_cart_checkout_label_cod). When a card
+                  discount code is set, apply it via the existing [data-ec-card-code] mechanism (ecoms.js
+                  matches this button's own text and fires /discount/CODE before the form submits).
+                {%- endcomment -%}
+                {%- if cart != empty and settings.ecoms_cod_live and settings.ecoms_cart_card_discount != blank -%}
+                  <span hidden data-ec-card-code="{{ settings.ecoms_cart_card_discount | strip | escape }}" data-ec-card-match="{{ settings.ecoms_cart_checkout_label_cod | default: 'pagar con tarjeta' | strip | downcase | escape }}"></span>
+                {%- endif -%}
                 <button
                   type="submit"
                   id="checkout"
@@ -122,23 +132,6 @@
                     {{ 'sections.cart.checkout' | t }}
                   {%- endif -%}
                 </button>
-                {%- if cart != empty and settings.ecoms_cod_live and settings.ecoms_cart_card_discount != blank and settings.ecoms_cart_card_label != blank -%}
-                  {%- comment -%}
-                    Card alternative to the pay-on-delivery checkout button: straight to Shopify's normal
-                    checkout with a real discount code (ecoms.js matches this button's text and applies it
-                    via /discount/CODE before the form submits).
-                  {%- endcomment -%}
-                  <span hidden data-ec-card-code="{{ settings.ecoms_cart_card_discount | strip | escape }}" data-ec-card-match="{{ settings.ecoms_cart_card_label | strip | downcase | escape }}"></span>
-                  <button
-                    type="submit"
-                    id="checkout-card"
-                    class="cart__checkout-button button button--secondary"
-                    name="checkout"
-                    form="cart"
-                  >
-                    {% render 'ecoms-icon', name: 'lock' %}{{ settings.ecoms_cart_card_label | escape }}
-                  </button>
-                {%- endif -%}
                 {%- render 'ecoms-cart-extras', part: 'trust' -%}
               </div>
 

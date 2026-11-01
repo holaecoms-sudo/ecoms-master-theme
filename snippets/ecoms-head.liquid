@@ -88,6 +88,7 @@
   {{ 'ecoms-skin-' | append: ec_skin | append: '.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 <script src="{{ 'ecoms.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'ecoms-gift-guard.js' | asset_url }}" defer="defer"></script>
 {%- if settings.ecoms_protect_images and request.design_mode != true -%}
   <style>
     img, video, picture, svg image { -webkit-user-drag: none; user-drag: none; -webkit-touch-callout: none; user-select: none; -webkit-user-select: none; }
