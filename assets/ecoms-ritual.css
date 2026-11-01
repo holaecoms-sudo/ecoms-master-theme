@@ -41,3 +41,8 @@ body { font-family: 'DM Sans', var(--font-body-family), system-ui, sans-serif; }
 .ec-ctab--photo .ec-ctab__t { margin: 12px 0 18px; color: var(--ec-bg); font-size: 15px; opacity: 0.92; }
 .ec-ctab--photo .ec-btn--lg { width: 100%; min-width: 0; justify-content: center; border-radius: 99px; background: var(--ec-accent); color: var(--ec-dark); font-weight: 700; }
 .ec-ctab--photo .ec-ctab__trust { justify-content: center; color: var(--ec-bg); }
+
+/* Dark closing band: light title (it inherited the dark page ink and disappeared on the dark ground) */
+.ec-ctab--dark .ec-ctab__copy h2 { color: var(--ec-bg) !important; }
+.ec-ctab--dark .ec-ctab__copy h2 em { color: var(--ec-accent) !important; }
+.ec-ctab--dark .ec-ctab__t, .ec-ctab--dark .ec-ctab__trust { color: var(--ec-bg); }
