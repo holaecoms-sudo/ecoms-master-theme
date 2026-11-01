@@ -2,6 +2,15 @@
 <html class="js" lang="{{ request.locale.iso_code }}">
   <head>
     <meta charset="utf-8">
+    {%- comment -%}
+      Gift-only products ("· Regalo", handle ending in -regalo) aren't meant to be bought on their own: send
+      anyone who lands directly on their page to the real product instead. As early in <head> as possible so
+      there's no flash of the gift page before the redirect.
+    {%- endcomment -%}
+    {%- assign ec_regalo_suffix = product.handle | slice: -7, 7 -%}
+    {%- if template.name == 'product' and ec_regalo_suffix == '-regalo' -%}
+      <script>location.replace('/products/proyector-de-navidad');</script>
+    {%- endif -%}
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
