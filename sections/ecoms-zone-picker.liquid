@@ -11,10 +11,11 @@
   assign tot1 = unit
   assign keep2 = 100 | minus: pct2
   assign keep3 = 100 | minus: pct3
+  assign q3 = section.settings.qty_3 | default: 3
   assign tot2 = unit | times: 2 | times: keep2 | divided_by: 100.0 | round
-  assign tot3 = unit | times: 3 | times: keep3 | divided_by: 100.0 | round
+  assign tot3 = unit | times: q3 | times: keep3 | divided_by: 100.0 | round
   assign was2 = unit | times: 2
-  assign was3 = unit | times: 3
+  assign was3 = unit | times: q3
   assign has_packs = false
   if pct2 > 0
     assign has_packs = true
@@ -35,19 +36,19 @@
     </div>
     <div class="ec-zp__card">
       <p class="ec-eyebrow">{{ section.settings.rec_label | default: 'Te recomendamos' | escape }}</p>
-      <div class="ec-zp__rec" data-q="1">
+      <div class="ec-zp__rec" data-q="1" data-pack="1">
         <b class="ec-zp__name">{{ section.settings.name_1 | default: '1 frasco' | escape }}</b>
         <p>{{ section.settings.text_1 | escape }}</p>
         <p class="ec-zp__price"><b>{{ tot1 | money }}</b></p>
       </div>
       {%- if has_packs -%}
-        <div class="ec-zp__rec" data-q="2" hidden>
+        <div class="ec-zp__rec" data-q="2" data-pack="2" hidden>
           <b class="ec-zp__name">{{ section.settings.name_2 | default: 'Pack de 2' | escape }}</b>
           <p>{{ section.settings.text_2 | escape }}</p>
           <p class="ec-zp__price"><b>{{ tot2 | money }}</b> <s>{{ was2 | money }}</s></p>
         </div>
         {%- if pct3 > 0 -%}
-          <div class="ec-zp__rec" data-q="3" hidden>
+          <div class="ec-zp__rec" data-q="3" data-pack="{{ q3 }}" hidden>
             <b class="ec-zp__name">{{ section.settings.name_3 | default: 'Pack de 3' | escape }}</b>
             <p>{{ section.settings.text_3 | escape }}</p>
             <p class="ec-zp__price"><b>{{ tot3 | money }}</b> <s>{{ was3 | money }}</s></p>
@@ -84,7 +85,9 @@
       var btn = root.querySelector('[data-ec-zp-pick]');
       if (btn) {
         btn.addEventListener('click', function () {
-          var input = document.querySelector('.ec-pack input[value="' + current + '"]');
+          var rec = root.querySelector('.ec-zp__rec[data-q="' + current + '"]');
+          var packQty = rec ? rec.getAttribute('data-pack') : current;
+          var input = document.querySelector('.ec-pack input[value="' + packQty + '"]');
           if (input && !input.checked) { input.checked = true; input.dispatchEvent(new Event('change', { bubbles: true })); }
           var target = document.querySelector('[data-ec-product]');
           if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -109,6 +112,7 @@
     { "type": "textarea", "id": "text_1", "label": "1 zona: texto", "default": "Para empezar por una zona, un frasco es suficiente para probar." },
     { "type": "text", "id": "name_2", "label": "2 zonas: nombre", "default": "Pack de 2" },
     { "type": "textarea", "id": "text_2", "label": "2 zonas: texto", "default": "Con dos zonas te conviene el pack: sale más barato por frasco." },
+    { "type": "number", "id": "qty_3", "label": "3 o más zonas: frascos que lleva el pack", "default": 3, "info": "Ej.: 4 si el pack es «Compra 3 y te regalamos 1»." },
     { "type": "text", "id": "name_3", "label": "3 o más zonas: nombre", "default": "Pack de 3" },
     { "type": "textarea", "id": "text_3", "label": "3 o más zonas: texto", "default": "Para varias zonas, el pack de 3 es la forma más conveniente." },
     { "type": "text", "id": "button_label", "label": "Botón", "default": "Elegir este pack" },
