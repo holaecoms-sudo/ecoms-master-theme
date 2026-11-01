@@ -560,39 +560,41 @@
     },
     "before_after": {
       "type": "ecoms-before-after",
-      "settings": {
-        "style": "slider",
-        "heading": "Prueba real | Resultados *visibles.*",
-        "text": "Elige una zona y compara. Fotos reales, con permiso, tras uso constante. Arrastra.",
-        "before_caption": "Antes",
-        "after_caption": "Después",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
-      },
       "blocks": {
         "z1": {
           "type": "zone",
           "settings": {
-            "label": "Codos"
+            "label": "Codos",
+            "before": "shopify://shop_images/14.png",
+            "after": "shopify://shop_images/15.png",
+            "note": ""
           }
         },
         "z2": {
           "type": "zone",
           "settings": {
-            "label": "Rodillas"
+            "label": "Rodillas",
+            "before": "shopify://shop_images/20.png",
+            "after": "shopify://shop_images/21.png",
+            "note": ""
           }
         },
         "z3": {
           "type": "zone",
           "settings": {
-            "label": "Pies"
+            "label": "Pies",
+            "before": "shopify://shop_images/16.png",
+            "after": "shopify://shop_images/17.png",
+            "note": ""
           }
         },
         "z4": {
           "type": "zone",
           "settings": {
-            "label": "Piernas y brazos"
+            "label": "Cuello",
+            "before": "shopify://shop_images/18.png",
+            "after": "shopify://shop_images/19.png",
+            "note": ""
           }
         }
       },
@@ -601,7 +603,17 @@
         "z2",
         "z3",
         "z4"
-      ]
+      ],
+      "settings": {
+        "style": "slider",
+        "heading": "Prueba real | Resultados *visibles.*",
+        "text": "Elige una zona y compara.",
+        "before_caption": "Antes",
+        "after_caption": "Después",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     },
     "ugc": {
       "type": "ecoms-ugc",
