@@ -419,11 +419,12 @@
         "text_1": "Para empezar por una zona, un frasco es suficiente para probar.",
         "name_2": "2º frasco al 50%",
         "text_2": "Con dos zonas te conviene el pack: el segundo frasco sale a mitad de precio.",
-        "name_3": "Lleva 3, paga 2",
-        "text_3": "Para varias zonas, el 3x2 es la forma más conveniente de llevarlo.",
+        "name_3": "Compra 3 y te regalamos 1",
+        "text_3": "Para varias zonas es la forma más conveniente: llevas 4 frascos y pagas 3.",
         "button_label": "Elegir este pack",
         "padding_top": 44,
-        "padding_bottom": 12
+        "padding_bottom": 12,
+        "qty_3": 4
       }
     },
     "crops": {
