@@ -427,57 +427,6 @@
         "padding_bottom": 12
       }
     },
-    "crops": {
-      "type": "ecoms-photo-crops",
-      "blocks": {
-        "c1": {
-          "type": "crop",
-          "settings": {
-            "product_image_index": 6,
-            "shape": "arch_bottom",
-            "zoom": 220,
-            "focus_x": 77,
-            "focus_y": 23,
-            "title": "El gatillo",
-            "text": "Aplicación pareja en spray."
-          }
-        },
-        "c2": {
-          "type": "crop",
-          "settings": {
-            "product_image_index": 2,
-            "shape": "arch_top",
-            "zoom": 200,
-            "focus_x": 52,
-            "focus_y": 62,
-            "title": "La fórmula",
-            "text": "Kójico, cúrcuma y niacinamida."
-          }
-        },
-        "c3": {
-          "type": "crop",
-          "settings": {
-            "product_image_index": 1,
-            "shape": "arch_top",
-            "zoom": 300,
-            "focus_x": 30,
-            "focus_y": 83,
-            "title": "La cúrcuma",
-            "text": "Antioxidante y calmante."
-          }
-        }
-      },
-      "block_order": [
-        "c1",
-        "c2",
-        "c3"
-      ],
-      "settings": {
-        "heading": "De cerca | Mira los *detalles.*",
-        "padding_top": 44,
-        "padding_bottom": 8
-      }
-    },
     "routine": {
       "type": "ecoms-steps",
       "settings": {
@@ -736,14 +685,13 @@
   "order": [
     "main",
     "demo",
+    "ingredients",
     "top",
     "pain",
     "benefits",
     "zones",
-    "crops",
     "routine",
     "star",
-    "ingredients",
     "compare",
     "before_after",
     "ugc",
