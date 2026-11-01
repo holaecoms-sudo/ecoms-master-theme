@@ -242,6 +242,18 @@
         "padding_bottom": 28
       }
     },
+    "demo": {
+      "type": "ecoms-demo",
+      "settings": {
+        "heading": "Míralo en *acción.*",
+        "text": "",
+        "mode": "player",
+        "ratio": "portrait",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 12
+      }
+    },
     "top": {
       "type": "ecoms-marquee",
       "blocks": {
@@ -365,18 +377,6 @@
         "padding_bottom": 20
       }
     },
-    "demo": {
-      "type": "ecoms-demo",
-      "settings": {
-        "heading": "Clientas reales | Míralo en *acción.*",
-        "text": "",
-        "mode": "player",
-        "ratio": "portrait",
-        "width": "full",
-        "padding_top": 44,
-        "padding_bottom": 12
-      }
-    },
     "zones": {
       "type": "ecoms-zone-picker",
       "blocks": {
@@ -419,12 +419,12 @@
         "text_1": "Para empezar por una zona, un frasco es suficiente para probar.",
         "name_2": "2º frasco al 50%",
         "text_2": "Con dos zonas te conviene el pack: el segundo frasco sale a mitad de precio.",
+        "qty_3": 4,
         "name_3": "Compra 3 y te regalamos 1",
         "text_3": "Para varias zonas es la forma más conveniente: llevas 4 frascos y pagas 3.",
         "button_label": "Elegir este pack",
         "padding_top": 44,
-        "padding_bottom": 12,
-        "qty_3": 4
+        "padding_bottom": 12
       }
     },
     "crops": {
@@ -735,10 +735,10 @@
   },
   "order": [
     "main",
+    "demo",
     "top",
     "pain",
     "benefits",
-    "demo",
     "zones",
     "crops",
     "routine",
