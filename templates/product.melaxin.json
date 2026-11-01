@@ -563,13 +563,45 @@
       "settings": {
         "style": "slider",
         "heading": "Prueba real | Resultados *visibles.*",
-        "text": "Con uso constante. Fotos reales, con permiso. Arrastra.",
+        "text": "Elige una zona y compara. Fotos reales, con permiso, tras uso constante. Arrastra.",
         "before_caption": "Antes",
         "after_caption": "Después",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
-      }
+      },
+      "blocks": {
+        "z1": {
+          "type": "zone",
+          "settings": {
+            "label": "Codos"
+          }
+        },
+        "z2": {
+          "type": "zone",
+          "settings": {
+            "label": "Rodillas"
+          }
+        },
+        "z3": {
+          "type": "zone",
+          "settings": {
+            "label": "Pies"
+          }
+        },
+        "z4": {
+          "type": "zone",
+          "settings": {
+            "label": "Piernas y brazos"
+          }
+        }
+      },
+      "block_order": [
+        "z1",
+        "z2",
+        "z3",
+        "z4"
+      ]
     },
     "ugc": {
       "type": "ecoms-ugc",

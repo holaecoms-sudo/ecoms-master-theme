@@ -94,3 +94,8 @@
   .ec-ze__effects { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
   .ec-ze__effects li { grid-template-columns: 1fr; }
 }
+
+/* Before/after with zone capsules */
+.ec-bz__chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 16px; }
+.ec-bz__panel[hidden] { display: none; }
+.ec-bz__note { margin: 10px 0 0; color: var(--ec-muted); font-size: 12.5px; }

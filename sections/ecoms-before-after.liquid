@@ -3,59 +3,63 @@
   «side» = two photos side by side. Hidden on the storefront until both photos exist.
 {%- endcomment -%}
 {%- assign ba_ready = false -%}
-{%- if section.settings.before != blank and section.settings.after != blank -%}{%- assign ba_ready = true -%}{%- endif -%}
+{%- assign ba_zones = 0 -%}
+{%- for block in section.blocks -%}
+  {%- if block.settings.before != blank and block.settings.after != blank -%}{%- assign ba_zones = ba_zones | plus: 1 -%}{%- endif -%}
+{%- endfor -%}
+{%- if section.settings.before != blank and section.settings.after != blank or ba_zones > 0 -%}{%- assign ba_ready = true -%}{%- endif -%}
 {%- if ba_ready or request.design_mode -%}
+{{ 'ecoms-ritual-sections.css' | asset_url | stylesheet_tag }}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-ba-sec' %}>
-  <div class="ec-w">
+  <div class="ec-w" data-ec-bz>
     {%- if section.settings.heading != blank -%}{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2', class: 'ec-h3' %}{%- endif -%}
     {%- if section.settings.text != blank -%}<p class="ec-sub">{{ section.settings.text | escape }}</p>{%- endif -%}
-    {%- if section.settings.style != 'side' -%}
-      <div class="ec-cmpr" style="--pos: 50%" data-ec-cmpr>
-        {%- if section.settings.after != blank -%}
-          {{ section.settings.after | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '400,600,900,1200', sizes: '(min-width: 990px) 560px, 100vw', class: 'ec-cmpr__img', alt: section.settings.after_caption }}
-        {%- else -%}{{ 'image' | placeholder_svg_tag: 'ec-placeholder' }}{%- endif -%}
-        <div class="ec-cmpr__before">
-          {%- if section.settings.before != blank -%}
-            {{ section.settings.before | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '400,600,900,1200', sizes: '(min-width: 990px) 560px, 100vw', class: 'ec-cmpr__img', alt: section.settings.before_caption }}
-          {%- else -%}{{ 'image' | placeholder_svg_tag: 'ec-placeholder' }}{%- endif -%}
-        </div>
-        <span class="ec-cmpr__tag ec-cmpr__tag--l">{{ section.settings.before_caption | escape }}</span>
-        <span class="ec-cmpr__tag ec-cmpr__tag--r">{{ section.settings.after_caption | escape }}</span>
-        <span class="ec-cmpr__line" aria-hidden="true"><span class="ec-cmpr__knob">&lsaquo; &rsaquo;</span></span>
-        <input class="ec-cmpr__range" type="range" min="0" max="100" value="50" aria-label="Comparar antes y después" data-ec-cmpr-range>
+    {%- if section.blocks.size > 0 -%}
+      <div class="ec-bz__chips" role="tablist">
+        {%- assign ba_first = true -%}
+        {%- for block in section.blocks -%}
+          {%- if block.settings.label != blank and block.settings.before != blank and block.settings.after != blank or request.design_mode and block.settings.label != blank -%}
+            <button type="button" role="tab" class="ec-zp__chip{% if ba_first %} is-on{% endif %}" aria-selected="{{ ba_first }}" data-ec-bz-tab="{{ block.id }}" {{ block.shopify_attributes }}>{{ block.settings.label | escape }}</button>
+            {%- assign ba_first = false -%}
+          {%- endif -%}
+        {%- endfor -%}
       </div>
-      <script>
-        (function () {
-          if (window.__ecCmpr) return;
-          window.__ecCmpr = true;
-          document.addEventListener('input', function (e) {
-            var r = e.target;
-            if (r && r.hasAttribute && r.hasAttribute('data-ec-cmpr-range')) r.parentNode.style.setProperty('--pos', r.value + '%');
-          });
-        })();
-      </script>
+      {%- assign ba_first = true -%}
+      {%- for block in section.blocks -%}
+        {%- if block.settings.label != blank and block.settings.before != blank and block.settings.after != blank or request.design_mode and block.settings.label != blank -%}
+          <div class="ec-bz__panel" data-ec-bz-panel="{{ block.id }}"{% unless ba_first %} hidden{% endunless %}>
+            {% render 'ecoms-ba-pair', before: block.settings.before, after: block.settings.after, before_caption: section.settings.before_caption, after_caption: section.settings.after_caption, style: section.settings.style %}
+            {%- if block.settings.note != blank -%}<p class="ec-bz__note">{{ block.settings.note | escape }}</p>{%- endif -%}
+          </div>
+          {%- assign ba_first = false -%}
+        {%- endif -%}
+      {%- endfor -%}
     {%- else -%}
-    <div class="ec-ba">
-      <figure>
-        {%- if section.settings.before != blank -%}
-          {{ section.settings.before | image_url: width: 900 | image_tag: loading: 'lazy', widths: '350,550,750,900', sizes: '(min-width: 990px) 25vw, 50vw' }}
-        {%- else -%}
-          {{ 'image' | placeholder_svg_tag: 'ec-placeholder' }}
-        {%- endif -%}
-        <figcaption><b>{{ section.settings.before_caption | escape }}</b></figcaption>
-      </figure>
-      <span class="ec-ba__arrow" aria-hidden="true">{% render 'ecoms-icon', name: 'arrow' %}</span>
-      <figure>
-        {%- if section.settings.after != blank -%}
-          {{ section.settings.after | image_url: width: 900 | image_tag: loading: 'lazy', widths: '350,550,750,900', sizes: '(min-width: 990px) 25vw, 50vw' }}
-        {%- else -%}
-          {{ 'image' | placeholder_svg_tag: 'ec-placeholder' }}
-        {%- endif -%}
-        <figcaption><b>{{ section.settings.after_caption | escape }}</b></figcaption>
-      </figure>
-    </div>
+      {% render 'ecoms-ba-pair', before: section.settings.before, after: section.settings.after, before_caption: section.settings.before_caption, after_caption: section.settings.after_caption, style: section.settings.style %}
     {%- endif -%}
   </div>
+  <script>
+    (function () {
+      if (window.__ecBa) return;
+      window.__ecBa = true;
+      document.addEventListener('input', function (e) {
+        var r = e.target;
+        if (r && r.hasAttribute && r.hasAttribute('data-ec-cmpr-range')) r.parentNode.style.setProperty('--pos', r.value + '%');
+      });
+      document.addEventListener('click', function (e) {
+        var tab = e.target.closest && e.target.closest('[data-ec-bz-tab]');
+        if (!tab) return;
+        var root = tab.closest('[data-ec-bz]');
+        var id = tab.getAttribute('data-ec-bz-tab');
+        root.querySelectorAll('[data-ec-bz-tab]').forEach(function (t) {
+          var on = t === tab;
+          t.classList.toggle('is-on', on);
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        root.querySelectorAll('[data-ec-bz-panel]').forEach(function (p) { p.hidden = p.getAttribute('data-ec-bz-panel') !== id; });
+      });
+    })();
+  </script>
 </section>
 {%- endif -%}
 
@@ -170,6 +174,19 @@
       "unit": "px"
     }
   ],
+  "blocks": [
+    {
+      "type": "zone",
+      "name": "Zona",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Zona (cápsula)", "default": "Codos" },
+        { "type": "image_picker", "id": "before", "label": "Foto antes" },
+        { "type": "image_picker", "id": "after", "label": "Foto después" },
+        { "type": "text", "id": "note", "label": "Nota (opcional)", "info": "Ej.: Tras 14 días de uso, 2 veces por semana." }
+      ]
+    }
+  ],
+  "max_blocks": 8,
   "presets": [
     {
       "name": "ECOMS · Antes y después"
