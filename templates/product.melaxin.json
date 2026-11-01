@@ -74,20 +74,20 @@
             "tier1_label": "1 frasco",
             "tier1_tag": "",
             "tier1_note": "Para probar",
+            "tier1_gallery": 2,
             "tier2_enabled": true,
             "tier2_qty": 2,
             "tier2_pct": 0,
             "tier2_label": "2º frasco al 50%",
             "tier2_tag": "Recomendado",
             "tier2_note": "",
+            "tier2_gallery": 8,
             "tier3_enabled": true,
             "tier3_qty": 3,
             "tier3_pct": 0,
             "tier3_label": "Compra 2 y te regalamos 1",
             "tier3_tag": "Mejor precio",
             "tier3_note": "",
-            "tier1_gallery": 2,
-            "tier2_gallery": 8,
             "tier3_gallery": 9
           }
         },
@@ -434,7 +434,7 @@
           "type": "crop",
           "settings": {
             "product_image_index": 6,
-            "shape": "arch_top",
+            "shape": "arch_bottom",
             "zoom": 220,
             "focus_x": 77,
             "focus_y": 23,
@@ -446,7 +446,7 @@
           "type": "crop",
           "settings": {
             "product_image_index": 2,
-            "shape": "rect",
+            "shape": "arch_top",
             "zoom": 200,
             "focus_x": 52,
             "focus_y": 62,
@@ -458,7 +458,7 @@
           "type": "crop",
           "settings": {
             "product_image_index": 1,
-            "shape": "arch_bottom",
+            "shape": "arch_top",
             "zoom": 300,
             "focus_x": 30,
             "focus_y": 83,
@@ -484,7 +484,7 @@
         "metafield": "ecoms.steps",
         "button_label": "",
         "button_link": "",
-        "style": "cards",
+        "style": "numbers",
         "heading": "El ritual | Cuatro pasos, *sin apuro.*",
         "text": "",
         "width": "full",
@@ -716,10 +716,11 @@
     "cta": {
       "type": "ecoms-cta-band",
       "settings": {
-        "style": "photo",
+        "style": "dark",
         "eyebrow": "",
         "heading": "Tu piel, más *luminosa.*",
         "text": "Un spray, tres activos. Pagas cuando lo recibes.",
+        "image": "shopify://shop_images/5.png",
         "image_plain": false,
         "show_price": false,
         "button_label": "Pedir desde $15.000",
@@ -728,8 +729,7 @@
         "trust_3": "10 días de retracto",
         "width": "full",
         "padding_top": 0,
-        "padding_bottom": 0,
-        "image": "shopify://shop_images/7.png"
+        "padding_bottom": 0
       }
     }
   },
