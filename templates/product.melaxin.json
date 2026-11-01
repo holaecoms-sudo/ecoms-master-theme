@@ -387,7 +387,8 @@
         "width": "full",
         "padding_top": 44,
         "padding_bottom": 20
-      }
+      },
+      "disabled": true
     },
     "routine": {
       "type": "ecoms-steps",
@@ -616,6 +617,100 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "zones_effect": {
+      "type": "ecoms-zones-effect",
+      "blocks": {
+        "z1": {
+          "type": "zone",
+          "settings": {
+            "label": "Codos y rodillas",
+            "text": "Donde la piel suele verse más áspera y opaca.",
+            "icon": "hand"
+          }
+        },
+        "z2": {
+          "type": "zone",
+          "settings": {
+            "label": "Pies",
+            "text": "Talones y laterales: ayuda a suavizar la apariencia de la piel áspera.",
+            "icon": "drop"
+          }
+        },
+        "z3": {
+          "type": "zone",
+          "settings": {
+            "label": "Axilas",
+            "text": "Zonas de roce: ayuda a mejorar la apariencia del tono desigual. Pruébalo primero en una zona pequeña.",
+            "icon": "sparkle"
+          }
+        },
+        "z4": {
+          "type": "zone",
+          "settings": {
+            "label": "Espalda y hombros",
+            "text": "El spray llega donde la mano no alcanza.",
+            "icon": "sun"
+          }
+        },
+        "z5": {
+          "type": "zone",
+          "settings": {
+            "label": "Pecho",
+            "text": "Úsalo sobre la piel seca, antes de la ducha.",
+            "icon": "heart"
+          }
+        },
+        "z6": {
+          "type": "zone",
+          "settings": {
+            "label": "Piernas y brazos",
+            "text": "Una aplicación rápida y pareja en zonas grandes.",
+            "icon": "leaf"
+          }
+        },
+        "e1": {
+          "type": "effect",
+          "settings": {
+            "title": "Exfolia suavemente",
+            "text": "Ayuda a retirar las células muertas de la superficie para que la piel se sienta más suave."
+          }
+        },
+        "e2": {
+          "type": "effect",
+          "settings": {
+            "title": "Ayuda a unificar el tono",
+            "text": "El ácido kójico ayuda a mejorar la apariencia del tono desigual."
+          }
+        },
+        "e3": {
+          "type": "effect",
+          "settings": {
+            "title": "Aporta luminosidad",
+            "text": "Cúrcuma y niacinamida: un aspecto más luminoso y una sensación fresca."
+          }
+        }
+      },
+      "block_order": [
+        "z1",
+        "z2",
+        "z3",
+        "z4",
+        "z5",
+        "z6",
+        "e1",
+        "e2",
+        "e3"
+      ],
+      "settings": {
+        "heading": "Dónde usarlo | Un spray para *todo el cuerpo.*",
+        "text": "Úsalo en las zonas del cuerpo donde la piel se vea opaca, áspera o con tono desigual. No es para el rostro ni para piel con heridas.",
+        "effects_heading": "Qué hace | Lo que hace en *tu piel.*",
+        "note": "Resultados cosméticos de apariencia; varían según cada piel y la constancia de uso. Úsalo 2 a 3 veces por semana.",
+        "button_label": "Elegir mi pack",
+        "padding_top": 44,
+        "padding_bottom": 24
+      }
     }
   },
   "order": [
@@ -624,6 +719,7 @@
     "ingredients",
     "top",
     "pain",
+    "zones_effect",
     "benefits",
     "routine",
     "compare",
