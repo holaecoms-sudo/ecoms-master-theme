@@ -85,7 +85,10 @@
             "tier3_pct": 0,
             "tier3_label": "Lleva 3, paga 2",
             "tier3_tag": "Mejor precio",
-            "tier3_note": ""
+            "tier3_note": "",
+            "tier1_gallery": 2,
+            "tier2_gallery": 8,
+            "tier3_gallery": 9
           }
         },
         "ul": {
