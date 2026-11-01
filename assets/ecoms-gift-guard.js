@@ -107,6 +107,24 @@
     fixCart().then(() => { window.location.href = root() + 'checkout'; });
   }, true);
 
+  // Reinforcement: the discounts behind the gifts aren't conditioned on the Shopify plan (fixed amount off,
+  // not "buy X get Y"), so this guard is the only thing standing between an empty-of-projectors cart and a
+  // free gift — it must run before ANY path to checkout, not just our own cart form above. That includes
+  // Releasit's own "pay with card" option inside its form, which isn't a [data-rsi-cod-button] click and
+  // isn't a submit on a form[action*="/cart"] either, so neither listener above would catch it on its own.
+  // Same text match ecoms.js uses for [data-ec-card-code] (card_code / ecoms_cart_card_discount): fire a
+  // best-effort fixCart() the instant that button is pressed, racing it against whatever navigation follows.
+  document.addEventListener('click', (e) => {
+    const holder = document.querySelector('[data-ec-card-code]');
+    if (!holder) return;
+    const el = e.target.closest && e.target.closest('button, a, [role="button"]');
+    if (!el) return;
+    const text = (el.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase();
+    const match = (holder.dataset.ecCardMatch || 'pagar con tarjeta').toLowerCase();
+    if (!text.startsWith(match)) return;
+    fixCart();
+  }, true);
+
   fixCart();
   window.EcomsGiftGuard = { runForm, fixCart, formState };
 })();

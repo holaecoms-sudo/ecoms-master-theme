@@ -87,7 +87,7 @@
             "show_deadline": true,
             "deadline_date": "",
             "deadline_text": "Pide antes del [fecha] y recíbelo antes de Navidad",
-            "show_orders_24h": false,
+            "show_orders_24h": true,
             "orders_24h_min": 5,
             "orders_24h_text": "🔥 [n] pedidos hoy",
             "show_upsell_1": true,
