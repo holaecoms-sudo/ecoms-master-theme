@@ -599,7 +599,8 @@
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
-      }
+      },
+      "disabled": true
     },
     "ugc": {
       "type": "ecoms-ugc",
