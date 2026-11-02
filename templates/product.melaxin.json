@@ -134,7 +134,7 @@
           "settings": {
             "max_show": 30,
             "text": "¡Queda poco stock! Solo [qty] unidades disponibles",
-            "viewers_text": "👀 15 personas viendo este producto ahora mismo"
+            "viewers_text": ""
           }
         },
         "dlv": {
