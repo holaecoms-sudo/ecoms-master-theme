@@ -68,11 +68,22 @@
   endif
 -%}
 {%- if mf_mode != true or mf_pct2 > 0 -%}
+{%- liquid
+  assign tj_q1 = s.tier1_qty | default: 1
+  assign tj_subtotal1 = unit | times: tj_q1
+  assign tj_total1 = s.tier1_total | default: 0 | plus: 0 | times: 100
+  if tj_total1 <= 0
+    assign tj_total1 = tj_subtotal1
+  else
+    assign tj_total1 = tj_total1 | at_most: tj_subtotal1
+  endif
+-%}
 {%- capture tiers_json -%}
-  [{"q":{{ s.tier1_qty | default: 1 }},"pct":0}
+  [{"q":{{ tj_q1 }},"pct":0,"total":{{ tj_total1 }}}
   {%- for i in (2..3) -%}
     {%- assign q_key = 'tier' | append: i | append: '_qty' -%}
     {%- assign p_key = 'tier' | append: i | append: '_pct' -%}
+    {%- assign total_key = 'tier' | append: i | append: '_total' -%}
     {%- assign on_key = 'tier' | append: i | append: '_enabled' -%}
     {%- liquid
       assign tier_on = s[on_key]
@@ -86,10 +97,33 @@
       endif
     -%}
     {%- if tier_on -%}
-      {%- assign pct = s[p_key] | default: 0 -%}
-      {%- if mf_mode -%}{%- if i == 2 -%}{%- assign pct = mf_pct2 -%}{%- else -%}{%- assign pct = mf_pct3 -%}{%- endif -%}{%- endif -%}
-      {%- unless live -%}{%- assign pct = 0 -%}{%- endunless -%}
-      ,{"q":{{ s[q_key] | default: i }},"pct":{{ pct }}}
+      {%- liquid
+        assign tj_q = s[q_key] | default: i
+        assign tj_pct = s[p_key] | default: 0
+        if mf_mode
+          if i == 2
+            assign tj_pct = mf_pct2
+          else
+            assign tj_pct = mf_pct3
+          endif
+        endif
+        assign tj_total_ov = s[total_key] | default: 0 | plus: 0 | times: 100
+        unless live
+          assign tj_pct = 0
+          assign tj_total_ov = 0
+        endunless
+        assign tj_subtotal = unit | times: tj_q
+        if tj_total_ov > 0
+          assign tj_total = tj_total_ov | at_most: tj_subtotal
+          if tj_subtotal > 0
+            assign tj_pct = tj_subtotal | minus: tj_total | times: 100.0 | divided_by: tj_subtotal | round
+          endif
+        else
+          assign tj_discount = tj_subtotal | times: tj_pct | divided_by: 10000.0 | round | times: 100
+          assign tj_total = tj_subtotal | minus: tj_discount
+        endif
+      -%}
+      ,{"q":{{ tj_q }},"pct":{{ tj_pct }},"total":{{ tj_total }}}
     {%- endif -%}
   {%- endfor -%}]
 {%- endcapture -%}
@@ -134,14 +168,18 @@
               assign show_tier = true
             endif
           endif
+          assign total_override = 0
           if i == 1
             assign q = s.tier1_qty | default: 1
             assign pct = 0
+            assign total_override = s.tier1_total | default: 0 | plus: 0 | times: 100
           else
             assign q_key = 'tier' | append: i | append: '_qty'
             assign p_key = 'tier' | append: i | append: '_pct'
+            assign total_key = 'tier' | append: i | append: '_total'
             assign q = s[q_key] | default: i
             assign pct = s[p_key] | default: 0
+            assign total_override = s[total_key] | default: 0 | plus: 0 | times: 100
             if mf_mode
               if i == 2
                 assign pct = mf_pct2
@@ -149,9 +187,10 @@
                 assign pct = mf_pct3
               endif
             endif
-            if pct > 0 and live != true
+            if (pct > 0 or total_override > 0) and live != true
               assign has_pending_discount = true
               assign pct = 0
+              assign total_override = 0
             endif
           endif
           assign tag_key = 'tier' | append: i | append: '_tag'
@@ -175,8 +214,19 @@
           endif
 
           assign subtotal = unit | times: q
-          assign discount = subtotal | times: pct | divided_by: 10000.0 | round | times: 100
-          assign total = subtotal | minus: discount
+          if total_override > 0
+            assign total = total_override | at_most: subtotal
+            assign discount = subtotal | minus: total
+            # data-pct only feeds display text (e.g. "14% de dto" on the sticky bar) once selected: the
+            # real total below already comes from the fixed override, so this is just the equivalent % for
+            # that text to stay accurate instead of reading 0 and claiming "precio normal".
+            if subtotal > 0
+              assign pct = discount | times: 100.0 | divided_by: subtotal | round
+            endif
+          else
+            assign discount = subtotal | times: pct | divided_by: 10000.0 | round | times: 100
+            assign total = subtotal | minus: discount
+          endif
           assign per_unit = total | divided_by: q | floor
           assign strike = unit_compare | times: q
           assign save_pct = 0

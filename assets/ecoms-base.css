@@ -294,6 +294,7 @@ body.overflow-hidden .ec-sticky { visibility: hidden; }
 .ec-shipbar--free { text-align: left; }
 .ec-stock { color: var(--ec-urgent); font-size: 13px; font-weight: 800; }
 .ec-stock .ec-bar span { background: linear-gradient(90deg, var(--ec-urgent), #ff8a65); }
+.ec-stock__viewers { margin: 6px 0 0; color: var(--ec-muted); font-size: 12.5px; font-weight: 700; }
 .ec-payments { display: grid; gap: 10px; justify-items: center; }
 .ec-secure { display: flex; align-items: center; gap: 6px; margin: 0; color: var(--ec-muted); font-size: 12px; }
 .ec-secure .ec-i { width: 14px; height: 14px; }

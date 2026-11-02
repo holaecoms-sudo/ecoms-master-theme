@@ -78,15 +78,15 @@
             "tier2_enabled": true,
             "tier2_qty": 2,
             "tier2_pct": 0,
-            "tier2_label": "2º frasco al 50%",
-            "tier2_tag": "Recomendado",
+            "tier2_label": "2 frascos",
+            "tier2_tag": "Más elegido",
             "tier2_note": "",
             "tier2_gallery": 8,
             "tier3_enabled": true,
             "tier3_qty": 4,
             "tier3_pct": 0,
-            "tier3_label": "Compra 3 y te regalamos 1",
-            "tier3_tag": "Mejor precio",
+            "tier3_label": "3 frascos + 1 de regalo",
+            "tier3_tag": "Más conveniente",
             "tier3_note": "",
             "tier3_gallery": 9
           }
@@ -132,8 +132,9 @@
         "stock": {
           "type": "stock",
           "settings": {
-            "max_show": 300,
-            "text": "STOCK EN VIVO: quedan [qty] unidades"
+            "max_show": 30,
+            "text": "¡Queda poco stock! Solo [qty] unidades disponibles",
+            "viewers_text": "👀 15 personas viendo este producto ahora mismo"
           }
         },
         "dlv": {
@@ -723,7 +724,7 @@
         "image": "shopify://shop_images/5.png",
         "image_plain": false,
         "show_price": false,
-        "button_label": "Pedir desde $15.000",
+        "button_label": "Pedir desde $24.990",
         "trust_1": "Pagas al recibir",
         "trust_2": "Envíos a todo Chile",
         "trust_3": "10 días de retracto",

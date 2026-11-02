@@ -86,10 +86,21 @@
     }
   }
 
-  // Mirrors Shopify automatic discounts with a minimum quantity: the best tier reached applies.
+  // Mirrors Shopify automatic discounts with a minimum quantity: the best tier reached applies. Each tier
+  // in data-tiers now carries its own real total (same number Liquid rendered on the card), so this is a
+  // straight lookup; the % math is only a fallback for older/unrelated data without that field.
   function totalFor(unit, qty, packs) {
     let pct = 0;
-    if (packs) tiersOf(packs).forEach((t) => { if (qty >= t.q) pct = t.pct; });
+    let total = null;
+    if (packs) {
+      tiersOf(packs).forEach((t) => {
+        if (qty >= t.q) {
+          pct = t.pct;
+          total = typeof t.total === 'number' ? t.total : null;
+        }
+      });
+    }
+    if (total != null) return total;
     const subtotal = unit * qty;
     return subtotal - Math.round((subtotal * pct) / 10000) * 100;
   }
