@@ -87,7 +87,8 @@
             "tier3_pct": 0,
             "tier3_label": "Compra 3 y te regalamos 1",
             "tier3_tag": "Mejor precio",
-            "tier3_note": ""
+            "tier3_note": "",
+            "tier3_gallery": 9
           }
         },
         "ul": {
@@ -590,6 +591,7 @@
         "z3",
         "z4"
       ],
+      "disabled": true,
       "settings": {
         "style": "slider",
         "heading": "Prueba real | Resultados *visibles.*",
@@ -599,8 +601,7 @@
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
-      },
-      "disabled": true
+      }
     },
     "ugc": {
       "type": "ecoms-ugc",
