@@ -1738,6 +1738,13 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
   .ec-feat__n { margin-bottom: 8px; }
 }
 
+/* Optional priority-shipping add-on checkbox */
+.ec-buy__priority { display: flex; align-items: center; gap: 10px; margin: 10px 0; padding: 12px 14px; border: 2px solid var(--ec-line); border-radius: 14px; background: var(--ec-bg); cursor: pointer; }
+.ec-buy__priority:has(input:checked) { border-color: var(--ec-primary); background: color-mix(in srgb, var(--ec-primary) 7%, var(--ec-bg)); }
+.ec-buy__priority input { flex-shrink: 0; width: 18px; height: 18px; accent-color: var(--ec-primary); }
+.ec-buy__priority span { flex: 1; font-size: 13.5px; font-weight: 700; }
+.ec-buy__priority b { font-size: 14px; font-weight: 900; color: var(--ec-primary); }
+
 /* Card alternative under the pay-on-delivery button */
 .ec-buy__card { display: grid; gap: 8px; margin-top: 10px; }
 .ec-buy__or { display: flex; align-items: center; gap: 10px; color: var(--ec-muted); font-size: 12.5px; }

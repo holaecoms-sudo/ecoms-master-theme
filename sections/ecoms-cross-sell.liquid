@@ -32,7 +32,7 @@
           {%- assign shown = 0 -%}
           {%- assign split_at = section.settings.split | plus: 1 -%}
           {%- for item in xs_items limit: 24 -%}
-            {%- if item.id == product.id or shown >= section.settings.limit -%}{%- continue -%}{%- endif -%}
+            {%- if item.id == product.id or shown >= section.settings.limit or item.metafields.seo.hidden == 1 -%}{%- continue -%}{%- endif -%}
             {%- assign shown = shown | plus: 1 -%}
             {%- if style == 'rail' and section.settings.heading_2 != blank and shown == split_at -%}
               </div><h2 class="ec-h3">{{ section.settings.heading_2 | escape }}</h2><div class="ec-xs">

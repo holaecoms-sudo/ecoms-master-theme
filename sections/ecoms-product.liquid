@@ -604,6 +604,18 @@
                   {%- endif -%}
                 </div>
 
+                {%- liquid
+                  assign pr_product = block.settings.priority_product
+                  assign pr_variant = pr_product.selected_or_first_available_variant
+                -%}
+                {%- if pr_product != blank and pr_product.available -%}
+                  <label class="ec-buy__priority">
+                    <input type="checkbox" data-ec-priority-ship value="{{ pr_variant.id }}" data-cents="{{ pr_variant.price }}">
+                    <span>{{ block.settings.priority_label | default: 'Envío prioritario' | escape }}</span>
+                    <b>+{{ pr_variant.price | money }}</b>
+                  </label>
+                {%- endif -%}
+
                 <div id="EcButtons-{{ section.id }}" class="ec-buy__buttons" data-ec-refresh>
                   <button
                     type="submit"
@@ -2412,6 +2424,22 @@
           "id": "card_code",
           "label": "Código de descuento para tarjeta",
           "info": "Código real creado en Descuentos (ej.: TARJETA10). Se aplica al pagar con tarjeta, también desde el botón de tarjeta de la app de pago al recibir, aunque el botón de arriba esté vacío."
+        },
+        {
+          "type": "header",
+          "content": "Envío prioritario (opcional)"
+        },
+        {
+          "type": "product",
+          "id": "priority_product",
+          "label": "Producto de envío prioritario",
+          "info": "Crea en Shopify un producto liviano con el precio del envío prioritario (ej. $990) y selecciónalo aquí. Si lo dejas vacío, la opción no se muestra. Se agrega al carrito con su precio real solo si el cliente la marca, junto con el pack elegido (incluido al abrir el formulario de pago al recibir)."
+        },
+        {
+          "type": "text",
+          "id": "priority_label",
+          "label": "Texto de la opción",
+          "default": "Quiero envío prioritario"
         }
       ]
     },

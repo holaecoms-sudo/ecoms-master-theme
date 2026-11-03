@@ -89,6 +89,7 @@
 
         <ul class="ec-cg__grid" role="list">
           {%- for product in collection.products -%}
+            {%- if product.metafields.seo.hidden == 1 -%}{%- continue -%}{%- endif -%}
             {%- render 'ecoms-product-card', item: product, hover: section.settings.hover_image, badge: section.settings.show_badge, button_label: section.settings.button_label -%}
           {%- endfor -%}
         </ul>

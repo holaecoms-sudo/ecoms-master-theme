@@ -83,9 +83,9 @@
             "tier2_note": "",
             "tier2_gallery": 8,
             "tier3_enabled": true,
-            "tier3_qty": 4,
+            "tier3_qty": 3,
             "tier3_pct": 0,
-            "tier3_label": "3 frascos + 1 de regalo",
+            "tier3_label": "Paga 2, llévate 3",
             "tier3_tag": "Más conveniente",
             "tier3_note": "",
             "tier3_gallery": 9
@@ -105,11 +105,11 @@
             "c2_qty": 2,
             "c2_locked": "Lleva 2 y es tuya",
             "c2_open": "¡Es tuya gratis!",
-            "c3_label": "1 frasco de regalo",
+            "c3_label": "Precio de 2 por 3 frascos",
             "c3_icon": "gift",
-            "c3_qty": 4,
-            "c3_locked": "Compra 3 y te regalamos 1",
-            "c3_open": "¡1 frasco gratis!"
+            "c3_qty": 3,
+            "c3_locked": "Lleva 3 y pagas como si fueran 2",
+            "c3_open": "¡Precio de 2 por 3!"
           }
         },
         "buy": {
@@ -126,7 +126,9 @@
             "add_label_cod": "Comprar con tarjeta",
             "buy_now_label_cod": "",
             "card_label": "Pagar ahora con tarjeta · 10% de dto",
-            "card_code": "PAGAYA10"
+            "card_code": "PAGAYA10",
+            "priority_product": "envio-prioritario",
+            "priority_label": "Quiero envío prioritario"
           }
         },
         "stock": {

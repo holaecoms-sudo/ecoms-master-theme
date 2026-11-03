@@ -535,6 +535,15 @@
     return json;
   }
 
+  // Optional priority-shipping add-on (buy block): a real product/variant the shopper opts into, added
+  // alongside the main item so it rides into the cart (and Releasit's own form, which reads the cart) at
+  // its real price.
+  function priorityShipItem() {
+    const el = $('[data-ec-priority-ship]');
+    if (!el || !el.checked) return null;
+    return { id: Number(el.value), quantity: 1 };
+  }
+
   function showDrawer(json) {
     const drawer = $('cart-drawer');
     if (drawer && json.sections) {
@@ -739,14 +748,26 @@
     if (buttons.some((b) => b.getAttribute('aria-busy') === 'true')) return;
     buttons.forEach((b) => b.setAttribute('aria-busy', 'true'));
     if (error) error.hidden = true;
-    const body = new FormData(form);
+    const priorityItem = priorityShipItem();
+    let body;
+    let isJson = false;
     const sections = drawerSections();
-    if (sections.length) {
-      body.append('sections', sections.join(','));
-      body.append('sections_url', window.location.pathname);
+    if (priorityItem) {
+      // Two items in one add: switch to /cart/add.js's JSON form (a plain form POST only carries one line).
+      const fd = new FormData(form);
+      const payload = { items: [{ id: Number(fd.get('id')), quantity: Number(fd.get('quantity')) || 1 }, priorityItem] };
+      if (sections.length) { payload.sections = sections; payload.sections_url = window.location.pathname; }
+      body = JSON.stringify(payload);
+      isJson = true;
+    } else {
+      body = new FormData(form);
+      if (sections.length) {
+        body.append('sections', sections.join(','));
+        body.append('sections_url', window.location.pathname);
+      }
     }
     try {
-      const json = await postCart(body, false);
+      const json = await postCart(body, isJson);
       if (!showDrawer(json)) window.location.href = window.routes?.cart_url || '/cart';
     } catch (e) {
       if (error) {
@@ -835,8 +856,13 @@
       buyNow.setAttribute('aria-busy', 'true');
       const body = new FormData(form);
       if (!body.get('quantity')) body.set('quantity', String(currentQty()));
+      const priorityItem = priorityShipItem();
       try {
-        await postCart(body, false);
+        if (priorityItem) {
+          await postCart(JSON.stringify({ items: [{ id: Number(body.get('id')), quantity: Number(body.get('quantity')) }, priorityItem] }), true);
+        } else {
+          await postCart(body, false);
+        }
         track('ecoms_buy_now', { variant_id: Number(body.get('id')), quantity: Number(body.get('quantity')) });
         const code = buyNow.dataset.discount;
         window.location.href = `${window.Shopify?.routes?.root || '/'}checkout${code ? `?discount=${encodeURIComponent(code)}` : ''}`;

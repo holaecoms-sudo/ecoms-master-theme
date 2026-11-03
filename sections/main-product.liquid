@@ -612,6 +612,7 @@
                                       limit: block.settings.products_per_page
                                       offset: continue
                                     -%}
+                                      {%- if product.metafields.seo.hidden == 1 -%}{%- continue -%}{%- endif -%}
                                       <li>
                                         {%- if block.settings.enable_quick_add -%}
                                           {% assign quick_add = 'standard' %}
