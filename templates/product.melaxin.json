@@ -85,8 +85,8 @@
             "tier3_enabled": true,
             "tier3_qty": 3,
             "tier3_pct": 0,
-            "tier3_label": "Paga 2, llévate 3",
-            "tier3_tag": "Más conveniente",
+            "tier3_label": "Llévate 3, paga 2",
+            "tier3_tag": "El 3º gratis",
             "tier3_note": "",
             "tier3_gallery": 0
           }
@@ -105,11 +105,11 @@
             "c2_qty": 2,
             "c2_locked": "Lleva 2 y es tuya",
             "c2_open": "¡Es tuya gratis!",
-            "c3_label": "Precio de 2 por 3 frascos",
+            "c3_label": "El 3º frasco gratis",
             "c3_icon": "gift",
             "c3_qty": 3,
-            "c3_locked": "Lleva 3 y pagas como si fueran 2",
-            "c3_open": "¡Precio de 2 por 3!"
+            "c3_locked": "Lleva 3 y el 3º es gratis",
+            "c3_open": "¡El 3º es gratis!"
           }
         },
         "buy": {
