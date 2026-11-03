@@ -9,6 +9,14 @@
     if collection.products_count < cols and collection.products_count > 0
       assign cols = collection.products_count
     endif
+    # Real visible count: collection.products_count includes products hidden below (seo.hidden == 1),
+    # which would make the "X productos" text not match how many cards actually render.
+    assign visible_count = 0
+    for p in collection.products
+      unless p.metafields.seo.hidden == 1
+        assign visible_count = visible_count | plus: 1
+      endunless
+    endfor
     assign sort_by = collection.sort_by | default: collection.default_sort_by
     assign trust_blocks = section.blocks | where: 'type', 'trust'
     assign chip_blocks = section.blocks | where: 'type', 'filter'
@@ -67,14 +75,14 @@
           {%- endfor -%}
         </nav>
       {%- endif -%}
-      {%- if collection.products_count > 0 -%}
+      {%- if visible_count > 0 -%}
         <div class="ec-cg__bar">
           <p class="ec-cg__count">
-            {{ collection.products_count }}
-            {% if collection.products_count == 1 %}producto{% else %}productos{% endif %}
+            {{ visible_count }}
+            {% if visible_count == 1 %}producto{% else %}productos{% endif %}
             {%- if active_label != blank %} en <b>{{ active_label | escape }}</b>{% endif -%}
           </p>
-          {%- if section.settings.show_sort and collection.products_count > 1 -%}
+          {%- if section.settings.show_sort and visible_count > 1 -%}
             <form class="ec-cg__sort" method="get">
               <label for="EcSort-{{ section.id }}">Ordenar por</label>
               <select id="EcSort-{{ section.id }}" name="sort_by" onchange="this.form.submit()">
