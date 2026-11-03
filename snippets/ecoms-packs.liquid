@@ -187,7 +187,15 @@
                 assign pct = mf_pct3
               endif
             endif
-            if (pct > 0 or total_override > 0) and live != true
+            # Liquid has no parentheses for grouping conditions, so the "has an offer" test is built first.
+            assign tier_has_offer = false
+            if pct > 0
+              assign tier_has_offer = true
+            endif
+            if total_override > 0
+              assign tier_has_offer = true
+            endif
+            if tier_has_offer and live != true
               assign has_pending_discount = true
               assign pct = 0
               assign total_override = 0
