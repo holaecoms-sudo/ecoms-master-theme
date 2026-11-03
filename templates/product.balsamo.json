@@ -85,8 +85,8 @@
             "tier3_enabled": true,
             "tier3_qty": 4,
             "tier3_pct": 0,
-            "tier3_label": "Llévate 4, paga 3",
-            "tier3_tag": "La 4ª gratis",
+            "tier3_label": "4 barras · 35% dto",
+            "tier3_tag": "Mejor precio por barra",
             "tier3_note": "",
             "tier3_gallery": 6
           }
@@ -105,11 +105,11 @@
             "c2_qty": 2,
             "c2_locked": "Lleva 2 y es tuyo",
             "c2_open": "¡Es tuyo gratis!",
-            "c3_label": "La 4ª barra gratis",
-            "c3_icon": "gift",
+            "c3_label": "35% de descuento",
+            "c3_icon": "cash",
             "c3_qty": 4,
-            "c3_locked": "Lleva 4 y la 4ª es gratis",
-            "c3_open": "¡La 4ª es gratis!"
+            "c3_locked": "Lleva 4 y llegas al 35%",
+            "c3_open": "¡35% desbloqueado!"
           }
         },
         "buy": {
