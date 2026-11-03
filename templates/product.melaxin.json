@@ -81,14 +81,14 @@
             "tier2_label": "2 frascos",
             "tier2_tag": "Más elegido",
             "tier2_note": "",
-            "tier2_gallery": 8,
+            "tier2_gallery": 0,
             "tier3_enabled": true,
             "tier3_qty": 3,
             "tier3_pct": 0,
             "tier3_label": "Paga 2, llévate 3",
             "tier3_tag": "Más conveniente",
             "tier3_note": "",
-            "tier3_gallery": 9
+            "tier3_gallery": 0
           }
         },
         "ul": {
