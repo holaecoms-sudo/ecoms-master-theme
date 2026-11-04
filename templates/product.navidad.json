@@ -96,7 +96,7 @@
             "button_label": "Pedir y pagar al recibir",
             "note": "No pagas nada hoy. Todo llega en un solo envío.",
             "deadline_where": "delivery",
-            "gifts_style": "chips"
+            "gifts_style": "cards"
           }
         },
         "benefits": {
