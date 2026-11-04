@@ -1814,7 +1814,10 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 
 /* ---------- Gift tiers: fixes, compact gifts, mobile CTA-first ---------- */
 .ec-gt__upsell[hidden] { display: none; }
-.ec-gt__state { white-space: nowrap; }
+/* Cards keep their grid column (long locked text wraps); only «¡Desbloqueado!» stays on one line. */
+.ec-gt__gift { min-width: 0; }
+.ec-gt__gname { overflow-wrap: anywhere; }
+.ec-gt__gift.is-open .ec-gt__state { white-space: nowrap; }
 .ec-delivery__note { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 2px 0 0; color: var(--ec-sale-ink, var(--ec-primary)); font-size: 12.5px; font-weight: 700; text-align: center; }
 .ec-delivery__note .ec-i { width: 16px; height: 16px; flex-shrink: 0; }
 /* «Fila compacta»: one row of small chips (thumbnail + name + state); same unlock logic (.is-open). */
