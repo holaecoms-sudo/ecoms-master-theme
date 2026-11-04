@@ -16,7 +16,8 @@
           "type": "badge_box",
           "settings": {
             "text": "Regalos + envío gratis desde 2"
-          }
+          },
+          "disabled": true
         },
         "social": {
           "type": "social",
@@ -93,7 +94,9 @@
             "show_upsell_1": true,
             "upsell_1_text": "Agrega 1 más y llévate la cortina de regalo + envío gratis",
             "button_label": "Pedir y pagar al recibir",
-            "note": "No pagas nada hoy. Todo llega en un solo envío."
+            "note": "No pagas nada hoy. Todo llega en un solo envío.",
+            "deadline_where": "delivery",
+            "gifts_style": "chips"
           }
         },
         "benefits": {
@@ -191,7 +194,7 @@
         "sticky_desktop": true,
         "sticky_ship": true,
         "sticky_save": true,
-        "sticky_early": false,
+        "sticky_early": true,
         "sticky_label": "Pedir ahora",
         "sticky_label_cod": "Pedir y pagar al recibir",
         "sticky_cod": true,
@@ -217,7 +220,9 @@
         "pal_line": "",
         "pal_deep": "",
         "padding_top": 24,
-        "padding_bottom": 32
+        "padding_bottom": 32,
+        "mobile_cta_first": true,
+        "gallery_video_demo": 4
       }
     },
     "demo": {
