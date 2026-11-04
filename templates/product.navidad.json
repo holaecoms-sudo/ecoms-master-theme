@@ -49,7 +49,7 @@
           "type": "gift_tiers",
           "settings": {
             "heading": "Elige tu pack navideño 🎄",
-            "default_tier": "2",
+            "default_tier": "1",
             "t1_qty": 1,
             "t1_label": "1 Proyector",
             "t1_total": 21990,
@@ -91,7 +91,7 @@
             "show_orders_24h": true,
             "orders_24h_min": 5,
             "orders_24h_text": "🔥 [n] pedidos hoy",
-            "show_upsell_1": true,
+            "show_upsell_1": false,
             "upsell_1_text": "Agrega 1 más y llévate la cortina de regalo + envío gratis",
             "button_label": "Pedir y pagar al recibir",
             "note": "No pagas nada hoy. Todo llega en un solo envío.",
