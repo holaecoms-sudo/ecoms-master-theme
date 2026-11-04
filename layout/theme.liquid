@@ -15,6 +15,26 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
+    {%- comment -%}
+      Product pages: start the first gallery photo (the mobile LCP) right away. Same widths/sizes as the
+      gallery's image_tag in ecoms-product so the browser reuses this download.
+    {%- endcomment -%}
+    {%- if request.page_type == 'product' and product.featured_media.media_type == 'image' -%}
+      {%- liquid
+        assign ec_lcp = product.featured_media.preview_image
+        assign ec_lcp_set = ''
+        assign ec_lcp_widths = '400,550,700,800,1000,1200,1400' | split: ','
+        for ec_lcp_ws in ec_lcp_widths
+          assign ec_lcp_w = ec_lcp_ws | plus: 0
+          if ec_lcp_w <= ec_lcp.width
+            assign ec_lcp_url = ec_lcp | image_url: width: ec_lcp_w
+            assign ec_lcp_set = ec_lcp_set | append: ec_lcp_url | append: ' ' | append: ec_lcp_w | append: 'w, '
+          endif
+        endfor
+        assign ec_lcp_set = ec_lcp_set | remove_last: ', '
+      -%}
+      <link rel="preload" as="image" fetchpriority="high" href="{{ ec_lcp | image_url: width: 700 }}" imagesrcset="{{ ec_lcp_set }}" imagesizes="(min-width: 990px) 560px, calc(100vw - 32px)">
+    {%- endif -%}
 
     {%- capture ec_vslot -%}{% render 'ecoms-vertical' %}{%- endcapture -%}
     {%- if settings.favicon != blank and ec_vslot == blank -%}

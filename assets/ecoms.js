@@ -175,7 +175,7 @@
 
   // Price block: total for the chosen quantity, compare-at for that quantity and savings. Gift tiers pass their own
   // crossed-out price (units + gifts) and a summary of what's included («2 proyectores + 🎁 cortina de regalo»).
-  function paintPrice(qty, total, wasOverride, summary) {
+  function paintPrice(qty, total, wasOverride, summary, each) {
     $$('[data-ec-price-live]').forEach((box) => {
       const unitCmp = Number(box.dataset.unitCompare) || 0;
       const was = wasOverride || unitCmp * qty;
@@ -189,7 +189,8 @@
       set('[data-ec-pp-each]', money(Math.round(total / qty)));
       box.querySelectorAll('[data-ec-pp-was], [data-ec-pp-savebox]').forEach((el) => { el.hidden = save <= 0; });
       box.querySelectorAll('[data-ec-pp-qty]').forEach((el) => {
-        if (summary) { el.textContent = summary; el.hidden = false; return; }
+        // What the price buys plus the real unit price (pack price / units), e.g. «2 proyectores + … · $19.995 c/u».
+        if (summary) { el.textContent = each ? `${summary} · ${money(each)} c/u` : summary; el.hidden = false; return; }
         el.hidden = qty <= 1;
       });
     });
@@ -363,6 +364,10 @@
       img.src = img.dataset.ecSrc;
       img.removeAttribute('data-ec-src');
     });
+    $$('video[data-ec-poster]', gal).forEach((v) => {
+      v.poster = v.dataset.ecPoster;
+      v.removeAttribute('data-ec-poster');
+    });
   }
   function goGal(gal, i) {
     revealGal(gal);
@@ -379,7 +384,18 @@
     const gal = galleryOf(slide);
     goGal(gal, Array.from(slide.parentElement.children).indexOf(slide));
   }
+  // Gallery videos marked data-ec-view-play: muted, and playing only while at least 60% on screen.
+  function initViewPlay(root = document) {
+    const vids = $$('video[data-ec-view-play]:not([data-ec-vp])', root);
+    if (!vids.length || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (e.isIntersecting) e.target.play().catch(() => {});
+      else e.target.pause();
+    }), { threshold: 0.6 });
+    vids.forEach((v) => { v.dataset.ecVp = '1'; v.muted = true; io.observe(v); });
+  }
   function initGalleries(root = document) {
+    initViewPlay(root);
     $$('[data-ec-gal]:not([data-ready])', root).forEach((gal) => {
       gal.dataset.ready = 'true';
       const track = $('[data-ec-gal-track]', gal);
@@ -625,7 +641,8 @@
         if (total) total.textContent = totalText;
         $$('[data-ec-sticky-gt-total]').forEach((el) => { el.textContent = totalText; el.hidden = false; });
         const was = (Number(r.dataset.was) || 0) + priorityCents;
-        paintPrice(Number(r.dataset.qty) || 1, cents, was, r.dataset.summary || '');
+        const qty = Number(r.dataset.qty) || 1;
+        paintPrice(qty, cents, was, r.dataset.summary || '', Math.round((Number(r.dataset.cents) || 0) / qty));
         // «Esto incluye tu compra» etc. follow sync()'s [data-ec-incl-*], but sync() skips gift-tier pages
         // (no single product form/qty to read), so the pack total is pushed here instead.
         $$('[data-ec-incl-total]').forEach((el) => { el.textContent = money(cents); });

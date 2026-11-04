@@ -45,7 +45,7 @@
 .ec-btn--block { width: 100%; }
 .ec-btn:focus-visible, .ec-pack input:focus-visible + .ec-pack__card, .ec-faq summary:focus-visible { outline: 2px solid var(--ec-primary); outline-offset: 2px; }
 .ec-tag { display: inline-block; padding: 3px 10px; border-radius: 999px; background: var(--ec-tag); color: var(--ec-tag-ink); font-size: 11.5px; font-weight: 700; line-height: 1.4; white-space: nowrap; }
-.ec-pill-save { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 999px; background: var(--ec-sale-bg); color: var(--ec-sale-ink); font-size: 12px; font-weight: 700; white-space: nowrap; }
+.ec-pill-save { display: inline-block; padding: 3px 9px; border-radius: 999px; background: var(--ec-sale-bg); color: var(--ec-sale-ink); font-size: 12px; font-weight: 700; white-space: nowrap; }
 .ec-badge-sale { padding: 2px 8px; border-radius: 5px; background: var(--ec-sale-bg); color: var(--ec-sale-ink); font-size: 12.5px; font-weight: 800; }
 .ec-strike { color: var(--ec-muted); font-weight: 500; text-decoration: line-through; }
 .ec-price { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-variant-numeric: tabular-nums; }
@@ -1811,3 +1811,36 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 
 /* Opening the pay-on-delivery form straight from the page: the cart drawer works in the background, unseen */
 .ec-silent-cart cart-drawer, .ec-silent-cart .cart-drawer, .ec-silent-cart #CartDrawer { opacity: 0 !important; pointer-events: none !important; transition: none !important; }
+
+/* ---------- Gift tiers: fixes, compact gifts, mobile CTA-first ---------- */
+.ec-gt__upsell[hidden] { display: none; }
+.ec-gt__state { white-space: nowrap; }
+.ec-delivery__note { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 2px 0 0; color: var(--ec-sale-ink, var(--ec-primary)); font-size: 12.5px; font-weight: 700; text-align: center; }
+.ec-delivery__note .ec-i { width: 16px; height: 16px; flex-shrink: 0; }
+/* «Fila compacta»: one row of small chips (thumbnail + name + state); same unlock logic (.is-open). */
+.ec-gt--chips .ec-gt__gh { margin: 0; font-size: 14px; }
+.ec-gt--chips .ec-gt__gifts { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+.ec-gt--chips .ec-gt__gifts::-webkit-scrollbar { display: none; }
+.ec-gt--chips .ec-gt__gift { flex: 1 0 auto; display: grid; grid-template-columns: 30px auto; grid-template-rows: auto auto; align-items: center; column-gap: 7px; row-gap: 0; padding: 6px 10px 6px 6px; border-width: 1.5px; border-radius: 999px; text-align: left; }
+.ec-gt--chips .ec-gt__was { display: none; }
+.ec-gt--chips .ec-gt__img { grid-row: span 2; width: 30px; border-radius: 50%; }
+.ec-gt--chips .ec-gt__img > .ec-i { width: 60%; height: 60%; }
+.ec-gt--chips .ec-gt__lock .ec-i { width: 14px; height: 14px; }
+.ec-gt--chips .ec-gt__gname { overflow: hidden; max-width: 130px; font-size: 11.5px; line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
+.ec-gt--chips .ec-gt__state { font-size: 10.5px; line-height: 1.2; }
+.ec-gt--chips .ec-gt__gift.is-open { border-style: solid; border-color: var(--ec-primary); }
+@media screen and (max-width: 749px) {
+  /* Packs → button first; gifts, priority shipping and the note go under it. Desktop keeps the markup order. */
+  .ec-gt--cta-first > .ec-gt__h { order: 1; }
+  .ec-gt--cta-first > .ec-gt__urgency { order: 2; }
+  .ec-gt--cta-first > .ec-gt__tiers { order: 3; }
+  .ec-gt--cta-first > .ec-gt__upsell { order: 4; }
+  .ec-gt--cta-first > .ec-gt__go { order: 5; }
+  .ec-gt--cta-first > .ec-add-error { order: 6; }
+  .ec-gt--cta-first > .ec-gt__foot { order: 7; }
+  .ec-gt--cta-first > .ec-gt__gh { order: 8; }
+  .ec-gt--cta-first > .ec-gt__gifts { order: 9; }
+  .ec-gt--cta-first > .ec-gt__priority { order: 10; }
+  .ec-pdp__sub--clamp { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+  .ec-pdp__sub--clamp > * { display: inline; }
+}

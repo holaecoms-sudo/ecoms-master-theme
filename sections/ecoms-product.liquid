@@ -24,6 +24,19 @@
     assign gm_models = product.media | where: 'media_type', 'model'
     assign gallery_media = gm_videos | concat: gm_external | concat: gm_images | concat: gm_models
   endif
+  # Extra gallery video as the 2nd slide: an uploaded video wins, else video N of ecoms.demo_media.
+  assign gal_video = section.settings.gallery_video
+  if gal_video == blank and section.settings.gallery_video_demo > 0
+    assign gv_list = product.metafields.ecoms.demo_media.value
+    assign gv_i = section.settings.gallery_video_demo | minus: 1
+    assign gv_pick = gv_list[gv_i]
+    if gv_pick.media_type == 'video'
+      assign gal_video = gv_pick
+    endif
+  endif
+  if gal_video != blank and media_count > 1
+    assign media_count = media_count | plus: 1
+  endif
   # «auto» keeps the template's own ratio (Brand 4:5, Direct 1:1.08, Flex 1:1).
   assign gal_ratio = ''
   case section.settings.media_ratio
@@ -135,6 +148,12 @@
         <div class="ec-gal__main">
           <div class="ec-gal__track" data-ec-gal-track tabindex="0" aria-label="Galería de {{ product.title | escape }}">
             {%- for media in gallery_media -%}
+              {%- if gal_video != blank and forloop.index == 2 -%}
+                <div class="ec-gal__slide ec-gal__slide--vid">
+                  {%- capture gal_video_tag -%}{{ gal_video | video_tag: autoplay: false, muted: true, playsinline: true, loop: true, controls: false, preload: 'metadata', image_size: '720x', class: 'ec-gal__video', data-ec-view-play: '' }}{%- endcapture -%}
+                  {{ gal_video_tag | replace: ' poster="', ' data-ec-poster="' }}
+                </div>
+              {%- endif -%}
               <div class="ec-gal__slide" data-media-id="{{ media.id }}">
                 {%- case media.media_type -%}
                   {%- when 'video' -%}
@@ -201,11 +220,21 @@
         {%- if media_count > 1 -%}
           <ul class="ec-gal__thumbs" role="list">
             {%- for media in gallery_media -%}
+              {%- assign gal_to = forloop.index0 -%}
+              {%- if gal_video != blank and forloop.index > 1 -%}{%- assign gal_to = gal_to | plus: 1 -%}{%- endif -%}
+              {%- if gal_video != blank and forloop.index == 2 -%}
+                <li>
+                  <button type="button" class="ec-gal__thumb" data-ec-gal-to="1" aria-current="false" aria-label="Ver video">
+                    {{ gal_video.preview_image | image_url: width: 120 | image_tag: loading: 'lazy', alt: '' }}
+                    <span class="ec-gal__thumb-play">{% render 'ecoms-icon', name: 'play' %}</span>
+                  </button>
+                </li>
+              {%- endif -%}
               <li>
                 <button
                   type="button"
                   class="ec-gal__thumb"
-                  data-ec-gal-to="{{ forloop.index0 }}"
+                  data-ec-gal-to="{{ gal_to }}"
                   aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
                   aria-label="Ver imagen {{ forloop.index }}"
                 >
@@ -350,9 +379,9 @@
             {%- assign sub_mf = product.metafields.ecoms.subtitle.value -%}
             {%- if block.settings.fixed -%}{%- assign sub_mf = blank -%}{%- endif -%}
             {%- if sub_mf != blank -%}
-              <div class="ec-pdp__sub" {{ block.shopify_attributes }}>{{ product.metafields.ecoms.subtitle | metafield_tag }}</div>
+              <div class="ec-pdp__sub{% if section.settings.mobile_cta_first %} ec-pdp__sub--clamp{% endif %}" {{ block.shopify_attributes }}>{{ product.metafields.ecoms.subtitle | metafield_tag }}</div>
             {%- elsif block.settings.text != blank -%}
-              <div class="ec-pdp__sub" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+              <div class="ec-pdp__sub{% if section.settings.mobile_cta_first %} ec-pdp__sub--clamp{% endif %}" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
             {%- endif -%}
 
           {%- when 'description' -%}
@@ -712,6 +741,11 @@
                   assign gt_cutoff_month_idx = gt_cutoff_ts | date: '%-m' | plus: 0 | minus: 1
                   assign gt_cutoff_display = gt_cutoff_ts | date: '%-d' | append: ' de ' | append: gt_month_names[gt_cutoff_month_idx]
                 endif
+                # «Bajo la entrega»: the delivery block (rendered later) shows it instead of the tiers.
+                if gt_deadline_show and block.settings.deadline_where == 'delivery'
+                  assign ec_deadline_note = block.settings.deadline_text | default: 'Pide antes del [fecha] y recíbelo antes de Navidad' | replace: '[fecha]', gt_cutoff_display
+                  assign gt_deadline_show = false
+                endif
               endif
 
               assign gt_orders_show = false
@@ -724,7 +758,7 @@
               endif
             -%}
             {%- if variant.available -%}
-            <div class="ec-gt" data-ec-gt data-variant="{{ variant.id }}" data-open-cod="{{ gt_cod | escape }}" {{ block.shopify_attributes }}>
+            <div class="ec-gt{% if block.settings.gifts_style == 'chips' %} ec-gt--chips{% endif %}{% if section.settings.mobile_cta_first %} ec-gt--cta-first{% endif %}" data-ec-gt data-variant="{{ variant.id }}" data-open-cod="{{ gt_cod | escape }}" {{ block.shopify_attributes }}>
               {%- if block.settings.heading != blank -%}<p class="ec-gt__h">{{ block.settings.heading | escape }}</p>{%- endif -%}
               {%- if gt_stock_show or gt_deadline_show or gt_orders_show -%}
                 <div class="ec-gt__urgency">
@@ -1030,6 +1064,9 @@
               <li data-days="{{ block.settings.ready_days }}"><span class="ec-delivery__ic">{% render 'ecoms-icon', name: 'box' %}</span><b data-ec-date></b><small>{{ block.settings.step_2 | escape }}</small></li>
               <li data-days="{{ block.settings.min_days }}" data-days-max="{{ block.settings.max_days }}"><span class="ec-delivery__ic">{% render 'ecoms-icon', name: 'truck' %}</span><b data-ec-date></b><small>{{ block.settings.step_3 | escape }}</small></li>
             </ol>
+            {%- if ec_deadline_note != blank -%}
+              <p class="ec-delivery__note">{% render 'ecoms-icon', name: 'stopwatch' %}<span>{{ ec_deadline_note | escape }}</span></p>
+            {%- endif -%}
 
           {%- when 'testimonial' -%}
             {%- if block.settings.text != blank -%}
@@ -1357,6 +1394,26 @@
       "id": "video_loop",
       "label": "Repetir videos",
       "default": true
+    },
+    {
+      "type": "video",
+      "id": "gallery_video",
+      "label": "Video de la galería (2.ª posición)",
+      "info": "Sin sonido, en loop y se reproduce al entrar en pantalla."
+    },
+    {
+      "type": "number",
+      "id": "gallery_video_demo",
+      "label": "O usar el video N de «Videos de uso»",
+      "info": "Número del video en el metacampo ecoms.demo_media del producto. 0 = no. El video subido arriba tiene prioridad.",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_cta_first",
+      "label": "Celular: botón de compra justo después de los packs",
+      "info": "En celular los regalos, el envío prioritario y la nota pasan bajo el botón, y el texto corto queda en 2 líneas. En computador no cambia.",
+      "default": false
     },
     {
       "type": "header",
@@ -4806,11 +4863,13 @@
         { "type": "checkbox", "id": "show_deadline", "label": "Mostrar fecha límite para Navidad", "default": false },
         { "type": "text", "id": "deadline_date", "label": "Fecha tope (AAAA-MM-DD)", "info": "Vacío = 24 de diciembre de este año. Se le resta el máximo de días de despacho del bloque «Entrega» (sin contar domingos)." },
         { "type": "text", "id": "deadline_text", "label": "Texto", "info": "Usa [fecha].", "default": "Pide antes del [fecha] y recíbelo antes de Navidad" },
+        { "type": "select", "id": "deadline_where", "label": "Dónde mostrar la fecha límite", "options": [{ "value": "tiers", "label": "Sobre los packs" }, { "value": "delivery", "label": "Bajo la entrega (bloque «Entrega»)" }], "default": "tiers" },
         { "type": "checkbox", "id": "show_orders_24h", "label": "Mostrar pedidos de las últimas 24 h", "default": false },
         { "type": "number", "id": "orders_24h_min", "label": "Mostrarlo solo si hay al menos", "default": 5 },
         { "type": "text", "id": "orders_24h_text", "label": "Texto", "info": "Usa [n]. El número sale del metacampo del producto ecoms.orders_24h (debe venir de un Shopify Flow con pedidos reales, nunca se inventa).", "default": "🔥 [n] pedidos hoy" },
         { "type": "checkbox", "id": "show_upsell_1", "label": "Mostrar sugerencia bajo «Lleva 1» (solo si está seleccionado)", "default": false },
         { "type": "text", "id": "upsell_1_text", "label": "Texto", "default": "Agrega 1 más y llévate la cortina de regalo + envío gratis" },
+        { "type": "select", "id": "gifts_style", "label": "Estilo de los regalos", "options": [{ "value": "cards", "label": "Tarjetas" }, { "value": "chips", "label": "Fila compacta (chips)" }], "default": "cards" },
         { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Pedir y pagar al recibir" },
         { "type": "text", "id": "note", "label": "Nota bajo el botón", "default": "No pagas nada hoy. Todo llega en un solo envío." }
       ]
