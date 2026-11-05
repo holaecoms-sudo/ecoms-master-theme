@@ -99,3 +99,24 @@
 .ec-bz__chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 16px; }
 .ec-bz__panel[hidden] { display: none; }
 .ec-bz__note { margin: 10px 0 0; color: var(--ec-muted); font-size: 12.5px; }
+
+/* Ingredient cards: photo tile + name + one line; opens to a longer note */
+.ec-ing { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 8px; }
+.ec-ing__c { overflow: hidden; border: 1.5px solid var(--ec-dark); border-radius: 22px; background: #fff; }
+.ec-ing__c summary, .ec-ing__s { display: grid; grid-template-columns: 96px 1fr; align-items: stretch; list-style: none; cursor: pointer; }
+.ec-ing__c summary { grid-template-columns: 96px 1fr 64px; }
+.ec-ing__c summary::-webkit-details-marker { display: none; }
+.ec-ing__s { cursor: default; }
+.ec-ing__ph { display: grid; place-items: center; min-height: 96px; border-right: 1.5px solid var(--ec-dark); background: var(--ec-accent); color: var(--ec-accent-ink); }
+.ec-ing__ph img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ec-ing__ph .ec-i { width: 34px; height: 34px; }
+.ec-ing__t { display: grid; align-content: center; gap: 4px; padding: 14px 16px; }
+.ec-ing__t b { font-size: 15.5px; color: var(--ec-dark); }
+.ec-ing__t span { color: var(--ec-muted); font-size: 13.5px; line-height: 1.4; }
+.ec-ing__plus { position: relative; align-self: center; justify-self: center; width: 40px; height: 40px; border: 1.5px solid var(--ec-dark); border-radius: 50%; }
+.ec-ing__plus::before, .ec-ing__plus::after { content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 2px; background: var(--ec-dark); transform: translate(-50%, -50%); transition: transform 0.2s; }
+.ec-ing__plus::after { transform: translate(-50%, -50%) rotate(90deg); }
+.ec-ing__c[open] .ec-ing__plus::after { transform: translate(-50%, -50%) rotate(0deg); }
+.ec-ing__d { margin: 0; padding: 12px 18px 18px; border-top: 1.5px solid var(--ec-line); color: var(--ec-muted); font-size: 14px; line-height: 1.5; }
+.ec-ing__note { margin: 14px 0 0; color: var(--ec-muted); font-size: 11.5px; }
+@media (min-width: 750px) { .ec-ing { grid-template-columns: 1fr 1fr; gap: 16px; } .ec-ing__c summary, .ec-ing__s { grid-template-columns: 120px 1fr; } .ec-ing__c summary { grid-template-columns: 120px 1fr 72px; } .ec-ing__ph { min-height: 120px; } }

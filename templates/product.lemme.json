@@ -327,15 +327,14 @@
       }
     },
     "ingredients": {
-      "type": "ecoms-feature-grid",
+      "type": "ecoms-ingredient-cards",
       "settings": {
         "metafield": "ecoms.ingredients",
-        "heading": "Fórmula | Qué *contiene.*",
-        "button_label": "Ver lista completa de ingredientes",
-        "style": "band",
-        "width": "full",
+        "eyebrow": "Ingredientes",
+        "heading": "Qué hay *adentro.*",
+        "note": "Información según la etiqueta del producto. Resultados y respuesta varían según cada persona.",
         "padding_top": 44,
-        "padding_bottom": 40
+        "padding_bottom": 32
       }
     },
     "yesno": {
@@ -439,14 +438,114 @@
         "trust_3": "10 días de retracto",
         "width": "full"
       }
+    },
+    "compare": {
+      "type": "ecoms-comparison",
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "feature": "Con Actiponin® (extracto de Gynostemma pentaphyllum)",
+            "value_1": true
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "feature": "Vitaminas B6 y B12 en la misma cápsula",
+            "value_1": true
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "feature": "Con extracto de té verde",
+            "value_1": true
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "feature": "Cápsulas veganas, sin gluten y sin transgénicos (según etiqueta)",
+            "value_1": true
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ],
+      "settings": {
+        "style": "table",
+        "heading": "Qué incluye *Lemme Burn.*",
+        "col_1": "Lemme Burn",
+        "show_image": true,
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "badges": {
+      "type": "ecoms-feature-grid",
+      "blocks": {
+        "g1": {
+          "type": "feature",
+          "settings": {
+            "icon": "bolt",
+            "heading": "Metabolismo energético",
+            "text": ""
+          }
+        },
+        "g2": {
+          "type": "feature",
+          "settings": {
+            "icon": "sparkle",
+            "heading": "Energía para tu día",
+            "text": ""
+          }
+        },
+        "g3": {
+          "type": "feature",
+          "settings": {
+            "icon": "leaf",
+            "heading": "Antioxidantes naturales",
+            "text": ""
+          }
+        },
+        "g4": {
+          "type": "feature",
+          "settings": {
+            "icon": "check",
+            "heading": "2 cápsulas al día",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ],
+      "settings": {
+        "heading": "",
+        "style": "center",
+        "width": "full",
+        "padding_top": 8,
+        "padding_bottom": 8
+      }
     }
   },
   "order": [
     "main",
-    "top",
+    "badges",
     "benefits",
-    "routine",
     "ingredients",
+    "compare",
+    "routine",
+    "top",
     "yesno",
     "reviews",
     "faq",
