@@ -16,6 +16,13 @@
           "type": "title",
           "settings": {}
         },
+        "social": {
+          "type": "social",
+          "settings": {
+            "rating": "4,7",
+            "text": "1.810 reseñas"
+          }
+        },
         "hook": {
           "type": "text",
           "settings": {
@@ -116,7 +123,9 @@
             "add_label_cod": "Comprar con tarjeta",
             "buy_now_label_cod": "",
             "card_label": "Pagar ahora con tarjeta · 10% de dto",
-            "card_code": "PAGAYA10"
+            "card_code": "PAGAYA10",
+            "priority_product": "",
+            "priority_label": "Quiero envío prioritario"
           }
         },
         "stock": {
@@ -124,7 +133,8 @@
           "disabled": true,
           "settings": {
             "max_show": 30,
-            "text": "¡Queda poco stock! Solo [qty] unidades disponibles"
+            "text": "¡Queda poco stock! Solo [qty] unidades disponibles",
+            "viewers_text": ""
           }
         },
         "dlv": {
@@ -138,6 +148,25 @@
             "step_3": "Entregado"
           }
         },
+        "rs": {
+          "type": "review_slider",
+          "settings": {
+            "style": "quote",
+            "heading": "",
+            "text_1": "",
+            "author_1": "",
+            "place_1": "",
+            "stars_1": 5,
+            "text_2": "",
+            "author_2": "",
+            "place_2": "",
+            "stars_2": 5,
+            "text_3": "",
+            "author_3": "",
+            "place_3": "",
+            "stars_3": 5
+          }
+        },
         "acc": {
           "type": "accordion",
           "settings": {
@@ -147,22 +176,6 @@
             "label_4": "Tecnología",
             "label_5": "",
             "open_first": false
-          }
-        },
-        "social": {
-          "type": "social",
-          "settings": {
-            "rating": "",
-            "text": ""
-          }
-        },
-        "rs": {
-          "type": "review_slider",
-          "settings": {
-            "style": "quote",
-            "stars_1": 5,
-            "stars_2": 5,
-            "stars_3": 5
           }
         }
       },
@@ -274,7 +287,9 @@
         "g4"
       ],
       "settings": {
+        "metafield": "",
         "heading": "",
+        "button_label": "",
         "style": "center",
         "width": "full",
         "padding_top": 8,
@@ -419,28 +434,36 @@
           "type": "row",
           "settings": {
             "feature": "Con Actiponin® (extracto de Gynostemma pentaphyllum)",
-            "value_1": true
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
           }
         },
         "r2": {
           "type": "row",
           "settings": {
             "feature": "Vitaminas B6 y B12 en la misma cápsula",
-            "value_1": true
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
           }
         },
         "r3": {
           "type": "row",
           "settings": {
             "feature": "Con extracto de té verde",
-            "value_1": true
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
           }
         },
         "r4": {
           "type": "row",
           "settings": {
             "feature": "Cápsulas veganas, sin gluten y sin transgénicos (según etiqueta)",
-            "value_1": true
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
           }
         }
       },
@@ -451,10 +474,14 @@
         "r4"
       ],
       "settings": {
+        "metafield": "",
         "style": "table",
         "heading": "Qué incluye *Lemme Burn.*",
+        "feature_label": "Característica",
         "col_1": "Lemme Burn",
         "show_image": true,
+        "col_2": "Otras opciones",
+        "col_3": "",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
@@ -466,43 +493,43 @@
         "d1": {
           "type": "badge",
           "settings": {
-            "icon": "leaf",
-            "label": "Vegano"
+            "label": "Vegano",
+            "icon": "leaf"
           }
         },
         "d2": {
           "type": "badge",
           "settings": {
-            "icon": "check",
-            "label": "Sin gluten"
+            "label": "Sin gluten",
+            "icon": "check"
           }
         },
         "d3": {
           "type": "badge",
           "settings": {
-            "icon": "verified",
-            "label": "Sin transgénicos"
+            "label": "Sin transgénicos",
+            "icon": "verified"
           }
         },
         "d4": {
           "type": "badge",
           "settings": {
-            "icon": "box",
-            "label": "30 porciones por frasco"
+            "label": "30 porciones por frasco",
+            "icon": "box"
           }
         },
         "d5": {
           "type": "badge",
           "settings": {
-            "icon": "drop",
-            "label": "2 cápsulas al día"
+            "label": "2 cápsulas al día",
+            "icon": "drop"
           }
         },
         "d6": {
           "type": "badge",
           "settings": {
-            "icon": "shield",
-            "label": "Con sello de seguridad"
+            "label": "Con sello de seguridad",
+            "icon": "shield"
           }
         }
       },
@@ -525,8 +552,11 @@
       "type": "ecoms-steps",
       "settings": {
         "metafield": "ecoms.steps",
+        "button_label": "",
+        "button_link": "",
         "style": "cards",
         "heading": "Cómo tomarlo | Tres pasos, *simple.*",
+        "text": "",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
@@ -548,6 +578,7 @@
       "type": "ecoms-demo",
       "settings": {
         "heading": "Clientas reales | Míralo en *acción.*",
+        "text": "",
         "mode": "player",
         "ratio": "story",
         "width": "full",
@@ -558,8 +589,10 @@
     "ugc": {
       "type": "ecoms-ugc",
       "settings": {
+        "metafield": "",
         "style": "grid",
         "heading": "Clientas reales | Así lo *usan.*",
+        "text": "Personas reales usando el producto.",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 12
@@ -571,6 +604,9 @@
         "metafield": "ecoms.reviews",
         "style": "masonry",
         "heading": "Opiniones de clientas",
+        "link_label": "Ver todas",
+        "link": "",
+        "source_note": "",
         "per_page": 6,
         "write_label": "Escribe una reseña",
         "write_link": "/pages/contact",
@@ -583,22 +619,10 @@
       "type": "ecoms-expert",
       "settings": {
         "heading": "Opinión de una *profesional.*",
+        "quote": "",
+        "name": "",
+        "role": "",
         "padding_top": 44,
-        "padding_bottom": 32
-      }
-    },
-    "more": {
-      "type": "ecoms-product-row",
-      "settings": {
-        "heading": "Otros productos que te pueden gustar",
-        "collection": "",
-        "limit": 4,
-        "min_products": 2,
-        "columns": 4,
-        "show_badge": true,
-        "hover_image": true,
-        "button_label": "Ver producto",
-        "padding_top": 40,
         "padding_bottom": 32
       }
     },
@@ -609,77 +633,88 @@
           "type": "faq",
           "settings": {
             "question": "¿Cómo pago?",
-            "answer": "<p>Puedes pagar al recibir tu pedido, en todo Chile y sin costo adicional, o pagar ahora con tarjeta (débito o crédito) desde el formulario.</p>"
+            "answer": "<p>Puedes pagar al recibir tu pedido, en todo Chile y sin costo adicional, o pagar ahora con tarjeta (débito o crédito) desde el formulario.</p>",
+            "draft": false
           }
         },
         "f2": {
           "type": "faq",
           "settings": {
             "question": "¿Cuánto demora en llegar?",
-            "answer": "<p>Entre 2 y 5 días hábiles según tu comuna. Te enviamos el seguimiento de tu pedido.</p>"
+            "answer": "<p>Entre 2 y 5 días hábiles según tu comuna. Te enviamos el seguimiento de tu pedido.</p>",
+            "draft": false
           }
         },
         "f3": {
           "type": "faq",
           "settings": {
             "question": "¿Qué es Lemme Burn?",
-            "answer": "<p>Es un suplemento alimenticio en cápsulas con extracto de té verde, Actiponin® (extracto de Gynostemma pentaphyllum) y vitaminas B6 y B12.</p>"
+            "answer": "<p>Es un suplemento alimenticio en cápsulas con extracto de té verde, Actiponin® (extracto de Gynostemma pentaphyllum) y vitaminas B6 y B12.</p>",
+            "draft": false
           }
         },
         "f4": {
           "type": "faq",
           "settings": {
             "question": "¿Qué es Actiponin®?",
-            "answer": "<p>Es un extracto de la planta Gynostemma pentaphyllum. En Lemme Burn se combina con té verde y vitaminas B6 y B12.</p>"
+            "answer": "<p>Es un extracto de la planta Gynostemma pentaphyllum. En Lemme Burn se combina con té verde y vitaminas B6 y B12.</p>",
+            "draft": false
           }
         },
         "f5": {
           "type": "faq",
           "settings": {
             "question": "¿Cuántas cápsulas tomo?",
-            "answer": "<p>La porción es de 2 cápsulas al día, con o sin alimentos y con un vaso de agua. No excedas la porción diaria.</p>"
+            "answer": "<p>La porción es de 2 cápsulas al día, con o sin alimentos y con un vaso de agua. No excedas la porción diaria.</p>",
+            "draft": false
           }
         },
         "f6": {
           "type": "faq",
           "settings": {
             "question": "¿En cuánto tiempo se nota?",
-            "answer": "<p>Cada persona responde distinto y no hay un plazo garantizado. Tómalo de forma constante, junto con una alimentación equilibrada y actividad física.</p>"
+            "answer": "<p>Cada persona responde distinto y no hay un plazo garantizado. Tómalo de forma constante, junto con una alimentación equilibrada y actividad física.</p>",
+            "draft": false
           }
         },
         "f7": {
           "type": "faq",
           "settings": {
             "question": "¿Es vegano? ¿Tiene gluten?",
-            "answer": "<p>Según su etiqueta, las cápsulas son veganas y el producto es sin gluten y sin transgénicos.</p>"
+            "answer": "<p>Según su etiqueta, las cápsulas son veganas y el producto es sin gluten y sin transgénicos.</p>",
+            "draft": false
           }
         },
         "f8": {
           "type": "faq",
           "settings": {
             "question": "¿Lo puedo tomar con otros suplementos?",
-            "answer": "<p>Si ya tomas otros suplementos o medicamentos, consulta antes a un profesional de la salud.</p>"
+            "answer": "<p>Si ya tomas otros suplementos o medicamentos, consulta antes a un profesional de la salud.</p>",
+            "draft": false
           }
         },
         "f9": {
           "type": "faq",
           "settings": {
             "question": "¿Puedo tomarlo si estoy embarazada o amamantando?",
-            "answer": "<p>Si estás embarazada o amamantando, tienes una condición médica o eres menor de edad, consulta antes a un profesional de la salud.</p>"
+            "answer": "<p>Si estás embarazada o amamantando, tienes una condición médica o eres menor de edad, consulta antes a un profesional de la salud.</p>",
+            "draft": false
           }
         },
         "f10": {
           "type": "faq",
           "settings": {
             "question": "¿Es un medicamento?",
-            "answer": "<p>No. Es un suplemento alimenticio: no reemplaza una alimentación variada y equilibrada ni un estilo de vida saludable.</p>"
+            "answer": "<p>No. Es un suplemento alimenticio: no reemplaza una alimentación variada y equilibrada ni un estilo de vida saludable.</p>",
+            "draft": false
           }
         },
         "f11": {
           "type": "faq",
           "settings": {
             "question": "¿Y si no me gusta?",
-            "answer": "<p>Tienes 10 días de retracto con el producto sin abrir y con el sello de seguridad intacto, y 6 meses de garantía legal si llega con una falla.</p>"
+            "answer": "<p>Tienes 10 días de retracto con el producto sin abrir y con el sello de seguridad intacto, y 6 meses de garantía legal si llega con una falla.</p>",
+            "draft": false
           }
         }
       },
@@ -699,6 +734,7 @@
       "settings": {
         "style": "stack",
         "heading": "Preguntas *frecuentes.*",
+        "text": "",
         "icon": "plus",
         "width": "full",
         "padding_top": 36,
@@ -709,13 +745,18 @@
       "type": "ecoms-cta-band",
       "settings": {
         "style": "soft",
+        "eyebrow": "",
         "heading": "Suma Lemme Burn a tu *rutina.*",
         "text": "Sentirte bien empieza por un hábito simple. Pagas cuando lo recibes.",
+        "image_plain": false,
+        "show_price": true,
         "button_label": "Elegir mi pack · desde $19.990",
         "trust_1": "Pagas al recibir",
         "trust_2": "Envíos a todo Chile",
         "trust_3": "10 días de retracto",
-        "width": "full"
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
@@ -733,7 +774,6 @@
     "ugc",
     "reviews",
     "expert",
-    "more",
     "faq",
     "cta"
   ]
