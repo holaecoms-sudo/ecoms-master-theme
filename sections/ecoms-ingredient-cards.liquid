@@ -19,9 +19,11 @@
 {{ 'ecoms-ritual-sections.css' | asset_url | stylesheet_tag }}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-ing-sec' %}>
   <div class="ec-w">
-    {%- if section.settings.eyebrow != blank -%}<p class="ec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
-    {%- if section.settings.heading != blank -%}
-      <div class="ec-sec-h">{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2' %}</div>
+    {%- if section.settings.heading != blank or section.settings.eyebrow != blank -%}
+      <div class="ec-sec-h">
+        {%- if section.settings.eyebrow != blank -%}<p class="ec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        {%- if section.settings.heading != blank -%}{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2' %}{%- endif -%}
+      </div>
     {%- endif -%}
     <div class="ec-ing" role="list">
       {%- for block in ec_src -%}

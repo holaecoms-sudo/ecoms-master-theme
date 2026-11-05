@@ -163,3 +163,20 @@
 .ec-ex__n { display: grid; gap: 2px; margin: 0; }
 .ec-ex__n span { color: var(--ec-muted); font-size: 13px; }
 @media (min-width: 750px) { .ec-ex { grid-template-columns: 220px 1fr; gap: 36px; } .ec-ex__ph img { width: 220px; height: 220px; } }
+
+/* New sections: left-aligned like the rest of the page; selectors are more specific than ".ec-sec p { margin: 0 }" */
+.ec-sec .ec-ds__t { max-width: 640px; margin: 0 0 20px; text-align: left; }
+.ec-sec .ec-bl__note { margin: 14px 0 0; }
+.ec-sec .ec-ing__note { margin: 14px 0 0; }
+.ec-sec .ec-ex__n { margin: 0; }
+.ec-bl, .ec-ds, .ec-ex { margin-top: 6px; }
+.ec-ex { justify-items: start; text-align: left; }
+.ec-bl__cta, .ec-sec .ec-bl__cta { margin-top: 18px; }
+@media (min-width: 750px) { .ec-bl { align-items: start; } .ec-bl__copy { align-self: center; } }
+@media (min-width: 750px) {
+  .ec-ds { grid-template-columns: minmax(0, 420px) 1fr; gap: 48px; align-items: center; }
+  .ec-ds__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 20px; }
+  .ec-ds__ic { width: 48px; height: 48px; }
+  .ec-ds__grid b { font-size: 13.5px; }
+  .ec-bl { grid-template-columns: 1fr minmax(0, 440px); }
+}

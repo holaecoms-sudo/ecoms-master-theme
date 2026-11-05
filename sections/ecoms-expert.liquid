@@ -5,12 +5,16 @@
 {%- if section.settings.quote != blank and section.settings.name != blank and section.settings.image != blank -%}
 {{ 'ecoms-ritual-sections.css' | asset_url | stylesheet_tag }}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-ex-sec' %}>
-  <div class="ec-w ec-ex">
+  <div class="ec-w">
+    {%- if section.settings.heading != blank -%}
+      <div class="ec-sec-h">{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2' %}</div>
+    {%- endif -%}
+    <div class="ec-ex">
     <div class="ec-ex__ph">{{ section.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300,450,600', sizes: '(min-width: 750px) 240px, 40vw', alt: section.settings.name }}</div>
     <div class="ec-ex__copy">
-      {%- if section.settings.heading != blank -%}{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2' %}{%- endif -%}
       <blockquote>{{ section.settings.quote | escape }}</blockquote>
       <p class="ec-ex__n"><b>{{ section.settings.name | escape }}</b>{%- if section.settings.role != blank -%}<span>{{ section.settings.role | escape }}</span>{%- endif -%}</p>
+    </div>
     </div>
   </div>
 </section>
