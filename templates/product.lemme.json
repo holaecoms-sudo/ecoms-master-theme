@@ -301,6 +301,36 @@
       ],
       "settings": {}
     },
+    "banner": {
+      "type": "ecoms-hero-banner",
+      "blocks": {
+        "t1": {
+          "type": "tag",
+          "settings": {
+            "label": "Activa tu metabolismo"
+          }
+        },
+        "t2": {
+          "type": "tag",
+          "settings": {
+            "label": "Energía para tu día"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2"
+      ],
+      "settings": {
+        "eyebrow": "Lemme Burn",
+        "heading": "Activa tu *metabolismo* y tu energía.",
+        "text": "Té verde, Actiponin® y vitaminas B6 y B12 en una sola fórmula, para apoyar tu metabolismo energético y acompañar tus hábitos de bienestar.",
+        "note": "Suplemento alimenticio. Úsalo junto con una alimentación equilibrada y actividad física.",
+        "product_image_index": 5,
+        "padding_top": 36,
+        "padding_bottom": 20
+      }
+    },
     "benefits": {
       "type": "ecoms-benefit-list",
       "blocks": {
@@ -704,86 +734,6 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
-    },
-    "banner": {
-      "type": "ecoms-hero-banner",
-      "blocks": {
-        "t1": {
-          "type": "tag",
-          "settings": {
-            "label": "Activa tu metabolismo"
-          }
-        },
-        "t2": {
-          "type": "tag",
-          "settings": {
-            "label": "Energía para tu día"
-          }
-        }
-      },
-      "block_order": [
-        "t1",
-        "t2"
-      ],
-      "settings": {
-        "eyebrow": "Lemme Burn",
-        "heading": "Activa tu *metabolismo* y tu energía.",
-        "text": "Té verde, Actiponin® y vitaminas B6 y B12 en una sola fórmula, para apoyar tu metabolismo energético y acompañar tus hábitos de bienestar.",
-        "note": "Suplemento alimenticio. Úsalo junto con una alimentación equilibrada y actividad física.",
-        "product_image_index": 5,
-        "padding_top": 36,
-        "padding_bottom": 20
-      }
-    },
-    "results": {
-      "type": "ecoms-results-card",
-      "blocks": {
-        "p1": {
-          "type": "point",
-          "settings": {
-            "label": "Apoya tu metabolismo energético"
-          }
-        },
-        "p2": {
-          "type": "point",
-          "settings": {
-            "label": "Ayuda a disminuir el cansancio y la fatiga"
-          }
-        },
-        "p3": {
-          "type": "point",
-          "settings": {
-            "label": "Aporta antioxidantes del té verde"
-          }
-        },
-        "p4": {
-          "type": "point",
-          "settings": {
-            "label": "Con Actiponin®, extracto de Gynostemma"
-          }
-        },
-        "p5": {
-          "type": "point",
-          "settings": {
-            "label": "Solo 2 cápsulas al día"
-          }
-        }
-      },
-      "block_order": [
-        "p1",
-        "p2",
-        "p3",
-        "p4",
-        "p5"
-      ],
-      "settings": {
-        "heading": "Lo que aporta *Lemme Burn.*",
-        "text": "Activa tu metabolismo con una fórmula simple: Actiponin® es un extracto de Gynostemma pentaphyllum, una planta que se usa tradicionalmente en Asia, junto con té verde y vitaminas B6 y B12.",
-        "note": "Los resultados varían según cada persona.",
-        "product_image_index": 3,
-        "padding_top": 20,
-        "padding_bottom": 32
-      }
     }
   },
   "order": [
@@ -792,7 +742,6 @@
     "badges",
     "nav",
     "banner",
-    "results",
     "benefits",
     "ingredients",
     "compare",
