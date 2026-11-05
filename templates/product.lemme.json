@@ -19,8 +19,8 @@
         "social": {
           "type": "social",
           "settings": {
-            "rating": "4,7",
-            "text": "1.810 reseñas"
+            "rating": "",
+            "text": ""
           }
         },
         "hook": {
