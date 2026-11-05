@@ -1,0 +1,596 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "ecoms-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "hook": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Colágeno sin sabor para sumar a tu rutina de belleza y bienestar, todos los días</p>",
+            "fixed": true
+          }
+        },
+        "lead": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "fixed": false
+          }
+        },
+        "benefits": {
+          "type": "benefits",
+          "settings": {
+            "item_1": "",
+            "item_2": "",
+            "item_3": "",
+            "item_4": "",
+            "item_5": "",
+            "item_6": ""
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "style": "pill",
+            "ship_local_title": "",
+            "ship_local_text": ""
+          }
+        },
+        "pk": {
+          "type": "packs",
+          "settings": {
+            "from_metafield": true,
+            "heading": "",
+            "layout": "offer",
+            "show_cta_total": true,
+            "help": "",
+            "default_tier": "2",
+            "item_name": "potes",
+            "show_summary": true,
+            "summary_label": "Tu pack incluye",
+            "show_free_shipping": true,
+            "discounts_live": true,
+            "tier1_qty": 1,
+            "tier1_label": "1 pote",
+            "tier1_tag": "",
+            "tier1_note": "Para probar",
+            "tier2_enabled": true,
+            "tier2_qty": 2,
+            "tier2_pct": 0,
+            "tier2_label": "Pack 2 potes",
+            "tier2_tag": "Más elegido",
+            "tier2_note": "",
+            "tier3_enabled": true,
+            "tier3_qty": 4,
+            "tier3_pct": 0,
+            "tier3_label": "4 potes · 35% dto",
+            "tier3_tag": "Mejor precio por pote",
+            "tier3_note": ""
+          }
+        },
+        "ul": {
+          "type": "unlock",
+          "settings": {
+            "heading": "Desbloquea beneficios con tu pack",
+            "c1_label": "Envío gratis",
+            "c1_icon": "truck",
+            "c1_qty": 1,
+            "c1_locked": "Envío gratis a todo Chile",
+            "c1_open": "¡Desbloqueado!",
+            "c2_label": "25% de descuento",
+            "c2_icon": "cash",
+            "c2_qty": 2,
+            "c2_locked": "Lleva 2 y ahorras 25%",
+            "c2_open": "¡25% desbloqueado!",
+            "c3_label": "35% de descuento",
+            "c3_icon": "cash",
+            "c3_qty": 4,
+            "c3_locked": "Lleva 4 y llegas al 35%",
+            "c3_open": "¡35% desbloqueado!"
+          }
+        },
+        "buy": {
+          "type": "buy",
+          "settings": {
+            "heading": "",
+            "show_quantity": false,
+            "add_label": "Comprar con tarjeta",
+            "show_total": true,
+            "show_buy_now": false,
+            "buy_now_icon": "bolt",
+            "buy_now_label": "Pedir ahora",
+            "cod_only": true,
+            "add_label_cod": "Comprar con tarjeta",
+            "buy_now_label_cod": "",
+            "card_label": "Pagar ahora con tarjeta · 10% de dto",
+            "card_code": "PAGAYA10"
+          }
+        },
+        "stock": {
+          "type": "stock",
+          "disabled": true,
+          "settings": {
+            "max_show": 30,
+            "text": "¡Queda poco stock! Solo [qty] unidades disponibles"
+          }
+        },
+        "dlv": {
+          "type": "delivery",
+          "settings": {
+            "step_1": "Pedido realizado",
+            "ready_days": 1,
+            "step_2": "Pedido listo",
+            "min_days": 3,
+            "max_days": 6,
+            "step_3": "Entregado"
+          }
+        },
+        "acc": {
+          "type": "accordion",
+          "settings": {
+            "label_1": "Beneficios",
+            "label_2": "Cómo tomarlo",
+            "label_3": "Ingredientes",
+            "label_4": "Tecnología",
+            "label_5": "",
+            "open_first": false
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "hook",
+        "lead",
+        "benefits",
+        "price",
+        "pk",
+        "ul",
+        "buy",
+        "stock",
+        "dlv",
+        "acc"
+      ],
+      "settings": {
+        "layout": "direct",
+        "columns": "two",
+        "gallery_mobile": "inset",
+        "thumbs": "below",
+        "gal_controls": false,
+        "badge": "",
+        "media_tag": "",
+        "media_title": "",
+        "media_text": "",
+        "media_over_count": 2,
+        "hero_bg": "none",
+        "media_ratio": "square",
+        "media_fit": "cover",
+        "video_first": false,
+        "video_autoplay": true,
+        "video_loop": true,
+        "sticky": true,
+        "sticky_desktop": false,
+        "sticky_ship": false,
+        "sticky_save": false,
+        "sticky_early": true,
+        "sticky_label": "Pedir ahora",
+        "sticky_label_cod": "Pedir y pagar al recibir",
+        "sticky_cod": true,
+        "sticky_cod_sub": "Pagas cuando llega",
+        "palette": "sky",
+        "snow": false,
+        "pal_primary": "",
+        "pal_primary_ink": "",
+        "pal_dark": "",
+        "pal_accent": "",
+        "pal_accent_ink": "",
+        "pal_soft": "",
+        "pal_soft_ink": "",
+        "pal_tag": "",
+        "pal_tag_ink": "",
+        "pal_sale_bg": "",
+        "pal_sale_ink": "",
+        "pal_urgent": "",
+        "pal_urgent_bg": "",
+        "pal_bg": "",
+        "pal_ink": "",
+        "pal_muted": "",
+        "pal_line": "",
+        "pal_deep": "",
+        "padding_top": 16,
+        "padding_bottom": 28
+      }
+    },
+    "top": {
+      "type": "ecoms-marquee",
+      "blocks": {
+        "b1": {
+          "type": "text",
+          "settings": {
+            "icon": "cash",
+            "text": "Pagas al recibir"
+          }
+        },
+        "b2": {
+          "type": "text",
+          "settings": {
+            "icon": "truck",
+            "text": "Envío a todo Chile"
+          }
+        },
+        "b3": {
+          "type": "text",
+          "settings": {
+            "icon": "box",
+            "text": "Seguimiento de tu pedido"
+          }
+        },
+        "b4": {
+          "type": "text",
+          "settings": {
+            "icon": "return",
+            "text": "10 días de retracto"
+          }
+        },
+        "b5": {
+          "type": "text",
+          "settings": {
+            "icon": "drop",
+            "text": "Colágeno sin sabor"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5"
+      ],
+      "settings": {
+        "style": "band",
+        "speed": 30,
+        "width": "full"
+      }
+    },
+    "benefits": {
+      "type": "ecoms-feature-grid",
+      "blocks": {
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "icon": "sparkle",
+            "heading": "20 g por porción",
+            "text": "Colágeno hidrolizado en cada porción de 1 scoop (unos 20 g)."
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "icon": "drop",
+            "heading": "Sin sabor",
+            "text": "Se mezcla en agua, café, jugos o batidos sin cambiar su sabor."
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "icon": "leaf",
+            "heading": "Grass-fed",
+            "text": "Colágeno de origen bovino, de animales alimentados con pasto."
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "icon": "heart",
+            "heading": "18 aminoácidos",
+            "text": "Incluye glicina, prolina e hidroxiprolina, entre otros."
+          }
+        },
+        "f5": {
+          "type": "feature",
+          "settings": {
+            "icon": "box",
+            "heading": "Rinde unas 28 porciones",
+            "text": "Un pote de 567 g trae unas 28 porciones, a 1 scoop al día."
+          }
+        },
+        "f6": {
+          "type": "feature",
+          "settings": {
+            "icon": "hand",
+            "heading": "Fácil de usar",
+            "text": "Un scoop al día, una vez o repartido durante el día."
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6"
+      ],
+      "settings": {
+        "heading": "Beneficios | Lo que *aporta* a tu rutina.",
+        "style": "cards",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 20
+      }
+    },
+    "routine": {
+      "type": "ecoms-steps",
+      "settings": {
+        "metafield": "ecoms.steps",
+        "style": "cards",
+        "heading": "Cómo tomarlo | Tres pasos, *simple.*",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "ingredients": {
+      "type": "ecoms-ingredient-cards",
+      "settings": {
+        "metafield": "ecoms.ingredients",
+        "eyebrow": "Ingredientes",
+        "heading": "Qué hay *adentro.*",
+        "note": "Información según la etiqueta del producto. Los resultados varían según cada persona.",
+        "padding_top": 44,
+        "padding_bottom": 32
+      }
+    },
+    "yesno": {
+      "type": "ecoms-yes-no",
+      "settings": {
+        "heading": "Claro y sin letra chica | Lo que *sí* y lo que *no* es.",
+        "yes_title": "Sí es",
+        "yes_items": "Un suplemento alimenticio de colágeno en polvo\nSin sabor, de origen bovino grass-fed\nPara adultos, junto con una alimentación equilibrada",
+        "no_title": "No es",
+        "no_items": "Un medicamento\nUn producto para bajar de peso\nApto para vegetarianos (es de origen bovino)\nUna promesa de resultados iguales para todos",
+        "padding_top": 44,
+        "padding_bottom": 8
+      }
+    },
+    "faq": {
+      "type": "ecoms-faq",
+      "blocks": {
+        "f1": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo pago?",
+            "answer": "<p>Puedes pagar al recibir tu pedido, en todo Chile y sin costo adicional, o pagar ahora con tarjeta (débito o crédito) desde el formulario.</p>"
+          }
+        },
+        "f2": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuánto demora en llegar?",
+            "answer": "<p>Entre 2 y 5 días hábiles según tu comuna. Te enviamos el seguimiento de tu pedido.</p>"
+          }
+        },
+        "f3": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo lo tomo?",
+            "answer": "<p>Mezcla 1 scoop (unos 20 g) en agua, café, jugos o batidos y revuelve bien. Puedes tomarlo de una vez o repartido durante el día.</p>"
+          }
+        },
+        "f4": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Tiene sabor?",
+            "answer": "<p>No, es sin sabor. Por eso se mezcla con tus bebidas de siempre sin cambiarlas.</p>"
+          }
+        },
+        "f5": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuántas porciones trae?",
+            "answer": "<p>El pote de 567 g trae unas 28 porciones, según la etiqueta. Confirma el dato exacto en el envase.</p>"
+          }
+        },
+        "f6": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Es apto para vegetarianos?",
+            "answer": "<p>No: es colágeno de origen bovino (de vacas alimentadas con pasto).</p>"
+          }
+        },
+        "f7": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Es para bajar de peso?",
+            "answer": "<p>No. Es un suplemento alimenticio y no está pensado para bajar de peso ni reemplaza una alimentación variada y equilibrada.</p>"
+          }
+        },
+        "f8": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Quién debe consultar antes?",
+            "answer": "<p>Si estás embarazada o amamantando, tienes alergias o una condición médica, consulta antes a un profesional de la salud.</p>"
+          }
+        },
+        "f9": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Y si no me gusta?",
+            "answer": "<p>Tienes 10 días de retracto con el producto sin abrir y con el sello de seguridad intacto, y 6 meses de garantía legal si llega con una falla.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6",
+        "f7",
+        "f8",
+        "f9"
+      ],
+      "settings": {
+        "style": "stack",
+        "heading": "Preguntas *frecuentes.*",
+        "icon": "plus",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "reviews": {
+      "type": "ecoms-reviews",
+      "settings": {
+        "metafield": "ecoms.reviews",
+        "style": "masonry",
+        "heading": "Opiniones de clientas",
+        "per_page": 6,
+        "write_label": "Escribe una reseña",
+        "write_link": "/pages/contact",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "cta": {
+      "type": "ecoms-cta-band",
+      "settings": {
+        "style": "soft",
+        "heading": "Suma NeoCell a tu *rutina.*",
+        "text": "Un scoop al día. Pagas cuando lo recibes.",
+        "button_label": "Elegir mi pack · desde $24.990",
+        "trust_1": "Pagas al recibir",
+        "trust_2": "Envíos a todo Chile",
+        "trust_3": "10 días de retracto",
+        "width": "full"
+      }
+    },
+    "compare": {
+      "type": "ecoms-comparison",
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "feature": "20 g de colágeno hidrolizado por porción",
+            "value_1": true
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "feature": "Sin sabor: se mezcla con tus bebidas",
+            "value_1": true
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "feature": "Colágeno bovino grass-fed",
+            "value_1": true
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "feature": "Sin gluten y sin transgénicos (según listados del producto)",
+            "value_1": true
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ],
+      "settings": {
+        "style": "table",
+        "heading": "Qué incluye *NeoCell.*",
+        "col_1": "NeoCell",
+        "show_image": true,
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "badges": {
+      "type": "ecoms-feature-grid",
+      "blocks": {
+        "g1": {
+          "type": "feature",
+          "settings": {
+            "icon": "sparkle",
+            "heading": "20 g de colágeno por porción",
+            "text": ""
+          }
+        },
+        "g2": {
+          "type": "feature",
+          "settings": {
+            "icon": "drop",
+            "heading": "Sin sabor",
+            "text": ""
+          }
+        },
+        "g3": {
+          "type": "feature",
+          "settings": {
+            "icon": "leaf",
+            "heading": "Colágeno grass-fed",
+            "text": ""
+          }
+        },
+        "g4": {
+          "type": "feature",
+          "settings": {
+            "icon": "box",
+            "heading": "Rinde unas 28 porciones",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ],
+      "settings": {
+        "heading": "",
+        "style": "center",
+        "width": "full",
+        "padding_top": 8,
+        "padding_bottom": 8
+      }
+    }
+  },
+  "order": [
+    "main",
+    "badges",
+    "benefits",
+    "ingredients",
+    "compare",
+    "routine",
+    "top",
+    "yesno",
+    "reviews",
+    "faq",
+    "cta"
+  ]
+}
