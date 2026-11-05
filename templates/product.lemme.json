@@ -85,7 +85,10 @@
             "tier3_pct": 0,
             "tier3_label": "4 frascos · 35% dto",
             "tier3_tag": "Mejor precio por frasco",
-            "tier3_note": ""
+            "tier3_note": "",
+            "tier1_gallery": 1,
+            "tier2_gallery": 6,
+            "tier3_gallery": 7
           }
         },
         "ul": {
@@ -409,7 +412,7 @@
       "settings": {
         "eyebrow": "Beneficios",
         "heading": "Lo que aporta a *tu rutina.*",
-        "product_image_index": 1,
+        "product_image_index": 4,
         "note": "Úsalo junto con una alimentación equilibrada y actividad física. Resultados varían según cada persona.",
         "button_label": "Elegir mi pack",
         "padding_top": 44,
@@ -545,7 +548,8 @@
         "heading": "La fórmula, *en claro.*",
         "text": "Lemme Burn es un suplemento alimenticio en cápsulas veganas, con té verde, vitaminas B6 y B12 y Actiponin®. Esto es lo que dice su etiqueta.",
         "padding_top": 44,
-        "padding_bottom": 32
+        "padding_bottom": 32,
+        "image": "shopify://shop_images/14.jpg"
       }
     },
     "routine": {
@@ -560,6 +564,18 @@
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "howto": {
+      "type": "ecoms-image-text",
+      "settings": {
+        "image_side": "top",
+        "product_image_index": 5,
+        "heading": "Dos cápsulas | Un vaso de agua, *y listo.*",
+        "intro": "Una porción son 2 cápsulas al día, con o sin alimentos.",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 24
       }
     },
     "yesno": {
@@ -769,6 +785,7 @@
     "compare",
     "diff",
     "routine",
+    "howto",
     "yesno",
     "demo",
     "ugc",
