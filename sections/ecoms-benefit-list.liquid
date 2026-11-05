@@ -25,6 +25,7 @@
         {%- if section.settings.heading != blank -%}{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2' %}{%- endif -%}
       </div>
     {%- endif -%}
+    {%- if request.design_mode -%}<p style="margin:0 0 8px;font:12px/1.4 monospace;color:#b00">DEBUG foto: idx={{ section.settings.product_image_index }} · fotos del producto={{ product.images.size }} · media={{ product.media.size }} · encontrada={% if bl_img != blank %}sí{% else %}no{% endif %} · url={{ bl_img | image_url: width: 200 }}</p>{%- endif -%}
     <!-- ec-bl image: idx={{ section.settings.product_image_index }} images={{ product.images.size }} media={{ product.media.size }} found={% if bl_img != blank %}yes{% else %}no{% endif %} -->
     <div class="ec-bl{% if bl_img == blank %} ec-bl--solo{% endif %}">
     <div class="ec-bl__copy">

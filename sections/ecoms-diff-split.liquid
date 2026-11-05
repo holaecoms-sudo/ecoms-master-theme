@@ -20,6 +20,7 @@
       <div class="ec-sec-h">{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2' %}</div>
     {%- endif -%}
     {%- if section.settings.text != blank -%}<p class="ec-ds__t">{{ section.settings.text | escape }}</p>{%- endif -%}
+    {%- if request.design_mode -%}<p style="margin:0 0 8px;font:12px/1.4 monospace;color:#b00">DEBUG foto: idx={{ section.settings.product_image_index }} · fotos del producto={{ product.images.size }} · media={{ product.media.size }} · encontrada={% if ds_img != blank %}sí{% else %}no{% endif %} · url={{ ds_img | image_url: width: 200 }}</p>{%- endif -%}
     <!-- ec-ds image: idx={{ section.settings.product_image_index }} images={{ product.images.size }} found={% if ds_img != blank %}yes{% else %}no{% endif %} -->
     <div class="ec-ds{% if ds_img == blank %} ec-ds--solo{% endif %}">
     {%- if ds_img != blank -%}
