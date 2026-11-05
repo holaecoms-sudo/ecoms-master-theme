@@ -17,7 +17,7 @@
 </table>
 {%- assign bal_qty = 0 -%}{%- for line in subtotal_line_items -%}{%- if line.product.handle == 'balsamo-pdrn-hidratante-colageno' -%}{%- assign bal_qty = bal_qty | plus: line.quantity -%}{%- endif -%}{%- endfor -%}
 {%- assign mel_qty = 0 -%}{%- for line in subtotal_line_items -%}{%- if line.product.handle == 'dr-melaxin' -%}{%- assign mel_qty = mel_qty | plus: line.quantity -%}{%- endif -%}{%- endfor -%}
-{%- if bal_qty >= 4 -%}<div style="margin-top:12px;padding:10px 14px;background:#fff7d6;border-radius:8px;font-size:14px"><b>Ojo bodega:</b> pack de 4 barras. Verificar que el paquete lleve las 4 barras.</div>{%- endif -%}
-{%- if mel_qty >= 4 -%}<div style="margin-top:12px;padding:10px 14px;background:#fff7d6;border-radius:8px;font-size:14px"><b>Ojo bodega:</b> pack de 4 frascos de Melaxin (1 de regalo). Verificar que el paquete lleve los 4 frascos.</div>{%- endif -%}
+{%- if bal_qty >= 4 -%}<div style="margin-top:12px;padding:10px 14px;background:#fff7d6;border-radius:8px;font-size:14px"><b>Ojo bodega:</b> pack de 4 barras (35% de descuento). Verificar que el paquete lleve las 4 barras.</div>{%- endif -%}
+{%- if mel_qty >= 3 -%}<div style="margin-top:12px;padding:10px 14px;background:#fff7d6;border-radius:8px;font-size:14px"><b>Ojo bodega:</b> Melaxin llévate 3, paga 2 (el 3º va de regalo). Verificar que el paquete lleve los 3 frascos.</div>{%- endif -%}
 <div style="padding-top:14px"><a href="{{ order_status_url }}" style="color:#B5536A;font-size:14px">Ver pedido</a></div>
 </td></tr></table></body></html>
