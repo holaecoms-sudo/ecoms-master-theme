@@ -254,7 +254,7 @@
         "limit": 8,
         "width": "full",
         "padding_top": 4,
-        "padding_bottom": 24
+        "padding_bottom": 16
       }
     },
     "demo": {
