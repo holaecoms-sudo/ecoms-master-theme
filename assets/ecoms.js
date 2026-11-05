@@ -207,8 +207,9 @@
   let orderState = null;
   function orderSub(qty) {
     const packs = $('[data-ec-packs]');
+    if (!packs) return null; // No pack selector on the page (offers live in the app's form): keep the buttons' own subline.
     const radio = packs && packs.querySelector('input[type="radio"]:checked');
-    const plural = (packs && packs.dataset.unitName) || 'unidades';
+    const plural =(packs && packs.dataset.unitName) || 'unidades';
     const unit = qty === 1 ? plural.replace(/s$/i, '') : plural;
     const pct = radio ? Math.round(Number(radio.dataset.pct) || 0) : 0;
     const gift = radio && (radio.dataset.label || '').match(/regalamos\s+(\d+)/i);
@@ -219,7 +220,7 @@
     if (qty != null) orderState = { qty, total };
     if (!orderState) return;
     const sub = orderSub(orderState.qty);
-    $$('[data-ec-sticky-sub]').forEach((el) => { if (el.textContent !== sub) el.textContent = sub; });
+    if (sub != null) $$('[data-ec-sticky-sub]').forEach((el) => { if (el.textContent !== sub) el.textContent = sub; });
     // The app's button: rewrite its text nodes in place (keeps its icon and styles); re-applied if the app redraws it.
     const base = ($('[data-ec-open-cod]') || {}).dataset?.ecOpenCod || '';
     if (!base) return;
@@ -233,6 +234,7 @@
       if (!nodes.length) return;
       const main = `${base.trim()} · ${money(orderState.total)}`;
       if (nodes[0].data.trim() !== main) nodes[0].data = main;
+      if (sub == null) return;
       if (nodes[1]) { if (nodes[1].data.trim() !== sub) nodes[1].data = sub; return; }
       let small = btn.querySelector('[data-ec-order-sub]');
       if (!small) {
