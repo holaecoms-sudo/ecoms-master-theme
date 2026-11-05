@@ -76,6 +76,13 @@
             "priority_label": "Quiero envío prioritario"
           }
         },
+        "offer": {
+          "type": "text",
+          "settings": {
+            "text": "<p style=\"text-align:center\">Llévate 2 y ahorras $9.990 · 4 frascos con 35% de descuento</p>",
+            "fixed": false
+          }
+        },
         "stock": {
           "type": "stock",
           "disabled": true,
@@ -135,6 +142,7 @@
         "benefits",
         "price",
         "buy",
+        "offer",
         "stock",
         "dlv",
         "rs",
