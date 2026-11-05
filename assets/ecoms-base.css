@@ -1847,3 +1847,5 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
   .ec-pdp__sub--clamp { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
   .ec-pdp__sub--clamp > * { display: inline; }
 }
+/* Busy floating button: hide its label under the spinner (the Christmas skin forces white text on it). */
+.ec-sticky .ec-sticky__cod[aria-busy='true'] * { color: transparent !important; }

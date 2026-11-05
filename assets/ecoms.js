@@ -657,27 +657,34 @@
         if (!r) return;
         const tier = Number(r.value);
         const gifts = $$('.ec-gt__gift[data-gift]', box);
+        const busy = [go, ...$$('.ec-sticky__cod')];
         go.disabled = true;
-        go.setAttribute('aria-busy', 'true');
+        busy.forEach((b) => b.setAttribute('aria-busy', 'true'));
         try {
           // Start from an empty cart so the form shows exactly this pack (earlier tries or other items don't
-          // pile up and change the total).
-          const cleared = await fetch(`${window.Shopify?.routes?.root || '/'}cart/clear.js`, { method: 'POST', headers: { Accept: 'application/json' } });
-          if (!cleared.ok) throw new Error('No se pudo preparar tu pedido. Intenta de nuevo.');
+          // pile up and change the total). Skipped when the header's cart count says it's already empty
+          // (most ad visitors), which saves a whole request before the form.
+          const bubble = document.getElementById('cart-icon-bubble');
+          const cartEmpty = bubble && !bubble.querySelector('.ec-cart-count, .cart-count-bubble');
+          if (!cartEmpty) {
+            const cleared = await fetch(`${window.Shopify?.routes?.root || '/'}cart/clear.js`, { method: 'POST', headers: { Accept: 'application/json' } });
+            if (!cleared.ok) throw new Error('No se pudo preparar tu pedido. Intenta de nuevo.');
+          }
           const extra = gifts.filter((g) => tier >= Number(g.dataset.tier)).map((g) => ({ id: Number(g.dataset.gift), quantity: 1 }));
           if (priority?.checked) extra.push({ id: Number(priority.value), quantity: 1 });
           // Straight to the pay-on-delivery form: the cart drawer opens invisibly (the app's cart button lives
           // there), its button is clicked, then the drawer closes behind the form.
           if (box.dataset.openCod) document.documentElement.classList.add('ec-silent-cart');
           await addVariant(box.dataset.variant, Number(r.dataset.qty), 'gift_tiers', extra);
-          if (box.dataset.openCod) openCodForm(box.dataset.openCod, true);
+          // Keep the button (and the sticky bar's) spinning until the form is actually on screen, at most 8 s.
+          if (box.dataset.openCod) await Promise.race([openCodForm(box.dataset.openCod, true), new Promise((ok) => setTimeout(ok, 8000))]);
         } catch (e) {
           document.documentElement.classList.remove('ec-silent-cart');
           const note = $('[data-ec-add-error]', box);
           if (note) { note.textContent = e.message; note.hidden = false; }
         } finally {
           go.disabled = false;
-          go.removeAttribute('aria-busy');
+          busy.forEach((b) => b.removeAttribute('aria-busy'));
         }
       });
     });
@@ -694,23 +701,28 @@
     return hits.find((el) => inCart(el) === !!fromCart) || hits[0];
   }
 
+  // Resolves once the app's form is on screen (or it never showed), so callers can keep their button busy
+  // until then instead of looking idle while the app loads.
   function openCodForm(text, silent) {
-    const find = () => codButton(text, true);
-    let tries = 0;
-    const timer = setInterval(() => {
-      const btn = find();
-      if (btn || ++tries > 20) {
-        clearInterval(timer);
-        if (btn) btn.click();
-        if (!silent) return;
-        // Silent mode: close the invisible drawer once the form is open; if the app's button never showed,
-        // reveal the drawer so the shopper still sees their cart.
-        setTimeout(() => {
-          if (btn) { /* Closing the drawer while the COD form is open makes the app empty its own cart: wait until the form closes. */ const wait = { seen: false, start: Date.now() }; wait.id = setInterval(() => { const formOpen = $$('[data-rsi-cod-button]').some((b) => b.offsetParent && !b.closest('cart-drawer, #CartDrawer, .drawer')); if (formOpen) { wait.seen = true; return; } if (!wait.seen && Date.now() - wait.start < 15000) return; clearInterval(wait.id); $('cart-drawer')?.close?.(); document.documentElement.classList.remove('ec-silent-cart'); }, 400); return; }
-          document.documentElement.classList.remove('ec-silent-cart');
-        }, btn ? 700 : 0);
-      }
-    }, 200);
+    return new Promise((resolve) => {
+      const find = () => codButton(text, true);
+      let tries = 0;
+      const timer = setInterval(() => {
+        const btn = find();
+        if (btn || ++tries > 40) {
+          clearInterval(timer);
+          if (btn) btn.click();
+          if (!btn) resolve(false);
+          if (!silent) { if (btn) resolve(true); return; }
+          // Silent mode: close the invisible drawer once the form is open; if the app's button never showed,
+          // reveal the drawer so the shopper still sees their cart.
+          setTimeout(() => {
+            if (btn) { /* Closing the drawer while the COD form is open makes the app empty its own cart: wait until the form closes. */ const wait = { seen: false, start: Date.now() }; wait.id = setInterval(() => { const formOpen = $$('[data-rsi-cod-button]').some((b) => b.offsetParent && !b.closest('cart-drawer, #CartDrawer, .drawer')); if (formOpen) { if (!wait.seen) resolve(true); wait.seen = true; return; } if (!wait.seen && Date.now() - wait.start < 15000) return; resolve(wait.seen); clearInterval(wait.id); $('cart-drawer')?.close?.(); document.documentElement.classList.remove('ec-silent-cart'); }, 150); return; }
+            document.documentElement.classList.remove('ec-silent-cart');
+          }, btn ? 700 : 0);
+        }
+      }, 100);
+    });
   }
 
   // «Llévalo en pack»: the offer only applies with the main product, so the same click also adds one unit
