@@ -23,13 +23,6 @@
             "text": ""
           }
         },
-        "hook": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Complementa tu rutina de bienestar, junto con una alimentación equilibrada y actividad física</p>",
-            "fixed": true
-          }
-        },
         "lead": {
           "type": "text",
           "settings": {
@@ -136,7 +129,6 @@
       "block_order": [
         "title",
         "social",
-        "hook",
         "lead",
         "benefits",
         "price",
