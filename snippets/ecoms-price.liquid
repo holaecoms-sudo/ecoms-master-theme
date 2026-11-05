@@ -7,6 +7,7 @@
   - style: {String} 'pill' (Flex, default) | 'badge' (Brand) | 'direct'
   - qty: {Number} optional starting quantity (default 1)
   - total: {Number} optional starting total in cents for that quantity (pack discount included)
+  - compact: {Boolean} optional: one tight line (smaller price, no «Total por…» line)
   - unit_name: {String} optional plural noun for the quantity line (e.g. «cepillos»)
 {%- endcomment -%}
 {%- liquid
@@ -23,7 +24,7 @@
     assign ec_save_pct = ec_save | times: 100.0 | divided_by: pp_was | round
   endif
 -%}
-<div class="ec-pp" data-ec-price-live data-unit="{{ variant.price }}" data-unit-compare="{{ pp_unit_cmp }}">
+<div class="ec-pp{% if compact %} ec-pp--compact{% endif %}" data-ec-price-live data-unit="{{ variant.price }}" data-unit-compare="{{ pp_unit_cmp }}">
 {%- if style == 'direct' -%}
   <div class="ec-price ec-price--direct-top" data-ec-pp-savebox {% if ec_save <= 0 %}hidden{% endif %}>
     <s class="ec-strike" data-ec-pp-was>{{ pp_was | money }}</s>
@@ -37,7 +38,7 @@
     {%- if style == 'badge' -%}
       <span class="ec-badge-up" data-ec-pp-savebox {% if ec_save <= 0 %}hidden{% endif %}>Ahorra <span data-ec-pp-pct>{{ ec_save_pct }}</span>%</span>
     {%- else -%}
-      <span class="ec-pill-save" data-ec-pp-savebox {% if ec_save <= 0 %}hidden{% endif %}>Ahorras <span data-ec-pp-save>{{ ec_save | money }}</span> (<span data-ec-pp-pct>{{ ec_save_pct }}</span>%)</span>
+      <span class="ec-pill-save" data-ec-pp-savebox {% if ec_save <= 0 %}hidden{% endif %}>Ahorras&nbsp;<span data-ec-pp-save>{{ ec_save | money }}</span>&nbsp;(<span data-ec-pp-pct>{{ ec_save_pct }}</span>%)</span>
     {%- endif -%}
   </div>
 {%- endif -%}

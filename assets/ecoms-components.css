@@ -232,3 +232,10 @@
   .ec-pdp--thumbs-below .ec-gal__thumbs { grid-column: 1; grid-row: 2; flex-direction: row; padding: 0; }
   .ec-pdp--thumbs-below .ec-minifeat { margin-left: 0 !important; }
 }
+
+/* Compact price row (price block setting «Precio compacto»): one tight line, per-unit total hidden (packs show it). */
+.ec-pp--compact .ec-price { gap: 4px 8px; }
+.ec-pp--compact .ec-price__now { font-size: 24px; }
+.ec-pp--compact .ec-strike { font-size: 15px; }
+.ec-pp--compact .ec-price .ec-pill-save { padding: 3px 8px; font-size: 12px; }
+.ec-pp--compact .ec-pp__qty { display: none; }

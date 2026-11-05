@@ -504,7 +504,7 @@
 
           {%- when 'price' -%}
             <div id="EcPrice-{{ section.id }}" class="ec-pdp__price" data-ec-refresh {{ block.shopify_attributes }}>
-              {%- render 'ecoms-price', variant: variant, style: block.settings.style, qty: start_qty, total: start_total, unit_name: start_unit_name -%}
+              {%- render 'ecoms-price', variant: variant, style: block.settings.style, compact: block.settings.compact, qty: start_qty, total: start_total, unit_name: start_unit_name -%}
             </div>
             {%- comment -%}
               Shipping line under the price: the real standard rate (block setting) and the free-shipping
@@ -2018,6 +2018,12 @@
             }
           ],
           "default": "pill"
+        },
+        {
+          "type": "checkbox",
+          "id": "compact",
+          "label": "Precio compacto (una sola línea, sin «Total por…»)",
+          "default": false
         },
         {
           "type": "number",
