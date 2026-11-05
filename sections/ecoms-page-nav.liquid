@@ -1,0 +1,68 @@
+{%- comment -%}
+  ECOMS · Menú interno: a sticky row of pills that jump to sections of the same page (Beneficios, Ingredientes, Reseñas…).
+  Each pill points to a section KEY of the template; pills whose section is hidden or missing are not shown.
+{%- endcomment -%}
+{%- if section.blocks.size > 0 or request.design_mode -%}
+{{ 'ecoms-ritual-sections.css' | asset_url | stylesheet_tag }}
+<nav class="ec-pn" data-ec-pn aria-label="Secciones de la página">
+  <div class="ec-pn__in">
+    {%- for block in section.blocks -%}
+      <a href="#" class="ec-pn__a" data-ec-pn-to="{{ block.settings.target | strip | escape }}" {{ block.shopify_attributes }}>{{ block.settings.label | escape }}</a>
+    {%- endfor -%}
+  </div>
+</nav>
+<script>
+  (function () {
+    var nav = document.currentScript.previousElementSibling;
+    if (!nav || nav.__ecPn) return;
+    nav.__ecPn = true;
+    var links = [].slice.call(nav.querySelectorAll('[data-ec-pn-to]'));
+    function target(a) { var k = a.getAttribute('data-ec-pn-to'); return k ? document.querySelector('[id$="__' + k + '"]') : null; }
+    function offsetTop() {
+      var top = 0;
+      var h = document.querySelector('.section-header, #shopify-section-header, header.header');
+      if (h) { var p = getComputedStyle(h).position; if (p === 'sticky' || p === 'fixed') top = h.getBoundingClientRect().height; }
+      return top;
+    }
+    function layout() { nav.style.top = offsetTop() + 'px'; }
+    links.forEach(function (a) { if (!target(a)) a.hidden = true; });
+    layout(); window.addEventListener('resize', layout);
+    nav.addEventListener('click', function (e) {
+      var a = e.target.closest('[data-ec-pn-to]'); if (!a) return;
+      var t = target(a); if (!t) return;
+      e.preventDefault();
+      var y = t.getBoundingClientRect().top + window.pageYOffset - offsetTop() - nav.offsetHeight - 4;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    });
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          links.forEach(function (a) { a.classList.toggle('is-on', target(a) === en.target); });
+        });
+      }, { rootMargin: '-35% 0px -55% 0px' });
+      links.forEach(function (a) { var t = target(a); if (t) io.observe(t); });
+    }
+  })();
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ECOMS · Menú interno",
+  "tag": "div",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Enlace",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Texto", "default": "Beneficios" },
+        { "type": "text", "id": "target", "label": "Clave de la sección", "info": "La clave de la sección en la plantilla, por ejemplo: benefits, ingredients, reviews, faq." }
+      ]
+    }
+  ],
+  "max_blocks": 9,
+  "presets": [ { "name": "ECOMS · Menú interno" } ]
+}
+{% endschema %}
