@@ -46,60 +46,8 @@
           "settings": {
             "style": "pill",
             "ship_local_title": "",
-            "ship_local_text": ""
-          }
-        },
-        "pk": {
-          "type": "packs",
-          "settings": {
-            "from_metafield": true,
-            "heading": "",
-            "layout": "offer",
-            "show_cta_total": true,
-            "help": "",
-            "default_tier": "2",
-            "item_name": "potes",
-            "show_summary": true,
-            "summary_label": "Tu pack incluye",
-            "show_free_shipping": true,
-            "discounts_live": true,
-            "tier1_qty": 1,
-            "tier1_label": "1 pote",
-            "tier1_tag": "",
-            "tier1_note": "Para probar",
-            "tier2_enabled": true,
-            "tier2_qty": 2,
-            "tier2_pct": 0,
-            "tier2_label": "Pack 2 potes",
-            "tier2_tag": "Más elegido",
-            "tier2_note": "",
-            "tier3_enabled": true,
-            "tier3_qty": 4,
-            "tier3_pct": 0,
-            "tier3_label": "4 potes · 35% dto",
-            "tier3_tag": "Mejor precio por pote",
-            "tier3_note": ""
-          }
-        },
-        "ul": {
-          "type": "unlock",
-          "settings": {
-            "heading": "Desbloquea beneficios con tu pack",
-            "c1_label": "Envío gratis",
-            "c1_icon": "truck",
-            "c1_qty": 1,
-            "c1_locked": "Envío gratis a todo Chile",
-            "c1_open": "¡Desbloqueado!",
-            "c2_label": "25% de descuento",
-            "c2_icon": "cash",
-            "c2_qty": 2,
-            "c2_locked": "Lleva 2 y ahorras 25%",
-            "c2_open": "¡25% desbloqueado!",
-            "c3_label": "35% de descuento",
-            "c3_icon": "cash",
-            "c3_qty": 4,
-            "c3_locked": "Lleva 4 y llegas al 35%",
-            "c3_open": "¡35% desbloqueado!"
+            "ship_local_text": "",
+            "compact": false
           }
         },
         "buy": {
@@ -115,8 +63,15 @@
             "cod_only": true,
             "add_label_cod": "Comprar con tarjeta",
             "buy_now_label_cod": "",
-            "card_label": "Pagar ahora con tarjeta · 10% de dto",
+            "card_label": "",
             "card_code": "PAGAYA10"
+          }
+        },
+        "offer": {
+          "type": "text",
+          "settings": {
+            "text": "<p style=\"text-align:center\">Llévate 2 y ahorras $12.490 · 4 potes con 35% de descuento</p>",
+            "fixed": false
           }
         },
         "stock": {
@@ -156,9 +111,8 @@
         "lead",
         "benefits",
         "price",
-        "pk",
-        "ul",
         "buy",
+        "offer",
         "stock",
         "dlv",
         "acc"
@@ -474,7 +428,7 @@
         "style": "soft",
         "heading": "Suma NeoCell a tu *rutina.*",
         "text": "Un scoop al día. Pagas cuando lo recibes.",
-        "button_label": "Elegir mi pack · desde $24.990",
+        "button_label": "Pedir ahora · $24.990",
         "trust_1": "Pagas al recibir",
         "trust_2": "Envíos a todo Chile",
         "trust_3": "10 días de retracto",
