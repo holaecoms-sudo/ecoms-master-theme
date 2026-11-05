@@ -183,3 +183,27 @@
 
 /* No photo: one column (declared last so the two-column desktop rules above don't win). */
 @media (min-width: 750px) { .ec-ds.ec-ds--solo { grid-template-columns: minmax(0, 1fr); } .ec-bl.ec-bl--solo { grid-template-columns: minmax(0, 1fr); } }
+
+/* Dark banner with a strip of repeating tags */
+.ec-hb { display: grid; overflow: hidden; border-radius: 28px 28px 0 0; background: var(--ec-dark); color: var(--ec-bg); }
+.ec-hb__body { display: flex; flex-direction: column; justify-content: center; gap: 12px; padding: 28px 22px; }
+.ec-hb .ec-eyebrow { margin: 0; color: var(--ec-accent); }
+.ec-hb h2 { margin: 0; color: var(--ec-bg); }
+.ec-hb h2 em { color: var(--ec-accent); }
+.ec-sec .ec-hb__t { margin: 0; max-width: 520px; font-size: 16px; line-height: 1.5; opacity: 0.9; }
+.ec-sec .ec-hb__note { margin: 0; font-size: 11.5px; opacity: 0.7; }
+.ec-hb__media img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.ec-hb__strip { display: flex; gap: 26px; overflow: hidden; padding: 13px 18px; border-radius: 0 0 28px 28px; background: var(--ec-accent); color: var(--ec-dark); font-size: 13.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
+@media (min-width: 750px) { .ec-hb { grid-template-columns: 1.1fr 0.9fr; } .ec-hb--solo { grid-template-columns: minmax(0, 1fr); } .ec-hb__body { padding: 44px 40px; } .ec-hb__media img { height: 100%; aspect-ratio: auto; min-height: 340px; } .ec-hb__strip { font-size: 15px; } }
+
+/* Results card: gradient, photo, checklist */
+.ec-rr { display: grid; gap: 22px; align-items: center; padding: 22px; border-radius: 28px; background: linear-gradient(180deg, var(--ec-accent), var(--ec-soft)); }
+.ec-rr__media img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 22px; }
+.ec-rr h2 { margin: 0 0 14px; }
+.ec-rr__list { display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.ec-rr__list li { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 700; color: var(--ec-dark); line-height: 1.3; }
+.ec-rr__ck { display: grid; flex: none; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--ec-dark); color: var(--ec-accent); }
+.ec-rr__ck .ec-i { width: 15px; height: 15px; }
+.ec-sec .ec-rr__t { margin: 18px 0 0; color: var(--ec-dark); font-size: 15px; line-height: 1.5; }
+.ec-sec .ec-rr__note { margin: 10px 0 0; color: var(--ec-muted); font-size: 11.5px; }
+@media (min-width: 750px) { .ec-rr { grid-template-columns: minmax(0, 420px) 1fr; gap: 44px; padding: 32px; } .ec-rr--solo { grid-template-columns: minmax(0, 1fr); } }
