@@ -272,32 +272,32 @@
           "type": "feature",
           "settings": {
             "icon": "bolt",
-            "heading": "Vitaminas B6 y B12",
-            "text": "Participan en el metabolismo energético normal del organismo."
+            "heading": "Energía para tu día",
+            "text": "Las vitaminas B6 y B12 ayudan a disminuir el cansancio y la fatiga."
           }
         },
         "f2": {
           "type": "feature",
           "settings": {
-            "icon": "leaf",
-            "heading": "Extracto de té verde",
-            "text": "Aporta polifenoles, antioxidantes naturales del té verde."
+            "icon": "sparkle",
+            "heading": "Metabolismo energético",
+            "text": "Las vitaminas B participan en cómo tu cuerpo transforma los nutrientes en energía."
           }
         },
         "f3": {
           "type": "feature",
           "settings": {
-            "icon": "sparkle",
-            "heading": "Actiponin®",
-            "text": "Extracto de Gynostemma pentaphyllum, una planta tradicional de Asia."
+            "icon": "leaf",
+            "heading": "Antioxidantes naturales",
+            "text": "El extracto de té verde aporta polifenoles, antioxidantes de origen natural."
           }
         },
         "f4": {
           "type": "feature",
           "settings": {
-            "icon": "hand",
-            "heading": "Fácil de tomar",
-            "text": "Solo 2 cápsulas al día, con o sin alimentos."
+            "icon": "heart",
+            "heading": "Acompaña tus hábitos",
+            "text": "Con Actiponin® y 2 cápsulas al día, junto con buena alimentación y actividad física."
           }
         }
       },
@@ -308,7 +308,7 @@
         "f4"
       ],
       "settings": {
-        "heading": "Qué contiene | Lo que lleva *cada porción.*",
+        "heading": "Beneficios | Lo que *aporta* a tu rutina.",
         "style": "cards",
         "width": "full",
         "padding_top": 44,
