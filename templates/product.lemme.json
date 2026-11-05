@@ -148,10 +148,27 @@
             "label_5": "",
             "open_first": false
           }
+        },
+        "social": {
+          "type": "social",
+          "settings": {
+            "rating": "",
+            "text": ""
+          }
+        },
+        "rs": {
+          "type": "review_slider",
+          "settings": {
+            "style": "quote",
+            "stars_1": 5,
+            "stars_2": 5,
+            "stars_3": 5
+          }
         }
       },
       "block_order": [
         "title",
+        "social",
         "hook",
         "lead",
         "benefits",
@@ -161,6 +178,7 @@
         "buy",
         "stock",
         "dlv",
+        "rs",
         "acc"
       ],
       "settings": {
@@ -213,42 +231,156 @@
         "padding_bottom": 28
       }
     },
-    "top": {
-      "type": "ecoms-marquee",
+    "badges": {
+      "type": "ecoms-feature-grid",
+      "blocks": {
+        "g1": {
+          "type": "feature",
+          "settings": {
+            "icon": "bolt",
+            "heading": "Metabolismo energético",
+            "text": ""
+          }
+        },
+        "g2": {
+          "type": "feature",
+          "settings": {
+            "icon": "sparkle",
+            "heading": "Energía para tu día",
+            "text": ""
+          }
+        },
+        "g3": {
+          "type": "feature",
+          "settings": {
+            "icon": "leaf",
+            "heading": "Antioxidantes naturales",
+            "text": ""
+          }
+        },
+        "g4": {
+          "type": "feature",
+          "settings": {
+            "icon": "check",
+            "heading": "2 cápsulas al día",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ],
+      "settings": {
+        "heading": "",
+        "style": "center",
+        "width": "full",
+        "padding_top": 8,
+        "padding_bottom": 8
+      }
+    },
+    "nav": {
+      "type": "ecoms-page-nav",
+      "blocks": {
+        "n1": {
+          "type": "link",
+          "settings": {
+            "label": "Beneficios",
+            "target": "benefits"
+          }
+        },
+        "n2": {
+          "type": "link",
+          "settings": {
+            "label": "Ingredientes",
+            "target": "ingredients"
+          }
+        },
+        "n3": {
+          "type": "link",
+          "settings": {
+            "label": "Qué incluye",
+            "target": "compare"
+          }
+        },
+        "n4": {
+          "type": "link",
+          "settings": {
+            "label": "Cómo tomarlo",
+            "target": "routine"
+          }
+        },
+        "n5": {
+          "type": "link",
+          "settings": {
+            "label": "Videos",
+            "target": "demo"
+          }
+        },
+        "n6": {
+          "type": "link",
+          "settings": {
+            "label": "Reseñas",
+            "target": "reviews"
+          }
+        },
+        "n7": {
+          "type": "link",
+          "settings": {
+            "label": "Preguntas",
+            "target": "faq"
+          }
+        }
+      },
+      "block_order": [
+        "n1",
+        "n2",
+        "n3",
+        "n4",
+        "n5",
+        "n6",
+        "n7"
+      ],
+      "settings": {}
+    },
+    "benefits": {
+      "type": "ecoms-benefit-list",
       "blocks": {
         "b1": {
-          "type": "text",
+          "type": "benefit",
           "settings": {
-            "icon": "cash",
-            "text": "Pagas al recibir"
+            "title": "Apoya tu metabolismo energético",
+            "text": "Las vitaminas B6 y B12 participan en cómo tu cuerpo transforma los nutrientes en energía."
           }
         },
         "b2": {
-          "type": "text",
+          "type": "benefit",
           "settings": {
-            "icon": "truck",
-            "text": "Envío a todo Chile"
+            "title": "Ayuda a disminuir el cansancio y la fatiga",
+            "text": "Las vitaminas B6 y B12 contribuyen a disminuir el cansancio y la fatiga."
           }
         },
         "b3": {
-          "type": "text",
+          "type": "benefit",
           "settings": {
-            "icon": "box",
-            "text": "Seguimiento de tu pedido"
+            "title": "Aporta antioxidantes del té verde",
+            "text": "El extracto de té verde es fuente natural de polifenoles, antioxidantes de origen vegetal."
           }
         },
         "b4": {
-          "type": "text",
+          "type": "benefit",
           "settings": {
-            "icon": "return",
-            "text": "10 días de retracto"
+            "title": "Con Actiponin®, extracto de Gynostemma",
+            "text": "Actiponin® es un extracto de Gynostemma pentaphyllum, una planta que se usa tradicionalmente en Asia. Va junto con el té verde y las vitaminas B en la misma fórmula."
           }
         },
         "b5": {
-          "type": "text",
+          "type": "benefit",
           "settings": {
-            "icon": "leaf",
-            "text": "60 cápsulas veganas"
+            "title": "Solo 2 cápsulas al día",
+            "text": "Una porción son 2 cápsulas, con o sin alimentos. Un frasco de 60 cápsulas rinde 30 días."
           }
         }
       },
@@ -260,88 +392,13 @@
         "b5"
       ],
       "settings": {
-        "style": "band",
-        "speed": 30,
-        "width": "full"
-      }
-    },
-    "benefits": {
-      "type": "ecoms-feature-grid",
-      "blocks": {
-        "f1": {
-          "type": "feature",
-          "settings": {
-            "icon": "bolt",
-            "heading": "Energía para tu día",
-            "text": "Las vitaminas B6 y B12 ayudan a disminuir el cansancio y la fatiga."
-          }
-        },
-        "f2": {
-          "type": "feature",
-          "settings": {
-            "icon": "sparkle",
-            "heading": "Metabolismo energético",
-            "text": "Las vitaminas B participan en cómo tu cuerpo transforma los nutrientes en energía."
-          }
-        },
-        "f3": {
-          "type": "feature",
-          "settings": {
-            "icon": "leaf",
-            "heading": "Antioxidantes naturales",
-            "text": "El extracto de té verde aporta polifenoles, antioxidantes de origen natural."
-          }
-        },
-        "f4": {
-          "type": "feature",
-          "settings": {
-            "icon": "heart",
-            "heading": "Acompaña tus hábitos",
-            "text": "Con Actiponin® y 2 cápsulas al día, junto con buena alimentación y actividad física."
-          }
-        },
-        "f5": {
-          "type": "feature",
-          "settings": {
-            "icon": "box",
-            "heading": "Rinde 30 días",
-            "text": "Un frasco de 60 cápsulas son 30 porciones, a 2 cápsulas al día."
-          }
-        },
-        "f6": {
-          "type": "feature",
-          "settings": {
-            "icon": "check",
-            "heading": "Vegano y sin gluten",
-            "text": "Cápsulas veganas, sin gluten y sin transgénicos, según la etiqueta."
-          }
-        }
-      },
-      "block_order": [
-        "f1",
-        "f2",
-        "f3",
-        "f4",
-        "f5",
-        "f6"
-      ],
-      "settings": {
-        "heading": "Beneficios | Lo que *aporta* a tu rutina.",
-        "style": "cards",
-        "width": "full",
+        "eyebrow": "Beneficios",
+        "heading": "Lo que aporta a *tu rutina.*",
+        "product_image_index": 1,
+        "note": "Úsalo junto con una alimentación equilibrada y actividad física. Resultados varían según cada persona.",
+        "button_label": "Elegir mi pack",
         "padding_top": 44,
-        "padding_bottom": 20
-      }
-    },
-    "routine": {
-      "type": "ecoms-steps",
-      "settings": {
-        "metafield": "ecoms.steps",
-        "style": "cards",
-        "heading": "Cómo tomarlo | Tres pasos, *simple.*",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 32
       }
     },
     "ingredients": {
@@ -353,108 +410,6 @@
         "note": "Información según la etiqueta del producto. Los resultados varían según cada persona.",
         "padding_top": 44,
         "padding_bottom": 32
-      }
-    },
-    "yesno": {
-      "type": "ecoms-yes-no",
-      "settings": {
-        "heading": "Claro y sin letra chica | Lo que *sí* y lo que *no* es.",
-        "yes_title": "Sí es",
-        "yes_items": "Un suplemento alimenticio en cápsulas\n60 cápsulas veganas (30 porciones)\nPara adultos, junto con una alimentación equilibrada",
-        "no_title": "No es",
-        "no_items": "Un medicamento\nUn reemplazo de una alimentación equilibrada\nPara menores de edad, ni para embarazadas o en lactancia sin consultar\nUna promesa de resultados iguales para todos",
-        "padding_top": 44,
-        "padding_bottom": 8
-      }
-    },
-    "faq": {
-      "type": "ecoms-faq",
-      "blocks": {
-        "f1": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Cómo pago?",
-            "answer": "<p>Puedes pagar al recibir tu pedido, en todo Chile y sin costo adicional, o pagar ahora con tarjeta (débito o crédito) desde el formulario.</p>"
-          }
-        },
-        "f2": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Cuánto demora en llegar?",
-            "answer": "<p>Entre 2 y 5 días hábiles según tu comuna. Te enviamos el seguimiento de tu pedido.</p>"
-          }
-        },
-        "f3": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Cuántas cápsulas tomo?",
-            "answer": "<p>La porción es de 2 cápsulas al día, con o sin alimentos y con un vaso de agua. No excedas la porción diaria.</p>"
-          }
-        },
-        "f4": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Quién no debe tomarlo?",
-            "answer": "<p>Si estás embarazada o amamantando, eres menor de edad, tienes una condición médica o tomas medicamentos, consulta antes a un profesional de la salud.</p>"
-          }
-        },
-        "f5": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Es un medicamento?",
-            "answer": "<p>No. Es un suplemento alimenticio: no reemplaza una alimentación variada y equilibrada ni un estilo de vida saludable.</p>"
-          }
-        },
-        "f6": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Y si no me gusta?",
-            "answer": "<p>Tienes 10 días de retracto con el producto sin abrir y con el sello de seguridad intacto, y 6 meses de garantía legal si llega con una falla.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "f1",
-        "f2",
-        "f3",
-        "f4",
-        "f5",
-        "f6"
-      ],
-      "settings": {
-        "style": "stack",
-        "heading": "Preguntas *frecuentes.*",
-        "icon": "plus",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "reviews": {
-      "type": "ecoms-reviews",
-      "settings": {
-        "metafield": "ecoms.reviews",
-        "style": "masonry",
-        "heading": "Opiniones de clientas",
-        "per_page": 6,
-        "write_label": "Escribe una reseña",
-        "write_link": "/pages/contact",
-        "width": "full",
-        "padding_top": 32,
-        "padding_bottom": 32
-      }
-    },
-    "cta": {
-      "type": "ecoms-cta-band",
-      "settings": {
-        "style": "soft",
-        "heading": "Suma Lemme Burn a tu *rutina.*",
-        "text": "Sentirte bien empieza por un hábito simple. Pagas cuando lo recibes.",
-        "button_label": "Elegir mi pack · desde $19.990",
-        "trust_1": "Pagas al recibir",
-        "trust_2": "Envíos a todo Chile",
-        "trust_3": "10 días de retracto",
-        "width": "full"
       }
     },
     "compare": {
@@ -505,67 +460,280 @@
         "padding_bottom": 36
       }
     },
-    "badges": {
-      "type": "ecoms-feature-grid",
+    "diff": {
+      "type": "ecoms-diff-split",
       "blocks": {
-        "g1": {
-          "type": "feature",
-          "settings": {
-            "icon": "bolt",
-            "heading": "Metabolismo energético",
-            "text": ""
-          }
-        },
-        "g2": {
-          "type": "feature",
-          "settings": {
-            "icon": "sparkle",
-            "heading": "Energía para tu día",
-            "text": ""
-          }
-        },
-        "g3": {
-          "type": "feature",
+        "d1": {
+          "type": "badge",
           "settings": {
             "icon": "leaf",
-            "heading": "Antioxidantes naturales",
-            "text": ""
+            "label": "Vegano"
           }
         },
-        "g4": {
-          "type": "feature",
+        "d2": {
+          "type": "badge",
           "settings": {
             "icon": "check",
-            "heading": "2 cápsulas al día",
-            "text": ""
+            "label": "Sin gluten"
+          }
+        },
+        "d3": {
+          "type": "badge",
+          "settings": {
+            "icon": "verified",
+            "label": "Sin transgénicos"
+          }
+        },
+        "d4": {
+          "type": "badge",
+          "settings": {
+            "icon": "box",
+            "label": "30 porciones por frasco"
+          }
+        },
+        "d5": {
+          "type": "badge",
+          "settings": {
+            "icon": "drop",
+            "label": "2 cápsulas al día"
+          }
+        },
+        "d6": {
+          "type": "badge",
+          "settings": {
+            "icon": "shield",
+            "label": "Con sello de seguridad"
           }
         }
       },
       "block_order": [
-        "g1",
-        "g2",
-        "g3",
-        "g4"
+        "d1",
+        "d2",
+        "d3",
+        "d4",
+        "d5",
+        "d6"
       ],
       "settings": {
-        "heading": "",
-        "style": "center",
+        "heading": "La fórmula, *en claro.*",
+        "text": "Lemme Burn es un suplemento alimenticio en cápsulas veganas, con té verde, vitaminas B6 y B12 y Actiponin®. Esto es lo que dice su etiqueta.",
+        "padding_top": 44,
+        "padding_bottom": 32
+      }
+    },
+    "routine": {
+      "type": "ecoms-steps",
+      "settings": {
+        "metafield": "ecoms.steps",
+        "style": "cards",
+        "heading": "Cómo tomarlo | Tres pasos, *simple.*",
         "width": "full",
-        "padding_top": 8,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "yesno": {
+      "type": "ecoms-yes-no",
+      "settings": {
+        "heading": "Claro y sin letra chica | Lo que *sí* y lo que *no* es.",
+        "yes_title": "Sí es",
+        "yes_items": "Un suplemento alimenticio en cápsulas\n60 cápsulas veganas (30 porciones)\nPara adultos, junto con una alimentación equilibrada",
+        "no_title": "No es",
+        "no_items": "Un medicamento\nUn reemplazo de una alimentación equilibrada\nPara menores de edad, ni para embarazadas o en lactancia sin consultar\nUna promesa de resultados iguales para todos",
+        "padding_top": 44,
         "padding_bottom": 8
+      }
+    },
+    "demo": {
+      "type": "ecoms-demo",
+      "settings": {
+        "heading": "Clientas reales | Míralo en *acción.*",
+        "mode": "player",
+        "ratio": "story",
+        "width": "full",
+        "padding_top": 44,
+        "padding_bottom": 12
+      }
+    },
+    "ugc": {
+      "type": "ecoms-ugc",
+      "settings": {
+        "style": "grid",
+        "heading": "Clientas reales | Así lo *usan.*",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "reviews": {
+      "type": "ecoms-reviews",
+      "settings": {
+        "metafield": "ecoms.reviews",
+        "style": "masonry",
+        "heading": "Opiniones de clientas",
+        "per_page": 6,
+        "write_label": "Escribe una reseña",
+        "write_link": "/pages/contact",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "expert": {
+      "type": "ecoms-expert",
+      "settings": {
+        "heading": "Opinión de una *profesional.*",
+        "padding_top": 44,
+        "padding_bottom": 32
+      }
+    },
+    "more": {
+      "type": "ecoms-product-row",
+      "settings": {
+        "heading": "Otros productos que te pueden gustar",
+        "collection": "",
+        "limit": 4,
+        "min_products": 2,
+        "columns": 4,
+        "show_badge": true,
+        "hover_image": true,
+        "button_label": "Ver producto",
+        "padding_top": 40,
+        "padding_bottom": 32
+      }
+    },
+    "faq": {
+      "type": "ecoms-faq",
+      "blocks": {
+        "f1": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cómo pago?",
+            "answer": "<p>Puedes pagar al recibir tu pedido, en todo Chile y sin costo adicional, o pagar ahora con tarjeta (débito o crédito) desde el formulario.</p>"
+          }
+        },
+        "f2": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuánto demora en llegar?",
+            "answer": "<p>Entre 2 y 5 días hábiles según tu comuna. Te enviamos el seguimiento de tu pedido.</p>"
+          }
+        },
+        "f3": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Qué es Lemme Burn?",
+            "answer": "<p>Es un suplemento alimenticio en cápsulas con extracto de té verde, Actiponin® (extracto de Gynostemma pentaphyllum) y vitaminas B6 y B12.</p>"
+          }
+        },
+        "f4": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Qué es Actiponin®?",
+            "answer": "<p>Es un extracto de la planta Gynostemma pentaphyllum. En Lemme Burn se combina con té verde y vitaminas B6 y B12.</p>"
+          }
+        },
+        "f5": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Cuántas cápsulas tomo?",
+            "answer": "<p>La porción es de 2 cápsulas al día, con o sin alimentos y con un vaso de agua. No excedas la porción diaria.</p>"
+          }
+        },
+        "f6": {
+          "type": "faq",
+          "settings": {
+            "question": "¿En cuánto tiempo se nota?",
+            "answer": "<p>Cada persona responde distinto y no hay un plazo garantizado. Tómalo de forma constante, junto con una alimentación equilibrada y actividad física.</p>"
+          }
+        },
+        "f7": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Es vegano? ¿Tiene gluten?",
+            "answer": "<p>Según su etiqueta, las cápsulas son veganas y el producto es sin gluten y sin transgénicos.</p>"
+          }
+        },
+        "f8": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Lo puedo tomar con otros suplementos?",
+            "answer": "<p>Si ya tomas otros suplementos o medicamentos, consulta antes a un profesional de la salud.</p>"
+          }
+        },
+        "f9": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Puedo tomarlo si estoy embarazada o amamantando?",
+            "answer": "<p>Si estás embarazada o amamantando, tienes una condición médica o eres menor de edad, consulta antes a un profesional de la salud.</p>"
+          }
+        },
+        "f10": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Es un medicamento?",
+            "answer": "<p>No. Es un suplemento alimenticio: no reemplaza una alimentación variada y equilibrada ni un estilo de vida saludable.</p>"
+          }
+        },
+        "f11": {
+          "type": "faq",
+          "settings": {
+            "question": "¿Y si no me gusta?",
+            "answer": "<p>Tienes 10 días de retracto con el producto sin abrir y con el sello de seguridad intacto, y 6 meses de garantía legal si llega con una falla.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6",
+        "f7",
+        "f8",
+        "f9",
+        "f10",
+        "f11"
+      ],
+      "settings": {
+        "style": "stack",
+        "heading": "Preguntas *frecuentes.*",
+        "icon": "plus",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "cta": {
+      "type": "ecoms-cta-band",
+      "settings": {
+        "style": "soft",
+        "heading": "Suma Lemme Burn a tu *rutina.*",
+        "text": "Sentirte bien empieza por un hábito simple. Pagas cuando lo recibes.",
+        "button_label": "Elegir mi pack · desde $19.990",
+        "trust_1": "Pagas al recibir",
+        "trust_2": "Envíos a todo Chile",
+        "trust_3": "10 días de retracto",
+        "width": "full"
       }
     }
   },
   "order": [
     "main",
     "badges",
+    "nav",
     "benefits",
     "ingredients",
     "compare",
+    "diff",
     "routine",
-    "top",
     "yesno",
+    "demo",
+    "ugc",
     "reviews",
+    "expert",
+    "more",
     "faq",
     "cta"
   ]
