@@ -508,7 +508,8 @@
       "type": "ecoms-image-text",
       "settings": {
         "image_side": "top",
-        "image_full": false,
+        "image": "shopify://shop_images/9_f2862f1e-d81c-4886-b41a-8ed473474434.jpg",
+        "image_full": true,
         "product_image_index": 5,
         "heading": "Dos cápsulas | Un vaso de agua, *y listo.*",
         "intro": "Una porción son 2 cápsulas al día, con o sin alimentos.",
