@@ -19,8 +19,8 @@
         "social": {
           "type": "social",
           "settings": {
-            "rating": "",
-            "text": ""
+            "rating": "4,7",
+            "text": "+729 reseñas"
           }
         },
         "hook": {
@@ -52,9 +52,9 @@
           "type": "price",
           "settings": {
             "style": "pill",
+            "compact": true,
             "ship_local_title": "",
-            "ship_local_text": "",
-            "compact": true
+            "ship_local_text": ""
           }
         },
         "pk": {
@@ -75,20 +75,20 @@
             "tier1_label": "1 frasco",
             "tier1_tag": "",
             "tier1_note": "Para probar",
+            "tier1_gallery": 1,
             "tier2_enabled": true,
             "tier2_qty": 2,
             "tier2_pct": 0,
             "tier2_label": "Pack 2 frascos",
             "tier2_tag": "Más elegido",
             "tier2_note": "",
+            "tier2_gallery": 6,
             "tier3_enabled": true,
             "tier3_qty": 4,
             "tier3_pct": 0,
             "tier3_label": "4 frascos · 35% dto",
             "tier3_tag": "Mejor precio por frasco",
             "tier3_note": "",
-            "tier1_gallery": 1,
-            "tier2_gallery": 6,
             "tier3_gallery": 7
           }
         },
@@ -510,9 +510,9 @@
       "settings": {
         "heading": "La fórmula, *en claro.*",
         "text": "Lemme Burn es un suplemento alimenticio en cápsulas veganas, con té verde, vitaminas B6 y B12 y Actiponin®. Esto es lo que dice su etiqueta.",
+        "image": "shopify://shop_images/14.jpg",
         "padding_top": 44,
-        "padding_bottom": 32,
-        "image": "shopify://shop_images/14.jpg"
+        "padding_bottom": 32
       }
     },
     "routine": {
@@ -533,9 +533,12 @@
       "type": "ecoms-image-text",
       "settings": {
         "image_side": "top",
+        "image_full": false,
         "product_image_index": 5,
         "heading": "Dos cápsulas | Un vaso de agua, *y listo.*",
         "intro": "Una porción son 2 cápsulas al día, con o sin alimentos.",
+        "button_label": "Lo quiero",
+        "button_link": "",
         "width": "full",
         "padding_top": 44,
         "padding_bottom": 24
