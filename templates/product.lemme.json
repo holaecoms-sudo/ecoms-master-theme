@@ -473,9 +473,9 @@
       "settings": {
         "heading": "La fórmula, *en claro.*",
         "text": "Lemme Burn es un suplemento alimenticio en cápsulas veganas, con té verde, vitaminas B6 y B12 y Actiponin®. Esto es lo que dice su etiqueta.",
-        "image": "shopify://shop_images/14.jpg",
         "padding_top": 44,
-        "padding_bottom": 32
+        "padding_bottom": 32,
+        "product_image_index": 8
       }
     },
     "routine": {

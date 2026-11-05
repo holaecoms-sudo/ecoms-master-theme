@@ -180,3 +180,6 @@
   .ec-ds__grid b { font-size: 13.5px; }
   .ec-bl { grid-template-columns: 1fr minmax(0, 440px); }
 }
+
+/* No photo: one column (declared last so the two-column desktop rules above don't win). */
+@media (min-width: 750px) { .ec-ds.ec-ds--solo { grid-template-columns: minmax(0, 1fr); } .ec-bl.ec-bl--solo { grid-template-columns: minmax(0, 1fr); } }

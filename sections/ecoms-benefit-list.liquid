@@ -7,6 +7,12 @@
   if bl_img == blank and section.settings.product_image_index > 0
     assign bl_i = section.settings.product_image_index | minus: 1
     assign bl_img = product.images[bl_i]
+    if bl_img == blank
+      assign bl_img = product.media[bl_i].preview_image
+    endif
+    if bl_img == blank
+      assign bl_img = product.featured_image
+    endif
   endif
 -%}
 {%- if section.blocks.size > 0 or request.design_mode -%}
@@ -19,6 +25,7 @@
         {%- if section.settings.heading != blank -%}{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2' %}{%- endif -%}
       </div>
     {%- endif -%}
+    <!-- ec-bl image: idx={{ section.settings.product_image_index }} images={{ product.images.size }} media={{ product.media.size }} found={% if bl_img != blank %}yes{% else %}no{% endif %} -->
     <div class="ec-bl{% if bl_img == blank %} ec-bl--solo{% endif %}">
     <div class="ec-bl__copy">
       <div class="ec-bl__list" data-ec-bl>
