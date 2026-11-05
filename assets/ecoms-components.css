@@ -239,3 +239,6 @@
 .ec-pp--compact .ec-strike { font-size: 15px; }
 .ec-pp--compact .ec-price .ec-pill-save { padding: 3px 8px; font-size: 12px; }
 .ec-pp--compact .ec-pp__qty { display: none; }
+
+/* Short centered line under the buy button (block «Línea de texto corta»). */
+.ec-pdp__line { margin: 10px 0 0; text-align: center; font-size: 13.5px; font-weight: 600; color: var(--ec-ink); opacity: 0.85; }

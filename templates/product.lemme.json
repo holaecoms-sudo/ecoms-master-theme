@@ -77,10 +77,9 @@
           }
         },
         "offer": {
-          "type": "text",
+          "type": "line",
           "settings": {
-            "text": "<p style=\"text-align:center\">Llévate 2 y ahorras $9.990 · 4 frascos con 35% de descuento</p>",
-            "fixed": false
+            "text": "Llévate 2 y ahorras $9.990 · 4 frascos con 35% de descuento"
           }
         },
         "stock": {

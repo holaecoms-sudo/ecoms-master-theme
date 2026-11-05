@@ -379,6 +379,11 @@
               <div class="ec-pdp__sub{% if block.settings.fixed %} ec-pdp__sub--hook{% endif %}" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
             {%- endif -%}
 
+          {%- when 'line' -%}
+            {%- if block.settings.text != blank -%}
+              <p class="ec-pdp__line" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</p>
+            {%- endif -%}
+
           {%- when 'description' -%}
             {%- if product.description != blank -%}
               <div class="ec-pdp__desc rte" {{ block.shopify_attributes }}>{{ product.description }}</div>
@@ -1949,6 +1954,13 @@
           "info": "Activado: no lo reemplaza el subtítulo del producto (ecoms.subtitle). Úsalo para avisos como «Elige tu oferta en el siguiente paso».",
           "default": false
         }
+      ]
+    },
+    {
+      "type": "line",
+      "name": "Línea de texto corta",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Texto (una línea, centrado)" }
       ]
     },
     {
