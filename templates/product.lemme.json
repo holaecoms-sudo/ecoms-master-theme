@@ -350,7 +350,7 @@
         "metafield": "ecoms.ingredients",
         "eyebrow": "Ingredientes",
         "heading": "Qué hay *adentro.*",
-        "note": "Información según la etiqueta del producto. Resultados y respuesta varían según cada persona.",
+        "note": "Información según la etiqueta del producto. Los resultados varían según cada persona.",
         "padding_top": 44,
         "padding_bottom": 32
       }
