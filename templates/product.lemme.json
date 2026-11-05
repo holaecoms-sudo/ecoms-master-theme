@@ -299,13 +299,31 @@
             "heading": "Acompaña tus hábitos",
             "text": "Con Actiponin® y 2 cápsulas al día, junto con buena alimentación y actividad física."
           }
+        },
+        "f5": {
+          "type": "feature",
+          "settings": {
+            "icon": "box",
+            "heading": "Rinde 30 días",
+            "text": "Un frasco de 60 cápsulas son 30 porciones, a 2 cápsulas al día."
+          }
+        },
+        "f6": {
+          "type": "feature",
+          "settings": {
+            "icon": "check",
+            "heading": "Vegano y sin gluten",
+            "text": "Cápsulas veganas, sin gluten y sin transgénicos, según la etiqueta."
+          }
         }
       },
       "block_order": [
         "f1",
         "f2",
         "f3",
-        "f4"
+        "f4",
+        "f5",
+        "f6"
       ],
       "settings": {
         "heading": "Beneficios | Lo que *aporta* a tu rutina.",
@@ -431,7 +449,7 @@
       "settings": {
         "style": "soft",
         "heading": "Suma Lemme Burn a tu *rutina.*",
-        "text": "Cápsulas fáciles de tomar. Pagas cuando lo recibes.",
+        "text": "Sentirte bien empieza por un hábito simple. Pagas cuando lo recibes.",
         "button_label": "Elegir mi pack · desde $19.990",
         "trust_1": "Pagas al recibir",
         "trust_2": "Envíos a todo Chile",
