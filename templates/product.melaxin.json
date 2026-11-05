@@ -126,7 +126,9 @@
             "add_label_cod": "Comprar con tarjeta",
             "buy_now_label_cod": "",
             "card_label": "Pagar ahora con tarjeta · 10% de dto",
-            "card_code": "PAGAYA10"
+            "card_code": "PAGAYA10",
+            "priority_product": "",
+            "priority_label": "Quiero envío prioritario"
           }
         },
         "stock": {
@@ -242,6 +244,17 @@
         "pal_deep": "",
         "padding_top": 16,
         "padding_bottom": 28
+      }
+    },
+    "bubble": {
+      "type": "ecoms-review-bubble",
+      "settings": {
+        "metafield": "ecoms.reviews",
+        "heading": "",
+        "limit": 8,
+        "width": "full",
+        "padding_top": 4,
+        "padding_bottom": 24
       }
     },
     "demo": {
@@ -606,6 +619,7 @@
     },
     "ugc": {
       "type": "ecoms-ugc",
+      "disabled": true,
       "settings": {
         "metafield": "",
         "style": "grid",
@@ -616,23 +630,12 @@
         "padding_bottom": 12
       }
     },
-    "bubble": {
-      "type": "ecoms-review-bubble",
-      "settings": {
-        "metafield": "ecoms.reviews",
-        "heading": "",
-        "limit": 8,
-        "width": "full",
-        "padding_top": 4,
-        "padding_bottom": 24
-      }
-    },
     "reviews": {
       "type": "ecoms-reviews",
       "settings": {
         "metafield": "ecoms.reviews",
         "style": "masonry",
-        "heading": "Opiniones de *clientas.*",
+        "heading": "Opiniones de clientes/as.",
         "link_label": "",
         "link": "",
         "source_note": "",
@@ -736,6 +739,7 @@
   },
   "order": [
     "main",
+    "bubble",
     "demo",
     "ingredients",
     "top",
@@ -746,7 +750,6 @@
     "compare",
     "before_after",
     "ugc",
-    "bubble",
     "reviews",
     "faq",
     "cta"
