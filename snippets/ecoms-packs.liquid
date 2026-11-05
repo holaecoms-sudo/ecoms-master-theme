@@ -293,6 +293,9 @@
           {%- if tag != blank -%}
             <span class="ec-pack__tag ec-pack__tag--{{ i }} ec-tag">{{ tag | escape }}</span>
           {%- endif -%}
+          {%- if layout == 'offer' and ships_free -%}
+            <span class="ec-pack__shippill">{% render 'ecoms-icon', name: 'truck' %}{{ settings.ecoms_free_shipping_label | default: 'Envío gratis' | escape }}</span>
+          {%- endif -%}
           <input
             type="radio"
             name="ec-pack-{{ uid }}"
@@ -340,7 +343,7 @@
                     {%- if note != blank and q == 1 -%}
                       {{ note | escape }}
                     {%- else -%}
-                      {{ per_unit | money }} por {{ unit_sing | escape }}{% if ships_free %} · {{ settings.ecoms_free_shipping_label | default: 'envío gratis' | downcase | escape }}{% endif %}{% if note != blank and q != 1 %} · {{ note | escape }}{% endif %}
+                      {{ per_unit | money }} por {{ unit_sing | escape }}{% if note != blank and q != 1 %} · {{ note | escape }}{% endif %}
                     {%- endif -%}
                   </span>
                 </span>

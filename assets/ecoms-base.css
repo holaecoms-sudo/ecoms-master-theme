@@ -1859,3 +1859,7 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 .ec-sticky__cod small { white-space: nowrap; }
 @media (max-width: 360px) { .ec-sticky__cod > span { font-size: 14px; } }
 .ec-sticky__main { display: block; white-space: nowrap; }
+
+/* «Envío gratis» as a pill on the top-left edge of the pack card (offer layout); the tag stays on the right. */
+.ec-packs--offer .ec-pack__shippill { position: absolute; top: -10px; left: 14px; z-index: 1; display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 999px; background: #E3F3EA; color: #1F6B45; border: 1px solid #B9DFC9; font-size: 10.5px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; }
+.ec-packs--offer .ec-pack__shippill .ec-i { width: 13px; height: 13px; color: currentColor; }
