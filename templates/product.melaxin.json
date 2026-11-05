@@ -105,7 +105,7 @@
             "cod_only": true,
             "add_label_cod": "Comprar con tarjeta",
             "buy_now_label_cod": "",
-            "card_label": "Pagar ahora con tarjeta · 10% de dto",
+            "card_label": "",
             "card_code": "PAGAYA10",
             "priority_product": "",
             "priority_label": "Quiero envío prioritario"
