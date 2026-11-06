@@ -22,7 +22,13 @@
           </p>
         {%- endif -%}
         {%- if section.settings.button_label != blank -%}
-          <a href="#" class="ec-btn ec-btn--accent ec-btn--lg" data-ec-scroll-buy{% if settings.ecoms_cod_live %} data-ec-open-cod="{{ settings.ecoms_cod_app_button | escape }}"{% endif %}>{% render 'ecoms-icon', name: 'cart' %}{{ section.settings.button_label | escape }}</a>
+          {%- comment -%}
+            [precio] en el texto del botón se reemplaza por el precio real de la variante, para no dejar
+            el monto escrito a mano (se desactualiza en cuanto cambia el precio en Shopify).
+          {%- endcomment -%}
+          {%- assign cta_price = variant.price | money -%}
+          {%- assign cta_btn = section.settings.button_label | escape | replace: '[precio]', cta_price -%}
+          <a href="#" class="ec-btn ec-btn--accent ec-btn--lg" data-ec-scroll-buy{% if settings.ecoms_cod_live %} data-ec-open-cod="{{ settings.ecoms_cod_app_button | escape }}"{% endif %}>{% render 'ecoms-icon', name: 'cart' %}{{ cta_btn }}</a>
         {%- endif -%}
         <ul class="ec-ctab__trust" role="list">
           {%- for i in (1..3) -%}
@@ -104,6 +110,7 @@
       "type": "text",
       "id": "button_label",
       "label": "Botón",
+      "info": "Usa [precio] para mostrar el precio real de la variante (ej.: «Pedir ahora · [precio]»). No escribas el monto a mano: queda desactualizado al cambiar el precio.",
       "default": "Comprar ahora"
     },
     {

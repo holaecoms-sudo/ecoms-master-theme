@@ -42,7 +42,19 @@
     {%- endif -%}
   </div>
 {%- endif -%}
-  <small class="ec-pp__qty" data-ec-pp-qty {% if pp_qty <= 1 %}hidden{% endif %}>Total por <span data-ec-pp-n>{{ pp_qty }}</span> {{ unit_name | default: 'unidades' | escape }} · <span data-ec-pp-each>{{ pp_total | divided_by: pp_qty | money }}</span> c/u</small>
+  {%- liquid
+    # «1 unidades» quedaba mal: con una sola unidad se usa el singular. Quitar la «s» final sirve para
+    # frascos/barras/cápsulas; «unidades» es irregular y se trata aparte.
+    assign pp_unit = unit_name | default: 'unidades' | strip
+    if pp_qty == 1
+      if pp_unit == 'unidades'
+        assign pp_unit = 'unidad'
+      else
+        assign pp_unit = pp_unit | remove_last: 's'
+      endif
+    endif
+  -%}
+  <small class="ec-pp__qty" data-ec-pp-qty {% if pp_qty <= 1 %}hidden{% endif %}>Total por <span data-ec-pp-n>{{ pp_qty }}</span> {{ pp_unit | escape }} · <span data-ec-pp-each>{{ pp_total | divided_by: pp_qty | money }}</span> c/u</small>
 </div>
 {%- if variant.unit_price_measurement -%}
   <small class="ec-price__unit">

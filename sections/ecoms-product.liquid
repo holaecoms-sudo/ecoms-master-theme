@@ -40,7 +40,9 @@
   assign start_qty = 1
   assign start_total = variant.price
   assign start_label = ''
-  assign start_unit_name = ''
+  # Nombre de la unidad: sale del metacampo aunque el producto no tenga selector de packs (si lo tiene,
+  # el bloque lo sobrescribe más abajo). Sin esto la línea de cantidad decía «unidades» en vez de «frascos».
+  assign start_unit_name = product.metafields.ecoms.unit_name.value | default: '' | strip
   assign packs_block = section.blocks | where: 'type', 'packs' | first
   assign pk_mf_pct = product.metafields.ecoms.pack2_pct.value | default: 0 | plus: 0
   if packs_block and packs_block.settings.from_metafield and pk_mf_pct == 0
@@ -420,8 +422,48 @@
             {%- endif -%}
 
           {%- when 'line' -%}
+            {%- comment -%}
+              Línea corta bajo el botón. Para las ofertas por cantidad que viven en el formulario de la app
+              (no hay selector de packs en la página), el texto puede traer marcadores que se calculan con
+              los mismos metacampos y la misma fórmula que usan las tarjetas de pack, así no se escriben
+              montos a mano que después quedan viejos:
+                [precio] precio de 1 · [qty2] [ahorro2] [pct2] [total2] · [qty3] [ahorro3] [pct3] [total3]
+            {%- endcomment -%}
             {%- if block.settings.text != blank -%}
-              <p class="ec-pdp__line" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</p>
+              {%- liquid
+                assign ln_unit = variant.price
+                assign ln_q2 = block.settings.qty_2 | default: 2 | plus: 0
+                assign ln_q3 = block.settings.qty_3 | default: 4 | plus: 0
+                assign ln_pct2 = product.metafields.ecoms.pack2_pct.value | default: 0 | plus: 0
+                assign ln_pct3 = product.metafields.ecoms.pack3_pct.value | default: 0 | plus: 0
+
+                assign ln_sub2 = ln_unit | times: ln_q2
+                assign ln_save2 = ln_sub2 | times: ln_pct2 | divided_by: 10000.0 | round | times: 100
+                assign ln_total2 = ln_sub2 | minus: ln_save2
+
+                assign ln_sub3 = ln_unit | times: ln_q3
+                assign ln_save3 = ln_sub3 | times: ln_pct3 | divided_by: 10000.0 | round | times: 100
+                assign ln_total3 = ln_sub3 | minus: ln_save3
+
+                assign ln_text = block.settings.text | escape
+                assign ln_text = ln_text | replace: '[qty2]', ln_q2
+                assign ln_text = ln_text | replace: '[qty3]', ln_q3
+                assign ln_tmp = ln_unit | money
+                assign ln_text = ln_text | replace: '[precio]', ln_tmp
+                assign ln_tmp = ln_save2 | money
+                assign ln_text = ln_text | replace: '[ahorro2]', ln_tmp
+                assign ln_tmp = ln_total2 | money
+                assign ln_text = ln_text | replace: '[total2]', ln_tmp
+                assign ln_tmp = ln_pct2 | round
+                assign ln_text = ln_text | replace: '[pct2]', ln_tmp
+                assign ln_tmp = ln_save3 | money
+                assign ln_text = ln_text | replace: '[ahorro3]', ln_tmp
+                assign ln_tmp = ln_total3 | money
+                assign ln_text = ln_text | replace: '[total3]', ln_tmp
+                assign ln_tmp = ln_pct3 | round
+                assign ln_text = ln_text | replace: '[pct3]', ln_tmp
+              -%}
+              <p class="ec-pdp__line" {{ block.shopify_attributes }}>{{ ln_text }}</p>
             {%- endif -%}
 
           {%- when 'description' -%}
@@ -2000,7 +2042,9 @@
       "type": "line",
       "name": "Línea de texto corta",
       "settings": [
-        { "type": "text", "id": "text", "label": "Texto (una línea, centrado)" }
+        { "type": "text", "id": "text", "label": "Texto (una línea, centrado)", "info": "Marcadores que se calculan solos con los metacampos ecoms.pack2_pct / ecoms.pack3_pct y el precio real: [precio], [qty2], [ahorro2], [pct2], [total2], [qty3], [ahorro3], [pct3], [total3]. Úsalos en vez de escribir montos a mano." },
+        { "type": "number", "id": "qty_2", "label": "Cantidad de la oferta 2", "info": "Para [ahorro2] / [pct2] / [total2]. Por defecto 2.", "default": 2 },
+        { "type": "number", "id": "qty_3", "label": "Cantidad de la oferta 3", "info": "Para [ahorro3] / [pct3] / [total3]. Por defecto 4.", "default": 4 }
       ]
     },
     {

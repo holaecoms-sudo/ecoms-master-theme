@@ -72,7 +72,7 @@
         "offer": {
           "type": "line",
           "settings": {
-            "text": "Llévate 2 y ahorras $9.990 · 4 frascos con 35% de descuento"
+            "text": "Llévate [qty2] y ahorras [ahorro2] · [qty3] frascos con [pct3]% de descuento"
           }
         },
         "stock": {
@@ -714,7 +714,7 @@
         "text": "Sentirte bien empieza por un hábito simple. Pagas cuando lo recibes.",
         "image_plain": false,
         "show_price": true,
-        "button_label": "Pedir ahora · $19.990",
+        "button_label": "Pedir ahora · [precio]",
         "trust_1": "Pagas al recibir",
         "trust_2": "Envíos a todo Chile",
         "trust_3": "10 días de retracto",
