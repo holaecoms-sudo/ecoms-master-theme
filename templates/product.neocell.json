@@ -16,13 +16,6 @@
           "type": "title",
           "settings": {}
         },
-        "hook": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Colágeno sin sabor para sumar a tu rutina de belleza y bienestar, todos los días</p>",
-            "fixed": true
-          }
-        },
         "lead": {
           "type": "text",
           "settings": {
@@ -45,9 +38,9 @@
           "type": "price",
           "settings": {
             "style": "pill",
+            "compact": false,
             "ship_local_title": "",
-            "ship_local_text": "",
-            "compact": false
+            "ship_local_text": ""
           }
         },
         "buy": {
@@ -64,7 +57,9 @@
             "add_label_cod": "Comprar con tarjeta",
             "buy_now_label_cod": "",
             "card_label": "",
-            "card_code": "PAGAYA10"
+            "card_code": "PAGAYA10",
+            "priority_product": "",
+            "priority_label": "Quiero envío prioritario"
           }
         },
         "offer": {
@@ -78,7 +73,8 @@
           "disabled": true,
           "settings": {
             "max_show": 30,
-            "text": "¡Queda poco stock! Solo [qty] unidades disponibles"
+            "text": "¡Queda poco stock! Solo [qty] unidades disponibles",
+            "viewers_text": ""
           }
         },
         "dlv": {
@@ -106,7 +102,6 @@
       },
       "block_order": [
         "title",
-        "hook",
         "lead",
         "benefits",
         "price",
@@ -166,56 +161,56 @@
         "padding_bottom": 28
       }
     },
-    "top": {
-      "type": "ecoms-marquee",
+    "badges": {
+      "type": "ecoms-feature-grid",
       "blocks": {
-        "b1": {
-          "type": "text",
+        "g1": {
+          "type": "feature",
           "settings": {
-            "icon": "cash",
-            "text": "Pagas al recibir"
+            "icon": "sparkle",
+            "heading": "20 g de colágeno por porción",
+            "text": ""
           }
         },
-        "b2": {
-          "type": "text",
-          "settings": {
-            "icon": "truck",
-            "text": "Envío a todo Chile"
-          }
-        },
-        "b3": {
-          "type": "text",
-          "settings": {
-            "icon": "box",
-            "text": "Seguimiento de tu pedido"
-          }
-        },
-        "b4": {
-          "type": "text",
-          "settings": {
-            "icon": "return",
-            "text": "10 días de retracto"
-          }
-        },
-        "b5": {
-          "type": "text",
+        "g2": {
+          "type": "feature",
           "settings": {
             "icon": "drop",
-            "text": "Colágeno sin sabor"
+            "heading": "Sin sabor",
+            "text": ""
+          }
+        },
+        "g3": {
+          "type": "feature",
+          "settings": {
+            "icon": "leaf",
+            "heading": "Colágeno grass-fed",
+            "text": ""
+          }
+        },
+        "g4": {
+          "type": "feature",
+          "settings": {
+            "icon": "box",
+            "heading": "Rinde unas 28 porciones",
+            "text": ""
           }
         }
       },
       "block_order": [
-        "b1",
-        "b2",
-        "b3",
-        "b4",
-        "b5"
+        "g1",
+        "g2",
+        "g3",
+        "g4"
       ],
       "settings": {
-        "style": "band",
-        "speed": 30,
-        "width": "full"
+        "metafield": "",
+        "heading": "",
+        "button_label": "",
+        "style": "center",
+        "width": "full",
+        "padding_top": 8,
+        "padding_bottom": 8
       }
     },
     "benefits": {
@@ -279,22 +274,13 @@
         "f6"
       ],
       "settings": {
+        "metafield": "",
         "heading": "Beneficios | Lo que *aporta* a tu rutina.",
+        "button_label": "",
         "style": "cards",
         "width": "full",
         "padding_top": 44,
         "padding_bottom": 20
-      }
-    },
-    "routine": {
-      "type": "ecoms-steps",
-      "settings": {
-        "metafield": "ecoms.steps",
-        "style": "cards",
-        "heading": "Cómo tomarlo | Tres pasos, *simple.*",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
       }
     },
     "ingredients": {
@@ -306,6 +292,135 @@
         "note": "Información según la etiqueta del producto. Los resultados varían según cada persona.",
         "padding_top": 44,
         "padding_bottom": 32
+      }
+    },
+    "compare": {
+      "type": "ecoms-comparison",
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "feature": "20 g de colágeno hidrolizado por porción",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "feature": "Sin sabor: se mezcla con tus bebidas",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "feature": "Colágeno bovino grass-fed",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "feature": "Sin gluten y sin transgénicos (según listados del producto)",
+            "value_1": true,
+            "value_2": false,
+            "value_3": false
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ],
+      "settings": {
+        "metafield": "",
+        "style": "table",
+        "heading": "Qué incluye *NeoCell.*",
+        "feature_label": "Característica",
+        "col_1": "NeoCell",
+        "show_image": true,
+        "col_2": "Otras opciones",
+        "col_3": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "routine": {
+      "type": "ecoms-steps",
+      "settings": {
+        "metafield": "ecoms.steps",
+        "button_label": "",
+        "button_link": "",
+        "style": "cards",
+        "heading": "Cómo tomarlo | Tres pasos, *simple.*",
+        "text": "",
+        "width": "full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "top": {
+      "type": "ecoms-marquee",
+      "blocks": {
+        "b1": {
+          "type": "text",
+          "settings": {
+            "icon": "cash",
+            "text": "Pagas al recibir"
+          }
+        },
+        "b2": {
+          "type": "text",
+          "settings": {
+            "icon": "truck",
+            "text": "Envío a todo Chile"
+          }
+        },
+        "b3": {
+          "type": "text",
+          "settings": {
+            "icon": "box",
+            "text": "Seguimiento de tu pedido"
+          }
+        },
+        "b4": {
+          "type": "text",
+          "settings": {
+            "icon": "return",
+            "text": "10 días de retracto"
+          }
+        },
+        "b5": {
+          "type": "text",
+          "settings": {
+            "icon": "drop",
+            "text": "Colágeno sin sabor"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5"
+      ],
+      "settings": {
+        "style": "band",
+        "heading": "",
+        "speed": 30,
+        "width": "full",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "yesno": {
@@ -320,6 +435,23 @@
         "padding_bottom": 8
       }
     },
+    "reviews": {
+      "type": "ecoms-reviews",
+      "settings": {
+        "metafield": "ecoms.reviews",
+        "style": "masonry",
+        "heading": "Opiniones de clientas",
+        "link_label": "Ver todas",
+        "link": "",
+        "source_note": "",
+        "per_page": 6,
+        "write_label": "Escribe una reseña",
+        "write_link": "/pages/contact",
+        "width": "full",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
     "faq": {
       "type": "ecoms-faq",
       "blocks": {
@@ -327,63 +459,72 @@
           "type": "faq",
           "settings": {
             "question": "¿Cómo pago?",
-            "answer": "<p>Puedes pagar al recibir tu pedido, en todo Chile y sin costo adicional, o pagar ahora con tarjeta (débito o crédito) desde el formulario.</p>"
+            "answer": "<p>Puedes pagar al recibir tu pedido, en todo Chile y sin costo adicional, o pagar ahora con tarjeta (débito o crédito) desde el formulario.</p>",
+            "draft": false
           }
         },
         "f2": {
           "type": "faq",
           "settings": {
             "question": "¿Cuánto demora en llegar?",
-            "answer": "<p>Entre 2 y 5 días hábiles según tu comuna. Te enviamos el seguimiento de tu pedido.</p>"
+            "answer": "<p>Entre 2 y 5 días hábiles según tu comuna. Te enviamos el seguimiento de tu pedido.</p>",
+            "draft": false
           }
         },
         "f3": {
           "type": "faq",
           "settings": {
             "question": "¿Cómo lo tomo?",
-            "answer": "<p>Mezcla 1 scoop (unos 20 g) en agua, café, jugos o batidos y revuelve bien. Puedes tomarlo de una vez o repartido durante el día.</p>"
+            "answer": "<p>Mezcla 1 scoop (unos 20 g) en agua, café, jugos o batidos y revuelve bien. Puedes tomarlo de una vez o repartido durante el día.</p>",
+            "draft": false
           }
         },
         "f4": {
           "type": "faq",
           "settings": {
             "question": "¿Tiene sabor?",
-            "answer": "<p>No, es sin sabor. Por eso se mezcla con tus bebidas de siempre sin cambiarlas.</p>"
+            "answer": "<p>No, es sin sabor. Por eso se mezcla con tus bebidas de siempre sin cambiarlas.</p>",
+            "draft": false
           }
         },
         "f5": {
           "type": "faq",
           "settings": {
             "question": "¿Cuántas porciones trae?",
-            "answer": "<p>El pote de 567 g trae unas 28 porciones, según la etiqueta. Confirma el dato exacto en el envase.</p>"
+            "answer": "<p>El pote de 567 g trae unas 28 porciones, según la etiqueta. Confirma el dato exacto en el envase.</p>",
+            "draft": false
           }
         },
         "f6": {
           "type": "faq",
           "settings": {
             "question": "¿Es apto para vegetarianos?",
-            "answer": "<p>No: es colágeno de origen bovino (de vacas alimentadas con pasto).</p>"
+            "answer": "<p>No: es colágeno de origen bovino (de vacas alimentadas con pasto).</p>",
+            "draft": false
           }
         },
         "f7": {
           "type": "faq",
           "settings": {
             "question": "¿Es para bajar de peso?",
-            "answer": "<p>No. Es un suplemento alimenticio y no está pensado para bajar de peso ni reemplaza una alimentación variada y equilibrada.</p>"
+            "answer": "<p>No. Es un suplemento alimenticio y no está pensado para bajar de peso ni reemplaza una alimentación variada y equilibrada.</p>",
+            "draft": false
           }
         },
         "f8": {
           "type": "faq",
           "settings": {
             "question": "¿Quién debe consultar antes?",
-            "answer": "<p>Si estás embarazada o amamantando, tienes alergias o una condición médica, consulta antes a un profesional de la salud.</p>"
+            "answer": "<p>Si estás embarazada o amamantando, tienes alergias o una condición médica, consulta antes a un profesional de la salud.</p>",
+            "draft": false
           }
         },
         "f9": {
           "type": "faq",
           "settings": {
             "question": "¿Y si no me gusta?",
-            "answer": "<p>Tienes 10 días de retracto con el producto sin abrir y con el sello de seguridad intacto, y 6 meses de garantía legal si llega con una falla.</p>"
+            "answer": "<p>Tienes 10 días de retracto con el producto sin abrir y con el sello de seguridad intacto, y 6 meses de garantía legal si llega con una falla.</p>",
+            "draft": false
           }
         }
       },
@@ -401,135 +542,29 @@
       "settings": {
         "style": "stack",
         "heading": "Preguntas *frecuentes.*",
+        "text": "",
         "icon": "plus",
         "width": "full",
         "padding_top": 36,
         "padding_bottom": 36
       }
     },
-    "reviews": {
-      "type": "ecoms-reviews",
-      "settings": {
-        "metafield": "ecoms.reviews",
-        "style": "masonry",
-        "heading": "Opiniones de clientas",
-        "per_page": 6,
-        "write_label": "Escribe una reseña",
-        "write_link": "/pages/contact",
-        "width": "full",
-        "padding_top": 32,
-        "padding_bottom": 32
-      }
-    },
     "cta": {
       "type": "ecoms-cta-band",
       "settings": {
         "style": "soft",
+        "eyebrow": "",
         "heading": "Suma NeoCell a tu *rutina.*",
         "text": "Un scoop al día. Pagas cuando lo recibes.",
+        "image_plain": false,
+        "show_price": true,
         "button_label": "Pedir ahora · $24.990",
         "trust_1": "Pagas al recibir",
         "trust_2": "Envíos a todo Chile",
         "trust_3": "10 días de retracto",
-        "width": "full"
-      }
-    },
-    "compare": {
-      "type": "ecoms-comparison",
-      "blocks": {
-        "r1": {
-          "type": "row",
-          "settings": {
-            "feature": "20 g de colágeno hidrolizado por porción",
-            "value_1": true
-          }
-        },
-        "r2": {
-          "type": "row",
-          "settings": {
-            "feature": "Sin sabor: se mezcla con tus bebidas",
-            "value_1": true
-          }
-        },
-        "r3": {
-          "type": "row",
-          "settings": {
-            "feature": "Colágeno bovino grass-fed",
-            "value_1": true
-          }
-        },
-        "r4": {
-          "type": "row",
-          "settings": {
-            "feature": "Sin gluten y sin transgénicos (según listados del producto)",
-            "value_1": true
-          }
-        }
-      },
-      "block_order": [
-        "r1",
-        "r2",
-        "r3",
-        "r4"
-      ],
-      "settings": {
-        "style": "table",
-        "heading": "Qué incluye *NeoCell.*",
-        "col_1": "NeoCell",
-        "show_image": true,
         "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "badges": {
-      "type": "ecoms-feature-grid",
-      "blocks": {
-        "g1": {
-          "type": "feature",
-          "settings": {
-            "icon": "sparkle",
-            "heading": "20 g de colágeno por porción",
-            "text": ""
-          }
-        },
-        "g2": {
-          "type": "feature",
-          "settings": {
-            "icon": "drop",
-            "heading": "Sin sabor",
-            "text": ""
-          }
-        },
-        "g3": {
-          "type": "feature",
-          "settings": {
-            "icon": "leaf",
-            "heading": "Colágeno grass-fed",
-            "text": ""
-          }
-        },
-        "g4": {
-          "type": "feature",
-          "settings": {
-            "icon": "box",
-            "heading": "Rinde unas 28 porciones",
-            "text": ""
-          }
-        }
-      },
-      "block_order": [
-        "g1",
-        "g2",
-        "g3",
-        "g4"
-      ],
-      "settings": {
-        "heading": "",
-        "style": "center",
-        "width": "full",
-        "padding_top": 8,
-        "padding_bottom": 8
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
