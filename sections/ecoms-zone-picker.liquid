@@ -22,7 +22,7 @@
   endif
 -%}
 {%- if section.blocks.size > 0 -%}
-{{ 'ecoms-ritual-sections.css' | asset_url | stylesheet_tag }}
+{%- render 'ecoms-css-defer', href: 'ecoms-ritual-sections.css' -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-zp-sec' %}>
   <div class="ec-w ec-zp" data-ec-zonepicker data-has-packs="{{ has_packs }}">
     {%- if section.settings.heading != blank -%}

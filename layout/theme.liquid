@@ -286,14 +286,18 @@
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {%- render 'ecoms-head' -%}
     {%- render 'ecoms-vertical-style', slot: ec_vslot -%}
-    <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
+    {%- render 'ecoms-css-defer', href: 'component-cart-items.css' -%}
 
     {%- if settings.cart_type == 'drawer' -%}
-      {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
-      {{ 'component-cart.css' | asset_url | stylesheet_tag }}
-      {{ 'component-totals.css' | asset_url | stylesheet_tag }}
+      {%- comment -%}
+        El carrito y su drawer no se ven al abrir la página: sus estilos se cargan sin bloquear
+        el render. El precio sí está arriba (bloque de precio del producto), así que ese queda.
+      {%- endcomment -%}
+      {%- render 'ecoms-css-defer', href: 'component-cart-drawer.css' -%}
+      {%- render 'ecoms-css-defer', href: 'component-cart.css' -%}
+      {%- render 'ecoms-css-defer', href: 'component-totals.css' -%}
+      {%- render 'ecoms-css-defer', href: 'component-discounts.css' -%}
       {{ 'component-price.css' | asset_url | stylesheet_tag }}
-      {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
     {%- endif -%}
 
     {%- unless settings.type_body_font.system? -%}

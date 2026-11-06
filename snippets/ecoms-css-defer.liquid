@@ -1,0 +1,15 @@
+{%- comment -%}
+  ECOMS · Carga una hoja de estilo sin bloquear el primer render.
+
+  El navegador la baja con prioridad baja (media="print" no aplica a pantalla) y la activa al
+  terminar de cargar. El <noscript> la deja como hoja normal cuando no hay JavaScript.
+
+  Úsalo solo para estilos que NO afectan lo que se ve al abrir la página (carrito, drawer,
+  secciones de más abajo). Lo de arriba —cabecera, galería, título, precio, botón— debe seguir
+  bloqueando, o se ve un salto de maquetación.
+
+  Uso: {% render 'ecoms-css-defer', href: 'component-cart.css' %}
+{%- endcomment -%}
+{%- assign ec_css_href = href | asset_url -%}
+<link rel="stylesheet" href="{{ ec_css_href }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ ec_css_href }}"></noscript>

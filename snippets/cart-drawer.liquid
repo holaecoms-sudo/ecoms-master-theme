@@ -5,8 +5,9 @@
   {% render 'cart-drawer' %}
 {% endcomment %}
 
-{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{%- comment -%} El drawer empieza cerrado: sus estilos no bloquean el primer render. {%- endcomment -%}
+{%- render 'ecoms-css-defer', href: 'quantity-popover.css' -%}
+{%- render 'ecoms-css-defer', href: 'component-card.css' -%}
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>

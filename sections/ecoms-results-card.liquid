@@ -11,7 +11,7 @@
   assign rc_alt = section.settings.heading | strip_html | replace: '*', ''
 -%}
 {%- if section.blocks.size > 0 or request.design_mode -%}
-{{ 'ecoms-ritual-sections.css' | asset_url | stylesheet_tag }}
+{%- render 'ecoms-css-defer', href: 'ecoms-ritual-sections.css' -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-rr-sec' %}>
   <div class="ec-w">
     <div class="ec-rr{% if rc_img == blank %} ec-rr--solo{% endif %}">

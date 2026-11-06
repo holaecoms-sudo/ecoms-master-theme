@@ -3,7 +3,7 @@
   Only publish with that person's written permission. Hidden until quote, name and photo are all filled.
 {%- endcomment -%}
 {%- if section.settings.quote != blank and section.settings.name != blank and section.settings.image != blank -%}
-{{ 'ecoms-ritual-sections.css' | asset_url | stylesheet_tag }}
+{%- render 'ecoms-css-defer', href: 'ecoms-ritual-sections.css' -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-ex-sec' %}>
   <div class="ec-w">
     {%- if section.settings.heading != blank -%}

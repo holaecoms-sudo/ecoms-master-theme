@@ -5,7 +5,7 @@
 {%- assign pg_pain = section.settings.pain_items | newline_to_br | split: '<br />' -%}
 {%- assign pg_gain = section.settings.gain_items | newline_to_br | split: '<br />' -%}
 {%- if section.settings.pain_items != blank and section.settings.gain_items != blank -%}
-{{ 'ecoms-ritual-sections.css' | asset_url | stylesheet_tag }}
+{%- render 'ecoms-css-defer', href: 'ecoms-ritual-sections.css' -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-pg-sec' %}>
   <div class="ec-w">
     {%- if section.settings.heading != blank -%}

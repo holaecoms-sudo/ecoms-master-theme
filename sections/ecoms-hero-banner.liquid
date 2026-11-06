@@ -10,7 +10,7 @@
   endif
   assign hb_alt = section.settings.heading | strip_html | replace: '*', ''
 -%}
-{{ 'ecoms-ritual-sections.css' | asset_url | stylesheet_tag }}
+{%- render 'ecoms-css-defer', href: 'ecoms-ritual-sections.css' -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-hb-sec' %}>
   <div class="ec-w">
     <div class="ec-hb{% if hb_img == blank %} ec-hb--solo{% endif %}">

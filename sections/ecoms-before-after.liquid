@@ -9,7 +9,7 @@
 {%- endfor -%}
 {%- if section.settings.before != blank and section.settings.after != blank or ba_zones > 0 -%}{%- assign ba_ready = true -%}{%- endif -%}
 {%- if ba_ready or request.design_mode -%}
-{{ 'ecoms-ritual-sections.css' | asset_url | stylesheet_tag }}
+{%- render 'ecoms-css-defer', href: 'ecoms-ritual-sections.css' -%}
 <section {% render 'ecoms-section-style', section: section, class: 'ec-ba-sec' %}>
   <div class="ec-w" data-ec-bz>
     {%- if section.settings.heading != blank -%}{% render 'ecoms-heading', text: section.settings.heading, tag: 'h2', class: 'ec-h3' %}{%- endif -%}
