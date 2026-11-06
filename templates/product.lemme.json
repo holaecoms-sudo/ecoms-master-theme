@@ -98,7 +98,7 @@
         "rs": {
           "type": "review_slider",
           "settings": {
-            "style": "quote",
+            "style": "chat",
             "heading": "",
             "text_1": "",
             "author_1": "",
