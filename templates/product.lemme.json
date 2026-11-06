@@ -562,18 +562,6 @@
         "padding_bottom": 8
       }
     },
-    "ugc": {
-      "type": "ecoms-ugc",
-      "settings": {
-        "metafield": "",
-        "style": "grid",
-        "heading": "Clientas reales | Así lo *usan.*",
-        "text": "Personas reales usando el producto.",
-        "width": "full",
-        "padding_top": 36,
-        "padding_bottom": 12
-      }
-    },
     "reviews": {
       "type": "ecoms-reviews",
       "settings": {
@@ -749,7 +737,6 @@
     "routine",
     "howto",
     "yesno",
-    "ugc",
     "reviews",
     "expert",
     "faq",
