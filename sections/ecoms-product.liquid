@@ -332,6 +332,42 @@
                   </div>
                 {%- endif -%}
               </div>
+            {%- elsif product.metafields.ecoms.reviews.value != blank -%}
+              {%- comment -%} No text typed in the block: rotate the first 3 reviews of the product's ecoms.reviews list. {%- endcomment -%}
+              {%- assign rsl_i = 0 -%}
+              {%- capture rsl_items -%}
+                {%- for rv in product.metafields.ecoms.reviews.value -%}
+                  {%- if rsl_i >= 3 -%}{%- break -%}{%- endif -%}
+                  {%- assign rv_text = rv.text.value -%}
+                  {%- if rv_text == blank -%}{%- continue -%}{%- endif -%}
+                  {%- assign rv_img = rv.image.value -%}
+                  <figure class="ec-rsl__item"{% if rsl_i > 0 %} hidden{% endif %}>
+                    {%- if rv_img != blank -%}
+                      {{ rv_img | image_url: width: 120 | image_tag: loading: 'lazy', width: 52, height: 52, alt: '', class: 'ec-rsl__img' }}
+                    {%- endif -%}
+                    <div>
+                      <blockquote>{{ rv_text | escape }}</blockquote>
+                      <figcaption>
+                        <span class="ec-rsl__who">{% render 'ecoms-icon', name: 'verified' %}{{ rv.author.value | strip | escape }}</span>
+                        <span class="ec-stars" style="--s: 13px; --r: {{ rv.stars.value | default: 5 | times: 20 }}%" role="img" aria-label="{{ rv.stars.value | default: 5 }} de 5 estrellas"></span>
+                      </figcaption>
+                    </div>
+                  </figure>
+                  {%- assign rsl_i = rsl_i | plus: 1 -%}
+                {%- endfor -%}
+              {%- endcapture -%}
+              {%- if rsl_i > 0 -%}
+                <div class="ec-rsl ec-rsl--{{ block.settings.style | default: 'quote' }}" data-ec-rsl {{ block.shopify_attributes }}>
+                  {{ rsl_items }}
+                  {%- if rsl_i > 1 -%}
+                    <div class="ec-rsl__dots">
+                      {%- for i in (1..rsl_i) -%}
+                        <button type="button" data-ec-rsl-to="{{ forloop.index0 }}" aria-label="Ver reseña {{ i }}"{% if forloop.first %} aria-current="true"{% endif %}></button>
+                      {%- endfor -%}
+                    </div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
             {%- endif -%}
 
           {%- when 'logos' -%}
