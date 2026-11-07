@@ -41,7 +41,7 @@
               {%- if block.settings.text != blank -%}<p class="ec-rs__t">{{ block.settings.text | escape }}</p>{%- endif -%}
               <p class="ec-rs__a">
                 <b>{{ block.settings.author | escape }}</b>{% if block.settings.place != blank %} · {{ block.settings.place | escape }}{% endif %}
-                {%- if block.settings.verified -%}<span class="ec-rs__v">{% render 'ecoms-icon', name: 'verified' %}Compra verificada</span>{%- endif -%}
+                {%- if block.settings.verified -%}<span class="ec-rs__v">{% render 'ecoms-icon', name: 'verified' %}{% render 'ecoms-review-verified', verified: block.settings.verified, source: block.settings.source %}</span>{%- endif -%}
               </p>
             </li>
           {%- endfor -%}
@@ -130,7 +130,8 @@
         { "type": "textarea", "id": "text", "label": "Reseña" },
         { "type": "image_picker", "id": "image", "label": "Foto de la clienta (con permiso)" },
         { "type": "video", "id": "video", "label": "Video de la clienta (con permiso)", "info": "Corto y vertical. Se reproduce solo, sin sonido, en lugar de la foto." },
-        { "type": "checkbox", "id": "verified", "label": "Compra verificada", "default": true }
+        { "type": "checkbox", "id": "verified", "label": "Compra verificada", "default": true },
+        { "type": "text", "id": "source", "label": "Dónde se compró", "info": "Opcional. Con valor, la etiqueta dice «Compra verificada en …» (ej.: Mercado Libre)." }
       ]
     }
   ],

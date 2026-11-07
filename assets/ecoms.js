@@ -287,6 +287,8 @@
     });
     // «Llévalo en pack» applies to a single unit only: hide it while a bigger pack is selected.
     $$('[data-ec-packoff]').forEach((el) => { el.hidden = qty > 1; });
+    // Same for the step-up-to-free-shipping nudge: it only makes sense against the single unit.
+    $$('[data-ec-pack-upsell]').forEach((el) => { el.hidden = qty > 1; });
     // Price block follows the selected pack: total, compare-at for that quantity and savings.
     paintPrice(qty, total);
     $$('[data-ec-shipbar]').forEach((bar) => {
@@ -812,6 +814,16 @@
     const step = t.closest('[data-ec-qty-step]');
     if (step) { setQty(currentQty() + Number(step.dataset.ecQtyStep)); return; }
 
+    const pick = t.closest('[data-ec-pack-pick]');
+    if (pick) {
+      event.preventDefault();
+      const want = Number(pick.dataset.ecPackPick) || 1;
+      setQty(want);
+      track('ecoms_pack_selected', { quantity: want, source: 'free_shipping_nudge' });
+      $('[data-ec-packs] input[type="radio"]:checked')?.closest('.ec-pack')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
     const galStep = t.closest('[data-ec-gal-step]');
     if (galStep) { const gal = galleryOf(galStep); goGal(gal, galIndex(gal) + Number(galStep.dataset.ecGalStep)); return; }
 
@@ -907,6 +919,38 @@
   }
 
   /* ---------- Boot ---------- */
+  // Gallery videos that must not cost anything until they are seen: the file carries preload="none" and no
+  // autoplay attribute, so nothing downloads on load. Once the slide is on screen the video fetches and plays
+  // muted, looping and inline; off screen it pauses. With reduced motion it never autoplays and shows controls.
+  function initLazyVideos(root = document) {
+    $$('[data-ec-lazy-video]:not([data-ec-lazy-on])', root).forEach((box) => {
+      box.dataset.ecLazyOn = '1';
+      const video = $('video', box);
+      if (!video) return;
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.setAttribute('playsinline', '');
+      video.removeAttribute('controls');
+      const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) {
+        video.setAttribute('controls', '');
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (video.preload !== 'auto') video.preload = 'auto';
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      }, { threshold: 0.5 });
+      io.observe(box);
+    });
+  }
+
   function init(root = document) {
     productJson = null;
     // Packs whose first tier is more than 1 unit: start the form at that quantity.
@@ -918,6 +962,7 @@
     initSticky();
     initReviewSliders();
     initGiftTiers();
+    initLazyVideos(root);
     sync();
   }
 

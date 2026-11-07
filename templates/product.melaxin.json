@@ -26,8 +26,8 @@
         "social": {
           "type": "social",
           "settings": {
-            "rating": "4,8",
-            "text": "+620 clientas en Chile"
+            "rating": "",
+            "text": ""
           }
         },
         "lead": {
@@ -52,6 +52,7 @@
           "type": "price",
           "settings": {
             "style": "pill",
+            "shipping_cost": 4000,
             "ship_local_title": "",
             "ship_local_text": "",
             "compact": true
@@ -190,6 +191,7 @@
         "media_ratio": "square",
         "media_fit": "cover",
         "video_first": false,
+        "demo_in_gallery": true,
         "video_autoplay": true,
         "video_loop": true,
         "sticky": true,
@@ -390,9 +392,19 @@
             "title": "Aporta luminosidad",
             "text": "Cúrcuma y niacinamida: un aspecto más luminoso y una sensación fresca."
           }
+        },
+        "z0": {
+          "type": "zone",
+          "settings": {
+            "label": "Cuello",
+            "text": "Donde la piel suele verse más oscura y con textura irregular.",
+            "icon": "sparkle",
+            "image": ""
+          }
         }
       },
       "block_order": [
+        "z0",
         "z1",
         "z2",
         "z3",
@@ -402,6 +414,7 @@
         "e3"
       ],
       "settings": {
+        "metafield": "ecoms.zones",
         "heading": "Dónde usarlo | Un spray para *todo el cuerpo.*",
         "text": "Úsalo en las zonas del cuerpo donde la piel se vea opaca, áspera o con tono desigual. No es para el rostro ni para piel con heridas.",
         "effects_heading": "Qué hace | Lo que hace en *tu piel.*",
