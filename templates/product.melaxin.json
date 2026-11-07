@@ -12,17 +12,6 @@
     "main": {
       "type": "ecoms-product",
       "blocks": {
-        "title": {
-          "type": "title",
-          "settings": {}
-        },
-        "hook": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Piel más suave y de tono más parejo, zona por zona</p>",
-            "fixed": true
-          }
-        },
         "social": {
           "type": "social",
           "settings": {
@@ -160,11 +149,34 @@
             "label_5": "¿Por qué este precio?",
             "open_first": false
           }
+        },
+        "ang": {
+          "type": "angles",
+          "settings": {
+            "default_key": "cuello",
+            "key_1": "cuello",
+            "match_1": "cuello oscuro, cuello",
+            "eyebrow_1": "Cuello oscuro o áspero",
+            "title_1": "¿Tu cuello se ve más oscuro que tu cara?",
+            "sub_1": "No siempre es suciedad: son células muertas acumuladas. Peel Shot exfolia con ácido kójico, cúrcuma y niacinamida.",
+            "image_1": "",
+            "key_2": "hombre",
+            "match_2": "hombres, men, masculino",
+            "eyebrow_2": "Para hombres también",
+            "title_2": "Cuello oscuro: no es suciedad, es piel muerta",
+            "sub_2": "Un spray, 2 minutos antes de la ducha, 2 a 3 veces por semana. Sin cremas ni complicaciones.",
+            "image_2": "",
+            "key_3": "roce",
+            "match_3": "axilas, entrepierna, roce",
+            "eyebrow_3": "Axilas, entrepierna y codos",
+            "title_3": "Zonas de roce con tono más parejo",
+            "sub_3": "Exfolia suavemente donde la piel se ve opaca o áspera. Ácido kójico, cúrcuma y niacinamida.",
+            "image_3": ""
+          }
         }
       },
       "block_order": [
-        "title",
-        "hook",
+        "ang",
         "social",
         "lead",
         "benefits",

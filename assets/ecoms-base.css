@@ -1684,6 +1684,10 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 .ec-social b { font-weight: 800; }
 /* «· +620 opiniones en Mercado Libre» next to the score: secondary weight so the number leads. */
 .ec-social__n { color: var(--ec-muted); font-weight: 600; }
+/* Titular por ángulo de anuncio. Qué variante se ve lo decide el <style> en línea de la sección,
+   que se imprime antes del titular para que no haya parpadeo. Aquí solo va lo estructural. */
+.ec-angle { display: contents; }
+.ec-angle__v > .ec-eyebrow { margin-bottom: 6px; }
 .ec-rsl { display: grid; gap: 8px; }
 .ec-rsl__item { display: flex; align-items: flex-start; gap: 12px; margin: 0; }
 .ec-rsl__item[hidden] { display: none; }

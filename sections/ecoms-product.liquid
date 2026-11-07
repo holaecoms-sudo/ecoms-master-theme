@@ -24,6 +24,61 @@
     assign media_count = media_count | plus: 1
   endif
   assign first_media = variant.featured_media | default: product.featured_media
+
+  # ---------- Ángulo de anuncio ----------
+  # Una misma landing sirve a varios anuncios: el parámetro «angle» de la URL (o utm_content, cuando
+  # trae la palabra del ángulo) decide qué eyebrow, titular, subtítulo y primera foto se muestran.
+  # Todo el contenido lo escribe el merchant en el bloque «Ángulos de anuncio»; aquí no hay texto fijo.
+  # Shopify Liquid no puede leer parámetros de la URL, así que el contenido de TODOS los ángulos se
+  # imprime y un script en línea, antes de que el navegador pinte, marca cuál está activo. Por eso no
+  # hay parpadeo: no se reemplaza nada después, solo se elige con CSS lo que ya está en el HTML.
+  assign angles_block = section.blocks | where: 'type', 'angles' | first
+  assign angle_keys = ''
+  assign angle_default = ''
+  if angles_block
+    assign angle_default = angles_block.settings.default_key | strip | downcase
+    for i in (1..3)
+      assign ak = 'key_' | append: i
+      assign akey = angles_block.settings[ak] | strip | downcase
+      if akey != blank
+        assign angle_keys = angle_keys | append: akey | append: ','
+      endif
+    endfor
+    assign angle_keys = angle_keys | split: ','
+    if angle_default == blank
+      assign angle_default = angle_keys[0]
+    endif
+  endif
+-%}
+{%- comment -%}
+  Palabras extra que también identifican cada ángulo dentro de utm_content (el nombre del anuncio),
+  separadas por coma en el editor. Se arma como JSON porque lo consume el script de más abajo.
+{%- endcomment -%}
+{%- capture angle_match -%}
+{
+{%- if angles_block -%}
+  {%- assign am_first = true -%}
+  {%- for i in (1..3) -%}
+    {%- assign am_k = 'key_' | append: i -%}
+    {%- assign am_m = 'match_' | append: i -%}
+    {%- assign am_key = angles_block.settings[am_k] | strip | downcase -%}
+    {%- if am_key == blank -%}{%- continue -%}{%- endif -%}
+    {%- unless am_first -%},{%- endunless -%}
+    {%- assign am_first = false -%}
+    {{ am_key | json }}:[
+    {%- assign am_words = angles_block.settings[am_m] | default: '' | downcase | split: ',' -%}
+    {%- for w in am_words -%}
+      {%- assign w_t = w | strip -%}
+      {%- if w_t == blank -%}{%- continue -%}{%- endif -%}
+      {%- unless forloop.first -%},{%- endunless -%}{{ w_t | json }}
+    {%- endfor -%}
+    ]
+  {%- endfor -%}
+{%- endif -%}
+}
+{%- endcapture -%}
+{%- liquid
+  assign angle_match = angle_match | strip
   assign feature_block = section.blocks | where: 'type', 'media_features' | first
   assign variants_block = section.blocks | where: 'type', 'variants' | first
   assign has_variants_block = false
@@ -103,6 +158,53 @@
     assign start_total = start_sub | minus: start_discount
   endif
 -%}
+{%- if angles_block and angle_keys.size > 0 -%}
+  {%- comment -%}
+    Esto va antes que cualquier marca visible de la sección, a propósito: el script marca el ángulo
+    activo mientras el navegador todavía está leyendo el HTML, así que cuando llega al titular y a la
+    galería ya sabe cuál mostrar. No hay parpadeo ni salto, porque nada se reemplaza después de pintar.
+
+    Sin JavaScript tampoco se rompe: el CSS deja visible el ángulo por defecto.
+  {%- endcomment -%}
+  <style>
+    .ec-angle__v[data-angle="{{ angle_default }}"] { display: block; }
+    .ec-angle__v:not([data-angle="{{ angle_default }}"]) { display: none; }
+    {%- for k in angle_keys -%}
+      html[data-ec-angle="{{ k }}"] .ec-angle__v[data-angle="{{ k }}"] { display: block; }
+      html[data-ec-angle="{{ k }}"] .ec-angle__v:not([data-angle="{{ k }}"]) { display: none; }
+    {%- endfor -%}
+  </style>
+  <script>
+    (function () {
+      var KEYS = {{ angle_keys | json }};
+      var DEF = {{ angle_default | json }};
+      var MATCH = {{ angle_match }};
+      var p;
+      try { p = new URLSearchParams(window.location.search); } catch (e) { p = null; }
+      var want = '';
+      if (p) {
+        // «angle» manda. Si no viene, se busca la palabra del ángulo dentro de utm_content,
+        // que es lo que suele traer el nombre del anuncio.
+        want = (p.get('angle') || '').trim().toLowerCase();
+        if (KEYS.indexOf(want) < 0) {
+          var hay = ((p.get('utm_content') || '') + ' ' + (p.get('utm_term') || '')).toLowerCase();
+          want = '';
+          for (var i = 0; i < KEYS.length && !want; i++) {
+            var words = [KEYS[i]].concat(MATCH[KEYS[i]] || []);
+            for (var j = 0; j < words.length; j++) {
+              if (words[j] && hay.indexOf(words[j]) >= 0) { want = KEYS[i]; break; }
+            }
+          }
+        }
+      }
+      if (KEYS.indexOf(want) < 0) want = DEF;
+      document.documentElement.setAttribute('data-ec-angle', want);
+      // El ángulo viaja con el comprador: ecoms.js lo agrega al ir al checkout, para no perder
+      // de qué anuncio vino cuando se abre el formulario de pago contra entrega.
+      try { sessionStorage.setItem('ecAngle', want); } catch (e) {}
+    })();
+  </script>
+{%- endif -%}
 {%- comment -%} Page palette: overrides the store colors only on pages using this template (e.g. a cleaning category). {%- endcomment -%}
 {%- liquid
   assign pal = section.settings.palette | default: 'store'
@@ -200,6 +302,40 @@
                       endif
                       assign img_alt = media.alt | default: product.title
                     -%}
+                    {%- comment -%}
+                      Fotos por ángulo, solo en la primera diapositiva. Un ángulo sin foto se queda con la
+                      actual, tal como pide el encargo, porque no entra en el mapa.
+                    {%- endcomment -%}
+                    {%- liquid
+                      assign ang_has_images = false
+                      if forloop.first and angles_block
+                        for ai in (1..3)
+                          assign ang_i = 'image_' | append: ai
+                          assign ang_k = 'key_' | append: ai
+                          if angles_block.settings[ang_i] != blank and angles_block.settings[ang_k] != blank
+                            assign ang_has_images = true
+                          endif
+                        endfor
+                      endif
+                    -%}
+                    {%- capture ang_map -%}
+                    {
+                    {%- if forloop.first and angles_block -%}
+                      {%- assign ang_first = true -%}
+                      {%- for ai in (1..3) -%}
+                        {%- assign ang_k = 'key_' | append: ai -%}
+                        {%- assign ang_i = 'image_' | append: ai -%}
+                        {%- assign ang_key = angles_block.settings[ang_k] | strip | downcase -%}
+                        {%- assign ang_img = angles_block.settings[ang_i] -%}
+                        {%- if ang_key == blank or ang_img == blank -%}{%- continue -%}{%- endif -%}
+                        {%- unless ang_first -%},{%- endunless -%}
+                        {%- assign ang_first = false -%}
+                        {{ ang_key | json }}:{{ ang_img | image_url: width: 1400 | json }}
+                      {%- endfor -%}
+                    {%- endif -%}
+                    }
+                    {%- endcapture -%}
+                    {%- assign ang_map = ang_map | strip_newlines | strip -%}
                     {{
                       media.preview_image
                       | image_url: width: 1400
@@ -210,6 +346,25 @@
                         fetchpriority: img_priority,
                         alt: img_alt
                     }}
+                    {%- if ang_has_images -%}
+                      {%- comment -%}
+                        Corre pegado a la imagen y antes de que se pinte, por eso el cambio no se ve.
+                        Solo se imprime cuando algún ángulo tiene foto propia.
+                      {%- endcomment -%}
+                      <script>
+                        (function () {
+                          var img = document.currentScript.previousElementSibling;
+                          while (img && img.tagName !== 'IMG') img = img.previousElementSibling;
+                          if (!img) return;
+                          var map = {{ ang_map }};
+                          var a = document.documentElement.getAttribute('data-ec-angle');
+                          var src = a && map[a];
+                          if (!src || src === img.getAttribute('src')) return;
+                          img.removeAttribute('srcset');
+                          img.setAttribute('src', src);
+                        })();
+                      </script>
+                    {%- endif -%}
                 {%- endcase -%}
                 {%- comment -%} Headline over the first photos only (later ones usually carry their own text). {%- endcomment -%}
                 {%- if section.settings.media_title != blank and forloop.index <= section.settings.media_over_count -%}
@@ -485,6 +640,37 @@
 
           {%- when 'rating' -%}
             {%- render 'ecoms-rating', product: product, block: block -%}
+
+          {%- when 'angles' -%}
+            {%- comment -%}
+              Un titular por ángulo de anuncio. Se imprimen todos y el CSS de arriba deja visible el que
+              corresponde al parámetro de la URL, así que la persona ve de inmediato el mismo mensaje del
+              anuncio que tocó. El h1 es el titular del ángulo, no el nombre del producto: ese es el punto
+              de la coincidencia anuncio-página. El nombre del producto sigue en el <title> y en los datos
+              estructurados. Un ángulo sin titular cae al nombre del producto, para no dejar la página sin h1.
+            {%- endcomment -%}
+            <div class="ec-angle" {{ block.shopify_attributes }}>
+              {%- for i in (1..3) -%}
+                {%- liquid
+                  assign an_k = 'key_' | append: i
+                  assign an_e = 'eyebrow_' | append: i
+                  assign an_t = 'title_' | append: i
+                  assign an_s = 'sub_' | append: i
+                  assign an_key = block.settings[an_k] | strip | downcase
+                  assign an_title = block.settings[an_t] | strip
+                -%}
+                {%- if an_key == blank -%}{%- continue -%}{%- endif -%}
+                <div class="ec-angle__v" data-angle="{{ an_key | escape }}">
+                  {%- if block.settings[an_e] != blank -%}
+                    <p class="ec-eyebrow">{{ block.settings[an_e] | escape }}</p>
+                  {%- endif -%}
+                  <h1 class="ec-pdp__title">{{ an_title | default: product.title | escape }}</h1>
+                  {%- if block.settings[an_s] != blank -%}
+                    <div class="ec-pdp__sub ec-pdp__sub--hook">{{ block.settings[an_s] | escape }}</div>
+                  {%- endif -%}
+                </div>
+              {%- endfor -%}
+            </div>
 
           {%- when 'title' -%}
             {%- comment -%} Product metafield ecoms.title_accent: that part of the title is set in italic serif (e.g. «en barra»). {%- endcomment -%}
@@ -1826,6 +2012,153 @@
       "type": "@app"
     },
     {
+      "type": "angles",
+      "name": "Ángulos de anuncio",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Una landing para varios anuncios. El parámetro «angle» de la URL (ej.: ?angle=hombre) elige qué titular y qué foto se muestran. Si no viene, se busca la palabra dentro de utm_content. Sin coincidencia se usa el ángulo por defecto."
+        },
+        {
+          "type": "text",
+          "id": "default_key",
+          "label": "Ángulo por defecto",
+          "default": "cuello",
+          "info": "La clave que se usa cuando la URL no trae ninguna."
+        },
+        {
+          "type": "header",
+          "content": "Ángulo 1"
+        },
+        {
+          "type": "text",
+          "id": "key_1",
+          "label": "Clave en la URL",
+          "default": "cuello",
+          "info": "Sin espacios ni mayúsculas. Es lo que va en ?angle="
+        },
+        {
+          "type": "text",
+          "id": "match_1",
+          "label": "Otras palabras que lo identifican",
+          "default": "cuello oscuro, cuello",
+          "info": "Separadas por coma. Se buscan dentro de utm_content y utm_term."
+        },
+        {
+          "type": "text",
+          "id": "eyebrow_1",
+          "label": "Etiqueta superior",
+          "default": "Cuello oscuro o áspero"
+        },
+        {
+          "type": "text",
+          "id": "title_1",
+          "label": "Titular",
+          "default": "¿Tu cuello se ve más oscuro que tu cara?",
+          "info": "Es el h1 de la página. Vacío = nombre del producto."
+        },
+        {
+          "type": "textarea",
+          "id": "sub_1",
+          "label": "Subtítulo",
+          "default": "No siempre es suciedad: son células muertas acumuladas. Peel Shot exfolia con ácido kójico, cúrcuma y niacinamida."
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Primera foto de la galería",
+          "info": "Opcional. Sin foto se mantiene la primera foto actual del producto."
+        },
+        {
+          "type": "header",
+          "content": "Ángulo 2"
+        },
+        {
+          "type": "text",
+          "id": "key_2",
+          "label": "Clave en la URL",
+          "default": "hombre",
+          "info": "Sin espacios ni mayúsculas. Es lo que va en ?angle="
+        },
+        {
+          "type": "text",
+          "id": "match_2",
+          "label": "Otras palabras que lo identifican",
+          "default": "hombres, men, masculino",
+          "info": "Separadas por coma. Se buscan dentro de utm_content y utm_term."
+        },
+        {
+          "type": "text",
+          "id": "eyebrow_2",
+          "label": "Etiqueta superior",
+          "default": "Para hombres también"
+        },
+        {
+          "type": "text",
+          "id": "title_2",
+          "label": "Titular",
+          "default": "Cuello oscuro: no es suciedad, es piel muerta",
+          "info": "Es el h1 de la página. Vacío = nombre del producto."
+        },
+        {
+          "type": "textarea",
+          "id": "sub_2",
+          "label": "Subtítulo",
+          "default": "Un spray, 2 minutos antes de la ducha, 2 a 3 veces por semana. Sin cremas ni complicaciones."
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Primera foto de la galería",
+          "info": "Opcional. Sin foto se mantiene la primera foto actual del producto."
+        },
+        {
+          "type": "header",
+          "content": "Ángulo 3"
+        },
+        {
+          "type": "text",
+          "id": "key_3",
+          "label": "Clave en la URL",
+          "default": "roce",
+          "info": "Sin espacios ni mayúsculas. Es lo que va en ?angle="
+        },
+        {
+          "type": "text",
+          "id": "match_3",
+          "label": "Otras palabras que lo identifican",
+          "default": "axilas, entrepierna, roce",
+          "info": "Separadas por coma. Se buscan dentro de utm_content y utm_term."
+        },
+        {
+          "type": "text",
+          "id": "eyebrow_3",
+          "label": "Etiqueta superior",
+          "default": "Axilas, entrepierna y codos"
+        },
+        {
+          "type": "text",
+          "id": "title_3",
+          "label": "Titular",
+          "default": "Zonas de roce con tono más parejo",
+          "info": "Es el h1 de la página. Vacío = nombre del producto."
+        },
+        {
+          "type": "textarea",
+          "id": "sub_3",
+          "label": "Subtítulo",
+          "default": "Exfolia suavemente donde la piel se ve opaca o áspera. Ácido kójico, cúrcuma y niacinamida."
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Primera foto de la galería",
+          "info": "Opcional. Sin foto se mantiene la primera foto actual del producto."
+        }
+      ]
+    },
+    {
       "type": "eyebrow",
       "name": "Etiqueta superior",
       "limit": 1,
@@ -2679,6 +3012,13 @@
           "label": "Desde metacampo del producto",
           "default": false,
           "info": "Para plantillas compartidas: el % del pack de 2 sale del metacampo ecoms.pack2_pct (igual al descuento automático real) y el nombre de la unidad de ecoms.unit_name. Sin ese metacampo, los packs no se muestran."
+        },
+        {
+          "type": "checkbox",
+          "id": "labels_from_template",
+          "label": "Usar los títulos de esta plantilla",
+          "default": false,
+          "info": "Normalmente los títulos de los packs salen del metacampo ecoms.pack_labels. Marca esto para que manden los títulos escritos aquí abajo (ej.: «TRATAMIENTO 60 DÍAS»). Los precios y los % siguen saliendo de los metacampos."
         },
         {
           "type": "text",

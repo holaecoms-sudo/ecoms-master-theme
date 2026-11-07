@@ -527,6 +527,32 @@
     }
   }
 
+  // Ángulo de anuncio con el que se abrió la landing. Lo deja marcado el script en línea de la
+  // sección, antes de pintar; aquí solo se lee, y se guarda en la sesión por si el comprador navega.
+  function adAngle() {
+    const fromDom = document.documentElement.getAttribute('data-ec-angle');
+    if (fromDom) return fromDom;
+    try { return sessionStorage.getItem('ecAngle') || ''; } catch (e) { return ''; }
+  }
+
+  // Los enlaces internos conservan el parámetro, para que al volver de cualquier página (y al abrir
+  // el formulario de pago contra entrega, que recarga en algunas configuraciones) siga el mismo ángulo.
+  function keepAngleOnLinks() {
+    const angle = adAngle();
+    if (!angle) return;
+    $$('a[href]').forEach((a) => {
+      if (a.dataset.ecAngleOn) return;
+      a.dataset.ecAngleOn = '1';
+      const href = a.getAttribute('href') || '';
+      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+      let url;
+      try { url = new URL(href, window.location.origin); } catch (e) { return; }
+      if (url.origin !== window.location.origin || url.searchParams.has('angle')) return;
+      url.searchParams.set('angle', angle);
+      a.setAttribute('href', url.pathname + url.search + url.hash);
+    });
+  }
+
   /* ---------- Cart ---------- */
   async function postCart(body, isJson) {
     const response = await fetch(cartAddUrl(), {
@@ -879,7 +905,12 @@
         }
         track('ecoms_buy_now', { variant_id: Number(body.get('id')), quantity: Number(body.get('quantity')) });
         const code = buyNow.dataset.discount;
-        window.location.href = `${window.Shopify?.routes?.root || '/'}checkout${code ? `?discount=${encodeURIComponent(code)}` : ''}`;
+        // El ángulo del anuncio viaja al checkout: sin esto se pierde de qué creativo vino la venta.
+        const checkout = new URL(`${window.Shopify?.routes?.root || '/'}checkout`, window.location.origin);
+        if (code) checkout.searchParams.set('discount', code);
+        const angle = adAngle();
+        if (angle) checkout.searchParams.set('angle', angle);
+        window.location.href = checkout.toString();
       } catch (e) {
         buyNow.removeAttribute('aria-busy');
         const error = form.querySelector('[data-ec-form-error]');
@@ -963,6 +994,7 @@
     initReviewSliders();
     initGiftTiers();
     initLazyVideos(root);
+    keepAngleOnLinks();
     sync();
   }
 
