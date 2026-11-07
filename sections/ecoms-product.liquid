@@ -7,6 +7,22 @@
   assign variant = product.selected_or_first_available_variant
   assign form_id = 'EcForm-' | append: section.id
   assign media_count = product.media.size
+
+  # «Míralo en acción» right where it convinces: the first video of ecoms.demo_media rides along as the
+  # second item of the main gallery (muted, looping, playsinline). It only downloads once it scrolls into
+  # view, so the first paint still costs one image.
+  assign gal_demo_video = blank
+  if section.settings.demo_in_gallery
+    for dm_file in product.metafields.ecoms.demo_media.value
+      if dm_file.media_type == 'video' or dm_file.sources
+        assign gal_demo_video = dm_file
+        break
+      endif
+    endfor
+  endif
+  if gal_demo_video != blank
+    assign media_count = media_count | plus: 1
+  endif
   assign first_media = variant.featured_media | default: product.featured_media
   assign feature_block = section.blocks | where: 'type', 'media_features' | first
   assign variants_block = section.blocks | where: 'type', 'variants' | first
@@ -128,11 +144,18 @@
 {%- if pal == 'gold' or pal == 'rose' or pal == 'amber' or pal == 'violet' or pal == 'sky' -%}{{ 'ecoms-gold.css' | asset_url | stylesheet_tag }}{%- endif -%}
 {%- if pal == 'rose' or pal == 'amber' or pal == 'violet' or pal == 'sky' -%}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+{%- comment -%}
+  Google Fonts used to block the first render: the browser waited for a third-party stylesheet before
+  painting anything. It now downloads at low priority and applies on load, and the families already carry
+  «display=swap», so the text paints immediately in the fallback and swaps when the webfont arrives.
+{%- endcomment -%}
 {%- if pal == 'amber' -%}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,400;1,9..144,600&family=DM+Sans:wght@400;500;600;700&display=swap">
+  {%- assign ec_font_href = 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,400;1,9..144,600&family=DM+Sans:wght@400;500;600;700&display=swap' -%}
 {%- else -%}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+  {%- assign ec_font_href = 'https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap' -%}
 {%- endif -%}
+<link rel="stylesheet" href="{{ ec_font_href }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ ec_font_href }}"></noscript>
 {{ 'ecoms-rose.css' | asset_url | stylesheet_tag }}
 {%- if pal == 'amber' -%}{{ 'ecoms-ritual.css' | asset_url | stylesheet_tag }}{%- endif -%}
 {%- endif -%}
@@ -197,6 +220,14 @@
                   </div>
                 {%- endif -%}
               </div>
+              {%- if forloop.first and gal_demo_video != blank -%}
+                <div class="ec-gal__slide ec-gal__slide--demo" data-ec-lazy-video>
+                  {{
+                    gal_demo_video
+                    | video_tag: controls: false, muted: true, playsinline: true, autoplay: false, loop: true, preload: 'none', image_size: '1200x', class: 'ec-gal__video'
+                  }}
+                </div>
+              {%- endif -%}
             {%- else -%}
               <div class="ec-gal__slide">{{ 'product-1' | placeholder_svg_tag: 'ec-placeholder' }}</div>
             {%- endfor -%}
@@ -222,11 +253,16 @@
         {%- if media_count > 1 -%}
           <ul class="ec-gal__thumbs" role="list">
             {%- for media in gallery_media -%}
+              {%- comment -%} The demo video sits at index 1, so every thumb after the first shifts one slot. {%- endcomment -%}
+              {%- assign thumb_to = forloop.index0 -%}
+              {%- if gal_demo_video != blank and forloop.index0 > 0 -%}
+                {%- assign thumb_to = forloop.index0 | plus: 1 -%}
+              {%- endif -%}
               <li>
                 <button
                   type="button"
                   class="ec-gal__thumb"
-                  data-ec-gal-to="{{ forloop.index0 }}"
+                  data-ec-gal-to="{{ thumb_to }}"
                   aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
                   aria-label="Ver imagen {{ forloop.index }}"
                 >
@@ -236,6 +272,14 @@
                   {%- endif -%}
                 </button>
               </li>
+              {%- if forloop.first and gal_demo_video != blank -%}
+                <li>
+                  <button type="button" class="ec-gal__thumb" data-ec-gal-to="1" aria-current="false" aria-label="Ver video de uso">
+                    {{ gal_demo_video.preview_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}
+                    <span class="ec-gal__thumb-play">{% render 'ecoms-icon', name: 'play' %}</span>
+                  </button>
+                </li>
+              {%- endif -%}
             {%- endfor -%}
           </ul>
         {%- endif -%}
@@ -271,24 +315,67 @@
 
           {%- when 'social' -%}
             {%- comment -%}
-              Stars + score + customer count. A review app's metafield (reviews.rating) wins; otherwise the
-              merchant's own real figures. Nothing is shown while both are empty.
+              Stars + score + how many opinions back it. Three sources, in order: the product's own real
+              figures (ecoms.rating_value / ecoms.rating_count / ecoms.rating_source), a review app's
+              metafield (reviews.rating), and last the Theme Editor field. Empty everywhere and nothing is
+              shown: a score is never invented. ecoms.rating_source names where the opinions were collected
+              (e.g. «Mercado Libre»), so the claim says where it can be checked.
             {%- endcomment -%}
             {%- liquid
-              assign so_r = product.metafields.reviews.rating.value.rating
-              assign so_max = product.metafields.reviews.rating.value.scale_max | default: 5
-              if so_r == blank and block.settings.rating != blank
-                assign so_r = block.settings.rating | replace: ',', '.' | plus: 0
-                assign so_max = 5
+              assign so_r = ''
+              assign so_max = 5
+              assign so_count = 0
+              assign so_source = ''
+
+              assign so_mf = product.metafields.ecoms.rating_value.value | default: product.metafields.ecoms.rating_value
+              if so_mf != blank
+                assign so_r = so_mf | append: '' | replace: ',', '.' | plus: 0
+                assign so_count = product.metafields.ecoms.rating_count.value | default: product.metafields.ecoms.rating_count | plus: 0
+                assign so_source = product.metafields.ecoms.rating_source.value | default: product.metafields.ecoms.rating_source | append: '' | strip
+              else
+                assign so_app = product.metafields.reviews.rating.value.rating
+                if so_app != blank
+                  assign so_r = so_app
+                  assign so_max = product.metafields.reviews.rating.value.scale_max | default: 5
+                  assign so_count = product.metafields.reviews.rating_count.value | default: product.metafields.reviews.rating_count | plus: 0
+                elsif block.settings.rating != blank
+                  assign so_r = block.settings.rating | replace: ',', '.' | plus: 0
+                endif
+              endif
+
+              # Thousands separator for the opinion count (1240 → 1.240), as Chile writes it.
+              # Liquid evaluates «and» right to left, so the empty-vs-number test is split in two to avoid
+              # ever comparing a blank string against 0.
+              assign so_show = false
+              if so_r != blank
+                if so_r > 0
+                  assign so_show = true
+                endif
+              endif
+
+              assign so_count_label = so_count
+              if so_count >= 1000
+                assign so_thousands = so_count | divided_by: 1000 | floor
+                assign so_rest = so_count | modulo: 1000 | plus: 1000 | append: '' | slice: 1, 3
+                assign so_count_label = so_thousands | append: '.' | append: so_rest
               endif
             -%}
-            {%- if so_r != blank -%}
+            {%- if so_show -%}
               {%- assign so_pct = so_r | times: 100.0 | divided_by: so_max | round: 1 -%}
               {%- assign so_label = so_r | round: 1 | append: '' | replace: '.', ',' -%}
+              {%- capture so_meta -%}
+                {%- if so_count > 0 -%}
+                  +{{ so_count_label }} {% if so_count == 1 %}opinión{% else %}opiniones{% endif %}
+                  {%- if so_source != blank %} en {{ so_source | escape }}{% endif -%}
+                {%- elsif block.settings.text != blank -%}
+                  {{ block.settings.text | escape }}
+                {%- endif -%}
+              {%- endcapture -%}
               <p class="ec-social" {{ block.shopify_attributes }}>
                 <span class="ec-stars" style="--s: 17px; --r: {{ so_pct }}%" role="img" aria-label="{{ so_label }} de {{ so_max }} estrellas"></span>
                 <b>{{ so_label }}/{{ so_max }}</b>
-                {%- if block.settings.text != blank %} <span>({{ block.settings.text | escape }})</span>{%- endif -%}
+                {%- assign so_meta = so_meta | strip -%}
+                {%- if so_meta != blank %} <span class="ec-social__n">· {{ so_meta }}</span>{%- endif -%}
               </p>
             {%- endif -%}
 
@@ -834,7 +921,17 @@
             {%- endunless -%}
 
           {%- when 'packs' -%}
-            {%- render 'ecoms-packs', product: product, source: block, uid: block.id, attrs: block.shopify_attributes -%}
+            {%- comment -%}
+              The standard shipping rate is configured once, on the price block. The packs need it to show
+              «+ envío» on the single unit and to work out the step up to the pack that ships free.
+            {%- endcomment -%}
+            {%- assign pk_ship_cost = 0 -%}
+            {%- for pb in section.blocks -%}
+              {%- if pb.type == 'price' -%}
+                {%- assign pk_ship_cost = pb.settings.shipping_cost | default: 0 | plus: 0 | times: 100 -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- render 'ecoms-packs', product: product, source: block, uid: block.id, attrs: block.shopify_attributes, ship_cost: pk_ship_cost -%}
 
           {%- when 'trust' -%}
             <div class="ec-trust4 ec-trust4--{{ block.settings.style | default: 'grid' }}" {{ block.shopify_attributes }}>
@@ -1464,6 +1561,13 @@
       "label": "Mostrar videos primero",
       "default": false,
       "info": "Sube el video demostrativo en Productos → Multimedia. Los videos pasan al inicio de la galería."
+    },
+    {
+      "type": "checkbox",
+      "id": "demo_in_gallery",
+      "label": "Video de uso en la galería",
+      "default": false,
+      "info": "Pone el primer video del metacampo «Videos de uso» (ecoms.demo_media) como segundo elemento de la galería. Se reproduce solo, sin sonido y en loop, y recién se descarga cuando entra en pantalla."
     },
     {
       "type": "checkbox",

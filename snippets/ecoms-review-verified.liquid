@@ -1,0 +1,21 @@
+{%- comment -%}
+  ECOMS · «Compra verificada» label for a real review.
+
+  The ecoms_review metaobject carries an optional «source» text field naming where the purchase
+  happened (e.g. «Mercado Libre»). When it has a value the claim says where it can be checked;
+  otherwise it stays as it was. Renders nothing when the review is not marked as verified, so an
+  unverified review never gains a badge it did not have.
+
+  Accepts:
+  - verified: {Boolean} the review is a verified purchase
+  - source: {String} optional, where the purchase was made
+  - short: {Boolean} optional, compact wording for tight badges («Verificada en X»)
+{%- endcomment -%}
+{%- if verified -%}
+  {%- assign rv_source = source | strip -%}
+  {%- if short -%}
+    {%- if rv_source != blank -%}Verificada en {{ rv_source | escape }}{%- else -%}Verificada{%- endif -%}
+  {%- else -%}
+    {%- if rv_source != blank -%}Compra verificada en {{ rv_source | escape }}{%- else -%}Compra verificada{%- endif -%}
+  {%- endif -%}
+{%- endif -%}
