@@ -268,7 +268,12 @@
         -%}
         {%- unless show_tier -%}{%- continue -%}{%- endunless -%}
         {%- assign mf_label = '' -%}
-        {%- if mf_mode and mf_labels != blank -%}{%- assign mf_label = mf_labels[forloop.index0] -%}{%- endif -%}
+        {%- comment -%}
+          Los títulos salen del metacampo, salvo que la plantilla pida mandar ella. Eso deja escribir
+          títulos de tratamiento («TRATAMIENTO 60 DÍAS») por plantilla sin tocar los metacampos, que son
+          compartidos entre tiendas.
+        {%- endcomment -%}
+        {%- if mf_mode and mf_labels != blank and s.labels_from_template != true -%}{%- assign mf_label = mf_labels[forloop.index0] -%}{%- endif -%}
         {%- comment -%} ecoms.pack_includes: what each pack includes (only for the «Tu pack incluye» summary; the card title stays short). {%- endcomment -%}
         {%- assign sum_txt = mf_label -%}
         {%- if mf_mode and product.metafields.ecoms.pack_includes.value != blank -%}
