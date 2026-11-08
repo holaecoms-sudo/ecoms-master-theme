@@ -38,7 +38,6 @@
     assign bk_title = block.settings.title | default: block.title.value
     assign bk_value = block.settings.value | default: block.value.value
     assign bk_verified = block.settings.verified | default: block.verified.value
-    assign bk_source = block.settings.source | default: block.source.value
     assign bk_video = block.settings.video | default: block.video.value
     unless bk_type == 'review' and bk_example
       assign real_blocks = real_blocks | plus: 1
@@ -73,7 +72,6 @@
         assign bk_title = block.settings.title | default: block.title.value
         assign bk_value = block.settings.value | default: block.value.value
         assign bk_verified = block.settings.verified | default: block.verified.value
-        assign bk_source = block.settings.source | default: block.source.value
         assign bk_video = block.settings.video | default: block.video.value
         if bk_type == 'review' and bk_text != blank
           if bk_example and request.design_mode == false
@@ -152,7 +150,6 @@
             assign bk_title = block.settings.title | default: block.title.value
             assign bk_value = block.settings.value | default: block.value.value
             assign bk_verified = block.settings.verified | default: block.verified.value
-            assign bk_source = block.settings.source | default: block.source.value
             assign bk_video = block.settings.video | default: block.video.value
           -%}
           {%- if bk_type == '@app' -%}
@@ -166,7 +163,7 @@
             {%- if bk_example -%}<span class="ec-rev__example">Ejemplo · no visible en la tienda</span>{%- endif -%}
             <div class="ec-rw__top">
               <b>{{ bk_author | escape }}</b>
-              {%- if bk_verified -%}<span class="ec-rw__ver">{% render 'ecoms-icon', name: 'verified' %}{% render 'ecoms-review-verified', verified: bk_verified, source: bk_source, short: true %}</span>{%- endif -%}
+              {%- if bk_verified -%}<span class="ec-rw__ver">{% render 'ecoms-icon', name: 'verified' %}Verificada</span>{%- endif -%}
             </div>
             {%- if bk_date != blank -%}<small class="ec-rw__date">{{ bk_date | escape }}</small>{%- endif -%}
             <span class="ec-stars" style="--s: 15px; --r: {{ bk_stars | times: 20 }}%" role="img" aria-label="{{ bk_stars }} de 5 estrellas"></span>
@@ -265,7 +262,6 @@
           assign bk_title = block.settings.title | default: block.title.value
           assign bk_value = block.settings.value | default: block.value.value
           assign bk_verified = block.settings.verified | default: block.verified.value
-          assign bk_source = block.settings.source | default: block.source.value
           assign bk_video = block.settings.video | default: block.video.value
         -%}
         {%- case bk_type -%}
@@ -292,7 +288,7 @@
                   <div>
                     <b>
                       {{- bk_author | escape -}}
-                      {%- if bk_verified %}{% render 'ecoms-icon', name: 'verified' %}<span class="visually-hidden">{% render 'ecoms-review-verified', verified: bk_verified, source: bk_source %}</span>{% endif -%}
+                      {%- if bk_verified %}{% render 'ecoms-icon', name: 'verified' %}<span class="visually-hidden">Compra verificada</span>{% endif -%}
                     </b>
                     <span class="ec-rev__meta">
                       {%- assign pct = bk_stars | times: 20 -%}
@@ -530,12 +526,6 @@
           "id": "verified",
           "label": "Compra verificada",
           "default": false
-        },
-        {
-          "type": "text",
-          "id": "source",
-          "label": "Dónde se compró",
-          "info": "Opcional. Con valor, la etiqueta dice «Compra verificada en …» (ej.: Mercado Libre)."
         },
         {
           "type": "image_picker",

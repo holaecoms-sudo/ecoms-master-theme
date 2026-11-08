@@ -1682,8 +1682,6 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 .ec-social { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 4px 8px; margin: 0; font-size: 14px; text-align: left; }
 .ec-social .ec-stars { --ec-star: #F5B700; }
 .ec-social b { font-weight: 800; }
-/* «· +620 opiniones en Mercado Libre» next to the score: secondary weight so the number leads. */
-.ec-social__n { color: var(--ec-muted); font-weight: 600; }
 .ec-rsl { display: grid; gap: 8px; }
 .ec-rsl__item { display: flex; align-items: flex-start; gap: 12px; margin: 0; }
 .ec-rsl__item[hidden] { display: none; }
@@ -1693,9 +1691,6 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 .ec-rsl__who { display: inline-flex; align-items: center; gap: 4px; }
 .ec-rsl__who .ec-i { width: 15px; height: 15px; color: var(--ec-accent); }
 .ec-rsl figcaption .ec-stars { --ec-star: #F5B700; }
-/* «Compra verificada en …» under the author in the review carousel. Wraps to its own line on narrow screens. */
-.ec-rsl__ver { display: inline-flex; align-items: center; gap: 4px; color: #0F7A3D; font-weight: 600; }
-.ec-rsl__ver .ec-i { width: 14px; height: 14px; }
 .ec-rsl__vid { display: block; width: 100%; max-height: 260px; margin-bottom: 6px; border-radius: 14px; background: #000; object-fit: cover; }
 .ec-rs__vid { aspect-ratio: 3 / 4; background: #000; }
 .ec-rb-sec .ec-w { max-width: 640px; }
@@ -1868,15 +1863,3 @@ a.ec-vt__card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px
 /* «Envío gratis»: small, sober chip inside the pack card (offer layout), next to the per-unit line. */
 .ec-packs--offer .ec-pack__shippill { display: inline-flex; align-items: center; gap: 4px; padding: 1px 7px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--ec-ink) 22%, transparent); color: var(--ec-ink); opacity: 0.8; font-size: 11px; font-weight: 600; white-space: nowrap; }
 .ec-packs--offer .ec-pack__shippill .ec-i { width: 12px; height: 12px; color: currentColor; }
-/* «+ $4.000 envío» on a pack that does not reach the free-shipping threshold: the real delivered cost. */
-.ec-packs--offer .ec-pack__shipcost { color: var(--ec-muted); font-size: 11px; font-weight: 600; white-space: nowrap; }
-/* Step up to the pack that ships free. Sits under the pack grid, one tap away from switching. */
-.ec-packup { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 10px 0 0; padding: 10px 12px;
-  border: 1px dashed color-mix(in srgb, var(--ec-primary) 55%, transparent); border-radius: 14px;
-  background: color-mix(in srgb, var(--ec-primary) 7%, var(--ec-bg)); font-size: 13px; line-height: 1.35; }
-.ec-packup > .ec-i { flex-shrink: 0; width: 18px; height: 18px; color: var(--ec-primary); }
-.ec-packup > span { flex: 1 1 auto; min-width: 0; }
-.ec-packup b { font-weight: 800; }
-.ec-packup__go { flex-shrink: 0; padding: 7px 12px; border: 0; border-radius: 999px; background: var(--ec-primary);
-  color: var(--ec-primary-ink, #fff); font: inherit; font-weight: 700; cursor: pointer; }
-@media (max-width: 420px) { .ec-packup__go { width: 100%; } }

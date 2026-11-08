@@ -3,42 +3,12 @@
   Appearance language only. Tiles/effects without a title are skipped.
 {%- endcomment -%}
 {%- liquid
-  # Zones come from the section blocks, or from a product metafield (list of «Ítem de contenido»:
-  # title = zone, text = short line, optional image) when «Contenido desde metacampo» is set and the
-  # product has it. The blocks stay as the default, so one template serves every product and the
-  # merchant edits the list without touching the theme. Effects always come from the blocks.
-  assign ze_zone_src = section.blocks
-  assign ze_from_mf = false
-  if section.settings.metafield != blank and product
-    assign ze_mfp = section.settings.metafield | strip | split: '.'
-    if ze_mfp.size == 2
-      assign ze_mfl = product.metafields[ze_mfp[0]][ze_mfp[1]].value
-      if ze_mfl != blank
-        assign ze_zone_src = ze_mfl
-        assign ze_from_mf = true
-      endif
-    endif
-  endif
-
   assign ze_zones = 0
-  if ze_from_mf
-    for item in ze_zone_src
-      assign ze_item_label = item.title.value | default: item.label.value | default: item.name.value
-      if ze_item_label != blank
-        assign ze_zones = ze_zones | plus: 1
-      endif
-    endfor
-  else
-    for block in section.blocks
-      if block.type == 'zone' and block.settings.label != blank
-        assign ze_zones = ze_zones | plus: 1
-      endif
-    endfor
-  endif
-
   assign ze_effects = 0
   for block in section.blocks
-    if block.type == 'effect' and block.settings.title != blank
+    if block.type == 'zone' and block.settings.label != blank
+      assign ze_zones = ze_zones | plus: 1
+    elsif block.type == 'effect' and block.settings.title != blank
       assign ze_effects = ze_effects | plus: 1
     endif
   endfor
@@ -52,33 +22,16 @@
     {%- endif -%}
     {%- if section.settings.text != blank -%}<p class="ec-ze__intro">{{ section.settings.text | escape }}</p>{%- endif -%}
     <div class="ec-ze__zones" role="list">
-      {%- for block in ze_zone_src -%}
-        {%- liquid
-          # One shape for both sources: section block (settings.*) or metaobject item (field.value).
-          if ze_from_mf
-            assign ze_label = block.title.value | default: block.label.value | default: block.name.value
-            assign ze_text = block.text.value | default: block.description.value
-            assign ze_image = block.image.value
-            assign ze_icon = block.icon.value | default: 'drop'
-          else
-            assign ze_label = ''
-            if block.type == 'zone'
-              assign ze_label = block.settings.label
-            endif
-            assign ze_text = block.settings.text
-            assign ze_image = block.settings.image
-            assign ze_icon = block.settings.icon
-          endif
-        -%}
-        {%- if ze_label != blank -%}
-          <article class="ec-ze__zone" role="listitem" {% unless ze_from_mf %}{{ block.shopify_attributes }}{% endunless %}>
-            {%- if ze_image != blank -%}
-              <div class="ec-ze__ph">{{ ze_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300,450,600', sizes: '(min-width: 750px) 22vw, 46vw', alt: ze_label }}</div>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'zone' and block.settings.label != blank -%}
+          <article class="ec-ze__zone" role="listitem" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              <div class="ec-ze__ph">{{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300,450,600', sizes: '(min-width: 750px) 22vw, 46vw', alt: block.settings.label }}</div>
             {%- else -%}
-              <span class="ec-ze__ic">{% render 'ecoms-icon', name: ze_icon %}</span>
+              <span class="ec-ze__ic">{% render 'ecoms-icon', name: block.settings.icon %}</span>
             {%- endif -%}
-            <b>{{ ze_label | escape }}</b>
-            {%- if ze_text != blank -%}<span>{{ ze_text | escape }}</span>{%- endif -%}
+            <b>{{ block.settings.label | escape }}</b>
+            {%- if block.settings.text != blank -%}<span>{{ block.settings.text | escape }}</span>{%- endif -%}
           </article>
         {%- endif -%}
       {%- endfor -%}
@@ -113,7 +66,6 @@
   "name": "ECOMS · Zonas y efecto",
   "tag": "div",
   "settings": [
-    { "type": "text", "id": "metafield", "label": "Contenido desde metacampo del producto", "default": "ecoms.zones", "info": "Lista de «Ítem de contenido» (título = zona, texto = línea corta, imagen opcional). Vacío o sin metacampo = usa los bloques de abajo." },
     { "type": "text", "id": "heading", "label": "Título", "default": "Dónde usarlo | Un spray para *todo el cuerpo.*" },
     { "type": "textarea", "id": "text", "label": "Texto de apertura" },
     { "type": "text", "id": "effects_heading", "label": "Título de los efectos", "default": "Qué hace | Lo que hace en *tu piel.*" },

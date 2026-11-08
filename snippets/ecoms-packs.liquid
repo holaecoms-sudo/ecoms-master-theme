@@ -11,8 +11,6 @@
   - source: {Object} block or section whose settings configure the packs
   - uid: {String} unique id (block.id or section.id)
   - attrs: {String} optional editor attributes
-  - ship_cost: {Number} optional standard shipping rate in cents (from the price block), used to show
-    «+ envío» on the packs that do not reach free shipping and to work out the step up to the one that does
   - section_url_id: {String} optional, set when rendered from a standalone section so the
     script can re-render it through the Section Rendering API on variant change
 
@@ -33,11 +31,6 @@
   endif
   assign live = s.discounts_live
   assign layout = s.layout | default: 'cards'
-  assign pk_ship = ship_cost | default: 0 | plus: 0
-  # Filled while the tiers are drawn: the single unit's total, and the cheapest pack that ships free.
-  assign pk_one_total = 0
-  assign pk_up_total = 0
-  assign pk_up_qty = 0
   assign has_pending_discount = false
   assign item_name = s.item_name | strip
   assign mf_mode = s.from_metafield
@@ -352,9 +345,6 @@
                   </span>
                   {%- if ships_free -%}
                     <span class="ec-pack__shippill">{% render 'ecoms-icon', name: 'truck' %}{{ settings.ecoms_free_shipping_label | default: 'Envío gratis' | escape }}</span>
-                  {%- elsif pk_ship > 0 -%}
-                    {%- comment -%} The real standard rate, so the single unit shows what it actually costs delivered. {%- endcomment -%}
-                    <span class="ec-pack__shipcost">+ {{ pk_ship | money }} envío</span>
                   {%- endif -%}
                 </span>
                 <span class="ec-pack__r">
@@ -392,16 +382,6 @@
             </span>
           </span>
         </label>
-        {%- liquid
-          if q == 1
-            assign pk_one_total = total
-          endif
-          # First pack that clears the free-shipping threshold: the one worth stepping up to.
-          if q > 1 and ships_free and pk_up_qty == 0
-            assign pk_up_total = total
-            assign pk_up_qty = q
-          endif
-        -%}
         {%- if is_default -%}
           {%- liquid
             assign sum_qty = q
@@ -412,22 +392,6 @@
         {%- endif -%}
       {%- endfor -%}
     </div>
-    {%- comment -%}
-      Step up to free shipping: paying for one unit really costs its price plus the shipping rate, so the gap
-      to the pack that ships free is smaller than it looks. The amount is worked out from the real prices and
-      never typed in. ecoms.js shows it only while the single unit is selected.
-    {%- endcomment -%}
-    {%- if pk_ship > 0 and pk_up_qty > 1 and pk_one_total > 0 -%}
-      {%- assign pk_gap = pk_one_total | plus: pk_ship | minus: pk_up_total -%}
-      {%- assign pk_gap = 0 | minus: pk_gap -%}
-      {%- if pk_gap > 0 -%}
-        <p class="ec-packup" data-ec-pack-upsell {% unless default_tier == 1 %}hidden{% endunless %}>
-          {% render 'ecoms-icon', name: 'truck' %}
-          <span>Por <b>{{ pk_gap | money }}</b> más te llevas {{ pk_up_qty }} y el envío gratis</span>
-          <button type="button" class="ec-packup__go" data-ec-pack-pick="{{ pk_up_qty }}">Cambiar al pack de {{ pk_up_qty }}</button>
-        </p>
-      {%- endif -%}
-    {%- endif -%}
     {%- if s.show_summary -%}
       {%- comment -%} «Qué incluye tu pack»: kept in sync with the selected pack by ecoms.js. {%- endcomment -%}
       <div class="ec-packsum" data-ec-pack-summary aria-live="polite">

@@ -43,8 +43,6 @@
             assign rb_author = r.settings.author | default: r.author.value
             assign rb_stars = r.settings.stars | default: r.stars.value | default: 5
             assign rb_img = r.settings.image | default: r.image.value
-            assign rb_verified = r.settings.verified | default: r.verified.value
-            assign rb_source = r.settings.source | default: r.source.value
             assign rb_initials = rb_author | split: ' '
           -%}
           <figure class="ec-rsl__item" {% if r.shopify_attributes %}{{ r.shopify_attributes }}{% endif %}>
@@ -58,9 +56,6 @@
               <figcaption>
                 <span class="ec-rsl__who">{{ rb_author | escape }}</span>
                 <span class="ec-stars" style="--s: 13px; --r: {{ rb_stars | times: 20 }}%" role="img" aria-label="{{ rb_stars }} de 5 estrellas"></span>
-                {%- if rb_verified -%}
-                  <span class="ec-rsl__ver">{% render 'ecoms-icon', name: 'verified' %}{% render 'ecoms-review-verified', verified: rb_verified, source: rb_source %}</span>
-                {%- endif -%}
               </figcaption>
             </div>
           </figure>
