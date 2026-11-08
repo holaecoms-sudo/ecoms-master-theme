@@ -830,14 +830,19 @@
         const buyBox = $('.ec-buy');
         if (buyBox) { event.preventDefault(); buyBox.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
       }
+      // Quantity tiers with gifts really do need a choice first: the gift depends on the tier.
       const tiers = $('[data-ec-gt]');
       if (tiers) { event.preventDefault(); tiers.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
-      // Pack tiers on the page: every page CTA takes the shopper back up to choose a pack, so they know what they are buying.
-      const packs = $('[data-ec-packs]');
-      if (packs) { event.preventDefault(); packs.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
-      // With cash on delivery live, page CTAs open the app's form right away (its button sits in the buy box).
+      // A CTA that declares data-ec-open-cod is labelled as the order action («Pedir y pagar al recibir»),
+      // so it has to open the form. This used to sit BELOW the pack scroll, which returns on any landing
+      // that has a pack selector, leaving this line unreachable: the button promised the form and only
+      // jumped the page back up to the packs. The selector always has a pack preselected, so the quantity
+      // is known and opening the form directly is safe.
       const cod = toBuy.dataset.ecOpenCod && codButton(toBuy.dataset.ecOpenCod);
       if (cod) { event.preventDefault(); cod.click(); return; }
+      // Plain CTAs (no order label) still take the shopper up to choose a pack, so they know what they buy.
+      const packs = $('[data-ec-packs]');
+      if (packs) { event.preventDefault(); packs.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
       const target = $('[data-ec-packs]') || ecForm();
       if (target) { event.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
       return;
