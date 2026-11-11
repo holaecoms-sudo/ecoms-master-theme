@@ -79,7 +79,7 @@
             "ship_tier": 2,
             "ship_label": "Envío gratis a todo Chile",
             "ship_was": "$4.000",
-            "priority_product": "envio-prioritario",
+            "priority_product": "",
             "priority_label": "Quiero envío prioritario",
             "show_stock": true,
             "stock_threshold": 50,
